@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="AI2temp" Id="{bb272070-8e79-4624-9872-06fc36d6cfa1}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION AI2temp : INT
+VAR_INPUT
+	AI2raw : INT;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(* Description: 
+Function performs the 0-32767 offset+scaling+interpretation to a Cel temp for AI0. Matched to PWM Reciever board CH2
+EL3XXX converts the interpreted 0-32767 value into voltage.
+Voltage is converted to temperature using a calibrated formula: (scale*volt)-offset=temp
+
+For IR sensor Ch2*)
+AI2temp := REAL_TO_INT( (( INT_TO_REAL(AI2raw)*0.0005206935248569184154 + 3.0517032207384131972)-4.0 ) *450.0/16.0 - 69.0) ;
+// Calibrated Dec 9, 2021.]]></ST>
+    </Implementation>
+    <LineIds Name="AI2temp">
+      <LineId Id="33" Count="6" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

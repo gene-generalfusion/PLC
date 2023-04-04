@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="ANALOGConversion" Id="{91bae2bd-cbf8-486b-b7d9-9c862076d775}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM ANALOGConversion
+VAR
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(* Program converts raw AI values to Cel temperatures or Volts *)
+GVL.TEMPcap1 := AI1temp(AI1raw:= GVL.rawTEMPcap1);
+GVL.TEMPdump := AI2temp(AI2raw:= GVL.rawTEMPdump);
+GVL.TEMPload := AI3temp(AI3raw:= GVL.rawTEMPload);
+GVL.TEMPambient := AI4temp(AI4raw:= GVL.rawTEMPambient);
+GVL.Vcap1 := AI5volt(AI5voltageraw:= GVL.rawVcap1, isGreaterthanlimit:= GVL.changeAI5);
+
+//GVL.Spark_gap_voltage :=AI5Volt(AI5voltageraw := GVL.raw_Spark_gap_voltage, isGreaterthanlimit:= GVL.changeAI5); 
+GVL.Spark_gap_voltage_norm := Norm_x (raw_input := INT_TO_REAL (GVL.raw_Spark_gap_voltage),
+										x_max := 32767,
+										x_min := 346); //min reading is 346 - this might change depending on the setup.  oct 17, 2022
+GVL.Spark_gap_voltage_REAL := 50 * ADC_10V (normal_input := GVL.Spark_gap_voltage_norm, //units is in kV, ie 50kV
+									x_max := 10,
+									x_min := 0);
+GVL.Spark_gap_voltage := REAL_TO_INT (GVL.Spark_gap_voltage_REAL);	// convert it back to INT for ADS Labview oct 06, 2022
+
+
+//Added vcap2 to see if the current setup is good for 0-10V voltage feedback to opto
+GVL.Vcap2_norm := Norm_x (raw_input:= INT_TO_REAL (GVL.rawVcap1),
+							x_max := 16384,
+							x_min := 1734);
+							
+GVL.Vcap2_REAL := 40000 * ADC_10V (normal_input := GVL.Vcap2_norm,
+								x_max := 10,
+								x_min := 0);
+								
+GVL.Vcap2 := REAL_TO_INT (GVL.Vcap2_REAL);]]></ST>
+    </Implementation>
+    <LineIds Name="ANALOGConversion">
+      <LineId Id="15" Count="4" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="35" Count="0" />
+      <LineId Id="34" Count="0" />
+      <LineId Id="41" Count="2" />
+      <LineId Id="40" Count="0" />
+      <LineId Id="45" Count="1" />
+      <LineId Id="44" Count="0" />
+      <LineId Id="60" Count="0" />
+      <LineId Id="79" Count="0" />
+      <LineId Id="74" Count="0" />
+      <LineId Id="65" Count="0" />
+      <LineId Id="70" Count="3" />
+      <LineId Id="75" Count="1" />
+      <LineId Id="78" Count="0" />
+      <LineId Id="77" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

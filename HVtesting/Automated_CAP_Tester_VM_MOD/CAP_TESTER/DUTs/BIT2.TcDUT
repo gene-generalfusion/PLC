@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="BIT2" Id="{be14a1c2-c875-4591-a24a-248546f80b0b}">
+    <Declaration><![CDATA[(* STRUCT typedef for EL3XXX AI BIT2 limit *)
+TYPE BIT2 :
+STRUCT
+	BIT_0: BIT;		// < or =< is BIT0 true 
+	BIT_1: BIT;		// > or => is BIT1 true
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="ST_FieldDevices_Base" Id="{9558af7b-00bd-4084-ad51-e7c7e019b6ce}">
+    <Declaration><![CDATA[TYPE ST_FieldDevices_Base :
+STRUCT
+	cap : ARRAY [1..12] OF ST_InstrumentReading;
+	
+	ChargeRelay1_close		:BOOL;
+	ChargeRelay2_close		:BOOL;
+	
+	ShortContact1_close		:BOOL;
+	UnshortContact1_close 	:BOOL;
+	ShortContactEngaged		:BOOL;
+	
+	ShortContact2_close		:BOOL;
+	UnshortContact2_close 	:BOOL;
+	
+	DumpRelay1_close		:BOOL;
+	DumpRelay2_close		:BOOL;
+	
+	CloseChargeRelay1		:BOOL;
+	CloseChargeRelay2		:BOOL;
+	OpenDumpRelay1			:BOOL;
+	OpenDumpRelay2			:BOOL;
+	
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

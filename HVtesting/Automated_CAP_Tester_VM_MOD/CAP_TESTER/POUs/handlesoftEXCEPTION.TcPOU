@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="handlesoftEXCEPTION" Id="{da90aa83-dcd5-40ee-8da1-bce65c6b6d05}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM handlesoftEXCEPTION
+VAR
+	zero : LREAL := 0.000000001;	// Account for floating point representation
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(* Handle firmware/HMI exceptions by stopping GVL.appRUN *)
+
+// Handle HMI invalid ranges
+IF GVL.chargeTIMEmanual < -1 OR GVL.circuitcapcitanceuF <= zero OR GVL.targetPSUVOLT <= zero OR GVL.psuVOLTrating <= zero OR GVL.psuPOWERpeak <= zero OR GVL.chargeTIMEmanual >60 THEN
+	GVL.ctrlsysFAULT := TRUE;
+	GVL.softexceptionFAULT:= TRUE;
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="handlesoftEXCEPTION">
+      <LineId Id="10" Count="4" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

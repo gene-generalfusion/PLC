@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="AI5volt" Id="{0d4a54ed-3fea-435a-949b-8e95c657927f}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION AI5volt : INT
+VAR_INPUT
+	AI5voltageraw : INT;
+	isGreaterthanlimit :BOOL;
+END_VAR
+VAR
+	voltageraw : REAL;
+END_VAR
+VAR_OUTPUT
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(* This function performs the 0-32767 offset+scaling+interpretation to a voltage for AI4.
+Function specifically FOR 17-0184B-20kV probe, PWM reciever board CH5 *)
+
+// For positive HV probe with R7 para res mod: AI4volt := REAL_TO_INT( (INT_TO_REAL(AI5voltageraw)*(-0.66444986951763616461) ) + 19314.84300025254651 );
+// Look at specifications document. Calibrated Dec 8, 2021.
+//VM Calibration
+voltageraw := INT_TO_REAL(AI5voltageraw);
+IF voltageraw >= 4799 THEN
+	AI5volt := REAL_TO_INT (0.598211701572909*voltageraw - 908.007762297163000);
+ELSE
+	AI5volt := REAL_TO_INT (0.646313738227*voltageraw -1101.65962974992);
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="AI5volt">
+      <LineId Id="36" Count="1" />
+      <LineId Id="39" Count="1" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="47" Count="0" />
+      <LineId Id="111" Count="0" />
+      <LineId Id="84" Count="0" />
+      <LineId Id="137" Count="0" />
+      <LineId Id="139" Count="1" />
+      <LineId Id="138" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

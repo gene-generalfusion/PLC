@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <GVL Name="VoltMonitor_DB" Id="{860f77a6-4bc2-402b-92d3-cf7c77cd35cf}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	Heartbeat : BOOL;
+	BateryOn  : BOOL;
+	Channel	: INT; //ST_AnalogCHSelection;
+	VoltageReading_raw : INT;
+	VoltageReading_norm : REAL;
+	VoltageReading	: ARRAY[0..15] OF REAL;
+	
+	
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

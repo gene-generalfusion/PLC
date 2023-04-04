@@ -1,0 +1,94 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "definitions": {
+    "HMI": {
+      "properties": {
+        "hmiSTOP": {
+          "$ref": "tchmi:general#/definitions/BOOL"
+        },
+        "hmiSTART": {
+          "$ref": "tchmi:general#/definitions/BOOL"
+        },
+        "HOA": {
+          "$ref": "tchmi:general#/definitions/BOOL"
+        },
+        "voltage_held_by_PSU": {
+          "$ref": "tchmi:general#/definitions/BOOL"
+        },
+        "isnotSCRhvswitch": {
+          "$ref": "tchmi:general#/definitions/BOOL"
+        },
+        "expectedvoltage": {
+          "$ref": "tchmi:general#/definitions/INT"
+        },
+        "clearFAULT": {
+          "$ref": "tchmi:general#/definitions/BOOL"
+        },
+        "testintervalsecs": {
+          "$ref": "tchmi:general#/definitions/DINT"
+        },
+        "circuitcapcitanceuF": {
+          "$ref": "tchmi:general#/definitions/REAL"
+        },
+        "cap1THRESHOLDcel": {
+          "$ref": "tchmi:general#/definitions/INT"
+        },
+        "targetPSUVOLT": {
+          "$ref": "tchmi:general#/definitions/DINT"
+        },
+        "psuVOLTrating": {
+          "$ref": "tchmi:general#/definitions/DINT"
+        },
+        "psuPOWERpeak": {
+          "$ref": "tchmi:general#/definitions/DINT"
+        },
+        "chargeTIME": {
+          "$ref": "tchmi:general#/definitions/REAL"
+        },
+        "chargeTIMEmanual": {
+          "$ref": "tchmi:general#/definitions/REAL"
+        },
+        "holdTIMEsec": {
+          "$ref": "tchmi:general#/definitions/INT"
+        },
+        "holdTIMEtime": {
+          "$ref": "tchmi:general#/definitions/TIME"
+        },
+        "testNUM": {
+          "$ref": "tchmi:general#/definitions/DINT"
+        },
+        "testNUMmax": {
+          "$ref": "tchmi:general#/definitions/DINT"
+        },
+        "testNUMexceed": {
+          "$ref": "tchmi:general#/definitions/BOOL"
+        },
+        "resettestNUM": {
+          "$ref": "tchmi:general#/definitions/BOOL"
+        },
+        "HMIhold": {
+          "$ref": "tchmi:general#/definitions/BOOL"
+        },
+        "HMIcharge": {
+          "$ref": "tchmi:general#/definitions/BOOL"
+        },
+        "HMIdump": {
+          "$ref": "tchmi:general#/definitions/BOOL"
+        },
+        "HMIshoot": {
+          "$ref": "tchmi:general#/definitions/BOOL"
+        }
+      },
+      "type": "object",
+      "id": "tchmi:project#/definitions/HMI"
+    },
+    "FaultPage": {
+      "frameworkControlNamespace": "TcHmi.Controls.Beckhoff",
+      "frameworkControlType": "TcHmi.Controls.System.TcHmiUserControl",
+      "frameworkInstanceOf": "TcHmi.Controls.System.TcHmiControl",
+      "frameworkUserControlConfig": "UserControl\\FaultPage.usercontrol.json",
+      "type": "object",
+      "id": "tchmi:project#/definitions/FaultPage"
+    }
+  }
+}

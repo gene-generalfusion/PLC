@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="AI4temp" Id="{6f791d36-0a24-4120-b44a-b72bcfb2a801}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION AI4temp : INT
+VAR_INPUT
+	AI4raw : INT;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(* Description: 
+Function performs the 0-32767 offset+scaling+interpretation to a Cel temp for AI0. Matched to PWM Reciever board CH4
+EL3XXX converts the interpreted 0-32767 value into voltage.
+Voltage is converted to temperature using a calibrated formula: (scale*volt)-offset=temp
+
+For ambient thermocouple Ch4*)
+AI4temp := REAL_TO_INT( ( (0.0005242592739693383113*INT_TO_REAL(AI4raw)) + 2.9817690444038446262) * 30.138875 - 117 ) ;
+// Calibrated Dec 9, 2021
+]]></ST>
+    </Implementation>
+    <LineIds Name="AI4temp">
+      <LineId Id="34" Count="7" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

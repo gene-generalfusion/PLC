@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="ST_Trip_Base" Id="{1e589dff-c997-4725-b188-68637e8cc0f7}">
+    <Declaration><![CDATA[TYPE ST_Trip_Base :
+STRUCT
+	ChargerVoltageReadingFaulted 		: BOOL;
+	CurrentReadingFaulted 		 		: BOOL;
+	
+	//ACInterlockRelayFailedtoClose		: BOOL;
+	//ACInterlockRelayFailedtoOpen 		: BOOL;
+	//ACintLockRlyCloseFaultDelay_TON		: TON;
+	//ACintLockRlyOpenFaultDelay_TON		: TON;
+	
+	Peak 								: ST_RelayFaults_Base;
+	Sust 								: ST_RelayFaults_Base;
+	Form 								: ST_RelayFaults_Form;
+	
+	SystemTripped						: BOOL;
+	LossPneumaticPressure				: BOOL;
+	LossDCPower							: BOOL;
+	
+	(*HVisoRelayFailedToOpen		: BOOL;
+	HVRelayOpenFaultDelay_TON	: TON;
+	HVisoRelayFailedToClose		: BOOL;
+	HVRelayCloseFaultDelay_TON	: TON;
+	*)
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

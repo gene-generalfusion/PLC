@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <GVL Name="GVL" Id="{bb34f6bf-f00c-4215-8a35-eed073cdf29d}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+
+ //Alwas True & False
+ AlwaysTrue : BOOL := TRUE;
+ AlwaysFalse : BOOL := FALSE;
+ 
+(* PLC Physical IO *)
+	// Digital IO
+	buttonSTOP : BOOL;		// Unused
+	mechINTERLOCK : BOOL;
+	softdump : BOOL := FALSE; 
+	softdump_contact : BOOL;   // soft dump relay feedback. Normally Closed
+	chargeCOIL : BOOL := FALSE;
+	chargeCOIL_contact : BOOL; // charge coil relay feedback. Normally Open
+	shotCOIL : BOOL := FALSE;
+	shotCOILrdy : BOOL;
+	testFAULTlight : BOOL;
+	testRUNlight : BOOL;
+	scopetrigger : BOOL;
+	charging_alarm :BOOL;
+	sparkdetect :BOOL;
+	FireDetected :BOOL;  //Newly added for Fire Detection Test
+	chrg_to_fire_trig :BOOL := FALSE; //debug signal for Firedetect system
+	
+	(* For HVPS Controller IO *)
+	psuVmonitor : INT;		// PLC in to V monitor, is psu V measurement. AI
+	psuVCTRL : INT;		// PLC out to remote voltage, is psu V control. AO
+	selectREMOTE : BOOL := FALSE;		// PLC out to remote/ local select, is psu ON/ OFF control.
+	psuInhibit : BOOL := TRUE;		// PLC out to inhibit, inhibits psu.
+	psuInhibit_contact : BOOL;		// No PCB with available signal thus unused.
+	psuONOFF : BOOL;		// PLC in to High Voltage Monitor, is psu ON/ OFF status.
+	EOCstatus : BOOL;		// PLC in to EOC, is psu End of Charge
+	psuINTERLOCK : BOOL;		// PLC in
+	psusumFAULT : BOOL;		// PLC in
+	psuMaxOutput : UINT;  //Maximum output setting on a Charger Power supply  (12kV or 50kV) * added oct 12, 2022 GL
+	
+	sparkCharger_ON : BOOL;  // added output to turn on spark charger sept 21, 2022 GL
+	sparkCharger_SP_Enable : BOOL; // added setpoint enable to spark charger sept 21, 2022 GL
+	
+	(* AI TEMP/ VOLT *)
+	rawTEMPcap1 : INT; // Cap1 
+		TEMPcap1 : INT;
+	rawTEMPdump : INT; // Soft Dump
+		TEMPdump : INT;
+	rawTEMPload : INT; // Load 
+		TEMPload : INT;
+	rawTEMPambient : INT; // Ambient 
+		TEMPambient : INT;
+	rawVcap1 : INT;	// Cap1 Voltage
+		Vcap1 : INT;
+		changeAI5 :BOOL := FALSE;
+	raw_HV_monitor : INT;
+		HV_monitor :INT;
+		
+		Vcap2 : INT;  //Cap1 Voltage with 0-10V for testing oct, 27, 2022
+		Vcap2_norm : REAL;
+		Vcap2_REAL : REAL;
+		
+	raw_Spark_gap_voltage :INT;  //AI8 - added Oct 5, 2022 - GL
+		Spark_gap_voltage :INT;
+		Spark_gap_voltage_norm : REAL;
+		Spark_gap_voltage_REAL : REAL;
+	
+(* PLC Internal *)
+	appRUN : BOOL;
+	
+(* HMI IO *)
+	hmiSTOP : BOOL; // In (Into PLC from LabView)
+	hmiSTART : BOOL;	// In
+	HOA : BOOL;	// In
+	
+	voltage_held_by_PSU :BOOL;
+	isnotSCRhvswitch : BOOL;	// If HV switch has feedback. SCR has ready feedback signal.
+	psu50kV_OutputSelected : BOOL; 
+	Cap_ratedVoltage : UINT; // unit is in V
+	targetVolt_exceed_CapRating_FAULT : BOOL;
+	expectedvoltage : INT;
+	psuTargetinvolt_echo : DINT;
+	
+	clearFAULT : BOOL;	// In
+	
+	testintervalsecs : DINT; 	// In
+	overall_cycle_time : DINT;
+	circuitcapcitanceuF : REAL;	// In
+	cap1THRESHOLDcel : INT;	// In
+	softdumpTHRESHOLDcel : INT := 95; // IN, added oct 14, 2022 GL
+	loadTHRESHOLDcel : INT := 95;  // IN, added oct 14, 2022 GL
+	ambientTHRESHOLDcel : INT := 95;  // IN, added oct 14, 2022 GL
+	allTemperatureInRange : BOOL; //OUT, added oct 14, 2022 GL
+	
+	targetPSUVOLT : DINT;	// In 
+	psuVOLTrating : DINT;	// In
+	psuPOWERpeak : DINT;	// In
+	chargeTIME : REAL;	// Out. Is estimated charge time of cap
+	chargeTIMEmanual : REAL;	// In
+	holdTIMEsec : REAL; // IN 
+		holdTIMEtime : TIME;
+	testNUM: INT;
+	testNUMmax : INT;	// In
+	testNUMexceed: BOOL;  //CHANGED FROM INT TO BOOL - JUNE 20, 2022
+	resettestNUM : BOOL;	// In
+	(* Manual HMI Controls *)
+	HMIhold : BOOL;
+	HMIcharge : BOOL;
+	HMIdump : BOOL;
+	HMIshoot : BOOL;
+	HMIready : BOOL;
+	
+(* FAULTS *)
+	chargeFAULT : BOOL := FALSE;
+	dischargeFAULT : BOOL := FALSE;
+	holdFAULT : BOOL := FALSE;
+	cap1tempFAULT : BOOL := FALSE;
+	ambienttempFAULT : BOOL := FALSE;
+	loadtempFAULT : BOOL := FALSE;  // ADDED OCT 14, 2022 GL
+	psuFAULT : BOOL := FALSE;
+	ctrlsysFAULT : BOOL := FALSE;		// Relates to FB sys
+		softdumpFB_FAULT : BOOL := FALSE;
+		chargeFB_FAULT : BOOL := FALSE;
+		HVpsuFB_FAULT : BOOL := FALSE;
+	softexceptionFAULT : BOOL := FALSE;
+	test_interval_fault : BOOL := FALSE;
+	PreFire_Fault : BOOL := FALSE;
+(* Current Control *)
+	control_current : BOOL;
+	duty_cycle : REAL;
+(*DEBUG*)
+	ctrl_box_charge_feedback : BOOL;  //relay contact ??
+	ctrl_box_dump_feedback : BOOL;	//relay contact ??
+(* Start PLC ALIAS *)
+		// Digital In
+	PLC_DI1 AT %I* : BOOL;
+	PLC_DI2 AT %I* : BOOL;
+	PLC_DI3 AT %I* : BOOL;
+	PLC_DI4 AT %I* : BOOL;
+	PLC_DI5 AT %I* : BOOL;
+	PLC_DI6 AT %I* : BOOL;
+	PLC_DI7 AT %I* : BOOL;
+	PLC_DI8 AT %I* : BOOL;
+	PLC_DI9 AT %I* : BOOL;
+	PLC_DI10 AT %I* : BOOL;
+	PLC_DI11 AT %I* : BOOL;
+	PLC_DI12 AT %I* : BOOL;
+	PLC_DI13 AT %I* : BOOL;
+	PLC_DI14 AT %I* : BOOL;
+	PLC_DI15 AT %I* : BOOL;
+	PLC_DI16 AT %I* : BOOL;
+		// Digital Out
+	PLC_DO1 AT %Q* : BOOL;
+	PLC_DO2 AT %Q* : BOOL;
+	PLC_DO3 AT %Q* : BOOL;
+	PLC_DO4 AT %Q* : BOOL;
+	PLC_DO5 AT %Q* : BOOL;
+	PLC_DO6 AT %Q* : BOOL;
+	PLC_DO7 AT %Q* : BOOL;
+	PLC_DO8 AT %Q* : BOOL;
+	PLC_DO9 AT %Q* : BOOL;
+	PLC_DO10 AT %Q* : BOOL;
+	PLC_DO11 AT %Q* : BOOL;
+	PLC_DO12 AT %Q* : BOOL; //Voltage Monitor b0
+	PLC_DO13 AT %Q* : BOOL; //Voltage Monitor b1
+	PLC_DO14 AT %Q* : BOOL; //Voltage Monitor b2
+	PLC_DO15 AT %Q* : BOOL; //Voltage Monitor b3
+	PLC_DO16 AT %Q* : BOOL; //spare
+		// Analog In
+	PLC_AI1 AT %I* : INT;
+	PLC_AI2 AT %I* : INT;
+	PLC_AI3 AT %I* : INT;
+	PLC_AI4 AT %I* : INT;
+	PLC_AI5 AT %I* : INT;
+	PLC_AI6 AT %I* : INT;
+	PLC_AI7 AT %I* : INT;
+	PLC_AI8 AT %I* : INT;
+	PLC_AI9 AT %I* : INT;
+	PLC_AI10 AT %I* : INT;
+	PLC_AI11 AT %I* : INT;
+	PLC_AI12 AT %I* : INT;
+			// Analog Satus Limit WORD Bits 2/3 is Limit 1..... BIT.0 is WORD.2 and BIT.1 is WORD.3
+			PLC_AI1_LIM1 AT %I*: WORD;
+			PLC_AI2_LIM1 AT %I*: WORD;
+			PLC_AI3_LIM1 AT %I*: WORD;
+			PLC_AI4_LIM1 AT %I*: WORD;
+			PLC_AI5_LIM1 AT %I*: WORD;
+			PLC_AI6_LIM1 AT %I*: WORD;
+			PLC_AI7_LIM1 AT %I*: WORD;
+			PLC_AI8_LIM1 AT %I*: WORD;
+			PLC_AI9_LIM1 AT %I*: WORD;
+			PLC_AI10_LIM1 AT %I*: WORD;
+			PLC_AI11_LIM1 AT %I*: WORD;
+			PLC_AI12_LIM1 AT %I*: WORD;
+		// Analog Out
+	PLC_AO1 AT %Q* : INT;
+	PLC_AO2 AT %Q* : INT;
+	
+	// PLC IO Status
+	PLC_EL1008_1 AT %I* : UINT;
+	PLC_EL1008_2 AT %I* : UINT;
+	PLC_EL2008_1 AT %I* : UINT;
+	PLC_EL2008_2 AT %I* : UINT;
+	PLC_EL3064_1 AT %I* : UINT;
+	PLC_EL3064_2 AT %I* : UINT;
+	PLC_EL3064_3 AT %I* : UINT;
+	PLC_EL4132_1 AT %I* : UINT;
+	
+	// EtherCAT Module
+	DevCtrl AT %Q* : UINT;
+	
+	InstrumentationFault : BOOL := FALSE;
+	noFaultDetected: BOOL := TRUE;
+END_VAR
+]]></Declaration>
+  </GVL>
+</TcPlcObject>

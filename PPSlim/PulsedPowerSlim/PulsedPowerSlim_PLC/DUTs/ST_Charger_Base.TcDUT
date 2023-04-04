@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="ST_Charger_Base" Id="{8a87cbb4-bf0d-48a4-8430-6d1bdab51beb}">
+    <Declaration><![CDATA[TYPE ST_Charger_Base :
+STRUCT
+	//DI
+	inhibited 		: BOOL;
+	EndOfCharge 	: BOOL;
+	HV_isON			: BOOL;
+	OverTemp		: BOOL;
+	InterlockOpen	: BOOL;
+	LoadFaulted		: BOOL;
+	SummaryFaulted	: BOOL;
+	
+	//DQ
+	inhibit			: BOOL;
+	HV_ON			: BOOL;
+	
+	//AI
+	voltageFeedback_raw : INT;
+	currentFeedback_raw : INT;
+	
+	//AQ
+	voltageSP		: INT;
+	
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

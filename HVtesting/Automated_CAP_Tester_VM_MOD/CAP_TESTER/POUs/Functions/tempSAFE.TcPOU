@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="tempSAFE" Id="{1b5d8ed3-56fd-47e7-8f93-54d863623bfe}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION tempSAFE : BOOL
+VAR_INPUT
+	TEMPcel : INT;
+	thresholdTEMPcel : INT;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// If temp passed is under threshold, returns TRUE (is safe)
+IF TEMPcel <= thresholdTEMPcel THEN
+	tempSAFE := TRUE;
+ELSE 
+	tempSAFE := FALSE;
+END_IF;]]></ST>
+    </Implementation>
+    <LineIds Name="tempSAFE">
+      <LineId Id="27" Count="0" />
+      <LineId Id="35" Count="0" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="17" Count="2" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="ST_RelayFaults_Form" Id="{6e85de6f-f512-4d7b-a34f-be1723cca4db}">
+    <Declaration><![CDATA[TYPE ST_RelayFaults_Form EXTENDS ST_RelayFaults_Base :
+STRUCT
+	PreFormChrgRlyFailed				: BOOL;
+	PreFormChrgRlyFaultDelay_TON		: TON;
+	FormTrigChrgRlyFailed				: BOOL;
+	FormTrigChrgRlyFaultDelay_TON		: TON;
+	PreFormTrigChrgRlyFailed			: BOOL;
+	PreFormTrigChrgRlyFaultDelay_TON	: TON;
+	PreFormDumpRlyFailed				: BOOL;
+	PreFormDumpRlyFaultDelay_TON		: TON;
+	FormTrigDumpRly1Failed				: BOOL;
+	FormTrigDumpRlyFaultDelay_TON		: TON;
+	PreFormTrigDumpRly1Failed			: BOOL;
+	PreFormTrigDumpRlyFaultDelay_TON	: TON;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

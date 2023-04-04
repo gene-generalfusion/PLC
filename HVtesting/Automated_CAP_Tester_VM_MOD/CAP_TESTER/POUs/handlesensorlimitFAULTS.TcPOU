@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="handlesensorlimitFAULTS" Id="{dc31b74c-ad13-41dd-a011-8ee7466d9c92}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM handlesensorlimitFAULTS
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(* Handles instrumentation faults.
+Program looks at the lower and upper limit bits on each sensor channel.
+The temperature sensors using the 17-0284 PCBs give an approx .8-10V signal. Anything below 4mA or .8V means that the PCB/ sensor has failed  
+
+4mA PWM signal ~= .8V. The EL3XXX is set to 1000 lower limit
+*)
+IF (GVL.PLC_AI1_LIM1.2		// BIt_0 is the lower limit fault.
+OR GVL.PLC_AI2_LIM1.2
+OR GVL.PLC_AI3_LIM1.2
+OR GVL.PLC_AI4_LIM1.2 
+) THEN
+	GVL.InstrumentationFault := TRUE;
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="handlesensorlimitFAULTS">
+      <LineId Id="6" Count="5" />
+      <LineId Id="13" Count="2" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

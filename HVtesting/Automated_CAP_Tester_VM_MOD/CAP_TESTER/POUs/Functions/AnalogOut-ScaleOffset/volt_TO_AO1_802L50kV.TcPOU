@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="volt_TO_AO1_802L50kV" Id="{bb989045-fed5-49fb-a5d2-38516e48bc13}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION volt_TO_AO1_802L50kV : INT
+VAR_INPUT
+	psuTargetinvolt : DINT;
+	psuMaxOutput : UINT;
+END_VAR
+VAR_IN_OUT
+	VpsuOut : INT;
+END_VAR
+VAR
+	x_min 					: REAL;
+	psuTargetinvolt_REAL 	: REAL;
+	psuMaxOutput_REAL 		: REAL;
+	VpsuOUT_REAL 			: REAL;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(* Description:
+Converts voltage to respective AO1 0-32767 sig
+Specific to the negative TDK 802L 12kV, 12kV is 802L max out. 32767 is 10V PLC out. *)
+
+(* Min setpoint ~0.5kV due to 17-0066E 
+!! Must be recalibrated for any other PSU!! *)
+
+// Build for 17-0066E
+psuTargetinvolt := ABS(psuTargetinvolt);
+IF psuTargetinvolt > psuMaxOutput THEN	
+	psuTargetinvolt := psuMaxOutput;
+END_IF
+
+//VpsuOUT := REAL_TO_INT( (DINT_TO_REAL(psuTargetinvolt) + 20.0 ) / 0.38745387453874538744);
+// For +50kV PSU: VpsuOUT := REAL_TO_INT( (DINT_TO_REAL(psuTargetinvolt)-99.009) / 1.5841584158415841584);
+//VpsuOUT := REAL_TO_INT( (DINT_TO_REAL(psuTargetinvolt)*2.730583333333333333333333));
+psuTargetinvolt_REAL := DINT_TO_REAL (psuTargetinvolt);
+psuMaxOutput_REAL := UINT_TO_REAL (psuMaxOutput);
+
+VpsuOUT_REAL := 32767 * (psuTargetinvolt_REAL - x_min) / (psuMaxOutput_REAL - x_min);
+
+VpsuOUT := REAL_TO_INT (VpsuOUT_REAL);
+
+//set the limit for AQ over range  - This should never happen.
+IF VpsuOUT > 32767 THEN
+	VpsuOUT := 32767;
+END_IF;
+
+IF VpsuOUT < 0 THEN		// Block negative voltage out
+	VpsuOUT := 0;
+END_IF;
+
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="volt_TO_AO1_802L50kV">
+      <LineId Id="113" Count="4" />
+      <LineId Id="119" Count="2" />
+      <LineId Id="141" Count="0" />
+      <LineId Id="122" Count="5" />
+      <LineId Id="152" Count="0" />
+      <LineId Id="210" Count="0" />
+      <LineId Id="209" Count="0" />
+      <LineId Id="205" Count="0" />
+      <LineId Id="204" Count="0" />
+      <LineId Id="190" Count="0" />
+      <LineId Id="185" Count="0" />
+      <LineId Id="191" Count="0" />
+      <LineId Id="175" Count="1" />
+      <LineId Id="182" Count="2" />
+      <LineId Id="177" Count="4" />
+      <LineId Id="174" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,999 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="Automated_Capacitor_Test_ST" Id="{e128ca1e-1181-456e-82bf-f33d8d46ea95}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Automated_Capacitor_Test_ST
+VAR
+	// Threshold Temps #DEFINES
+	//ambientTHRESHOLDcel : INT := 40; // Exists in handleFAULT pgm also. Change in 2 places
+	//loadTHRESHOLDcel : INT := 95;
+	//softdumpTHRESHOLDcel : INT := 95;
+	
+	// #DEFINE
+	chrgvoltTOLERANCE 		: INT := 10000;		// Charge Algorithm Voltage Tolerance
+	holdvoltThreshold 		: INT := 1000;	// Threshold of allowable decay voltage for cap during hold period
+	lowlimtimeTOLERANCE 	: REAL := 1;
+	shotrelayDURATION 		: TIME := T#7S;	// Continued activation time of HV shot switch
+	firstwaitTIME 			: TIME := T#13S;		// Safety wait timer before test can initiate
+	
+	// // PLC Status
+	processSTEP 			: USINT := 0;
+	
+		// TIMEs
+	estfullchrgTIME 		: REAL;
+	chargeTIME 				: REAL;
+		chargeTIMEdint 		: DINT;
+		chargeTIMEtime 		: TIME;
+	beforestartTON 			: TON;
+		elapsedbeforestartTIME : TIME;
+		startReady 				: BOOL;
+	chargeTON 				: TON;
+		elapsedChargereal 		: REAL;
+		elapsedCharge 			: TIME;
+		inhibitVariable 		: BOOL;
+	holdTON 				: TON;
+		holdTIMEtime 			: TIME;
+		elapsedhold 			: TIME;
+		shotready 				: BOOL := FALSE;
+	holdTON2 				: TON;
+		holdTIMEtime2 			: TIME;
+		elapsedhold2 			: TIME;
+		shotready2 				: BOOL := FALSE;
+	shotTON 				: TON;
+		shooted 				: BOOL := FALSE;
+		elapsedshot 			: TIME;
+	testwaitTON 			: TON;
+		waitTIMEtime 			: TIME;
+		elapsedwait 			: TIME;
+		holdtimerQ 				: BOOL;	
+	EOCF_TRIG 				: F_TRIG; //End of Charge
+		EOCBool 				: BOOL;
+	EOCTON 					: TON;
+		EOCTIMEtime 			: TIME := T#2000MS;
+		elapsedEOC 				: TIME;
+		EOCBool2 				: BOOL;
+		EOCPassed 				: BOOL;
+		iterateEOC 				: BOOL := FALSE;
+	extendedChargeTimer 	: TON;
+		extendedToleranceTIME 	: TIME := T#15S;
+		extendedElapsed 		:TIME;
+		extendedTimeReached 	: BOOL;
+	Delay 					: TON;
+		wait 					: TIME:= T#1S;
+		elapsed					: TIME;
+		complete				: BOOL := FALSE;
+	Delay2 					:TON;
+		wait2 					: TIME:= T#1S;
+		elapsed2				: TIME;
+		complete2				: BOOL := FALSE;
+		
+	// TEMP Statuses - True means under threshold TEMP
+	cap1_Temp 			: BOOL;
+	ambient_Temp		: BOOL;
+	load_Temp			: BOOL;
+	dump_Temp			: BOOL;
+	
+	// Local Variables
+	expectcapVOLT 			: REAL;
+	fullCHRG 				: BOOL;
+	internalBOOLcharge 		: BOOL := FALSE;
+	internalBOOLSDL 		: BOOL := FALSE;
+	//Debug Variables
+	VoltAtHOLD				: DINT;
+	expectedATHOLD			: REAL;
+	chrg_time_for_interval 	: TIME;
+	// Function Variables - "Static C" variables for iterative functions
+	capvoltiter 			: REAL;	
+	lasttimesec 			: REAL;
+	
+	//spark charger
+	sparkcharger_TON 		: TON;
+	sparkcharger_TON_PT 	: TIME:= T#5S;
+	sparkcharger_ready 		: BOOL;
+	
+	sparkcharger_softdump_TON 	: TON;
+	sparkcharger_softdump_PT 	: TIME := T#7S;  //time delay between after shot and soft dump.
+	
+	hold_betweenCharge_nShot_TON 	: TON;
+	hold_betweenCharge_nShot_PT 	: TIME := T#500MS;	
+	
+	Vcap_sample 					: ARRAY [1..2] OF REAL;
+	i 								: INT := 1;
+	fbGetSystemTime 				: GETSYSTEMTIME;
+	fileTIME 						: T_FILETIME;
+	sTIME							: STRING;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// Latching START
+IF (GVL.hmiSTART OR GVL.appRUN) AND
+(NOT GVL.hmiSTOP // AND NOT GVL.buttonSTOP
+AND GVL.noFaultDetected //AND GVL.mechINTERLOCK		// psuFAULT, mechinterlock normally high (NH)
+AND NOT GVL.testNUMexceed) THEN
+	IF NOT GVL.appRUN THEN		// Handles first run
+		processSTEP := 0;
+	END_IF;
+	GVL.appRUN := TRUE;
+	Delay( IN:= FALSE, PT:= wait, Q=>complete, ET=> elapsed);
+	complete := FALSE;
+	Delay2( IN:= FALSE, PT:= wait2, Q=>complete2, ET=> elapsed2);
+	complete2 := FALSE;
+// STOP + safe state + landing pad upon fault detection
+ELSE 
+	GVL.appRUN := FALSE;
+	(* Return to safe conditions - Mind order of operation *)
+	GVL.shotCOIL := FALSE;
+	GVL.psuInhibit := TRUE; 
+	Delay( IN:= TRUE, PT:= wait, Q=>complete, ET=> elapsed);
+		IF complete THEN
+			GVL.chargeCOIL := FALSE;
+			GVL.selectREMOTE := FALSE;
+			volt_TO_AO1_802L50kV(psuTargetinvolt:= 0, psuMaxOutput:= GVL.psuMaxOutput, VpsuOut:= GVL.psuVCTRL);
+			Delay2( IN:= TRUE, PT:= wait2, Q=>complete2, ET=> elapsed2);
+				IF complete2 THEN
+					GVL.softdump := FALSE; // NC
+					Delay( IN:= FALSE, PT:= wait, Q=>complete, ET=> elapsed);
+					complete := FALSE;
+					Delay2( IN:= FALSE, PT:= wait2, Q=>complete2, ET=> elapsed2);
+					complete2 := FALSE;
+					elapsed := T#0S;
+					elapsed2 := T#0S;
+				END_IF;
+		END_IF;
+	
+	// Timer/BOOL/internal logic resets (If test stopped midway. Returns test to default conditions)
+	beforestartTON(IN:= FALSE, PT:= T#10S, Q=> startReady, ET=> elapsedbeforestartTIME);
+	chargeTON(IN:= FALSE, PT:= chargeTIMEtime, Q=> inhibitVariable, ET=> elapsedCharge );
+	holdTON(IN:= FALSE, PT:= holdTIMEtime, Q=> shotready, ET=> elapsedhold);
+	shotTON(IN:= FALSE, PT:= T#250MS, Q=> shooted, ET=> elapsedshot);
+	testwaitTON(IN:= FALSE, PT:= holdTIMEtime, Q=> holdtimerQ, ET=> elapsedwait);
+	
+	elapsedbeforestartTIME := T#0MS;
+	elapsedCharge := T#0MS;
+	internalBOOLcharge := FALSE;
+	lasttimesec := 0;
+	capvoltiter := 0;
+	
+	holdTON2(IN:= FALSE, PT:= T#1S, Q=> shotready2, ET=> elapsedhold2);
+	shotready2 := FALSE;
+	elapsedhold2 := T#0S;
+	internalBOOLSDL := FALSE;
+	
+	EOCPassed := FALSE;
+	EOCBool := FALSE;
+	EOCBool2 := FALSE;
+	EOCTON(IN:= FALSE, PT:= EOCTIMEtime, Q=> EOCBool2, ET=> elapsedEOC);
+	
+	GVL.charging_alarm := FALSE;
+	GVL.chrg_to_fire_trig := FALSE;
+	
+	extendedChargeTimer(IN :=FALSE, PT:= extendedToleranceTIME,Q => extendedTimeReached, ET =>extendedElapsed);
+	extendedElapsed := T#0MS;
+	
+	elapsedhold := T#0MS;
+	elapsedshot := T#0MS;
+	elapsedwait := T#0MS;
+	
+	sparkcharger_TON (IN:= FALSE, PT:= sparkcharger_TON_PT, Q=> sparkcharger_ready);
+	sparkcharger_softdump_TON (IN:= FALSE, PT:= sparkcharger_softdump_PT);
+
+	processSTEP := 0;
+END_IF;
+
+
+// Reset Test Number
+IF GVL.resettestNUM THEN
+	GVL.testNUM := 0;
+	GVL.testNUMexceed := FALSE;
+END_IF
+
+//calculate cycle time
+IF GVL.chargeTIMEmanual <0 THEN
+	GVL.testintervalsecs := GVL.overall_cycle_time - REAL_TO_DINT(chargeTIME + TIME_TO_REAL (extendedElapsed) + GVL.holdTIMEsec);
+ELSE
+	GVL.testintervalsecs := GVL.overall_cycle_time - REAL_TO_DINT(GVL.chargeTIMEmanual + GVL.holdTIMEsec);
+END_IF
+
+//added sparkgap charger OFF when DUMP Relay is close sept 21, 2022 GL
+(*IF GVL.softdump = FALSE THEN // NC, 0 = contact close, 1 = contact open
+	GVL.sparkCharger_SP_Enable := FALSE; // turn off sparkcharge setpoint
+	GVL.sparkCharger_ON := FALSE; // turn off sparkcharger
+END_IF;*)
+
+// Main Process Flow
+IF GVL.appRUN THEN
+
+	CASE processSTEP OF
+		
+		0:	(* FIRST RUN SETUP + WAIT 15 SEC *)
+			GVL.softdump := FALSE;
+			GVL.chargeCOIL := FALSE;
+			GVL.psuInhibit := TRUE;
+			volt_TO_AO1_802L50kV(psuTargetinvolt:= GVL.targetPSUVOLT, psuMaxOutput:= GVL.psuMaxOutput, VpsuOut:= GVL.psuVCTRL);	(* PSU setpoint function. *)
+			GVL.shotCOIL := FALSE;
+			GVL.scopetrigger := FALSE;
+			
+			IF GVL.softdump = FALSE THEN 
+				GVL.sparkCharger_ON := FALSE;
+				GVL.sparkCharger_SP_Enable := FALSE;
+			END_IF;
+			
+			GVL.charging_alarm := TRUE;
+			// Check temps
+			cap1_Temp := tempSAFE(TEMPcel:= GVL.TEMPcap1, thresholdTEMPcel:= GVL.cap1THRESHOLDcel);
+			dump_Temp := tempSAFE(TEMPcel:= GVL.TEMPdump, thresholdTEMPcel:= GVL.softdumpTHRESHOLDcel);
+			load_Temp := tempSAFE(TEMPcel:= GVL.TEMPload, thresholdTEMPcel:= GVL.loadTHRESHOLDcel);
+			ambient_Temp := tempSAFE(TEMPcel:= GVL.TEMPambient, thresholdTEMPcel:= GVL.ambientTHRESHOLDcel);
+		
+			// Wait before startinZg (Safety)
+			IF cap1_Temp AND dump_Temp AND load_Temp AND ambient_Temp THEN
+				beforestartTON(IN:= TRUE, PT:= firstwaitTIME, Q=> startReady, ET=> elapsedbeforestartTIME);
+			ELSE
+				beforestartTON(IN:= FALSE, PT:= firstwaitTIME, Q=> startReady, ET=> elapsedbeforestartTIME);
+				elapsedbeforestartTIME := T#0MS;
+			END_IF;
+			// Proceed to next step
+			IF (startReady AND GVL.HOA)		// Automatic Operation
+				XOR
+				(GVL.HMIcharge AND startReady AND NOT GVL.HOA)		// Manual Operation
+				THEN
+				beforestartTON(IN:= FALSE, PT:= firstwaitTIME, Q=> startReady, ET=> elapsedbeforestartTIME);
+				elapsedbeforestartTIME := T#0S;
+				lasttimesec := 0;
+				GVL.charging_alarm := FALSE;
+				GVL.chrg_to_fire_trig := FALSE;
+				GVL.selectREMOTE := TRUE;		// psuHV On once at start, charging controlled by inhibit
+				IF GVL.control_current THEN
+					processSTEP := 6;
+				ELSE
+					processSTEP := 1;
+				END_IF
+			END_IF
+			
+		1: 	(* CHARGE *)
+			// Increments test number once; tracked with internalBOOLcharge
+			IF NOT internalBOOLcharge THEN
+				GVL.testNUM := GVL.testNUM + 1;
+				internalBOOLcharge := TRUE;
+			END_IF
+			
+			// If Labview charge time set to -1 then use automatic/ estimated full charge time to V setpoint. Value > 0 is a manual charge time.
+			estfullchrgTIME := estimatedchargeTIME_802L(uFcapacitance:= GVL.circuitcapcitanceuF, Vrated:= GVL.psuVOLTrating, Vcharge:= GVL.targetPSUVOLT, Powerpk802L:= GVL.psuPOWERpeak);	// In seconds
+			IF GVL.chargeTIMEmanual >= 0 THEN
+				chargeTIME := GVL.chargeTIMEmanual;	// Manual charge time, seconds
+				fullCHRG := FALSE;
+			ELSE
+				chargeTIME := estfullchrgTIME;		// Full charging relies on PSU EOC signal	
+				fullCHRG := TRUE;
+			END_IF	
+			// Error handling for chargeTIME == 0
+			IF chargeTIME = 0 THEN
+				GVL.appRUN := FALSE;
+			END_IF
+			chargeTIMEdint := REAL_TO_DINT((chargeTIME)*1000); // To millisec
+			chargeTIMEtime := DINT_TO_TIME(chargeTIMEdint);		// To TIME
+			
+			expectcapVOLT := instantexpectedcapVOLT_802L(	// Expected cap voltage at instant time
+				timenow:= elapsedCharge, 
+				capacitanceF:= (GVL.circuitcapcitanceuF*0.001),
+				PSUratedVoltage:= GVL.psuVOLTrating,
+				targetVoltage:= GVL.targetPSUVOLT,  
+				previoustime:= lasttimesec, 
+				Voltlast:= capvoltiter); 
+			
+			GVL.Vcap1 := AI5volt(AI5voltageraw:= GVL.rawVcap1, isGreaterthanlimit:= GVL.changeAI5 );		// Get cap VOLT. Voltage interpreted as abs value.
+			GVL.expectedvoltage := REAL_TO_INT(expectcapVOLT);
+			// Start charge.
+			// Algorithm that compares real voltage to the expected charge curve +/-500V. Charge too fast or charge too slow raises fault
+			IF GVL.Vcap1 <= (expectcapVOLT+chrgvoltTOLERANCE) AND GVL.Vcap1 >= (expectcapVOLT-chrgvoltTOLERANCE)
+				AND NOT GVL.psuONOFF THEN	
+				GVL.softdump := TRUE; // NC
+				
+				IF GVL.softdump_contact THEN 		// ! Waits for not soft dumping
+					GVL.chargeCOIL := TRUE;	
+					GVL.chrg_to_fire_trig := TRUE;
+					IF GVL.chargeCOIL_contact THEN
+						chargeTON(IN:= TRUE, PT:= chargeTIMEtime, Q=> inhibitVariable, ET=> elapsedCharge );		// False until ET
+						GVL.psuInhibit := FALSE;	// Equates on sepearate line to reduce flickering.
+					END_IF;
+				END_IF;
+			ELSIF GVL.Vcap1 > (expectcapVOLT+chrgvoltTOLERANCE) OR GVL.Vcap1 < (expectcapVOLT-chrgvoltTOLERANCE) THEN
+				GVL.chargeFAULT := TRUE;		// Fault handled below
+			END_IF;
+			//SCR FB Fault
+			IF NOT GVL.isnotSCRhvswitch THEN
+				GVL.Vcap1 := AI5volt(AI5voltageraw:= GVL.rawVcap1, isGreaterthanlimit:= GVL.changeAI5 );
+				IF GVL.Vcap1 >= 5000 THEN 
+					IF NOT GVL.shotCOILrdy THEN		// Need SCR rdy before shot
+						GVL.dischargeFAULT := TRUE;
+					END_IF
+				END_IF;
+			END_IF;
+			(* Proceed to HOLD logic + EOC not reached FAULTS (Manual charge time holds when time reached. Automatic (-1) uses waits for EOC signal to hold)
+			NOTE: EOC is normally high. 
+			If the TDK charger is replaced in the future, the Glassman PSU exit logic can be placed here. *)
+			elapsedChargereal := TIME_TO_REAL(elapsedCharge)*0.001;	// From ms to sec
+ 
+			EOCF_TRIG(CLK:= GVL.EOCstatus, Q=> EOCBool);
+			IF EOCBool OR iterateEOC THEN
+				iterateEOC := TRUE;
+				elapsedEOC := T#0S;
+				EOCTON(IN:= TRUE, PT:= EOCTIMEtime, Q=> EOCBool2, ET=> elapsedEOC);
+			END_IF
+			IF EOCBool2 THEN
+				EOCTON(IN:= FALSE, PT:= EOCTIMEtime, Q=> EOCBool2, ET=> elapsedEOC);
+				elapsedEOC := T#0S;
+				iterateEOC := FALSE;
+				IF NOT GVL.EOCstatus THEN
+					EOCPassed := TRUE;
+				ELSE
+					EOCPassed := FALSE;
+				END_IF
+			END_IF
+
+			IF elapsedChargereal >= chargeTIME THEN
+				extendedChargeTimer(IN :=TRUE, PT:= extendedToleranceTIME,Q => extendedTimeReached, ET =>extendedElapsed);
+			END_IF;
+			
+			// This was changed on my last day! Replace EOCPassed with GVL.EOC Mind if NL or NH
+			IF ((elapsedChargereal >= (chargeTIME*lowlimtimeTOLERANCE) ) AND EOCPassed AND GVL.Vcap1 >=GVL.targetPSUVOLT-300 AND NOT extendedTimeReached AND fullCHRG) 	// Automatic Operation - Goto HOLD
+				OR ((elapsedChargereal >= chargeTIME) AND NOT fullCHRG)
+				OR (GVL.HMIhold AND NOT GVL.HOA)		// Manual Operation - Can exit charge at any time. Will exit upon full charge reached even in manual operation.
+				THEN
+				
+				EOCPassed := FALSE;
+				EOCBool := FALSE;
+				EOCBool2 := FALSE;
+				EOCTON(IN:= FALSE, PT:= EOCTIMEtime, Q=> EOCBool2, ET=> elapsedEOC);
+				extendedChargeTimer(IN :=FALSE, PT:= extendedToleranceTIME,Q => extendedTimeReached, ET =>extendedElapsed);
+				extendedElapsed := T#0MS;
+				chargeTON(IN:= FALSE, PT:= chargeTIMEtime, Q=> inhibitVariable, ET=> elapsedCharge );
+				elapsedCharge := T#0MS;
+				lasttimesec := 0;
+				capvoltiter := 0;
+				IF GVL.voltage_held_by_PSU THEN
+					processSTEP := 2;
+				ELSE
+					GVL.psuInhibit := TRUE;
+					GVL.chargeCOIL := FALSE;
+					processSTEP :=7;
+				END_IF;
+				VoltAtHOLD := GVL.Vcap1;
+				expectedATHOLD:= expectcapVOLT;
+				internalBOOLcharge := FALSE;
+			ELSIF  extendedTimeReached AND fullCHRG THEN //added in the event that EOC does not occur and cap keeps charging 
+				GVL.chargeFAULT := TRUE;
+			END_IF;
+			
+			// Handle the charge fault 
+			IF  GVL.chargeFAULT THEN
+				chargeTON(IN:= FALSE, PT:= chargeTIMEtime, Q=> inhibitVariable, ET=> elapsedCharge );
+				elapsedCharge := T#0MS;
+				internalBOOLcharge := FALSE;
+				lasttimesec := 0;
+				capvoltiter := 0;
+			END_IF
+			// Added pre-fire protection.  IF sample 2 is less than 5% of sample 1, go to dump State. Nov 09, 2022
+			//*****************************************************
+			FOR i := 1 TO 2 BY 1 DO
+				IF heartbeat.pulse_2hz = TRUE THEN
+					Vcap_sample[i] := GVL.Vcap1;
+				END_IF;
+			END_FOR;
+				
+			IF Vcap_sample[2] < (Vcap_sample[1] - (0.05 * Vcap_sample[1])) THEN // IF Vcap1 suddenly drop morethan 5% of of the previous sample, go to dump state.
+				processSTEP :=  4;  
+				GVL.appRUN := FALSE;
+				GVL.PreFire_Fault := TRUE;  
+				fbGetSystemTIME(timeLoDW => fileTIME.dwLowDateTime, timeHiDW => fileTIME.dwHighDateTime);
+				sTIME := SYSTEMTIME_TO_STRING (FILETIME_TO_SYSTEMTIME (fileTime)); 
+			END_IF;
+	
+			//*********************************************************
+		2:	(* HOLD BEFORE SHOT - Shot specified time. Cap voltage held by HVPS *)
+			IF GVL.control_current THEN
+				PRG_FB_CTRL_PWM_OUT();
+			END_IF
+			(* GVL.softdump := TRUE; // Here to describe current state
+			GVL.shotCOIL := FALSE; *)
+			holdTIMEtime := REAL_TO_TIME(GVL.holdTIMEsec*1000);	// Hold for HMI specified TIME (Converts s to ms for use by TIME)
+			
+			holdTON(IN:= TRUE, PT:= holdTIMEtime, Q=> shotready, ET=> elapsedhold);
+			
+			// Proceed to shot
+			GVL.Vcap1 := AI5volt(AI5voltageraw:= GVL.rawVcap1, isGreaterthanlimit:= GVL.changeAI5 );		// Get cap VOLT
+			IF (shotready AND GVL.HOA)		// Automatic Operation
+				XOR
+				(GVL.HMIshoot AND NOT GVL.HOA)		// Manual Operation
+				THEN
+				
+				(*IF (GVL.Vcap1 < (VoltAtHOLD-holdvoltThreshold)) THEN		// Cap volt leak fault
+					GVL.holdFAULT := TRUE;
+				END_IF*)
+				internalBOOLSDL := TRUE;
+				GVL.psuInhibit := TRUE;		// Diode reverse protected
+				GVL.chargeCOIL := FALSE;
+			ELSIF  (GVL.HMIdump OR shotready) AND NOT GVL.HOA THEN
+				processSTEP := 5;
+				internalBOOLSDL := FALSE;
+			END_IF;
+			
+			holdTON2(IN:= internalBOOLSDL, PT:= T#1S, Q=> shotready2, ET=> elapsedhold2);
+			
+			IF shotready2 AND NOT GVL.chargeCOIL_contact THEN
+				internalBOOLSDL := FALSE;
+				holdTON2(IN:= FALSE, PT:= T#1S, Q=> shotready2, ET=> elapsedhold2);
+				shotready2 := FALSE;
+				elapsedhold2 := T#0S;
+				
+				IF GVL.isnotSCRhvswitch = FALSE THEN
+					IF GVL.shotCOILrdy = FALSE THEN		// Need SCR rdy before shot
+						GVL.dischargeFAULT := TRUE;
+					END_IF;
+				END_IF;
+					
+				IF GVL.isnotSCRhvswitch = TRUE THEN  //not SCR so we use sparkgap //Added spark charger enable
+					GVL.sparkCharger_ON := TRUE;
+					GVL.sparkCharger_SP_enable := TRUE;
+					sparkcharger_TON (IN:= TRUE, PT:= sparkcharger_TON_PT, Q=> sparkcharger_ready);
+					IF sparkcharger_ready THEN
+						holdTON(IN:= FALSE, PT:= holdTIMEtime, Q=> shotready, ET=> elapsedhold); //added rev2
+						shotready := FALSE;
+						elapsedhold := T#0MS;
+						
+						processSTEP := 3;
+					END_IF;	
+				ELSE
+					holdTON(IN:= FALSE, PT:= holdTIMEtime, Q=> shotready, ET=> elapsedhold);
+					shotready := FALSE;
+					elapsedhold := T#0MS;
+					processSTEP :=3;
+				END_IF;
+				
+			END_IF;
+			
+			
+		3:	(* SHOT - automatically proceeeds to wait after shot *)
+			sparkcharger_TON (IN:= FALSE, PT:= sparkcharger_TON_PT, Q=> sparkcharger_ready);
+			GVl.sparkCharger_SP_Enable := FALSE; //Added Spark charger turn off right before the shooting.
+			GVl.sparkCharger_ON := FALSE;
+			
+			
+			GVL.chargeCOIL := FALSE;
+			
+			hold_betweenCharge_nShot_TON (IN:= TRUE, PT:= hold_betweenCharge_nShot_PT);
+			
+			IF hold_betweenCharge_nShot_TON.Q = TRUE THEN
+				GVL.shotCOIL := TRUE;
+				GVL.scopetrigger := TRUE;
+				GVL.chrg_to_fire_trig:= FALSE;
+			END_IF
+			
+			shotTON(IN:= TRUE, PT:= shotrelayDURATION, Q=> shooted, ET=> elapsedshot);	// Continue shot for 250ms
+			IF shooted THEN
+				IF GVL.isnotSCRhvswitch = FALSE THEN
+					IF GVL.shotCOILrdy THEN		// SCR rdy is high if didn't shoot
+						GVL.dischargeFAULT := TRUE;
+					END_IF
+				END_IF;
+				
+				shotTON(IN:= FALSE, PT:= shotrelayDURATION, Q=> shooted, ET=> elapsedshot);
+				hold_betweenCharge_nShot_TON (IN:= FALSE, PT:= hold_betweenCharge_nShot_PT); 
+				shooted := FALSE;
+				elapsedshot := T#0MS;
+				GVL.shotCOIL := FALSE;
+				
+				IF GVL.chargeCOIL_contact = FALSE THEN
+					sparkcharger_softdump_TON (IN:= TRUE, PT:= sparkcharger_softdump_PT);
+				
+					IF sparkcharger_softdump_TON.Q = TRUE THEN
+						processstep :=4;
+					END_IF;
+				END_IF;
+				
+				processstep :=4;				
+			END_IF;	
+			
+		4:	(* WAIT TEST INTERVAL *)
+			GVL.softdump := FALSE;	// NC
+			IF GVL.softdump_contact = FALSE THEN
+				GVL.sparkCharger_SP_Enable := FALSE; // turn off sparkcharge setpoint
+				GVL.sparkCharger_ON := FALSE; // turn off sparkcharger
+			END_IF;
+			//GVL.softdump := FALSE;	// NC  - was here but added a timer.
+			
+			// Number of tests reached -> STOP
+			IF GVL.testNUM >= GVL.testNUMmax THEN
+				processSTEP := 0;
+				GVL.appRUN := FALSE;
+				GVL.testNUMexceed := TRUE;
+			END_IF
+			
+			// Wait for safe temperatures
+			waitTIMEtime := DINT_TO_TIME(GVL.testintervalsecs*1000);		// LabVIEW input (s to ms for TIME)
+			sparkcharger_softdump_TON (IN:= FALSE, PT:= sparkcharger_softdump_PT);
+			testwaitTON(IN:= TRUE, PT:= waitTIMEtime, Q=> holdtimerQ, ET=> elapsedwait);
+			cap1_Temp := tempSAFE(TEMPcel:= GVL.TEMPcap1, thresholdTEMPcel:= GVL.cap1THRESHOLDcel);
+			dump_Temp := tempSAFE(TEMPcel:= GVL.TEMPdump, thresholdTEMPcel:= GVL.softdumpTHRESHOLDcel);
+			load_Temp := tempSAFE(TEMPcel:= GVL.TEMPload, thresholdTEMPcel:= GVL.loadTHRESHOLDcel);
+			ambient_Temp := tempSAFE(TEMPcel:= GVL.TEMPambient, thresholdTEMPcel:= GVL.ambientTHRESHOLDcel);
+			
+			//Sound charging alarm 5 sec before charge
+			IF (elapsedwait >= (waitTIMEtime- T#5S)) THEN
+				GVL.charging_alarm := TRUE;
+			END_IF
+			// Proceed to charge upon time delay AND safe temperatures
+			IF ( (holdtimerQ AND GVL.HOA)		// Automatic Operation
+				XOR (GVL.HMIcharge AND NOT GVL.HOA) )		// Manual Operation
+				AND cap1_Temp AND dump_Temp AND load_Temp AND ambient_Temp THEN
+				testwaitTON(IN:= FALSE, PT:= waitTIMEtime, Q=> holdtimerQ, ET=> elapsedwait);
+				holdtimerQ := FALSE;
+				elapsedhold := T#0MS;
+				GVL.scopetrigger := FALSE;
+				GVL.charging_alarm := FALSE;
+				
+				IF GVL.control_current THEN
+					processSTEP := 6;
+				ELSE
+					processSTEP := 1;
+				END_IF
+				
+			END_IF;
+			
+		5:
+				GVL.appRUN := FALSE;
+				
+		6: //Control Current
+			IF NOT internalBOOLcharge THEN
+				GVL.testNUM := GVL.testNUM + 1;
+				internalBOOLcharge := TRUE;
+			END_IF
+			estfullchrgTIME := estimatedchargeTIME_802L(uFcapacitance:= GVL.circuitcapcitanceuF, Vrated:= GVL.psuVOLTrating, Vcharge:= GVL.targetPSUVOLT, Powerpk802L:= GVL.psuPOWERpeak);	// In seconds
+						
+			IF GVL.chargeTIMEmanual >= 0 THEN
+				chargeTIME := GVL.chargeTIMEmanual;	// Manual charge time, seconds
+				fullCHRG := FALSE;
+			ELSE
+				chargeTIME := estfullchrgTIME;		// Full charging relies on PSU EOC signal	
+				fullCHRG := TRUE;
+			END_IF	
+			// Error handling for chargeTIME == 0
+			IF chargeTIME = 0 THEN
+				GVL.appRUN := FALSE;
+			END_IF
+			chargeTIMEdint := REAL_TO_DINT((chargeTIME)*1000); // To millisec
+			chargeTIMEtime := DINT_TO_TIME(chargeTIMEdint);		// To TIME
+			
+			expectcapVOLT := instantexpectedcapVOLT_802L(	// Expected cap voltage at instant time
+				timenow:= elapsedCharge, 
+				capacitanceF:= (GVL.circuitcapcitanceuF*0.001),
+				PSUratedVoltage:= GVL.psuVOLTrating,
+				targetVoltage:= GVL.targetPSUVOLT,  
+				previoustime:= lasttimesec, 
+				Voltlast:= capvoltiter); 
+			
+			GVL.Vcap1 := AI5volt(AI5voltageraw:= GVL.rawVcap1, isGreaterthanlimit:= GVL.changeAI5 );		// Get cap VOLT. Voltage interpreted as abs value.
+			GVL.expectedvoltage := REAL_TO_INT(expectcapVOLT);
+			
+			IF (GVL.Vcap1 >= (GVL.expectedvoltage - 2000)) THEN
+				GVL.softdump := TRUE;
+				IF GVL.softdump_contact THEN 		// ! Waits for not soft dumping
+					GVL.chargeCOIL := TRUE;
+					GVL.chrg_to_fire_trig := TRUE;
+					IF GVL.chargeCOIL_contact THEN
+							chargeTON(IN:= TRUE, PT:= chargeTIMEtime, Q=> inhibitVariable, ET=> elapsedCharge );		// False until ET
+							GVL.psuInhibit := FALSE;	// Equates on sepearate line to reduce flickering.
+							PRG_FB_CTRL_PWM_OUT();
+					END_IF;
+				END_IF;
+			ELSE
+				GVL.chargeFAULT := TRUE;
+			END_IF;
+			//SCR FB Fault
+			IF NOT GVL.isnotSCRhvswitch THEN
+				GVL.Vcap1 := AI5volt(AI5voltageraw:= GVL.rawVcap1, isGreaterthanlimit:= GVL.changeAI5 );
+				IF GVL.Vcap1 >= 5000 THEN 
+					IF NOT GVL.shotCOILrdy THEN		// Need SCR rdy before shot
+						GVL.dischargeFAULT := TRUE;
+					END_IF
+				END_IF;
+			END_IF;
+			elapsedChargereal := TIME_TO_REAL(elapsedCharge)*0.001;
+			IF elapsedChargereal >= GVL.chargeTIMEmanual OR (GVL.HMIhold AND NOT GVL.HOA) THEN
+				chargeTON(IN:= FALSE, PT:= chargeTIMEtime, Q=> inhibitVariable, ET=> elapsedCharge );
+				elapsedCharge := T#0MS;
+				IF GVL.voltage_held_by_PSU THEN
+					processSTEP := 2;
+				ELSE
+					GVL.psuInhibit := TRUE;
+					GVL.chargeCOIL := FALSE;
+					processSTEP :=7;
+				END_IF;
+				VoltAtHOLD := GVL.Vcap1;
+				expectedATHOLD:= expectcapVOLT;
+				internalBOOLcharge := FALSE;
+			END_IF
+			// Handle the charge fault 
+			IF  GVL.chargeFAULT THEN
+				chargeTON(IN:= FALSE, PT:= chargeTIMEtime, Q=> inhibitVariable, ET=> elapsedCharge );
+				elapsedCharge := T#0MS;
+				internalBOOLcharge := FALSE;
+			END_IF
+			
+			// Added pre-fire protection.  IF sample 2 is less than 5% of sample 1, go to dump State. Nov 09, 2022
+			//*****************************************************
+			
+			FOR i := 1 TO 2 BY 1 DO
+				IF heartbeat.pulse_2hz = TRUE THEN
+					Vcap_sample[i] := GVL.Vcap1;
+				END_IF;
+			END_FOR;
+				
+			IF Vcap_sample[2] < (Vcap_sample[1] - (0.05 * Vcap_sample[1])) THEN // IF Vcap1 suddenly drop morethan 5% of of the previous sample, go to dump state.
+				processSTEP :=  4;  
+				GVL.appRUN := FALSE;
+				GVL.PreFire_Fault := TRUE;  
+				fbGetSystemTIME(timeLoDW => fileTIME.dwLowDateTime, timeHiDW => fileTIME.dwHighDateTime);
+				sTIME := SYSTEMTIME_TO_STRING (FILETIME_TO_SYSTEMTIME (fileTime)); 
+			END_IF;
+		
+			//*********************************************************
+			
+		7: (* HOLD BEFORE SHOT - Shot specified time. Cap open circuited and not voltage held by HVPS *)
+			GVL.psuInhibit := TRUE;		// Diode reverse protected
+			GVL.chargeCOIL := FALSE;
+			(* GVL.softdump := TRUE; // Here to describe current state
+			GVL.shotCOIL := FALSE; *)
+			holdTIMEtime := REAL_TO_TIME(GVL.holdTIMEsec*1000);	// Hold for HMI specified TIME (Converts s to ms for use by TIME)
+			holdTON(IN:= TRUE, PT:= holdTIMEtime, Q=> shotready, ET=> elapsedhold);
+			
+			// Proceed to shot
+			GVL.Vcap1 := AI5volt(AI5voltageraw:= GVL.rawVcap1, isGreaterthanlimit:= GVL.changeAI5 );	// Get cap VOLT
+			IF (shotready AND GVL.HOA)		// Automatic Operation
+				XOR
+				(GVL.HMIshoot AND NOT GVL.HOA)		// Manual Operation
+				THEN
+				
+				IF GVL.Vcap1 < (VoltAtHOLD-holdvoltThreshold) THEN		// Cap volt leak fault
+					GVL.holdFAULT := TRUE;
+				END_IF
+				
+				IF NOT GVL.isnotSCRhvswitch THEN
+					IF NOT GVL.shotCOILrdy THEN		// Need SCR rdy before shot
+						GVL.dischargeFAULT := TRUE;
+					END_IF
+				END_IF;
+				
+				holdTON(IN:= FALSE, PT:= holdTIMEtime, Q=> shotready, ET=> elapsedhold);
+				shotready := FALSE;
+				elapsedhold := T#0MS;
+				processstep := 3;
+			ELSIF	(GVL.HMIdump OR shotready) AND NOT GVL.HOA THEN
+				processSTEP := 5;
+			END_IF;
+			
+		99:
+			// HMI Invalid HMI Entries should be handled within LabVIEW. Case 99 not used - For expansion of error handling
+			processSTEP := 0;
+			GVL.appRUN := FALSE;
+			GVL.softdump := FALSE;
+			GVL.psuONOFF := FALSE; 
+			GVL.psuInhibit := TRUE;
+			GVL.shotCOIL := FALSE;
+			volt_TO_AO1_802L50kV(psuTargetinvolt:= 0, psuMaxOutput:= GVL.psuMaxOutput, VpsuOut:= GVL.psuVCTRL);
+			GVL.ctrlsysFAULT := TRUE;
+			
+	END_CASE;
+	
+	IF i > 2 THEN
+		i := 1;
+	END_IF;
+END_IF;
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="Automated_Capacitor_Test_ST">
+      <LineId Id="2846" Count="1" />
+      <LineId Id="8239" Count="0" />
+      <LineId Id="3748" Count="0" />
+      <LineId Id="2851" Count="0" />
+      <LineId Id="2857" Count="0" />
+      <LineId Id="3736" Count="1" />
+      <LineId Id="3731" Count="0" />
+      <LineId Id="6811" Count="1" />
+      <LineId Id="6905" Count="1" />
+      <LineId Id="4432" Count="0" />
+      <LineId Id="2861" Count="1" />
+      <LineId Id="6795" Count="5" />
+      <LineId Id="6802" Count="1" />
+      <LineId Id="6907" Count="0" />
+      <LineId Id="6804" Count="3" />
+      <LineId Id="6909" Count="1" />
+      <LineId Id="6808" Count="0" />
+      <LineId Id="6911" Count="0" />
+      <LineId Id="6810" Count="0" />
+      <LineId Id="3590" Count="0" />
+      <LineId Id="2875" Count="1" />
+      <LineId Id="4018" Count="0" />
+      <LineId Id="4021" Count="1" />
+      <LineId Id="4020" Count="0" />
+      <LineId Id="4023" Count="0" />
+      <LineId Id="4017" Count="0" />
+      <LineId Id="2877" Count="0" />
+      <LineId Id="4015" Count="0" />
+      <LineId Id="4013" Count="1" />
+      <LineId Id="4011" Count="0" />
+      <LineId Id="6460" Count="0" />
+      <LineId Id="6456" Count="3" />
+      <LineId Id="5861" Count="0" />
+      <LineId Id="6455" Count="0" />
+      <LineId Id="5882" Count="0" />
+      <LineId Id="5879" Count="1" />
+      <LineId Id="4012" Count="0" />
+      <LineId Id="8025" Count="0" />
+      <LineId Id="8671" Count="0" />
+      <LineId Id="8026" Count="0" />
+      <LineId Id="6590" Count="1" />
+      <LineId Id="2881" Count="0" />
+      <LineId Id="6592" Count="0" />
+      <LineId Id="2882" Count="0" />
+      <LineId Id="4434" Count="0" />
+      <LineId Id="8962" Count="1" />
+      <LineId Id="8975" Count="0" />
+      <LineId Id="4435" Count="0" />
+      <LineId Id="8848" Count="0" />
+      <LineId Id="2886" Count="0" />
+      <LineId Id="4436" Count="0" />
+      <LineId Id="2908" Count="6" />
+      <LineId Id="8586" Count="0" />
+      <LineId Id="8760" Count="1" />
+      <LineId Id="8763" Count="1" />
+      <LineId Id="8762" Count="0" />
+      <LineId Id="8978" Count="0" />
+      <LineId Id="2915" Count="0" />
+      <LineId Id="8979" Count="0" />
+      <LineId Id="8983" Count="1" />
+      <LineId Id="8981" Count="1" />
+      <LineId Id="2916" Count="1" />
+      <LineId Id="8499" Count="0" />
+      <LineId Id="2919" Count="3" />
+      <LineId Id="4437" Count="0" />
+      <LineId Id="2923" Count="0" />
+      <LineId Id="2926" Count="0" />
+      <LineId Id="6029" Count="1" />
+      <LineId Id="9748" Count="2" />
+      <LineId Id="9752" Count="0" />
+      <LineId Id="9751" Count="0" />
+      <LineId Id="8023" Count="1" />
+      <LineId Id="6031" Count="4" />
+      <LineId Id="5441" Count="0" />
+      <LineId Id="5440" Count="0" />
+      <LineId Id="6028" Count="0" />
+      <LineId Id="2935" Count="0" />
+      <LineId Id="6024" Count="3" />
+      <LineId Id="5729" Count="0" />
+      <LineId Id="5153" Count="0" />
+      <LineId Id="5550" Count="1" />
+      <LineId Id="5549" Count="0" />
+      <LineId Id="2948" Count="2" />
+      <LineId Id="3280" Count="0" />
+      <LineId Id="8674" Count="0" />
+      <LineId Id="4439" Count="0" />
+      <LineId Id="2951" Count="0" />
+      <LineId Id="7113" Count="1" />
+      <LineId Id="7112" Count="0" />
+      <LineId Id="7115" Count="0" />
+      <LineId Id="2952" Count="9" />
+      <LineId Id="4821" Count="0" />
+      <LineId Id="2962" Count="1" />
+      <LineId Id="4818" Count="0" />
+      <LineId Id="2964" Count="2" />
+      <LineId Id="4820" Count="0" />
+      <LineId Id="2967" Count="7" />
+      <LineId Id="2976" Count="1" />
+      <LineId Id="6365" Count="1" />
+      <LineId Id="2978" Count="1" />
+      <LineId Id="4161" Count="0" />
+      <LineId Id="4169" Count="0" />
+      <LineId Id="4168" Count="0" />
+      <LineId Id="2986" Count="0" />
+      <LineId Id="4163" Count="0" />
+      <LineId Id="5347" Count="1" />
+      <LineId Id="5352" Count="11" />
+      <LineId Id="2994" Count="0" />
+      <LineId Id="8145" Count="7" />
+      <LineId Id="2995" Count="1" />
+      <LineId Id="5073" Count="0" />
+      <LineId Id="5615" Count="0" />
+      <LineId Id="2997" Count="0" />
+      <LineId Id="5958" Count="0" />
+      <LineId Id="5847" Count="0" />
+      <LineId Id="6107" Count="10" />
+      <LineId Id="6120" Count="1" />
+      <LineId Id="6118" Count="0" />
+      <LineId Id="5858" Count="0" />
+      <LineId Id="6585" Count="3" />
+      <LineId Id="5850" Count="0" />
+      <LineId Id="5959" Count="0" />
+      <LineId Id="5844" Count="0" />
+      <LineId Id="2999" Count="0" />
+      <LineId Id="5845" Count="0" />
+      <LineId Id="5554" Count="0" />
+      <LineId Id="5883" Count="0" />
+      <LineId Id="5886" Count="2" />
+      <LineId Id="5884" Count="1" />
+      <LineId Id="6589" Count="0" />
+      <LineId Id="5552" Count="0" />
+      <LineId Id="3001" Count="2" />
+      <LineId Id="7837" Count="2" />
+      <LineId Id="7841" Count="1" />
+      <LineId Id="7840" Count="0" />
+      <LineId Id="3004" Count="0" />
+      <LineId Id="5860" Count="0" />
+      <LineId Id="7934" Count="0" />
+      <LineId Id="3005" Count="0" />
+      <LineId Id="6124" Count="0" />
+      <LineId Id="5172" Count="0" />
+      <LineId Id="3008" Count="9" />
+      <LineId Id="9849" Count="0" />
+      <LineId Id="9862" Count="0" />
+      <LineId Id="10423" Count="1" />
+      <LineId Id="10434" Count="1" />
+      <LineId Id="10425" Count="7" />
+      <LineId Id="9853" Count="0" />
+      <LineId Id="9858" Count="0" />
+      <LineId Id="3018" Count="1" />
+      <LineId Id="7413" Count="2" />
+      <LineId Id="3022" Count="2" />
+      <LineId Id="9383" Count="0" />
+      <LineId Id="9381" Count="0" />
+      <LineId Id="3026" Count="1" />
+      <LineId Id="3514" Count="0" />
+      <LineId Id="3028" Count="0" />
+      <LineId Id="5555" Count="0" />
+      <LineId Id="5557" Count="0" />
+      <LineId Id="5556" Count="0" />
+      <LineId Id="5784" Count="0" />
+      <LineId Id="3029" Count="2" />
+      <LineId Id="5785" Count="0" />
+      <LineId Id="6461" Count="1" />
+      <LineId Id="6686" Count="0" />
+      <LineId Id="6684" Count="0" />
+      <LineId Id="6719" Count="0" />
+      <LineId Id="5177" Count="0" />
+      <LineId Id="3032" Count="0" />
+      <LineId Id="6712" Count="0" />
+      <LineId Id="6483" Count="0" />
+      <LineId Id="6711" Count="0" />
+      <LineId Id="6484" Count="8" />
+      <LineId Id="9604" Count="0" />
+      <LineId Id="9077" Count="0" />
+      <LineId Id="9080" Count="4" />
+      <LineId Id="9648" Count="0" />
+      <LineId Id="9647" Count="0" />
+      <LineId Id="9286" Count="0" />
+      <LineId Id="9651" Count="0" />
+      <LineId Id="9285" Count="0" />
+      <LineId Id="9078" Count="0" />
+      <LineId Id="6493" Count="1" />
+      <LineId Id="6496" Count="1" />
+      <LineId Id="9093" Count="0" />
+      <LineId Id="8959" Count="0" />
+      <LineId Id="9649" Count="0" />
+      <LineId Id="3037" Count="0" />
+      <LineId Id="8324" Count="0" />
+      <LineId Id="9650" Count="0" />
+      <LineId Id="9641" Count="1" />
+      <LineId Id="9653" Count="0" />
+      <LineId Id="9640" Count="0" />
+      <LineId Id="9639" Count="0" />
+      <LineId Id="8937" Count="0" />
+      <LineId Id="9481" Count="0" />
+      <LineId Id="9574" Count="0" />
+      <LineId Id="9577" Count="2" />
+      <LineId Id="9582" Count="1" />
+      <LineId Id="9580" Count="1" />
+      <LineId Id="8676" Count="0" />
+      <LineId Id="5007" Count="1" />
+      <LineId Id="5672" Count="0" />
+      <LineId Id="5009" Count="3" />
+      <LineId Id="5673" Count="0" />
+      <LineId Id="5013" Count="0" />
+      <LineId Id="9592" Count="0" />
+      <LineId Id="5014" Count="1" />
+      <LineId Id="9094" Count="0" />
+      <LineId Id="9595" Count="0" />
+      <LineId Id="9598" Count="5" />
+      <LineId Id="9596" Count="1" />
+      <LineId Id="8974" Count="0" />
+      <LineId Id="4890" Count="0" />
+      <LineId Id="3055" Count="1" />
+      <LineId Id="9588" Count="0" />
+      <LineId Id="9607" Count="0" />
+      <LineId Id="9605" Count="1" />
+      <LineId Id="9610" Count="0" />
+      <LineId Id="9584" Count="0" />
+      <LineId Id="4088" Count="0" />
+      <LineId Id="4091" Count="4" />
+      <LineId Id="4089" Count="1" />
+      <LineId Id="5786" Count="0" />
+      <LineId Id="3058" Count="1" />
+      <LineId Id="9594" Count="0" />
+      <LineId Id="3060" Count="3" />
+      <LineId Id="9593" Count="0" />
+      <LineId Id="4081" Count="0" />
+      <LineId Id="8027" Count="2" />
+      <LineId Id="4082" Count="1" />
+      <LineId Id="5560" Count="0" />
+      <LineId Id="5559" Count="0" />
+      <LineId Id="4084" Count="2" />
+      <LineId Id="7009" Count="0" />
+      <LineId Id="8030" Count="0" />
+      <LineId Id="9878" Count="0" />
+      <LineId Id="7676" Count="1" />
+      <LineId Id="7679" Count="1" />
+      <LineId Id="7678" Count="0" />
+      <LineId Id="4087" Count="0" />
+      <LineId Id="3070" Count="0" />
+      <LineId Id="8328" Count="0" />
+      <LineId Id="6746" Count="0" />
+      <LineId Id="6762" Count="0" />
+      <LineId Id="8325" Count="0" />
+      <LineId Id="7116" Count="0" />
+      <LineId Id="7326" Count="2" />
+      <LineId Id="7220" Count="0" />
+      <LineId Id="7589" Count="0" />
+      <LineId Id="7588" Count="0" />
+      <LineId Id="7325" Count="0" />
+      <LineId Id="7221" Count="1" />
+      <LineId Id="7586" Count="1" />
+      <LineId Id="7585" Count="0" />
+      <LineId Id="7226" Count="5" />
+      <LineId Id="6765" Count="0" />
+      <LineId Id="8121" Count="0" />
+      <LineId Id="8124" Count="8" />
+      <LineId Id="8122" Count="1" />
+      <LineId Id="8133" Count="0" />
+      <LineId Id="7219" Count="0" />
+      <LineId Id="7202" Count="1" />
+      <LineId Id="8675" Count="0" />
+      <LineId Id="7205" Count="2" />
+      <LineId Id="7500" Count="0" />
+      <LineId Id="7208" Count="0" />
+      <LineId Id="7201" Count="0" />
+      <LineId Id="8135" Count="1" />
+      <LineId Id="8134" Count="0" />
+      <LineId Id="8137" Count="7" />
+      <LineId Id="7209" Count="0" />
+      <LineId Id="7232" Count="0" />
+      <LineId Id="7210" Count="1" />
+      <LineId Id="7214" Count="0" />
+      <LineId Id="7843" Count="5" />
+      <LineId Id="7217" Count="0" />
+      <LineId Id="7936" Count="1" />
+      <LineId Id="7213" Count="0" />
+      <LineId Id="7212" Count="0" />
+      <LineId Id="7318" Count="4" />
+      <LineId Id="7317" Count="0" />
+      <LineId Id="9863" Count="0" />
+      <LineId Id="9865" Count="1" />
+      <LineId Id="10082" Count="0" />
+      <LineId Id="10436" Count="3" />
+      <LineId Id="10297" Count="0" />
+      <LineId Id="10409" Count="0" />
+      <LineId Id="10411" Count="5" />
+      <LineId Id="10410" Count="0" />
+      <LineId Id="9877" Count="0" />
+      <LineId Id="9864" Count="0" />
+      <LineId Id="8326" Count="0" />
+      <LineId Id="7804" Count="0" />
+      <LineId Id="7807" Count="29" />
+      <LineId Id="7765" Count="0" />
+      <LineId Id="8327" Count="0" />
+      <LineId Id="3086" Count="12" />
+      <LineId Id="10295" Count="1" />
+      <LineId Id="10294" Count="0" />
+      <LineId Id="3099" Count="0" />
+      <LineId Id="10291" Count="0" />
+      <LineId Id="10290" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

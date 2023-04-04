@@ -1,0 +1,296 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="handleFAULT" Id="{1a77a8dc-d655-40d5-a464-3d31494f4d98}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM handleFAULT
+VAR
+	// Threshold temperatures are hard coded
+	// Both defines exist in Automated_Cap_TEST also
+	cap1THRESHOLDcel : INT;	
+	//ambientTHRESHOLDcel : INT := 40;
+	IO_Err : UINT;
+	
+	R_TRIG1 : R_TRIG;
+	F_TRIG1 : F_TRIG;
+	genDelay1 : TON;		// General delay - Used to wait for feedback signals
+		checkFB1 : BOOL := FALSE;
+		iterateDelay1 : BOOL := FALSE;
+		elapsedDelay1 : TIME := T#500MS;	
+	R_TRIG2 : R_TRIG;
+	F_TRIG2 : F_TRIG;
+	genDelay2 : TON;		// General delay - Used to wait for feedback signals
+		checkFB2 : BOOL := FALSE;
+		iterateDelay2 : BOOL := FALSE;
+		elapsedDelay2 : TIME := T#500MS;	
+	R_TRIG3 : R_TRIG;
+	F_TRIG3 : F_TRIG;
+	genDelay3 : TON;		// General delay - Used to wait for feedback signals
+		checkFB3 : BOOL := FALSE;
+		iterateDelay3 : BOOL := FALSE;
+		elapsedDelay3 : TIME := T#500MS;
+	R_TRIG4 : R_TRIG;
+	F_TRIG4 : F_TRIG;	
+	genDelay4: TON;		// General delay - Used to wait for feedback signals
+		checkFB4 : BOOL := FALSE;
+		iterateDelay4 : BOOL := FALSE;
+		elapsedDelay4 : TIME := T#500MS;
+	(* R_TRIG5 : R_TRIG;
+	F_TRIG5 : F_TRIG;
+	genDelay5: TOF;		// General delay - Used to wait for feedback signals
+		checkFB5 : BOOL := FALSE;
+		elapsedDelay5 : TIME;	*)	
+		
+	FBrtrigQ1 : BOOL;
+	FBftrigQ1 : BOOL;
+	
+	FBrtrigQ2 : BOOL;
+	FBftrigQ2 : BOOL;
+	
+	FBrtrigQ3 : BOOL;
+	FBftrigQ3 : BOOL;
+	
+	FBrtrigQ4 : BOOL;
+	FBftrigQ4 : BOOL;
+	
+	(* FBrtrigQ5 : BOOL;
+	FBftrigQ5 : BOOL; *)
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(* Program deals with capacitor, ambient (Air conditioning fault) temperature faults and fault clears.
+Other faults are dealt with within the Automated_Capacitor_Test PGM. *)
+
+//TEMPERATURE FAULTS
+// Capacitor and ambient temperature is always monitored and can fault anytime
+GVL.TEMPcap1 := AI1temp(AI1raw:= GVL.rawTEMPcap1);
+GVL.TEMPambient := AI4temp(AI4raw:= GVL.rawTEMPambient);
+IF NOT tempSAFE(TEMPcel:= GVL.TEMPcap1, thresholdTEMPcel:= GVL.cap1THRESHOLDcel) THEN
+	GVL.cap1tempFAULT := TRUE;
+ELSIF NOT tempSAFE(TEMPcel:= GVL.TEMPambient, thresholdTEMPcel:= GVL.ambientTHRESHOLDcel) THEN
+	GVL.ambienttempFAULT := TRUE;
+(* For upgrade with 2nd ambient+cap2 temperature sensor for control chamber.
+ELSIF NOT tempSAFE(TEMPcel:= GVL.TEMPcap2, thresholdTEMPcel:= GVL.cap1THRESHOLDcel) THEN
+	GVL.cap1tempFAULT := TRUE;
+ELSIF NOT tempSAFE(TEMPcel:= GVL.TEMPambient2, thresholdTEMPcel:= ambientTHRESHOLDcel) THEN
+	GVL.ambienttempFAULT := TRUE;
+	*)
+END_IF
+
+// LOAD TEMPERATURE FAULT
+IF GVL.TEMPload > GVL.loadTHRESHOLDcel THEN
+	GVL.loadtempFAULT := TRUE;
+	ELSE
+		GVL.loadtempFAULT := FALSE;
+END_IF;
+
+
+IF Automated_Capacitor_Test_ST.cap1_Temp = TRUE AND Automated_Capacitor_Test_ST.dump_Temp = TRUE AND Automated_Capacitor_Test_ST.load_Temp = TRUE AND Automated_Capacitor_Test_ST.ambient_Temp = TRUE THEN
+	GVL.allTemperatureInRange := TRUE;
+	ELSE
+		GVL.allTemperatureInRange :=FALSE;
+END_IF;
+
+// PSU Fault
+IF GVL.psusumFAULT THEN
+	GVL.psuFAULT := TRUE;
+END_IF
+
+(* FEEDBACK HANDLING with a delay 
+The code is built in a way so upon a change event it checks the FB signal after a delay 
+Each sys has its own timer. Would have grouped timers but worried about overlap.
+Upon a rise/fall edge -> A delay before check. No edge -> no delay check. *)
+
+// Softdump FB
+R_TRIG1(CLK:= GVL.softdump, Q=> FBrtrigQ1);
+F_TRIG1(CLK:= GVL.softdump, Q=> FBftrigQ1);
+IF FBrtrigQ1 OR FBftrigQ1 OR iterateDelay1 THEN		
+	iterateDelay1 := TRUE; //First initialization
+	elapsedDelay1 := T#0MS;
+	genDelay1(IN:= TRUE, PT:= T#500MS, Q=> checkFB1, ET=> elapsedDelay1);
+END_IF
+
+IF checkFB1 THEN		// If recently changed variable then use delay, if not recently change just straight to check
+	genDelay1(IN:= FALSE, PT:= T#500MS, Q=> checkFB1, ET=> elapsedDelay1);
+	elapsedDelay1 := T#0MS;
+	iterateDelay1 := FALSE;
+	// Start checking FB
+	IF (NOT GVL.softdump AND GVL.softdump_contact) OR (GVL.softdump AND NOT GVL.softdump_contact) THEN
+		GVL.ctrlsysFAULT := TRUE;
+		GVL.softdumpFB_FAULT := TRUE;
+	END_IF
+END_IF
+
+// Charge Relay FB
+R_TRIG2(CLK:= GVL.chargeCOIL, Q=> FBrtrigQ2);
+F_TRIG2(CLK:= GVL.chargeCOIL, Q=> FBftrigQ2);
+IF FBrtrigQ2 OR FBftrigQ2 OR iterateDelay2 THEN		// Activate for 1 scan
+	iterateDelay2 := TRUE;
+	elapsedDelay2 := T#0MS;
+	genDelay2(IN:= TRUE, PT:= T#500MS, Q=> checkFB2, ET=> elapsedDelay2);
+END_IF
+
+IF checkFB2 THEN		// If recently changed variable then use delay, if not recently change just straight to check
+	genDelay2(IN:= FALSE, PT:= T#500MS, Q=> checkFB2, ET=> elapsedDelay2);
+	elapsedDelay2 := T#00MS;
+	iterateDelay2 := FALSE;
+	// Start checked systems
+	IF (GVL.chargeCOIL AND NOT GVL.chargeCOIL_contact) OR (NOT GVL.chargeCOIL AND GVL.chargeCOIL_contact) THEN
+		GVL.ctrlsysFAULT := TRUE;
+		GVL.chargeFB_FAULT := TRUE;
+	END_IF
+END_IF
+
+// PSU HV ON/OFF
+R_TRIG3(CLK:= GVL.selectREMOTE, Q=> FBrtrigQ3);
+F_TRIG3(CLK:= GVL.selectREMOTE, Q=> FBftrigQ3);
+IF FBrtrigQ3 OR FBftrigQ3 OR iterateDelay3 THEN		// Activate for 1 scan
+	iterateDelay3 := TRUE;
+	elapsedDelay3 := T#0MS;
+	genDelay3(IN:= TRUE, PT:= T#500MS, Q=> checkFB3, ET=> elapsedDelay3);
+END_IF
+
+IF checkFB3 THEN		// If recently changed variable then use delay, if not recently change just straight to check
+	genDelay3(IN:= FALSE, PT:= T#500MS, Q=> checkFB3, ET=> elapsedDelay3);
+	elapsedDelay3 := T#00MS;
+	iterateDelay3 := FALSE;
+	// Start checked systems
+	IF (GVL.selectREMOTE AND GVL.psuONOFF) OR (NOT GVL.selectREMOTE AND NOT GVL.psuONOFF) THEN
+		GVL.ctrlsysFAULT := TRUE;
+		GVL.HVpsuFB_FAULT := TRUE;
+	END_IF;
+END_IF
+
+(* Removed, 17-0066E has no InhibFB. // PSU Inhibit Feedback
+R_TRIG4(CLK:= GVL.psuInhibit, Q=> FBrtrigQ4);
+F_TRIG4(CLK:= GVL.psuInhibit, Q=> FBftrigQ4);
+IF FBrtrigQ4 OR FBftrigQ4 OR iterateDelay4 THEN		// Activate for 1 scan
+	iterateDelay4 := TRUE;
+	elapsedDelay4 := T#0MS;
+	genDelay4(IN:= TRUE, PT:= T#500MS, Q=> checkFB4, ET=> elapsedDelay4);
+END_IF
+
+IF checkFB4 THEN		// If recently changed variable then use delay, if not recently change just straight to check
+	genDelay4(IN:= FALSE, PT:= T#500MS, Q=> checkFB4, ET=> elapsedDelay4);
+	elapsedDelay4 := T#00MS;
+	iterateDelay4 := FALSE;
+	// Start checked systems
+	IF (GVL.psuInhibit AND GVL.psuInhibitFB) OR (NOT GVL.psuInhibit AND NOT GVL.psuInhibitFB) THEN
+		GVL.ctrlsysFAULT := TRUE;
+	END_IF;
+END_IF *)
+
+//50kV and 12kV powersupply limite selection - oct 14, 2022 GL
+IF GVL.psu50kV_OutputSelected = TRUE THEN 
+	GVL.psuMaxOutput := 50000;
+	ELSE 
+		GVL.psuMaxOutput := 12000;
+END_IF;
+
+IF GVL.targetPSUVOLT > GVL.Cap_ratedVoltage THEN
+	GVL.targetVolt_exceed_CapRating_FAULT := TRUE;
+	ELSE
+		GVL.targetVolt_exceed_CapRating_FAULT := FALSE;
+END_IF;
+
+//Fault Permissives
+IF NOT GVL.chargeFAULT AND NOT GVL.dischargeFAULT AND NOT GVL.holdFAULT AND NOT GVL.ctrlsysFAULT AND NOT GVL.cap1tempFAULT AND NOT GVL.ambienttempFAULT
+AND NOT GVL.psuFAULT AND NOT GVL.test_interval_fault AND NOT GVL.targetVolt_exceed_CapRating_FAULT THEN //AND GVL.mechINTERLOCK   // psuFAULT, mechinterlock normally high (NH)
+	GVL.noFaultDetected := TRUE; //added prefire fault
+ELSE
+	GVL.noFaultDetected := FALSE;
+	END_IF;
+IF (GVL.testintervalsecs < 30) THEN
+	GVL.test_interval_fault := TRUE;
+ELSE
+	GVL.test_interval_fault := FALSE;
+END_IF
+
+(* Fault clear LOGIC. clearFAULT from LabView *)
+IF GVL.clearFAULT AND NOT GVL.appRUN THEN // Momentary PB
+	GVL.chargeFAULT := FALSE;
+	GVL.dischargeFAULT := FALSE;
+	GVL.holdFAULT := FALSE;
+	GVL.psuFAULT := FALSE;
+	GVL.ctrlsysFAULT := FALSE;
+		GVL.softdumpFB_FAULT := FALSE;
+		GVL.chargeFB_FAULT := FALSE;
+		GVL.HVpsuFB_FAULT := FALSE;
+	GVL.cap1tempFAULT := FALSE;
+	GVL.ambienttempFAULT := FALSE;
+	GVL.softexceptionFAULT := FALSE;
+	GVL.loadtempFAULT := FALSE;
+	GVL.targetVolt_exceed_CapRating_FAULT := FALSE;
+	GVL.PreFire_Fault := FALSE; 
+END_IF;
+
+
+(* PLC Sys FAULTS - In PROGRESS
+EL1008 Fault 
+IO_Err := 
+IF PLC_GVL.PLC_EL1008_1 = 0x001 THEN
+END_IF
+*)]]></ST>
+    </Implementation>
+    <LineIds Name="handleFAULT">
+      <LineId Id="226" Count="1" />
+      <LineId Id="750" Count="0" />
+      <LineId Id="228" Count="14" />
+      <LineId Id="751" Count="0" />
+      <LineId Id="810" Count="5" />
+      <LineId Id="744" Count="5" />
+      <LineId Id="243" Count="5" />
+      <LineId Id="250" Count="10" />
+      <LineId Id="347" Count="0" />
+      <LineId Id="261" Count="5" />
+      <LineId Id="348" Count="0" />
+      <LineId Id="268" Count="2" />
+      <LineId Id="418" Count="0" />
+      <LineId Id="271" Count="7" />
+      <LineId Id="352" Count="0" />
+      <LineId Id="279" Count="3" />
+      <LineId Id="284" Count="1" />
+      <LineId Id="353" Count="0" />
+      <LineId Id="286" Count="2" />
+      <LineId Id="419" Count="0" />
+      <LineId Id="289" Count="7" />
+      <LineId Id="355" Count="0" />
+      <LineId Id="297" Count="3" />
+      <LineId Id="302" Count="1" />
+      <LineId Id="356" Count="0" />
+      <LineId Id="304" Count="2" />
+      <LineId Id="420" Count="0" />
+      <LineId Id="307" Count="7" />
+      <LineId Id="358" Count="0" />
+      <LineId Id="315" Count="3" />
+      <LineId Id="320" Count="1" />
+      <LineId Id="359" Count="0" />
+      <LineId Id="322" Count="4" />
+      <LineId Id="718" Count="0" />
+      <LineId Id="712" Count="0" />
+      <LineId Id="655" Count="0" />
+      <LineId Id="713" Count="0" />
+      <LineId Id="715" Count="2" />
+      <LineId Id="720" Count="0" />
+      <LineId Id="719" Count="0" />
+      <LineId Id="721" Count="0" />
+      <LineId Id="723" Count="1" />
+      <LineId Id="722" Count="0" />
+      <LineId Id="737" Count="0" />
+      <LineId Id="476" Count="3" />
+      <LineId Id="596" Count="1" />
+      <LineId Id="480" Count="0" />
+      <LineId Id="535" Count="1" />
+      <LineId Id="538" Count="1" />
+      <LineId Id="537" Count="0" />
+      <LineId Id="328" Count="7" />
+      <LineId Id="414" Count="2" />
+      <LineId Id="336" Count="1" />
+      <LineId Id="417" Count="0" />
+      <LineId Id="806" Count="0" />
+      <LineId Id="657" Count="0" />
+      <LineId Id="870" Count="0" />
+      <LineId Id="338" Count="7" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="Norm_x" Id="{93db9a71-e368-46de-bb64-aadc328fec0e}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION Norm_x : REAL
+VAR_INPUT
+	raw_input : REAL;
+	x_max : INT := 32767;
+	x_min : INT := 0;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// 0 - 10V AI INPUT 
+Norm_x := (raw_input - x_min) / (x_max - x_min);]]></ST>
+    </Implementation>
+    <LineIds Name="Norm_x">
+      <LineId Id="13" Count="0" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

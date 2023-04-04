@@ -1,0 +1,372 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="Sequence" Id="{663eae43-1137-476a-a586-15717a445f9e}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Sequence
+VAR
+	ePulseState : E_PulseState;
+	//eCommand	: E_Command;
+	i : INT := 1; //1-8 chargers
+	j : INT := 1; //section 1-3
+	k : INT := 1; //section 1- 4 
+	
+	//ChrgRlyHVON_TON : TON;
+	//ChrgRlyHVON_PT 	: TIME := T#250MS;
+	//ChrgRlyHVON_ET 	: TIME;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+//charge command from screen room
+IF MCP_IO.CloseAllChargeRlyCommand = TRUE THEN
+	//CLOSE ALL CHARGE RELAYS	
+	FOR j := 1 TO 3 BY 1 DO
+		LCP.Section[j].Peak.CloseChargeRelay1 := TRUE;
+		LCP.Section[j].Peak.CloseChargeRelay2 := TRUE;
+		LCP.Section[j].Sust.CloseChargeRelay1 := TRUE;
+		LCP.Section[j].Sust.CloseChargeRelay2 := TRUE;
+	END_FOR;
+	LCP.Section[4].Form.CloseChargeRelay1 := TRUE;
+	LCP.Section[4].Form.CloseChargeRelay2 := TRUE;
+							
+	LCP.Section[4].Form.ClosePreFormChargeRly := TRUE;
+	LCP.Section[4].Form.CloseFormTrigChargeRly := TRUE;
+	LCP.Section[4].Form.ClosePreFormTrigChargeRly := TRUE;
+				
+ELSE
+	//OPEN ALL CHARGE RELAYS	
+	FOR j := 1 TO 3 BY 1 DO
+		LCP.Section[j].Peak.CloseChargeRelay1 := FALSE;
+		LCP.Section[j].Peak.CloseChargeRelay2 := FALSE;
+		LCP.Section[j].Sust.CloseChargeRelay1 := FALSE;
+		LCP.Section[j].Sust.CloseChargeRelay2 := FALSE;
+	END_FOR;
+	LCP.Section[4].Form.CloseChargeRelay1 := FALSE;
+	LCP.Section[4].Form.CloseChargeRelay2 := FALSE;
+							
+	LCP.Section[4].Form.ClosePreFormChargeRly := FALSE;
+	LCP.Section[4].Form.CloseFormTrigChargeRly := FALSE;
+	LCP.Section[4].Form.ClosePreFormTrigChargeRly := FALSE;
+END_IF;
+
+//use this for the slim only  -- it will be replaced with the Permissives block for the next upgrade
+(*IF Permissives_DB.AllChargeRelaysClosed = TRUE THEN 
+		//system ready to charge LED On
+		FOR k := 1 TO 4	BY 1 DO 
+			LCP.Section[k].SystemReadyToCharge := TRUE;
+		END_FOR;
+	ELSE
+		//system ready to charge LED On
+		FOR k := 1 TO 4	BY 1 DO 
+			LCP.Section[k].SystemReadyToCharge := FALSE;
+		END_FOR;
+END_IF;
+*)
+//open dump command from screen room
+IF MCP_IO.OpenAllDumpRelayCommand = TRUE THEN			
+	//Open all dump relays 
+	FOR j := 1 TO 3 BY 1 DO						
+		LCP.Section[j].Peak.OpenDumpRelay1 := TRUE;
+		LCP.Section[j].Peak.OpenDumpRelay2 := TRUE;
+		LCP.Section[j].Sust.OpenDumpRelay1 := TRUE;
+		LCP.Section[j].Sust.OpenDumpRelay2 := TRUE;
+							
+		LCP.Section[4].Form.OpenDumpRelay1 := TRUE;
+		LCP.Section[4].Form.OpenDumpRelay2 := TRUE;
+		LCP.Section[4].Form.OpenPreFormDumpRly	:= TRUE;
+		LCP.Section[4].Form.OpenFormTrigDumpRly1 := TRUE;
+		LCP.Section[4].Form.OpenPreFormTrigDumpRly1 := TRUE;
+	END_FOR;
+ELSE
+	//Close all dump relays 
+	FOR j := 1 TO 3 BY 1 DO						
+		LCP.Section[j].Peak.OpenDumpRelay1 := FALSE;
+		LCP.Section[j].Peak.OpenDumpRelay2 := FALSE;
+		LCP.Section[j].Sust.OpenDumpRelay1 := FALSE;
+		LCP.Section[j].Sust.OpenDumpRelay2 := FALSE;
+							
+		LCP.Section[4].Form.OpenDumpRelay1 := FALSE;
+		LCP.Section[4].Form.OpenDumpRelay2 := FALSE;
+		LCP.Section[4].Form.OpenPreFormDumpRly	:= FALSE;
+		LCP.Section[4].Form.OpenFormTrigDumpRly1 := FALSE;
+		LCP.Section[4].Form.OpenPreFormTrigDumpRly1 := FALSE;
+	END_FOR;
+END_IF;
+
+//mapping to the MCP for slim configuration
+MCP_IO.AllChargeRelaysClose := Permissives_DB.AllChargeRelaysClosed;
+MCP_IO.AllDumpRelaysOpen := Permissives_DB.AllDumpRelaysOpen;
+
+
+//no sequencing needed************************************************************************************************
+(*
+//IF BOTH Close charge and open dump signals are off go to idle.
+IF MCP_IO.CloseAllChargeRlyCommand = FALSE AND MCP_IO.OpenAllDumpRelayCommand = FALSE THEN
+	ePulseState := E_PulseState.SAFE;
+END_IF;
+
+
+
+
+//screen room asks to go to close all charge relays when the dump relays are closed ** this should never happen
+IF MCP_IO.CloseAllChargeRlyCommand = TRUE AND MCP_IO.OpenAllDumpRelayCommand = FALSE THEN
+	ePulseState := E_PulseState.TRIPPED;
+END_IF;
+
+//screen room asks to go to open all charge relays when the dump relays are open ** this should never happen - floating system
+(*
+IF MCP_IO.CloseAllChargeRlyCommand = FALSE AND MCP_IO.OpenAllDumpRelayCommand = TRUE THEN
+	//both charge and dump open - floating
+END_IF;
+*)
+
+
+CASE ePulseState OF 
+	//SAFE / IDLE state
+	E_PulseState.SAFE:
+							
+						//IF no fault and charge permissions and charge relay go to charge mode
+						IF MCP_IO.CloseAllChargeRlyCommand = TRUE AND MCP_IO.OpenAllDumpRelayCommand = TRUE THEN
+							ePulseState := E_PulseState.CHARGING;
+						END_IF;
+
+	//CHARGING STATE
+	E_PulseState.CHARGING:
+							//turn on charger inhibit
+							FOR i := 1 TO 8 BY 1 DO
+								MCP_IO.Charger[i].inhibit := TRUE;
+							END_FOR;
+							
+							//Open all dump relays first
+							LCP.Bank[j].Peak.OpenDumpRelay1 := TRUE;
+							LCP.Bank[j].Peak.OpenDumpRelay2 := TRUE;
+							LCP.Bank[j].Sust.OpenDumpRelay1 := TRUE;
+							LCP.Bank[j].Sust.OpenDumpRelay2 := TRUE;
+							
+							LCP.Bank[4].Form.OpenDumpRelay1 := TRUE;
+							LCP.Bank[4].Form.OpenDumpRelay2 := TRUE;
+							LCP.Bank[4].OpenPreFormDumpRly	:= TRUE;
+							LCP.Bank[4].OpenFormTrigDumpRly1 := TRUE;
+							LCP.Bank[4].OpenPreFormTrigDumpRly1 := TRUE;
+							
+							
+							
+							
+							
+							//CLOSE ALL CHARGE RELAYS	
+							FOR j := 1 TO 3 BY 1 DO
+								LCP.Bank[j].Peak.CloseChargeRelay1 := TRUE;
+								LCP.Bank[j].Peak.CloseChargeRelay2 := TRUE;
+								LCP.Bank[j].Sust.CloseChargeRelay1 := TRUE;
+								LCP.Bank[j].Sust.CloseChargeRelay2 := TRUE;
+							END_FOR;
+							LCP.Bank[4].Form.CloseChargeRelay1 := TRUE;
+							LCP.Bank[4].Form.CloseChargeRelay2 := TRUE;
+							
+							LCP.Bank[4].ClosePreFormChargeRly := TRUE;
+							LCP.Bank[4].CloseFormTrigChargeRly := TRUE;
+							LCP.Bank[4].ClosePreFormTrigChargeRly := TRUE;
+				
+							IF MCP_IO.AllChargeRelaysClose = TRUE THEN
+								//system ready to charge LED On
+								FOR k := 1 TO 4	BY 1 DO 
+									LCP.Bank[k].SystemReadyToCharge := TRUE;
+								END_FOR;							
+						
+								//enable all HV ON output and remove inhitbit signal
+								FOR i := 1 TO 8 BY 1 DO 
+									MCP_IO.Charger[i].HV_ON := TRUE;
+									MCP_IO.Charger[i].inhibit := TRUE;
+								END_FOR;
+								
+							ELSE 
+								//system ready to charge LED Off
+								FOR k := 1 TO 4	BY 1 DO 
+									LCP.Bank[k].SystemReadyToCharge := FALSE;
+								END_FOR;
+									
+								FOR i := 1 TO 8 BY 1 DO 
+									MCP_IO.Charger[i].HV_ON := FALSE;
+								END_FOR;
+							END_IF;
+							
+							//if screen room ask to go the dump
+							IF MCP_IO.OpenAllDumpRelayCommand = FALSE AND MCP_IO.CloseAllChargeRlyCommand = FALSE THEN
+								ePulseState := E_PulseState.DUMPING;
+							END_IF;
+	
+	//DUMP STATE
+	E_PulseState.DUMPING:
+							//turn off charger HV ON and Inhibit signals
+							FOR i := 1 TO 8 BY 1 DO 
+								MCP_IO.Charger[i].HV_ON := FALSE;
+								MCP_IO.Charger[i].inhibit := FALSE;
+							END_FOR; 
+							
+							IF MCP_IO.AllChargerHVisON = FALSE THEN
+								//Open ALL CHARGE RELAYS	
+								FOR j := 1 TO 3 BY 1 DO
+									LCP.Bank[j].Peak.CloseChargeRelay1 := FALSE;
+									LCP.Bank[j].Peak.CloseChargeRelay2 := FALSE;
+									LCP.Bank[j].Sust.CloseChargeRelay1 := FALSE;
+									LCP.Bank[j].Sust.CloseChargeRelay2 := FALSE;
+								END_FOR;
+								LCP.Bank[4].Form.CloseChargeRelay1 := FALSE;
+								LCP.Bank[4].Form.CloseChargeRelay2 := FALSE;
+							
+								LCP.Bank[4].ClosePreFormChargeRly := FALSE;
+								LCP.Bank[4].CloseFormTrigChargeRly := FALSE;
+								LCP.Bank[4].ClosePreFormTrigChargeRly := FALSE;
+							END_IF;
+							
+							FOR j := 1 TO 3 BY 1 DO 
+								LCP.Bank[j].Peak.OpenDumpRelay1 := FALSE;
+								LCP.Bank[j].Peak.OpenDumpRelay2 := TRUE;
+								LCP.Bank[j].Peak.OpenDumpRelay2 := TRUE;
+							END_FOR;
+						
+	
+	//TRIPPED STATE
+	E_PulseState.TRIPPED:
+							//DO SOMETHING
+	
+	
+	
+	
+	
+END_CASE;
+*)
+//**********************************************************************************	
+
+
+
+
+IF i > 8 THEN
+	i := 1;
+END_IF;
+
+IF j > 3 THEN
+	j := 1;
+END_IF;
+
+IF k > 4 THEN
+	k := 1;
+END_IF;]]></ST>
+    </Implementation>
+    <LineIds Name="Sequence">
+      <LineId Id="292" Count="1" />
+      <LineId Id="256" Count="0" />
+      <LineId Id="274" Count="13" />
+      <LineId Id="294" Count="0" />
+      <LineId Id="296" Count="12" />
+      <LineId Id="273" Count="0" />
+      <LineId Id="391" Count="0" />
+      <LineId Id="380" Count="10" />
+      <LineId Id="260" Count="2" />
+      <LineId Id="337" Count="2" />
+      <LineId Id="348" Count="0" />
+      <LineId Id="340" Count="7" />
+      <LineId Id="263" Count="1" />
+      <LineId Id="349" Count="0" />
+      <LineId Id="352" Count="11" />
+      <LineId Id="350" Count="1" />
+      <LineId Id="379" Count="0" />
+      <LineId Id="376" Count="0" />
+      <LineId Id="265" Count="0" />
+      <LineId Id="378" Count="0" />
+      <LineId Id="266" Count="3" />
+      <LineId Id="196" Count="0" />
+      <LineId Id="194" Count="0" />
+      <LineId Id="197" Count="1" />
+      <LineId Id="195" Count="0" />
+      <LineId Id="213" Count="1" />
+      <LineId Id="45" Count="1" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="86" Count="0" />
+      <LineId Id="88" Count="0" />
+      <LineId Id="225" Count="2" />
+      <LineId Id="230" Count="0" />
+      <LineId Id="228" Count="1" />
+      <LineId Id="192" Count="1" />
+      <LineId Id="93" Count="0" />
+      <LineId Id="92" Count="0" />
+      <LineId Id="149" Count="0" />
+      <LineId Id="109" Count="0" />
+      <LineId Id="217" Count="3" />
+      <LineId Id="150" Count="0" />
+      <LineId Id="111" Count="0" />
+      <LineId Id="110" Count="0" />
+      <LineId Id="94" Count="0" />
+      <LineId Id="113" Count="3" />
+      <LineId Id="240" Count="0" />
+      <LineId Id="242" Count="3" />
+      <LineId Id="241" Count="0" />
+      <LineId Id="246" Count="2" />
+      <LineId Id="251" Count="4" />
+      <LineId Id="249" Count="1" />
+      <LineId Id="117" Count="0" />
+      <LineId Id="131" Count="0" />
+      <LineId Id="118" Count="1" />
+      <LineId Id="129" Count="1" />
+      <LineId Id="132" Count="0" />
+      <LineId Id="112" Count="0" />
+      <LineId Id="135" Count="0" />
+      <LineId Id="96" Count="0" />
+      <LineId Id="136" Count="3" />
+      <LineId Id="236" Count="0" />
+      <LineId Id="141" Count="0" />
+      <LineId Id="151" Count="0" />
+      <LineId Id="153" Count="0" />
+      <LineId Id="155" Count="1" />
+      <LineId Id="152" Count="0" />
+      <LineId Id="148" Count="0" />
+      <LineId Id="142" Count="0" />
+      <LineId Id="146" Count="0" />
+      <LineId Id="179" Count="0" />
+      <LineId Id="147" Count="0" />
+      <LineId Id="157" Count="1" />
+      <LineId Id="190" Count="0" />
+      <LineId Id="160" Count="1" />
+      <LineId Id="159" Count="0" />
+      <LineId Id="162" Count="0" />
+      <LineId Id="164" Count="1" />
+      <LineId Id="163" Count="0" />
+      <LineId Id="143" Count="0" />
+      <LineId Id="166" Count="0" />
+      <LineId Id="170" Count="0" />
+      <LineId Id="167" Count="2" />
+      <LineId Id="122" Count="1" />
+      <LineId Id="101" Count="0" />
+      <LineId Id="178" Count="0" />
+      <LineId Id="171" Count="1" />
+      <LineId Id="180" Count="0" />
+      <LineId Id="124" Count="0" />
+      <LineId Id="173" Count="0" />
+      <LineId Id="175" Count="0" />
+      <LineId Id="199" Count="11" />
+      <LineId Id="188" Count="0" />
+      <LineId Id="186" Count="0" />
+      <LineId Id="176" Count="0" />
+      <LineId Id="189" Count="0" />
+      <LineId Id="177" Count="0" />
+      <LineId Id="231" Count="0" />
+      <LineId Id="233" Count="0" />
+      <LineId Id="174" Count="0" />
+      <LineId Id="125" Count="0" />
+      <LineId Id="102" Count="1" />
+      <LineId Id="120" Count="1" />
+      <LineId Id="104" Count="4" />
+      <LineId Id="95" Count="0" />
+      <LineId Id="87" Count="0" />
+      <LineId Id="62" Count="0" />
+      <LineId Id="127" Count="1" />
+      <LineId Id="126" Count="0" />
+      <LineId Id="75" Count="0" />
+      <LineId Id="70" Count="0" />
+      <LineId Id="76" Count="0" />
+      <LineId Id="78" Count="0" />
+      <LineId Id="80" Count="3" />
+      <LineId Id="181" Count="2" />
+      <LineId Id="79" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

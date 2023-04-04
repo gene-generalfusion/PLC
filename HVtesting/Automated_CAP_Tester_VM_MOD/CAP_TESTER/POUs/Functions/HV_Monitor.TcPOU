@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="HV_Monitor" Id="{bda74a86-12a5-4e06-88fc-bf4297d99d5e}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM HV_Monitor
+VAR
+	scaled_voltage :INT;
+	avg_raw : INT;
+	sum_raw : REAL;
+	prev_raw : INT;
+	i : INT:=0;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//scaled_voltage := REAL_TO_INT(1.6433*raw-12270);
+//scaled_voltage := REAL_TO_INT(1.6577*raw-12721);
+(*IF (GVL.raw_HV_monitor<=7180 AND GVL.raw_HV_monitor>=7040) THEN
+	sum_raw:=0;
+	FOR i := 1 TO 20{BY 1)} DO
+		sum_raw:= sum_raw+GVL.raw_HV_monitor ;
+	END_FOR
+	avg_raw:=REAL_TO_INT((sum_raw)/20);
+	IF (avg_raw <=7151 AND avg_raw>=7070) THEN
+		scaled_voltage:=0; 
+	ELSIF (avg_raw <=7116 AND avg_raw>=7052) THEN
+		scaled_voltage:=-35;
+	ELSIF (avg_raw <=7178 AND avg_raw>=7080) THEN
+		scaled_voltage:=35;
+	END_IF
+ELSE
+	scaled_voltage := REAL_TO_INT(0.4748150*GVL.raw_HV_monitor-3558.738574);
+END_IF*)
+scaled_voltage := REAL_TO_INT(0.4748150*GVL.raw_HV_monitor-3558.738574);
+]]></ST>
+    </Implementation>
+    <LineIds Name="HV_Monitor">
+      <LineId Id="7" Count="0" />
+      <LineId Id="38" Count="0" />
+      <LineId Id="83" Count="0" />
+      <LineId Id="94" Count="0" />
+      <LineId Id="89" Count="0" />
+      <LineId Id="91" Count="1" />
+      <LineId Id="82" Count="0" />
+      <LineId Id="55" Count="0" />
+      <LineId Id="72" Count="0" />
+      <LineId Id="67" Count="0" />
+      <LineId Id="70" Count="0" />
+      <LineId Id="76" Count="0" />
+      <LineId Id="75" Count="0" />
+      <LineId Id="86" Count="0" />
+      <LineId Id="26" Count="1" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="103" Count="0" />
+      <LineId Id="28" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

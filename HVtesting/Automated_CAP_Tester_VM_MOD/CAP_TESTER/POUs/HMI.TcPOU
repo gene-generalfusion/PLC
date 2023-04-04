@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="HMI" Id="{dc100eb0-1044-40f8-af7c-fa22d9cf173d}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM HMI
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//HMI Refresh clock
+Heartbeat();
+
+//FAULTS - Underdevelopment
+
+HMI_DB.Fault.0 := GVL.sparkdetect;
+HMI_DB.Fault.1 := GVL.FireDetected;
+
+//HMI_DB.Fault.2 := 
+//HMI_DB.Fault.3 := 
+
+//TRIPS
+
+
+
+//PERMISSIVES
+
+
+//HMI bit mapping
+HMI_DB.Charging := GVL.chargeCOIL_contact;
+HMI_DB.Dumping := NOT GVL.softdump_contact;
+
+(*IF GVL.softdump_contact = FALSE THEN  //softdump_contact is normally closed.  When closed, dumping coil is open.
+	HMI_DB.Dumping := TRUE;
+ELSE
+	HMI_DB.Dumping := FALSE;
+END_IF;*)
+]]></ST>
+    </Implementation>
+    <LineIds Name="HMI">
+      <LineId Id="43" Count="0" />
+      <LineId Id="101" Count="0" />
+      <LineId Id="45" Count="0" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="138" Count="0" />
+      <LineId Id="15" Count="1" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="6" Count="0" />
+      <LineId Id="11" Count="2" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="23" Count="1" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="133" Count="0" />
+      <LineId Id="39" Count="0" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="132" Count="0" />
+      <LineId Id="31" Count="0" />
+      <LineId Id="28" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

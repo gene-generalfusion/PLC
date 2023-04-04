@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <GVL Name="HMI_DB" Id="{dd8f1866-ff9e-464c-9575-e7dcd895207f}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	Fault: WORD; 
+	
+	Charging: BOOL := FALSE;
+	Dumping: BOOL := FALSE;
+	
+	
+	
+	
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="estimatedchargeTIME_802L" Id="{bb1f91d9-1af3-47e9-b137-932c38eac2f3}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION estimatedchargeTIME_802L : REAL
+VAR_INPUT
+	uFcapacitance : REAL;		// uF
+	Vrated : DINT;				// Volts
+	Vcharge : DINT;				// Volts
+	Powerpk802L : REAL := 9000;	// J/s
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(* Returns estimated charge time in seconds.
+Using TDK 802L constant current stage 1 + power stage 2. *)
+
+// LabVIEW set Ppeak802L to >= 1 to avoid error/ division by 0. Implemented for safety.
+IF Powerpk802L = 0 THEN
+	estimatedchargeTIME_802L := 0;
+ELSE
+	estimatedchargeTIME_802L := 0.5*uFcapacitance*0.000001*DINT_TO_REAL(Vrated*Vcharge)/Powerpk802L;
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="estimatedchargeTIME_802L">
+      <LineId Id="17" Count="0" />
+      <LineId Id="43" Count="0" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="31" Count="1" />
+      <LineId Id="44" Count="1" />
+      <LineId Id="33" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

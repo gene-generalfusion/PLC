@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="ST_RelayFaults_Base" Id="{65a952ca-41dd-4ac2-935b-520267c36c29}">
+    <Declaration><![CDATA[TYPE ST_RelayFaults_Base :
+STRUCT
+	DumpRelay1_FailtoClose		: BOOL;
+	DumpRelay1_FailtoOpen		: BOOL;
+	DumpRelay1_Failed			: BOOL;
+	DumpRly1FaultDelay_TON 		: TON;
+	DumpRly2FaultDelay_TON 		: TON;
+	
+	DumpRelay2_FailtoClose		: BOOL;
+	DumpRelay2_FailtoOpen		: BOOL;
+	DumpRelay2_Failed			: BOOL;
+	
+	ChargeRelay1_FailtoClose	: BOOL;
+	ChargeRelay1_FailtoOpen		: BOOL;
+	ChargeRelay1_Failed			: BOOL;
+	ChrgRly1FaultDelay_TON	 	: TON;
+	
+	ChargeRelay2_FailtoClose	: BOOL;
+	ChargeRelay2_FailtoOpen		: BOOL;
+	ChargeRelay2_Failed			: BOOL;
+	ChrgRly2FaultDelay_TON	 	: TON;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

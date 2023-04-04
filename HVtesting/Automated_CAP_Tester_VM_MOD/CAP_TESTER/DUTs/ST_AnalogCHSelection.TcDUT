@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="ST_AnalogCHSelection" Id="{eccd5887-d9ed-49c6-9cf2-591f6383d334}">
+    <Declaration><![CDATA[TYPE ST_AnalogCHSelection :
+STRUCT
+	b0 : BIT;
+	b1 : BIT;
+	b2 : BIT;
+	b3 : BIT;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

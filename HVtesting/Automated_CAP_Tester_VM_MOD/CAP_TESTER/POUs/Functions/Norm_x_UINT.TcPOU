@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="Norm_x_UINT" Id="{5fc247a3-a867-4ccf-9b47-196535dbc4e0}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION Norm_x_UINT : REAL
+VAR_INPUT
+	raw_input : REAL;
+	x_max : UINT := 32767;  //for AI, use 32767, for AQ, use 12,000 or 50,000 V.
+	x_min : UINT := 0;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// 0 - 12kV or 50kV input 
+Norm_x_UINT := (raw_input - x_min) / (x_max - x_min);]]></ST>
+    </Implementation>
+    <LineIds Name="Norm_x_UINT">
+      <LineId Id="13" Count="0" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

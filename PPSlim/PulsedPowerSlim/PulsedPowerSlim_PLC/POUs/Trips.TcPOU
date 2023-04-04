@@ -1,0 +1,1105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="Trips" Id="{4df83c48-b93a-45f7-abb7-3e8fd700423f}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Trips
+VAR
+	bTest							: BOOL;
+	//delay2s : Delay2s;
+	evtLogger						: FB_TcEventLogger;
+	
+	ACintLockRlyFaultDelay_PT		: TIME := T#2S;
+	DumpRlyFaultDelay_PT			: TIME := T#2S;
+	//DumpRly2FaultDelay_PT			: TIME := T#2S;
+	ChrgRlyFaultDelay_PT			: TIME := T#1S;
+	
+	i : INT := 1;  //charger 1-8
+	j : INT := 1; //section 1-3
+	k : INT := 1; //section 1-4, might not need 
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+//MCP Input Trips
+IF MCP_IO.MasterStopPB_Pressed = TRUE THEN
+	Trips_DB.MasterStopPBPressed := TRUE;	
+END_IF;
+
+IF MCP_IO.CageEstopCircuitOK = FALSE THEN
+	Trips_DB.CaseEStopCircuitBroken := TRUE; 
+END_IF;
+
+IF MCP_IO.AutoModeSelected = FALSE THEN
+	Trips_DB.ManualModeSelected := TRUE; //may not be a trip
+	ELSE
+		Trips_DB.ManualModeSelected := FALSE;
+END_IF;
+
+IF MCP_IO.PSU1_DCOK = FALSE THEN
+	Trips_DB.MCPLossDCpower := TRUE; 
+END_IF;
+
+// mapping pnumatic and dc power to trips
+FOR k := 1 TO 4 BY 1 DO
+	Trips_DB.Section[k].LossPneumaticPressure := LCP.Section[k].LossPneumaticPressure;
+	Trips_DB.Section[k].LossDCPower := NOT LCP.Section[k].PSU1_DCOK;
+END_FOR;
+
+
+//any charge relay fail
+IF Trips_DB.Section[1].Peak.ChargeRelay1_Failed = TRUE OR
+	Trips_DB.Section[1].Peak.ChargeRelay2_Failed = TRUE OR
+	Trips_DB.Section[1].Sust.ChargeRelay1_Failed = TRUE OR
+	Trips_DB.Section[1].Sust.ChargeRelay2_Failed = TRUE OR
+	Trips_DB.Section[2].Peak.ChargeRelay1_Failed = TRUE OR
+	Trips_DB.Section[2].Peak.ChargeRelay2_Failed = TRUE OR
+	Trips_DB.Section[2].Sust.ChargeRelay1_Failed = TRUE OR
+	Trips_DB.Section[2].Sust.ChargeRelay2_Failed = TRUE OR
+	Trips_DB.Section[3].Peak.ChargeRelay1_Failed = TRUE OR
+	Trips_DB.Section[3].Peak.ChargeRelay2_Failed = TRUE OR
+	Trips_DB.Section[3].Sust.ChargeRelay1_Failed = TRUE OR
+	Trips_DB.Section[3].Sust.ChargeRelay2_Failed = TRUE OR
+	Trips_DB.Section[4].Form.ChargeRelay1_Failed = TRUE OR 
+	Trips_DB.Section[4].Form.ChargeRelay2_Failed = TRUE OR 
+	Trips_DB.Section[4].Form.PreFormChrgRlyFailed = TRUE OR 
+	Trips_DB.Section[4].Form.FormTrigChrgRlyFailed = TRUE OR
+	Trips_DB.Section[4].Form.PreFormTrigChrgRlyFailed = TRUE		
+	THEN 
+		Trips_DB.AnyChargeRlyFail := TRUE;
+	ELSE
+		Trips_DB.AnyChargeRlyFail := FALSE;
+END_IF;
+
+//any dump relay fail
+IF Trips_DB.Section[1].Peak.DumpRelay1_Failed = TRUE OR
+	Trips_DB.Section[1].Peak.DumpRelay2_Failed = TRUE OR
+	Trips_DB.Section[1].Sust.DumpRelay1_Failed = TRUE OR
+	Trips_DB.Section[1].Sust.DumpRelay2_Failed = TRUE OR
+	Trips_DB.Section[2].Peak.DumpRelay1_Failed = TRUE OR
+	Trips_DB.Section[2].Peak.DumpRelay2_Failed = TRUE OR
+	Trips_DB.Section[2].Sust.DumpRelay1_Failed = TRUE OR
+	Trips_DB.Section[2].Sust.DumpRelay2_Failed = TRUE OR
+	Trips_DB.Section[3].Peak.DumpRelay1_Failed = TRUE OR
+	Trips_DB.Section[3].Peak.DumpRelay2_Failed = TRUE OR
+	Trips_DB.Section[3].Sust.DumpRelay1_Failed = TRUE OR
+	Trips_DB.Section[3].Sust.DumpRelay2_Failed = TRUE OR
+	Trips_DB.Section[4].Form.DumpRelay1_Failed = TRUE OR 
+	Trips_DB.Section[4].Form.DumpRelay2_Failed = TRUE OR 
+	Trips_DB.Section[4].Form.PreFormDumpRlyFailed = TRUE OR 
+	Trips_DB.Section[4].Form.FormTrigDumpRly1Failed = TRUE OR
+	Trips_DB.Section[4].Form.PreFormTrigDumpRly1Failed = TRUE		
+	THEN 
+		Trips_DB.AnyDumpRlyFail := TRUE;
+	ELSE
+		Trips_DB.AnyDumpRlyFail := FALSE;
+END_IF;
+
+//if relays failed, chargers faulted, loss pneumatic pressure, or loss dc power then 
+//Trips_DB.Section[j].SystemTripped := TRUE;
+
+//system trip 
+//section 1-3
+FOR j := 1 TO 3 BY 1 DO
+	IF Trips_DB.Section[j].LossDCPower = TRUE OR 
+		Trips_DB.Section[j].LossPneumaticPressure = TRUE OR
+		Trips_DB.Section[j].Peak.ChargeRelay1_Failed = TRUE OR
+		Trips_DB.Section[j].Peak.ChargeRelay2_Failed = TRUE OR
+		Trips_DB.Section[j].Peak.DumpRelay1_Failed = TRUE OR
+		Trips_DB.Section[j].Peak.DumpRelay2_Failed = TRUE OR
+		Trips_DB.Section[j].Sust.ChargeRelay1_Failed = TRUE OR
+		Trips_DB.Section[j].Sust.ChargeRelay2_Failed = TRUE OR
+		Trips_DB.Section[j].Sust.DumpRelay1_Failed = TRUE OR
+		Trips_DB.Section[j].Sust.DumpRelay2_Failed = TRUE 
+		// shorted when not supposed to ?
+		THEN
+			Trips_DB.Section[j].SystemTripped := TRUE;
+	END_IF;
+END_FOR;
+
+//formation
+IF Trips_DB.Section[4].LossDCPower = TRUE OR 
+	Trips_DB.Section[4].LossPneumaticPressure = TRUE OR
+	Trips_DB.Section[4].Form.ChargeRelay1_Failed = TRUE OR
+	Trips_DB.Section[4].Form.ChargeRelay2_Failed = TRUE OR
+	Trips_DB.Section[4].Form.DumpRelay1_Failed = TRUE OR
+	Trips_DB.Section[4].Form.DumpRelay2_Failed = TRUE OR
+	Trips_DB.Section[4].Form.PreFormChrgRlyFailed = TRUE OR
+	Trips_DB.Section[4].Form.FormTrigChrgRlyFailed = TRUE OR
+	Trips_DB.Section[4].Form.PreFormTrigChrgRlyFailed = TRUE OR
+	Trips_DB.Section[4].Form.PreFormDumpRlyFailed = TRUE OR
+	Trips_DB.Section[4].Form.FormTrigDumpRly1Failed = TRUE OR
+	Trips_DB.Section[4].Form.PreFormTrigDumpRly1Failed = TRUE
+	THEN
+		Trips_DB.Section[4].SystemTripped := TRUE;
+END_IF;
+
+
+//Charger faults
+FOR i := 1 TO 8 BY 1 DO
+	//OVERTEMP 
+	IF MCP_IO.Charger[i].OverTemp = TRUE THEN
+		Trips_DB.AnyChargerOverTemp := TRUE;  
+	END_IF;
+	//Load faults
+	IF MCP_IO.Charger[i].LoadFaulted = TRUE THEN
+		Trips_DB.AnyChargerLoadFault := TRUE;  
+	END_IF;
+	//Interlock Open
+	IF MCP_IO.Charger[i].InterlockOpen = TRUE THEN
+		Trips_DB.AnyChargerInterlockOpen := TRUE;  
+	END_IF;
+	
+END_FOR;
+
+//Charger summary faults
+FOR i := 1 TO 8 BY 1 DO
+	IF MCP_IO.Charger[i].SummaryFaulted = TRUE THEN
+		Trips_DB.AnyChargerFaulted := TRUE;  
+	END_IF;
+END_FOR;
+
+//MCP trip
+IF Trips_DB.AnyChargerFaulted = TRUE OR 
+	Trips_DB.MasterStopPBPressed = TRUE OR
+	Trips_DB.CaseEStopCircuitBroken = TRUE OR
+	Trips_DB.MCPLossDCpower = TRUE 
+	THEN
+		Trips_DB.MCPsystemTripped := TRUE;
+END_IF
+
+
+//*******************E-Stop Trips
+IF MCP_IO.MasterStopPB_Pressed = TRUE OR MCP_IO.CageEstopCircuitOK THEN
+	Trips_DB.AnyEstopPressed := TRUE;  
+END_IF;	
+
+//*********************DC PSU
+IF MCP_IO.PSU1_DCOK = TRUE AND 
+	LCP.Section[1].PSU1_DCOK = TRUE AND
+	LCP.Section[2].PSU1_DCOK = TRUE AND
+	LCP.Section[3].PSU1_DCOK = TRUE AND
+	LCP.Section[4].PSU1_DCOK = TRUE 
+	THEN
+		TRIPS_DB.AllDCpsuOK := TRUE;
+	ELSE 
+		TRIPS_DB.AllDCpsuOK := FALSE;
+END_IF;
+
+//Relay faults***************************************
+//section 1 - 3
+FOR j := 1 TO 3 BY 1 DO
+	//Peak Charge rly1
+		//fail to close
+	IF LCP.Section[j].Peak.CloseChargeRelay1 = TRUE AND LCP.Section[j].Peak.ChargeRelay1_close = FALSE THEN 
+		//start timer
+		Trips_DB.Section[j].Peak.ChrgRly1FaultDelay_TON (IN:= TRUE, PT := ChrgRlyFaultDelay_PT);
+		
+		IF Trips_DB.Section[j].Peak.ChrgRly1FaultDelay_TON.Q = TRUE THEN 
+			Trips_DB.Section[j].Peak.ChargeRelay1_FailtoClose := TRUE; 
+			Trips_DB.Section[j].Peak.ChrgRly1FaultDelay_TON (IN:= FALSE);
+		END_IF;
+	ELSE
+		Trips_DB.Section[j].Peak.ChrgRly1FaultDelay_TON (IN:= FALSE);
+	END_IF;
+
+		//fail to open
+	IF LCP.Section[j].Peak.CloseChargeRelay1 = FALSE AND LCP.Section[j].Peak.ChargeRelay1_close = TRUE THEN 
+		//start timer
+		Trips_DB.Section[j].Peak.ChrgRly1FaultDelay_TON (IN:= TRUE, PT := ChrgRlyFaultDelay_PT);
+		
+		IF Trips_DB.Section[j].Peak.ChrgRly1FaultDelay_TON.Q = TRUE THEN 
+			Trips_DB.Section[j].Peak.ChargeRelay1_FailtoOpen := TRUE; 
+			Trips_DB.Section[j].Peak.ChrgRly1FaultDelay_TON (IN:= FALSE);
+		END_IF;
+	ELSE
+		Trips_DB.Section[j].Peak.ChrgRly1FaultDelay_TON (IN:= FALSE);
+	
+	END_IF;
+
+	//Peak Charge rly2	
+		//fail to close
+	IF LCP.Section[j].Peak.CloseChargeRelay2 = TRUE AND LCP.Section[j].Peak.ChargeRelay2_close = FALSE THEN 
+		//start timer
+		Trips_DB.Section[j].Peak.ChrgRly2FaultDelay_TON (IN:= TRUE, PT := ChrgRlyFaultDelay_PT);
+		
+		IF Trips_DB.Section[j].Peak.ChrgRly2FaultDelay_TON.Q = TRUE THEN 
+			Trips_DB.Section[j].Peak.ChargeRelay2_FailtoClose := TRUE; 
+			Trips_DB.Section[j].Peak.ChrgRly2FaultDelay_TON (IN:= FALSE);
+		END_IF;
+	ELSE
+		Trips_DB.Section[j].Peak.ChrgRly2FaultDelay_TON (IN:= FALSE);
+	END_IF;
+	
+		//fail to open
+	IF LCP.Section[j].Peak.CloseChargeRelay2 = FALSE AND LCP.Section[j].Peak.ChargeRelay2_close = TRUE THEN 
+		//start timer
+		Trips_DB.Section[j].Peak.ChrgRly2FaultDelay_TON (IN:= TRUE, PT := ChrgRlyFaultDelay_PT);
+		
+		IF Trips_DB.Section[j].Peak.ChrgRly2FaultDelay_TON.Q = TRUE THEN 
+			Trips_DB.Section[j].Peak.ChargeRelay2_FailtoOpen := TRUE; 
+			Trips_DB.Section[j].Peak.ChrgRly2FaultDelay_TON (IN:= FALSE);
+		END_IF;
+	ELSE
+		Trips_DB.Section[j].Peak.ChrgRly2FaultDelay_TON (IN:= FALSE);
+	END_IF;
+
+	//Peak dump rly1
+		//fail to open
+	IF LCP.Section[j].Peak.OpenDumpRelay1 = TRUE AND LCP.Section[j].Peak.DumpRelay1_close = TRUE THEN 
+		//start timer
+		Trips_DB.Section[j].Peak.DumpRly1FaultDelay_TON (IN := TRUE, PT := DumpRlyFaultDelay_PT);
+
+		IF Trips_DB.Section[j].Peak.DumpRly1FaultDelay_TON.Q = TRUE THEN 
+			Trips_DB.Section[j].Peak.DumpRelay1_FailtoOpen := TRUE; 
+			Trips_DB.Section[j].Peak.DumpRly1FaultDelay_TON (IN:= FALSE);
+		END_IF; 
+	ELSE
+		Trips_DB.Section[j].Peak.DumpRly1FaultDelay_TON (IN:= FALSE);
+	END_IF;
+
+		//fail to close
+	IF LCP.Section[j].Peak.OpenDumpRelay1 = FALSE AND LCP.Section[j].Peak.DumpRelay1_close = FALSE THEN 
+		//start timer
+		Trips_DB.Section[j].Peak.DumpRly1FaultDelay_TON (IN := TRUE, PT := DumpRlyFaultDelay_PT); 
+		
+		IF Trips_DB.Section[j].Peak.DumpRly1FaultDelay_TON.Q = TRUE THEN 
+			Trips_DB.Section[j].Peak.DumpRelay1_FailtoClose := TRUE;
+			Trips_DB.Section[j].Peak.DumpRly1FaultDelay_TON (IN:= FALSE);
+		END_IF;
+	ELSE
+		Trips_DB.Section[j].Peak.DumpRly1FaultDelay_TON (IN:= FALSE);
+	END_IF;
+
+	//Peak dump rly2
+		//fail to open
+	IF LCP.Section[j].Peak.OpenDumpRelay2 = TRUE AND LCP.Section[j].Peak.DumpRelay2_close = TRUE THEN 
+		//start timer
+		Trips_DB.Section[j].Peak.DumpRly2FaultDelay_TON (IN := TRUE, PT := DumpRlyFaultDelay_PT); 
+		
+		IF Trips_DB.Section[j].Peak.DumpRly2FaultDelay_TON.Q = TRUE THEN 
+			Trips_DB.Section[j].Peak.DumpRelay2_FailtoOpen := TRUE; 
+			Trips_DB.Section[j].Peak.DumpRly2FaultDelay_TON (IN:= FALSE);
+		END_IF;
+	ELSE
+		Trips_DB.Section[j].Peak.DumpRly2FaultDelay_TON (IN:= FALSE);
+	END_IF;
+
+		//fail to close
+	IF LCP.Section[j].Peak.OpenDumpRelay2 = FALSE AND LCP.Section[j].Peak.DumpRelay2_close = FALSE THEN 
+		//start timer
+		Trips_DB.Section[j].Peak.DumpRly2FaultDelay_TON (IN := TRUE, PT := DumpRlyFaultDelay_PT); 
+		IF Trips_DB.Section[j].Peak.DumpRly2FaultDelay_TON.Q = TRUE THEN 
+			Trips_DB.Section[j].Peak.DumpRelay2_FailtoClose := TRUE; 
+			
+		END_IF;
+	ELSE
+		Trips_DB.Section[j].Peak.DumpRly2FaultDelay_TON (IN:= FALSE);
+	END_IF;
+//*************************************************************************************************
+
+//Sust Charge rly1
+		//fail to close
+	IF LCP.Section[j].Sust.CloseChargeRelay1 = TRUE AND LCP.Section[j].Sust.ChargeRelay1_close = FALSE THEN 
+		//start timer
+		Trips_DB.Section[j].Sust.ChrgRly1FaultDelay_TON (IN:= TRUE, PT := ChrgRlyFaultDelay_PT);
+		
+		IF Trips_DB.Section[j].Sust.ChrgRly1FaultDelay_TON.Q = TRUE THEN 
+			Trips_DB.Section[j].Sust.ChargeRelay1_FailtoClose := TRUE; 
+			Trips_DB.Section[j].Sust.ChrgRly1FaultDelay_TON (IN:= FALSE);
+		END_IF;
+	ELSE
+		Trips_DB.Section[j].Sust.ChrgRly1FaultDelay_TON (IN:= FALSE);	
+	END_IF;
+
+		//fail to open
+	IF LCP.Section[j].Sust.CloseChargeRelay1 = FALSE AND LCP.Section[j].Sust.ChargeRelay1_close = TRUE THEN 
+		//start timer
+		Trips_DB.Section[j].Sust.ChrgRly1FaultDelay_TON (IN:= TRUE, PT := ChrgRlyFaultDelay_PT);
+		
+		IF Trips_DB.Section[j].Sust.ChrgRly1FaultDelay_TON.Q = TRUE THEN 
+			Trips_DB.Section[j].Sust.ChargeRelay1_FailtoOpen := TRUE; 
+			Trips_DB.Section[j].Sust.ChrgRly1FaultDelay_TON (IN:= FALSE);
+		END_IF;
+	ELSE
+		Trips_DB.Section[j].Sust.ChrgRly1FaultDelay_TON (IN:= FALSE);
+	END_IF;
+
+	//Sust Charge rly2	
+		//fail to close
+	IF LCP.Section[j].Sust.CloseChargeRelay2 = TRUE AND LCP.Section[j].Sust.ChargeRelay2_close = FALSE THEN 
+		//start timer
+		Trips_DB.Section[j].Sust.ChrgRly2FaultDelay_TON (IN:= TRUE, PT := ChrgRlyFaultDelay_PT);
+		
+		IF Trips_DB.Section[j].Sust.ChrgRly2FaultDelay_TON.Q = TRUE THEN 
+			Trips_DB.Section[j].Sust.ChargeRelay2_FailtoClose := TRUE;
+			Trips_DB.Section[j].Sust.ChrgRly2FaultDelay_TON (IN:= FALSE);
+		END_IF;
+	ELSE
+		Trips_DB.Section[j].Sust.ChrgRly2FaultDelay_TON (IN:= FALSE);
+	END_IF;
+	
+		//fail to open
+	IF LCP.Section[j].Sust.CloseChargeRelay2 = FALSE AND LCP.Section[j].Sust.ChargeRelay2_close = TRUE THEN 
+		//start timer
+		Trips_DB.Section[j].Sust.ChrgRly2FaultDelay_TON (IN:= TRUE, PT := ChrgRlyFaultDelay_PT);
+		
+		IF Trips_DB.Section[j].Sust.ChrgRly2FaultDelay_TON.Q = TRUE THEN 
+			Trips_DB.Section[j].Sust.ChargeRelay2_FailtoOpen := TRUE; 
+			Trips_DB.Section[j].Sust.ChrgRly2FaultDelay_TON (IN:= FALSE);
+		END_IF;
+	ELSE
+		Trips_DB.Section[j].Sust.ChrgRly2FaultDelay_TON (IN:= FALSE);
+	END_IF;
+
+	//Sust dump rly1
+		//fail to open
+	IF LCP.Section[j].Sust.OpenDumpRelay1 = TRUE AND LCP.Section[j].Sust.DumpRelay1_close = TRUE THEN 
+		//start timer
+		Trips_DB.Section[j].Sust.DumpRly1FaultDelay_TON (IN := TRUE, PT := DumpRlyFaultDelay_PT);
+
+		IF Trips_DB.Section[j].Sust.DumpRly1FaultDelay_TON.Q = TRUE THEN 
+			Trips_DB.Section[j].Sust.DumpRelay1_FailtoOpen := TRUE; 
+			Trips_DB.Section[j].Sust.DumpRly1FaultDelay_TON (IN:= FALSE);
+		END_IF; 
+	ELSE
+		Trips_DB.Section[j].Sust.DumpRly1FaultDelay_TON (IN:= FALSE);
+	END_IF;
+
+		//fail to close
+	IF LCP.Section[j].Sust.OpenDumpRelay1 = FALSE AND LCP.Section[j].Sust.DumpRelay1_close = FALSE THEN 
+		//start timer
+		Trips_DB.Section[j].Sust.DumpRly1FaultDelay_TON (IN := TRUE, PT := DumpRlyFaultDelay_PT); 
+		
+		IF Trips_DB.Section[j].Sust.DumpRly1FaultDelay_TON.Q = TRUE THEN 
+			Trips_DB.Section[j].Sust.DumpRelay1_FailtoClose := TRUE; 
+			Trips_DB.Section[j].Sust.DumpRly1FaultDelay_TON (IN:= FALSE);
+		END_IF;
+	ELSE
+		Trips_DB.Section[j].Sust.DumpRly1FaultDelay_TON (IN:= FALSE);
+	END_IF;
+
+	//Sust dump rly2
+		//fail to open
+	IF LCP.Section[j].Sust.OpenDumpRelay2 = TRUE AND LCP.Section[j].Sust.DumpRelay2_close = TRUE THEN 
+		//start timer
+		Trips_DB.Section[j].Sust.DumpRly2FaultDelay_TON (IN := TRUE, PT := DumpRlyFaultDelay_PT); 
+		
+		IF Trips_DB.Section[j].Sust.DumpRly2FaultDelay_TON.Q = TRUE THEN 
+			Trips_DB.Section[j].Sust.DumpRelay2_FailtoOpen := TRUE; 
+			Trips_DB.Section[j].Sust.DumpRly2FaultDelay_TON (IN:= FALSE);
+		END_IF;
+	ELSE
+		Trips_DB.Section[j].Sust.DumpRly2FaultDelay_TON (IN:= FALSE);
+	END_IF;
+
+		//fail to close
+	IF LCP.Section[j].Sust.OpenDumpRelay2 = FALSE AND LCP.Section[j].Sust.DumpRelay2_close = FALSE THEN 
+		//start timer
+		Trips_DB.Section[j].Sust.DumpRly2FaultDelay_TON (IN := TRUE, PT := DumpRlyFaultDelay_PT); 
+		IF Trips_DB.Section[j].Sust.DumpRly2FaultDelay_TON.Q = TRUE THEN 
+			Trips_DB.Section[j].Sust.DumpRelay2_FailtoClose := TRUE; 
+			Trips_DB.Section[j].Sust.DumpRly2FaultDelay_TON (IN:= FALSE);
+		END_IF;
+	ELSE
+		Trips_DB.Section[j].Sust.DumpRly2FaultDelay_TON (IN:= FALSE);
+	END_IF;
+	
+END_FOR;
+//****************************************	
+	
+//Form Charge rly1
+		//fail to close
+IF LCP.Section[4].Form.CloseChargeRelay1 = TRUE AND LCP.Section[4].Form.ChargeRelay1_close = FALSE THEN 
+		//start timer
+		Trips_DB.Section[4].Form.ChrgRly1FaultDelay_TON (IN:= TRUE, PT := ChrgRlyFaultDelay_PT);
+		
+		IF Trips_DB.Section[4].Form.ChrgRly1FaultDelay_TON.Q = TRUE THEN 
+			Trips_DB.Section[4].Form.ChargeRelay1_FailtoClose := TRUE; 
+			Trips_DB.Section[4].Form.ChrgRly1FaultDelay_TON (IN:= FALSE);
+		END_IF;
+	ELSE
+		Trips_DB.Section[4].Form.ChrgRly1FaultDelay_TON (IN:= FALSE);		
+END_IF;
+
+		//fail to open
+IF LCP.Section[4].Form.CloseChargeRelay1 = FALSE AND LCP.Section[4].Form.ChargeRelay1_close = TRUE THEN 
+		//start timer
+		Trips_DB.Section[4].Form.ChrgRly1FaultDelay_TON (IN:= TRUE, PT := ChrgRlyFaultDelay_PT);
+		
+		IF Trips_DB.Section[4].Form.ChrgRly1FaultDelay_TON.Q = TRUE THEN 
+			Trips_DB.Section[4].Form.ChargeRelay1_FailtoOpen := TRUE; 
+			Trips_DB.Section[4].Form.ChrgRly1FaultDelay_TON (IN:= FALSE);
+		END_IF;
+	ELSE
+		Trips_DB.Section[4].Form.ChrgRly1FaultDelay_TON (IN:= FALSE);
+END_IF;
+
+	//Form Charge rly2	
+		//fail to close
+IF LCP.Section[4].Form.CloseChargeRelay2 = TRUE AND LCP.Section[4].Form.ChargeRelay2_close = FALSE THEN 
+		//start timer
+		Trips_DB.Section[4].Form.ChrgRly2FaultDelay_TON (IN:= TRUE, PT := ChrgRlyFaultDelay_PT);
+		
+		IF Trips_DB.Section[4].Form.ChrgRly2FaultDelay_TON.Q = TRUE THEN 
+			Trips_DB.Section[4].Form.ChargeRelay2_FailtoClose := TRUE; 
+			Trips_DB.Section[4].Form.ChrgRly2FaultDelay_TON (IN:= FALSE);
+		END_IF;
+	ELSE
+		Trips_DB.Section[4].Form.ChrgRly2FaultDelay_TON (IN:= FALSE);
+END_IF;
+	
+		//fail to open
+IF LCP.Section[4].Form.CloseChargeRelay2 = FALSE AND LCP.Section[4].Form.ChargeRelay2_close = TRUE THEN 
+		//start timer
+		Trips_DB.Section[4].Form.ChrgRly2FaultDelay_TON (IN:= TRUE, PT := ChrgRlyFaultDelay_PT);
+		
+		IF Trips_DB.Section[4].Form.ChrgRly2FaultDelay_TON.Q = TRUE THEN 
+			Trips_DB.Section[4].Form.ChargeRelay2_FailtoOpen := TRUE; 
+			Trips_DB.Section[4].Form.ChrgRly2FaultDelay_TON (IN:= FALSE);
+		END_IF;
+	ELSE
+		Trips_DB.Section[4].Form.ChrgRly2FaultDelay_TON (IN:= FALSE);
+END_IF;
+
+	//Form dump rly1
+		//fail to open
+IF LCP.Section[4].Form.OpenDumpRelay1 = TRUE AND LCP.Section[4].Form.DumpRelay1_close = TRUE THEN 
+		//start timer
+		Trips_DB.Section[4].Form.DumpRly1FaultDelay_TON (IN := TRUE, PT := DumpRlyFaultDelay_PT);
+
+		IF Trips_DB.Section[4].Form.DumpRly1FaultDelay_TON.Q = TRUE THEN 
+			Trips_DB.Section[4].Form.DumpRelay1_FailtoOpen := TRUE; 
+			Trips_DB.Section[4].Form.DumpRly1FaultDelay_TON (IN:= FALSE);
+		END_IF; 
+	ELSE
+		Trips_DB.Section[4].Form.DumpRly1FaultDelay_TON (IN:= FALSE);
+END_IF;
+
+		//fail to close
+IF LCP.Section[4].Form.OpenDumpRelay1 = FALSE AND LCP.Section[4].Form.DumpRelay1_close = FALSE THEN 
+		//start timer
+		Trips_DB.Section[4].Form.DumpRly1FaultDelay_TON (IN := TRUE, PT := DumpRlyFaultDelay_PT); 
+		
+		IF Trips_DB.Section[4].Form.DumpRly1FaultDelay_TON.Q = TRUE THEN 
+			Trips_DB.Section[4].Form.DumpRelay1_FailtoClose := TRUE; 
+			Trips_DB.Section[4].Form.DumpRly1FaultDelay_TON (IN:= FALSE);
+		END_IF;
+	ELSE
+		Trips_DB.Section[4].Form.DumpRly1FaultDelay_TON (IN:= FALSE);
+END_IF;
+
+	//Form dump rly2
+		//fail to open
+IF LCP.Section[4].Form.OpenDumpRelay2 = TRUE AND LCP.Section[4].Form.DumpRelay2_close = TRUE THEN 
+		//start timer
+		Trips_DB.Section[4].Form.DumpRly2FaultDelay_TON (IN := TRUE, PT := DumpRlyFaultDelay_PT); 
+		
+		IF Trips_DB.Section[4].Form.DumpRly2FaultDelay_TON.Q = TRUE THEN 
+			Trips_DB.Section[4].Form.DumpRelay2_FailtoOpen := TRUE; 
+			Trips_DB.Section[4].Form.DumpRly2FaultDelay_TON (IN:= FALSE);
+		END_IF;
+	ELSE
+		Trips_DB.Section[4].Form.DumpRly2FaultDelay_TON (IN:= FALSE);
+END_IF;
+
+		//fail to close
+IF LCP.Section[4].Form.OpenDumpRelay2 = FALSE AND LCP.Section[4].Form.DumpRelay2_close = FALSE THEN 
+		//start timer
+		Trips_DB.Section[4].Form.DumpRly2FaultDelay_TON (IN := TRUE, PT := DumpRlyFaultDelay_PT); 
+		IF Trips_DB.Section[4].Form.DumpRly2FaultDelay_TON.Q = TRUE THEN 
+			Trips_DB.Section[4].Form.DumpRelay2_FailtoClose := TRUE; 
+			Trips_DB.Section[4].Form.DumpRly2FaultDelay_TON (IN:= FALSE);
+		END_IF;
+	ELSE
+		Trips_DB.Section[4].Form.DumpRly2FaultDelay_TON (IN:= FALSE);
+END_IF;	
+
+	//PreForm Charge rly
+		//fail to close
+IF (LCP.Section[4].Form.ClosePreFormChargeRly = TRUE AND LCP.Section[4].Form.PreFormChargeRly_close = FALSE) OR 
+		(LCP.Section[4].Form.ClosePreFormChargeRly = FALSE AND LCP.Section[4].Form.PreFormChargeRly_close = TRUE) 
+		THEN 
+		//start timer
+		Trips_DB.Section[4].Form.PreFormChrgRlyFaultDelay_TON (IN:= TRUE, PT := ChrgRlyFaultDelay_PT);
+		
+		IF Trips_DB.Section[4].Form.PreFormChrgRlyFaultDelay_TON.Q = TRUE THEN 
+			Trips_DB.Section[4].Form.PreFormChrgRlyFailed := TRUE; 
+			Trips_DB.Section[4].Form.PreFormChrgRlyFaultDelay_TON (IN:= FALSE);
+		END_IF;
+	ELSE
+		Trips_DB.Section[4].Form.PreFormChrgRlyFaultDelay_TON (IN:= FALSE);
+END_IF;
+
+//form trigger charge 
+		//fail to close
+IF (LCP.Section[4].Form.CloseFormTrigChargeRly = TRUE AND LCP.Section[4].Form.FormTrigChargeRly_close = FALSE) OR 
+		(LCP.Section[4].Form.CloseFormTrigChargeRly = FALSE AND LCP.Section[4].Form.FormTrigChargeRly_close = TRUE) 
+		THEN 
+		//start timer
+		Trips_DB.Section[4].Form.FormTrigChrgRlyFaultDelay_TON (IN:= TRUE, PT := ChrgRlyFaultDelay_PT);
+		
+		IF Trips_DB.Section[4].Form.FormTrigChrgRlyFaultDelay_TON.Q = TRUE THEN 
+			Trips_DB.Section[4].Form.FormTrigChrgRlyFailed := TRUE; 
+			Trips_DB.Section[4].Form.FormTrigChrgRlyFaultDelay_TON (IN:= FALSE);
+		END_IF;
+	ELSE
+		Trips_DB.Section[4].Form.FormTrigChrgRlyFaultDelay_TON (IN:= FALSE);
+END_IF;
+
+//preform trigger charge
+		//fail to close
+IF (LCP.Section[4].Form.ClosePreFormTrigChargeRly = TRUE AND LCP.Section[4].Form.PreFormTrigChargeRly_close = FALSE) OR 
+		(LCP.Section[4].Form.ClosePreFormTrigChargeRly = FALSE AND LCP.Section[4].Form.PreFormTrigChargeRly_close = TRUE) 
+		THEN 
+		//start timer
+		Trips_DB.Section[4].Form.PreFormTrigChrgRlyFaultDelay_TON (IN:= TRUE, PT := ChrgRlyFaultDelay_PT);
+		
+		IF Trips_DB.Section[4].Form.PreFormTrigChrgRlyFaultDelay_TON.Q = TRUE THEN 
+			Trips_DB.Section[4].Form.PreFormTrigChrgRlyFailed := TRUE; 
+			Trips_DB.Section[4].Form.PreFormTrigChrgRlyFaultDelay_TON (IN:= FALSE);
+		END_IF;
+	ELSE
+		Trips_DB.Section[4].Form.PreFormTrigChrgRlyFaultDelay_TON (IN:= FALSE);
+END_IF;
+
+//preform dump
+	//fail to close
+IF (LCP.Section[4].Form.OpenPreFormDumpRly = TRUE AND LCP.Section[4].Form.PreFormDumpRly_close = FALSE) OR 
+		(LCP.Section[4].Form.OpenPreFormDumpRly = FALSE AND LCP.Section[4].Form.PreFormDumpRly_close = TRUE) 
+		THEN 
+		//start timer
+		Trips_DB.Section[4].Form.PreFormDumpRlyFaultDelay_TON (IN:= TRUE, PT := DumpRlyFaultDelay_PT);
+		
+		IF Trips_DB.Section[4].Form.PreFormDumpRlyFaultDelay_TON.Q = TRUE THEN 
+			Trips_DB.Section[4].Form.PreFormDumpRlyFailed := TRUE; 
+			Trips_DB.Section[4].Form.PreFormDumpRlyFaultDelay_TON (IN:= FALSE);
+		END_IF;
+	ELSE
+		Trips_DB.Section[4].Form.PreFormDumpRlyFaultDelay_TON (IN:= FALSE);
+END_IF;
+
+//form trigger dump
+	//fail to close
+IF (LCP.Section[4].Form.OpenFormTrigDumpRly1 = TRUE AND LCP.Section[4].Form.FormTrigDumpRly1_close = FALSE) OR 
+		(LCP.Section[4].Form.OpenFormTrigDumpRly1 = FALSE AND LCP.Section[4].Form.FormTrigDumpRly1_close = TRUE) 
+		THEN 
+		//start timer
+		Trips_DB.Section[4].Form.FormTrigDumpRlyFaultDelay_TON (IN:= TRUE, PT := DumpRlyFaultDelay_PT);
+		
+		IF Trips_DB.Section[4].Form.FormTrigDumpRlyFaultDelay_TON.Q = TRUE THEN 
+			Trips_DB.Section[4].Form.FormTrigDumpRly1Failed := TRUE; 
+			Trips_DB.Section[4].Form.FormTrigDumpRlyFaultDelay_TON (IN:= FALSE);
+		END_IF;
+	ELSE
+		Trips_DB.Section[4].Form.FormTrigDumpRlyFaultDelay_TON (IN:= FALSE);
+END_IF;
+	
+//preform trigger dump
+	//fail to close
+IF (LCP.Section[4].Form.OpenPreFormTrigDumpRly1 = TRUE AND LCP.Section[4].Form.PreFormTrigDumpRly1_close = FALSE) OR 
+		(LCP.Section[4].Form.OpenPreFormTrigDumpRly1 = FALSE AND LCP.Section[4].Form.PreFormTrigDumpRly1_close = TRUE) 
+		THEN 
+		//start timer
+		Trips_DB.Section[4].Form.PreFormTrigDumpRlyFaultDelay_TON (IN:= TRUE, PT := DumpRlyFaultDelay_PT);
+		
+		IF Trips_DB.Section[4].Form.PreFormTrigDumpRlyFaultDelay_TON.Q = TRUE THEN 
+			Trips_DB.Section[4].Form.PreFormTrigDumpRly1Failed := TRUE; 
+			Trips_DB.Section[4].Form.PreFormTrigDumpRlyFaultDelay_TON (IN:= FALSE);
+		END_IF;
+	ELSE
+		Trips_DB.Section[4].Form.PreFormTrigDumpRlyFaultDelay_TON (IN:= FALSE);
+END_IF;
+	
+
+// if rly fail to close or fail to open then trips_db.rly_failed - for alarms	
+FOR j := 1 TO 3 BY 1 DO
+	//peak
+	IF Trips_DB.Section[j].Peak.ChargeRelay1_FailtoClose = TRUE OR Trips_DB.Section[j].Peak.ChargeRelay1_FailtoOpen = TRUE THEN
+		Trips_DB.Section[j].Peak.ChargeRelay1_Failed := TRUE;  
+	END_IF;
+	
+	IF Trips_DB.Section[j].Peak.ChargeRelay2_FailtoClose = TRUE OR Trips_DB.Section[j].Peak.ChargeRelay2_FailtoOpen = TRUE THEN
+		Trips_DB.Section[j].Peak.ChargeRelay2_Failed := TRUE;  
+	END_IF;
+	
+	IF Trips_DB.Section[j].Peak.DumpRelay1_FailtoClose = TRUE OR Trips_DB.Section[j].Peak.DumpRelay1_FailtoOpen = TRUE THEN
+		Trips_DB.Section[j].Peak.DumpRelay1_Failed := TRUE;  
+	END_IF;
+	
+	IF Trips_DB.Section[j].Peak.DumpRelay2_FailtoClose = TRUE OR Trips_DB.Section[j].Peak.DumpRelay2_FailtoOpen = TRUE THEN
+		Trips_DB.Section[j].Peak.DumpRelay2_Failed := TRUE;  
+	END_IF;
+	
+	//sust
+	IF Trips_DB.Section[j].Sust.ChargeRelay1_FailtoClose = TRUE OR Trips_DB.Section[j].Sust.ChargeRelay1_FailtoOpen = TRUE THEN
+		Trips_DB.Section[j].Sust.ChargeRelay1_Failed := TRUE;  
+	END_IF;
+	
+	IF Trips_DB.Section[j].Sust.ChargeRelay2_FailtoClose = TRUE OR Trips_DB.Section[j].Sust.ChargeRelay2_FailtoOpen = TRUE THEN
+		Trips_DB.Section[j].Sust.ChargeRelay2_Failed := TRUE;  
+	END_IF;
+	
+	IF Trips_DB.Section[j].Sust.DumpRelay1_FailtoClose = TRUE OR Trips_DB.Section[j].Sust.DumpRelay1_FailtoOpen = TRUE THEN
+		Trips_DB.Section[j].Sust.DumpRelay1_Failed := TRUE;  
+	END_IF;
+	
+	IF Trips_DB.Section[j].Sust.DumpRelay2_FailtoClose = TRUE OR Trips_DB.Section[j].Sust.DumpRelay2_FailtoOpen = TRUE THEN
+		Trips_DB.Section[j].Sust.DumpRelay2_Failed := TRUE;  
+	END_IF;
+	
+END_FOR;
+
+// no faulted detected
+IF Trips_DB.MCPsystemTripped = FALSE AND
+	Trips_DB.AnyChargerOverTemp = FALSE AND
+	Trips_DB.AnyChargerLoadFault = FALSE AND
+	Trips_DB.AnyChargerInterlockOpen = FALSE AND
+	Trips_DB.AnyChargerFaulted = FALSE AND
+	Trips_DB.AnyEstopPressed = FALSE AND
+	Trips_DB.AnyDumpRlyFail = FALSE AND
+	Trips_DB.AnyChargeRlyFail = FALSE
+	THEN
+		Trips_DB.NoFaultDetected := TRUE;
+	ELSE
+		Trips_DB.NoFaultDetected := FALSE;
+END_IF;
+
+
+(*
+FOR i := 1 TO 10 BY 1 DO
+	IF (Trips_DB.Coil[i].ACInterlockRelayFailedtoClose = TRUE OR 
+		Trips_DB.Coil[i].ACInterlockRelayFailedtoOpen = TRUE OR 
+		Trips_DB.Coil[i].ChargeRelay_FailtoClose = TRUE OR
+		Trips_DB.Coil[i].ChargeRelay_FailtoOpen = TRUE OR
+		Trips_DB.Coil[i].DumpRelay1_FailtoClose =  TRUE OR 
+		Trips_DB.Coil[i].DumpRelay1_FailtoOpen = TRUE OR 
+		Trips_DB.Coil[i].DumpRelay2_FailtoClose =  TRUE OR 
+		Trips_DB.Coil[i].DumpRelay2_FailtoOpen = TRUE OR 
+		Trips_DB.Coil[i].ChargerVoltageReadingFaulted = TRUE OR
+		Trips_DB.Coil[i].CurrentReadingFaulted = TRUE OR
+		Devices.Coil[i].Local_EstopPB_Pressed = TRUE OR
+		Devices.Coil[i].LossPneumaticPressure = FALSE) AND Devices.Coil[i].CoilEnabled = TRUE 	
+		THEN
+			Devices.Coil[i].SystemFaulted := TRUE;
+	END_IF
+	
+	IF Devices.Coil[i].SystemFaulted = TRUE THEN
+		Trips_DB.SystemTripped := TRUE;
+	END_IF;
+END_FOR;
+
+//*********************************** Test
+(*IF InstrumentReading.R2_01_CH01 <= 0.0 THEN
+	delay2s(input := FALSE);
+ELSE 
+	delay2s (input := TRUE);
+END_IF;
+bTest := delay2s.output;
+*)
+// Instrumentation Hardware trip
+//Input.R2_01_00_Status.0;
+*)
+//************** Clear System Fault
+IF Trips_DB.ClearAllFaults THEN
+	//Trips_DB.InstrumentationFaulted := FALSE;
+	//Trips_DB.SystemTripped := FALSE;
+	Trips_DB.MCPsystemTripped := FALSE; //reset mcp trip
+	Trips_DB.AnyChargerOverTemp := FALSE;
+	Trips_DB.AnyChargerLoadFault := FALSE;  
+	Trips_DB.AnyChargerInterlockOpen := FALSE;
+	Trips_DB.AnyChargerFaulted := FALSE;
+	Trips_DB.AnyEstopPressed := FALSE;
+	Trips_DB.AnyDumpRlyFail := FALSE;
+	Trips_DB.AnyChargeRlyFail := FALSE;
+	Trips_DB.MasterStopPBPressed := FALSE; //this is only for alarms
+	Trips_DB.CaseEStopCircuitBroken := FALSE;
+	Trips_DB.MCPLossDCpower := FALSE;
+	//Trips_DB.AnyACInterlockFail := FALSE;
+	//reset relay trips
+	FOR j := 1 TO 3 BY 1 DO 
+		//reset relay faults
+		Trips_DB.Section[j].SystemTripped := FALSE;
+		//Peaking
+		Trips_DB.Section[j].Peak.DumpRelay1_FailtoClose := FALSE;
+		Trips_DB.Section[j].Peak.DumpRelay1_FailtoOpen := FALSE;
+		Trips_DB.Section[j].Peak.DumpRelay2_FailtoClose := FALSE;
+		Trips_DB.Section[j].Peak.DumpRelay2_FailtoOpen := FALSE;
+		Trips_DB.Section[j].Peak.ChargeRelay1_FailtoClose := FALSE;
+		Trips_DB.Section[j].Peak.ChargeRelay1_FailtoOpen := FALSE;
+		Trips_DB.Section[j].Peak.ChargeRelay2_FailtoClose := FALSE;
+		Trips_DB.Section[j].Peak.ChargeRelay2_FailtoOpen := FALSE;
+		//Sust
+		Trips_DB.Section[j].Sust.DumpRelay1_FailtoClose := FALSE;
+		Trips_DB.Section[j].Sust.DumpRelay1_FailtoOpen := FALSE;
+		Trips_DB.Section[j].Sust.DumpRelay2_FailtoClose := FALSE;
+		Trips_DB.Section[j].Sust.DumpRelay2_FailtoOpen := FALSE;
+		Trips_DB.Section[j].Sust.ChargeRelay1_FailtoClose := FALSE;
+		Trips_DB.Section[j].Sust.ChargeRelay1_FailtoOpen := FALSE;
+		Trips_DB.Section[j].Sust.ChargeRelay2_FailtoClose := FALSE;
+		Trips_DB.Section[j].Sust.ChargeRelay2_FailtoOpen := FALSE;
+	
+	END_FOR;
+	
+	//FORM
+	Trips_DB.Section[4].Form.ChargeRelay1_FailtoOpen := FALSE;
+	Trips_DB.Section[4].Form.ChargeRelay1_FailtoClose := FALSE;
+	Trips_DB.Section[4].Form.ChargeRelay1_Failed:= FALSE;
+	Trips_DB.Section[4].Form.ChargeRelay2_FailtoOpen := FALSE;
+	Trips_DB.Section[4].Form.ChargeRelay2_FailtoClose := FALSE;
+	Trips_DB.Section[4].Form.ChargeRelay2_Failed:= FALSE;
+	
+	Trips_DB.Section[4].Form.DumpRelay1_FailtoOpen := FALSE;
+	Trips_DB.Section[4].Form.DumpRelay1_FailtoClose := FALSE;
+	Trips_DB.Section[4].Form.DumpRelay1_Failed := FALSE;
+	Trips_DB.Section[4].Form.DumpRelay2_FailtoOpen := FALSE;
+	Trips_DB.Section[4].Form.DumpRelay2_FailtoClose := FALSE;
+	Trips_DB.Section[4].Form.DumpRelay2_Failed := FALSE;
+	
+	Trips_DB.Section[4].Form.PreFormChrgRlyFailed := FALSE;
+	Trips_DB.Section[4].Form.FormTrigChrgRlyFailed := FALSE;
+	Trips_DB.Section[4].Form.PreFormTrigChrgRlyFailed := FALSE;
+	Trips_DB.Section[4].Form.PreFormDumpRlyFailed := FALSE;
+	Trips_DB.Section[4].Form.FormTrigDumpRly1Failed := FALSE;
+	Trips_DB.Section[4].Form.PreFormTrigDumpRly1Failed := FALSE;
+	
+	Trips_DB.Section[4].SystemTripped := FALSE;
+	
+	evtLogger.ClearAllAlarms(0, FALSE);
+	//evtLogger.ClearLoggedEvents(1);
+END_IF;
+
+
+IF i > 8 THEN 
+	i := 1;
+END_IF;
+
+IF j > 3 THEN 
+	j := 1;
+END_IF;
+
+IF k > 4 THEN 
+	k := 1;
+END_IF;]]></ST>
+    </Implementation>
+    <LineIds Name="Trips">
+      <LineId Id="885" Count="1" />
+      <LineId Id="890" Count="2" />
+      <LineId Id="895" Count="0" />
+      <LineId Id="894" Count="0" />
+      <LineId Id="896" Count="1" />
+      <LineId Id="899" Count="0" />
+      <LineId Id="898" Count="0" />
+      <LineId Id="900" Count="0" />
+      <LineId Id="904" Count="0" />
+      <LineId Id="906" Count="1" />
+      <LineId Id="902" Count="0" />
+      <LineId Id="883" Count="0" />
+      <LineId Id="908" Count="1" />
+      <LineId Id="917" Count="1" />
+      <LineId Id="925" Count="1" />
+      <LineId Id="929" Count="0" />
+      <LineId Id="927" Count="0" />
+      <LineId Id="919" Count="0" />
+      <LineId Id="1728" Count="0" />
+      <LineId Id="1730" Count="21" />
+      <LineId Id="1729" Count="0" />
+      <LineId Id="1727" Count="0" />
+      <LineId Id="1662" Count="0" />
+      <LineId Id="1661" Count="0" />
+      <LineId Id="1709" Count="2" />
+      <LineId Id="1720" Count="2" />
+      <LineId Id="1717" Count="0" />
+      <LineId Id="1723" Count="2" />
+      <LineId Id="1719" Count="0" />
+      <LineId Id="1708" Count="0" />
+      <LineId Id="1663" Count="0" />
+      <LineId Id="1712" Count="2" />
+      <LineId Id="1665" Count="1" />
+      <LineId Id="1716" Count="0" />
+      <LineId Id="1718" Count="0" />
+      <LineId Id="1664" Count="0" />
+      <LineId Id="921" Count="0" />
+      <LineId Id="1755" Count="1" />
+      <LineId Id="1679" Count="0" />
+      <LineId Id="1668" Count="0" />
+      <LineId Id="1680" Count="0" />
+      <LineId Id="1667" Count="0" />
+      <LineId Id="1671" Count="1" />
+      <LineId Id="1669" Count="0" />
+      <LineId Id="1674" Count="2" />
+      <LineId Id="1692" Count="2" />
+      <LineId Id="1691" Count="0" />
+      <LineId Id="1695" Count="0" />
+      <LineId Id="1677" Count="1" />
+      <LineId Id="1673" Count="0" />
+      <LineId Id="1670" Count="0" />
+      <LineId Id="1681" Count="0" />
+      <LineId Id="1660" Count="0" />
+      <LineId Id="1683" Count="5" />
+      <LineId Id="1696" Count="5" />
+      <LineId Id="1689" Count="1" />
+      <LineId Id="1682" Count="0" />
+      <LineId Id="884" Count="0" />
+      <LineId Id="731" Count="2" />
+      <LineId Id="741" Count="0" />
+      <LineId Id="734" Count="3" />
+      <LineId Id="739" Count="1" />
+      <LineId Id="738" Count="0" />
+      <LineId Id="743" Count="2" />
+      <LineId Id="742" Count="0" />
+      <LineId Id="746" Count="0" />
+      <LineId Id="727" Count="0" />
+      <LineId Id="730" Count="0" />
+      <LineId Id="667" Count="1" />
+      <LineId Id="494" Count="0" />
+      <LineId Id="669" Count="2" />
+      <LineId Id="1766" Count="0" />
+      <LineId Id="1757" Count="0" />
+      <LineId Id="495" Count="0" />
+      <LineId Id="1758" Count="0" />
+      <LineId Id="1760" Count="3" />
+      <LineId Id="1759" Count="0" />
+      <LineId Id="1754" Count="0" />
+      <LineId Id="1753" Count="0" />
+      <LineId Id="262" Count="0" />
+      <LineId Id="351" Count="0" />
+      <LineId Id="356" Count="1" />
+      <LineId Id="687" Count="0" />
+      <LineId Id="432" Count="0" />
+      <LineId Id="689" Count="0" />
+      <LineId Id="692" Count="2" />
+      <LineId Id="690" Count="0" />
+      <LineId Id="695" Count="4" />
+      <LineId Id="708" Count="1" />
+      <LineId Id="750" Count="0" />
+      <LineId Id="749" Count="0" />
+      <LineId Id="719" Count="0" />
+      <LineId Id="795" Count="0" />
+      <LineId Id="747" Count="0" />
+      <LineId Id="720" Count="0" />
+      <LineId Id="712" Count="0" />
+      <LineId Id="1070" Count="0" />
+      <LineId Id="1073" Count="0" />
+      <LineId Id="1071" Count="1" />
+      <LineId Id="1068" Count="1" />
+      <LineId Id="1513" Count="0" />
+      <LineId Id="713" Count="0" />
+      <LineId Id="725" Count="0" />
+      <LineId Id="756" Count="0" />
+      <LineId Id="787" Count="2" />
+      <LineId Id="1074" Count="0" />
+      <LineId Id="1076" Count="2" />
+      <LineId Id="1075" Count="0" />
+      <LineId Id="1514" Count="2" />
+      <LineId Id="790" Count="0" />
+      <LineId Id="784" Count="0" />
+      <LineId Id="757" Count="0" />
+      <LineId Id="796" Count="0" />
+      <LineId Id="760" Count="2" />
+      <LineId Id="1083" Count="0" />
+      <LineId Id="1080" Count="2" />
+      <LineId Id="1079" Count="0" />
+      <LineId Id="1517" Count="1" />
+      <LineId Id="763" Count="0" />
+      <LineId Id="758" Count="0" />
+      <LineId Id="797" Count="0" />
+      <LineId Id="800" Count="2" />
+      <LineId Id="1084" Count="0" />
+      <LineId Id="1086" Count="2" />
+      <LineId Id="1085" Count="0" />
+      <LineId Id="1519" Count="1" />
+      <LineId Id="803" Count="0" />
+      <LineId Id="798" Count="0" />
+      <LineId Id="775" Count="0" />
+      <LineId Id="810" Count="0" />
+      <LineId Id="776" Count="2" />
+      <LineId Id="1090" Count="3" />
+      <LineId Id="1089" Count="0" />
+      <LineId Id="1521" Count="1" />
+      <LineId Id="779" Count="0" />
+      <LineId Id="774" Count="0" />
+      <LineId Id="832" Count="3" />
+      <LineId Id="1094" Count="0" />
+      <LineId Id="1096" Count="2" />
+      <LineId Id="1095" Count="0" />
+      <LineId Id="1523" Count="1" />
+      <LineId Id="836" Count="0" />
+      <LineId Id="811" Count="0" />
+      <LineId Id="847" Count="4" />
+      <LineId Id="1099" Count="0" />
+      <LineId Id="1101" Count="2" />
+      <LineId Id="1100" Count="0" />
+      <LineId Id="1525" Count="1" />
+      <LineId Id="852" Count="0" />
+      <LineId Id="857" Count="0" />
+      <LineId Id="859" Count="3" />
+      <LineId Id="1105" Count="3" />
+      <LineId Id="1527" Count="1" />
+      <LineId Id="863" Count="1" />
+      <LineId Id="843" Count="0" />
+      <LineId Id="1199" Count="10" />
+      <LineId Id="1529" Count="0" />
+      <LineId Id="1210" Count="10" />
+      <LineId Id="1530" Count="1" />
+      <LineId Id="1221" Count="11" />
+      <LineId Id="1532" Count="1" />
+      <LineId Id="1233" Count="10" />
+      <LineId Id="1534" Count="1" />
+      <LineId Id="1244" Count="11" />
+      <LineId Id="1536" Count="1" />
+      <LineId Id="1256" Count="10" />
+      <LineId Id="1538" Count="1" />
+      <LineId Id="1267" Count="11" />
+      <LineId Id="1540" Count="1" />
+      <LineId Id="1279" Count="9" />
+      <LineId Id="1542" Count="1" />
+      <LineId Id="816" Count="0" />
+      <LineId Id="1452" Count="0" />
+      <LineId Id="1451" Count="0" />
+      <LineId Id="817" Count="1" />
+      <LineId Id="1289" Count="10" />
+      <LineId Id="1544" Count="0" />
+      <LineId Id="1300" Count="10" />
+      <LineId Id="1545" Count="1" />
+      <LineId Id="1311" Count="11" />
+      <LineId Id="1548" Count="1" />
+      <LineId Id="1323" Count="10" />
+      <LineId Id="1551" Count="1" />
+      <LineId Id="1334" Count="11" />
+      <LineId Id="1554" Count="1" />
+      <LineId Id="1346" Count="10" />
+      <LineId Id="1557" Count="1" />
+      <LineId Id="1357" Count="11" />
+      <LineId Id="1560" Count="1" />
+      <LineId Id="1369" Count="9" />
+      <LineId Id="1563" Count="1" />
+      <LineId Id="819" Count="1" />
+      <LineId Id="1379" Count="0" />
+      <LineId Id="1392" Count="1" />
+      <LineId Id="1402" Count="0" />
+      <LineId Id="1401" Count="0" />
+      <LineId Id="1394" Count="6" />
+      <LineId Id="1566" Count="1" />
+      <LineId Id="1389" Count="0" />
+      <LineId Id="821" Count="1" />
+      <LineId Id="1426" Count="10" />
+      <LineId Id="1495" Count="0" />
+      <LineId Id="1497" Count="0" />
+      <LineId Id="1424" Count="0" />
+      <LineId Id="1423" Count="0" />
+      <LineId Id="1403" Count="0" />
+      <LineId Id="1440" Count="10" />
+      <LineId Id="1569" Count="1" />
+      <LineId Id="1438" Count="0" />
+      <LineId Id="1437" Count="0" />
+      <LineId Id="1404" Count="0" />
+      <LineId Id="1455" Count="10" />
+      <LineId Id="1572" Count="1" />
+      <LineId Id="1454" Count="0" />
+      <LineId Id="1453" Count="0" />
+      <LineId Id="1405" Count="0" />
+      <LineId Id="1469" Count="10" />
+      <LineId Id="1575" Count="1" />
+      <LineId Id="1480" Count="0" />
+      <LineId Id="1482" Count="0" />
+      <LineId Id="1406" Count="0" />
+      <LineId Id="1483" Count="10" />
+      <LineId Id="1578" Count="1" />
+      <LineId Id="1407" Count="0" />
+      <LineId Id="823" Count="0" />
+      <LineId Id="721" Count="0" />
+      <LineId Id="972" Count="2" />
+      <LineId Id="1599" Count="0" />
+      <LineId Id="975" Count="1" />
+      <LineId Id="1581" Count="0" />
+      <LineId Id="1586" Count="1" />
+      <LineId Id="1582" Count="0" />
+      <LineId Id="977" Count="0" />
+      <LineId Id="1589" Count="1" />
+      <LineId Id="1588" Count="0" />
+      <LineId Id="1592" Count="0" />
+      <LineId Id="1597" Count="1" />
+      <LineId Id="1593" Count="2" />
+      <LineId Id="1600" Count="13" />
+      <LineId Id="1596" Count="0" />
+      <LineId Id="1615" Count="0" />
+      <LineId Id="978" Count="0" />
+      <LineId Id="1768" Count="9" />
+      <LineId Id="970" Count="0" />
+      <LineId Id="1780" Count="0" />
+      <LineId Id="1784" Count="1" />
+      <LineId Id="1781" Count="0" />
+      <LineId Id="1783" Count="0" />
+      <LineId Id="1782" Count="0" />
+      <LineId Id="434" Count="0" />
+      <LineId Id="436" Count="0" />
+      <LineId Id="626" Count="0" />
+      <LineId Id="631" Count="7" />
+      <LineId Id="640" Count="2" />
+      <LineId Id="645" Count="0" />
+      <LineId Id="644" Count="0" />
+      <LineId Id="629" Count="0" />
+      <LineId Id="650" Count="0" />
+      <LineId Id="652" Count="1" />
+      <LineId Id="651" Count="0" />
+      <LineId Id="627" Count="0" />
+      <LineId Id="263" Count="0" />
+      <LineId Id="261" Count="0" />
+      <LineId Id="265" Count="1" />
+      <LineId Id="272" Count="0" />
+      <LineId Id="274" Count="0" />
+      <LineId Id="264" Count="0" />
+      <LineId Id="277" Count="0" />
+      <LineId Id="284" Count="0" />
+      <LineId Id="276" Count="0" />
+      <LineId Id="330" Count="0" />
+      <LineId Id="340" Count="0" />
+      <LineId Id="342" Count="0" />
+      <LineId Id="358" Count="0" />
+      <LineId Id="412" Count="0" />
+      <LineId Id="359" Count="0" />
+      <LineId Id="1764" Count="0" />
+      <LineId Id="1655" Count="3" />
+      <LineId Id="372" Count="0" />
+      <LineId Id="612" Count="0" />
+      <LineId Id="610" Count="0" />
+      <LineId Id="910" Count="2" />
+      <LineId Id="611" Count="0" />
+      <LineId Id="585" Count="0" />
+      <LineId Id="465" Count="1" />
+      <LineId Id="578" Count="1" />
+      <LineId Id="913" Count="0" />
+      <LineId Id="580" Count="4" />
+      <LineId Id="771" Count="1" />
+      <LineId Id="914" Count="0" />
+      <LineId Id="1619" Count="6" />
+      <LineId Id="1618" Count="0" />
+      <LineId Id="915" Count="0" />
+      <LineId Id="420" Count="0" />
+      <LineId Id="1628" Count="1" />
+      <LineId Id="1632" Count="2" />
+      <LineId Id="1636" Count="1" />
+      <LineId Id="1635" Count="0" />
+      <LineId Id="1638" Count="0" />
+      <LineId Id="1631" Count="0" />
+      <LineId Id="1639" Count="1" />
+      <LineId Id="1642" Count="1" />
+      <LineId Id="1641" Count="0" />
+      <LineId Id="1630" Count="0" />
+      <LineId Id="471" Count="0" />
+      <LineId Id="1646" Count="3" />
+      <LineId Id="421" Count="0" />
+      <LineId Id="1645" Count="0" />
+      <LineId Id="1765" Count="0" />
+      <LineId Id="1652" Count="0" />
+      <LineId Id="1644" Count="0" />
+      <LineId Id="422" Count="0" />
+      <LineId Id="360" Count="0" />
+      <LineId Id="467" Count="3" />
+      <LineId Id="331" Count="0" />
+      <LineId Id="752" Count="2" />
+      <LineId Id="751" Count="0" />
+      <LineId Id="931" Count="2" />
+      <LineId Id="930" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

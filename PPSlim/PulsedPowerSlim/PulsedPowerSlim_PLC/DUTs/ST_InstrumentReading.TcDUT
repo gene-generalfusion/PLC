@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="ST_InstrumentReading" Id="{ebaada3f-030b-45f9-b023-c2f34b66ab81}">
+    <Declaration><![CDATA[TYPE ST_InstrumentReading :
+STRUCT
+	
+	(*CH00 : REAL;
+	CH01 : REAL;
+	CH02 : REAL;
+	CH03 : REAL;
+	CH04 : REAL;
+	CH05 : REAL;
+	CH06 : REAL;
+	CH07 : REAL;
+	R2_01_CH02 : REAL;
+	R2_01_CH03 : REAL;
+	R2_01_CH04 : REAL;
+	R2_01_CH05 : REAL;
+	R2_01_CH06 : REAL;
+	R2_01_CH07 : REAL;*)
+	voltageFeedback_raw		: INT;
+	voltageFeedback_Norm 	: REAL;
+	voltageFeedback 		: REAL;
+	currentFeedback_raw		: INT;
+	currentFeedback_Norm 	: REAL;
+	currentFeedback 		: REAL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

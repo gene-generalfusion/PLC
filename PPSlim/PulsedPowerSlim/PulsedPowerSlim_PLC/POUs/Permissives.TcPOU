@@ -1,0 +1,300 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="Permissives" Id="{a037c57d-7935-4b17-bb0a-42e72a6c09c9}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Permissives
+VAR
+	i : INT := 1;  //for section 1 - 3 
+	j : INT := 1; //for charger 1-8
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//Charger summary faults
+//Trips_DB.AnySummaryFault = FALSE AND Trips_DB.AnyEstopPressed //add to no fault detected.
+
+//section ready to charge
+FOR i := 1 TO 3 BY 1 DO
+	IF Trips_DB.NoFaultDetected = TRUE AND //MCP_IO.Charger[1-8].HVisOn AND
+		Permissives_DB.AllChargeRelaysClosed = TRUE AND
+		LCP.Section[i].Peak.ShortContactEngaged = FALSE AND
+		LCP.Section[i].Sust.ShortContactEngaged = FALSE
+	THEN
+		LCP.Section[i].SystemReadyToCharge := TRUE;	
+	ELSE
+		LCP.Section[i].SystemReadyToCharge := FALSE;		
+	END_IF;
+END_FOR;
+
+//Section 4
+IF Trips_DB.NoFaultDetected = TRUE AND //MCP_IO.Charger[1-8].HVisOn AND
+	Permissives_DB.AllChargeRelaysClosed = TRUE AND
+	LCP.Section[4].Form.ShortContactEngaged = FALSE AND
+	LCP.Section[4].Form.FormTrigShortContactEngaged = FALSE AND
+	LCP.Section[4].Form.PreFormTrigShortContactEngaged = FALSE 
+	THEN
+		LCP.Section[4].SystemReadyToCharge := TRUE;
+	ELSE
+		LCP.Section[4].SystemReadyToCharge := FALSE;
+END_IF;
+	
+
+
+
+// shorts and unshorts
+//Peaking  -- short contacts are NO, so if close is false, it is and unshort is true, then it is not shorted 
+FOR i := 1 TO 3 BY 1 DO
+	IF LCP.Section[i].Peak.ShortContact1_close = FALSE AND LCP.Section[i].Peak.UnshortContact1_close = TRUE AND
+		LCP.Section[i].Peak.ShortContact2_close = FALSE AND LCP.Section[i].Peak.UnshortContact2_close = TRUE 
+		THEN
+			LCP.Section[i].Peak.ShortContactEngaged := FALSE;
+		ELSE
+			LCP.Section[i].Peak.ShortContactEngaged := TRUE;
+	END_IF;
+END_FOR;
+
+//Sustain
+FOR i := 1 TO 3 BY 1 DO
+	IF LCP.Section[i].Sust.ShortContact1_close = FALSE AND LCP.Section[i].Sust.UnshortContact1_close = TRUE AND
+		LCP.Section[i].Sust.ShortContact2_close = FALSE AND LCP.Section[i].Sust.UnshortContact2_close = TRUE 
+		THEN
+			LCP.Section[i].Sust.ShortContactEngaged := FALSE;
+		ELSE
+			LCP.Section[i].Sust.ShortContactEngaged := TRUE;
+	END_IF;
+END_FOR;
+
+//Formation
+IF LCP.Section[4].Form.ShortContact1_close = FALSE AND LCP.Section[4].Form.UnshortContact1_close = TRUE AND
+	LCP.Section[4].Form.ShortContact2_close = FALSE AND LCP.Section[4].Form.UnshortContact2_close = TRUE 
+	THEN
+		LCP.Section[4].Form.ShortContactEngaged := FALSE;
+	ELSE
+		LCP.Section[4].Form.ShortContactEngaged := TRUE; //might need to clarify on the NC of the short contacts.
+END_IF;
+// form trig short 
+IF LCP.Section[4].Form.FormTrigShortContact_close = FALSE AND LCP.Section[4].Form.FormTrigUnShortContact_close = TRUE
+	THEN
+		LCP.Section[4].Form.FormTrigShortContactEngaged := FALSE;
+	ELSE
+		LCP.Section[4].Form.FormTrigShortContactEngaged := TRUE;
+END_IF
+// preform trig short 
+IF LCP.Section[4].Form.PreFormTrigShortContact_close = FALSE AND LCP.Section[4].Form.PreFormTrigUnShortContact_close = TRUE
+	THEN
+		LCP.Section[4].Form.PreFormTrigShortContactEngaged := FALSE;
+	ELSE
+		LCP.Section[4].Form.PreFormTrigShortContactEngaged := TRUE;
+END_IF
+
+//any short contact engaged
+
+IF LCP.Section[1].Peak.ShortContactEngaged = TRUE AND 
+	LCP.Section[2].Peak.ShortContactEngaged = TRUE AND
+	LCP.Section[3].Peak.ShortContactEngaged = TRUE AND
+	LCP.Section[1].Sust.ShortContactEngaged = TRUE AND
+	LCP.Section[2].Sust.ShortContactEngaged = TRUE AND 
+	LCP.Section[3].Sust.ShortContactEngaged = TRUE AND 
+	LCP.Section[4].Form.ShortContactEngaged = TRUE AND 
+	LCP.Section[4].Form.FormTrigShortContactEngaged = TRUE AND //
+	LCP.Section[4].Form.PreFormTrigShortContactEngaged = TRUE //
+	THEN
+		Permissives_DB.AllShortContactEngaged := TRUE;
+	ELSE 
+		Permissives_DB.AllShortContactEngaged := FALSE;	
+END_IF;
+
+//All charger inhibited
+IF MCP_IO.Charger[1].inhibited = TRUE AND
+	MCP_IO.Charger[2].inhibited = TRUE AND
+	MCP_IO.Charger[3].inhibited = TRUE AND
+	MCP_IO.Charger[4].inhibited = TRUE AND
+	MCP_IO.Charger[5].inhibited = TRUE AND
+	MCP_IO.Charger[6].inhibited = TRUE AND
+	MCP_IO.Charger[7].inhibited = TRUE AND
+	MCP_IO.Charger[8].inhibited = TRUE 
+	THEN
+		MCP_IO.AllChargerInhibited := TRUE;
+		ELSE
+			MCP_IO.AllChargerInhibited := FALSE;
+END_IF;
+
+//All charger HV ON
+IF MCP_IO.Charger[1].HV_isON = TRUE AND
+	MCP_IO.Charger[2].HV_isON = TRUE AND
+	MCP_IO.Charger[3].HV_isON = TRUE AND
+	MCP_IO.Charger[4].HV_isON = TRUE AND
+	MCP_IO.Charger[5].HV_isON = TRUE AND
+	MCP_IO.Charger[6].HV_isON = TRUE AND
+	MCP_IO.Charger[7].HV_isON = TRUE AND
+	MCP_IO.Charger[8].HV_isON = TRUE 
+	THEN
+		MCP_IO.AllChargerHVisON := TRUE;
+		ELSE
+			MCP_IO.AllChargerHVisON := FALSE;
+END_IF;
+
+
+//All charge relay close
+IF LCP.Section[1].Peak.ChargeRelay1_close = TRUE AND
+	LCP.Section[1].Peak.ChargeRelay2_close = TRUE AND
+	LCP.Section[1].Sust.ChargeRelay1_close = TRUE AND
+	LCP.Section[1].Sust.ChargeRelay2_close = TRUE AND
+	LCP.Section[2].Peak.ChargeRelay1_close = TRUE AND
+	LCP.Section[2].Peak.ChargeRelay2_close = TRUE AND
+	LCP.Section[2].Sust.ChargeRelay1_close = TRUE AND
+	LCP.Section[2].Sust.ChargeRelay2_close = TRUE AND
+	LCP.Section[3].Peak.ChargeRelay1_close = TRUE AND
+	LCP.Section[3].Peak.ChargeRelay2_close = TRUE AND
+	LCP.Section[3].Sust.ChargeRelay1_close = TRUE AND
+	LCP.Section[3].Sust.ChargeRelay2_close = TRUE AND
+	
+	LCP.Section[4].Form.ChargeRelay1_close = TRUE AND
+	LCP.Section[4].Form.ChargeRelay2_close = TRUE AND						
+	LCP.Section[4].Form.PreFormChargeRly_close = TRUE AND
+	LCP.Section[4].Form.FormTrigChargeRly_close = TRUE AND
+	LCP.Section[4].Form.PreFormTrigChargeRly_close = TRUE 
+	THEN
+		Permissives_DB.AllChargeRelaysClosed := TRUE;
+	ELSE
+		Permissives_DB.AllChargeRelaysClosed := FALSE;
+END_IF;
+
+//All Dump relays open  ******
+IF LCP.Section[1].Peak.DumpRelay1_close = FALSE AND
+	LCP.Section[1].Peak.DumpRelay2_close = FALSE AND
+	LCP.Section[1].Sust.DumpRelay1_close = FALSE AND
+	LCP.Section[1].Sust.DumpRelay2_close = FALSE AND
+	LCP.Section[2].Peak.DumpRelay1_close = FALSE AND
+	LCP.Section[2].Peak.DumpRelay2_close = FALSE AND
+	LCP.Section[2].Sust.DumpRelay1_close = FALSE AND
+	LCP.Section[2].Sust.DumpRelay2_close = FALSE AND
+	LCP.Section[3].Peak.DumpRelay1_close = FALSE AND
+	LCP.Section[3].Peak.DumpRelay2_close = FALSE AND
+	LCP.Section[3].Sust.DumpRelay1_close = FALSE AND
+	LCP.Section[3].Sust.DumpRelay2_close = FALSE AND
+	
+	LCP.Section[4].Form.DumpRelay1_close = FALSE AND
+	LCP.Section[4].Form.DumpRelay2_close = FALSE AND						
+	LCP.Section[4].Form.PreFormDumpRly_close = FALSE AND
+	LCP.Section[4].Form.FormTrigDumpRly1_close = FALSE AND
+	LCP.Section[4].Form.PreFormTrigDumpRly1_close = FALSE 
+	THEN
+		Permissives_DB.AllDumpRelaysOpen := TRUE;
+	ELSE
+		Permissives_DB.AllDumpRelaysOpen := FALSE;
+END_IF;
+
+
+IF i > 3 THEN
+	i := 1;
+END_IF;
+
+
+IF j > 8 THEN
+	j := 1;
+END_IF;
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="Permissives">
+      <LineId Id="20" Count="0" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="256" Count="0" />
+      <LineId Id="223" Count="0" />
+      <LineId Id="222" Count="0" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="293" Count="0" />
+      <LineId Id="227" Count="0" />
+      <LineId Id="230" Count="0" />
+      <LineId Id="249" Count="0" />
+      <LineId Id="220" Count="0" />
+      <LineId Id="292" Count="0" />
+      <LineId Id="291" Count="0" />
+      <LineId Id="221" Count="0" />
+      <LineId Id="253" Count="0" />
+      <LineId Id="257" Count="0" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="258" Count="0" />
+      <LineId Id="294" Count="0" />
+      <LineId Id="262" Count="2" />
+      <LineId Id="295" Count="3" />
+      <LineId Id="261" Count="0" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="269" Count="1" />
+      <LineId Id="266" Count="0" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="38" Count="1" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="33" Count="3" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="46" Count="9" />
+      <LineId Id="41" Count="0" />
+      <LineId Id="40" Count="0" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="14" Count="1" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="234" Count="1" />
+      <LineId Id="237" Count="0" />
+      <LineId Id="239" Count="2" />
+      <LineId Id="238" Count="0" />
+      <LineId Id="243" Count="5" />
+      <LineId Id="236" Count="0" />
+      <LineId Id="60" Count="1" />
+      <LineId Id="78" Count="0" />
+      <LineId Id="66" Count="0" />
+      <LineId Id="87" Count="1" />
+      <LineId Id="86" Count="0" />
+      <LineId Id="90" Count="1" />
+      <LineId Id="89" Count="0" />
+      <LineId Id="232" Count="1" />
+      <LineId Id="76" Count="0" />
+      <LineId Id="70" Count="0" />
+      <LineId Id="73" Count="1" />
+      <LineId Id="71" Count="0" />
+      <LineId Id="124" Count="0" />
+      <LineId Id="98" Count="0" />
+      <LineId Id="77" Count="0" />
+      <LineId Id="111" Count="0" />
+      <LineId Id="113" Count="9" />
+      <LineId Id="112" Count="0" />
+      <LineId Id="109" Count="0" />
+      <LineId Id="125" Count="12" />
+      <LineId Id="110" Count="0" />
+      <LineId Id="101" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="166" Count="0" />
+      <LineId Id="163" Count="0" />
+      <LineId Id="168" Count="0" />
+      <LineId Id="170" Count="1" />
+      <LineId Id="175" Count="2" />
+      <LineId Id="172" Count="0" />
+      <LineId Id="178" Count="2" />
+      <LineId Id="173" Count="0" />
+      <LineId Id="185" Count="0" />
+      <LineId Id="187" Count="3" />
+      <LineId Id="186" Count="0" />
+      <LineId Id="181" Count="1" />
+      <LineId Id="174" Count="0" />
+      <LineId Id="183" Count="0" />
+      <LineId Id="169" Count="0" />
+      <LineId Id="164" Count="0" />
+      <LineId Id="191" Count="22" />
+      <LineId Id="165" Count="0" />
+      <LineId Id="162" Count="0" />
+      <LineId Id="161" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="43" Count="0" />
+      <LineId Id="45" Count="0" />
+      <LineId Id="103" Count="3" />
+      <LineId Id="102" Count="0" />
+      <LineId Id="44" Count="0" />
+      <LineId Id="6" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

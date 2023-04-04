@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="ST_FieldDevices_Form" Id="{8373e3ac-e2b6-41e5-88d1-966d3efd34d8}">
+    <Declaration><![CDATA[TYPE ST_FieldDevices_Form EXTENDS ST_FieldDevices_Base :
+STRUCT
+	PreFormChargeRly_close		: BOOL;
+	FormTrigChargeRly_close		: BOOL;
+	PreFormTrigChargeRly_close 	: BOOL;
+	PreFormDumpRly_close		: BOOL;
+	FormTrigDumpRly1_close		: BOOL;
+	PreFormTrigDumpRly1_close	: BOOL;
+	
+	ClosePreFormChargeRly		: BOOL;
+	CloseFormTrigChargeRly		: BOOL;
+	ClosePreFormTrigChargeRly	: BOOL;
+	OpenPreFormDumpRly			: BOOL;
+	OpenFormTrigDumpRly1		: BOOL;
+	OpenPreFormTrigDumpRly1		: BOOL;
+	
+	FormTrigShortContact_close		: BOOL;
+	FormTrigUnshortContact_close	: BOOL;
+	FormTrigShortContactEngaged		: BOOL;
+	
+	PreFormTrigShortContact_close 	: BOOL;
+	PreFormTrigUnShortContact_close : BOOL;
+	PreFormTrigShortContactEngaged	: BOOL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

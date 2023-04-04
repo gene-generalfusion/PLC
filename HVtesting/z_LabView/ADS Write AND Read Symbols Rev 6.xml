@@ -1,0 +1,978 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<SymbolControlItems>
+	<SymbolControlItem GroupName="ADS Write" GroupDescription="Parameters for ADS Write command">
+		<Parameters>
+			<Parameter Name="Name">GVL.hmiSTART</Parameter>
+			<Parameter Name="SymbolName">GVL.hmiSTART</Parameter>
+			<Parameter Name="SymbolType">BOOL</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">8</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+	<SymbolControlItem GroupName="ADS Write" GroupDescription="Parameters for ADS Write command">
+		<Parameters>
+			<Parameter Name="Name">GVL.hmiSTOP</Parameter>
+			<Parameter Name="SymbolName">GVL.hmiSTOP</Parameter>
+			<Parameter Name="SymbolType">BOOL</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">8</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+	<SymbolControlItem GroupName="ADS Write" GroupDescription="Parameters for ADS Write command">
+		<Parameters>
+			<Parameter Name="Name">GVL.HOA</Parameter>
+			<Parameter Name="SymbolName">GVL.HOA</Parameter>
+			<Parameter Name="SymbolType">BOOL</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">8</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+	<SymbolControlItem GroupName="ADS Write" GroupDescription="Parameters for ADS Write command">
+		<Parameters>
+			<Parameter Name="Name">GVL.HMIhold</Parameter>
+			<Parameter Name="SymbolName">GVL.HMIhold</Parameter>
+			<Parameter Name="SymbolType">BOOL</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">8</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+	<SymbolControlItem GroupName="ADS Write" GroupDescription="Parameters for ADS Write command">
+		<Parameters>
+			<Parameter Name="Name">GVL.HMIcharge</Parameter>
+			<Parameter Name="SymbolName">GVL.HMIcharge</Parameter>
+			<Parameter Name="SymbolType">BOOL</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">8</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+	<SymbolControlItem GroupName="ADS Write" GroupDescription="Parameters for ADS Write command">
+		<Parameters>
+			<Parameter Name="Name">GVL.HMIshoot</Parameter>
+			<Parameter Name="SymbolName">GVL.HMIshoot</Parameter>
+			<Parameter Name="SymbolType">BOOL</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">8</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+	<SymbolControlItem GroupName="ADS Write" GroupDescription="Parameters for ADS Write command">
+		<Parameters>
+			<Parameter Name="Name">GVL.isnotSCRhvswitch</Parameter>
+			<Parameter Name="SymbolName">GVL.isnotSCRhvswitch</Parameter>
+			<Parameter Name="SymbolType">BOOL</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">8</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+	<SymbolControlItem GroupName="ADS Write" GroupDescription="Parameters for ADS Write command">
+		<Parameters>
+			<Parameter Name="Name">GVL.clearFAULT</Parameter>
+			<Parameter Name="SymbolName">GVL.clearFAULT</Parameter>
+			<Parameter Name="SymbolType">BOOL</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">8</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+	<SymbolControlItem GroupName="ADS Write" GroupDescription="Parameters for ADS Write command">
+		<Parameters>
+			<Parameter Name="Name">GVL.resettestNUM</Parameter>
+			<Parameter Name="SymbolName">GVL.resettestNUM</Parameter>
+			<Parameter Name="SymbolType">BOOL</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">8</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+	<SymbolControlItem GroupName="ADS Write" GroupDescription="Parameters for ADS Write command">
+		<Parameters>
+			<Parameter Name="Name">GVL.overall_cycle_time</Parameter>
+			<Parameter Name="SymbolName">GVL.overall_cycle_time</Parameter>
+			<Parameter Name="SymbolType">DINT</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">32</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+	<SymbolControlItem GroupName="ADS Write" GroupDescription="Parameters for ADS Write command">
+		<Parameters>
+			<Parameter Name="Name">GVL.circuitcapcitanceuF</Parameter>
+			<Parameter Name="SymbolName">GVL.circuitcapcitanceuF</Parameter>
+			<Parameter Name="SymbolType">REAL</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">32</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+	<SymbolControlItem GroupName="ADS Write" GroupDescription="Parameters for ADS Write command">
+		<Parameters>
+			<Parameter Name="Name">GVL.targetPSUVOLT</Parameter>
+			<Parameter Name="SymbolName">GVL.targetPSUVOLT</Parameter>
+			<Parameter Name="SymbolType">DINT</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">32</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+	<SymbolControlItem GroupName="ADS Write" GroupDescription="Parameters for ADS Write command">
+		<Parameters>
+			<Parameter Name="Name">GVL.psuVOLTrating</Parameter>
+			<Parameter Name="SymbolName">GVL.psuVOLTrating</Parameter>
+			<Parameter Name="SymbolType">DINT</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">32</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+	<SymbolControlItem GroupName="ADS Write" GroupDescription="Parameters for ADS Write command">
+		<Parameters>
+			<Parameter Name="Name">GVL.holdTIMEsec</Parameter>
+			<Parameter Name="SymbolName">GVL.holdTIMEsec</Parameter>
+			<Parameter Name="SymbolType">REAL</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">32</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+	<SymbolControlItem GroupName="ADS Write" GroupDescription="Parameters for ADS Write command">
+		<Parameters>
+			<Parameter Name="Name">GVL.testNUMmax</Parameter>
+			<Parameter Name="SymbolName">GVL.testNUMmax</Parameter>
+			<Parameter Name="SymbolType">INT</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">16</Parameter>
+			<Parameter Name="Timeout [ms]">2000</Parameter>
+			<Parameter Name="TCBufferSize [Samples]">10</Parameter>
+			<Parameter Name="LVBufferSize [Samples]">50</Parameter>
+			<Parameter Name="Expected min delay [ms]">5000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+	<SymbolControlItem GroupName="ADS Write" GroupDescription="Parameters for ADS Write command">
+		<Parameters>
+			<Parameter Name="Name">GVL.psuPOWERpeak</Parameter>
+			<Parameter Name="SymbolName">GVL.psuPOWERpeak</Parameter>
+			<Parameter Name="SymbolType">DINT</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">32</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+	<SymbolControlItem GroupName="ADS Write" GroupDescription="Parameters for ADS Write command">
+		<Parameters>
+			<Parameter Name="Name">GVL.chargeTIMEmanual</Parameter>
+			<Parameter Name="SymbolName">GVL.chargeTIMEmanual</Parameter>
+			<Parameter Name="SymbolType">REAL</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">32</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+	<SymbolControlItem GroupName="ADS Write" GroupDescription="Parameters for ADS Write command">
+		<Parameters>
+			<Parameter Name="Name">GVL.cap1THRESHOLDcel</Parameter>
+			<Parameter Name="SymbolName">GVL.cap1THRESHOLDcel</Parameter>
+			<Parameter Name="SymbolType">INT</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">16</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+	<SymbolControlItem GroupName="ADS Write" GroupDescription="Parameters for ADS Write command">
+		<Parameters>
+			<Parameter Name="Name">GVL.HMIdump</Parameter>
+			<Parameter Name="SymbolName">GVL.HMIdump</Parameter>
+			<Parameter Name="SymbolType">BOOL</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">8</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+	<SymbolControlItem GroupName="ADS Write" GroupDescription="Parameters for ADS Read command">
+		<Parameters>
+			<Parameter Name="Name">GVL.control_current</Parameter>
+			<Parameter Name="SymbolName">GVL.control_current</Parameter>
+			<Parameter Name="SymbolType">BOOL</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">8</Parameter>
+			<Parameter Name="SampleTime [ms]">10</Parameter>
+			<Parameter Name="Transmode">3</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+			<Parameter Name="TCBufferSize [Samples]">10</Parameter>
+			<Parameter Name="LVBufferSize [Samples]">50</Parameter>
+			<Parameter Name="Expected min delay [ms]">5000</Parameter>
+		</Parameters>
+	</SymbolControlItem>	
+	<SymbolControlItem GroupName="ADS Write" GroupDescription="Parameters for ADS Write command">
+		<Parameters>
+			<Parameter Name="Name">GVL.duty_cycle</Parameter>
+			<Parameter Name="SymbolName">GVL.duty_cycle</Parameter>
+			<Parameter Name="SymbolType">REAL</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">32</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+		<SymbolControlItem GroupName="ADS Write" GroupDescription="Parameters for ADS Read command">
+		<Parameters>
+			<Parameter Name="Name">GVL.voltage_held_by_PSU</Parameter>
+			<Parameter Name="SymbolName">GVL.voltage_held_by_PSU</Parameter>
+			<Parameter Name="SymbolType">BOOL</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">8</Parameter>
+			<Parameter Name="SampleTime [ms]">10</Parameter>
+			<Parameter Name="Transmode">3</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+			<Parameter Name="TCBufferSize [Samples]">10</Parameter>
+			<Parameter Name="LVBufferSize [Samples]">50</Parameter>
+			<Parameter Name="Expected min delay [ms]">5000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+		<SymbolControlItem GroupName="ADS Write" GroupDescription="Parameters for ADS Write command">
+		<Parameters>
+			<Parameter Name="Name">GVL.psu50kV_OutputSelected</Parameter>
+			<Parameter Name="SymbolName">GVL.psu50kV_OutputSelected</Parameter>
+			<Parameter Name="SymbolType">BOOL</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">8</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+		<SymbolControlItem GroupName="ADS Write" GroupDescription="Parameters for ADS Write command">
+		<Parameters>
+			<Parameter Name="Name">GVL.Cap_ratedVoltage</Parameter>
+			<Parameter Name="SymbolName">GVL.Cap_ratedVoltage</Parameter>
+			<Parameter Name="SymbolType">UINT</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">16</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+		<SymbolControlItem GroupName="ADS Write" GroupDescription="Parameters for ADS Write command">
+		<Parameters>
+			<Parameter Name="Name">GVL.softdumpTHRESHOLDcel</Parameter>
+			<Parameter Name="SymbolName">GVL.softdumpTHRESHOLDcel</Parameter>
+			<Parameter Name="SymbolType">INT</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">16</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+		<SymbolControlItem GroupName="ADS Write" GroupDescription="Parameters for ADS Write command">
+		<Parameters>
+			<Parameter Name="Name">GVL.loadTHRESHOLDcel</Parameter>
+			<Parameter Name="SymbolName">GVL.loadTHRESHOLDcel</Parameter>
+			<Parameter Name="SymbolType">INT</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">16</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+		<SymbolControlItem GroupName="ADS Write" GroupDescription="Parameters for ADS Write command">
+		<Parameters>
+			<Parameter Name="Name">GVL.ambientTHRESHOLDcel</Parameter>
+			<Parameter Name="SymbolName">GVL.ambientTHRESHOLDcel</Parameter>
+			<Parameter Name="SymbolType">INT</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">16</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+		<SymbolControlItem GroupName="ADS Read" GroupDescription="Parameters for ADS Read command">
+		<Parameters>
+			<Parameter Name="Name">GVL.chargeTIME</Parameter>
+			<Parameter Name="SymbolName">GVL.chargeTIME</Parameter>
+			<Parameter Name="SymbolType">REAL</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">32</Parameter>
+			<Parameter Name="SampleTime [ms]">10</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+	<SymbolControlItem GroupName="ADS Read" GroupDescription="Parameters for ADS Read command">
+		<Parameters>
+			<Parameter Name="Name">GVL.testNUM</Parameter>
+			<Parameter Name="SymbolName">GVL.testNUM</Parameter>
+			<Parameter Name="SymbolType">INT</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">16</Parameter>
+			<Parameter Name="SampleTime [ms]">10</Parameter>
+			<Parameter Name="Transmode">3</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+			<Parameter Name="TCBufferSize [Samples]">10</Parameter>
+			<Parameter Name="LVBufferSize [Samples]">50</Parameter>
+			<Parameter Name="Expected min delay [ms]">5000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+	<SymbolControlItem GroupName="ADS Read" GroupDescription="Parameters for ADS Read command">
+		<Parameters>
+			<Parameter Name="Name">Automated_Capacitor_Test_ST.processSTEP</Parameter>
+			<Parameter Name="SymbolName">Automated_Capacitor_Test_ST.processSTEP</Parameter>
+			<Parameter Name="SymbolType">USINT</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">8</Parameter>
+			<Parameter Name="SampleTime [ms]">10</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+	<SymbolControlItem GroupName="ADS Read" GroupDescription="Parameters for ADS Read command">
+		<Parameters>
+			<Parameter Name="Name">GVL.Vcap1</Parameter>
+			<Parameter Name="SymbolName">GVL.Vcap1</Parameter>
+			<Parameter Name="SymbolType">INT</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">16</Parameter>
+			<Parameter Name="SampleTime [ms]">10</Parameter>
+			<Parameter Name="Transmode">3</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+			<Parameter Name="TCBufferSize [Samples]">10</Parameter>
+			<Parameter Name="LVBufferSize [Samples]">50</Parameter>
+			<Parameter Name="Expected min delay [ms]">5000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+	<SymbolControlItem GroupName="ADS Read" GroupDescription="Parameters for ADS Read command">
+		<Parameters>
+			<Parameter Name="Name">GVL.TEMPcap1</Parameter>
+			<Parameter Name="SymbolName">GVL.TEMPcap1</Parameter>
+			<Parameter Name="SymbolType">INT</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">16</Parameter>
+			<Parameter Name="SampleTime [ms]">10</Parameter>
+			<Parameter Name="Transmode">3</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+			<Parameter Name="TCBufferSize [Samples]">10</Parameter>
+			<Parameter Name="LVBufferSize [Samples]">50</Parameter>
+			<Parameter Name="Expected min delay [ms]">5000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+	<SymbolControlItem GroupName="ADS Read" GroupDescription="Parameters for ADS Read command">
+		<Parameters>
+			<Parameter Name="Name">GVL.psuVmonitor</Parameter>
+			<Parameter Name="SymbolName">GVL.psuVmonitor</Parameter>
+			<Parameter Name="SymbolType">INT</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">16</Parameter>
+			<Parameter Name="SampleTime [ms]">10</Parameter>
+			<Parameter Name="Transmode">3</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+			<Parameter Name="TCBufferSize [Samples]">10</Parameter>
+			<Parameter Name="LVBufferSize [Samples]">50</Parameter>
+			<Parameter Name="Expected min delay [ms]">5000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+	<SymbolControlItem GroupName="ADS Read" GroupDescription="Parameters for ADS Read command">
+		<Parameters>
+			<Parameter Name="Name">GVL.TEMPload</Parameter>
+			<Parameter Name="SymbolName">GVL.TEMPload</Parameter>
+			<Parameter Name="SymbolType">INT</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">16</Parameter>
+			<Parameter Name="SampleTime [ms]">10</Parameter>
+			<Parameter Name="Transmode">3</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+			<Parameter Name="TCBufferSize [Samples]">10</Parameter>
+			<Parameter Name="LVBufferSize [Samples]">50</Parameter>
+			<Parameter Name="Expected min delay [ms]">5000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+	<SymbolControlItem GroupName="ADS Read" GroupDescription="Parameters for ADS Read command">
+		<Parameters>
+			<Parameter Name="Name">GVL.TEMPdump</Parameter>
+			<Parameter Name="SymbolName">GVL.TEMPdump</Parameter>
+			<Parameter Name="SymbolType">INT</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">16</Parameter>
+			<Parameter Name="SampleTime [ms]">10</Parameter>
+			<Parameter Name="Transmode">3</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+			<Parameter Name="TCBufferSize [Samples]">10</Parameter>
+			<Parameter Name="LVBufferSize [Samples]">50</Parameter>
+			<Parameter Name="Expected min delay [ms]">5000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+	<SymbolControlItem GroupName="ADS Read" GroupDescription="Parameters for ADS Read command">
+		<Parameters>
+			<Parameter Name="Name">GVL.TEMPambient</Parameter>
+			<Parameter Name="SymbolName">GVL.TEMPambient</Parameter>
+			<Parameter Name="SymbolType">INT</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">16</Parameter>
+			<Parameter Name="SampleTime [ms]">10</Parameter>
+			<Parameter Name="Transmode">3</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+			<Parameter Name="TCBufferSize [Samples]">10</Parameter>
+			<Parameter Name="LVBufferSize [Samples]">50</Parameter>
+			<Parameter Name="Expected min delay [ms]">5000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+	<SymbolControlItem GroupName="ADS Read" GroupDescription="Parameters for ADS Read command">
+		<Parameters>
+			<Parameter Name="Name">GVL.chargeFAULT</Parameter>
+			<Parameter Name="SymbolName">GVL.chargeFAULT</Parameter>
+			<Parameter Name="SymbolType">BOOL</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">8</Parameter>
+			<Parameter Name="SampleTime [ms]">10</Parameter>
+			<Parameter Name="Transmode">3</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+			<Parameter Name="TCBufferSize [Samples]">10</Parameter>
+			<Parameter Name="LVBufferSize [Samples]">50</Parameter>
+			<Parameter Name="Expected min delay [ms]">5000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+	<SymbolControlItem GroupName="ADS Read" GroupDescription="Parameters for ADS Read command">
+		<Parameters>
+			<Parameter Name="Name">GVL.dischargeFAULT</Parameter>
+			<Parameter Name="SymbolName">GVL.dischargeFAULT</Parameter>
+			<Parameter Name="SymbolType">BOOL</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">8</Parameter>
+			<Parameter Name="SampleTime [ms]">10</Parameter>
+			<Parameter Name="Transmode">3</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+			<Parameter Name="TCBufferSize [Samples]">10</Parameter>
+			<Parameter Name="LVBufferSize [Samples]">50</Parameter>
+			<Parameter Name="Expected min delay [ms]">5000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+	<SymbolControlItem GroupName="ADS Read" GroupDescription="Parameters for ADS Read command">
+		<Parameters>
+			<Parameter Name="Name">GVL.holdFAULT</Parameter>
+			<Parameter Name="SymbolName">GVL.holdFAULT</Parameter>
+			<Parameter Name="SymbolType">BOOL</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">8</Parameter>
+			<Parameter Name="SampleTime [ms]">10</Parameter>
+			<Parameter Name="Transmode">3</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+			<Parameter Name="TCBufferSize [Samples]">10</Parameter>
+			<Parameter Name="LVBufferSize [Samples]">50</Parameter>
+			<Parameter Name="Expected min delay [ms]">5000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+	<SymbolControlItem GroupName="ADS Read" GroupDescription="Parameters for ADS Read command">
+		<Parameters>
+			<Parameter Name="Name">GVL.cap1tempFAULT</Parameter>
+			<Parameter Name="SymbolName">GVL.cap1tempFAULT</Parameter>
+			<Parameter Name="SymbolType">BOOL</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">8</Parameter>
+			<Parameter Name="SampleTime [ms]">10</Parameter>
+			<Parameter Name="Transmode">3</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+			<Parameter Name="TCBufferSize [Samples]">10</Parameter>
+			<Parameter Name="LVBufferSize [Samples]">50</Parameter>
+			<Parameter Name="Expected min delay [ms]">5000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+	<SymbolControlItem GroupName="ADS Read" GroupDescription="Parameters for ADS Read command">
+		<Parameters>
+			<Parameter Name="Name">GVL.ambienttempFAULT</Parameter>
+			<Parameter Name="SymbolName">GVL.ambienttempFAULT</Parameter>
+			<Parameter Name="SymbolType">BOOL</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">8</Parameter>
+			<Parameter Name="SampleTime [ms]">10</Parameter>
+			<Parameter Name="Transmode">3</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+			<Parameter Name="TCBufferSize [Samples]">10</Parameter>
+			<Parameter Name="LVBufferSize [Samples]">50</Parameter>
+			<Parameter Name="Expected min delay [ms]">5000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+	<SymbolControlItem GroupName="ADS Read" GroupDescription="Parameters for ADS Read command">
+		<Parameters>
+			<Parameter Name="Name">GVL.psuFAULT</Parameter>
+			<Parameter Name="SymbolName">GVL.psuFAULT</Parameter>
+			<Parameter Name="SymbolType">BOOL</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">8</Parameter>
+			<Parameter Name="SampleTime [ms]">10</Parameter>
+			<Parameter Name="Transmode">3</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+			<Parameter Name="TCBufferSize [Samples]">10</Parameter>
+			<Parameter Name="LVBufferSize [Samples]">50</Parameter>
+			<Parameter Name="Expected min delay [ms]">5000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+	<SymbolControlItem GroupName="ADS Read" GroupDescription="Parameters for ADS Read command">
+		<Parameters>
+			<Parameter Name="Name">GVL.ctrlsysFAULT</Parameter>
+			<Parameter Name="SymbolName">GVL.ctrlsysFAULT</Parameter>
+			<Parameter Name="SymbolType">BOOL</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">8</Parameter>
+			<Parameter Name="SampleTime [ms]">10</Parameter>
+			<Parameter Name="Transmode">3</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+			<Parameter Name="TCBufferSize [Samples]">10</Parameter>
+			<Parameter Name="LVBufferSize [Samples]">50</Parameter>
+			<Parameter Name="Expected min delay [ms]">5000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+	<SymbolControlItem GroupName="ADS Read" GroupDescription="Parameters for ADS Read command">
+		<Parameters>
+			<Parameter Name="Name">GVL.appRUN</Parameter>
+			<Parameter Name="SymbolName">GVL.appRUN</Parameter>
+			<Parameter Name="SymbolType">BOOL</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">8</Parameter>
+			<Parameter Name="SampleTime [ms]">10</Parameter>
+			<Parameter Name="Transmode">3</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+			<Parameter Name="TCBufferSize [Samples]">10</Parameter>
+			<Parameter Name="LVBufferSize [Samples]">50</Parameter>
+			<Parameter Name="Expected min delay [ms]">5000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+	<SymbolControlItem GroupName="ADS Read" GroupDescription="Parameters for ADS Read command">
+		<Parameters>
+			<Parameter Name="Name">GVL.softdumpFB_FAULT</Parameter>
+			<Parameter Name="SymbolName">GVL.softdumpFB_FAULT</Parameter>
+			<Parameter Name="SymbolType">BOOL</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">8</Parameter>
+			<Parameter Name="SampleTime [ms]">10</Parameter>
+			<Parameter Name="Transmode">3</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+			<Parameter Name="TCBufferSize [Samples]">10</Parameter>
+			<Parameter Name="LVBufferSize [Samples]">50</Parameter>
+			<Parameter Name="Expected min delay [ms]">5000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+	<SymbolControlItem GroupName="ADS Read" GroupDescription="Parameters for ADS Read command">
+		<Parameters>
+			<Parameter Name="Name">GVL.chargeFB_FAULT</Parameter>
+			<Parameter Name="SymbolName">GVL.chargeFB_FAULT</Parameter>
+			<Parameter Name="SymbolType">BOOL</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">8</Parameter>
+			<Parameter Name="SampleTime [ms]">10</Parameter>
+			<Parameter Name="Transmode">3</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+			<Parameter Name="TCBufferSize [Samples]">10</Parameter>
+			<Parameter Name="LVBufferSize [Samples]">50</Parameter>
+			<Parameter Name="Expected min delay [ms]">5000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+	<SymbolControlItem GroupName="ADS Read" GroupDescription="Parameters for ADS Read command">
+		<Parameters>
+			<Parameter Name="Name">GVL.HVpsuFB_FAULT</Parameter>
+			<Parameter Name="SymbolName">GVL.HVpsuFB_FAULT</Parameter>
+			<Parameter Name="SymbolType">BOOL</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">8</Parameter>
+			<Parameter Name="SampleTime [ms]">10</Parameter>
+			<Parameter Name="Transmode">3</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+			<Parameter Name="TCBufferSize [Samples]">10</Parameter>
+			<Parameter Name="LVBufferSize [Samples]">50</Parameter>
+			<Parameter Name="Expected min delay [ms]">5000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+	<SymbolControlItem GroupName="ADS Read" GroupDescription="Parameters for ADS Read command">
+		<Parameters>
+			<Parameter Name="Name">GVL.softexceptionFAULT</Parameter>
+			<Parameter Name="SymbolName">GVL.softexceptionFAULT</Parameter>
+			<Parameter Name="SymbolType">BOOL</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">8</Parameter>
+			<Parameter Name="SampleTime [ms]">10</Parameter>
+			<Parameter Name="Transmode">3</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+			<Parameter Name="TCBufferSize [Samples]">10</Parameter>
+			<Parameter Name="LVBufferSize [Samples]">50</Parameter>
+			<Parameter Name="Expected min delay [ms]">5000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+	<SymbolControlItem GroupName="ADS Read" GroupDescription="Parameters for ADS Read command">
+		<Parameters>
+			<Parameter Name="Name">GVL.EOCstatus</Parameter>
+			<Parameter Name="SymbolName">GVL.EOCstatus</Parameter>
+			<Parameter Name="SymbolType">BOOL</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">8</Parameter>
+			<Parameter Name="SampleTime [ms]">10</Parameter>
+			<Parameter Name="Transmode">3</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+			<Parameter Name="TCBufferSize [Samples]">10</Parameter>
+			<Parameter Name="LVBufferSize [Samples]">50</Parameter>
+			<Parameter Name="Expected min delay [ms]">5000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+	<SymbolControlItem GroupName="ADS Read" GroupDescription="Parameters for ADS Read command">
+		<Parameters>
+			<Parameter Name="Name">GVL.shotCOILrdy</Parameter>
+			<Parameter Name="SymbolName">GVL.shotCOILrdy</Parameter>
+			<Parameter Name="SymbolType">BOOL</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">8</Parameter>
+			<Parameter Name="SampleTime [ms]">10</Parameter>
+			<Parameter Name="Transmode">3</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+			<Parameter Name="TCBufferSize [Samples]">10</Parameter>
+			<Parameter Name="LVBufferSize [Samples]">50</Parameter>
+			<Parameter Name="Expected min delay [ms]">5000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+	<SymbolControlItem GroupName="ADS Read" GroupDescription="Parameters for ADS Read command">
+		<Parameters>
+			<Parameter Name="Name">GVL.testNUMexceed</Parameter>
+			<Parameter Name="SymbolName">GVL.testNUMexceed</Parameter>
+			<Parameter Name="SymbolType">BOOL</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">8</Parameter>
+			<Parameter Name="SampleTime [ms]">100</Parameter>
+			<Parameter Name="Transmode">3</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+			<Parameter Name="TCBufferSize [Samples]">10</Parameter>
+			<Parameter Name="LVBufferSize [Samples]">50</Parameter>
+			<Parameter Name="Expected min delay [ms]">5000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+	<SymbolControlItem GroupName="ADS Read" GroupDescription="Parameters for ADS Read command">
+		<Parameters>
+			<Parameter Name="Name">GVL.expectedvoltage</Parameter>
+			<Parameter Name="SymbolName">GVL.expectedvoltage</Parameter>
+			<Parameter Name="SymbolType">INT</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">16</Parameter>
+			<Parameter Name="SampleTime [ms]">10</Parameter>
+			<Parameter Name="Transmode">3</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+			<Parameter Name="TCBufferSize [Samples]">10</Parameter>
+			<Parameter Name="LVBufferSize [Samples]">50</Parameter>
+			<Parameter Name="Expected min delay [ms]">5000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+	<SymbolControlItem GroupName="ADS Read" GroupDescription="Parameters for ADS Read command">
+		<Parameters>
+			<Parameter Name="Name">GVL.scopetrigger</Parameter>
+			<Parameter Name="SymbolName">GVL.scopetrigger</Parameter>
+			<Parameter Name="SymbolType">BOOL</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">8</Parameter>
+			<Parameter Name="SampleTime [ms]">10</Parameter>
+			<Parameter Name="Transmode">3</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+			<Parameter Name="TCBufferSize [Samples]">10</Parameter>
+			<Parameter Name="LVBufferSize [Samples]">50</Parameter>
+			<Parameter Name="Expected min delay [ms]">5000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+		<SymbolControlItem GroupName="ADS Read" GroupDescription="Parameters for ADS Read command">
+		<Parameters>
+			<Parameter Name="Name">GVL.testintervalsecs</Parameter>
+			<Parameter Name="SymbolName">GVL.testintervalsecs</Parameter>
+			<Parameter Name="SymbolType">DINT</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">32</Parameter>
+			<Parameter Name="SampleTime [ms]">10</Parameter>
+			<Parameter Name="Transmode">3</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+			<Parameter Name="TCBufferSize [Samples]">10</Parameter>
+			<Parameter Name="LVBufferSize [Samples]">50</Parameter>
+			<Parameter Name="Expected min delay [ms]">1000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+	<SymbolControlItem GroupName="ADS Read" GroupDescription="Parameters for ADS Read command">
+		<Parameters>
+			<Parameter Name="Name">GVL.test_interval_fault</Parameter>
+			<Parameter Name="SymbolName">GVL.test_interval_fault</Parameter>
+			<Parameter Name="SymbolType">BOOL</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">8</Parameter>
+			<Parameter Name="SampleTime [ms]">10</Parameter>
+			<Parameter Name="Transmode">3</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+			<Parameter Name="TCBufferSize [Samples]">10</Parameter>
+			<Parameter Name="LVBufferSize [Samples]">50</Parameter>
+			<Parameter Name="Expected min delay [ms]">1000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+		<SymbolControlItem GroupName="ADS Read" GroupDescription="Parameters for ADS Read command">
+		<Parameters>
+			<Parameter Name="Name">GVL.Spark_gap_voltage</Parameter>
+			<Parameter Name="SymbolName">GVL.Spark_gap_voltage</Parameter>
+			<Parameter Name="SymbolType">INT</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">16</Parameter>
+			<Parameter Name="SampleTime [ms]">10</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+		<SymbolControlItem GroupName="ADS Read" GroupDescription="Parameters for ADS Read command">
+		<Parameters>
+			<Parameter Name="Name">GVL.targetVolt_exceed_CapRating_FAULT</Parameter>
+			<Parameter Name="SymbolName">GVL.targetVolt_exceed_CapRating_FAULT</Parameter>
+			<Parameter Name="SymbolType">BOOL</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">8</Parameter>
+			<Parameter Name="SampleTime [ms]">10</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+		<SymbolControlItem GroupName="ADS Read" GroupDescription="Parameters for ADS Read command">
+		<Parameters>
+			<Parameter Name="Name">GVL.allTemperatureInRange</Parameter>
+			<Parameter Name="SymbolName">GVL.allTemperatureInRange</Parameter>
+			<Parameter Name="SymbolType">BOOL</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">8</Parameter>
+			<Parameter Name="SampleTime [ms]">10</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+		<SymbolControlItem GroupName="ADS Read" GroupDescription="Parameters for ADS Read command">
+		<Parameters>
+			<Parameter Name="Name">GVL.loadtempFAULT</Parameter>
+			<Parameter Name="SymbolName">GVL.loadtempFAULT</Parameter>
+			<Parameter Name="SymbolType">BOOL</Parameter>
+			<Parameter Name="SymbolGuid"></Parameter>
+			<Parameter Name="AmsNetId">5.97.49.116.1.1</Parameter>
+			<Parameter Name="Port">851</Parameter>
+			<Parameter Name="IndexGroup">#x0</Parameter>
+			<Parameter Name="IndexOffset">#x0</Parameter>
+			<Parameter Name="BitSize">8</Parameter>
+			<Parameter Name="SampleTime [ms]">10</Parameter>
+			<Parameter Name="Timeout [ms]">1000</Parameter>
+		</Parameters>
+	</SymbolControlItem>
+</SymbolControlItems>

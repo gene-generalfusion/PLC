@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="ST_Section_Base" Id="{9780b1d1-f5c5-4a00-9de3-1ff70eb9b55e}">
+    <Declaration><![CDATA[//Base coil type with all the Common functionality
+TYPE ST_Section_Base :
+STRUCT
+	
+	Peak : ST_FieldDevices_Base;
+	Sust : ST_FieldDevices_Base;
+	Form : ST_FieldDevices_Form;
+	
+	FormTriggerCapVoltage_raw				: INT;
+	PSU1_DCOK								: BOOL := FALSE;
+	//Local_EstopPB_Pressed					: BOOL;  //NC
+	SystemReadyToCharge						: BOOL := FALSE;
+	LossPneumaticPressure					: BOOL;
+	
+	//*********************************************************************************
+	(*ChargeVoltageFeedback					: REAL;
+	ChargeVoltageFeedback_raw				: INT;
+	ChargerVoltageFeedback_norm				: REAL;
+	
+	CurrentFeedback							: REAL;
+	CurrentFeedback_raw						: INT;
+	CurrentFeedback_norm					: REAL;
+	
+	chargerSetpoint							: INT;  //0-100% analog PWM 24V output -> (0 - 10V)
+	chargerSetpoint_norm					: REAL;
+	chargerSetpoint_raw						: REAL;
+	currentSetpoint							: INT;  //0-100% analog PWM 24V output -> (0.5 - 4.5V)
+	currentSetpoint_norm					: REAL;
+	currentSetpoint_raw						: REAL;
+	//currentSetpointFromMaster: REAL;
+
+	
+	DumpRelay1_closed						: BOOL;
+	DumpRelay2_closed						: BOOL;
+	ChargeRelay_closed						: BOOL := FALSE;
+	ChargerIsEnabled						: BOOL := FALSE; //feedback from charger
+	FlybackD1_Alive							: BOOL := FALSE;
+	FlybackD2_Alive							: BOOL := FALSE;
+	
+	DumpResistorTemperatureHigh				: BOOL; 
+	GroundLoopCurrentDetected				: BOOL;
+	CoilTemperatureHigh						: BOOL := FALSE;
+	AC_Interlock_RlyClose					: BOOL;
+	
+	
+	OpenDumpRelays							: BOOL := FALSE;
+	closeChargeRelay						: BOOL := FALSE;
+	enableOutputToCharger					: BOOL := FALSE;  //output going to charger
+	CloseACInterlockRly						: BOOL := FALSE;
+	SystemFaulted							: BOOL := FALSE;
+	SystemCharging							: BOOL := FALSE;
+	
+	
+	CoilEnabled								: BOOL := TRUE;
+	
+	NumOfCap								: INT := 4;
+	
+	//CoilSafetyOK							: BOOL;
+	ChargerWarning							: BOOL;  //comes from UltraCaps CANBUS message
+	CapVoltage								: INT;   //Comes from UlgraCaps CANBUS message
+	
+	ChargerVoltageFault_TON : TON;
+	ChargerVoltageFault_ET : TIME;
+	CurrentSensorFault_TON : TON;
+	CurrentSensorFault_ET : TIME;
+	BfieldSensorFault_TON : TON;
+	BfieldSensorFault_ET : TIME;
+	
+	CAN_id: INT;
+	CAN_AdsAddr: AMSADDR;
+	CAN_netID: AMSNETID;
+	CAN_port: WORD;
+	CAN_error: USINT;
+	CAN_State: UINT;
+	CAN_RxErrorCounter: USINT;	
+	CAN_TxErrorCounter: USINT;	
+	CAN_DiagFlag: BOOL;
+	
+	UltacCap_CAN_error: USINT;
+	UltraCap_CAN_State: UINT;
+	UltraCap_CAN_RxErrorCounter: USINT;	
+	UltraCap_CAN_TxErrorCounter: USINT;	
+	UltraCap_CAN_DiagFlag: BOOL;
+	*)
+		
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

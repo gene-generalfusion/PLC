@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="PRG_FB_CTRL_PWM_OUT" Id="{6fbcb2dc-3f6d-4a1d-bc04-70805cf01ca9}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM PRG_FB_CTRL_PWM_OUT
+VAR
+	fPwmInput					: LREAL := 50;
+	bPwmOutBitPos				: BOOL;
+	bPwmOutBitNeg				: BOOL;
+
+	fbCTRL_PWM_OUT				: FB_CTRL_PWM_OUT;
+	stCTRL_PWM_OUT_PARAMS		: ST_CTRL_PWM_OUT_PARAMS;
+
+	eMode						: E_CTRL_MODE;
+	eErrorId					: E_CTRL_ERRORCODES;
+	bError						: BOOL;
+
+	bInit						: BOOL	:= TRUE;
+	fDelta						: LREAL	:= 0.05;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF bInit THEN
+	(* init parameter struct *)
+	stCTRL_PWM_OUT_PARAMS.tTaskCycleTime	:= T#10MS;
+	stCTRL_PWM_OUT_PARAMS.tPWMPeriod		:= T#1S;
+
+	(* set the mode to ACTIVE --> normal operation *)
+	eMode := eCTRL_MODE_ACTIVE;
+
+	(* reset the init flag *)
+	bInit := FALSE;
+END_IF
+fPwmInput := GVL.duty_cycle;
+fbCTRL_PWM_OUT(	fPwmInput			:= fPwmInput,
+				eMode				:= eMode,
+				stParams			:= stCTRL_PWM_OUT_PARAMS,
+				bPwmOutBitPos		=> bPwmOutBitPos,
+				bPwmOutBitNeg		=> bPwmOutBitNeg,
+				bError				=> bError,
+				eErrorId			=> eErrorId);
+
+
+(* copy var to scope var *)
+GVL.psuInhibit := NOT bPWMOutBitPos;
+//bPWMNegOutToScope := bPWMOutBitNeg;]]></ST>
+    </Implementation>
+    <LineIds Name="PRG_FB_CTRL_PWM_OUT">
+      <LineId Id="3" Count="10" />
+      <LineId Id="26" Count="11" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

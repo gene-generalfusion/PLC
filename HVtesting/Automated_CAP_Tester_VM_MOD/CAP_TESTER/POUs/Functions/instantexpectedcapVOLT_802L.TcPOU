@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="instantexpectedcapVOLT_802L" Id="{3aeacacb-5011-498a-b5d5-f66866ec9b5a}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION instantexpectedcapVOLT_802L : REAL
+VAR_INPUT
+	timenow : TIME;
+	capacitanceF : REAL;
+	PSUratedVoltage : DINT;
+	targetVoltage : DINT;
+END_VAR
+VAR_IN_OUT
+	previoustime : REAL;
+	Voltlast : REAL;
+END_VAR
+VAR
+	timenowsec : REAL;
+	Powerpeak802L : REAL := 9000;
+	timestepsec : REAL;
+	Ipeak : REAL;
+	I : REAL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(* Function specific to TDK 802L. Must be modified for other models. 
+Assumed to using the constant charging and constant power scheme. *)
+
+timenowsec := TIME_TO_REAL(timenow)*0.001;	// From ms to sec
+IF PSUratedVoltage = 0 THEN
+	instantexpectedcapVOLT_802L := 0;
+ELSE
+	Ipeak := 2.0*Powerpeak802L/DINT_TO_REAL(PSUratedVoltage);
+	timestepsec := timenowsec-previoustime;
+	// Return last known voltage if timestep is 0
+	IF targetVoltage <= 6000 THEN
+		I := Ipeak;
+	ELSE
+		I := Ipeak*(0.5+(DINT_TO_REAL(PSUratedVoltage)-Voltlast)/DINT_TO_REAL(PSUratedVoltage));
+	END_IF
+	IF timestepsec >= 0 THEN
+		previoustime := previoustime+timestepsec;
+		Voltlast := timestepsec/capacitanceF*I+Voltlast;
+	END_IF
+	IF Voltlast >= DINT_TO_REAL(targetVoltage) THEN
+		instantexpectedcapVOLT_802L := DINT_TO_REAL(targetVoltage);
+	ELSE
+		instantexpectedcapVOLT_802L := Voltlast;
+	END_IF;
+END_IF
+]]></ST>
+    </Implementation>
+    <LineIds Name="instantexpectedcapVOLT_802L">
+      <LineId Id="122" Count="9" />
+      <LineId Id="155" Count="0" />
+      <LineId Id="159" Count="0" />
+      <LineId Id="161" Count="1" />
+      <LineId Id="160" Count="0" />
+      <LineId Id="132" Count="3" />
+      <LineId Id="185" Count="2" />
+      <LineId Id="136" Count="0" />
+      <LineId Id="188" Count="0" />
+      <LineId Id="137" Count="0" />
+      <LineId Id="14" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
