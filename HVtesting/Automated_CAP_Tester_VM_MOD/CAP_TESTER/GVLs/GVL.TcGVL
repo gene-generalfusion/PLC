@@ -64,7 +64,7 @@ VAR_GLOBAL
 		Spark_gap_voltage :INT;
 		Spark_gap_voltage_norm : REAL;
 		Spark_gap_voltage_REAL : REAL;
-	
+	raw_VoltageMonitor : INT;
 (* PLC Internal *)
 	appRUN : BOOL;
 	

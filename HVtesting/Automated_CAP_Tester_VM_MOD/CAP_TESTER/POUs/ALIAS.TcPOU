@@ -63,7 +63,7 @@ Look at specifcations document for mapping.
 	GVL.raw_HV_monitor := GVL.PLC_AI7  ;
 	
 	GVL.raw_Spark_gap_voltage := GVL.PLC_AI8 ;
-	VoltMonitor_DB.VoltageReading_raw := GVL.PLC_AI9 ;
+	GVL.raw_VoltageMonitor := GVL.PLC_AI9 ;
 	(*GVL. := GVL.PLC_AI10 ;
 	GVL. := GVL.PLC_AI11 ;
 	GVL. := GVL.PLC_AI12 ;

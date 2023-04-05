@@ -3,18 +3,25 @@
   <POU Name="VoltMonitor" Id="{ab398dd9-3a48-4aac-bec4-7b546cd8c4a7}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM VoltMonitor
 VAR
-	i : INT := 0;
+	i : USINT := 0;
+	b : ARRAY[0..3] OF BOOL;
+	b1 : BOOL;
+	b2 : BOOL;
+	b3 : BOOL;
+	pause : BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[IF Heartbeat.screen_refresh_pulse = TRUE THEN
+      <ST><![CDATA[IF Heartbeat.screen_refresh_pulse = TRUE AND pause = FALSE THEN
 	i := i+1;
+	VoltMonitor_DB.Channel := i ;
+	VoltMonitor_DB.VoltageReading_raw[i] := GVL.raw_VoltageMonitor;
 END_IF
 
-FOR i := 0 TO 15 BY 1 DO  
-	VoltMonitor_DB.Channel := i ;
-END_FOR;
-	
+b[0] := VoltMonitor_DB.Channel.0;
+b[1] := VoltMonitor_DB.Channel.1;
+b[2] := VoltMonitor_DB.Channel.2;
+b[3] := VoltMonitor_DB.Channel.3;
 	
 IF i > 15 THEN 
 	i := 0;
@@ -23,13 +30,15 @@ END_IF]]></ST>
     <LineIds Name="VoltMonitor">
       <LineId Id="5" Count="0" />
       <LineId Id="12" Count="0" />
+      <LineId Id="68" Count="0" />
+      <LineId Id="66" Count="0" />
       <LineId Id="7" Count="0" />
-      <LineId Id="22" Count="0" />
-      <LineId Id="17" Count="0" />
-      <LineId Id="25" Count="0" />
-      <LineId Id="24" Count="0" />
+      <LineId Id="34" Count="0" />
       <LineId Id="13" Count="0" />
-      <LineId Id="18" Count="3" />
+      <LineId Id="63" Count="2" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="75" Count="1" />
+      <LineId Id="21" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

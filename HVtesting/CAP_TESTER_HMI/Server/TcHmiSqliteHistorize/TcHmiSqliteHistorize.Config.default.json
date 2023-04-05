@@ -1,0 +1,28 @@
+{
+    "commitInterval": "PT10S",
+    "enableBackup": false,
+    "historizedSymbolList": {
+        "PLC.GVL.Spark_gap_voltage": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 100000
+        },
+        "PLC.GVL.Vcap1": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 100000
+        },
+        "PLC.GVL.expectedvoltage": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 100000
+        }
+    },
+    "inMemory": false,
+    "maxBackups": 1,
+    "mode": 3,
+    "vacuumOnStartup": false
+}

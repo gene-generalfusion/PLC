@@ -31,8 +31,8 @@
 		<System>
 			<Licenses>
 				<Target BkhfOrder="00674809" CustomOrder="00674809">
-					<ManualSelect>{6BCAF065-32F5-44AC-A233-31D91205AB5B}</ManualSelect>
 					<ManualSelect>{94C87B69-26C2-4677-9F7E-27E770C481BE}</ManualSelect>
+					<ManualSelect>{6BCAF065-32F5-44AC-A233-31D91205AB5B}</ManualSelect>
 					<ManualSelect>{FB6D691D-478A-4C62-9D57-8A3A1727A76B}</ManualSelect>
 				</Target>
 			</Licenses>
@@ -1276,7 +1276,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 				</Box>
 				<EtherCAT/>
 			</Device>
-			<Device Id="3" DevType="138" AmsPort="28675" AmsNetId="172.25.226.104.4.1" RemoteName="Device 3 (RT-Ethernet Protocol)">
+			<Device Id="3" Disabled="true" DevType="138" AmsPort="28675" AmsNetId="172.25.226.104.4.1" RemoteName="Device 3 (RT-Ethernet Protocol)">
 				<Name>Device 3 (RT-Ethernet Protocol)</Name>
 				<AddressInfo>
 					<Pnp>
@@ -1285,7 +1285,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 						<DeviceData>000105613174</DeviceData>
 					</Pnp>
 				</AddressInfo>
-				<Image Id="3" AddrType="1" ImageType="3">
+				<Image Id="3" AddrType="2" ImageType="3">
 					<Name>Image</Name>
 				</Image>
 				<Ethernet DeviceDesc="FEC1"/>
@@ -1312,7 +1312,6 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 		</Io>
 	</Project>
 	<Mappings>
-		<MappingInfo Identifier="{00000000-2001-0850-0020-500810000403}" Id="#x02030010"/>
 		<OwnerA Name="TIPC^CAP_TESTER^CAP_TESTER Instance">
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 2 (EL1008)">
 				<Link VarA="PlcTask Inputs^GVL.PLC_DI1" VarB="Channel 1^Input"/>
