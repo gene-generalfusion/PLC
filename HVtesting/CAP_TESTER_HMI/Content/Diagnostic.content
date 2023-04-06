@@ -725,7 +725,7 @@
   "bottom": "Solid"
 }
 </script>
-<div id="TcHmiRectangle_24" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiRectangle" data-tchmi-height="294" data-tchmi-height-unit="px" data-tchmi-left="466" data-tchmi-left-unit="px" data-tchmi-top="84" data-tchmi-top-unit="px" data-tchmi-width="437" data-tchmi-width-unit="px" data-tchmi-zindex="0" data-tchmi-opacity="3" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-creator-locked="True">
+<div id="TcHmiRectangle_24" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiRectangle" data-tchmi-height="269" data-tchmi-height-unit="px" data-tchmi-left="1144" data-tchmi-left-unit="px" data-tchmi-top="74" data-tchmi-top-unit="px" data-tchmi-width="437" data-tchmi-width-unit="px" data-tchmi-zindex="0" data-tchmi-opacity="3" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-border-radius" type="application/json">
 {
   "topLeft": 10.0,
@@ -785,20 +785,20 @@
 }
 </script>
 </div>
-<div id="TcHmiButton_13" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height="50" data-tchmi-height-unit="px" data-tchmi-left="573" data-tchmi-left-unit="px" data-tchmi-text="Activate Charge Relay" data-tchmi-top="190" data-tchmi-top-unit="px" data-tchmi-width="100" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-zindex="1" data-tchmi-state-symbol="%s%PLC.GVL.chargeCOIL%/s%" data-tchmi-creator-locked="True">
+<div id="TcHmiButton_13" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height="50" data-tchmi-height-unit="px" data-tchmi-left="1251" data-tchmi-left-unit="px" data-tchmi-text="Activate Charge Relay" data-tchmi-top="150" data-tchmi-top-unit="px" data-tchmi-width="100" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-zindex="1" data-tchmi-state-symbol="%s%PLC.GVL.chargeCOIL%/s%" data-tchmi-creator-locked="True">
 </div>
-<div id="TcHmiTextblock_52" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="95" data-tchmi-height-unit="px" data-tchmi-left="483" data-tchmi-left-unit="px" data-tchmi-text="!! WARNING !!\n(ONLY ACTIVATE BUTTONS WHEN SAFE)" data-tchmi-top="90" data-tchmi-top-unit="px" data-tchmi-width="408" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="24" data-tchmi-zindex="5" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-ignore-escape-sequences="false" data-tchmi-text-horizontal-alignment="Center" data-tchmi-creator-locked="True">
+<div id="TcHmiTextblock_52" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="67" data-tchmi-height-unit="px" data-tchmi-left="1161" data-tchmi-left-unit="px" data-tchmi-text="!! WARNING !!\n(ONLY ACTIVATE BUTTONS WHEN SAFE)" data-tchmi-top="80" data-tchmi-top-unit="px" data-tchmi-width="408" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="24" data-tchmi-zindex="5" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-ignore-escape-sequences="false" data-tchmi-text-horizontal-alignment="Center" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
 {
   "color": "rgba(231, 8, 53, 1)"
 }
 </script>
 </div>
-<div id="TcHmiButton_14" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height="50" data-tchmi-height-unit="px" data-tchmi-left="573" data-tchmi-left-unit="px" data-tchmi-text="Activate Dump Relay" data-tchmi-top="250" data-tchmi-top-unit="px" data-tchmi-width="100" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-zindex="1" data-tchmi-state-symbol="%s%PLC.GVL.softdump%/s%" data-tchmi-creator-locked="True">
+<div id="TcHmiButton_14" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height="50" data-tchmi-height-unit="px" data-tchmi-left="1251" data-tchmi-left-unit="px" data-tchmi-text="Activate Dump Relay" data-tchmi-top="210" data-tchmi-top-unit="px" data-tchmi-width="100" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-zindex="1" data-tchmi-state-symbol="%s%PLC.GVL.softdump%/s%" data-tchmi-creator-locked="True">
 </div>
-<div id="TcHmiButton_15" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height="50" data-tchmi-height-unit="px" data-tchmi-left="573" data-tchmi-left-unit="px" data-tchmi-text="Activate Shoot Relay" data-tchmi-top="310" data-tchmi-top-unit="px" data-tchmi-width="100" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-zindex="1" data-tchmi-state-symbol="%s%PLC.GVL.shotCOIL%/s%" data-tchmi-creator-locked="True">
+<div id="TcHmiButton_15" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height="50" data-tchmi-height-unit="px" data-tchmi-left="1251" data-tchmi-left-unit="px" data-tchmi-text="Activate Shoot Relay" data-tchmi-top="270" data-tchmi-top-unit="px" data-tchmi-width="100" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-zindex="1" data-tchmi-state-symbol="%s%PLC.GVL.shotCOIL%/s%" data-tchmi-creator-locked="True">
 </div>
-<div id="TcHmiTextbox_30" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="35" data-tchmi-height-unit="px" data-tchmi-left="696" data-tchmi-left-unit="px" data-tchmi-text="Contact" data-tchmi-top="258" data-tchmi-top-unit="px" data-tchmi-width="118" data-tchmi-width-unit="px" data-tchmi-auto-focus-out="false" data-tchmi-auto-select-text="false" data-tchmi-is-enabled="true" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-font-size="24" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false" data-tchmi-zindex="3" data-tchmi-creator-locked="True">
+<div id="TcHmiTextbox_30" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="35" data-tchmi-height-unit="px" data-tchmi-left="1374" data-tchmi-left-unit="px" data-tchmi-text="Contact" data-tchmi-top="218" data-tchmi-top-unit="px" data-tchmi-width="118" data-tchmi-width-unit="px" data-tchmi-auto-focus-out="false" data-tchmi-auto-select-text="false" data-tchmi-is-enabled="true" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-font-size="24" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false" data-tchmi-zindex="3" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {"top":3,"right":3,"bottom":3,"left":3}
 </script>
@@ -889,7 +889,7 @@
 ]
 </script>
 </div>
-<div id="TcHmiTextbox_31" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="35" data-tchmi-height-unit="px" data-tchmi-left="696" data-tchmi-left-unit="px" data-tchmi-text="Contact" data-tchmi-top="198" data-tchmi-top-unit="px" data-tchmi-width="118" data-tchmi-width-unit="px" data-tchmi-auto-focus-out="false" data-tchmi-auto-select-text="false" data-tchmi-is-enabled="true" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-font-size="24" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false" data-tchmi-zindex="3" data-tchmi-creator-locked="True">
+<div id="TcHmiTextbox_31" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="35" data-tchmi-height-unit="px" data-tchmi-left="1374" data-tchmi-left-unit="px" data-tchmi-text="Contact" data-tchmi-top="158" data-tchmi-top-unit="px" data-tchmi-width="118" data-tchmi-width-unit="px" data-tchmi-auto-focus-out="false" data-tchmi-auto-select-text="false" data-tchmi-is-enabled="true" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-font-size="24" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false" data-tchmi-zindex="3" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {"top":3,"right":3,"bottom":3,"left":3}
 </script>
@@ -976,6 +976,237 @@
         "asyncWait": true
       }
     ]
+  }
+]
+</script>
+</div>
+<div id="TcHmiTrendLineChart_4" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTrendLineChart" data-tchmi-end="Latest" data-tchmi-height="282" data-tchmi-height-unit="px" data-tchmi-left="580" data-tchmi-left-unit="px" data-tchmi-start="First" data-tchmi-top="63" data-tchmi-top-unit="px" data-tchmi-width="550" data-tchmi-width-unit="px" data-tchmi-x-axis-name="x-axis 1" data-tchmi-x-sub-tick-steps="4" data-tchmi-y-sub-tick-steps="4" data-tchmi-zindex="2" data-tchmi-show-legend="true" data-tchmi-show-x-axis="true" data-tchmi-x-show-labels="true" data-tchmi-show-x-sub-ticks="true" data-tchmi-show-x-axis-name="false" data-tchmi-show-y-sub-ticks="true" data-tchmi-show-grid="true" data-tchmi-grid-show-horizontal-lines="true" data-tchmi-grid-show-vertical-lines="true" data-tchmi-subgrid-show-horizontal-lines="false" data-tchmi-subgrid-show-vertical-lines="false" data-tchmi-show-menu-bar="true" data-tchmi-show-tooltip="true" data-tchmi-creator-visibility="Visible" data-tchmi-is-enabled="true" data-tchmi-server-domain="TcHmiSqliteHistorize">
+<script data-tchmi-target-attribute="data-tchmi-line-graph-descriptions" type="application/json">
+[
+  {
+    "yAxisId": 1,
+    "legendName": "Cap Voltage",
+    "scaleFactor": 1.0,
+    "showAxis": true,
+    "lineWidth": 1,
+    "pointDot": false,
+    "pointDotRadius": 3,
+    "pointDotStrokeWidth": 1,
+    "lineColor": {
+      "color": "rgba(71, 148, 218, 1)"
+    },
+    "pointDotFillColor": {
+      "color": "rgba(71, 148, 218, 1)"
+    },
+    "pointDotStrokeColor": {
+      "color": "rgba(71, 148, 218, 1)"
+    },
+    "pointDotInStopMode": true,
+    "symbol": "PLC.GVL.Vcap1"
+  },
+  {
+    "yAxisId": 2,
+    "legendName": "Expected Voltage",
+    "scaleFactor": 1.0,
+    "showAxis": true,
+    "lineWidth": 1,
+    "pointDot": false,
+    "pointDotRadius": 3,
+    "pointDotStrokeWidth": 1,
+    "lineColor": {
+      "color": "rgba(209, 14, 236, 1)"
+    },
+    "pointDotFillColor": {
+      "color": "rgba(25, 0, 0, 1)"
+    },
+    "pointDotStrokeColor": {
+      "color": "rgba(0, 0, 0, 1)"
+    },
+    "pointDotInStopMode": true,
+    "symbol": "PLC.GVL.expectedvoltage"
+  }
+]
+</script>
+
+<script data-tchmi-target-attribute="data-tchmi-y-axis" type="application/json">
+[
+  {
+    "id": 1,
+    "showAxis": true,
+    "position": "Left",
+    "mainTickMinValue": 0.0,
+    "mainTickMaxValue": 33000.0,
+    "showLabels": true,
+    "showAxisName": true,
+    "axisName": "Cap Voltage",
+    "axisNameFontFamily": "",
+    "axisNameFontSize": 15,
+    "axisNameFontSizeUnit": "px",
+    "axisNameFontWeight": "Bold",
+    "decimalPlaces": 2,
+    "unit": "V",
+    "autoScaling": true,
+    "logarithmicScale": false,
+    "axisLabeling": "Auto",
+    "labelFontColor": {
+      "color": "rgba(71, 148, 218, 1)"
+    },
+    "axisColor": {
+      "color": "rgba(71, 148, 218, 1)"
+    },
+    "axisNameFontColor": {
+      "color": "rgba(71, 148, 218, 1)"
+    }
+  },
+  {
+    "id": 2,
+    "showAxis": true,
+    "position": "Right",
+    "mainTickMinValue": 0.0,
+    "mainTickMaxValue": 33000.0,
+    "showLabels": true,
+    "showAxisName": true,
+    "axisName": "Expected Cap Voltage",
+    "axisNameFontFamily": "",
+    "axisNameFontSize": 15,
+    "axisNameFontSizeUnit": "px",
+    "axisNameFontWeight": "Bold",
+    "decimalPlaces": 2,
+    "unit": "V",
+    "autoScaling": true,
+    "logarithmicScale": false,
+    "axisLabeling": "Number",
+    "labelFontColor": {
+      "color": "rgba(209, 14, 236, 1)"
+    },
+    "axisColor": {
+      "color": "rgba(209, 14, 236, 1)"
+    },
+    "axisNameFontColor": {
+      "color": "rgba(209, 14, 236, 1)"
+    }
+  }
+]
+</script>
+</div>
+<div id="TcHmiTrendLineChart_5" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTrendLineChart" data-tchmi-end="Latest" data-tchmi-height="282" data-tchmi-height-unit="px" data-tchmi-left="580" data-tchmi-left-unit="px" data-tchmi-start="First" data-tchmi-top="356" data-tchmi-top-unit="px" data-tchmi-width="550" data-tchmi-width-unit="px" data-tchmi-x-axis-name="x-axis 1" data-tchmi-x-sub-tick-steps="4" data-tchmi-y-sub-tick-steps="4" data-tchmi-show-legend="true" data-tchmi-show-menu-bar="true">
+<script data-tchmi-target-attribute="data-tchmi-y-axis" type="application/json">
+[
+  {
+    "id": 1,
+    "showAxis": true,
+    "position": "Left",
+    "mainTickMinValue": 0.0,
+    "mainTickMaxValue": 100.0,
+    "showLabels": true,
+    "showAxisName": true,
+    "axisName": "Spark Gap Voltage",
+    "axisNameFontFamily": "",
+    "axisNameFontSize": 15,
+    "axisNameFontSizeUnit": "px",
+    "axisNameFontWeight": "Bold",
+    "decimalPlaces": 2,
+    "unit": "kV",
+    "autoScaling": true,
+    "logarithmicScale": false,
+    "axisLabeling": "Number",
+    "labelFontColor": {
+      "color": "rgba(255, 0, 0, 1)"
+    },
+    "axisColor": {
+      "color": "rgba(255, 0, 0, 1)"
+    },
+    "axisNameFontColor": {
+      "color": "rgba(255, 0, 0, 1)"
+    }
+  }
+]
+</script>
+
+
+<script data-tchmi-target-attribute="data-tchmi-line-graph-descriptions" type="application/json">
+[
+  {
+    "yAxisId": 1,
+    "legendName": "Spark Gap Voltage",
+    "scaleFactor": 1.0,
+    "showAxis": true,
+    "lineWidth": 1,
+    "pointDot": false,
+    "pointDotRadius": 3,
+    "pointDotStrokeWidth": 1,
+    "lineColor": {
+      "color": "rgba(255, 0, 0, 1)"
+    },
+    "pointDotFillColor": {
+      "color": "rgba(25, 0, 0, 1)"
+    },
+    "pointDotStrokeColor": {
+      "color": "rgba(0, 0, 0, 1)"
+    },
+    "pointDotInStopMode": true,
+    "symbol": "PLC.GVL.Spark_gap_voltage"
+  }
+]
+</script>
+</div>
+<div id="TcHmiTrendLineChart_6" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTrendLineChart" data-tchmi-end="Latest" data-tchmi-height="282" data-tchmi-height-unit="px" data-tchmi-left="19" data-tchmi-left-unit="px" data-tchmi-start="First" data-tchmi-top="356" data-tchmi-top-unit="px" data-tchmi-width="550" data-tchmi-width-unit="px" data-tchmi-x-axis-name="x-axis 1" data-tchmi-x-sub-tick-steps="4" data-tchmi-y-sub-tick-steps="4" data-tchmi-show-legend="true" data-tchmi-show-menu-bar="true">
+<script data-tchmi-target-attribute="data-tchmi-y-axis" type="application/json">
+[
+  {
+    "id": 1,
+    "showAxis": true,
+    "position": "Left",
+    "mainTickMinValue": 0.0,
+    "mainTickMaxValue": 60000.0,
+    "showLabels": true,
+    "showAxisName": true,
+    "axisName": "CH1 - Voltage Feedback",
+    "axisNameFontFamily": "",
+    "axisNameFontSize": 15,
+    "axisNameFontSizeUnit": "px",
+    "axisNameFontWeight": "Bold",
+    "decimalPlaces": 1,
+    "unit": "V",
+    "autoScaling": true,
+    "logarithmicScale": false,
+    "axisLabeling": "Number",
+    "labelFontColor": {
+      "color": "rgba(243, 10, 57, 1)"
+    },
+    "axisColor": {
+      "color": "rgba(71, 148, 218, 1)"
+    },
+    "axisNameFontColor": {
+      "color": "rgba(71, 148, 218, 1)"
+    }
+  }
+]
+</script>
+
+
+<script data-tchmi-target-attribute="data-tchmi-line-graph-descriptions" type="application/json">
+[
+  {
+    "yAxisId": 1,
+    "legendName": "CH1 - Volt",
+    "scaleFactor": 1.0,
+    "showAxis": true,
+    "lineWidth": 1,
+    "pointDot": false,
+    "pointDotRadius": 3,
+    "pointDotStrokeWidth": 1,
+    "lineColor": {
+      "color": "rgba(71, 148, 218, 1)"
+    },
+    "pointDotFillColor": {
+      "color": "rgba(25, 0, 0, 1)"
+    },
+    "pointDotStrokeColor": {
+      "color": "rgba(0, 0, 0, 1)"
+    },
+    "pointDotInStopMode": true,
+    "symbol": "PLC.VoltMonitor_DB.VoltageReading.0"
   }
 ]
 </script>

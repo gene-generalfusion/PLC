@@ -19,6 +19,12 @@
             "maxEntries": 100,
             "recordingEnabled": true,
             "rowLimit": 100000
+        },
+        "PLC.VoltMonitor_DB.VoltageReading.0": {
+            "interval": "PT1S",
+            "maxEntries": 10000,
+            "recordingEnabled": true,
+            "rowLimit": 100000
         }
     },
     "inMemory": false,

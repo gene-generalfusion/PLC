@@ -778,68 +778,7 @@
 }
 </script>
 
-<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
-[
-  {
-    "event": "%s%PLC.GVL.HOA%/s%",
-    "actions": [
-      {
-        "objectType": "Condition",
-        "active": true,
-        "parts": [
-          {
-            "if": [
-              {
-                "compare1": {
-                  "objectType": "Symbol",
-                  "valueType": "tchmi:general#/definitions/BOOL",
-                  "symbolExpression": "%s%PLC.GVL.HOA%/s%"
-                },
-                "compare2": {
-                  "objectType": "StaticValue",
-                  "valueType": "tchmi:general#/definitions/BOOL",
-                  "value": false
-                },
-                "compareOperator": "==",
-                "logic": null
-              }
-            ],
-            "then": [
-              {
-                "objectType": "WriteToSymbol",
-                "active": true,
-                "symbolExpression": "%ctrl%TcHmiRectangle_3::Visibility%/ctrl%",
-                "value": {
-                  "objectType": "StaticValue",
-                  "valueType": "tchmi:framework#/definitions/Visibility",
-                  "value": "Visible"
-                },
-                "asyncWait": true
-              }
-            ]
-          },
-          {
-            "else": [
-              {
-                "objectType": "WriteToSymbol",
-                "active": true,
-                "symbolExpression": "%ctrl%TcHmiRectangle_3::Visibility%/ctrl%",
-                "value": {
-                  "objectType": "StaticValue",
-                  "valueType": "tchmi:framework#/definitions/Visibility",
-                  "value": "Collapsed"
-                },
-                "asyncWait": true
-              }
-            ]
-          }
-        ],
-        "asyncWait": true
-      }
-    ]
-  }
-]
-</script>
+
 </div>
 <div id="TcHmiTextblock_7" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="35" data-tchmi-height-unit="px" data-tchmi-left="24" data-tchmi-left-unit="px" data-tchmi-text="Manual Controls" data-tchmi-top="226" data-tchmi-top-unit="px" data-tchmi-width="159" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="24" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
@@ -848,68 +787,7 @@
 }
 </script>
 
-<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
-[
-  {
-    "event": "%s%PLC.GVL.HOA%/s%",
-    "actions": [
-      {
-        "objectType": "Condition",
-        "active": true,
-        "parts": [
-          {
-            "if": [
-              {
-                "compare1": {
-                  "objectType": "Symbol",
-                  "valueType": "tchmi:general#/definitions/BOOL",
-                  "symbolExpression": "%s%PLC.GVL.HOA%/s%"
-                },
-                "compare2": {
-                  "objectType": "StaticValue",
-                  "valueType": "tchmi:general#/definitions/BOOL",
-                  "value": false
-                },
-                "compareOperator": "==",
-                "logic": null
-              }
-            ],
-            "then": [
-              {
-                "objectType": "WriteToSymbol",
-                "active": true,
-                "symbolExpression": "%ctrl%TcHmiTextblock_7::Visibility%/ctrl%",
-                "value": {
-                  "objectType": "StaticValue",
-                  "valueType": "tchmi:framework#/definitions/Visibility",
-                  "value": "Visible"
-                },
-                "asyncWait": true
-              }
-            ]
-          },
-          {
-            "else": [
-              {
-                "objectType": "WriteToSymbol",
-                "active": true,
-                "symbolExpression": "%ctrl%TcHmiTextblock_7::Visibility%/ctrl%",
-                "value": {
-                  "objectType": "StaticValue",
-                  "valueType": "tchmi:framework#/definitions/Visibility",
-                  "value": "Collapsed"
-                },
-                "asyncWait": true
-              }
-            ]
-          }
-        ],
-        "asyncWait": true
-      }
-    ]
-  }
-]
-</script>
+
 </div>
 
 
