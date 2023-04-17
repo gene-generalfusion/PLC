@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
   <POU Name="ANALOGConversion" Id="{91bae2bd-cbf8-486b-b7d9-9c862076d775}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM ANALOGConversion
 VAR
@@ -33,7 +33,15 @@ GVL.Vcap2_REAL := 40000 * ADC_10V (normal_input := GVL.Vcap2_norm,
 								x_max := 10,
 								x_min := 0);
 								
-GVL.Vcap2 := REAL_TO_INT (GVL.Vcap2_REAL);]]></ST>
+GVL.Vcap2 := REAL_TO_INT (GVL.Vcap2_REAL);
+
+//adding voltage monitor
+VoltMonitor_DB.VoltageReading_norm[0] := Norm_x ( raw_input := INT_TO_REAL(VoltMonitor_DB.VoltageReading_raw[0]),
+													x_max := 32767,
+													x_min := 0);
+VoltMonitor_DB.VoltageReading[0] := (VoltMonitor_DB.LoadMaxRatedV - VoltMonitor_DB.LoadMinRatedV) * ADC_10V (normal_input := VoltMonitor_DB.VoltageReading_norm[0],
+															x_max := 9.8274,
+															x_min := 0.0080297);]]></ST>
     </Implementation>
     <LineIds Name="ANALOGConversion">
       <LineId Id="15" Count="4" />
@@ -52,6 +60,8 @@ GVL.Vcap2 := REAL_TO_INT (GVL.Vcap2_REAL);]]></ST>
       <LineId Id="75" Count="1" />
       <LineId Id="78" Count="0" />
       <LineId Id="77" Count="0" />
+      <LineId Id="85" Count="6" />
+      <LineId Id="84" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

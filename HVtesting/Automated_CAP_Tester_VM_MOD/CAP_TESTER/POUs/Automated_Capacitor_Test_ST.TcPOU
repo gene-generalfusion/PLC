@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
   <POU Name="Automated_Capacitor_Test_ST" Id="{e128ca1e-1181-456e-82bf-f33d8d46ea95}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM Automated_Capacitor_Test_ST
 VAR
@@ -374,7 +374,7 @@ IF GVL.appRUN THEN
 			// Added pre-fire protection.  IF sample 2 is less than 5% of sample 1, go to dump State. Nov 09, 2022
 			//*****************************************************
 			FOR i := 1 TO 2 BY 1 DO
-				IF heartbeat.pulse_2hz = TRUE THEN
+				IF heartbeat.pulse_ms = TRUE THEN
 					Vcap_sample[i] := GVL.Vcap1;
 				END_IF;
 			END_FOR;
@@ -622,7 +622,7 @@ IF GVL.appRUN THEN
 			//*****************************************************
 			
 			FOR i := 1 TO 2 BY 1 DO
-				IF heartbeat.pulse_2hz = TRUE THEN
+				IF heartbeat.pulse_ms = TRUE THEN
 					Vcap_sample[i] := GVL.Vcap1;
 				END_IF;
 			END_FOR;

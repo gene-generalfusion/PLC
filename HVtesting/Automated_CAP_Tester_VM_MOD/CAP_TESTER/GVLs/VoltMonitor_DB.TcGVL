@@ -9,7 +9,8 @@ VAR_GLOBAL
 	VoltageReading_raw : ARRAY[0..15] OF INT;
 	VoltageReading_norm : ARRAY[0..15] OF REAL;
 	VoltageReading	: ARRAY[0..15] OF REAL;
-	
+	LoadMaxRatedV	: REAL := 35000; //-2k TO 35kV
+	LoadMinRatedV	: REAL := -2000; 
 	
 END_VAR]]></Declaration>
   </GVL>

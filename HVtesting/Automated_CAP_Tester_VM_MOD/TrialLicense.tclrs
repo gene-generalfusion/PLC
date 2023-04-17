@@ -2,33 +2,18 @@
 <TcLicenseInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2011/11/TcLicenseInfo">
 	<LicenseInfo>
 		<SystemId>{F40E1F8F-1399-CF7D-276D-B7A354E3F6D7}</SystemId>
-		<IssueTime>2023-04-04T19:26:00</IssueTime>
-		<ExpireTime>2023-04-12T00:00:00</ExpireTime>
-		<LicenseKey>3cd47816d1c8e2fc90947dec00ff971c0126dbab4cca75d72afc5fe3c93a883f0279696c8acc958d57e0c58f11948a30b9ab6d5ea3605f16fb4bcb45b3b8bd168796094f5efbe914d3f01a2141a4f259fd6b8f89e11707f30ff5916bf9ff30712044a4d3018d7e2d658be145a24d1cbc3dda72ebb9eee2c5765f025ed5d8f1c3400204ac7adfc612620cc604de58abbbffeea1f308bd988fc287a5ee25f704244abbdf4b984bf57c2e917bbd7563881bcbb41c2d75caa4f9e1c99dbe93408bf70aabeb28b0b862fec8b5e9bf75b4941155fc2c818d2cab36ef65fd24f637ae1fbe82259fb6e73ebe0c3054d623d2b91e613f1598f4b55d47961fbc6e11fe4ab5</LicenseKey>
-		<License>
-			<LicenseId>{777F1598-583B-4503-99BB-7C02E0ABD97E}</LicenseId>
-			<Name>TC3 Controller Toolbox</Name>
-			<OrderNo>TF4100</OrderNo>
-		</License>
-		<License>
-			<LicenseId>{6BCAF065-32F5-44AC-A233-31D91205AB5B}</LicenseId>
-			<Name>TC3 Interface for LabVIEW</Name>
-			<OrderNo>TF3710</OrderNo>
-		</License>
-		<License>
-			<LicenseId>{94C87B69-26C2-4677-9F7E-27E770C481BE}</LicenseId>
-			<Name>TC3 Simulation Manager</Name>
-			<OrderNo>TE1110</OrderNo>
-		</License>
-		<License>
-			<LicenseId>{FB6D691D-478A-4C62-9D57-8A3A1727A76B}</LicenseId>
-			<Name>TC3 ADS-Communication-Library</Name>
-			<OrderNo>TF6000</OrderNo>
-		</License>
+		<IssueTime>2023-04-17T17:56:00</IssueTime>
+		<ExpireTime>2023-04-25T00:00:00</ExpireTime>
+		<LicenseKey>54614307fe608e59d0210f4ca281800fd7878ddf80102b8a0abdd0ebe9ae871efad6ae70f7eec9a74166fc0e1503d4757bab602b8e60d14b586adc23a9dc2c30e8c2da678fbaa5742a09106fcc973edd9c8e86a28050ceae909bca8eb51f0d8d4dbf0489bd95d7845b324c622e37ac113daa9b0d979bdf7a8ceea749619e0d47a270d52cbf7eba60320ec9cd8dc29a80032dbad0cdc990013266604fe5c1741753bb13eb1fcb9b0897b84def501b9e0c0699cf5b2d08e36bf3c9a763ec03d17489fe9b6fa05d3578c29cdc2171105e810dc9daf2b9dbd6854a81dc47761fef0a239ef525db6d9b6617f3eae5e08bfdd7be2d7ade9964225a1516a5e24c14a633</LicenseKey>
 		<License>
 			<LicenseId>{4C256767-E6E6-4AF5-BD68-9F7ABAD0C200}</LicenseId>
 			<Name>TC3 ADS</Name>
 			<OrderNo>TC1000</OrderNo>
+		</License>
+		<License>
+			<LicenseId>{3FF18E97-7754-401B-93FB-70544DE28A13}</LicenseId>
+			<Name>TC3 IO</Name>
+			<OrderNo>TC1100</OrderNo>
 		</License>
 		<License>
 			<LicenseId>{66689887-CCBD-452C-AC9A-039D997C6E66}</LicenseId>
@@ -36,9 +21,24 @@
 			<OrderNo>TC1200</OrderNo>
 		</License>
 		<License>
-			<LicenseId>{3FF18E97-7754-401B-93FB-70544DE28A13}</LicenseId>
-			<Name>TC3 IO</Name>
-			<OrderNo>TC1100</OrderNo>
+			<LicenseId>{777F1598-583B-4503-99BB-7C02E0ABD97E}</LicenseId>
+			<Name>TC3 Controller Toolbox</Name>
+			<OrderNo>TF4100</OrderNo>
+		</License>
+		<License>
+			<LicenseId>{94C87B69-26C2-4677-9F7E-27E770C481BE}</LicenseId>
+			<Name>TC3 Simulation Manager</Name>
+			<OrderNo>TE1110</OrderNo>
+		</License>
+		<License>
+			<LicenseId>{6BCAF065-32F5-44AC-A233-31D91205AB5B}</LicenseId>
+			<Name>TC3 Interface for LabVIEW</Name>
+			<OrderNo>TF3710</OrderNo>
+		</License>
+		<License>
+			<LicenseId>{FB6D691D-478A-4C62-9D57-8A3A1727A76B}</LicenseId>
+			<Name>TC3 ADS-Communication-Library</Name>
+			<OrderNo>TF6000</OrderNo>
 		</License>
 	</LicenseInfo>
 </TcLicenseInfo>

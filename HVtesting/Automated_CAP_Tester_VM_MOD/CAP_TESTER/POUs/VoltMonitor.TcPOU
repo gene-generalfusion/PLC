@@ -4,6 +4,7 @@
     <Declaration><![CDATA[PROGRAM VoltMonitor
 VAR
 	i : USINT := 0;
+	counter : USINT := 0;
 	b : ARRAY[0..3] OF BOOL;
 	b1 : BOOL;
 	b2 : BOOL;
@@ -12,10 +13,17 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[IF Heartbeat.screen_refresh_pulse = TRUE AND pause = FALSE THEN
+      <ST><![CDATA[IF Heartbeat.pulse_ms = TRUE AND pause = FALSE THEN
 	i := i+1;
-	VoltMonitor_DB.Channel := i ;
-	VoltMonitor_DB.VoltageReading_raw[i] := GVL.raw_VoltageMonitor;
+	IF i > 16 THEN 
+		i := 0;
+	END_IF
+	counter := 16 - i;
+	IF counter > 15 THEN 
+		counter := 15;
+	END_IF
+	VoltMonitor_DB.Channel := counter ;
+	VoltMonitor_DB.VoltageReading_raw[counter] := GVL.raw_VoltageMonitor;
 END_IF
 
 b[0] := VoltMonitor_DB.Channel.0;
@@ -23,13 +31,16 @@ b[1] := VoltMonitor_DB.Channel.1;
 b[2] := VoltMonitor_DB.Channel.2;
 b[3] := VoltMonitor_DB.Channel.3;
 	
-IF i > 15 THEN 
-	i := 0;
-END_IF]]></ST>
+]]></ST>
     </Implementation>
     <LineIds Name="VoltMonitor">
       <LineId Id="5" Count="0" />
       <LineId Id="12" Count="0" />
+      <LineId Id="88" Count="1" />
+      <LineId Id="87" Count="0" />
+      <LineId Id="90" Count="0" />
+      <LineId Id="95" Count="1" />
+      <LineId Id="94" Count="0" />
       <LineId Id="68" Count="0" />
       <LineId Id="66" Count="0" />
       <LineId Id="7" Count="0" />
@@ -37,7 +48,6 @@ END_IF]]></ST>
       <LineId Id="13" Count="0" />
       <LineId Id="63" Count="2" />
       <LineId Id="18" Count="0" />
-      <LineId Id="75" Count="1" />
       <LineId Id="21" Count="0" />
     </LineIds>
   </POU>

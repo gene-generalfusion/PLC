@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
-  <POU Name="Heartbeat" Id="{75f70c7f-6977-4f63-8075-a15f4b871ef8}" SpecialFunc="None">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="Heartbeat" Id="{e16dddae-d450-4971-842d-d2db31ef29f0}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM Heartbeat
 VAR
 	start_TON: TON;
@@ -9,11 +9,11 @@ VAR
 	reset_TON_et : TIME;
 	screen_refresh_pulse : BOOL;
 	
-	pulse_2hz_TON : TON;
-	pulse_2hz_et : TIME;
-	reset_2hz_TON : TON;
-	reset_2hz_TON_et : TIME;
-	pulse_2hz : BOOL;
+	pulse_ms_TON : TON;
+	pulse_ms_et : TIME;
+	reset_ms_TON : TON;
+	reset_ms_TON_et : TIME;
+	pulse_ms : BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -432,7 +432,7 @@ END_VAR
                       <o n="OutputItems" t="OutputItemList">
                         <l2 n="OutputItems" cet="Operand">
                           <o>
-                            <v n="Operand">"pulse_2hz"</v>
+                            <v n="Operand">"pulse_ms"</v>
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -457,7 +457,7 @@ END_VAR
                       <o n="RValue" t="BoxTreeBox">
                         <v n="BoxType">"TON"</v>
                         <o n="Instance" t="Operand">
-                          <v n="Operand">"pulse_2hz_TON"</v>
+                          <v n="Operand">"pulse_ms_TON"</v>
                           <v n="Type">"TON"</v>
                           <v n="Comment">""</v>
                           <v n="SymbolComment">""</v>
@@ -476,7 +476,7 @@ END_VAR
                           <l2 n="OutputItems" cet="Operand">
                             <n />
                             <o>
-                              <v n="Operand">"pulse_2hz_et"</v>
+                              <v n="Operand">"pulse_ms_et"</v>
                               <v n="Type">"TIME"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
@@ -535,7 +535,7 @@ END_VAR
                               </o>
                               <o t="BoxTreeOperand">
                                 <o n="Operand" t="Operand">
-                                  <v n="Operand">"reset_2hz_TON.Q"</v>
+                                  <v n="Operand">"reset_ms_TON.Q"</v>
                                   <v n="Type">"BOOL"</v>
                                   <v n="Comment">""</v>
                                   <v n="SymbolComment">""</v>
@@ -571,7 +571,7 @@ END_VAR
                           </o>
                           <o t="BoxTreeOperand">
                             <o n="Operand" t="Operand">
-                              <v n="Operand">"T#250ms"</v>
+                              <v n="Operand">"T#999ms"</v>
                               <v n="Type">"TIME"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
@@ -622,7 +622,7 @@ END_VAR
                     <o t="BoxTreeBox">
                       <v n="BoxType">"TON"</v>
                       <o n="Instance" t="Operand">
-                        <v n="Operand">"reset_2hz_TON"</v>
+                        <v n="Operand">"reset_ms_TON"</v>
                         <v n="Type">"TON"</v>
                         <v n="Comment">""</v>
                         <v n="SymbolComment">""</v>
@@ -641,7 +641,7 @@ END_VAR
                         <l2 n="OutputItems" cet="Operand">
                           <n />
                           <o>
-                            <v n="Operand">"reset_2hz_TON_et"</v>
+                            <v n="Operand">"reset_ms_TON_et"</v>
                             <v n="Type">"TIME"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -700,7 +700,7 @@ END_VAR
                             </o>
                             <o t="BoxTreeOperand">
                               <o n="Operand" t="Operand">
-                                <v n="Operand">"pulse_2hz_TON.Q"</v>
+                                <v n="Operand">"pulse_ms_TON.Q"</v>
                                 <v n="Type">"BOOL"</v>
                                 <v n="Comment">""</v>
                                 <v n="SymbolComment">""</v>
@@ -736,7 +736,7 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"T#250ms"</v>
+                            <v n="Operand">"T#1ms"</v>
                             <v n="Type">"TIME"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>

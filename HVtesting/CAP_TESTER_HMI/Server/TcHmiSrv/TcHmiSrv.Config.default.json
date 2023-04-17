@@ -4477,6 +4477,16 @@
             },
             "USEMAPPING": true
         },
+        "PLC.VoltMonitor.counter": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC::VoltMonitor::counter",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/USINT"
+            },
+            "USEMAPPING": true
+        },
         "PLC.VoltMonitor.i": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -4531,6 +4541,33 @@
             "MAPPING": "PLC::VoltMonitor_DB::Heartbeat",
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC.VoltMonitor_DB.LoadMaxRatedV": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC::VoltMonitor_DB::LoadMaxRatedV",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "comment": "-2k TO 35kV"
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC.VoltMonitor_DB.LoadMinRatedV": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC::VoltMonitor_DB::LoadMinRatedV",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
             },
             "USEMAPPING": true
         },
@@ -5997,11 +6034,14 @@
                 "PLC.VoltMonitor.b.1": 3,
                 "PLC.VoltMonitor.b.2": 3,
                 "PLC.VoltMonitor.b.3": 3,
+                "PLC.VoltMonitor.counter": 3,
                 "PLC.VoltMonitor.i": 3,
                 "PLC.VoltMonitor.pause": 3,
                 "PLC.VoltMonitor_DB.BateryOn": 3,
                 "PLC.VoltMonitor_DB.Channel": 3,
                 "PLC.VoltMonitor_DB.Heartbeat": 3,
+                "PLC.VoltMonitor_DB.LoadMaxRatedV": 3,
+                "PLC.VoltMonitor_DB.LoadMinRatedV": 3,
                 "PLC.VoltMonitor_DB.VoltageReading.0": 3,
                 "PLC.handleFAULT.cap1THRESHOLDcel": 3,
                 "PLC1.Automated_Capacitor_Test_ST.EOCBool": 3,
