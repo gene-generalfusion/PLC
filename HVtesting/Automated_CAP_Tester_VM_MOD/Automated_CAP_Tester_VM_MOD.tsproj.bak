@@ -31,8 +31,8 @@
 		<System>
 			<Licenses>
 				<Target BkhfOrder="00674809" CustomOrder="00674809">
-					<ManualSelect>{6BCAF065-32F5-44AC-A233-31D91205AB5B}</ManualSelect>
 					<ManualSelect>{94C87B69-26C2-4677-9F7E-27E770C481BE}</ManualSelect>
+					<ManualSelect>{6BCAF065-32F5-44AC-A233-31D91205AB5B}</ManualSelect>
 					<ManualSelect>{FB6D691D-478A-4C62-9D57-8A3A1727A76B}</ManualSelect>
 				</Target>
 			</Licenses>
