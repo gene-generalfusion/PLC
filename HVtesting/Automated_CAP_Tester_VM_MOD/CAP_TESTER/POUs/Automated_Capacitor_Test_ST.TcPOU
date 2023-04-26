@@ -210,7 +210,8 @@ IF GVL.appRUN THEN
 			volt_TO_AO1_802L50kV(psuTargetinvolt:= GVL.targetPSUVOLT, psuMaxOutput:= GVL.psuMaxOutput, VpsuOut:= GVL.psuVCTRL);	(* PSU setpoint function. *)
 			GVL.shotCOIL := FALSE;
 			GVL.scopetrigger := FALSE;
-			
+			Vcap_sample[1] := 0; //initialise sample
+			Vcap_sample[2] := 0; //initialise sample
 			IF GVL.softdump = FALSE THEN 
 				GVL.sparkCharger_ON := FALSE;
 				GVL.sparkCharger_SP_Enable := FALSE;
@@ -373,11 +374,12 @@ IF GVL.appRUN THEN
 			END_IF
 			// Added pre-fire protection.  IF sample 2 is less than 5% of sample 1, go to dump State. Nov 09, 2022
 			//*****************************************************
-			FOR i := 1 TO 2 BY 1 DO
-				IF heartbeat.pulse_ms = TRUE THEN
-					Vcap_sample[i] := GVL.Vcap1;
-				END_IF;
-			END_FOR;
+			
+			IF heartbeat.pulse_ms = TRUE THEN
+				Vcap_sample[i] := GVL.Vcap1;
+				i := i+1;
+			END_IF;
+			
 				
 			IF Vcap_sample[2] < (Vcap_sample[1] - (0.05 * Vcap_sample[1])) THEN // IF Vcap1 suddenly drop morethan 5% of of the previous sample, go to dump state.
 				processSTEP :=  4;  
@@ -621,11 +623,10 @@ IF GVL.appRUN THEN
 			// Added pre-fire protection.  IF sample 2 is less than 5% of sample 1, go to dump State. Nov 09, 2022
 			//*****************************************************
 			
-			FOR i := 1 TO 2 BY 1 DO
-				IF heartbeat.pulse_ms = TRUE THEN
-					Vcap_sample[i] := GVL.Vcap1;
-				END_IF;
-			END_FOR;
+			IF heartbeat.pulse_ms = TRUE THEN
+				Vcap_sample[i] := GVL.Vcap1;
+				i := i+1;
+			END_IF;
 				
 			IF Vcap_sample[2] < (Vcap_sample[1] - (0.05 * Vcap_sample[1])) THEN // IF Vcap1 suddenly drop morethan 5% of of the previous sample, go to dump state.
 				processSTEP :=  4;  
@@ -759,7 +760,9 @@ END_IF;
       <LineId Id="2923" Count="0" />
       <LineId Id="2926" Count="0" />
       <LineId Id="6029" Count="1" />
-      <LineId Id="9748" Count="2" />
+      <LineId Id="9748" Count="0" />
+      <LineId Id="10545" Count="0" />
+      <LineId Id="9749" Count="1" />
       <LineId Id="9752" Count="0" />
       <LineId Id="9751" Count="0" />
       <LineId Id="8023" Count="1" />
@@ -836,7 +839,9 @@ END_IF;
       <LineId Id="9849" Count="0" />
       <LineId Id="9862" Count="0" />
       <LineId Id="10423" Count="1" />
-      <LineId Id="10434" Count="1" />
+      <LineId Id="10434" Count="0" />
+      <LineId Id="10541" Count="0" />
+      <LineId Id="10435" Count="0" />
       <LineId Id="10425" Count="7" />
       <LineId Id="9853" Count="0" />
       <LineId Id="9858" Count="0" />
@@ -976,7 +981,7 @@ END_IF;
       <LineId Id="9863" Count="0" />
       <LineId Id="9865" Count="1" />
       <LineId Id="10082" Count="0" />
-      <LineId Id="10436" Count="3" />
+      <LineId Id="10542" Count="2" />
       <LineId Id="10297" Count="0" />
       <LineId Id="10409" Count="0" />
       <LineId Id="10411" Count="5" />
