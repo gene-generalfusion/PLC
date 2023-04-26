@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="ST_RecipeLocal" Id="{e86420b9-6b97-4eea-9212-7597b15af2ad}">
+    <Declaration><![CDATA[TYPE ST_RecipeLocal :
+STRUCT
+	chargerSetpoint 	: INT;  
+	currentSetpoint 	: INT;   
+	CurrentDuration		: TIME;   
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

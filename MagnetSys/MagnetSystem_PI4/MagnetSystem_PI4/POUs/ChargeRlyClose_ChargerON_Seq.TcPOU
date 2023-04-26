@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="ChargeRlyClose_ChargerON_Seq" Id="{43165624-c373-48f5-9efc-f7e0ada818b7}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK ChargeRlyClose_ChargerON_Seq
+VAR_INPUT
+	IN : BOOL;
+END_VAR
+VAR_OUTPUT
+	Done : BOOL;
+END_VAR
+VAR
+	i : INT := 1;
+	timer_TON : TON;
+	timer_PT : TIME := T#1S;
+	timer_ET : TIME;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF IN = TRUE THEN
+	FOR i := 1 TO 10 BY 1 DO
+		Devices.Coil[i].closeChargeRelay := TRUE;	
+	END_FOR;
+	
+	timer_TON (IN := TRUE, PT := timer_PT, ET => timer_ET);
+	
+	IF timer_TON.Q = TRUE AND Permissives.AllChargerRelay_Closed = TRUE THEN
+		Devices.Coil[i].enableOutputToCharger := TRUE;
+		
+		Done := TRUE;
+		timer_TON (IN := FALSE, PT := timer_PT, ET => timer_ET);
+	END_IF;
+END_IF;
+
+
+IF i > 10 THEN
+	i := 1;
+END_IF;
+]]></ST>
+    </Implementation>
+    <LineIds Name="ChargeRlyClose_ChargerON_Seq">
+      <LineId Id="17" Count="9" />
+      <LineId Id="40" Count="1" />
+      <LineId Id="27" Count="5" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="39" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

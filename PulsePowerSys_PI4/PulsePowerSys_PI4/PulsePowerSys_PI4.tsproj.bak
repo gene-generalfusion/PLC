@@ -1,0 +1,3388 @@
+<?xml version="1.0"?>
+<TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.29">
+	<DataTypes>
+		<DataType>
+			<Name GUID="{12E80FF5-6251-C867-A464-3036E21E986D}" IecBaseType="true" AutoDeleteType="true">ARRAY [0..5] OF BYTE</Name>
+			<BitSize>48</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>6</Elements>
+			</ArrayInfo>
+		</DataType>
+		<DataType>
+			<Name GUID="{1337BBBA-9A3F-D9E7-4ED6-FA23E60881AB}" Namespace="Tc2_Standard" AutoDeleteType="true">TON</Name>
+			<BitSize>256</BitSize>
+			<SubItem>
+				<Name>IN</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<Comment><![CDATA[ starts timer with rising edge, resets timer with falling edge ]]></Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>64</BitOffs>
+				<Properties>
+					<Property>
+						<Name>ItemType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<SubItem>
+				<Name>PT</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000048}">TIME</Type>
+				<Comment><![CDATA[ time to pass, before Q is set ]]></Comment>
+				<BitSize>32</BitSize>
+				<BitOffs>96</BitOffs>
+				<Properties>
+					<Property>
+						<Name>ItemType</Name>
+						<Value>Input</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<SubItem>
+				<Name>Q</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<Comment><![CDATA[ gets TRUE, delay time (PT) after a rising edge at IN ]]></Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>128</BitOffs>
+				<Properties>
+					<Property>
+						<Name>ItemType</Name>
+						<Value>Output</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<SubItem>
+				<Name>ET</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000048}">TIME</Type>
+				<Comment><![CDATA[ elapsed time ]]></Comment>
+				<BitSize>32</BitSize>
+				<BitOffs>160</BitOffs>
+				<Properties>
+					<Property>
+						<Name>ItemType</Name>
+						<Value>Output</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<SubItem>
+				<Name>M</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>192</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>StartTime</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000048}">TIME</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>224</BitOffs>
+			</SubItem>
+			<Properties>
+				<Property>
+					<Name>PouType</Name>
+					<Value>FunctionBlock</Value>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{D079E1ED-47E3-F617-5E84-485042BED8B1}" IecBaseType="true" AutoDeleteType="true">ARRAY [1..8] OF Tc2_Standard.TON</Name>
+			<BitSize>2048</BitSize>
+			<BaseType GUID="{1337BBBA-9A3F-D9E7-4ED6-FA23E60881AB}" Namespace="Tc2_Standard">TON</BaseType>
+			<ArrayInfo>
+				<LBound>1</LBound>
+				<Elements>8</Elements>
+			</ArrayInfo>
+		</DataType>
+		<DataType>
+			<Name GUID="{C8606601-69ED-D227-9D04-5034FCFE8796}" IecBaseType="true" AutoDeleteType="true">ARRAY [1..8] OF TIME</Name>
+			<BitSize>256</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000048}">TIME</BaseType>
+			<ArrayInfo>
+				<LBound>1</LBound>
+				<Elements>8</Elements>
+			</ArrayInfo>
+		</DataType>
+		<DataType>
+			<Name GUID="{0F26313F-FDBE-7CED-BD04-19940A122245}" IecBaseType="true" AutoDeleteType="true">ARRAY [1..8] OF INT</Name>
+			<BitSize>128</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000006}">INT</BaseType>
+			<ArrayInfo>
+				<LBound>1</LBound>
+				<Elements>8</Elements>
+			</ArrayInfo>
+		</DataType>
+		<DataType>
+			<Name GUID="{18071995-0000-0000-0000-002000000001}" IecBaseType="true" BitType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..0] OF BIT</Name>
+			<BitSize>1</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>1</Elements>
+			</ArrayInfo>
+		</DataType>
+		<DataType>
+			<Name GUID="{18071995-0000-0000-0000-002000000006}" IecBaseType="true" BitType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..5] OF BIT</Name>
+			<BitSize>6</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>6</Elements>
+			</ArrayInfo>
+		</DataType>
+		<DataType>
+			<Name GUID="{18071995-0000-0000-0000-002000000007}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..6] OF BIT</Name>
+			<BitSize>7</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>7</Elements>
+			</ArrayInfo>
+		</DataType>
+		<DataType>
+			<Name GUID="{5BA87DAD-A5FE-4FD9-9710-7548F3A35C54}" PersistentType="true">AlarmWord2</Name>
+			<DisplayName TxtId=""><![CDATA[AlarmWord2]]></DisplayName>
+			<EventId>
+				<Name Id="1">b0</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 1 System Tripped]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="2">b1</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 1 Loss Pneumatic Pressure]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="3">b2</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 1 Peak Charge Relay 1 Failed]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="4">b3</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 1 Peak Charge Relay 2 Failed]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="5">b4</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 1 Peak Dump Relay 1 Failed]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="6">b5</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 1 Peak Dump Relay 2 Failed]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="7">b6</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 1 Sustain Charge Relay 1 Failed]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="8">b7</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 1 Sustain Charge Relay 2 Failed]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="9">b8</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 1 Sustain Dump Relay 1 Failed]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="10">b9</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 1 Sustain Dump Relay 2 Failed]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="11">b10</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 1 Loss DC Power]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="12">b11</Name>
+				<DisplayName TxtId=""><![CDATA[Spare]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="13">b12</Name>
+				<DisplayName TxtId=""><![CDATA[Spare]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="14">b13</Name>
+				<DisplayName TxtId=""><![CDATA[AlarmWord1Event14_DisplayText]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="15">b14</Name>
+				<DisplayName TxtId=""><![CDATA[AlarmWord1Event15_DisplayText]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="16">b15</Name>
+				<DisplayName TxtId=""><![CDATA[AlarmWord1Event16_DisplayText]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<Hides>
+				<Hide GUID="{1852D0D0-F45A-48AD-BFAA-6F94751D424F}"/>
+			</Hides>
+		</DataType>
+		<DataType>
+			<Name GUID="{B325D85C-3944-488E-84C8-1E20FE69657C}" PersistentType="true">AlarmWord3</Name>
+			<DisplayName TxtId=""><![CDATA[AlarmWord3]]></DisplayName>
+			<EventId>
+				<Name Id="1">b0</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 2 System Tripped]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="2">b1</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 2 Loss Pneumatic Pressure]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="3">b2</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 2 Peak Charge Relay 1 Failed]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="4">b3</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 2 Peak Charge Relay 2 Failed]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="5">b4</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 2 Peak Dump Relay 1 Failed]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="6">b5</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 2 Peak Dump Relay 2 Failed]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="7">b6</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 2 Sustain Charge Relay 1 Failed]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="8">b7</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 2 Sustain Charge Relay 2 Failed]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="9">b8</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 2 Sustain Dump Relay 1 Failed]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="10">b9</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 2 Sustain Dump Relay 2 Failed]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="11">b10</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 2 Loss DC Power]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="12">b11</Name>
+				<DisplayName TxtId=""><![CDATA[Spare]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="13">b12</Name>
+				<DisplayName TxtId=""><![CDATA[Spare]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="14">b13</Name>
+				<DisplayName TxtId=""><![CDATA[AlarmWord1Event14_DisplayText]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="15">b14</Name>
+				<DisplayName TxtId=""><![CDATA[AlarmWord1Event15_DisplayText]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="16">b15</Name>
+				<DisplayName TxtId=""><![CDATA[AlarmWord1Event16_DisplayText]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<Hides>
+				<Hide GUID="{46B512A8-D365-4379-B69E-95104B1F8F88}"/>
+			</Hides>
+		</DataType>
+		<DataType>
+			<Name GUID="{266C5A98-2125-422A-9C87-0AF6114F3687}" PersistentType="true">AlarmWord4</Name>
+			<DisplayName TxtId=""><![CDATA[AlarmWord4]]></DisplayName>
+			<EventId>
+				<Name Id="1">b0</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 3 System Tripped]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="2">b1</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 3 Loss Pneumatic Pressure]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="3">b2</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 3 Peak Charge Relay 1 Failed]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="4">b3</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 3 Peak Charge Relay 2 Failed]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="5">b4</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 3 Peak Dump Relay 1 Failed]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="6">b5</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 3 Peak Dump Relay 2 Failed]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="7">b6</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 3 Sustain Charge Relay 1 Failed]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="8">b7</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 3 Sustain Charge Relay 2 Failed]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="9">b8</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 3 Sustain Dump Relay 1 Failed]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="10">b9</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 3 Sustain Dump Relay 2 Failed]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="11">b10</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 3 Loss DC Power]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="12">b11</Name>
+				<DisplayName TxtId=""><![CDATA[Spare]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="13">b12</Name>
+				<DisplayName TxtId=""><![CDATA[Spare]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="14">b13</Name>
+				<DisplayName TxtId=""><![CDATA[AlarmWord1Event14_DisplayText]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="15">b14</Name>
+				<DisplayName TxtId=""><![CDATA[AlarmWord1Event15_DisplayText]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="16">b15</Name>
+				<DisplayName TxtId=""><![CDATA[AlarmWord1Event16_DisplayText]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+		</DataType>
+		<DataType>
+			<Name GUID="{88E6FA51-908F-4F7A-A6B5-2B985F9A3B65}" PersistentType="true">AlarmWord5</Name>
+			<DisplayName TxtId=""><![CDATA[AlarmWord5]]></DisplayName>
+			<EventId>
+				<Name Id="1">b0</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 4 System Tripped]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="2">b1</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 4 Loss Pneumatic Pressure]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="3">b2</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 4 Form Charge Relay 1 Failed]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="4">b3</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 4 Form Charge Relay 2 Failed]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="5">b4</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 4 Form Dump Relay 1 Failed]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="6">b5</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 4 Form Dump Relay 2 Failed]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="7">b6</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 4 PreForm Charge Relay Failed]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="8">b7</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 4 Form Trigger Charge Relay Failed]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="9">b8</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 4 PreForm Trigger Charge Relay Failed]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="10">b9</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 4 PreForm Dump Relay Failed]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="11">b10</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 4 Form Trigger Dump Relay 1 Failed]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="12">b11</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 4 PreForm Trigger Dump Relay 1 Failed]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="13">b12</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 4 Loss DC Power]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="14">b13</Name>
+				<DisplayName TxtId=""><![CDATA[AlarmWord1Event14_DisplayText]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="15">b14</Name>
+				<DisplayName TxtId=""><![CDATA[AlarmWord1Event15_DisplayText]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="16">b15</Name>
+				<DisplayName TxtId=""><![CDATA[AlarmWord1Event16_DisplayText]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+		</DataType>
+		<DataType>
+			<Name GUID="{5D4F0B22-5CBD-45A5-BB6C-676861945713}" PersistentType="true">AlarmWord1</Name>
+			<DisplayName TxtId=""><![CDATA[AlarmWord1]]></DisplayName>
+			<EventId>
+				<Name Id="1">b0</Name>
+				<DisplayName TxtId=""><![CDATA[Master Stop is Pressed]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="2">b1</Name>
+				<DisplayName TxtId=""><![CDATA[Cage E-Stop Circuit Broken]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="3">b2</Name>
+				<DisplayName TxtId=""><![CDATA[Local Mode Selected]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="4">b3</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - MCP Loss DC Power]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="5">b4</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Charger 1 Faulted]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="6">b5</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Charger 2 Faulted]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="7">b6</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Charger 3 Faulted]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="8">b7</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Charger 4 Faulted]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="9">b8</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Charger 5 Faulted]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="10">b9</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Charger 6 Faulted]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="11">b10</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Charger 7 Faulted]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="12">b11</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Charger 8 Faulted]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="13">b12</Name>
+				<DisplayName TxtId=""><![CDATA[Spare]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="14">b13</Name>
+				<DisplayName TxtId=""><![CDATA[AlarmWord1Event14_DisplayText]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="15">b14</Name>
+				<DisplayName TxtId=""><![CDATA[AlarmWord1Event15_DisplayText]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="16">b15</Name>
+				<DisplayName TxtId=""><![CDATA[AlarmWord1Event16_DisplayText]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<Hides>
+				<Hide GUID="{9380CE49-8E6C-47D0-83B5-0ACFFC08D202}"/>
+				<Hide GUID="{1F1B1BBF-F1A3-4CCA-A4CE-DAD7297FDD15}"/>
+				<Hide GUID="{C0EF7778-01F4-408B-8558-6AC16C5F4EFE}"/>
+				<Hide GUID="{7E46E9CC-94E1-430A-A2D8-0C110B73519E}"/>
+				<Hide GUID="{D5DCAC24-A327-4F4D-8249-5E35FE84AF85}"/>
+				<Hide GUID="{462739D1-DF36-4C36-BCD0-09293B4C9D13}"/>
+			</Hides>
+		</DataType>
+		<DataType>
+			<Name GUID="{B955C0FB-9E51-46AF-8AC4-BBF6DA7DF9C8}" PersistentType="true">AlarmWord7</Name>
+			<DisplayName TxtId=""><![CDATA[AlarmWord7]]></DisplayName>
+			<EventId>
+				<Name Id="1">b0</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Charger 6 - Over Temp]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="2">b1</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Charger 6 - Interlock Open]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="3">b2</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Charger 6 - Load Faulted]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="4">b3</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Charger 7 - Over Temp]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="5">b4</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Charger 7 - Interlock Open]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="6">b5</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Charger 7 - Load Faulted]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="7">b6</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Charger 8 - Over Temp]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="8">b7</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Charger 8 - Interlock Open]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="9">b8</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Charger 8 - Load Faulted]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="10">b9</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Charged Time Out]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="11">b10</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Charging Time Out]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+		</DataType>
+	</DataTypes>
+	<ImageDatas>
+		<ImageData Id="1000">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000c40e0000c40e00000000000000000000ff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080808080808080808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000bfff00bfffc0c0c0808080c0c0c000ffffc0c0c000ffff808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000bfff00bfffc0c0c0808080c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000bfff00bfffc0c0c0808080c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080c0c0c0ff0000c0c0c0ff0000808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000bfff00bfffc0c0c0808080c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000bfff00bfffc0c0c0808080c0c0c00000ffc0c0c00000ff808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000bfff00bfffc0c0c0808080c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0000000000000c0c0c0808080c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ff000000c0c0c0c0c0c0000000808080c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0000000000000c0c0c0808080c0c0c0008000c0c0c0008000808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff</ImageData>
+		<ImageData Id="1001">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000c40e0000c40e00000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ff808080808080808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000ffffc0c0c000ffff808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0ff0000c0c0c0ff0000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c00000ffc0c0c00000ff808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0008000c0c0c0008000808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff</ImageData>
+		<ImageData Id="1002">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000120b0000120b00000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ff808080808080808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000ffffc0c0c000ffff808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0ff0000c0c0c0ff0000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff0000ff0000ff0000ff0000ff0000ff0000ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ff0000ff0000ff0000ff0000ff0000ff0000ffc0c0c00000ffc0c0c00000ff808080ff00ffff00ffff00ffff00ffff00ff0000ff0000ff0000ff0000ff0000ff0000ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff0000ff0000ff0000ff0000ff0000ff0000ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ff0000ff0000ff0000ff0000ff0000ff0000ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff0000ff0000ff0000ff0000ff0000ff0000ffc0c0c0008000c0c0c0008000808080ff00ffff00ffff00ffff00ffff00ff0000ff0000ff0000ff0000ff0000ff0000ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff</ImageData>
+		<ImageData Id="1003">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000c40e0000c40e00000000000000000000ff00ff000000000000ff00ffff00ffff00ff808080808080808080808080808080ff00ffff00ffff00ffff00ffff00ff000000ff00ffff00ff000000ff00ffff00ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ff000000ff00ffff00ffff00ffff00ffff00ffc0c0c000ffffc0c0c000ffff808080ff00ffff00ffff00ffff00ffff00ff000000ff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff000000ff00ffff00ff000000ff00ffff00ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ff000000000000ff00ffff00ffff00ffc0c0c0ff0000c0c0c0ff0000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c00000ffc0c0c00000ff808080ff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0008000c0c0c0008000808080ff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff</ImageData>
+		<ImageData Id="1004">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000c40e0000c40e00000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ff808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff</ImageData>
+	</ImageDatas>
+	<Project ProjectGUID="{5C3200E9-DDBA-458E-9CBF-7C94281CF3CD}" Target64Bit="true" ShowHideConfigurations="#x106">
+		<System>
+			<Licenses>
+				<Target>
+					<ManualSelect>{1C20D4D8-C732-464D-AF34-6EA5D2180E06}</ManualSelect>
+					<ManualSelect>{8161723B-0C2E-405C-B829-EDC5DAAB5104}</ManualSelect>
+					<ManualSelect>{3EBB9639-5FF3-42B6-8847-35C70DC013C8}</ManualSelect>
+				</Target>
+			</Licenses>
+			<Tasks>
+				<Task Id="3" Priority="20" CycleTime="100000" AmsPort="350" AdtTasks="true">
+					<Name>PlcTask</Name>
+				</Task>
+			</Tasks>
+		</System>
+		<Plc>
+			<Project GUID="{64E50DFF-6D60-4ED3-9E04-DCFDD6EA5BD7}" Name="PulsePower_PLC" PrjFilePath="PulsePower_PLC\PulsePower_PLC.plcproj" TmcFilePath="PulsePower_PLC\PulsePower_PLC.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PulsePower_PLC\PulsePower_PLC.tmc">
+					<Name>PulsePower_PLC Instance</Name>
+					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
+					<Vars VarGrpType="1">
+						<Name>PlcTask Inputs</Name>
+						<Var>
+							<Name>Tc2_BACnetRev12.BACnet_Globals.fbBACnet_Adapter._DeviceStatus</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Tc2_BACnetRev12.BACnet_Globals.fbBACnet_Adapter._AmsNetId</Name>
+							<Type GUID="{12E80FF5-6251-C867-A464-3036E21E986D}">ARRAY [0..5] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_01_00</Name>
+							<Comment><![CDATA[Master stop PB not pressed - black pb on mcp]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_01_01</Name>
+							<Comment><![CDATA[case Estop circuit okay (Rly1 (120vac)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_01_02</Name>
+							<Comment><![CDATA[Remote Mode Selected (NO)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_01_03</Name>
+							<Comment><![CDATA[MCP PSU1 DC OK]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_01_04</Name>
+							<Comment><![CDATA[Machine Ground Relay Open (lifted) Opto Board]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_01_05</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_01_06</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_01_07</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_02_00</Name>
+							<Comment><![CDATA[EL1008 - DI2
+TDK802 1]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_02_01</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_02_02</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_02_03</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_02_04</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_02_05</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_02_06</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_02_07</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_03_00</Name>
+							<Comment><![CDATA[EL1008 - DI3
+TDK802 2]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_03_01</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_03_02</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_03_03</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_03_04</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_03_05</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_03_06</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_03_07</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_04_00</Name>
+							<Comment><![CDATA[EL1008 - DI4
+TDK802 3]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_04_01</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_04_02</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_04_03</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_04_04</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_04_05</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_04_06</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_04_07</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_05_00</Name>
+							<Comment><![CDATA[EL1008 - DI5
+TDK802 4]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_05_01</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_05_02</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_05_03</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_05_04</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_05_05</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_05_06</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_05_07</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_06_00</Name>
+							<Comment><![CDATA[EL1008 - DI6
+TDK802 5]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_06_01</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_06_02</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_06_03</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_06_04</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_06_05</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_06_06</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_06_07</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_07_00</Name>
+							<Comment><![CDATA[EL1008 - DI7
+TDK802 6]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_07_01</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_07_02</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_07_03</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_07_04</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_07_05</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_07_06</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_07_07</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_08_00</Name>
+							<Comment><![CDATA[EL1008 - DI8
+TDK802 7]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_08_01</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_08_02</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_08_03</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_08_04</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_08_05</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_08_06</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_08_07</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_09_00</Name>
+							<Comment><![CDATA[EL1008 - DI9
+TDK802 8]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_09_01</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_09_02</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_09_03</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_09_04</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_09_05</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_09_06</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_09_07</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_03_00</Name>
+							<Comment><![CDATA[RACK 2
+EL3068 - AI1]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_03_00_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_03_01</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_03_01_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_03_02</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_03_02_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_03_03</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_03_03_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_03_04</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_03_04_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_03_05</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_03_05_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_03_06</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_03_06_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_03_07</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_03_07_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_04_00</Name>
+							<Comment><![CDATA[EL3068 - AI2]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_04_00_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_04_01</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_04_01_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_04_02</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_04_02_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_04_03</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_04_03_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_04_04</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_04_04_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_04_05</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_04_05_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_04_06</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_04_06_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_04_07</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_04_07_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_01_00</Name>
+							<Comment><![CDATA[***LCP1***BANK1 (Rack 3)********************************************************************
+EL3068 - AI1]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_01_00_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_01_01</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_01_01_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_01_02</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_01_02_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_01_03</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_01_03_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_01_04</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_01_04_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_01_05</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_01_05_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_01_06</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_01_06_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_01_07</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_01_07_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_02_00</Name>
+							<Comment><![CDATA[EL3068 - AI2]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_02_00_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_02_01</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_02_01_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_02_02</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_02_02_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_02_03</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_02_03_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_02_04</Name>
+							<Comment><![CDATA[SPARE]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_02_04_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_02_05</Name>
+							<Comment><![CDATA[SPARE]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_02_05_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_02_06</Name>
+							<Comment><![CDATA[SPARE]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_02_06_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_02_07</Name>
+							<Comment><![CDATA[SPARE]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_02_07_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_03_00</Name>
+							<Comment><![CDATA[EL1008 - DI1]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_03_01</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_03_02</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_03_03</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_03_04</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_03_05</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_03_06</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_03_07</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_04_00</Name>
+							<Comment><![CDATA[EL1008 - DI2	]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_04_01</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_04_02</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_04_03</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_04_04</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_04_05</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_04_06</Name>
+							<Comment><![CDATA[SPARE]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_04_07</Name>
+							<Comment><![CDATA[SPARE]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R4_01_00</Name>
+							<Comment><![CDATA[***LCP2***BANK2 (Rack 4)********************************************************************
+EL3068 - AI1]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R4_01_00_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R4_01_01</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R4_01_01_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R4_01_02</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R4_01_02_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R4_01_03</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R4_01_03_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R4_01_04</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R4_01_04_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R4_01_05</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R4_01_05_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R4_01_06</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R4_01_06_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R4_01_07</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R4_01_07_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R4_02_00</Name>
+							<Comment><![CDATA[EL3068 - AI2]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R4_02_00_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R4_02_01</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R4_02_01_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R4_02_02</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R4_02_02_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R4_02_03</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R4_02_03_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R4_02_04</Name>
+							<Comment><![CDATA[SPARE]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R4_02_04_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R4_02_05</Name>
+							<Comment><![CDATA[SPARE]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R4_02_05_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R4_02_06</Name>
+							<Comment><![CDATA[SPARE]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R4_02_06_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R4_02_07</Name>
+							<Comment><![CDATA[SPARE]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R4_02_07_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R4_03_00</Name>
+							<Comment><![CDATA[EL1008 - DI1]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R4_03_01</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R4_03_02</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R4_03_03</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R4_03_04</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R4_03_05</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R4_03_06</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R4_03_07</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R4_04_00</Name>
+							<Comment><![CDATA[EL1008 - DI2	]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R4_04_01</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R4_04_02</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R4_04_03</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R4_04_04</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R4_04_05</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R4_04_06</Name>
+							<Comment><![CDATA[SPARE]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R4_04_07</Name>
+							<Comment><![CDATA[SPARE]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R5_01_00</Name>
+							<Comment><![CDATA[***LCP3***BANK3 (Rack 5)********************************************************************
+EL3068 - AI1]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R5_01_00_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R5_01_01</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R5_01_01_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R5_01_02</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R5_01_02_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R5_01_03</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R5_01_03_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R5_01_04</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R5_01_04_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R5_01_05</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R5_01_05_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R5_01_06</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R5_01_06_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R5_01_07</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R5_01_07_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R5_02_00</Name>
+							<Comment><![CDATA[EL3068 - AI2]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R5_02_00_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R5_02_01</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R5_02_01_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R5_02_02</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R5_02_02_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R5_02_03</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R5_02_03_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R5_02_04</Name>
+							<Comment><![CDATA[SPARE]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R5_02_04_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R5_02_05</Name>
+							<Comment><![CDATA[SPARE]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R5_02_05_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R5_02_06</Name>
+							<Comment><![CDATA[SPARE]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R5_02_06_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R5_02_07</Name>
+							<Comment><![CDATA[SPARE]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R5_02_07_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R5_03_00</Name>
+							<Comment><![CDATA[EL1008 - DI1]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R5_03_01</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R5_03_02</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R5_03_03</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R5_03_04</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R5_03_05</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R5_03_06</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R5_03_07</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R5_04_00</Name>
+							<Comment><![CDATA[EL1008 - DI2	]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R5_04_01</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R5_04_02</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R5_04_03</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R5_04_04</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R5_04_05</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R5_04_06</Name>
+							<Comment><![CDATA[SPARE]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R5_04_07</Name>
+							<Comment><![CDATA[SPARE]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_01_00</Name>
+							<Comment><![CDATA[***LCP4***BANK4 (Rack 6)****FORMATION****************************************************************
+EL3068 - AI1]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_01_00_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_01_01</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_01_01_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_01_02</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_01_02_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_01_03</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_01_03_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_01_04</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_01_04_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_01_05</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_01_05_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_01_06</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_01_06_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_01_07</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_01_07_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_02_00</Name>
+							<Comment><![CDATA[EL3068 - AI2]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_02_00_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_02_01</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_02_01_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_02_02</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_02_02_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_02_03</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_02_03_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_02_04</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_02_04_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_02_05</Name>
+							<Comment><![CDATA[SPARE]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_02_05_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_02_06</Name>
+							<Comment><![CDATA[SPARE]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_02_06_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_02_07</Name>
+							<Comment><![CDATA[SPARE]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_02_07_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_03_00</Name>
+							<Comment><![CDATA[EL1008 - DI1]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_03_01</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_03_02</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_03_03</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_03_04</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_03_05</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_03_06</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_03_07</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_04_00</Name>
+							<Comment><![CDATA[EL1008 - DI2	]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_04_01</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_04_02</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_04_03</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_04_04</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_04_05</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_04_06</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_04_07</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_05_00</Name>
+							<Comment><![CDATA[EL1008 - DI3	]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_05_01</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_05_02</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_05_03</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_05_04</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_05_05</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_05_06</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_05_07</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_06_00</Name>
+							<Comment><![CDATA[EL1008 - DI4	]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_06_01</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_06_02</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_06_03</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_06_04</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_06_05</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_06_06</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_06_07</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_07_00</Name>
+							<Comment><![CDATA[EL1008 - DI5	]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_07_01</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_07_02</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_07_03</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_07_04</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_07_05</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_07_06</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R6_07_07</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+					</Vars>
+					<Vars VarGrpType="2" AreaNo="1">
+						<Name>PlcTask Outputs</Name>
+						<Var>
+							<Name>Output.R2_01_00</Name>
+							<Comment><![CDATA[***MCP Rack 2**************************************************
+EL2008 - DQ1]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_01_01</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_01_02</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_01_03</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_01_04</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_01_05</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_01_06</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_01_07</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_02_00</Name>
+							<Comment><![CDATA[EL2008 - DQ2]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_02_01</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_02_02</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_02_03</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_02_04</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_02_05</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_02_06</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_02_07</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_06_00</Name>
+							<Comment><![CDATA[EL2008 - DQ3]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_05_00</Name>
+							<Comment><![CDATA[Charger 1 - Voltage Setpoint]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_05_00_Status</Name>
+							<Comment><![CDATA[need to double check]]></Comment>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_05_01</Name>
+							<Comment><![CDATA[Charger 2 - Voltage Setpoint]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_05_01_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_05_02</Name>
+							<Comment><![CDATA[Charger 3 - Voltage Setpoint]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_05_02_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_05_03</Name>
+							<Comment><![CDATA[Charger 4 - Voltage Setpoint]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_05_03_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_05_04</Name>
+							<Comment><![CDATA[Charger 5 - Voltage Setpoint]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_05_04_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_05_05</Name>
+							<Comment><![CDATA[Charger 6 - Voltage Setpoint]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_05_05_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_05_06</Name>
+							<Comment><![CDATA[Charger 7 - Voltage Setpoint]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_05_06_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_05_07</Name>
+							<Comment><![CDATA[Charger 8 - Voltage Setpoint]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_05_07_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_06_01</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_06_02</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_06_03</Name>
+							<Comment><![CDATA[Lift Machine Ground]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_08_04</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_08_05</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_08_06</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_08_07</Name>
+							<Comment><![CDATA[spare ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R3_05_00</Name>
+							<Comment><![CDATA[***LCP1***BANK1 (Rack 3)********************************************************************
+EL2008 - DQ1]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_07_00</Name>
+							<Comment><![CDATA[GLS 1 - Voltage Setpoint]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_07_00_Status</Name>
+							<Comment><![CDATA[need to double check]]></Comment>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_07_01</Name>
+							<Comment><![CDATA[GLS 2 - Voltage Setpoint]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_07_01_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_07_02</Name>
+							<Comment><![CDATA[GLS 3 - Voltage Setpoint]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_07_02_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_07_03</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_07_03_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_07_04</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_07_04_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_07_05</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_07_05_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_07_06</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_07_06_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_07_07</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_07_07_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Output.R3_05_01</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R3_05_02</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R3_05_03</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R3_05_04</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R3_05_05</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R3_05_06</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R3_05_07</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R3_06_00</Name>
+							<Comment><![CDATA[BANK 1 SYSTEM READY TO CHARGE]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R3_06_01</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R3_06_02</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R3_06_03</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R3_06_04</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R3_06_05</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R3_06_06</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R3_06_07</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R4_05_00</Name>
+							<Comment><![CDATA[***LCP2***BANK2 (Rack 4)********************************************************************
+EL2008 - DQ1]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R4_05_01</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R4_05_02</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R4_05_03</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R4_05_04</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R4_05_05</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R4_05_06</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R4_05_07</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R4_06_00</Name>
+							<Comment><![CDATA[BANK 2 SYSTEM READY TO CHARGE]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R4_06_01</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R4_06_02</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R4_06_03</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R4_06_04</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R4_06_05</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R4_06_06</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R4_06_07</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R5_05_00</Name>
+							<Comment><![CDATA[***LCP3***BANK3 (Rack 5)********************************************************************
+EL2008 - DQ1]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R5_05_01</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R5_05_02</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R5_05_03</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R5_05_04</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R5_05_05</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R5_05_06</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R5_05_07</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R5_06_00</Name>
+							<Comment><![CDATA[BANK 3 SYSTEM READY TO CHARGE]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R5_06_01</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R5_06_02</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R5_06_03</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R5_06_04</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R5_06_05</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R5_06_06</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R5_06_07</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R6_06_00</Name>
+							<Comment><![CDATA[***LCP4***BANK4 (Rack 6)*******Formation*************************************************************
+EL2008 - DQ1]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R6_06_01</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R6_06_02</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R6_06_03</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R6_06_04</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R6_06_05</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R6_06_06</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R6_06_07</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R6_07_00</Name>
+							<Comment><![CDATA[EL2008 - DQ2]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R6_07_01</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R6_07_02</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R6_07_03</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R6_07_04</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R6_07_05</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R6_07_06</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R6_07_07</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+					</Vars>
+					<Vars VarGrpType="8" AreaNo="4">
+						<Name>PlcTask Retains</Name>
+						<Var>
+							<Name>ChargeTime_DB.PreFormChargeTime_PT</Name>
+							<Type>TIME</Type>
+							<InOut>7</InOut>
+						</Var>
+						<Var>
+							<Name>ChargeTime_DB.ChargerDelay_TON</Name>
+							<Type GUID="{D079E1ED-47E3-F617-5E84-485042BED8B1}">ARRAY [1..8] OF Tc2_Standard.TON</Type>
+							<InOut>7</InOut>
+						</Var>
+						<Var>
+							<Name>ChargeTime_DB.ChargerDelay_PT</Name>
+							<Type GUID="{C8606601-69ED-D227-9D04-5034FCFE8796}">ARRAY [1..8] OF TIME</Type>
+							<InOut>7</InOut>
+						</Var>
+						<Var>
+							<Name>ChargeTime_DB.ChargerDelay_ET</Name>
+							<Type GUID="{C8606601-69ED-D227-9D04-5034FCFE8796}">ARRAY [1..8] OF TIME</Type>
+							<InOut>7</InOut>
+						</Var>
+						<Var>
+							<Name>ChargeTime_DB.PreFormChargeTime_TON</Name>
+							<Comment><![CDATA[SustChargeTime_TON : ARRAY[1..3] OF TON;
+SustChargeTime_PT  : ARRAY[1..3] OF TIME;
+SustChargeTime_ET  : ARRAY[1..3] OF TIME;	
+FormChargeTime_TON : ARRAY[1..2] OF TON;
+FormChargeTime_PT  : ARRAY[1..2] OF TIME;
+FormChargeTime_ET  : ARRAY[1..2] OF TIME;]]></Comment>
+							<Type GUID="{1337BBBA-9A3F-D9E7-4ED6-FA23E60881AB}" Namespace="Tc2_Standard">TON</Type>
+							<InOut>7</InOut>
+						</Var>
+						<Var>
+							<Name>ChargeTime_DB.PreFormChargeTime_ET</Name>
+							<Type>TIME</Type>
+							<InOut>7</InOut>
+						</Var>
+						<Var>
+							<Name>ChargeTime_DB.LongestChargeTime_PT</Name>
+							<Type>TIME</Type>
+							<InOut>7</InOut>
+						</Var>
+						<Var>
+							<Name>ChargeTime_DB.LongestChargeTime_TON</Name>
+							<Type GUID="{1337BBBA-9A3F-D9E7-4ED6-FA23E60881AB}" Namespace="Tc2_Standard">TON</Type>
+							<InOut>7</InOut>
+						</Var>
+						<Var>
+							<Name>ChargeTime_DB.LongestChargeTime_ET</Name>
+							<Type>TIME</Type>
+							<InOut>7</InOut>
+						</Var>
+						<Var>
+							<Name>ChargeTime_DB.ChargeTimeStartDelay</Name>
+							<Type GUID="{0F26313F-FDBE-7CED-BD04-19940A122245}">ARRAY [1..8] OF INT</Type>
+							<InOut>7</InOut>
+						</Var>
+						<Var>
+							<Name>ChargeTime_DB.ChargingTimeElapse</Name>
+							<Type GUID="{0F26313F-FDBE-7CED-BD04-19940A122245}">ARRAY [1..8] OF INT</Type>
+							<InOut>7</InOut>
+						</Var>
+						<Var>
+							<Name>ChargeTime_DB.ChargingTimeElapse_TON</Name>
+							<Type GUID="{D079E1ED-47E3-F617-5E84-485042BED8B1}">ARRAY [1..8] OF Tc2_Standard.TON</Type>
+							<InOut>7</InOut>
+						</Var>
+						<Var>
+							<Name>ChargeTime_DB.PreFormChargeTimeStartDelay</Name>
+							<Type>INT</Type>
+							<InOut>7</InOut>
+						</Var>
+						<Var>
+							<Name>ChargeTime_DB.PreFormChargingTimeElapse</Name>
+							<Type>INT</Type>
+							<InOut>7</InOut>
+						</Var>
+						<Var>
+							<Name>ChargeTime_DB.PreFormChargingTimeElapse_TON</Name>
+							<Type GUID="{1337BBBA-9A3F-D9E7-4ED6-FA23E60881AB}" Namespace="Tc2_Standard">TON</Type>
+							<InOut>7</InOut>
+						</Var>
+					</Vars>
+					<Contexts>
+						<Context>
+							<Id NeedCalleeCall="true">0</Id>
+							<Name>PlcTask</Name>
+							<ManualConfig>
+								<OTCID>#x02010030</OTCID>
+							</ManualConfig>
+							<Priority>20</Priority>
+							<CycleTime>10000000</CycleTime>
+						</Context>
+					</Contexts>
+					<TaskPouOids>
+						<TaskPouOid Prio="20" OTCID="#x08502001"/>
+					</TaskPouOids>
+				</Instance>
+			</Project>
+		</Plc>
+		<Io>
+			<Device Id="3" Disabled="true" DevType="111" DevFlags="#x0003" AmsPort="28675" AmsNetId="172.25.226.104.4.1" RemoteName="Device 3 (EtherCAT)" InfoImageId="3">
+				<Name>Device 3 (EtherCAT)</Name>
+				<AddressInfo>
+					<Pnp>
+						<DeviceDesc>X000 (X000)</DeviceDesc>
+						<DeviceName>\DEVICE\{C9F886EB-C263-423E-BC9B-1236ADBBAA9E}</DeviceName>
+						<DeviceData>00010568e057</DeviceData>
+					</Pnp>
+				</AddressInfo>
+				<Image Id="2" AddrType="9" ImageType="3">
+					<Name>Image</Name>
+				</Image>
+				<Box Id="1" BoxType="9099">
+					<Name>Term 1 (EK1541)</Name>
+					<ImageId>1000</ImageId>
+					<EtherCAT SlaveType="1" PdiType="#x0d04" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x06052c52" RevisionNo="#x00120000" CheckRevisionNoType="3" PortPhys="305" IdentificationAdo="4096" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EK1541 EtherCAT Coupler (2A E-Bus, POF, ID switch)" Desc="EK1541" PortABoxInfo="#x00ffffff">
+						<SyncMan>001002000000010004000000000000000000001000000000</SyncMan>
+						<Fmmu>0000000000000000001000010100000002000000000000000000000000000000</Fmmu>
+						<Pdo Name="ID" Index="#x1a00" Flags="#x0010" SyncMan="0">
+							<Entry Name="ID" Index="#x6000" Sub="#x01">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
+					</EtherCAT>
+					<Box Id="2" BoxType="9099" BoxFlags="#x00000020">
+						<Name>Term 2 (EL3068)</Name>
+						<ImageId>1001</ImageId>
+						<EtherCAT SlaveType="2" PdiType="#x0405" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="7" FoeType="1" VendorId="#x00000002" ProductCode="#x0bfc3052" RevisionNo="#x00150000" InfoDataAddr="true" TimeoutMailbox2="2000" CheckRevisionNoType="3" PortPhys="51" SdoUploadWithMaxLength="true" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL3068 8Ch. Ana. Input 0-10V" Desc="EL3068" PortABoxInfo="#x01000001">
+							<SyncMan>001080002600010001000000800080008000001026010000</SyncMan>
+							<SyncMan>801080002200010002000000800080008000801022010000</SyncMan>
+							<SyncMan>001100000400000003000000000000000000001104000000</SyncMan>
+							<SyncMan>801120002000010004000000000000002000801120010000</SyncMan>
+							<Fmmu>0000000000000000801100010100000002000000000000000000000000000000</Fmmu>
+							<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
+							<BootStrapData>0010f400f410f400</BootStrapData>
+							<Pdo Name="AI Standard Channel 1" Index="#x1a00" Flags="#x0010" SyncMan="3">
+								<ExcludePdo>#x1a01</ExcludePdo>
+								<Entry Name="Status__Underrange" Index="#x6000" Sub="#x01">
+									<Type>BIT</Type>
+									<Comment><![CDATA[Underrange event active]]></Comment>
+								</Entry>
+								<Entry Name="Status__Overrange" Index="#x6000" Sub="#x02">
+									<Type>BIT</Type>
+									<Comment><![CDATA[Overrange event active]]></Comment>
+								</Entry>
+								<Entry Name="Status__Limit 1" Index="#x6000" Sub="#x03">
+									<Type>BIT2</Type>
+									<Comment><![CDATA[Bit0: Value smaller/equal Limit1
+Bit1: Value bigger/equal Limit1]]></Comment>
+								</Entry>
+								<Entry Name="Status__Limit 2" Index="#x6000" Sub="#x05">
+									<Type>BIT2</Type>
+									<Comment><![CDATA[Bit0: Value smaller/equal Limit2
+Bit1: Value bigger/equal Limit2]]></Comment>
+								</Entry>
+								<Entry Name="Status__Error" Index="#x6000" Sub="#x07">
+									<Type>BIT</Type>
+									<Comment><![CDATA[Bit set when Over- or Underrange]]></Comment>
+								</Entry>
+								<Entry Name="Status__">
+									<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+								</Entry>
+								<Entry Name="Status__">
+									<Type GUID="{18071995-0000-0000-0000-002000000006}">ARRAY [0..5] OF BIT</Type>
+								</Entry>
+								<Entry Name="Status__TxPDO State" Index="#x6000" Sub="#x0f">
+									<Type>BIT</Type>
+									<Comment><![CDATA[TRUE when this TxPDO is not valid]]></Comment>
+								</Entry>
+								<Entry Name="Status__TxPDO Toggle" Index="#x6000" Sub="#x10">
+									<Type>BIT</Type>
+									<Comment><![CDATA[Bit toggles everytime when new value available]]></Comment>
+								</Entry>
+								<Entry Name="Value" Index="#x6000" Sub="#x11" Flags="#x00020000">
+									<Type>INT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="AI Compact Channel 1" Index="#x1a01" Flags="#x0010">
+								<ExcludePdo>#x1a00</ExcludePdo>
+								<Entry Name="Value" Index="#x6000" Sub="#x11" Flags="#x00020000">
+									<Type>INT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="AI Standard Channel 2" Index="#x1a02" Flags="#x0010" SyncMan="3">
+								<ExcludePdo>#x1a03</ExcludePdo>
+								<Entry Name="Status__Underrange" Index="#x6010" Sub="#x01">
+									<Type>BIT</Type>
+									<Comment><![CDATA[Underrange event active]]></Comment>
+								</Entry>
+								<Entry Name="Status__Overrange" Index="#x6010" Sub="#x02">
+									<Type>BIT</Type>
+									<Comment><![CDATA[Overrange event active]]></Comment>
+								</Entry>
+								<Entry Name="Status__Limit 1" Index="#x6010" Sub="#x03">
+									<Type>BIT2</Type>
+									<Comment><![CDATA[Bit0: Value smaller/equal Limit1
+Bit1: Value bigger/equal Limit1]]></Comment>
+								</Entry>
+								<Entry Name="Status__Limit 2" Index="#x6010" Sub="#x05">
+									<Type>BIT2</Type>
+									<Comment><![CDATA[Bit0: Value smaller/equal Limit2
+Bit1: Value bigger/equal Limit2]]></Comment>
+								</Entry>
+								<Entry Name="Status__Error" Index="#x6010" Sub="#x07">
+									<Type>BIT</Type>
+									<Comment><![CDATA[Bit set when Over- or Underrange]]></Comment>
+								</Entry>
+								<Entry Name="Status__">
+									<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+								</Entry>
+								<Entry Name="Status__">
+									<Type GUID="{18071995-0000-0000-0000-002000000006}">ARRAY [0..5] OF BIT</Type>
+								</Entry>
+								<Entry Name="Status__TxPDO State" Index="#x6010" Sub="#x0f">
+									<Type>BIT</Type>
+									<Comment><![CDATA[TRUE when this TxPDO is not valid]]></Comment>
+								</Entry>
+								<Entry Name="Status__TxPDO Toggle" Index="#x6010" Sub="#x10">
+									<Type>BIT</Type>
+									<Comment><![CDATA[Bit toggles everytime when new value available]]></Comment>
+								</Entry>
+								<Entry Name="Value" Index="#x6010" Sub="#x11" Flags="#x00020000">
+									<Type>INT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="AI Compact Channel 2" Index="#x1a03" Flags="#x0010">
+								<ExcludePdo>#x1a02</ExcludePdo>
+								<Entry Name="Value" Index="#x6010" Sub="#x11" Flags="#x00020000">
+									<Type>INT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="AI Standard Channel 3" Index="#x1a04" Flags="#x0010" SyncMan="3">
+								<ExcludePdo>#x1a05</ExcludePdo>
+								<Entry Name="Status__Underrange" Index="#x6020" Sub="#x01">
+									<Type>BIT</Type>
+									<Comment><![CDATA[Underrange event active]]></Comment>
+								</Entry>
+								<Entry Name="Status__Overrange" Index="#x6020" Sub="#x02">
+									<Type>BIT</Type>
+									<Comment><![CDATA[Overrange event active]]></Comment>
+								</Entry>
+								<Entry Name="Status__Limit 1" Index="#x6020" Sub="#x03">
+									<Type>BIT2</Type>
+									<Comment><![CDATA[Bit0: Value smaller/equal Limit1
+Bit1: Value bigger/equal Limit1]]></Comment>
+								</Entry>
+								<Entry Name="Status__Limit 2" Index="#x6020" Sub="#x05">
+									<Type>BIT2</Type>
+									<Comment><![CDATA[Bit0: Value smaller/equal Limit2
+Bit1: Value bigger/equal Limit2]]></Comment>
+								</Entry>
+								<Entry Name="Status__Error" Index="#x6020" Sub="#x07">
+									<Type>BIT</Type>
+									<Comment><![CDATA[Bit set when Over- or Underrange]]></Comment>
+								</Entry>
+								<Entry Name="Status__">
+									<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+								</Entry>
+								<Entry Name="Status__">
+									<Type GUID="{18071995-0000-0000-0000-002000000006}">ARRAY [0..5] OF BIT</Type>
+								</Entry>
+								<Entry Name="Status__TxPDO State" Index="#x6020" Sub="#x0f">
+									<Type>BIT</Type>
+									<Comment><![CDATA[TRUE when this TxPDO is not valid]]></Comment>
+								</Entry>
+								<Entry Name="Status__TxPDO Toggle" Index="#x6020" Sub="#x10">
+									<Type>BIT</Type>
+									<Comment><![CDATA[Bit toggles everytime when new value available]]></Comment>
+								</Entry>
+								<Entry Name="Value" Index="#x6020" Sub="#x11" Flags="#x00020000">
+									<Type>INT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="AI Compact Channel 3" Index="#x1a05" Flags="#x0010">
+								<ExcludePdo>#x1a04</ExcludePdo>
+								<Entry Name="Value" Index="#x6020" Sub="#x11" Flags="#x00020000">
+									<Type>INT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="AI Standard Channel 4" Index="#x1a06" Flags="#x0010" SyncMan="3">
+								<ExcludePdo>#x1a07</ExcludePdo>
+								<Entry Name="Status__Underrange" Index="#x6030" Sub="#x01">
+									<Type>BIT</Type>
+									<Comment><![CDATA[Underrange event active]]></Comment>
+								</Entry>
+								<Entry Name="Status__Overrange" Index="#x6030" Sub="#x02">
+									<Type>BIT</Type>
+									<Comment><![CDATA[Overrange event active]]></Comment>
+								</Entry>
+								<Entry Name="Status__Limit 1" Index="#x6030" Sub="#x03">
+									<Type>BIT2</Type>
+									<Comment><![CDATA[Bit0: Value smaller/equal Limit1
+Bit1: Value bigger/equal Limit1]]></Comment>
+								</Entry>
+								<Entry Name="Status__Limit 2" Index="#x6030" Sub="#x05">
+									<Type>BIT2</Type>
+									<Comment><![CDATA[Bit0: Value smaller/equal Limit2
+Bit1: Value bigger/equal Limit2]]></Comment>
+								</Entry>
+								<Entry Name="Status__Error" Index="#x6030" Sub="#x07">
+									<Type>BIT</Type>
+									<Comment><![CDATA[Bit set when Over- or Underrange]]></Comment>
+								</Entry>
+								<Entry Name="Status__">
+									<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+								</Entry>
+								<Entry Name="Status__">
+									<Type GUID="{18071995-0000-0000-0000-002000000006}">ARRAY [0..5] OF BIT</Type>
+								</Entry>
+								<Entry Name="Status__TxPDO State" Index="#x6030" Sub="#x0f">
+									<Type>BIT</Type>
+									<Comment><![CDATA[TRUE when this TxPDO is not valid]]></Comment>
+								</Entry>
+								<Entry Name="Status__TxPDO Toggle" Index="#x6030" Sub="#x10">
+									<Type>BIT</Type>
+									<Comment><![CDATA[Bit toggles everytime when new value available]]></Comment>
+								</Entry>
+								<Entry Name="Value" Index="#x6030" Sub="#x11" Flags="#x00020000">
+									<Type>INT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="AI Compact Channel 4" Index="#x1a07" Flags="#x0010">
+								<ExcludePdo>#x1a06</ExcludePdo>
+								<Entry Name="Value" Index="#x6030" Sub="#x11" Flags="#x00020000">
+									<Type>INT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="AI Standard Channel 5" Index="#x1a08" Flags="#x0010" SyncMan="3">
+								<ExcludePdo>#x1a09</ExcludePdo>
+								<Entry Name="Status__Underrange" Index="#x6040" Sub="#x01">
+									<Type>BIT</Type>
+									<Comment><![CDATA[Underrange event active]]></Comment>
+								</Entry>
+								<Entry Name="Status__Overrange" Index="#x6040" Sub="#x02">
+									<Type>BIT</Type>
+									<Comment><![CDATA[Overrange event active]]></Comment>
+								</Entry>
+								<Entry Name="Status__Limit 1" Index="#x6040" Sub="#x03">
+									<Type>BIT2</Type>
+									<Comment><![CDATA[Bit0: Value smaller/equal Limit1
+Bit1: Value bigger/equal Limit1]]></Comment>
+								</Entry>
+								<Entry Name="Status__Limit 2" Index="#x6040" Sub="#x05">
+									<Type>BIT2</Type>
+									<Comment><![CDATA[Bit0: Value smaller/equal Limit2
+Bit1: Value bigger/equal Limit2]]></Comment>
+								</Entry>
+								<Entry Name="Status__Error" Index="#x6040" Sub="#x07">
+									<Type>BIT</Type>
+									<Comment><![CDATA[Bit set when Over- or Underrange]]></Comment>
+								</Entry>
+								<Entry Name="Status__">
+									<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+								</Entry>
+								<Entry Name="Status__">
+									<Type GUID="{18071995-0000-0000-0000-002000000006}">ARRAY [0..5] OF BIT</Type>
+								</Entry>
+								<Entry Name="Status__TxPDO State" Index="#x6040" Sub="#x0f">
+									<Type>BIT</Type>
+									<Comment><![CDATA[TRUE when this TxPDO is not valid]]></Comment>
+								</Entry>
+								<Entry Name="Status__TxPDO Toggle" Index="#x6040" Sub="#x10">
+									<Type>BIT</Type>
+									<Comment><![CDATA[Bit toggles everytime when new value available]]></Comment>
+								</Entry>
+								<Entry Name="Value" Index="#x6040" Sub="#x11" Flags="#x00020000">
+									<Type>INT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="AI Compact Channel 5" Index="#x1a09" Flags="#x0010">
+								<ExcludePdo>#x1a08</ExcludePdo>
+								<Entry Name="Value" Index="#x6040" Sub="#x11" Flags="#x00020000">
+									<Type>INT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="AI Standard Channel 6" Index="#x1a0a" Flags="#x0010" SyncMan="3">
+								<ExcludePdo>#x1a0b</ExcludePdo>
+								<Entry Name="Status__Underrange" Index="#x6050" Sub="#x01">
+									<Type>BIT</Type>
+									<Comment><![CDATA[Underrange event active]]></Comment>
+								</Entry>
+								<Entry Name="Status__Overrange" Index="#x6050" Sub="#x02">
+									<Type>BIT</Type>
+									<Comment><![CDATA[Overrange event active]]></Comment>
+								</Entry>
+								<Entry Name="Status__Limit 1" Index="#x6050" Sub="#x03">
+									<Type>BIT2</Type>
+									<Comment><![CDATA[Bit0: Value smaller/equal Limit1
+Bit1: Value bigger/equal Limit1]]></Comment>
+								</Entry>
+								<Entry Name="Status__Limit 2" Index="#x6050" Sub="#x05">
+									<Type>BIT2</Type>
+									<Comment><![CDATA[Bit0: Value smaller/equal Limit2
+Bit1: Value bigger/equal Limit2]]></Comment>
+								</Entry>
+								<Entry Name="Status__Error" Index="#x6050" Sub="#x07">
+									<Type>BIT</Type>
+									<Comment><![CDATA[Bit set when Over- or Underrange]]></Comment>
+								</Entry>
+								<Entry Name="Status__">
+									<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+								</Entry>
+								<Entry Name="Status__">
+									<Type GUID="{18071995-0000-0000-0000-002000000006}">ARRAY [0..5] OF BIT</Type>
+								</Entry>
+								<Entry Name="Status__TxPDO State" Index="#x6050" Sub="#x0f">
+									<Type>BIT</Type>
+									<Comment><![CDATA[TRUE when this TxPDO is not valid]]></Comment>
+								</Entry>
+								<Entry Name="Status__TxPDO Toggle" Index="#x6050" Sub="#x10">
+									<Type>BIT</Type>
+									<Comment><![CDATA[Bit toggles everytime when new value available]]></Comment>
+								</Entry>
+								<Entry Name="Value" Index="#x6050" Sub="#x11" Flags="#x00020000">
+									<Type>INT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="AI Compact Channel 6" Index="#x1a0b" Flags="#x0010">
+								<ExcludePdo>#x1a0a</ExcludePdo>
+								<Entry Name="Value" Index="#x6050" Sub="#x11" Flags="#x00020000">
+									<Type>INT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="AI Standard Channel 7" Index="#x1a0c" Flags="#x0010" SyncMan="3">
+								<ExcludePdo>#x1a0d</ExcludePdo>
+								<Entry Name="Status__Underrange" Index="#x6060" Sub="#x01">
+									<Type>BIT</Type>
+									<Comment><![CDATA[Underrange event active]]></Comment>
+								</Entry>
+								<Entry Name="Status__Overrange" Index="#x6060" Sub="#x02">
+									<Type>BIT</Type>
+									<Comment><![CDATA[Overrange event active]]></Comment>
+								</Entry>
+								<Entry Name="Status__Limit 1" Index="#x6060" Sub="#x03">
+									<Type>BIT2</Type>
+									<Comment><![CDATA[Bit0: Value smaller/equal Limit1
+Bit1: Value bigger/equal Limit1]]></Comment>
+								</Entry>
+								<Entry Name="Status__Limit 2" Index="#x6060" Sub="#x05">
+									<Type>BIT2</Type>
+									<Comment><![CDATA[Bit0: Value smaller/equal Limit2
+Bit1: Value bigger/equal Limit2]]></Comment>
+								</Entry>
+								<Entry Name="Status__Error" Index="#x6060" Sub="#x07">
+									<Type>BIT</Type>
+									<Comment><![CDATA[Bit set when Over- or Underrange]]></Comment>
+								</Entry>
+								<Entry Name="Status__">
+									<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+								</Entry>
+								<Entry Name="Status__">
+									<Type GUID="{18071995-0000-0000-0000-002000000006}">ARRAY [0..5] OF BIT</Type>
+								</Entry>
+								<Entry Name="Status__TxPDO State" Index="#x6060" Sub="#x0f">
+									<Type>BIT</Type>
+									<Comment><![CDATA[TRUE when this TxPDO is not valid]]></Comment>
+								</Entry>
+								<Entry Name="Status__TxPDO Toggle" Index="#x6060" Sub="#x10">
+									<Type>BIT</Type>
+									<Comment><![CDATA[Bit toggles everytime when new value available]]></Comment>
+								</Entry>
+								<Entry Name="Value" Index="#x6060" Sub="#x11" Flags="#x00020000">
+									<Type>INT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="AI Compact Channel 7" Index="#x1a0d" Flags="#x0010">
+								<ExcludePdo>#x1a0c</ExcludePdo>
+								<Entry Name="Value" Index="#x6060" Sub="#x11" Flags="#x00020000">
+									<Type>INT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="AI Standard Channel 8" Index="#x1a0e" Flags="#x0010" SyncMan="3">
+								<ExcludePdo>#x1a0f</ExcludePdo>
+								<Entry Name="Status__Underrange" Index="#x6070" Sub="#x01">
+									<Type>BIT</Type>
+									<Comment><![CDATA[Underrange event active]]></Comment>
+								</Entry>
+								<Entry Name="Status__Overrange" Index="#x6070" Sub="#x02">
+									<Type>BIT</Type>
+									<Comment><![CDATA[Overrange event active]]></Comment>
+								</Entry>
+								<Entry Name="Status__Limit 1" Index="#x6070" Sub="#x03">
+									<Type>BIT2</Type>
+									<Comment><![CDATA[Bit0: Value smaller/equal Limit1
+Bit1: Value bigger/equal Limit1]]></Comment>
+								</Entry>
+								<Entry Name="Status__Limit 2" Index="#x6070" Sub="#x05">
+									<Type>BIT2</Type>
+									<Comment><![CDATA[Bit0: Value smaller/equal Limit2
+Bit1: Value bigger/equal Limit2]]></Comment>
+								</Entry>
+								<Entry Name="Status__Error" Index="#x6070" Sub="#x07">
+									<Type>BIT</Type>
+									<Comment><![CDATA[Bit set when Over- or Underrange]]></Comment>
+								</Entry>
+								<Entry Name="Status__">
+									<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+								</Entry>
+								<Entry Name="Status__">
+									<Type GUID="{18071995-0000-0000-0000-002000000006}">ARRAY [0..5] OF BIT</Type>
+								</Entry>
+								<Entry Name="Status__TxPDO State" Index="#x6070" Sub="#x0f">
+									<Type>BIT</Type>
+									<Comment><![CDATA[TRUE when this TxPDO is not valid]]></Comment>
+								</Entry>
+								<Entry Name="Status__TxPDO Toggle" Index="#x6070" Sub="#x10">
+									<Type>BIT</Type>
+									<Comment><![CDATA[Bit toggles everytime when new value available]]></Comment>
+								</Entry>
+								<Entry Name="Value" Index="#x6070" Sub="#x11" Flags="#x00020000">
+									<Type>INT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="AI Compact Channel 8" Index="#x1a0f" Flags="#x0010">
+								<ExcludePdo>#x1a0e</ExcludePdo>
+								<Entry Name="Value" Index="#x6070" Sub="#x11" Flags="#x00020000">
+									<Type>INT</Type>
+								</Entry>
+							</Pdo>
+							<CoeProfile ProfileNo="19665801"/>
+							<CoeProfile ProfileNo="19665801"/>
+							<CoeProfile ProfileNo="19665801"/>
+							<CoeProfile ProfileNo="19665801"/>
+							<CoeProfile ProfileNo="19665801"/>
+							<CoeProfile ProfileNo="19665801"/>
+							<CoeProfile ProfileNo="19665801"/>
+							<CoeProfile ProfileNo="19665801"/>
+						</EtherCAT>
+					</Box>
+					<Box Id="3" BoxType="9099">
+						<Name>Term 3 (EL1008)</Name>
+						<ImageId>7</ImageId>
+						<EtherCAT SlaveType="1" PdiType="#x0104" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x03f03052" RevisionNo="#x00120000" RepeatSupport="true" PortPhys="51" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL1008 8Ch. Dig. Input 24V, 3ms" Desc="EL1008" PortABoxInfo="#x01000002">
+							<SyncMan>001001000000010004000000000000000100001000010000</SyncMan>
+							<Fmmu>0000000000000000001000010100000002000000000000000000000000000000</Fmmu>
+							<Pdo Name="Channel 1" Index="#x1a00" Flags="#x0011" SyncMan="0">
+								<Entry Name="Input" Index="#x6000" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 2" Index="#x1a01" Flags="#x0011" SyncMan="0">
+								<Entry Name="Input" Index="#x6010" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 3" Index="#x1a02" Flags="#x0011" SyncMan="0">
+								<Entry Name="Input" Index="#x6020" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 4" Index="#x1a03" Flags="#x0011" SyncMan="0">
+								<Entry Name="Input" Index="#x6030" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 5" Index="#x1a04" Flags="#x0011" SyncMan="0">
+								<Entry Name="Input" Index="#x6040" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 6" Index="#x1a05" Flags="#x0011" SyncMan="0">
+								<Entry Name="Input" Index="#x6050" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 7" Index="#x1a06" Flags="#x0011" SyncMan="0">
+								<Entry Name="Input" Index="#x6060" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 8" Index="#x1a07" Flags="#x0011" SyncMan="0">
+								<Entry Name="Input" Index="#x6070" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+						</EtherCAT>
+					</Box>
+					<Box Id="4" BoxType="9099">
+						<Name>Term 4 (EL1008)</Name>
+						<ImageId>7</ImageId>
+						<EtherCAT SlaveType="1" PdiType="#x0104" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x03f03052" RevisionNo="#x00120000" RepeatSupport="true" PortPhys="51" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL1008 8Ch. Dig. Input 24V, 3ms" Desc="EL1008" PortABoxInfo="#x01000003">
+							<SyncMan>001001000000010004000000000000000100001000010000</SyncMan>
+							<Fmmu>0000000000000000001000010100000002000000000000000000000000000000</Fmmu>
+							<Pdo Name="Channel 1" Index="#x1a00" Flags="#x0011" SyncMan="0">
+								<Entry Name="Input" Index="#x6000" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 2" Index="#x1a01" Flags="#x0011" SyncMan="0">
+								<Entry Name="Input" Index="#x6010" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 3" Index="#x1a02" Flags="#x0011" SyncMan="0">
+								<Entry Name="Input" Index="#x6020" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 4" Index="#x1a03" Flags="#x0011" SyncMan="0">
+								<Entry Name="Input" Index="#x6030" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 5" Index="#x1a04" Flags="#x0011" SyncMan="0">
+								<Entry Name="Input" Index="#x6040" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 6" Index="#x1a05" Flags="#x0011" SyncMan="0">
+								<Entry Name="Input" Index="#x6050" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 7" Index="#x1a06" Flags="#x0011" SyncMan="0">
+								<Entry Name="Input" Index="#x6060" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 8" Index="#x1a07" Flags="#x0011" SyncMan="0">
+								<Entry Name="Input" Index="#x6070" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+						</EtherCAT>
+					</Box>
+					<Box Id="5" BoxType="9099">
+						<Name>Term 5 (EL2008)</Name>
+						<ImageId>1002</ImageId>
+						<EtherCAT SlaveType="1" PdiType="#x0104" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x07d83052" RevisionNo="#x00120000" RepeatSupport="true" PortPhys="51" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL2008 8Ch. Dig. Output 24V, 0.5A" Desc="EL2008" PortABoxInfo="#x01000004">
+							<SyncMan>000f01004400010003000000000000000000000f44090000</SyncMan>
+							<Fmmu>0000000000000000000f00020100000001000000000000000000000000000000</Fmmu>
+							<Pdo Name="Channel 1" Index="#x1600" InOut="1" Flags="#x0011" SyncMan="0">
+								<Entry Name="Output" Index="#x7000" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 2" Index="#x1601" InOut="1" Flags="#x0011" SyncMan="0">
+								<Entry Name="Output" Index="#x7010" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 3" Index="#x1602" InOut="1" Flags="#x0011" SyncMan="0">
+								<Entry Name="Output" Index="#x7020" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 4" Index="#x1603" InOut="1" Flags="#x0011" SyncMan="0">
+								<Entry Name="Output" Index="#x7030" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 5" Index="#x1604" InOut="1" Flags="#x0011" SyncMan="0">
+								<Entry Name="Output" Index="#x7040" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 6" Index="#x1605" InOut="1" Flags="#x0011" SyncMan="0">
+								<Entry Name="Output" Index="#x7050" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 7" Index="#x1606" InOut="1" Flags="#x0011" SyncMan="0">
+								<Entry Name="Output" Index="#x7060" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 8" Index="#x1607" InOut="1" Flags="#x0011" SyncMan="0">
+								<Entry Name="Output" Index="#x7070" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+						</EtherCAT>
+					</Box>
+					<Box Id="6" BoxType="9094" BoxFlags="#x00000020">
+						<Name>Term 6 (EL6751)</Name>
+						<ImageId>1003</ImageId>
+						<EtherCAT SlaveType="5" AdsServerAddress="ac19e26802010000" FixedAdsServerNetId="true" PdiType="#x0408" ExecIo="true" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="35" FoeType="1" VendorId="#x00000002" ProductCode="#x1a5f3052" RevisionNo="#x00160000" InfoDataAddr="true" InfoDataNetId="true" OwnAddrExtern="true" TimeoutStateChange1="5000" TimeoutStateChange3="10000" TimeoutStateChange4="1000" TimeoutMailbox2="2000" GenerateOwnNetId="true" InitializeOwnNetId="true" PortPhys="51" MaxSlotCount="126" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL6751 CANopen Master" Desc="EL6751" PortABoxInfo="#x01000005">
+							<SyncMan>001000042600010001000000500000040004001026010000</SyncMan>
+							<SyncMan>001400042200010002000000500000040004001422010000</SyncMan>
+							<SyncMan>001800002600000003000000000000000000001826010000</SyncMan>
+							<SyncMan>002406002200010004000000000000000000002422010000</SyncMan>
+							<Fmmu>0000000000000000000000020000000001000000000000000000000000000000</Fmmu>
+							<Fmmu>0000000000000000002400010100000002000000000000000000000000000000</Fmmu>
+							<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
+							<BootStrapData>0010140200181402</BootStrapData>
+							<SuName>Term 6 (EL6751)</SuName>
+							<DcMode>53796e6368726f6e0000000000000000534d2d53796e6368726f6e000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</DcMode>
+							<DcMode>444353594e430000000000000000000044432d53796e6368726f6e000000000000000000000000000000000000000000000000000000000090d00300000000070100000000000000000000000000000000000000000000000000000000000000</DcMode>
+							<Pdo Name="Device 1 (EL6751)" Index="#x1a80" Flags="#x0011" SyncMan="3">
+								<Entry Name="Device 1 (EL6751)_Error" Index="#xf100" Sub="#x01" Flags="#x00000100">
+									<Type>USINT</Type>
+								</Entry>
+								<Entry Name="Device 1 (EL6751)_CanState" Index="#xf100" Sub="#x03" Flags="#x00000100">
+									<Type>UINT</Type>
+								</Entry>
+								<Entry Name="Device 1 (EL6751)_RxErrorCounter" Index="#xf100" Sub="#x05" Flags="#x00000100">
+									<Type>USINT</Type>
+								</Entry>
+								<Entry Name="Device 1 (EL6751)_TxErrorCounter" Index="#xf100" Sub="#x04" Flags="#x00000100">
+									<Type>USINT</Type>
+								</Entry>
+								<Entry Name="Device 1 (EL6751)_DiagFlag" Index="#xf100" Sub="#x02" Flags="#x00000100">
+									<Type>BIT</Type>
+								</Entry>
+								<Entry>
+									<Type GUID="{18071995-0000-0000-0000-002000000007}">ARRAY [0..6] OF BIT</Type>
+								</Entry>
+							</Pdo>
+							<CoeProfile ProfileNo="5001"/>
+							<Slot Name="EL6751">
+								<SlotData>0000000001000400010000001000000000000000000000000000000000000000</SlotData>
+								<ModuleClass Class="EL6751" Name="EL6751" VendorId="2"/>
+							</Slot>
+						</EtherCAT>
+					</Box>
+					<Box Id="7" BoxType="9099">
+						<Name>Term 7 (EL9011)</Name>
+						<ImageId>1004</ImageId>
+						<EtherCAT CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x23333050" InfoDataState="false" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL9011 End Terminal" Desc="EL9011" PortABoxInfo="#x01000006"/>
+					</Box>
+				</Box>
+				<EtherCAT/>
+			</Device>
+			<Device Id="1" DevType="87" AmsPort="28673" AmsNetId="172.25.226.104.2.1" RemoteName="Device 1 (EL6751)">
+				<Name>Device 1 (EL6751)</Name>
+				<AddressInfo>
+					<Ecat>
+						<EtherCATDeviceId>6</EtherCATDeviceId>
+						<EtherCATDeviceName>TIID^Device 3 (EtherCAT)^Term 1 (EK1541)^Term 6 (EL6751)</EtherCATDeviceName>
+					</Ecat>
+				</AddressInfo>
+				<Image Id="1" AddrType="4" ImageType="3">
+					<Name>Image</Name>
+				</Image>
+				<CanOpen>
+					<Fcxxxx>
+						<DevSettings BusyIntEnabled="true" DisableSlots="true" NetId="ac19e2680201" CycleDivider="1"/>
+						<DevParameter CycleTime="100000" InputShift="60"/>
+						<EquiParameter RelationShiftCycle="0"/>
+					</Fcxxxx>
+					<BusParameter NodeId="127" Baudrate="2" CobIdSync="128" TxPdoWindowSize="30" CycleDivider="1" MaxLoPrioQueue="100" Bt1="28" TimerTick="3" BusActiveDivider="119" TxBusyTime="1000" TimeIntegral="2000" WdTimeoutInCycleTime="50000"/>
+				</CanOpen>
+			</Device>
+		</Io>
+	</Project>
+	<Mappings>
+		<OwnerA Name="TIPC^PulsePower_PLC^PulsePower_PLC Instance">
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1541)^Term 2 (EL3068)">
+				<Link VarA="PlcTask Inputs^Input.R2_03_00" VarB="AI Standard Channel 1^Value"/>
+				<Link VarA="PlcTask Inputs^Input.R2_03_00_Status" VarB="AI Standard Channel 1^Status"/>
+				<Link VarA="PlcTask Inputs^Input.R2_03_01" VarB="AI Standard Channel 2^Value"/>
+				<Link VarA="PlcTask Inputs^Input.R2_03_01_Status" VarB="AI Standard Channel 2^Status"/>
+				<Link VarA="PlcTask Inputs^Input.R2_03_02" VarB="AI Standard Channel 3^Value"/>
+				<Link VarA="PlcTask Inputs^Input.R2_03_02_Status" VarB="AI Standard Channel 3^Status"/>
+				<Link VarA="PlcTask Inputs^Input.R2_03_03" VarB="AI Standard Channel 4^Value"/>
+				<Link VarA="PlcTask Inputs^Input.R2_03_03_Status" VarB="AI Standard Channel 4^Status"/>
+				<Link VarA="PlcTask Inputs^Input.R2_03_04" VarB="AI Standard Channel 5^Value"/>
+				<Link VarA="PlcTask Inputs^Input.R2_03_04_Status" VarB="AI Standard Channel 5^Status"/>
+				<Link VarA="PlcTask Inputs^Input.R2_03_05" VarB="AI Standard Channel 6^Value"/>
+				<Link VarA="PlcTask Inputs^Input.R2_03_05_Status" VarB="AI Standard Channel 6^Status"/>
+				<Link VarA="PlcTask Inputs^Input.R2_03_06" VarB="AI Standard Channel 7^Value"/>
+				<Link VarA="PlcTask Inputs^Input.R2_03_06_Status" VarB="AI Standard Channel 7^Status"/>
+				<Link VarA="PlcTask Inputs^Input.R2_03_07" VarB="AI Standard Channel 8^Value"/>
+				<Link VarA="PlcTask Inputs^Input.R2_03_07_Status" VarB="AI Standard Channel 8^Status"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1541)^Term 3 (EL1008)">
+				<Link VarA="PlcTask Inputs^Input.R1_01_00" VarB="Channel 1^Input"/>
+				<Link VarA="PlcTask Inputs^Input.R1_01_01" VarB="Channel 2^Input"/>
+				<Link VarA="PlcTask Inputs^Input.R1_01_02" VarB="Channel 3^Input"/>
+				<Link VarA="PlcTask Inputs^Input.R1_01_03" VarB="Channel 4^Input"/>
+				<Link VarA="PlcTask Inputs^Input.R1_01_04" VarB="Channel 5^Input"/>
+				<Link VarA="PlcTask Inputs^Input.R1_01_05" VarB="Channel 6^Input"/>
+				<Link VarA="PlcTask Inputs^Input.R1_01_06" VarB="Channel 7^Input"/>
+				<Link VarA="PlcTask Inputs^Input.R1_01_07" VarB="Channel 8^Input"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1541)^Term 4 (EL1008)">
+				<Link VarA="PlcTask Inputs^Input.R1_02_00" VarB="Channel 1^Input"/>
+				<Link VarA="PlcTask Inputs^Input.R1_02_01" VarB="Channel 2^Input"/>
+				<Link VarA="PlcTask Inputs^Input.R1_02_02" VarB="Channel 3^Input"/>
+				<Link VarA="PlcTask Inputs^Input.R1_02_03" VarB="Channel 4^Input"/>
+				<Link VarA="PlcTask Inputs^Input.R1_02_04" VarB="Channel 5^Input"/>
+				<Link VarA="PlcTask Inputs^Input.R1_02_05" VarB="Channel 6^Input"/>
+				<Link VarA="PlcTask Inputs^Input.R1_02_06" VarB="Channel 7^Input"/>
+				<Link VarA="PlcTask Inputs^Input.R1_02_07" VarB="Channel 8^Input"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1541)^Term 5 (EL2008)">
+				<Link VarA="PlcTask Outputs^Output.R2_01_00" VarB="Channel 1^Output"/>
+				<Link VarA="PlcTask Outputs^Output.R2_01_01" VarB="Channel 2^Output"/>
+				<Link VarA="PlcTask Outputs^Output.R2_01_02" VarB="Channel 3^Output"/>
+				<Link VarA="PlcTask Outputs^Output.R2_01_03" VarB="Channel 4^Output"/>
+				<Link VarA="PlcTask Outputs^Output.R2_01_04" VarB="Channel 5^Output"/>
+				<Link VarA="PlcTask Outputs^Output.R2_01_05" VarB="Channel 6^Output"/>
+				<Link VarA="PlcTask Outputs^Output.R2_01_06" VarB="Channel 7^Output"/>
+				<Link VarA="PlcTask Outputs^Output.R2_01_07" VarB="Channel 8^Output"/>
+			</OwnerB>
+		</OwnerA>
+	</Mappings>
+</TcSmProject>

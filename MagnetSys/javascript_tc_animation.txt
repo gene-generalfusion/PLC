@@ -1,0 +1,8 @@
+var animation = new TcHmi.Animation('TcHmiTextblock', '')
+	animation.addKeyframe('transform', 'translate(0px, 0px)', 0)
+ 	.addKeyframe('transform', 'translate(2px, 2px)', 1)
+	.duration(1000)
+	.run();
+	
+//window.setTimeout(() => animation.reset(), 700);
+//window.setTimeout(() => animation.run(), 5000);

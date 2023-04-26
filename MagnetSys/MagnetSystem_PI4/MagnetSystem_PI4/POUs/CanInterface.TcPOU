@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="CanInterface" Id="{7366726a-33c3-4f0b-ba47-6fd48f87de4f}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM CanInterface
+VAR
+		fbCAN : FB_CanItfHelper;
+	
+	bTest: BOOL;
+	stCanMsg : ST_CanMsg;
+	stTest : CanItfHelper.ST_CanMsg;
+	stCanHeader : ST_CanHeader;
+	bTest2: BOOL;
+	
+	
+	iSize: UINT;
+	y: CanItfHelper.E_CanItfHelperHResult;
+	x: CanItfHelper.E_CanItfHelperHResult;
+	
+
+	
+	
+	iMsg: INT;
+	iMsgLength: UINT;
+	z: UDINT;
+	iHeartBeat: UINT;
+	iOpMode: BYTE;
+	iPowerTarget: UINT;
+	c: UINT;
+	d: UINT;
+	stCanMsgRecieved : ARRAY [0..9] OF ST_CanMsg;
+	q: CanItfHelper.E_CanItfHelperHResult;
+	v: CanItfHelper.E_CanItfHelperHResult;
+	CobID: UDINT;
+	iResult: INT;
+	Var1: INT;
+	Var2: INT;
+	iCount: UDINT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[fbCAN(	pRxQueue		:= ADR(IO.PB01_Rx), 
+		cbRxQueueSize	:= SIZEOF(IO.PB01_Rx), 
+		pTxQueue		:= ADR(IO.PB01_Tx), 
+		cbTxQueueSize	:= SIZEOF(IO.PB01_Tx), 
+		bValidSetup		=> );
+fbCAN.bValidSetup;
+
+
+CASE iMsg OF 
+	0:	//Init Step
+		iMsg := 1;
+		
+	1: //Ready Step - Waiting for message request
+		iMsg := 200;
+		
+	10://Message Prep
+			z:= MEMSet( destAddr := ADR(stCanMsg), fillbyte := 0, n:= SIZEOF(stCanMsg));			//Clears the structure
+			stCanMsg.CanHeader.nMsgLength := 5;														//Sets the MSG Length
+			stCanMsg.CanHeader.nCobid			:= 1234;											//Publish the COBID
+			
+			stCanMsg.CanData[0] := 1;					
+			stCanMsg.CanData[1] := 2;
+			stCanMsg.CanData[2];
+			stCanMsg.CanData[3];					
+			stCanMsg.CanData[4];
+			
+			iMsg := 100;
+			
+100: //Send message
+		stCanMsg.CanHeader.bExtendedAddress := TRUE;
+		stCanMsg.CanHeader.bRTR				:= FALSE;
+		y:= fbCAN.mTxMessageAdd(pTxCanMessage:= ADR( stCanMsg));
+		
+		z:= fbCan.mTxMessgesSend();
+		iMsg := 0;
+		
+200:	//Recieve Message
+		q:= fbCAN.mRxMessageGet(pRxCanMessage := ADR(stCanMsgRecieved[0]), 0);
+		q:= fbCAN.mRxMessageGet(pRxCanMessage := ADR(stCanMsgRecieved[1]), 0);
+		q:= fbCAN.mRxMessageGet(pRxCanMessage := ADR(stCanMsgRecieved[2]), 0);
+		q:= fbCAN.mRxMessageGet(pRxCanMessage := ADR(stCanMsgRecieved[3]), 0);
+		q:= fbCAN.mRxMessageGet(pRxCanMessage := ADR(stCanMsgRecieved[4]), 0);
+		q:= fbCAN.mRxMessageGet(pRxCanMessage := ADR(stCanMsgRecieved[5]), 0);
+		q:= fbCAN.mRxMessageGet(pRxCanMessage := ADR(stCanMsgRecieved[6]), 0);
+		q:= fbCAN.mRxMessageGet(pRxCanMessage := ADR(stCanMsgRecieved[7]), 0);
+		q:= fbCAN.mRxMessageGet(pRxCanMessage := ADR(stCanMsgRecieved[8]), 0);
+		q:= fbCAN.mRxMessageGet(pRxCanMessage := ADR(stCanMsgRecieved[9]), 0);
+		
+		iMsg := 0;
+		stCanMsgRecieved[1].CanData[0];
+		stCanMsgRecieved[1].CanData[1];
+		stCanMsgRecieved[1].CanHeader.nCobid;
+		
+		IF stCanMsgRecieved[1].CanData[0] <> 0 THEN
+			iCount := iCount + 1;
+		END_IF
+		
+		v:= fbCAN.mRxMessagesAck(bForceAck := FALSE);
+999://Error
+
+END_CASE	
+
+	
+iSize := SIZEOF(ST_CanMsg);
+IF bTest THEN
+	bTest := FALSE;
+	//Prep Header	
+	stCanMsg.CanHeader.nMsgLength		:= 2;
+	stCanMsg.CanHeader.bExtendedAddress := TRUE;
+	stCanMsg.CanHeader.nCobid;			//:= 21;
+	stCanMsg.CanHeader.bRTR				:= FALSE;
+	stCanMsg.CanData[0]					:= 16#F8;
+	stCanMsg.CanData[1]					:= 16#F2;
+	
+	y:= fbCAN.mTxMessageAdd(pTxCanMessage:= ADR( stCanMsg));
+	
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="CanInterface">
+      <LineId Id="38" Count="0" />
+      <LineId Id="40" Count="3" />
+      <LineId Id="46" Count="2" />
+      <LineId Id="124" Count="5" />
+      <LineId Id="132" Count="0" />
+      <LineId Id="122" Count="0" />
+      <LineId Id="52" Count="3" />
+      <LineId Id="58" Count="0" />
+      <LineId Id="61" Count="0" />
+      <LineId Id="71" Count="2" />
+      <LineId Id="130" Count="1" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="75" Count="5" />
+      <LineId Id="74" Count="0" />
+      <LineId Id="82" Count="0" />
+      <LineId Id="84" Count="15" />
+      <LineId Id="133" Count="3" />
+      <LineId Id="100" Count="0" />
+      <LineId Id="83" Count="0" />
+      <LineId Id="101" Count="0" />
+      <LineId Id="119" Count="0" />
+      <LineId Id="118" Count="0" />
+      <LineId Id="117" Count="0" />
+      <LineId Id="116" Count="0" />
+      <LineId Id="103" Count="12" />
+      <LineId Id="102" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

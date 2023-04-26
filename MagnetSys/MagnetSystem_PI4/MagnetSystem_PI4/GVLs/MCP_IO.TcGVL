@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <GVL Name="MCP_IO" Id="{2eccccd0-d6b2-453f-b49b-33f7d0364904}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	MasterStopPB_Pressed		: BOOL;
+	CageEstopCircuitOK			: BOOL;
+	RemoteModeSelected			: BOOL;
+	PSU1_DCOK					: BOOL;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

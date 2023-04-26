@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="ADC_10V" Id="{2a4913c1-96ae-4091-b40a-f5f7b5005c01}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION ADC_10V : REAL
+VAR_INPUT
+	normal_input : REAL;
+	x_max : REAL := 10;
+	x_min : REAL := 0;
+END_VAR
+VAR
+	voltage_reading : REAL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// 0 - 10V AI INPUT | normal_input 0-100%
+voltage_reading := x_max * normal_input;
+ADC_10V := (voltage_reading - x_min) / (x_max - x_min);]]></ST>
+    </Implementation>
+    <LineIds Name="ADC_10V">
+      <LineId Id="11" Count="0" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

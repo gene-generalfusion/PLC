@@ -1,0 +1,303 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="ChargeTime" Id="{28824270-3930-44b7-bfe2-d4b07042cd6b}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM ChargeTime
+VAR
+
+	lca_charge_cal	 : ARRAY [1..8] OF LCA_CAL;
+	i				 : INT := 1; // 1-8 instances
+	j				 : INT := 1; //1 - 8 ch
+	m				 : INT := 1;
+	
+	a				 : INT := 1; 
+	
+	Q				 : REAL := 1; // Charge
+	Current			 : REAL := 0.1; //100mA
+	
+	longestChargeTime: REAL;
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(*IF HMI_DB.RemoteModeSelected = FALSE THEN 
+	HMI_DB.TDKLoad[1].PSratedV := 12; //veto at 10
+	HMI_DB.TDKLoad[2].PSratedV := 12;
+	HMI_DB.TDKLoad[3].PSratedV := 12;
+	HMI_DB.TDKLoad[4].PSratedV := 12;
+	HMI_DB.TDKLoad[5].PSratedV := 12;
+	HMI_DB.TDKLoad[6].PSratedV := 12;
+	HMI_DB.TDKLoad[7].PSratedV := 50; //veto at 35
+	HMI_DB.TDKLoad[8].PSratedV := 50;
+	HMI_DB.GLSLoad.PSratedV := 30;
+	
+	HMI_DB.TDKLoad[1].TotalCapacitance := 10000;
+	HMI_DB.TDKLoad[2].TotalCapacitance := 10000;
+	HMI_DB.TDKLoad[3].TotalCapacitance := 10000;
+	HMI_DB.TDKLoad[4].TotalCapacitance := 16000;
+	HMI_DB.TDKLoad[5].TotalCapacitance := 16000;
+	HMI_DB.TDKLoad[6].TotalCapacitance := 16000;
+	HMI_DB.TDKLoad[7].TotalCapacitance := 1200;
+	HMI_DB.TDKLoad[8].TotalCapacitance := 1200;
+	HMI_DB.GLSLoad.TotalCapacitance := 200;
+	
+END_IF*)
+
+//veto
+//this should not happen
+FOR m := 1 TO 6 BY 1 DO
+	IF Setpoints.TDKLoad[m].RequiredChargedV <= -2 THEN
+		Setpoints.TDKLoad[m].RequiredChargedV := -2;
+	END_IF	
+END_FOR
+
+IF Setpoints.GLSLoad.RequiredChargedV <= 0 THEN
+	Setpoints.GLSLoad.RequiredChargedV := 0;
+END_IF	
+
+//ch 1 - 3
+IF Setpoints.TDKLoad[1].RequiredChargedV >= 10 THEN
+	Setpoints.TDKLoad[1].RequiredChargedV := 10;
+	ELSIF Setpoints.TDKLoad[1].RequiredChargedV < 0 THEN
+		Setpoints.TDKLoad[1].RequiredChargedV := ABS(Setpoints.TDKLoad[1].RequiredChargedV); 
+END_IF
+IF Setpoints.TDKLoad[2].RequiredChargedV >= 10 THEN
+	Setpoints.TDKLoad[2].RequiredChargedV := 10;
+	ELSIF Setpoints.TDKLoad[2].RequiredChargedV < 0 THEN
+		Setpoints.TDKLoad[2].RequiredChargedV := ABS(Setpoints.TDKLoad[2].RequiredChargedV); 	
+END_IF
+IF Setpoints.TDKLoad[3].RequiredChargedV >= 10 THEN
+	Setpoints.TDKLoad[3].RequiredChargedV := 10;
+	ELSIF Setpoints.TDKLoad[3].RequiredChargedV < 0 THEN
+		Setpoints.TDKLoad[3].RequiredChargedV := ABS(Setpoints.TDKLoad[3].RequiredChargedV); 	
+END_IF
+//ch 4-6
+IF Setpoints.TDKLoad[4].RequiredChargedV >= 12 THEN
+	Setpoints.TDKLoad[4].RequiredChargedV := 12;
+	ELSIF Setpoints.TDKLoad[4].RequiredChargedV < 0 THEN
+		Setpoints.TDKLoad[4].RequiredChargedV := ABS(Setpoints.TDKLoad[4].RequiredChargedV); 	
+END_IF
+IF Setpoints.TDKLoad[5].RequiredChargedV >= 12 THEN
+	Setpoints.TDKLoad[5].RequiredChargedV := 12;
+	ELSIF Setpoints.TDKLoad[5].RequiredChargedV < 0 THEN
+		Setpoints.TDKLoad[5].RequiredChargedV := ABS(Setpoints.TDKLoad[5].RequiredChargedV); 	
+END_IF
+IF Setpoints.TDKLoad[6].RequiredChargedV >= 12 THEN
+	Setpoints.TDKLoad[6].RequiredChargedV := 12;
+	ELSIF Setpoints.TDKLoad[6].RequiredChargedV < 0 THEN
+		Setpoints.TDKLoad[6].RequiredChargedV := ABS(Setpoints.TDKLoad[6].RequiredChargedV); 	
+END_IF
+//ch 7 - 8
+IF Setpoints.TDKLoad[7].RequiredChargedV >= 35 THEN
+	Setpoints.TDKLoad[7].RequiredChargedV := 35;
+	ELSIF Setpoints.TDKLoad[7].RequiredChargedV <= 0  THEN
+		Setpoints.TDKLoad[7].RequiredChargedV := 0; 	
+END_IF
+IF Setpoints.TDKLoad[8].RequiredChargedV >= 35 THEN
+	Setpoints.TDKLoad[8].RequiredChargedV := 35;
+	ELSIF Setpoints.TDKLoad[8].RequiredChargedV <= 0 THEN
+		Setpoints.TDKLoad[8].RequiredChargedV := ABS(Setpoints.TDKLoad[8].RequiredChargedV); 	
+END_IF
+IF Setpoints.GLSLoad.RequiredChargedV >= 30 THEN
+	Setpoints.GLSLoad.RequiredChargedV := 30;
+	ELSIF Setpoints.GLSLoad.RequiredChargedV <= 0 THEN
+		Setpoints.GLSLoad.RequiredChargedV := 0; 	
+END_IF
+
+//mapping hmi input to setpoints
+FOR j := 1 TO 8 BY 1 DO	
+	Setpoints.TDKLoad[j].TotalCapacitance	:= HMI_DB.TDKLoad[j].TotalCapacitance;
+	Setpoints.TDKLoad[j].PSratedV 			:= HMI_DB.TDKLoad[j].PSratedV;
+	//Setpoints.PeakBank[m].RequiredChargedV	:= Recipe.PeakBank[m].RequiredChargedV; //only thing that comes from the main plc recipe
+	Setpoints.TDKLoad[j].wLCA				:= HMI_DB.TDKLoad[j].wLCA;
+	Setpoints.TDKLoad[j].NumOfCharger		:= HMI_DB.TDKLoad[j].NumOfCharger;	
+	
+	Setpoints.TDKLoad[j].TotalCapacitance	:= HMI_DB.TDKLoad[j].TotalCapacitance;
+	Setpoints.TDKLoad[j].PSratedV 			:= HMI_DB.TDKLoad[j].PSratedV;
+	//Setpoints.SustBank[m].RequiredChargedV	:= Recipe.SustBank[m].RequiredChargedV; //only thing that comes from the main plc recipe
+	Setpoints.TDKLoad[j].wLCA				:= HMI_DB.TDKLoad[j].wLCA;
+	Setpoints.TDKLoad[j].NumOfCharger		:= HMI_DB.TDKLoad[j].NumOfCharger;	
+	//charge time delay and elapse for HMI
+	ChargeTime_DB.ChargeTimeStartDelay[j] := TIME_TO_INT((ChargeTime_DB.ChargerDelay_PT[j] - ChargeTime_DB.ChargerDelay_ET[j])/1000);
+	ChargeTime_DB.ChargingTimeElapse[j] := TIME_TO_INT((ChargeTime_DB.ChargingTimeElapse_TON[j].PT - ChargeTime_DB.ChargingTimeElapse_TON[j].ET)/1000);
+END_FOR
+
+ChargeTime_DB.PreFormChargeTimeStartDelay := TIME_TO_INT((ChargeTime_DB.PreFormChargeTime_PT - ChargeTime_DB.PreFormChargeTime_ET)/1000);
+ChargeTime_DB.PreFormChargingTimeElapse := TIME_TO_INT((ChargeTime_DB.PreFormChargingTimeElapse_TON.PT - ChargeTime_DB.PreFormChargingTimeElapse_TON.ET)/1000);
+
+//GLS 3
+Setpoints.GLSLoad.TotalCapacitance	:= HMI_DB.GLSLoad.TotalCapacitance;
+Setpoints.GLSLoad.PSratedV 			:= HMI_DB.GLSLoad.PSratedV;
+//Setpoints.PreFormBank.RequiredChargedV	:= Recipe.PreFormBank.RequiredChargedV; //only thing that comes from the main plc recipe
+//Setpoints.GLSLoad.wLCA				:= HMI_DB.GLSLoad.wLCA;
+Setpoints.GLSLoad.NumOfCharger		:= HMI_DB.GLSLoad.NumOfCharger;	
+
+//chg time
+FOR i := 1 TO 8 BY 1 DO
+	lca_charge_cal[i](	PSratedV := Setpoints.TDKLoad[i].PSratedV, 
+						RequiredChargeV := Setpoints.TDKLoad[i].RequiredChargedV, 
+						LoadCapacitance := Setpoints.TDKLoad[i].TotalCapacitance, 
+						NumOfCharger := Setpoints.TDKLoad[i].NumOfCharger, 
+						wLCA := Setpoints.TDKLoad[i].wLCA
+						);
+
+	MCP_IO.Charger[i].ChargeTime.timeToChargeLoad := lca_charge_cal[i].TimeToChargeLoad;
+	MCP_IO.Charger[i].ChargeTime.Power := lca_charge_cal[i].RespectedPower;
+END_FOR
+
+
+//gls - gls3 is preform cap charger
+Q := 1000* Setpoints.GLSLoad.RequiredChargedV * (Setpoints.GLSLoad.TotalCapacitance / 1000000);
+MCP_IO.GLS3_Load.timeToChargeLoad := Q / Current;
+MCP_IO.GLS3_Load.Power := 1000*Setpoints.GLSLoad.RequiredChargedV * Current;
+
+//find the longest charge time.  //need more work
+longestChargeTime := MAX( MCP_IO.Charger[1].ChargeTime.timeToChargeLoad,
+							MCP_IO.Charger[2].ChargeTime.timeToChargeLoad,
+							MCP_IO.Charger[3].ChargeTime.timeToChargeLoad,
+							MCP_IO.Charger[4].ChargeTime.timeToChargeLoad,
+							MCP_IO.Charger[5].ChargeTime.timeToChargeLoad,
+							MCP_IO.Charger[6].ChargeTime.timeToChargeLoad,
+							MCP_IO.Charger[7].ChargeTime.timeToChargeLoad,
+							MCP_IO.Charger[8].ChargeTime.timeToChargeLoad, 
+							MCP_IO.GLS3_Load.timeToChargeLoad);
+
+ChargeTime_DB.LongestChargeTime_PT := REAL_TO_TIME (1000*longestChargeTime);
+
+FOR a := 1 TO 8 BY 1 DO
+	IF (longestChargeTime - MCP_IO.Charger[a].ChargeTime.timeToChargeLoad) >= 0 THEN
+		ChargeTime_DB.ChargerDelay_PT[a] := REAL_TO_TIME (1000*(longestChargeTime - MCP_IO.Charger[a].ChargeTime.timeToChargeLoad));
+		ELSE 
+			ChargeTime_DB.ChargerDelay_PT[a] := REAL_TO_TIME (1000*(MCP_IO.Charger[a].ChargeTime.timeToChargeLoad - longestChargeTime));
+	END_IF;		
+		
+	//IF (longestChargeTime - MCP_IO.Charger[a+3].ChargeTime.timeToChargeLoad) >= 0 THEN
+	//	ChargeTime_DB.SustChargeTime_PT[a] := REAL_TO_TIME (1000*(longestChargeTime - MCP_IO.Charger[a+3].ChargeTime.timeToChargeLoad));	
+	//END_IF;	
+	
+END_FOR;
+
+
+(*IF (longestChargeTime - MCP_IO.Charger[7].ChargeTime.timeToChargeLoad) >= 0 THEN
+	ChargeTime_DB.FormChargeTime_PT[1] := REAL_TO_TIME (1000*(longestChargeTime - MCP_IO.Charger[7].ChargeTime.timeToChargeLoad));	
+END_IF;	
+IF (longestChargeTime - MCP_IO.Charger[8].ChargeTime.timeToChargeLoad) >= 0 THEN
+	ChargeTime_DB.FormChargeTime_PT[2] := REAL_TO_TIME (1000*(longestChargeTime - MCP_IO.Charger[8].ChargeTime.timeToChargeLoad));	
+END_IF;	
+*)
+IF (longestChargeTime - MCP_IO.GLS3_Load.timeToChargeLoad) >= 0 THEN
+		ChargeTime_DB.PreFormChargeTime_PT := REAL_TO_TIME (1000*(longestChargeTime - MCP_IO.GLS3_Load.timeToChargeLoad));
+		ELSE
+			ChargeTime_DB.PreFormChargeTime_PT := REAL_TO_TIME (1000*(MCP_IO.GLS3_Load.timeToChargeLoad -longestChargeTime));
+END_IF;
+
+
+
+IF i > 8 THEN 
+	i := 0;
+END_IF
+
+IF j > 8 THEN
+	j := 0;
+END_IF
+
+IF m > 6 THEN
+	m := 0;
+END_IF
+
+IF a > 8 THEN 
+	a := 1;
+END_IF;]]></ST>
+    </Implementation>
+    <LineIds Name="ChargeTime">
+      <LineId Id="251" Count="19" />
+      <LineId Id="273" Count="0" />
+      <LineId Id="189" Count="0" />
+      <LineId Id="185" Count="0" />
+      <LineId Id="279" Count="0" />
+      <LineId Id="441" Count="9" />
+      <LineId Id="439" Count="0" />
+      <LineId Id="387" Count="0" />
+      <LineId Id="368" Count="14" />
+      <LineId Id="347" Count="0" />
+      <LineId Id="383" Count="3" />
+      <LineId Id="287" Count="0" />
+      <LineId Id="390" Count="3" />
+      <LineId Id="388" Count="0" />
+      <LineId Id="395" Count="3" />
+      <LineId Id="394" Count="0" />
+      <LineId Id="400" Count="0" />
+      <LineId Id="402" Count="8" />
+      <LineId Id="401" Count="0" />
+      <LineId Id="412" Count="4" />
+      <LineId Id="187" Count="0" />
+      <LineId Id="36" Count="0" />
+      <LineId Id="108" Count="0" />
+      <LineId Id="112" Count="3" />
+      <LineId Id="109" Count="0" />
+      <LineId Id="116" Count="0" />
+      <LineId Id="118" Count="3" />
+      <LineId Id="117" Count="0" />
+      <LineId Id="682" Count="0" />
+      <LineId Id="681" Count="0" />
+      <LineId Id="278" Count="0" />
+      <LineId Id="110" Count="0" />
+      <LineId Id="705" Count="0" />
+      <LineId Id="163" Count="0" />
+      <LineId Id="707" Count="0" />
+      <LineId Id="706" Count="0" />
+      <LineId Id="158" Count="4" />
+      <LineId Id="144" Count="0" />
+      <LineId Id="164" Count="0" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="53" Count="7" />
+      <LineId Id="51" Count="0" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="89" Count="0" />
+      <LineId Id="135" Count="2" />
+      <LineId Id="166" Count="0" />
+      <LineId Id="183" Count="0" />
+      <LineId Id="558" Count="1" />
+      <LineId Id="452" Count="0" />
+      <LineId Id="470" Count="6" />
+      <LineId Id="469" Count="0" />
+      <LineId Id="453" Count="0" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="625" Count="1" />
+      <LineId Id="630" Count="1" />
+      <LineId Id="699" Count="1" />
+      <LineId Id="628" Count="0" />
+      <LineId Id="634" Count="0" />
+      <LineId Id="636" Count="0" />
+      <LineId Id="635" Count="0" />
+      <LineId Id="633" Count="0" />
+      <LineId Id="637" Count="0" />
+      <LineId Id="629" Count="0" />
+      <LineId Id="580" Count="0" />
+      <LineId Id="597" Count="0" />
+      <LineId Id="609" Count="2" />
+      <LineId Id="642" Count="1" />
+      <LineId Id="641" Count="0" />
+      <LineId Id="594" Count="0" />
+      <LineId Id="587" Count="0" />
+      <LineId Id="549" Count="0" />
+      <LineId Id="702" Count="1" />
+      <LineId Id="454" Count="0" />
+      <LineId Id="669" Count="0" />
+      <LineId Id="668" Count="0" />
+      <LineId Id="595" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="30" Count="1" />
+      <LineId Id="101" Count="0" />
+      <LineId Id="100" Count="0" />
+      <LineId Id="102" Count="1" />
+      <LineId Id="428" Count="0" />
+      <LineId Id="426" Count="1" />
+      <LineId Id="171" Count="0" />
+      <LineId Id="498" Count="0" />
+      <LineId Id="497" Count="0" />
+      <LineId Id="499" Count="0" />
+      <LineId Id="522" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

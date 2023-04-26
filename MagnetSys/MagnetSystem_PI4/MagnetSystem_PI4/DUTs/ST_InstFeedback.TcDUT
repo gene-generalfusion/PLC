@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="ST_InstFeedback" Id="{b18a5ab0-4514-44df-a73d-05cbf568e132}">
+    <Declaration><![CDATA[TYPE ST_InstFeedback :
+STRUCT
+	ChargerVolt : REAL;
+	CapVolt		: ARRAY [1..15] OF REAL;
+	Cur  		: REAL;
+	TotalVoltage: REAL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

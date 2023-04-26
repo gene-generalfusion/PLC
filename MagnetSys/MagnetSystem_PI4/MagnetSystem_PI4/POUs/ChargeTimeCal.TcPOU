@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="ChargeTimeCal" Id="{2188ccf4-5a87-4717-accc-069ab0f00230}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK ChargeTimeCal
+VAR_INPUT
+	I_setpoint 	: REAL := 400;
+	t_duration	: REAL := 4;
+	NumOfCaps	: REAL := 15;
+	C_percap	: REAL := 88;
+	VMAXperCap	: REAL := 100;
+	R_coil		: REAL := 1.1;
+	L_coil		: REAL := 0.5;
+	VMAXcharger	: REAL := 1500;
+	Pcharger	: REAL := 15000;
+	NumOfCharger: REAL := 4;
+END_VAR
+VAR_OUTPUT
+	Tuntilfullcharge	: REAL;
+END_VAR
+VAR
+	V_chargerCC2CP : REAL;
+	C_total		   : REAL;
+	V_capsmax	   : REAL;
+	E_resistivepulse : REAL;
+	E_inductivepulse : REAL;
+	E_pulse			 : REAL;
+	VchrSPrequested  : REAL;
+	VchrSPactual     : REAL;
+	I_peakchargecurrent : REAL;
+	Icc					: REAL;
+	Icp					: REAL;
+	Vpresent			: REAL;
+	Vfinal				: REAL;
+	VpresentCC			: REAL;
+	VfinalCC			: REAL;
+	Tcc					: REAL;
+	VpresentCP			: REAL;
+	Tcp					: REAL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[V_chargerCC2CP := VMAXcharger / 2;
+
+C_total := C_percap/NumOfCaps;
+V_capsmax := VMAXpercap * NumOfCaps;
+E_resistivepulse := LREAL_TO_REAL(EXPT(I_setpoint, 2))*R_coil*t_duration;
+E_inductivepulse := L_coil * LREAL_TO_REAL(EXPT(I_setpoint, 2))/2;
+E_pulse := E_resistivepulse + E_inductivepulse;
+VchrSPrequested := SQRT(2*E_pulse/C_total);
+
+IF VchrSPrequested > V_capsmax THEN
+	VchrSPactual := V_capsmax;
+	ELSE
+		VchrSPactual := VchrSPrequested;	
+END_IF
+
+//I_peakchargecurrent := Pcharger * NumOfCharger / (2*VMAXcharger);
+I_peakchargecurrent := Pcharger * NumOfCharger * 2 / VMAXcharger;
+Icc := I_peakchargecurrent;
+Icp := I_peakchargecurrent * (0.5 + ((VMAXcharger - Vpresent)/VMAXcharger));
+Vfinal := 1400; //hard coded???
+VpresentCC := 200; // hard coded???
+
+IF Vfinal > V_chargerCC2CP THEN
+	VfinalCC := V_chargerCC2CP;
+	ELSIF Vfinal < V_chargerCC2CP THEN
+		VfinalCC := Vfinal;
+END_IF
+
+Tcc := (V_chargerCC2CP - VpresentCC)*C_total/I_peakchargecurrent;
+
+VpresentCP := V_chargerCC2CP;
+Tcp := -((VMAXcharger*C_total)/I_peakchargecurrent)*LN((1.5*VMAXcharger-Vfinal)/(1.5*VMAXcharger-VpresentCP));
+
+Tuntilfullcharge := Tcc + Tcp;]]></ST>
+    </Implementation>
+    <LineIds Name="ChargeTimeCal">
+      <LineId Id="9" Count="0" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="37" Count="0" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="39" Count="0" />
+      <LineId Id="38" Count="0" />
+      <LineId Id="40" Count="0" />
+      <LineId Id="43" Count="1" />
+      <LineId Id="41" Count="0" />
+      <LineId Id="47" Count="0" />
+      <LineId Id="46" Count="0" />
+      <LineId Id="115" Count="0" />
+      <LineId Id="49" Count="0" />
+      <LineId Id="51" Count="0" />
+      <LineId Id="54" Count="0" />
+      <LineId Id="59" Count="0" />
+      <LineId Id="61" Count="0" />
+      <LineId Id="58" Count="0" />
+      <LineId Id="62" Count="0" />
+      <LineId Id="65" Count="0" />
+      <LineId Id="67" Count="0" />
+      <LineId Id="63" Count="0" />
+      <LineId Id="69" Count="0" />
+      <LineId Id="68" Count="0" />
+      <LineId Id="72" Count="0" />
+      <LineId Id="71" Count="0" />
+      <LineId Id="74" Count="0" />
+      <LineId Id="78" Count="0" />
+      <LineId Id="76" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

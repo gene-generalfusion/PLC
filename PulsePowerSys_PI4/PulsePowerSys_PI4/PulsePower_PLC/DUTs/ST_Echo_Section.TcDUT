@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="ST_Echo_Section" Id="{e403587a-2c2a-4acb-ae21-de60dbc14ffb}">
+    <Declaration><![CDATA[TYPE ST_Echo_Section :
+STRUCT
+	PeakCap : ARRAY[1..10] OF ST_InstrumentReading;
+	SustCap : ARRAY[1..2] OF ST_InstrumentReading;
+	FormCap : ARRAY[1..12] OF ST_InstrumentReading;
+	FormTrigVoltage		: REAL;
+	PreFormTrigVoltage  : REAL;
+	PreFormCapVoltage  : REAL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

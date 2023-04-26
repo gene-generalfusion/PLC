@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="ST_Echo_MCP" Id="{046077e8-8653-492e-8ab0-fca8bbe346f5}">
+    <Declaration><![CDATA[TYPE ST_Echo_MCP :
+STRUCT
+	VoltageFeedback : REAL;
+	CurrentFeedback : REAL;
+	TDKLoad			: ST_ChargeTime;
+	
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

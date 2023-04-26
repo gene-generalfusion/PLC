@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="ST_Coil_Base" Id="{9780b1d1-f5c5-4a00-9de3-1ff70eb9b55e}">
+    <Declaration><![CDATA[//Base coil type with all the Common functionality
+TYPE ST_Coil_Base :
+STRUCT
+	afterShot_actualCoilCurrent_WaveForm	: WORD;
+	requiredTimeToCharge					: TIME;
+	measuredMagneticField					: DINT;
+		
+	ChargeVoltageFeedback					: REAL;
+	ChargeVoltageFeedback_raw				: INT;
+	ChargerVoltageFeedback_norm				: REAL;
+	TotalVoltage							: REAL;
+	
+	CurrentFeedback							: REAL;
+	CurrentFeedback_raw						: INT;
+	CurrentFeedback_norm					: REAL;
+
+	Measured_Bfield							: REAL;
+	Measured_Bfield_raw						: INT;
+	B_fieldFeedback_norm					: REAL;
+	
+	chargerSetpoint							: INT;  //0-100% analog PWM 24V output -> (0 - 10V)
+	chargerSetpoint_norm					: REAL;
+	chargerSetpoint_raw						: REAL;
+	currentSetpoint							: INT;  //0-100% analog PWM 24V output -> (0.5 - 4.5V)
+	currentSetpoint_norm					: REAL;
+	currentSetpoint_raw						: REAL;
+	//currentSetpointFromMaster: REAL;
+
+	PSU0_active								: BOOL := FALSE;
+	PSU1_DCOK								: BOOL;
+	Local_StopPB_Pressed					: BOOL;  //NC
+	DumpRelay1_closed						: BOOL;
+	DumpRelay2_closed						: BOOL;
+	ChargeRelay_closed						: BOOL := FALSE;
+	ChargerIsEnabled						: BOOL := FALSE; //feedback from charger
+	FlybackD1_Alive							: BOOL := FALSE;
+	FlybackD2_Alive							: BOOL := FALSE;
+	
+	DumpResistorTemperatureHigh				: BOOL; 
+	GroundLoopCurrentDetected				: BOOL;
+	CoilTemperatureHigh						: BOOL := FALSE;
+	AC_Interlock_RlyClose					: BOOL;
+	LossPneumaticPressure					: BOOL;
+	
+	OpenDumpRelays							: BOOL := FALSE;
+	closeChargeRelay						: BOOL := FALSE;
+	enableOutputToCharger					: BOOL := FALSE;  //output going to charger
+	CloseACInterlockRly						: BOOL := FALSE;
+	SystemFaulted							: BOOL := FALSE;
+	SystemCharging							: BOOL := FALSE;
+	SystemReady								: BOOL := FALSE;
+	CloseHVisolationRelay					: BOOL; //relay 6 (24vdc) to control relay 7 & 8 (two 120vac ross relays)
+	HVisolationRelayClosed					: BOOL;
+	OutputRelayOpen							: BOOL;
+	
+	CoilEnabled								: BOOL := TRUE;
+	AllCapsCharged							: BOOL;
+	NumOfCap								: INT := 4;
+	
+	//CoilSafetyOK							: BOOL;
+	CapWarning								: BOOL;  //comes from UltraCaps CANBUS message
+	CapAlarm								: BOOL;
+	CapVoltage								: ARRAY[1..15] OF INT;   //Comes from UlgraCaps CANBUS message
+	CapCellTemp								: ARRAY[1..15] OF INT;
+	
+	ChargerVoltageFault_TON : TON;
+	ChargerVoltageFault_ET : TIME;
+	CurrentSensorFault_TON : TON;
+	CurrentSensorFault_ET : TIME;
+	BfieldSensorFault_TON : TON;
+	BfieldSensorFault_ET : TIME;
+	
+	//CAN_id: INT;
+	//CAN_AdsAddr: AMSADDR;
+	//CAN_netID: AMSNETID;
+	//CAN_port: WORD;
+	//CAN_error: USINT;
+	//CAN_State: UINT;
+	//CAN_RxErrorCounter: USINT;	
+	//CAN_TxErrorCounter: USINT;	
+	//CAN_DiagFlag: BOOL;
+	
+	//UltraCap_CAN_ID : STRING;
+	UltraCap			: ARRAY[1..10] OF  ST_UC_Status;  //assuming 10 uc in one coil
+	UltraCap_Dummy		: ST_UC_Status_Dummy; //buffer temp for uc 7f
+	UC_Dummy_ID_hexstr	: STRING;
+	
+	CanTx_config_ID 	: UDINT;
+	CanTx_config_length : UINT;
+	CanTx_config_request: ARRAY[0..7] OF BYTE;
+		
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

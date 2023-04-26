@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <GVL Name="EngVal" Id="{279758fb-6686-4086-920b-c14098f79a19}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	Max_50kVChargerVoltage : REAL := 50000; //50kV
+	Min_50kVChargerVoltage : REAL := 0;
+	
+	Max_50kVChargerCurrent : REAL := 0.18; //total peak charge current is 0.18A
+	Min_50kVChargerCurrent : REAL := 0;
+	
+	Max_12kVChargerVoltage : REAL := 12000; //12kV
+	Min_12kVChargerVoltage : REAL := 0;
+	
+	Max_12kVChargerCurrent : REAL := 0.75; //total peak charge current is 0.75A
+	Min_12kVChargerCurrent : REAL := 0;
+	
+	Max_GLS1_ChargerV	   : REAL := 50000; //form trigger
+	Max_GLS2_ChargerV	   : REAL := 50000; // preform trigger
+	Max_GLS3_ChargerV	   : REAL := 30000; // preform cap charger
+	
+	Max_CapVoltage			: REAL := 32000;  //assuming 32kV cap....  
+	Min_CapVoltage			: REAL := 0;
+	
+	ULimit_PeakCapRequiredV	: REAL := 10000; //10kV veto
+	LLimit_PeakCapRequiredV	: REAL := -2000; //-2kV
+	ULimit_SustCapRequiredV	: REAL := 12000; //12kv veto
+	LLimit_SustCapRequiredV	: REAL := -2000; //-2kv
+	ULimit_FormCapRequiredV : REAL := 35000;
+	LLimit_FormCapRequiredV : REAL := 0;
+	
+	ULimit_PreFormCapRequiredV : REAL := 30000;
+	LLimit_PreFormCapRequiredV : REAL := 0;
+		
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

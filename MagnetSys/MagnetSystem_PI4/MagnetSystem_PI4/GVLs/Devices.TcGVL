@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <GVL Name="Devices" Id="{fe49fa74-18a7-48cc-addf-31b6e6346070}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	Coil : ARRAY[1..10] OF ST_Coil_Base;
+	//coil1 : ST_Coil_Base;
+	//coil2 : ST_Coil_Base;	
+	
+	//Coil100 : ST_Coil_Ext_Analog1;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

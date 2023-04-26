@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="Delay2s" Id="{655dd55a-49e9-43e5-b293-13c0abde3e61}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Delay2s
+VAR_INPUT
+	input : BOOL;
+	ONdelayPT : TIME := T#2S;
+END_VAR
+VAR_OUTPUT
+	output : BOOL;
+	ONdelayET : BOOL;
+END_VAR
+VAR
+	ONdelay : TON;
+	iCount : INT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[ONdelay(IN:=input, PT:=ONdelayPT);
+
+IF ONdelay.Q THEN
+     iCount:= iCount+1;
+     Ondelay(IN:= FALSE);
+
+     //optional if want to keep the timer timing
+     //ONdelay(IN:=input);
+END_IF;
+
+output := ONdelay.Q;]]></ST>
+    </Implementation>
+    <LineIds Name="Delay2s">
+      <LineId Id="10" Count="4" />
+      <LineId Id="46" Count="1" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

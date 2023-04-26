@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<TcLicenseInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2011/11/TcLicenseInfo">
+	<TargetInfo>
+		<TcTargetDesc>
+			<TargetType>CX5100-WIN 10.0</TargetType>
+			<TargetVersion>
+				<Version>3</Version>
+				<Revision>1</Revision>
+				<Build>4024</Build>
+			</TargetVersion>
+			<TargetFeatures>
+				<Level>CP</Level>
+				<NetId>5.104.224.86.1.1</NetId>
+			</TargetFeatures>
+			<Hardware>
+				<Model>CX5130-0175</Model>
+				<SerialNo>000s2jd5</SerialNo>
+				<CPUVersion>4.9</CPUVersion>
+				<Date>14.4.22</Date>
+				<CPUArchitecture>0</CPUArchitecture>
+			</Hardware>
+			<OsImage>
+				<ImageDevice>CX51x0</ImageDevice>
+				<ImageVersion>1.3a</ImageVersion>
+				<ImageLevel>CX1800-0711-1011</ImageLevel>
+				<OsName>Windows 10 Enterprise LTSC 2019</OsName>
+				<OsVersion>10.0</OsVersion>
+			</OsImage>
+		</TcTargetDesc>
+	</TargetInfo>
+	<LicenseInfo>
+		<SystemId Level="40" SerialNo="000s2jd5" MacAddress="00010568e056">{A03BB85F-A780-B2F7-A056-0E2D62E1438B}</SystemId>
+		<PurchaseOrder><![CDATA[00857189]]></PurchaseOrder>
+		<IssueTime>2022-07-27T23:44:00</IssueTime>
+		<License>
+			<LicenseId>{66689887-CCBD-452C-AC9A-039D997C6E66}</LicenseId>
+			<Name>TC3 PLC</Name>
+			<OrderNo>TC1200</OrderNo>
+			<LicenseTAN>H3ZCP-3NJNZ</LicenseTAN>
+		</License>
+		<License ManuallyAdded="true">
+			<LicenseId>{4AB869F0-145C-4EB0-878E-69BB1793E116}</LicenseId>
+			<Name>TC3 Realtime Monitor</Name>
+			<OrderNo>TE1010</OrderNo>
+			<LicenseTAN>H3ZCP-3NJNZ</LicenseTAN>
+		</License>
+	</LicenseInfo>
+</TcLicenseInfo>

@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="ST_Trip_Base" Id="{1e589dff-c997-4725-b188-68637e8cc0f7}">
+    <Declaration><![CDATA[TYPE ST_Trip_Base :
+STRUCT
+	ChargerVoltageReadingFaulted 		: BOOL;
+	CurrentReadingFaulted 		 		: BOOL;
+	BfieldReadingFaulted 		 		: BOOL;
+	
+	ACInterlockRelayFailedtoClose		: BOOL;
+	ACInterlockRelayFailedtoOpen 		: BOOL;
+	ACintLockRlyCloseFaultDelay_TON		: TON;
+	ACintLockRlyOpenFaultDelay_TON		: TON;
+	
+	DumpRelay1_FailtoClose		 		: BOOL;
+	DumpRelay1_FailtoOpen		 		: BOOL;
+	DumpRlyCloseFaultDelay_TON 		 	: TON;
+	DumpRlyOpenFaultDelay_TON 		 	: TON;
+	
+	DumpRelay2_FailtoClose		 : BOOL;
+	DumpRelay2_FailtoOpen		 : BOOL;
+	
+	ChargeRelay_FailtoClose		 : BOOL;
+	ChargeRelay_FailtoOpen		 : BOOL;
+	ChrgRlyCloseFaultDelay_TON	 : TON;
+	ChrgRlyOpenFaultDelay_TON	 : TON;
+	
+	
+	HVisoRelayFailedToOpen		: BOOL;
+	HVRelayOpenFaultDelay_TON	: TON;
+	HVisoRelayFailedToClose		: BOOL;
+	HVRelayCloseFaultDelay_TON	: TON;
+	
+	UltraCap					: ARRAY[1..10] OF ST_UC_Trip_Base;
+	AnyCapOverV_warning			: BOOL;  //cell voltage > 2.85V - warning, > 2.9V - alarm
+	AnyCapOverV_alarm			: BOOL;  //cell voltage > 2.85V - warning, > 2.9V - alarm
+	AnyCapOverTemp_warning		: BOOL; //cell >50C - warning, >60C - alarm
+	AnyCapOverTemp_alarm		: BOOL; //cell >50C - warning, >60C - alarm
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="ST_Setpoints" Id="{2c584bfd-7bc9-469d-bdc2-66d1cfa739d4}">
+    <Declaration><![CDATA[TYPE ST_Setpoints :
+STRUCT
+	EngVal			: ST_EngVal; //AIQ scales
+	SysParameters 	: ST_SysParameters;  //shot log parameters
+	Recipe			: ST_Recipe; //from main plc
+	RecipeLocal		: ST_RecipeLocal; //converted for local use
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

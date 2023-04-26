@@ -1,0 +1,179 @@
+<?xml version="1.0"?>
+<TcEventSources Version="2">
+	<Source>
+		<GUID>{12D4E68C-23D0-4828-96DB-E58EAA58AD88}</GUID>
+		<Name LcId="1033">Alarms</Name>
+		<Event>
+			<Id>999</Id>
+			<Message LcId="1033">Instrumentation Fault</Message>
+		</Event>
+		<Event>
+			<Id>998</Id>
+			<Message LcId="1033">Control System Tripped</Message>
+		</Event>
+		<Event>
+			<Id>0</Id>
+			<Message LcId="1033">Coil 1 AI 1 Under Voltage</Message>
+		</Event>
+		<Event>
+			<Id>1</Id>
+			<Message LcId="1033">Coil 1 AI 1 Over Voltage</Message>
+		</Event>
+		<Event>
+			<Id>2</Id>
+			<Message LcId="1033">Coil 1 AI 1 Value smaller/equal Limit1</Message>
+		</Event>
+		<Event>
+			<Id>3</Id>
+			<Message LcId="1033">Coil 1 AI 1 Under Voltage</Message>
+		</Event>
+		<Event>
+			<Id>4</Id>
+			<Message LcId="1033">Coil 1 AI 2 Over Voltage</Message>
+		</Event>
+		<Event>
+			<Id>5</Id>
+			<Message LcId="1033">Coil 1 AI 2 Over Voltage</Message>
+		</Event>
+		<Event>
+			<Id>6</Id>
+			<Message LcId="1033">Coil 1 AI 2 Value smaller/equal Limit1</Message>
+		</Event>
+		<Event>
+			<Id>7</Id>
+			<Message LcId="1033">Coil 1 AI 2 Value bigger/equal Limit1</Message>
+		</Event>
+		<Event>
+			<Id>8</Id>
+			<Message LcId="1033">Coil 1 AI 3 Under Voltage</Message>
+		</Event>
+		<Event>
+			<Id>9</Id>
+			<Message LcId="1033">Coil 1 AI 3 Over Voltage</Message>
+		</Event>
+		<Event>
+			<Id>10</Id>
+			<Message LcId="1033">Coil 1 AI 3 Value smaller/equal Limit1</Message>
+		</Event>
+		<Event>
+			<Id>11</Id>
+			<Message LcId="1033">Coil 1 AI 3 Value bigger/equal Limit1</Message>
+		</Event>
+		<Event>
+			<Id>12</Id>
+			<Message LcId="1033">Coil 1 Charger Voltage Reading Faulted</Message>
+		</Event>
+		<Event>
+			<Id>13</Id>
+			<Message LcId="1033">Coil 1 Current Reading Faulted</Message>
+		</Event>
+		<Event>
+			<Id>14</Id>
+			<Message LcId="1033">Coil 1 Bfield Reading Faulted</Message>
+		</Event>
+	</Source>
+	<Source>
+		<GUID>{4C49288A-38C6-49BB-BC1D-8226D13E9C58}</GUID>
+		<Name LcId="1033">Alarms</Name>
+		<Event>
+			<Id>160</Id>
+			<Message LcId="1033">Coil 1 Interlock Relay Open</Message>
+		</Event>
+		<Event>
+			<Id>161</Id>
+			<Message LcId="1033">Coil 2 Interlock Relay Open</Message>
+		</Event>
+		<Event>
+			<Id>162</Id>
+			<Message LcId="1033">Coil 3 Interlock Relay Open</Message>
+		</Event>
+		<Event>
+			<Id>163</Id>
+			<Message LcId="1033">Coil 4 Interlock Relay Open</Message>
+		</Event>
+		<Event>
+			<Id>164</Id>
+			<Message LcId="1033">Coil 5 Interlock Relay Open</Message>
+		</Event>
+		<Event>
+			<Id>165</Id>
+			<Message LcId="1033">Coil 6 Interlock Relay Open</Message>
+		</Event>
+		<Event>
+			<Id>166</Id>
+			<Message LcId="1033">Coil 7 Interlock Relay Open</Message>
+		</Event>
+		<Event>
+			<Id>167</Id>
+			<Message LcId="1033">Coil 8 Interlock Relay Open</Message>
+		</Event>
+		<Event>
+			<Id>168</Id>
+			<Message LcId="1033">Coil 9 Interlock Relay Open</Message>
+		</Event>
+		<Event>
+			<Id>169</Id>
+			<Message LcId="1033">Coil 10 Interlock Relay Open</Message>
+		</Event>
+		<Event>
+			<Id>170</Id>
+			<Message LcId="1033">All Interlock Open</Message>
+		</Event>
+	</Source>
+	<Source>
+		<GUID>{DDA2B39D-A740-4013-80FD-087906D18786}</GUID>
+		<Name LcId="1033">Alarms</Name>
+		<Event>
+			<Id>336</Id>
+			<Message LcId="1033">Master Stop PB is Pressed</Message>
+		</Event>
+		<Event>
+			<Id>337</Id>
+			<Message LcId="1033">Coil 1 Local E-stop is Pressed</Message>
+		</Event>
+		<Event>
+			<Id>338</Id>
+			<Message LcId="1033">Coil 2 Local E-stop is Pressed</Message>
+		</Event>
+		<Event>
+			<Id>339</Id>
+			<Message LcId="1033">Coil 3 Local E-stop is Pressed</Message>
+		</Event>
+		<Event>
+			<Id>340</Id>
+			<Message LcId="1033">Coil 4 Local E-stop is Pressed</Message>
+		</Event>
+		<Event>
+			<Id>341</Id>
+			<Message LcId="1033">Coil 5 Local E-stop is Pressed</Message>
+		</Event>
+		<Event>
+			<Id>342</Id>
+			<Message LcId="1033">Coil 6 Local E-stop is Pressed</Message>
+		</Event>
+		<Event>
+			<Id>343</Id>
+			<Message LcId="1033">Coil 7 Local E-stop is Pressed</Message>
+		</Event>
+		<Event>
+			<Id>344</Id>
+			<Message LcId="1033">Coil 8 Local E-stop is Pressed</Message>
+		</Event>
+		<Event>
+			<Id>345</Id>
+			<Message LcId="1033">Coil 9 Local E-stop is Pressed</Message>
+		</Event>
+		<Event>
+			<Id>346</Id>
+			<Message LcId="1033">Coil 10 Local E-stop is Pressed</Message>
+		</Event>
+		<Event>
+			<Id>347</Id>
+			<Message LcId="1033">Manual Mode Selected</Message>
+		</Event>
+		<Event>
+			<Id>348</Id>
+			<Message LcId="1033">Cage E-Stop Circuit not OK</Message>
+		</Event>
+	</Source>
+</TcEventSources>

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="E_Command" Id="{5736869e-81f5-4303-8652-5bc63df8bdc6}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+{attribute 'to_string'}
+//Command from Master PLC (screenroom)
+TYPE E_Command :
+(
+	//Requested PP State
+	IDLE		 	:= 0, 
+	CHARGE			:= 1, 
+	DISCONNECT		:= 2,
+	DUMP			:= 3, 
+	ABORT			:= 4
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

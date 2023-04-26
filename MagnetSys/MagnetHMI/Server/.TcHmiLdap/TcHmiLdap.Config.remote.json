@@ -1,0 +1,6 @@
+{
+    "HOST": "",
+    "PORT": 389,
+    "TRUST_ALL_CERTIFICATES": false,
+    "USE_TLS": false
+}

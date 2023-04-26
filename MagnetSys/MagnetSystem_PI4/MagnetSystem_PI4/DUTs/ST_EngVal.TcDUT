@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="ST_EngVal" Id="{2978b86c-cc28-4c5e-b782-121d51b13914}">
+    <Declaration><![CDATA[TYPE ST_EngVal :
+STRUCT
+	Max_chargerVoltage : REAL := 102;  //102V is the norminal voltage output from the charger
+	Min_chargerVoltage : REAL := 0;
+	Max_current_perCap : REAL := 600; //600A is max current output per Cap  TBD....
+	Min_current_perCap : REAL := 0;
+	Max_Tesla : REAL := 1;  //102V is the norminal voltage output from the charger
+	Min_Tesla : REAL := 0;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

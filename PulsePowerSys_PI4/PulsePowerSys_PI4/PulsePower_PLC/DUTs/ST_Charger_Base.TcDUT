@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="ST_Charger_Base" Id="{8a87cbb4-bf0d-48a4-8430-6d1bdab51beb}">
+    <Declaration><![CDATA[TYPE ST_Charger_Base :
+STRUCT
+	//DI
+	inhibited 		: BOOL;
+	EndOfCharge 	: BOOL;
+	HV_isON			: BOOL;
+	OverTemp		: BOOL;
+	InterlockOpen	: BOOL;
+	LoadFaulted		: BOOL;
+	SummaryFaulted	: BOOL;
+	
+	//DQ
+	inhibit			: BOOL;
+	HV_ON			: BOOL;
+	
+	//AI
+	voltageFeedback_raw 	: INT;
+	voltageFeedback_norm 	: REAL;
+	voltageFeedback			: REAL;
+	
+	currentFeedback_raw 	: INT;
+	currentFeedback_norm	: REAL;
+	currentFeedback			: REAL;
+	
+	//AQ
+	voltageSP_norm	: REAL;
+	voltageSP		: INT;
+	voltageSP_raw	: INT; // setpoint output to field device.
+	
+	//Internal
+	ChargerType_50kV : BOOL;
+	ChargerType_12kV : BOOL;
+	LossInhibit		 : BOOL;
+	LossHVON		 : BOOL;
+	LossInhibitTON	 : TON;
+	LossHVON_TON	 : TON;
+	
+	ChargeTime		: ST_ChargeTime;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

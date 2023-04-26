@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="AnalogConversion" Id="{3b8eecca-a8e5-4cfd-bb8d-8865397a6f0b}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM AnalogConversion
+VAR	
+	i : INT  := 1;
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//*******************Output Sepoints come from the Screen room recipe, the sysparameters would need to mapped here******//
+//ie Setpoints.coil[1].engval.max_chargervoltage := Recipe.
+Devices.Coil[1].NumOfCap := Setpoints.Coil[1].SysParameters.NumOfCaps;
+
+
+//Converting raw data into Voltage Reading (0-10V), (0.5-4.5V)
+
+//LCP1
+// Voltage feedback - 10V = Max voltage (102V)
+Devices.Coil[1].ChargerVoltageFeedback_norm := Norm_x (raw_input := INT_TO_REAL(Devices.Coil[1].ChargeVoltageFeedback_raw),
+										x_max := 32767,
+										x_min := 0);
+										
+InstrumentReading.R2_01_CH00 := Devices.Coil[1].ChargerVoltageFeedback_norm * 10;
+
+//Charger Voltage = (max voltage - min voltage) * measured_voltage / range(voltage)
+Devices.Coil[1].ChargeVoltageFeedback := (Setpoints.Coil[1].EngVal.Max_chargerVoltage - Setpoints.Coil[1].EngVal.Min_chargerVoltage) * ADC_10V (normal_input := Devices.Coil[1].ChargerVoltageFeedback_norm,
+																					x_max := 10,
+																					x_min := 0);
+
+//Current feedback - 4.5V = 600Amp????
+Devices.Coil[1].CurrentFeedback_norm := Norm_x (raw_input := INT_TO_REAL(Devices.Coil[1].CurrentFeedback_raw),
+								x_max := 32767*4.5/10,
+								x_min := 32767*0.5/10);
+						
+InstrumentReading.R2_01_CH01 := Devices.Coil[1].CurrentFeedback_norm * (4.5-0.5);
+
+//Current feedback for each ultracap
+Devices.Coil[1].CurrentFeedback := (Setpoints.Coil[1].EngVal.Max_current_perCap - Setpoints.Coil[1].EngVal.Min_current_perCap) * ADC_5V (normal_input := Devices.Coil[1].CurrentFeedback_norm,
+																								x_max := 4.5,
+																								x_min := 0.5);
+
+//CurrentFeedback_norm := Norm_x (raw_input := INT_TO_REAL(Input.R2_01_01), x_max := 32767*4.5/10, x_min := 32767*0.5/10);
+//coil1.CurrentFeedback := CurrentFeedback_norm * 4;
+
+//B-field - (0-10V) 10V = ?? Tesla
+Devices.Coil[1].B_fieldfeedback_norm := Norm_x (raw_input := INT_TO_REAL(Devices.Coil[1].Measured_Bfield_raw),
+								x_max := 32767,
+								x_min := 0);
+								
+InstrumentReading.R2_01_CH02 := Devices.Coil[1].B_fieldfeedback_norm * 10;
+
+//Charger Voltage = (max voltage - min voltage) * measured_voltage / range(voltage)
+Devices.Coil[1].Measured_Bfield := (Setpoints.Coil[1].EngVal.Max_Tesla - Setpoints.Coil[1].EngVal.Min_Tesla) * ADC_10V(normal_input := Devices.Coil[1].B_fieldfeedback_norm,
+																x_max := 10,
+																x_min := 0);
+
+																
+//PWM Output
+
+//set limits of charger voltage input 
+FOR i := 1 TO 10 BY 1 DO
+	IF Devices.Coil[i].chargerSetpoint >= REAL_TO_INT (Setpoints.Coil[1].EngVal.Max_chargerVoltage) THEN
+		Devices.Coil[i].chargerSetpoint := REAL_TO_INT (Setpoints.Coil[1].EngVal.Max_chargerVoltage);
+	END_IF;
+	//This should never happend
+	IF Devices.Coil[i].chargerSetpoint_raw >= (10/24 * 32767) THEN
+		Devices.Coil[i].chargerSetpoint_raw := (10/24 * 32767);
+	END_IF;
+END_FOR;
+
+Devices.Coil[1].chargerSetpoint_norm := Norm_x (raw_input := INT_TO_REAL (Devices.Coil[1].chargerSetpoint), 
+												x_max := Setpoints.Coil[1].EngVal.Max_chargerVoltage,
+												x_min := Setpoints.Coil[1].EngVal.Min_chargerVoltage);
+
+Devices.Coil[1].chargerSetpoint_raw := PWMO (norm_input := Devices.Coil[1].chargerSetpoint_norm, 
+												x_max := 24,
+												x_min := 0); 	
+
+
+//Current set point output
+//set limits of charger voltage input 
+FOR i := 1 TO 10 BY 1 DO
+	IF Devices.Coil[i].currentSetpoint >= REAL_TO_INT (Setpoints.Coil[1].EngVal.Max_current_perCap) THEN
+		Devices.Coil[i].currentSetpoint := REAL_TO_INT (Setpoints.Coil[1].EngVal.Max_current_perCap);
+	END_IF;
+	//This should never happend - Current setpoint board takes 0.5V - 4.5V
+	IF Devices.Coil[i].currentSetpoint_raw >= (4.5/24 * 32767) THEN
+		Devices.Coil[i].currentSetpoint_raw := (4.5/24 * 32767);
+	END_IF;
+END_FOR;
+
+Devices.Coil[1].currentSetpoint_norm := Norm_x (raw_input := INT_TO_REAL (Devices.Coil[1].currentSetpoint), 
+												x_max := Setpoints.Coil[1].EngVal.Max_current_perCap,
+												x_min := Setpoints.Coil[1].EngVal.Min_current_perCap);
+//current output for each cap
+Devices.Coil[1].currentSetpoint_raw := PWMO (norm_input := Devices.Coil[1].currentSetpoint_norm, 
+												x_max := 24,
+												x_min := 0); 	
+
+
+//uncomment this when PWM output module is ready.											
+(*
+//LCP1
+Output.R2_02_00 := Devices.Coil[1].chargerSetpoint_raw; 
+Output.R2_02_01 := Devices.Coil[1].currentSetpoint_raw;
+
+//LCP2
+Output.R3_02_00 := Devices.Coil[2].chargerSetpoint_raw; 
+Output.R3_02_01 := Devices.Coil[2].currentSetpoint_raw;
+*)
+
+//reset counter
+IF i > 10 THEN
+	i:=1;
+END_IF;]]></ST>
+    </Implementation>
+    <LineIds Name="AnalogConversion">
+      <LineId Id="61" Count="0" />
+      <LineId Id="236" Count="0" />
+      <LineId Id="233" Count="0" />
+      <LineId Id="249" Count="0" />
+      <LineId Id="248" Count="0" />
+      <LineId Id="232" Count="0" />
+      <LineId Id="86" Count="0" />
+      <LineId Id="80" Count="0" />
+      <LineId Id="79" Count="0" />
+      <LineId Id="46" Count="0" />
+      <LineId Id="92" Count="1" />
+      <LineId Id="112" Count="0" />
+      <LineId Id="74" Count="0" />
+      <LineId Id="113" Count="0" />
+      <LineId Id="70" Count="0" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="95" Count="1" />
+      <LineId Id="62" Count="0" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="98" Count="1" />
+      <LineId Id="116" Count="0" />
+      <LineId Id="75" Count="0" />
+      <LineId Id="181" Count="0" />
+      <LineId Id="117" Count="0" />
+      <LineId Id="59" Count="0" />
+      <LineId Id="101" Count="1" />
+      <LineId Id="73" Count="0" />
+      <LineId Id="72" Count="0" />
+      <LineId Id="71" Count="0" />
+      <LineId Id="78" Count="0" />
+      <LineId Id="77" Count="0" />
+      <LineId Id="83" Count="0" />
+      <LineId Id="104" Count="1" />
+      <LineId Id="114" Count="0" />
+      <LineId Id="84" Count="0" />
+      <LineId Id="115" Count="0" />
+      <LineId Id="106" Count="0" />
+      <LineId Id="82" Count="0" />
+      <LineId Id="108" Count="1" />
+      <LineId Id="130" Count="0" />
+      <LineId Id="81" Count="0" />
+      <LineId Id="131" Count="0" />
+      <LineId Id="149" Count="0" />
+      <LineId Id="148" Count="0" />
+      <LineId Id="145" Count="0" />
+      <LineId Id="134" Count="0" />
+      <LineId Id="143" Count="1" />
+      <LineId Id="163" Count="3" />
+      <LineId Id="146" Count="1" />
+      <LineId Id="135" Count="0" />
+      <LineId Id="138" Count="0" />
+      <LineId Id="140" Count="0" />
+      <LineId Id="156" Count="0" />
+      <LineId Id="155" Count="0" />
+      <LineId Id="157" Count="0" />
+      <LineId Id="159" Count="0" />
+      <LineId Id="136" Count="0" />
+      <LineId Id="182" Count="1" />
+      <LineId Id="189" Count="17" />
+      <LineId Id="184" Count="0" />
+      <LineId Id="207" Count="2" />
+      <LineId Id="215" Count="0" />
+      <LineId Id="210" Count="1" />
+      <LineId Id="216" Count="0" />
+      <LineId Id="213" Count="1" />
+      <LineId Id="212" Count="0" />
+      <LineId Id="185" Count="0" />
+      <LineId Id="151" Count="1" />
+      <LineId Id="150" Count="0" />
+      <LineId Id="153" Count="1" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

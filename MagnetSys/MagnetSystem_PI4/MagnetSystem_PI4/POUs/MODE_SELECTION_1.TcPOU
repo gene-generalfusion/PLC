@@ -1,0 +1,989 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="MODE_SELECTION_1" Id="{555b4fc9-29ab-4725-aacb-810ee58c0cd6}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MODE_SELECTION_1
+VAR
+	//MagnetState : (FULL_SHUTDOWN, IDLE, READY_TO_CHARGE, CHARGING, CHARGING_PAUSED, READY_TO_SHOOT, SHOOTING, POST_SHOT, SHUTDOWN, DUMPING); 
+	eMagState : E_MagState := 0;
+	//bChargingDone: BOOL;
+	eCommand : E_Command; // Requested State (FULL_SHUT_DOWN = 0, IDLE = 1, CHARGE = 2, CHARGE_PAUSED, SHOOT = 3, POST_SHOT = 4, SHUTDOWN = 5, DUMPING = 6)
+	eStatus : E_Status; // Actual Status (FULL_SHUTDOWN = 0, IDLE = 1, READY_TO_CHARGE = 2, CHARGE = 3, CHARGE_PAUSED = 4, READY_TO_SHOOT = 5, SHOOTING = 6, POST_SHOT = 7, SHUTDOWN = 8, DUMPING = 9, TRIPPED = 10, MANUAL_MODE = 11)
+	i: INT;
+	
+	ChargerOFF_ChrgRlyOPEN_Delay_FShutDown_TON	: TON;
+	timerBTW_ChrgRly_ChrgEnable_ChrgPause_TON	: TON;
+	timerBTW_ChrgRly_ChrgEnable_ReadyToShoot_TON: TON;
+	
+	timerBTW_ChrgRly_ChrgEnable_Chrging_TON		: TON;
+	timerBTW_ChrgRly_ChrgEnable_PT 	: TIME := T#500MS;
+	timerBTW_ChrgRly_ChrgEnable_ET  : TIME;
+	
+	timerBTW_DUMP_IDLE 				: TON;
+	timerBTW_DUMP_IDLE_PT 			: TIME := T#15S;
+	timerBTW_DUMP_IDLE_ET 			: TIME;
+	
+	timerForChargertoTurnOn_TON		: TON;
+	timerForChargertoTurnOn_PT		: TIME := T#10S;
+	timerForChargertoTurnOn_ET		: TIME;
+	ChargersReady					: BOOL;
+	
+	timerBTW_Shoot_PostShot_TON		: TON;
+	timerBTW_Shoot_PostShot_PT      : TIME := T#2S;
+	timerBTW_Shoot_PostShot_ET		: TIME;
+	
+	timerBTW_ChrgEnable_ChrgRly_ShutDown_TON	: TON;
+	timerBTW_ChrgEnable_ChrgRly_PT				: TIME := T#1S;
+	timerBTW_ChrgEnable_ChrgRly_ET				: TIME;
+	
+	timerBTW_ChrgEnable_ChrgRly_Dumping_TON		: TON;
+	timerBTW_ChrgEnable_ChrgRly_Dumping_ET		: TIME;
+	
+	timerBTW_ChrgEnable_ChrgRly_Tripped_TON		: TON;
+	timerBTW_ChrgEnable_ChrgRly_Tripped_ET		: TIME;
+	
+	ReadyToChargeRunOutTMR_TON					: TON;
+	ReadyToChargeRunOutTMR_PT					: TIME := T#1200S;
+	ReadyToChargeRunOutTMR_ET					: TIME;
+	
+	ChargePausedRunOutTMR_TON					: TON;
+	ChargePausedRunOutTMR_PT					: TIME := T#30S;
+	ChargePausedRunOutTMR_ET					: TIME;
+	
+	ReadyToShootRunOutTMR_TON					: TON;
+	ReadyToShootRunOutTMR_PT					: TIME := T#60S;
+	ReadyToShootRunOutTMR_ET					: TIME;
+	
+	ShootingRunOutTMR_TON						: TON;
+	ShootingRunOutTMR_PT						: TIME := T#3S;
+	ShootingRunOutTMR_ET						: TIME;
+	
+	PostShotRunOutTMR_TON						: TON;
+	PostShotRunOutTMR_PT						: TIME := T#2S;
+	PostShotRunOutTMR_ET						: TIME;
+	
+	DumpingRunOutTMR_TON						: TON;
+	DumpingRunOutTMR_PT							: TIME := T#300S;
+	DumpingRunOutTMR_ET							: TIME;
+	
+	ChargingRunOutTMR_TON						: TON;
+	ChargingRunOutTMR_PT						: TIME := T#600S;
+	ChargingRunOutTMR_ET						: TIME;
+	
+	stControl									: ST_Control;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+//LCP Indicator for charged/charging
+FOR i := 1 TO 10 BY 1 DO
+	IF ( Devices.Coil[i].ChargeRelay_closed = TRUE AND 
+		Devices.Coil[i].CoilEnabled = TRUE AND 
+		Devices.Coil[i].enableOutputToCharger = TRUE ) OR Devices.Coil[i].ChargeVoltageFeedback >= 10
+	THEN
+		Devices.Coil[i].SystemCharging := TRUE;
+		ELSE
+			Devices.Coil[i].SystemCharging := FALSE;
+	END_IF;
+END_FOR;
+
+//IF any one of the systems is charging or charge, then all system discharge is false, otherwise true
+IF Devices.Coil[i].SystemCharging = TRUE THEN
+	GVL.AllSystemsDischarged := FALSE;
+ELSE
+	GVL.AllSystemsDischarged := TRUE;
+END_IF;
+
+// IF system is tripped at anytime, it goes to tripped state
+IF Trips_DB.SystemTripped = TRUE OR Permissives_DB.SafetyOK = FALSE THEN
+	eMagState := E_MagState.TRIPPED;
+END_IF;
+
+IF MCP_IO.RemoteModeSelected = FALSE OR HMI_DB.RemoteModeSelected = FALSE THEN  //change auto to remote / manu to local
+	eStatus := E_Status.MANUAL_MODE;
+END_IF
+
+//At any point, if screen room ask to dump, it goes to dump state
+IF (MCP_IO.RemoteModeSelected = TRUE AND eCommand = E_Command.DUMP) OR stControl.Abort = TRUE THEN
+	eMagState := E_Magstate.DUMPING;
+END_IF;
+
+FOR i := 1 TO 10 BY 1 DO
+	Devices.Coil[i].NumOfCap := Tx_Config.CoilSP[i].SysParameters.NumOfCaps;
+END_FOR
+
+
+//Process Starts
+CASE eMagState OF 
+	//Full Shutdown
+	E_MagState.FULL_SHUTDOWN:
+						//Disable all Chargers
+						FOR i := 1 TO 10 BY 1 DO
+							
+							//open (de-energize) all interlock relays
+							Devices.Coil[i].CloseACInterlockRly := FALSE;
+							Devices.Coil[i].enableOutputToCharger := FALSE;
+			
+							//Close (de-energize) All Dump relays
+							Devices.Coil[i].OpenDumpRelays := FALSE;
+							
+							Devices.Coil[i].CloseHVisolationRelay := FALSE;   //Open all HV isolation relays
+						END_FOR;
+						
+						ChargerOFF_ChrgRlyOPEN_Delay_FShutDown_TON (IN:=TRUE, PT:= timerBTW_ChrgRly_ChrgEnable_PT);
+						//delay 500ms before opening charge relay
+						IF ChargerOFF_ChrgRlyOPEN_Delay_FShutDown_TON.Q = TRUE THEN
+							FOR i := 1 TO 10 BY 1 DO		
+							//open (de-energize) all interlock relays
+							Devices.Coil[i].closeChargeRelay := FALSE;	
+							END_FOR;
+							ChargerOFF_ChrgRlyOPEN_Delay_FShutDown_TON (IN:=FALSE, PT:= timerBTW_ChrgRly_ChrgEnable_PT);
+						END_IF;
+						
+						//send shutdown status to screen room
+						eStatus := E_Status.FULL_SHUTDOWN;
+						//if auto mode selected or hmi automode is selected and screen room asks for idle mode go to idle mode
+						IF (MCP_IO.RemoteModeSelected = TRUE OR HMI_DB.RemoteModeSelected = TRUE) AND eCommand = E_Command.IDLE THEN //Auto mode
+							GVL.fullshutdown_to_idle := TRUE;
+							//if in manu mode and safety is okay and HMI idle MODE PB is pressed, go to idle mode
+						ELSIF HMI_DB.RemoteModeSelected = FALSE AND Permissives_DB.SafetyOK = TRUE AND HMI_DB.Idle_mode = TRUE THEN //Manu mode
+							GVL.fullshutdown_to_idle := TRUE;
+						ELSE
+							GVL.fullshutdown_to_idle := FALSE; // otherwise do nothing.
+						END_IF;
+	
+						IF GVL.fullshutdown_to_idle = TRUE THEN
+							eMagState := E_MagState.IDLE;
+						END_IF;
+						//reset all run out tmr
+						ReadyToChargeRunOutTMR_TON (IN := FALSE, PT := ReadyToChargeRunOutTMR_PT, ET=>ReadyToChargeRunOutTMR_ET);
+						ChargingRunOutTMR_TON (IN := FALSE, PT := ChargingRunOutTMR_PT, ET => ChargingRunOutTMR_ET);
+						ChargePausedRunOutTMR_TON (IN := FALSE, PT := ChargePausedRunOutTMR_PT, ET=> ChargePausedRunOutTMR_ET);
+						ReadyToShootRunOutTMR_TON (IN := FALSE, PT := ReadyToShootRunOutTMR_PT, ET => ReadyToShootRunOutTMR_ET);
+						ShootingRunOutTMR_TON (IN := FALSE, PT := ShootingRunOutTMR_PT, ET => ShootingRunOutTMR_ET);
+						PostShotRunOutTMR_TON (IN := FALSE, PT := PostShotRunOutTMR_PT, ET => PostShotRunOutTMR_ET);
+						DumpingRunOutTMR_TON (IN := FALSE, PT := DumpingRunOutTMR_PT, ET => DumpingRunOutTMR_ET);
+		
+	//IDLE STATE
+	E_MagState.IDLE:
+						eStatus := E_Status.IDLE; //Send status state to screen room
+						GVL.dump_to_idle := FALSE;
+						//reset all run out tmr
+						ReadyToChargeRunOutTMR_TON (IN := FALSE, PT := ReadyToChargeRunOutTMR_PT, ET=>ReadyToChargeRunOutTMR_ET);
+						ChargingRunOutTMR_TON (IN := FALSE, PT := ChargingRunOutTMR_PT, ET => ChargingRunOutTMR_ET);
+						ChargePausedRunOutTMR_TON (IN := FALSE, PT := ChargePausedRunOutTMR_PT, ET=> ChargePausedRunOutTMR_ET);
+						ReadyToShootRunOutTMR_TON (IN := FALSE, PT := ReadyToShootRunOutTMR_PT, ET => ReadyToShootRunOutTMR_ET);
+						ShootingRunOutTMR_TON (IN := FALSE, PT := ShootingRunOutTMR_PT, ET => ShootingRunOutTMR_ET);
+						PostShotRunOutTMR_TON (IN := FALSE, PT := PostShotRunOutTMR_PT, ET => PostShotRunOutTMR_ET);
+						DumpingRunOutTMR_TON (IN := FALSE, PT := DumpingRunOutTMR_PT, ET => DumpingRunOutTMR_ET);
+						
+						
+						// Local MODE
+						IF (MCP_IO.RemoteModeSelected = FALSE OR HMI_DB.RemoteModeSelected = FALSE)AND 
+							HMI_DB.chargePB = TRUE AND 
+							Permissives_DB.SafetyOK = TRUE AND 
+							GVL.AllSystemsDischarged = TRUE 
+							THEN   
+								//open dump relays
+								FOR i := 1 TO 10 BY 1 DO
+									Devices.Coil[i].OpenDumpRelays := TRUE; //NC contact
+								END_FOR;
+			
+								GVL.idle_to_readyToCharge := TRUE;
+							ELSE
+								GVL.idle_to_readyToCharge := FALSE;
+						END_IF;
+						//Remote MODE
+						// ready to go to charge state when dump relays are all open and charge permissive is satisfied 
+						IF (MCP_IO.RemoteModeSelected = TRUE OR HMI_DB.RemoteModeSelected = TRUE) AND 
+							Permissives_DB.SafetyOK = TRUE AND GVL.AllSystemsDischarged = TRUE
+							THEN 
+								//open dump relays
+								FOR i := 1 TO 10 BY 1 DO
+									Devices.Coil[i].OpenDumpRelays := TRUE; //NC contact
+								END_FOR;	
+								GVL.idle_to_readyToCharge := TRUE;
+						ELSE
+							GVL.idle_to_readyToCharge := FALSE;
+							//Keep dump relays close if no command to go to charging state
+							FOR i := 1 TO 10 BY 1 DO
+								Devices.Coil[i].OpenDumpRelays := FALSE; //NC contact
+							END_FOR;
+						END_IF;
+		
+						IF GVL.idle_to_readyToCharge = TRUE AND Permissives_DB.ChargePermOK = TRUE AND GVL.AllSystemsDischarged = TRUE THEN
+							eMagState := E_MagState.READY_TO_CHARGE;
+						ELSIF (MCP_IO.RemoteModeSelected = TRUE AND eCommand = E_Command.FULL_SHUTDOWN) 
+							THEN 
+								eMagState := E_MagState.FULL_SHUTDOWN;
+						END_IF;
+						
+	//Charging State	
+	E_MagState.READY_TO_CHARGE:
+						//reset bit
+						GVL.idle_to_readyToCharge := FALSE;
+						//send status to screenroom
+						eStatus := E_Status.READY_TO_CHARGE;
+						
+						ReadyToChargeRunOutTMR_TON (IN := TRUE, PT := ReadyToChargeRunOutTMR_PT, ET=>ReadyToChargeRunOutTMR_ET);
+						IF ReadyToChargeRunOutTMR_TON.Q = TRUE THEN
+							Trips_DB.MachineTimedOut := TRUE;
+							eMagState := E_MagState.TRIPPED;
+							ReadyToChargeRunOutTMR_TON (IN := FALSE, PT := ReadyToChargeRunOutTMR_PT, ET=>ReadyToChargeRunOutTMR_ET);
+						END_IF
+						
+						IF Permissives_DB.ChargePermOK = TRUE AND 
+							MCP_IO.RemoteModeSelected = TRUE AND 
+							eCommand = E_Command.CHARGE 
+							THEN
+								eMagState := E_MagState.CHARGING;
+						ELSIF (MCP_IO.RemoteModeSelected = TRUE AND eCommand = E_Command.FULL_SHUTDOWN) 
+							THEN 
+								eMagState := E_MagState.FULL_SHUTDOWN;
+						END_IF;
+					
+	//Charging State	
+	E_MagState.CHARGING:	
+						//send charging status to screen room
+						eStatus := E_Status.CHARGING;
+						
+						ChargingRunOutTMR_TON (IN := TRUE, PT := ChargingRunOutTMR_PT, ET => ChargingRunOutTMR_ET);
+						IF ChargingRunOutTMR_TON.Q = TRUE THEN
+							Trips_DB.MachineTimedOut := TRUE;
+							eMagState := E_MagState.TRIPPED;
+							ChargingRunOutTMR_TON (IN := FALSE, PT := ChargingRunOutTMR_PT, ET => ChargingRunOutTMR_ET);
+						END_IF
+						
+						IF Permissives_DB.SafetyOK THEN
+						//Close all AC interlock contactor
+							FOR i := 1 TO 10 BY 1 DO	
+								Devices.Coil[i].CloseACInterlockRly := TRUE;
+							END_FOR;
+						END_IF;
+	
+						IF Permissives_DB.SafetyOK = TRUE AND MCP_IO.RemoteModeSelected = TRUE AND HMI_DB.StopPB = FALSE THEN
+						//Close all Charge Relays
+							FOR i := 1 TO 10 BY 1 DO	
+								Devices.Coil[i].closeChargeRelay := TRUE;	
+							END_FOR;	
+						END_IF;
+						
+						IF Permissives_DB.AllChargerRelay_Closed = TRUE THEN
+							//wait 500ms before turning on chargers
+							timerBTW_ChrgRly_ChrgEnable_Chrging_TON (IN := TRUE, PT := timerBTW_ChrgRly_ChrgEnable_PT, ET => timerBTW_ChrgRly_ChrgEnable_ET);
+							IF timerBTW_ChrgRly_ChrgEnable_Chrging_TON.Q = TRUE THEN 
+								FOR i := 1 TO 10 BY 1 DO	
+									Devices.Coil[i].enableOutputToCharger := TRUE;  //turn on all chargers	
+								END_FOR;
+							END_IF;	
+							timerBTW_ChrgRly_ChrgEnable_Chrging_TON (IN := FALSE, PT := timerBTW_ChrgRly_ChrgEnable_PT, ET => timerBTW_ChrgRly_ChrgEnable_ET);
+						ELSE 
+							eMagState := E_MagState.DUMPING;
+						END_IF;
+	
+						IF Permissives_DB.AllChargerEnabled = TRUE AND Permissives_DB.AlldcPSUok = TRUE THEN 
+							//wait 10sec before setting the setpoint (Darren's sequence)
+							timerForChargertoTurnOn_TON (IN := TRUE, PT := timerForChargertoTurnOn_PT, ET => timerForChargertoTurnOn_ET);
+			
+							IF timerForChargertoTurnOn_TON.Q = TRUE THEN
+								//ChargersReady := TRUE;
+								FOR i := 1 TO 10 BY 1 DO	
+									Devices.Coil[i].currentSetpoint := Setpoints.Coil[i].RecipeLocal.currentSetpoint;	//setpoints from recipe	
+									Devices.Coil[i].chargerSetpoint := Setpoints.Coil[i].RecipeLocal.chargerSetpoint;	//setpoints from recipe		
+								END_FOR;
+								timerForChargertoTurnOn_TON (IN := FALSE);
+							END_IF;	
+						ELSE 
+							timerForChargertoTurnOn_TON (IN := FALSE);
+						END_IF;
+						
+						// IF in manual mode and HMI pause pb is pressed | in auto mode and command from screenroom goes to pause charge, go to pause charge mode.
+						IF (HMI_DB.PausePB AND MCP_IO.RemoteModeSelected = FALSE) THEN
+							eMagState := E_MagState.CHARGE_PAUSED;
+						END_IF;
+						
+						// IF in manual mode, Dump PB is pressed, go to dump mode, IF auto mode is selected, and command from screen room asks to dump go to dump mode.
+						IF (HMI_DB.dumpPB = TRUE AND MCP_IO.RemoteModeSelected = FALSE) OR (MCP_IO.RemoteModeSelected = TRUE AND eCommand = E_Command.DUMP) THEN 
+							eMagState := E_magState.DUMPING;
+						END_IF;
+						
+						// if ultracap over voltage go to charge paused 
+						IF Devices.Coil[i].CapWarning = TRUE THEN
+							eMagState := E_MagState.CHARGE_PAUSED;
+						END_IF;
+						
+						//IF Cap voltage = charger voltages is reached, Ready_TO_SHOOT  _ need to be recipe user input voltage
+						
+						IF Permissives_DB.AllCoilCapsCharged = TRUE AND GVL.AllChargerReadywithSP = TRUE
+							THEN
+								GVL.charge_to_readyToShoot := TRUE;
+							ELSE
+								GVL.charge_to_readyToShoot := FALSE;
+						END_IF;
+						
+						IF GVL.charge_to_readyToShoot = TRUE THEN
+							eMagState := E_MagState.READY_TO_SHOOT;	
+							timerForChargertoTurnOn_TON (IN := FALSE, PT := timerForChargertoTurnOn_PT);
+						END_IF;
+		
+	//Charge Paused State	
+	E_MagState.CHARGE_PAUSED:
+						// send status to screen room
+						eStatus := E_Status.CHARGING_PAUSED;
+						//Start RUNout timer
+						ChargePausedRunOutTMR_TON (IN := TRUE, PT := ChargePausedRunOutTMR_PT, ET=> ChargePausedRunOutTMR_ET);// Recipe.General.ChargeRunOutTime);
+						
+						//Turn on disable charger
+						FOR i := 1 TO 10 BY 1 DO
+							Devices.Coil[i].enableOutputToCharger := FALSE;
+						END_FOR;
+						//wait 500ms
+						timerBTW_ChrgRly_ChrgEnable_ChrgPause_TON (IN := TRUE, PT := timerBTW_ChrgEnable_ChrgRly_PT, ET => timerBTW_ChrgEnable_ChrgRly_ET);
+						
+						//open charger relay
+						IF timerBTW_ChrgRly_ChrgEnable_ChrgPause_TON.Q = TRUE THEN
+							FOR i := 1 TO 10 BY 1 DO
+								Devices.Coil[i].closeChargeRelay := FALSE;
+							END_FOR;
+							timerBTW_ChrgRly_ChrgEnable_ChrgPause_TON (IN := FALSE, PT := timerBTW_ChrgRly_ChrgEnable_PT);
+						END_IF
+						IF HMI_DB.StopPB = TRUE OR (MCP_IO.RemoteModeSelected AND Permissives_DB.SafetyOK = FALSE) THEN 
+							eMagState := E_MagState.DUMPING;	
+						END_IF;
+			
+						//IF CANBus Warning/fault goes away, go back to charging
+					
+						IF (Devices.Coil[1].CapWarning = FALSE OR Devices.Coil[1].CoilEnabled = FALSE) AND
+							(Devices.Coil[2].CapWarning = FALSE OR Devices.Coil[2].CoilEnabled = FALSE) AND
+							(Devices.Coil[3].CapWarning = FALSE OR Devices.Coil[3].CoilEnabled = FALSE) AND
+							(Devices.Coil[4].CapWarning = FALSE OR Devices.Coil[4].CoilEnabled = FALSE) AND
+							(Devices.Coil[5].CapWarning = FALSE OR Devices.Coil[5].CoilEnabled = FALSE) AND
+							(Devices.Coil[6].CapWarning = FALSE OR Devices.Coil[6].CoilEnabled = FALSE) AND
+							(Devices.Coil[7].CapWarning = FALSE OR Devices.Coil[7].CoilEnabled = FALSE) AND
+							(Devices.Coil[8].CapWarning = FALSE OR Devices.Coil[8].CoilEnabled = FALSE) AND
+							(Devices.Coil[9].CapWarning = FALSE OR Devices.Coil[9].CoilEnabled = FALSE) AND
+							(Devices.Coil[10].CapWarning = FALSE OR Devices.Coil[10].CoilEnabled = FALSE) 
+						THEN
+							eMagState := E_MagState.CHARGING;
+						END_IF;
+						
+						//When RUNout timer runs out, and still in shooting state, trip the system
+						IF ChargePausedRunOutTMR_TON.Q THEN
+							Trips_DB.MachineTimedOut := TRUE;
+							eMagState := E_MagState.TRIPPED;
+							//reset timer
+							ChargePausedRunOutTMR_TON (IN := FALSE, PT := ChargePausedRunOutTMR_PT, ET=> ChargePausedRunOutTMR_ET);
+						END_IF;
+ 
+						
+	 E_MagState.READY_TO_SHOOT:
+	 
+						GVL.charge_to_readyToShoot := FALSE;
+						
+						//Start RUNout timer
+						ReadyToShootRunOutTMR_TON (IN := TRUE, PT := ReadyToShootRunOutTMR_PT, ET => ReadyToShootRunOutTMR_ET);
+						
+						IF GVL.AllChargerReadywithSP = FALSE THEN
+							eMagState := E_MagState.CHARGING;
+						END_IF
+						
+						//when it is ready to shoot, disable chargers
+						FOR i := 1 TO 10 BY 1 DO
+							Devices.Coil[i].enableOutputToCharger := FALSE;
+						END_FOR;
+						//wait 500ms
+						timerBTW_ChrgRly_ChrgEnable_ReadyToShoot_TON (IN := TRUE, PT := timerBTW_ChrgRly_ChrgEnable_PT, ET => timerBTW_ChrgRly_ChrgEnable_ET);
+						
+						//open all charger relays and AC interlock relays
+						IF timerBTW_ChrgRly_ChrgEnable_ReadyToShoot_TON.Q = TRUE THEN
+							FOR i := 1 TO 10 BY 1 DO
+								Devices.Coil[i].closeChargeRelay := FALSE;
+								Devices.Coil[i].CloseACInterlockRly := FALSE;
+								//set current setpoint 
+								Devices.Coil[i].currentSetpoint := Setpoints.Coil[i].RecipeLocal.currentSetpoint;
+							END_FOR;
+							timerBTW_ChrgRly_ChrgEnable_ReadyToShoot_TON (IN := FALSE);
+						END_IF;
+						
+						IF Trips_DB.SystemTripped = FALSE AND Permissives_DB.ShootPermOK = TRUE THEN
+							eStatus := E_Status.READY_TO_SHOOT;  //send status to screen room
+							GVL.readyToShoot_to_Shoot := TRUE;
+						ELSIF (Trips_DB.SystemTripped = TRUE OR Permissives_DB.ShootPermOK = FALSE OR eCommand = E_Command.DUMP) THEN
+							GVL.readyToShoot_to_Shoot := FALSE;
+							eMagState := E_MagState.DUMPING;
+						END_IF;
+
+						IF GVL.readyToShoot_to_Shoot = TRUE AND eCommand = E_Command.SHOOT THEN
+			
+							eMagState := E_MagState.SHOOTING;
+						END_IF;
+						
+						IF MCP_IO.RemoteModeSelected = TRUE AND eCommand = E_Command.FULL_SHUTDOWN THEN
+							GVL.readyToShoot_to_Shoot := FALSE;
+							eMagState := E_MagState.FULL_SHUTDOWN;
+						END_IF;
+						
+						//When RUNout timer runs out, and still in shooting state, trip the system
+						IF ReadyToShootRunOutTMR_TON.Q THEN
+							Trips_DB.MachineTimedOut := TRUE;
+							eMagState := E_MagState.TRIPPED;
+							//reset timer
+							ReadyToShootRunOutTMR_TON (IN := FALSE, PT := ReadyToShootRunOutTMR_PT, ET => ReadyToShootRunOutTMR_ET);
+						END_IF;
+		
+	E_MagState.SHOOTING:
+	 					// turn off the readyToShoot_TO_Shoot bit 
+						GVL.readyToShoot_to_Shoot := FALSE;
+						
+						//report shooting state to screen room
+						eStatus := E_Status.SHOOTING;
+						
+						ShootingRunOutTMR_TON (IN := TRUE, PT := ShootingRunOutTMR_PT, ET => ShootingRunOutTMR_ET);
+						
+						FOR i := 1 TO 10 BY 1 DO
+							Devices.Coil[i].CloseHVisolationRelay := TRUE;
+						END_FOR;
+						
+						//send current feedback to screenroom, something :=  Devices.Coil[i].CurrentFeedback; ????
+						
+						//if screen room ask to dump, or in manual mode and stopPB or dumpPB is pressed go to dump mode
+						IF eCommand = E_Command.DUMP OR (MCP_IO.RemoteModeSelected = FALSE AND (HMI_DB.dumpPB= TRUE OR HMI_DB.StopPB = TRUE)) THEN
+							eMagState := E_MagState.DUMPING;
+						END_IF;
+						
+						timerBTW_Shoot_PostShot_TON (IN := TRUE, PT := timerBTW_Shoot_PostShot_PT, ET=> timerBTW_Shoot_PostShot_ET);
+				
+						IF timerBTW_Shoot_PostShot_TON.Q = TRUE THEN
+							GVL.shoot_to_postShot := TRUE;
+							timerBTW_Shoot_PostShot_TON (IN := FALSE, PT := timerBTW_Shoot_PostShot_PT, ET=> timerBTW_Shoot_PostShot_ET);
+							ELSE
+								GVL.shoot_to_postShot := FALSE;
+						END_IF;
+						
+						IF Trips_DB.SystemTripped = FALSE THEN	
+							GVL.shot_going_OK := TRUE;
+							ELSE
+								GVL.shot_going_OK := FALSE;
+						END_IF;
+						
+						IF GVL.shoot_to_postShot = TRUE AND GVL.shot_going_OK = TRUE THEN
+							eMagState := E_MagState.POST_SHOT;
+							ELSE IF ShootingRunOutTMR_TON.Q = TRUE THEN 
+								Trips_DB.MachineTimedOut := TRUE;
+								eMagState := E_MagState.TRIPPED;
+								ShootingRunOutTMR_TON (IN := FALSE, PT := ShootingRunOutTMR_PT, ET => ShootingRunOutTMR_ET);
+							END_IF
+						END_IF;		
+		
+	E_MagState.POST_SHOT:
+						GVL.shoot_to_postShot := FALSE;
+						
+						PostShotRunOutTMR_TON (IN := TRUE, PT := PostShotRunOutTMR_PT, ET => PostShotRunOutTMR_ET);
+						
+						//Send status to screenroom
+						eStatus := E_Status.POST_SHOT;
+						//open HV isolation Relays
+						FOR i := 1 TO 10 BY 1 DO
+							Devices.Coil[i].CloseHVisolationRelay := FALSE;
+						END_FOR;
+						
+						//if temperature are all good and safety is okay, shot is done
+						IF Permissives_DB.SafetyOK = TRUE AND Devices.Coil[i].ChargeVoltageFeedback <= 10 THEN
+							GVL.shot_is_done := TRUE;
+							ELSE
+								GVL.shot_is_done := FALSE;
+						END_IF;
+						
+						//if shot is done, go back to idle state  // it was shot is done or command.idle
+						IF GVL.shot_is_done = TRUE AND (MCP_IO.RemoteModeSelected = TRUE AND eCommand = E_Command.IDLE) THEN
+							eMagState := E_MagState.IDLE;
+						//if screen room ask to dump, or in manual mode and stopPB or dumpPB is pressed go to dump mode
+						ELSIF eCommand = E_Command.DUMP OR (MCP_IO.RemoteModeSelected = FALSE AND (HMI_DB.dumpPB= TRUE OR HMI_DB.StopPB = TRUE)) THEN
+							eMagState := E_MagState.DUMPING;
+						ELSIF (MCP_IO.RemoteModeSelected = TRUE AND eCommand = E_Command.FULL_SHUTDOWN) THEN 
+							eMagState := E_MagState.FULL_SHUTDOWN;
+						END_IF;
+						
+						IF PostShotRunOutTMR_TON.Q = TRUE THEN
+							Trips_DB.MachineTimedOut := TRUE;
+							eMagState := E_MagState.TRIPPED;
+							PostShotRunOutTMR_TON (IN := FALSE, PT := PostShotRunOutTMR_PT, ET => PostShotRunOutTMR_ET);
+						END_IF
+								
+	E_MagState.DUMPING:
+									
+						//disable all chargers
+						FOR i := 1 TO 10 BY 1 DO
+							Devices.Coil[i].enableOutputToCharger := FALSE;
+							Devices.Coil[i].CloseHVisolationRelay := FALSE;   //Open all HV isolation relays
+						END_FOR
+						
+						IF Permissives_DB.AllChargerEnabled = FALSE THEN 
+							timerBTW_ChrgEnable_ChrgRly_Dumping_TON (IN := TRUE, PT := timerBTW_ChrgRly_ChrgEnable_PT, ET=>timerBTW_ChrgEnable_ChrgRly_Dumping_ET); 					 
+						ELSE
+							timerBTW_ChrgEnable_ChrgRly_Dumping_TON (IN := FALSE);
+						END_IF;
+						
+						IF timerBTW_ChrgEnable_ChrgRly_Dumping_TON.Q = TRUE THEN
+							FOR i := 1 TO 10 BY 1 DO
+								Devices.Coil[i].closeChargeRelay := FALSE; //open charge relay
+							END_FOR;
+							timerBTW_ChrgEnable_ChrgRly_Dumping_TON (IN := FALSE);
+						END_IF;
+						
+						//Close all dump relays
+						Devices.Coil[1].OpenDumpRelays := FALSE; //NC so close dump relays
+						Devices.Coil[2].OpenDumpRelays := FALSE;
+						Devices.Coil[3].OpenDumpRelays := FALSE;
+						Devices.Coil[4].OpenDumpRelays := FALSE;
+						Devices.Coil[5].OpenDumpRelays := FALSE;
+						Devices.Coil[6].OpenDumpRelays := FALSE;
+						Devices.Coil[7].OpenDumpRelays := FALSE;
+						Devices.Coil[8].OpenDumpRelays := FALSE;
+						Devices.Coil[9].OpenDumpRelays := FALSE;
+						Devices.Coil[10].OpenDumpRelays := FALSE;
+						
+						//send state to screen room
+						eStatus := E_Status.DUMPING;
+						
+						DumpingRunOutTMR_TON (IN := TRUE, PT := DumpingRunOutTMR_PT, ET => DumpingRunOutTMR_ET);
+						IF DumpingRunOutTMR_TON.Q = TRUE THEN
+							Trips_DB.MachineTimedOut := TRUE;
+							eMagState := E_MagState.TRIPPED;
+							DumpingRunOutTMR_TON (IN := FALSE, PT := DumpingRunOutTMR_PT, ET => DumpingRunOutTMR_ET);
+						END_IF
+						
+						//NC, if all dump relays are closed, and all cap voltage discharged, start timer and go back to IDLE automaticlally
+						IF Permissives_DB.AllDumpRelayOpen = FALSE AND Permissives_DB.AllCoilCapsCharged = FALSE THEN 
+							timerBTW_DUMP_IDLE (IN := TRUE, PT := timerBTW_DUMP_IDLE_PT, ET => timerBTW_DUMP_IDLE_ET);
+							IF timerBTW_DUMP_IDLE.Q = TRUE THEN 
+								GVL.dump_to_idle := TRUE;
+							END_IF;	
+						ELSE
+							timerBTW_DUMP_IDLE (IN := FALSE);
+							GVL.dump_to_idle := FALSE;	
+						END_IF;
+						
+						
+						IF GVL.dump_to_idle = TRUE THEN
+							eMagState := E_MagState.IDLE;
+							timerBTW_DUMP_IDLE (IN := FALSE, PT := timerBTW_DUMP_IDLE_PT);
+						ELSIF GVL.dump_to_idle = TRUE AND MCP_IO.RemoteModeSelected = TRUE AND eCommand = E_Command.FULL_SHUTDOWN THEN
+								eMagState := E_MagState.FULL_SHUTDOWN;
+						END_IF;
+						
+						//GVL.dump_to_idle := FALSE;
+						
+						
+	E_MagState.TRIPPED: 
+						eStatus := E_Status.TRIPPED;	
+						
+						FOR i := 1 TO 10 BY 1 DO
+							//Disable all Chargers
+							Devices.Coil[i].enableOutputToCharger := FALSE;
+		
+							//open (de-energize) all interlock relays
+							Devices.Coil[i].CloseACInterlockRly := FALSE;
+	
+							//Close (de-energize) All Dump relays
+							Devices.Coil[i].OpenDumpRelays := FALSE;
+							
+							Devices.Coil[i].CloseHVisolationRelay := FALSE;   //Open all HV isolation relays
+						END_FOR;
+						//wait 500ms before opening the charge relay
+						timerBTW_ChrgEnable_ChrgRly_Tripped_TON (IN := TRUE, PT := timerBTW_ChrgEnable_ChrgRly_PT, ET => timerBTW_ChrgEnable_ChrgRly_Tripped_ET);
+						
+						IF timerBTW_ChrgEnable_ChrgRly_Tripped_TON.Q = TRUE THEN
+							FOR i := 1 TO 10 BY 1 DO
+							//open all charge relays
+							Devices.Coil[i].closeChargeRelay := FALSE;
+							END_FOR;
+							timerBTW_ChrgEnable_ChrgRly_Tripped_TON (IN := FALSE, PT := timerBTW_ChrgEnable_ChrgRly_PT, ET => timerBTW_ChrgEnable_ChrgRly_Tripped_ET);
+						END_IF;
+						
+						// when Trip is clear by the opeartor, it goes back to idle state.
+						IF Trips_DB.SystemTripped = FALSE AND Permissives_DB.SafetyOK = TRUE THEN 
+							eMagState := E_MagState.IDLE;
+						END_IF;
+						
+						//reset all run out tmr
+						ReadyToChargeRunOutTMR_TON (IN := FALSE, PT := ReadyToChargeRunOutTMR_PT, ET=>ReadyToChargeRunOutTMR_ET);
+						ChargingRunOutTMR_TON (IN := FALSE, PT := ChargingRunOutTMR_PT, ET => ChargingRunOutTMR_ET);
+						ChargePausedRunOutTMR_TON (IN := FALSE, PT := ChargePausedRunOutTMR_PT, ET=> ChargePausedRunOutTMR_ET);
+						ReadyToShootRunOutTMR_TON (IN := FALSE, PT := ReadyToShootRunOutTMR_PT, ET => ReadyToShootRunOutTMR_ET);
+						ShootingRunOutTMR_TON (IN := FALSE, PT := ShootingRunOutTMR_PT, ET => ShootingRunOutTMR_ET);
+						PostShotRunOutTMR_TON (IN := FALSE, PT := PostShotRunOutTMR_PT, ET => PostShotRunOutTMR_ET);
+						DumpingRunOutTMR_TON (IN := FALSE, PT := DumpingRunOutTMR_PT, ET => DumpingRunOutTMR_ET);
+						
+END_CASE
+
+HMI();
+
+//reset counter
+IF i > 10 THEN 
+	i := 1;
+END_IF;	]]></ST>
+    </Implementation>
+    <LineIds Name="MODE_SELECTION_1">
+      <LineId Id="715" Count="1" />
+      <LineId Id="711" Count="1" />
+      <LineId Id="718" Count="1" />
+      <LineId Id="717" Count="0" />
+      <LineId Id="713" Count="0" />
+      <LineId Id="720" Count="2" />
+      <LineId Id="224" Count="0" />
+      <LineId Id="1125" Count="0" />
+      <LineId Id="1122" Count="0" />
+      <LineId Id="1121" Count="0" />
+      <LineId Id="1123" Count="0" />
+      <LineId Id="1126" Count="1" />
+      <LineId Id="1124" Count="0" />
+      <LineId Id="727" Count="3" />
+      <LineId Id="67" Count="0" />
+      <LineId Id="733" Count="0" />
+      <LineId Id="732" Count="0" />
+      <LineId Id="734" Count="1" />
+      <LineId Id="1224" Count="1" />
+      <LineId Id="731" Count="0" />
+      <LineId Id="1226" Count="1" />
+      <LineId Id="1698" Count="0" />
+      <LineId Id="1697" Count="0" />
+      <LineId Id="1699" Count="1" />
+      <LineId Id="1927" Count="0" />
+      <LineId Id="1228" Count="0" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="109" Count="0" />
+      <LineId Id="187" Count="0" />
+      <LineId Id="110" Count="1" />
+      <LineId Id="289" Count="0" />
+      <LineId Id="1274" Count="2" />
+      <LineId Id="205" Count="0" />
+      <LineId Id="185" Count="0" />
+      <LineId Id="188" Count="1" />
+      <LineId Id="1495" Count="1" />
+      <LineId Id="198" Count="0" />
+      <LineId Id="1652" Count="0" />
+      <LineId Id="1277" Count="0" />
+      <LineId Id="1279" Count="1" />
+      <LineId Id="1283" Count="0" />
+      <LineId Id="1285" Count="1" />
+      <LineId Id="1281" Count="0" />
+      <LineId Id="1291" Count="0" />
+      <LineId Id="1282" Count="0" />
+      <LineId Id="1278" Count="0" />
+      <LineId Id="293" Count="0" />
+      <LineId Id="222" Count="0" />
+      <LineId Id="199" Count="0" />
+      <LineId Id="218" Count="0" />
+      <LineId Id="247" Count="0" />
+      <LineId Id="486" Count="0" />
+      <LineId Id="257" Count="1" />
+      <LineId Id="273" Count="1" />
+      <LineId Id="259" Count="0" />
+      <LineId Id="200" Count="0" />
+      <LineId Id="275" Count="2" />
+      <LineId Id="1938" Count="6" />
+      <LineId Id="1937" Count="0" />
+      <LineId Id="270" Count="0" />
+      <LineId Id="150" Count="0" />
+      <LineId Id="78" Count="0" />
+      <LineId Id="155" Count="0" />
+      <LineId Id="1977" Count="0" />
+      <LineId Id="148" Count="0" />
+      <LineId Id="1922" Count="3" />
+      <LineId Id="1933" Count="3" />
+      <LineId Id="1926" Count="0" />
+      <LineId Id="1094" Count="0" />
+      <LineId Id="282" Count="0" />
+      <LineId Id="1131" Count="3" />
+      <LineId Id="372" Count="0" />
+      <LineId Id="363" Count="1" />
+      <LineId Id="360" Count="1" />
+      <LineId Id="457" Count="0" />
+      <LineId Id="375" Count="1" />
+      <LineId Id="367" Count="0" />
+      <LineId Id="1093" Count="0" />
+      <LineId Id="374" Count="0" />
+      <LineId Id="129" Count="0" />
+      <LineId Id="1130" Count="0" />
+      <LineId Id="1129" Count="0" />
+      <LineId Id="370" Count="0" />
+      <LineId Id="373" Count="0" />
+      <LineId Id="371" Count="0" />
+      <LineId Id="136" Count="0" />
+      <LineId Id="460" Count="0" />
+      <LineId Id="389" Count="0" />
+      <LineId Id="391" Count="0" />
+      <LineId Id="477" Count="0" />
+      <LineId Id="392" Count="1" />
+      <LineId Id="390" Count="0" />
+      <LineId Id="137" Count="0" />
+      <LineId Id="278" Count="2" />
+      <LineId Id="387" Count="0" />
+      <LineId Id="741" Count="0" />
+      <LineId Id="577" Count="1" />
+      <LineId Id="1088" Count="0" />
+      <LineId Id="1060" Count="0" />
+      <LineId Id="1095" Count="0" />
+      <LineId Id="1097" Count="0" />
+      <LineId Id="1100" Count="0" />
+      <LineId Id="1098" Count="0" />
+      <LineId Id="1120" Count="0" />
+      <LineId Id="1831" Count="0" />
+      <LineId Id="1835" Count="0" />
+      <LineId Id="1832" Count="0" />
+      <LineId Id="1839" Count="0" />
+      <LineId Id="1833" Count="0" />
+      <LineId Id="1836" Count="0" />
+      <LineId Id="1834" Count="0" />
+      <LineId Id="1101" Count="1" />
+      <LineId Id="1292" Count="0" />
+      <LineId Id="1295" Count="1" />
+      <LineId Id="1103" Count="0" />
+      <LineId Id="1114" Count="1" />
+      <LineId Id="1174" Count="0" />
+      <LineId Id="1104" Count="0" />
+      <LineId Id="1096" Count="0" />
+      <LineId Id="80" Count="1" />
+      <LineId Id="807" Count="1" />
+      <LineId Id="2083" Count="0" />
+      <LineId Id="1840" Count="2" />
+      <LineId Id="1845" Count="0" />
+      <LineId Id="1844" Count="0" />
+      <LineId Id="1843" Count="0" />
+      <LineId Id="809" Count="0" />
+      <LineId Id="912" Count="5" />
+      <LineId Id="910" Count="0" />
+      <LineId Id="407" Count="2" />
+      <LineId Id="412" Count="0" />
+      <LineId Id="411" Count="0" />
+      <LineId Id="1182" Count="0" />
+      <LineId Id="1200" Count="0" />
+      <LineId Id="1198" Count="1" />
+      <LineId Id="418" Count="0" />
+      <LineId Id="1190" Count="2" />
+      <LineId Id="1187" Count="1" />
+      <LineId Id="1201" Count="0" />
+      <LineId Id="1185" Count="0" />
+      <LineId Id="1193" Count="0" />
+      <LineId Id="419" Count="0" />
+      <LineId Id="435" Count="0" />
+      <LineId Id="742" Count="0" />
+      <LineId Id="1202" Count="0" />
+      <LineId Id="1155" Count="1" />
+      <LineId Id="1158" Count="3" />
+      <LineId Id="2061" Count="0" />
+      <LineId Id="1162" Count="0" />
+      <LineId Id="1194" Count="0" />
+      <LineId Id="1157" Count="0" />
+      <LineId Id="1804" Count="1" />
+      <LineId Id="748" Count="0" />
+      <LineId Id="2060" Count="0" />
+      <LineId Id="479" Count="0" />
+      <LineId Id="439" Count="0" />
+      <LineId Id="441" Count="1" />
+      <LineId Id="810" Count="0" />
+      <LineId Id="812" Count="2" />
+      <LineId Id="811" Count="0" />
+      <LineId Id="815" Count="5" />
+      <LineId Id="822" Count="0" />
+      <LineId Id="1607" Count="0" />
+      <LineId Id="841" Count="0" />
+      <LineId Id="829" Count="0" />
+      <LineId Id="823" Count="0" />
+      <LineId Id="825" Count="1" />
+      <LineId Id="824" Count="0" />
+      <LineId Id="842" Count="2" />
+      <LineId Id="1207" Count="0" />
+      <LineId Id="845" Count="0" />
+      <LineId Id="429" Count="1" />
+      <LineId Id="146" Count="0" />
+      <LineId Id="737" Count="0" />
+      <LineId Id="736" Count="0" />
+      <LineId Id="1541" Count="0" />
+      <LineId Id="767" Count="1" />
+      <LineId Id="1540" Count="0" />
+      <LineId Id="770" Count="2" />
+      <LineId Id="769" Count="0" />
+      <LineId Id="774" Count="1" />
+      <LineId Id="779" Count="0" />
+      <LineId Id="168" Count="0" />
+      <LineId Id="780" Count="0" />
+      <LineId Id="777" Count="0" />
+      <LineId Id="781" Count="1" />
+      <LineId Id="778" Count="0" />
+      <LineId Id="776" Count="0" />
+      <LineId Id="461" Count="0" />
+      <LineId Id="84" Count="0" />
+      <LineId Id="462" Count="1" />
+      <LineId Id="783" Count="1" />
+      <LineId Id="790" Count="0" />
+      <LineId Id="792" Count="8" />
+      <LineId Id="788" Count="1" />
+      <LineId Id="786" Count="0" />
+      <LineId Id="1542" Count="1" />
+      <LineId Id="1546" Count="0" />
+      <LineId Id="1549" Count="0" />
+      <LineId Id="1554" Count="0" />
+      <LineId Id="1548" Count="0" />
+      <LineId Id="1547" Count="0" />
+      <LineId Id="1544" Count="0" />
+      <LineId Id="787" Count="0" />
+      <LineId Id="85" Count="0" />
+      <LineId Id="860" Count="0" />
+      <LineId Id="86" Count="0" />
+      <LineId Id="848" Count="0" />
+      <LineId Id="1550" Count="0" />
+      <LineId Id="1553" Count="0" />
+      <LineId Id="2063" Count="0" />
+      <LineId Id="2080" Count="2" />
+      <LineId Id="1551" Count="0" />
+      <LineId Id="859" Count="0" />
+      <LineId Id="850" Count="2" />
+      <LineId Id="849" Count="0" />
+      <LineId Id="853" Count="0" />
+      <LineId Id="855" Count="0" />
+      <LineId Id="861" Count="0" />
+      <LineId Id="1299" Count="0" />
+      <LineId Id="856" Count="1" />
+      <LineId Id="862" Count="0" />
+      <LineId Id="895" Count="1" />
+      <LineId Id="858" Count="0" />
+      <LineId Id="885" Count="0" />
+      <LineId Id="1301" Count="0" />
+      <LineId Id="1300" Count="0" />
+      <LineId Id="887" Count="1" />
+      <LineId Id="897" Count="2" />
+      <LineId Id="1210" Count="0" />
+      <LineId Id="889" Count="0" />
+      <LineId Id="886" Count="0" />
+      <LineId Id="847" Count="0" />
+      <LineId Id="1326" Count="0" />
+      <LineId Id="1217" Count="0" />
+      <LineId Id="891" Count="0" />
+      <LineId Id="1219" Count="0" />
+      <LineId Id="1221" Count="2" />
+      <LineId Id="1220" Count="0" />
+      <LineId Id="1555" Count="0" />
+      <LineId Id="1557" Count="5" />
+      <LineId Id="1556" Count="0" />
+      <LineId Id="87" Count="2" />
+      <LineId Id="904" Count="2" />
+      <LineId Id="901" Count="0" />
+      <LineId Id="1954" Count="0" />
+      <LineId Id="1956" Count="0" />
+      <LineId Id="1481" Count="1" />
+      <LineId Id="1484" Count="1" />
+      <LineId Id="903" Count="0" />
+      <LineId Id="909" Count="0" />
+      <LineId Id="943" Count="1" />
+      <LineId Id="902" Count="0" />
+      <LineId Id="940" Count="1" />
+      <LineId Id="945" Count="0" />
+      <LineId Id="951" Count="0" />
+      <LineId Id="946" Count="0" />
+      <LineId Id="952" Count="1" />
+      <LineId Id="964" Count="0" />
+      <LineId Id="962" Count="1" />
+      <LineId Id="954" Count="0" />
+      <LineId Id="942" Count="0" />
+      <LineId Id="972" Count="0" />
+      <LineId Id="970" Count="0" />
+      <LineId Id="974" Count="1" />
+      <LineId Id="973" Count="0" />
+      <LineId Id="971" Count="0" />
+      <LineId Id="956" Count="1" />
+      <LineId Id="1959" Count="1" />
+      <LineId Id="1963" Count="0" />
+      <LineId Id="1962" Count="0" />
+      <LineId Id="1961" Count="0" />
+      <LineId Id="958" Count="0" />
+      <LineId Id="90" Count="3" />
+      <LineId Id="1964" Count="1" />
+      <LineId Id="965" Count="1" />
+      <LineId Id="1486" Count="0" />
+      <LineId Id="1488" Count="1" />
+      <LineId Id="1487" Count="0" />
+      <LineId Id="959" Count="0" />
+      <LineId Id="984" Count="0" />
+      <LineId Id="960" Count="0" />
+      <LineId Id="976" Count="0" />
+      <LineId Id="978" Count="1" />
+      <LineId Id="977" Count="0" />
+      <LineId Id="980" Count="0" />
+      <LineId Id="985" Count="0" />
+      <LineId Id="981" Count="1" />
+      <LineId Id="989" Count="2" />
+      <LineId Id="1746" Count="0" />
+      <LineId Id="1003" Count="0" />
+      <LineId Id="993" Count="0" />
+      <LineId Id="1966" Count="2" />
+      <LineId Id="1970" Count="1" />
+      <LineId Id="1969" Count="0" />
+      <LineId Id="961" Count="0" />
+      <LineId Id="503" Count="0" />
+      <LineId Id="539" Count="0" />
+      <LineId Id="1307" Count="0" />
+      <LineId Id="1304" Count="1" />
+      <LineId Id="1493" Count="0" />
+      <LineId Id="1306" Count="0" />
+      <LineId Id="1371" Count="1" />
+      <LineId Id="1310" Count="0" />
+      <LineId Id="612" Count="0" />
+      <LineId Id="1755" Count="1" />
+      <LineId Id="1373" Count="0" />
+      <LineId Id="1313" Count="0" />
+      <LineId Id="1321" Count="1" />
+      <LineId Id="1320" Count="0" />
+      <LineId Id="1319" Count="0" />
+      <LineId Id="1315" Count="1" />
+      <LineId Id="1427" Count="12" />
+      <LineId Id="1317" Count="0" />
+      <LineId Id="1972" Count="1" />
+      <LineId Id="1982" Count="1" />
+      <LineId Id="1979" Count="0" />
+      <LineId Id="1975" Count="1" />
+      <LineId Id="1440" Count="0" />
+      <LineId Id="1312" Count="0" />
+      <LineId Id="555" Count="0" />
+      <LineId Id="518" Count="0" />
+      <LineId Id="607" Count="2" />
+      <LineId Id="1757" Count="2" />
+      <LineId Id="504" Count="0" />
+      <LineId Id="580" Count="0" />
+      <LineId Id="1745" Count="0" />
+      <LineId Id="537" Count="0" />
+      <LineId Id="541" Count="0" />
+      <LineId Id="559" Count="0" />
+      <LineId Id="636" Count="2" />
+      <LineId Id="311" Count="0" />
+      <LineId Id="1754" Count="0" />
+      <LineId Id="1747" Count="0" />
+      <LineId Id="657" Count="2" />
+      <LineId Id="677" Count="1" />
+      <LineId Id="1230" Count="0" />
+      <LineId Id="679" Count="7" />
+      <LineId Id="1494" Count="0" />
+      <LineId Id="675" Count="0" />
+      <LineId Id="1234" Count="2" />
+      <LineId Id="1253" Count="0" />
+      <LineId Id="1240" Count="0" />
+      <LineId Id="1250" Count="2" />
+      <LineId Id="1254" Count="0" />
+      <LineId Id="1239" Count="0" />
+      <LineId Id="1237" Count="0" />
+      <LineId Id="672" Count="0" />
+      <LineId Id="708" Count="2" />
+      <LineId Id="1945" Count="0" />
+      <LineId Id="1947" Count="6" />
+      <LineId Id="1946" Count="0" />
+      <LineId Id="660" Count="0" />
+      <LineId Id="68" Count="0" />
+      <LineId Id="1920" Count="0" />
+      <LineId Id="1059" Count="0" />
+      <LineId Id="1921" Count="0" />
+      <LineId Id="298" Count="0" />
+      <LineId Id="341" Count="1" />
+      <LineId Id="297" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
