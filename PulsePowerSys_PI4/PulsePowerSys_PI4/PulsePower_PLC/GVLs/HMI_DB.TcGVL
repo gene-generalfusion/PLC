@@ -19,6 +19,8 @@ VAR_GLOBAL PERSISTENT
 	RunOutTMR_PT_INT			: INT := 10;
 	RunOutTMR_elapse			: INT;
 	
+	ChargingRunOutTMR_elapse	: INT;
+	
 	LiftMachineGNDsw			: BOOL;
 	//admin bypasses
 	SafetyOKBP					: BOOL;

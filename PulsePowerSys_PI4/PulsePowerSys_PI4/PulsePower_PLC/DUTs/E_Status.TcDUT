@@ -11,10 +11,11 @@ TYPE E_Status :
 	CHARGING		:= 1, //Charge
 	CHARGECOMPLETE	:= 2, //EOC
 	DISCONNECTING	:= 3, //Disconnect
-	DUMPING			:= 4, 
-	ABORT			:= 5,	
-	TRIPPED			:= 6,
-	LOCAL_MODE		:= 7
+	DISCONNECTED	:= 4,
+	DUMPING			:= 5, 
+	ABORT			:= 6,	
+	TRIPPED			:= 7,
+	LOCAL_MODE		:= 8
 ) ;
 END_TYPE
 ]]></Declaration>

@@ -134,9 +134,9 @@ END_VAR
 	Output.R2_05_06	:= MCP_IO.Charger[7].voltageSP_raw;
 	Output.R2_05_07	:= MCP_IO.Charger[8].voltageSP_raw;					
 	
-	Output.R2_07_00	:= MCP_IO.GLS1_voltageSP; //Form Trigger
-	Output.R2_07_01	:= MCP_IO.GLS2_voltageSP;  //Preform trigger
-	Output.R2_07_02	:= MCP_IO.GLS3_voltageSP; //preform cap charger
+	Output.R2_07_00	:= MCP_IO.GLS1_voltageSP_raw; //Form Trigger
+	Output.R2_07_01	:= MCP_IO.GLS2_voltageSP_raw;  //Preform trigger
+	Output.R2_07_02	:= MCP_IO.GLS3_voltageSP_raw; //preform cap charger
 
 //R3 : Bank 1 (LCP1)***********************************************
 	//EL3068 - AI

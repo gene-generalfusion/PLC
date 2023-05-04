@@ -10,7 +10,7 @@ VAR_GLOBAL
 	MachineGNDrlyOpen			: BOOL;
 	//CloseAllChargeRlyCommand	: BOOL; only for slim
 	//OpenAllDumpRelayCommand		: BOOL; only for slim
-	Charger 					: ARRAY [1..8] OF ST_Charger_Base;
+	//Charger 					: ARRAY [1..8] OF ST_Charger_Base;
 	GLS3_Load					: ST_ChargeTime;
 	GLS1_hvON					: BOOL;
 	GLS2_hvON					: BOOL;
@@ -18,18 +18,22 @@ VAR_GLOBAL
 	LiftMachineGND				: BOOL;
 	//AllChargeRelaysClose		: BOOL; only for slim
 	//AllDumpRelaysOpen			: BOOL; only for slim
-	GLS1_voltageSP				: INT;
+	GLS1_voltageSP				: DINT;
 	GLS1_voltageSP_norm			: REAL;
 	GLS1_voltageSP_raw			: INT;
 	
-	GLS2_voltageSP				: INT;
+	GLS2_voltageSP				: DINT;
 	GLS2_voltageSP_norm			: REAL;
 	GLS2_voltageSP_raw			: INT;
 	
-	GLS3_voltageSP				: INT;
+	GLS3_voltageSP				: DINT;
 	GLS3_voltageSP_norm			: REAL;
 	GLS3_voltageSP_raw			: INT;
 
+END_VAR
+
+VAR_GLOBAL PERSISTENT
+	Charger 					: ARRAY [1..8] OF ST_Charger_Base;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

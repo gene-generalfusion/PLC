@@ -471,6 +471,8 @@ IF GVL.alarm_test THEN
 	Alarms_DB.Section2.AlarmWord := 16#FFFF;
 	Alarms_DB.Section3.AlarmWord := 16#FFFF;
 	Alarms_DB.Section4.AlarmWord := 16#FFFF;
+	Alarms_DB.AlarmWord5.AlarmWord := 16#FFFF;
+	Alarms_DB.AlarmWord7.AlarmWord := 16#FFFF;
 	//Alarms_DB.Coil3.AlarmWord := 16#FFFF;
 	//Alarms_DB.Coil4.AlarmWord := 16#FFFF;
 	//Alarms_DB.Coil5.AlarmWord := 16#FFFF;
@@ -524,7 +526,10 @@ END_IF;]]></ST>
       <LineId Id="580" Count="0" />
       <LineId Id="582" Count="131" />
       <LineId Id="1025" Count="31" />
-      <LineId Id="714" Count="287" />
+      <LineId Id="714" Count="262" />
+      <LineId Id="1070" Count="0" />
+      <LineId Id="1069" Count="0" />
+      <LineId Id="977" Count="24" />
       <LineId Id="1060" Count="1" />
       <LineId Id="1002" Count="15" />
       <LineId Id="38" Count="0" />

@@ -22,6 +22,9 @@ FOR m := 1 TO 8 BY 1 DO
 	TxMainPLC.Charger[m].TDKLoad.timeToChargeLoad := MCP_IO.Charger[m].ChargeTime.timeToChargeLoad;
 	TxMainPLC.GLSLoad.timeToChargeLoad := MCP_IO.GLS3_Load.timeToChargeLoad;
 END_FOR
+
+Setpoints.GLS1_VSP := Recipe.GLS1_VSP;
+Setpoints.GLS2_VSP := Recipe.GLS2_VSP;
 Setpoints.GLSLoad.RequiredChargedV := Recipe.GLSLoad.RequiredChargedV;
 
 FOR i := 1 TO 3 BY 1 DO
@@ -46,6 +49,9 @@ END_FOR
 TxMainPLC.Section[4].FormTrigVoltage := LCP.Section[4].FormTriggerVoltageFeedback;
 TxMainPLC.Section[4].PreFormTrigVoltage := LCP.Section[4].PreFormTriggerVoltageFeedback;
 TxMainPLC.Section[4].PreFormCapVoltage := LCP.Section[4].PreFormCapVoltageFeedback;
+
+TxMainPLC.ChargingRunOutTime := TIME_TO_REAL ((ChargeTime_DB.LongestChargeTime_PT + HMI_DB.RunOutTMR_PT)/1000);
+TxMainPLC.ChargeRunOutTime := TIME_TO_REAL (HMI_DB.RunOutTMR_PT/1000);
 
 IF i > 3 THEN
 	i := 1;
@@ -95,7 +101,9 @@ FB_WriteAdsSymByName (
       <LineId Id="196" Count="2" />
       <LineId Id="84" Count="0" />
       <LineId Id="87" Count="0" />
+      <LineId Id="207" Count="1" />
       <LineId Id="186" Count="0" />
+      <LineId Id="211" Count="0" />
       <LineId Id="88" Count="0" />
       <LineId Id="140" Count="0" />
       <LineId Id="89" Count="3" />
@@ -104,7 +112,10 @@ FB_WriteAdsSymByName (
       <LineId Id="95" Count="4" />
       <LineId Id="151" Count="0" />
       <LineId Id="101" Count="7" />
-      <LineId Id="110" Count="15" />
+      <LineId Id="220" Count="0" />
+      <LineId Id="110" Count="0" />
+      <LineId Id="222" Count="1" />
+      <LineId Id="111" Count="14" />
       <LineId Id="54" Count="0" />
       <LineId Id="58" Count="0" />
       <LineId Id="26" Count="0" />

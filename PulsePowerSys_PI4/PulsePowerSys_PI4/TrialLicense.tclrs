@@ -1,10 +1,25 @@
 <?xml version="1.0"?>
 <TcLicenseInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2011/11/TcLicenseInfo">
 	<LicenseInfo>
-		<SystemId>{A03BB85F-A780-B2F7-A056-0E2D62E1438B}</SystemId>
-		<IssueTime>2023-04-25T16:54:00</IssueTime>
-		<ExpireTime>2023-05-03T00:00:00</ExpireTime>
-		<LicenseKey>1e4006279f8630f75d281038f796b18a65123e1d0d3b226eb80b2c958fa7d105f7f01c3e890909a8075a64c50454873190db660d45f8dc4e82e1d5e2d9e8a0f6576ffebc19e521d5b9fc62a383709fdbe69611489b27d088337f3b00513240cbb3fe7f1903eab628777683635d58e8301bc1cc58781dc9e33ef2692f80a2cebcde53a759d663616f042347ec3b90efe982e7f18cc7d48bbf45cd7b18e6af659e0b1311b5fd628ed83b200ceaea029ff55cd0811ea62bc44ddea1cdda2cfd4321a5c04be10cd3508f8df57cffee3a703461f4de7c6ab7982dc495398674d8447aaf8aee83df87b5d69f9fa077120ff5a88e3e1afc03293eb91842118aa7e50fdd</LicenseKey>
+		<SystemId>{F40E1F8F-1399-CF7D-276D-B7A354E3F6D7}</SystemId>
+		<IssueTime>2023-04-28T17:51:00</IssueTime>
+		<ExpireTime>2023-05-06T00:00:00</ExpireTime>
+		<LicenseKey>70a02d68006e92961878dde1769b653e5e431004d0b10994241853154bd89858035b0341215ad20d1616c8fa8c3c93b2940e35115a3960feb87a346bbe13d9fea14230152eeda9b1ec118bbb2ef7cb5eec0ab0998be565b540a4a16b41190711eb84d06c4e79b6ed6c6a119dbeb31c5192a69cc98a570b06028e5542fbda3d1274e1b6398e7e60b84254b4955ac8d894461752bcb6bd5ef409a5c7405390af3897e2ce2cb07dd33611d1b0bc59b94b5d4d57fa4ce2e2a40035d8b347003ad927b989e0b894b6a83766534e4689c431e48f67851aa72711d8bcea7b1828121b3bef59227cc9dcbcba67fda566bf8b7e30fdc435e39b1a8fe1c34e1b5534408de1</LicenseKey>
+		<License>
+			<LicenseId>{4C256767-E6E6-4AF5-BD68-9F7ABAD0C200}</LicenseId>
+			<Name>TC3 ADS</Name>
+			<OrderNo>TC1000</OrderNo>
+		</License>
+		<License>
+			<LicenseId>{3FF18E97-7754-401B-93FB-70544DE28A13}</LicenseId>
+			<Name>TC3 IO</Name>
+			<OrderNo>TC1100</OrderNo>
+		</License>
+		<License>
+			<LicenseId>{66689887-CCBD-452C-AC9A-039D997C6E66}</LicenseId>
+			<Name>TC3 PLC</Name>
+			<OrderNo>TC1200</OrderNo>
+		</License>
 		<License>
 			<LicenseId>{37E5160D-987B-4640-888D-0F97727B53E2}</LicenseId>
 			<Name>TC3 HMI Clients</Name>

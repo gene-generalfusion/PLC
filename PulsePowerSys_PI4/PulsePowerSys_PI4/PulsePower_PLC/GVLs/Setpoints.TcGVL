@@ -5,6 +5,8 @@
 VAR_GLOBAL 
 	TDKLoad : ARRAY [1..8] OF ST_Setpoints_Base;
 	GLSLoad : ST_Setpoints_Base;
+	GLS1_VSP : DINT := 50;
+	GLS2_VSP : DINT := 50;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

@@ -3242,16 +3242,6 @@
             },
             "USEMAPPING": true
         },
-        "PLC1.ChargeTime.timeToChargeLoad.0": {
-            "ACCESS": 3,
-            "DOMAIN": "ADS",
-            "DYNAMIC": true,
-            "MAPPING": "PLC1::ChargeTime::timeToChargeLoad[0]",
-            "SCHEMA": {
-                "$ref": "tchmi:general#/definitions/REAL"
-            },
-            "USEMAPPING": true
-        },
         "PLC1.ChargeTime_DB.ChargeTimeStartDelay.0": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -3507,6 +3497,16 @@
             "DOMAIN": "ADS",
             "DYNAMIC": true,
             "MAPPING": "PLC1::HMI_DB::ChargerHVOFF_rlyDelayPT_INT",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/INT"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.ChargingRunOutTMR_elapse": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::ChargingRunOutTMR_elapse",
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
@@ -10368,6 +10368,7 @@
                 "PLC1.HMI_DB.ChargePB": 3,
                 "PLC1.HMI_DB.ChargerHVOFF_rlyDelayPT": 3,
                 "PLC1.HMI_DB.ChargerHVOFF_rlyDelayPT_INT": 3,
+                "PLC1.HMI_DB.ChargingRunOutTMR_elapse": 3,
                 "PLC1.HMI_DB.CloseAllChargeRlyPB": 3,
                 "PLC1.HMI_DB.DumpPB": 3,
                 "PLC1.HMI_DB.GLSLoad.NumOfCharger": 3,

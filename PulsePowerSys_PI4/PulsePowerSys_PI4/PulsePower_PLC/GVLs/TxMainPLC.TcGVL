@@ -5,7 +5,9 @@
 VAR_GLOBAL
 	Charger		: ARRAY[1..8] OF ST_Echo_MCP;
 	GLSLoad		: ST_ChargeTime;
-	Section : ARRAY[1..4] OF ST_Echo_Section;
+	Section 	: ARRAY[1..4] OF ST_Echo_Section;
+	ChargeRunOutTime	: REAL;
+	ChargingRunOutTime	: REAL;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

@@ -22,14 +22,18 @@ VAR_GLOBAL
 	Max_CapVoltage			: REAL := 32000;  //assuming 32kV cap....  
 	Min_CapVoltage			: REAL := 0;
 	
-	ULimit_PeakCapRequiredV	: REAL := 10000; //10kV veto
+	UpperLimit12kVCaps		: REAL := 10000; //peak and sust
+	//LowerLimit12kVCaps	: REAL := -2000;
+	UpperLimit50kVCaps		: REAL := 35000; //formation
+	
+	(*ULimit_PeakCapRequiredV	: REAL := 10000; //10kV veto
 	LLimit_PeakCapRequiredV	: REAL := -2000; //-2kV
 	ULimit_SustCapRequiredV	: REAL := 12000; //12kv veto
 	LLimit_SustCapRequiredV	: REAL := -2000; //-2kv
 	ULimit_FormCapRequiredV : REAL := 35000;
 	LLimit_FormCapRequiredV : REAL := 0;
-	
-	ULimit_PreFormCapRequiredV : REAL := 30000;
+	*)
+	ULimit_PreFormCapRequiredV : REAL := 30000; //gls3
 	LLimit_PreFormCapRequiredV : REAL := 0;
 		
 END_VAR]]></Declaration>

@@ -65,6 +65,19 @@
                   "value": null
                 },
                 "asyncWait": true
+              },
+              {
+                "objectType": "WriteToSymbol",
+                "active": true,
+                "symbolExpression": "%ctrl%TcHmiTextbox_6::TextColor%/ctrl%",
+                "value": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:framework#/definitions/SolidColor",
+                  "value": {
+                    "color": "rgba(0, 0, 0, 1)"
+                  }
+                },
+                "asyncWait": true
               }
             ]
           },
@@ -106,6 +119,19 @@
                   "valueType": "tchmi:framework#/definitions/Color",
                   "value": {
                     "color": "rgba(255, 255, 2, 1)"
+                  }
+                },
+                "asyncWait": true
+              },
+              {
+                "objectType": "WriteToSymbol",
+                "active": true,
+                "symbolExpression": "%ctrl%TcHmiTextbox_6::TextColor%/ctrl%",
+                "value": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:framework#/definitions/SolidColor",
+                  "value": {
+                    "color": "rgba(0, 0, 0, 1)"
                   }
                 },
                 "asyncWait": true
@@ -210,6 +236,17 @@
                   }
                 },
                 "asyncWait": true
+              },
+              {
+                "objectType": "WriteToSymbol",
+                "active": true,
+                "symbolExpression": "%ctrl%TcHmiTextbox_6::TextColor%/ctrl%",
+                "value": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:framework#/definitions/SolidColor",
+                  "value": null
+                },
+                "asyncWait": true
               }
             ]
           },
@@ -251,6 +288,19 @@
                   "valueType": "tchmi:framework#/definitions/Color",
                   "value": {
                     "color": "rgba(80, 253, 0, 1)"
+                  }
+                },
+                "asyncWait": true
+              },
+              {
+                "objectType": "WriteToSymbol",
+                "active": true,
+                "symbolExpression": "%ctrl%TcHmiTextbox_6::TextColor%/ctrl%",
+                "value": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:framework#/definitions/SolidColor",
+                  "value": {
+                    "color": "rgba(0, 0, 0, 1)"
                   }
                 },
                 "asyncWait": true
@@ -296,6 +346,17 @@
                   "value": {
                     "color": "rgba(255, 255, 25, 1)"
                   }
+                },
+                "asyncWait": true
+              },
+              {
+                "objectType": "WriteToSymbol",
+                "active": true,
+                "symbolExpression": "%ctrl%TcHmiTextbox_6::TextColor%/ctrl%",
+                "value": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:framework#/definitions/SolidColor",
+                  "value": null
                 },
                 "asyncWait": true
               }
@@ -449,7 +510,7 @@
                   "objectType": "StaticValue",
                   "valueType": "tchmi:framework#/definitions/SolidColor",
                   "value": {
-                    "color": "rgba(0, 0, 0, 1)"
+                    "color": "rgba(254, 215, 0, 1)"
                   }
                 },
                 "asyncWait": true
@@ -9514,7 +9575,7 @@
 ]
 </script>
 </div>
-<div id="TcHmiTextbox_86" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="15" data-tchmi-height-unit="px" data-tchmi-left="1728" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.ChargeTime_DB.ChargeTimeStartDelay.0|BindingMode=OneWay%/s%" data-tchmi-top="290" data-tchmi-top-unit="px" data-tchmi-width="54" data-tchmi-width-unit="px" data-tchmi-zindex="1" data-tchmi-creator-locked="True" data-tchmi-text-horizontal-alignment="Center">
+<div id="TcHmiTextbox_86" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="15" data-tchmi-height-unit="px" data-tchmi-left="1728" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.ChargeTime_DB.ChargeTimeStartDelay.0|BindingMode=OneWay%/s%" data-tchmi-top="290" data-tchmi-top-unit="px" data-tchmi-width="54" data-tchmi-width-unit="px" data-tchmi-zindex="1" data-tchmi-creator-locked="True" data-tchmi-text-horizontal-alignment="Center" data-tchmi-is-enabled="false" data-tchmi-opacity="1">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {
   "top": 3,
@@ -9535,9 +9596,17 @@
     "permission": "Deny"
   }
 ]
+</script>
+
+
+
+<script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
+{
+  "color": "rgba(0, 0, 0, 1)"
+}
 </script>
 </div>
-<div id="TcHmiTextbox_87" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="15" data-tchmi-height-unit="px" data-tchmi-left="1798" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.ChargeTime_DB.ChargingTimeElapse.0|BindingMode=OneWay%/s%" data-tchmi-top="290" data-tchmi-top-unit="px" data-tchmi-width="54" data-tchmi-width-unit="px" data-tchmi-zindex="1" data-tchmi-text-horizontal-alignment="Center" data-tchmi-creator-locked="True">
+<div id="TcHmiTextbox_87" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="15" data-tchmi-height-unit="px" data-tchmi-left="1798" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.ChargeTime_DB.ChargingTimeElapse.0|BindingMode=OneWay%/s%" data-tchmi-top="290" data-tchmi-top-unit="px" data-tchmi-width="54" data-tchmi-width-unit="px" data-tchmi-zindex="1" data-tchmi-text-horizontal-alignment="Center" data-tchmi-creator-locked="True" data-tchmi-is-enabled="false" data-tchmi-opacity="1">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {
   "top": 3,
@@ -9558,9 +9627,17 @@
     "permission": "Deny"
   }
 ]
+</script>
+
+
+
+<script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
+{
+  "color": "rgba(0, 0, 0, 1)"
+}
 </script>
 </div>
-<div id="TcHmiTextbox_88" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="15" data-tchmi-height-unit="px" data-tchmi-left="1728" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.ChargeTime_DB.ChargeTimeStartDelay.1|BindingMode=OneWay%/s%" data-tchmi-top="307" data-tchmi-top-unit="px" data-tchmi-width="54" data-tchmi-width-unit="px" data-tchmi-zindex="1" data-tchmi-text-horizontal-alignment="Center" data-tchmi-creator-locked="True">
+<div id="TcHmiTextbox_88" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="15" data-tchmi-height-unit="px" data-tchmi-left="1728" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.ChargeTime_DB.ChargeTimeStartDelay.1|BindingMode=OneWay%/s%" data-tchmi-top="307" data-tchmi-top-unit="px" data-tchmi-width="54" data-tchmi-width-unit="px" data-tchmi-zindex="1" data-tchmi-text-horizontal-alignment="Center" data-tchmi-creator-locked="True" data-tchmi-is-enabled="false" data-tchmi-opacity="1">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {
   "top": 3,
@@ -9581,9 +9658,17 @@
     "permission": "Deny"
   }
 ]
+</script>
+
+
+
+<script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
+{
+  "color": "rgba(0, 0, 0, 1)"
+}
 </script>
 </div>
-<div id="TcHmiTextbox_89" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="15" data-tchmi-height-unit="px" data-tchmi-left="1798" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.ChargeTime_DB.ChargingTimeElapse.1|BindingMode=OneWay%/s%" data-tchmi-top="307" data-tchmi-top-unit="px" data-tchmi-width="54" data-tchmi-width-unit="px" data-tchmi-zindex="1" data-tchmi-text-horizontal-alignment="Center" data-tchmi-creator-locked="True">
+<div id="TcHmiTextbox_89" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="15" data-tchmi-height-unit="px" data-tchmi-left="1798" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.ChargeTime_DB.ChargingTimeElapse.1|BindingMode=OneWay%/s%" data-tchmi-top="307" data-tchmi-top-unit="px" data-tchmi-width="54" data-tchmi-width-unit="px" data-tchmi-zindex="1" data-tchmi-text-horizontal-alignment="Center" data-tchmi-creator-locked="True" data-tchmi-is-enabled="false" data-tchmi-opacity="1">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {
   "top": 3,
@@ -9604,9 +9689,17 @@
     "permission": "Deny"
   }
 ]
+</script>
+
+
+
+<script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
+{
+  "color": "rgba(0, 0, 0, 1)"
+}
 </script>
 </div>
-<div id="TcHmiTextbox_90" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="15" data-tchmi-height-unit="px" data-tchmi-left="1798" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.ChargeTime_DB.ChargingTimeElapse.2|BindingMode=OneWay%/s%" data-tchmi-top="324" data-tchmi-top-unit="px" data-tchmi-width="54" data-tchmi-width-unit="px" data-tchmi-zindex="1" data-tchmi-text-horizontal-alignment="Center" data-tchmi-creator-locked="True">
+<div id="TcHmiTextbox_90" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="15" data-tchmi-height-unit="px" data-tchmi-left="1798" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.ChargeTime_DB.ChargingTimeElapse.2|BindingMode=OneWay%/s%" data-tchmi-top="324" data-tchmi-top-unit="px" data-tchmi-width="54" data-tchmi-width-unit="px" data-tchmi-zindex="1" data-tchmi-text-horizontal-alignment="Center" data-tchmi-creator-locked="True" data-tchmi-is-enabled="false" data-tchmi-opacity="1">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {
   "top": 3,
@@ -9627,9 +9720,17 @@
     "permission": "Deny"
   }
 ]
+</script>
+
+
+
+<script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
+{
+  "color": "rgba(0, 0, 0, 1)"
+}
 </script>
 </div>
-<div id="TcHmiTextbox_91" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="15" data-tchmi-height-unit="px" data-tchmi-left="1728" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.ChargeTime_DB.ChargeTimeStartDelay.2|BindingMode=OneWay%/s%" data-tchmi-top="324" data-tchmi-top-unit="px" data-tchmi-width="54" data-tchmi-width-unit="px" data-tchmi-zindex="1" data-tchmi-text-horizontal-alignment="Center" data-tchmi-creator-locked="True">
+<div id="TcHmiTextbox_91" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="15" data-tchmi-height-unit="px" data-tchmi-left="1728" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.ChargeTime_DB.ChargeTimeStartDelay.2|BindingMode=OneWay%/s%" data-tchmi-top="324" data-tchmi-top-unit="px" data-tchmi-width="54" data-tchmi-width-unit="px" data-tchmi-zindex="1" data-tchmi-text-horizontal-alignment="Center" data-tchmi-creator-locked="True" data-tchmi-is-enabled="false" data-tchmi-opacity="1">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {
   "top": 3,
@@ -9650,9 +9751,17 @@
     "permission": "Deny"
   }
 ]
+</script>
+
+
+
+<script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
+{
+  "color": "rgba(0, 0, 0, 1)"
+}
 </script>
 </div>
-<div id="TcHmiTextbox_92" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="15" data-tchmi-height-unit="px" data-tchmi-left="1798" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.ChargeTime_DB.ChargingTimeElapse.3|BindingMode=OneWay%/s%" data-tchmi-top="341" data-tchmi-top-unit="px" data-tchmi-width="54" data-tchmi-width-unit="px" data-tchmi-zindex="1" data-tchmi-text-horizontal-alignment="Center" data-tchmi-creator-locked="True">
+<div id="TcHmiTextbox_92" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="15" data-tchmi-height-unit="px" data-tchmi-left="1798" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.ChargeTime_DB.ChargingTimeElapse.3|BindingMode=OneWay%/s%" data-tchmi-top="341" data-tchmi-top-unit="px" data-tchmi-width="54" data-tchmi-width-unit="px" data-tchmi-zindex="1" data-tchmi-text-horizontal-alignment="Center" data-tchmi-creator-locked="True" data-tchmi-is-enabled="false" data-tchmi-opacity="1">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {
   "top": 3,
@@ -9673,9 +9782,17 @@
     "permission": "Deny"
   }
 ]
+</script>
+
+
+
+<script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
+{
+  "color": "rgba(0, 0, 0, 1)"
+}
 </script>
 </div>
-<div id="TcHmiTextbox_93" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="15" data-tchmi-height-unit="px" data-tchmi-left="1728" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.ChargeTime_DB.ChargeTimeStartDelay.3|BindingMode=OneWay%/s%" data-tchmi-top="341" data-tchmi-top-unit="px" data-tchmi-width="54" data-tchmi-width-unit="px" data-tchmi-zindex="1" data-tchmi-text-horizontal-alignment="Center" data-tchmi-creator-locked="True">
+<div id="TcHmiTextbox_93" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="15" data-tchmi-height-unit="px" data-tchmi-left="1728" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.ChargeTime_DB.ChargeTimeStartDelay.3|BindingMode=OneWay%/s%" data-tchmi-top="341" data-tchmi-top-unit="px" data-tchmi-width="54" data-tchmi-width-unit="px" data-tchmi-zindex="1" data-tchmi-text-horizontal-alignment="Center" data-tchmi-creator-locked="True" data-tchmi-is-enabled="false" data-tchmi-opacity="1">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {
   "top": 3,
@@ -9696,9 +9813,17 @@
     "permission": "Deny"
   }
 ]
+</script>
+
+
+
+<script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
+{
+  "color": "rgba(0, 0, 0, 1)"
+}
 </script>
 </div>
-<div id="TcHmiTextbox_94" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="15" data-tchmi-height-unit="px" data-tchmi-left="1798" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.ChargeTime_DB.ChargingTimeElapse.4|BindingMode=OneWay%/s%" data-tchmi-top="358" data-tchmi-top-unit="px" data-tchmi-width="54" data-tchmi-width-unit="px" data-tchmi-zindex="1" data-tchmi-text-horizontal-alignment="Center" data-tchmi-creator-locked="True">
+<div id="TcHmiTextbox_94" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="15" data-tchmi-height-unit="px" data-tchmi-left="1798" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.ChargeTime_DB.ChargingTimeElapse.4|BindingMode=OneWay%/s%" data-tchmi-top="358" data-tchmi-top-unit="px" data-tchmi-width="54" data-tchmi-width-unit="px" data-tchmi-zindex="1" data-tchmi-text-horizontal-alignment="Center" data-tchmi-creator-locked="True" data-tchmi-is-enabled="false" data-tchmi-opacity="1">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {
   "top": 3,
@@ -9719,9 +9844,17 @@
     "permission": "Deny"
   }
 ]
+</script>
+
+
+
+<script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
+{
+  "color": "rgba(0, 0, 0, 1)"
+}
 </script>
 </div>
-<div id="TcHmiTextbox_95" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="15" data-tchmi-height-unit="px" data-tchmi-left="1728" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.ChargeTime_DB.ChargeTimeStartDelay.4|BindingMode=OneWay%/s%" data-tchmi-top="358" data-tchmi-top-unit="px" data-tchmi-width="54" data-tchmi-width-unit="px" data-tchmi-zindex="1" data-tchmi-text-horizontal-alignment="Center" data-tchmi-creator-locked="True">
+<div id="TcHmiTextbox_95" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="15" data-tchmi-height-unit="px" data-tchmi-left="1728" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.ChargeTime_DB.ChargeTimeStartDelay.4|BindingMode=OneWay%/s%" data-tchmi-top="358" data-tchmi-top-unit="px" data-tchmi-width="54" data-tchmi-width-unit="px" data-tchmi-zindex="1" data-tchmi-text-horizontal-alignment="Center" data-tchmi-creator-locked="True" data-tchmi-is-enabled="false" data-tchmi-opacity="1">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {
   "top": 3,
@@ -9742,9 +9875,17 @@
     "permission": "Deny"
   }
 ]
+</script>
+
+
+
+<script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
+{
+  "color": "rgba(0, 0, 0, 1)"
+}
 </script>
 </div>
-<div id="TcHmiTextbox_96" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="15" data-tchmi-height-unit="px" data-tchmi-left="1798" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.ChargeTime_DB.ChargingTimeElapse.5|BindingMode=OneWay%/s%" data-tchmi-top="375" data-tchmi-top-unit="px" data-tchmi-width="54" data-tchmi-width-unit="px" data-tchmi-zindex="1" data-tchmi-text-horizontal-alignment="Center" data-tchmi-creator-locked="True">
+<div id="TcHmiTextbox_96" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="15" data-tchmi-height-unit="px" data-tchmi-left="1798" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.ChargeTime_DB.ChargingTimeElapse.5|BindingMode=OneWay%/s%" data-tchmi-top="375" data-tchmi-top-unit="px" data-tchmi-width="54" data-tchmi-width-unit="px" data-tchmi-zindex="1" data-tchmi-text-horizontal-alignment="Center" data-tchmi-creator-locked="True" data-tchmi-is-enabled="false" data-tchmi-opacity="1">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {
   "top": 3,
@@ -9765,9 +9906,17 @@
     "permission": "Deny"
   }
 ]
+</script>
+
+
+
+<script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
+{
+  "color": "rgba(0, 0, 0, 1)"
+}
 </script>
 </div>
-<div id="TcHmiTextbox_97" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="15" data-tchmi-height-unit="px" data-tchmi-left="1728" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.ChargeTime_DB.ChargeTimeStartDelay.5|BindingMode=OneWay%/s%" data-tchmi-top="375" data-tchmi-top-unit="px" data-tchmi-width="54" data-tchmi-width-unit="px" data-tchmi-zindex="1" data-tchmi-text-horizontal-alignment="Center" data-tchmi-creator-locked="True">
+<div id="TcHmiTextbox_97" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="15" data-tchmi-height-unit="px" data-tchmi-left="1728" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.ChargeTime_DB.ChargeTimeStartDelay.5|BindingMode=OneWay%/s%" data-tchmi-top="375" data-tchmi-top-unit="px" data-tchmi-width="54" data-tchmi-width-unit="px" data-tchmi-zindex="1" data-tchmi-text-horizontal-alignment="Center" data-tchmi-creator-locked="True" data-tchmi-is-enabled="false" data-tchmi-opacity="1">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {
   "top": 3,
@@ -9788,9 +9937,17 @@
     "permission": "Deny"
   }
 ]
+</script>
+
+
+
+<script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
+{
+  "color": "rgba(0, 0, 0, 1)"
+}
 </script>
 </div>
-<div id="TcHmiTextbox_98" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="15" data-tchmi-height-unit="px" data-tchmi-left="1798" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.ChargeTime_DB.ChargingTimeElapse.6|BindingMode=OneWay%/s%" data-tchmi-top="392" data-tchmi-top-unit="px" data-tchmi-width="54" data-tchmi-width-unit="px" data-tchmi-zindex="1" data-tchmi-text-horizontal-alignment="Center" data-tchmi-creator-locked="True">
+<div id="TcHmiTextbox_98" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="15" data-tchmi-height-unit="px" data-tchmi-left="1798" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.ChargeTime_DB.ChargingTimeElapse.6|BindingMode=OneWay%/s%" data-tchmi-top="392" data-tchmi-top-unit="px" data-tchmi-width="54" data-tchmi-width-unit="px" data-tchmi-zindex="1" data-tchmi-text-horizontal-alignment="Center" data-tchmi-creator-locked="True" data-tchmi-is-enabled="false" data-tchmi-opacity="1">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {
   "top": 3,
@@ -9811,9 +9968,17 @@
     "permission": "Deny"
   }
 ]
+</script>
+
+
+
+<script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
+{
+  "color": "rgba(0, 0, 0, 1)"
+}
 </script>
 </div>
-<div id="TcHmiTextbox_99" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="15" data-tchmi-height-unit="px" data-tchmi-left="1728" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.ChargeTime_DB.ChargeTimeStartDelay.6|BindingMode=OneWay%/s%" data-tchmi-top="392" data-tchmi-top-unit="px" data-tchmi-width="54" data-tchmi-width-unit="px" data-tchmi-zindex="1" data-tchmi-text-horizontal-alignment="Center" data-tchmi-creator-locked="True">
+<div id="TcHmiTextbox_99" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="15" data-tchmi-height-unit="px" data-tchmi-left="1728" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.ChargeTime_DB.ChargeTimeStartDelay.6|BindingMode=OneWay%/s%" data-tchmi-top="392" data-tchmi-top-unit="px" data-tchmi-width="54" data-tchmi-width-unit="px" data-tchmi-zindex="1" data-tchmi-text-horizontal-alignment="Center" data-tchmi-creator-locked="True" data-tchmi-is-enabled="false" data-tchmi-opacity="1">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {
   "top": 3,
@@ -9834,9 +9999,17 @@
     "permission": "Deny"
   }
 ]
+</script>
+
+
+
+<script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
+{
+  "color": "rgba(0, 0, 0, 1)"
+}
 </script>
 </div>
-<div id="TcHmiTextbox_100" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="15" data-tchmi-height-unit="px" data-tchmi-left="1798" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.ChargeTime_DB.ChargingTimeElapse.7|BindingMode=OneWay%/s%" data-tchmi-top="409" data-tchmi-top-unit="px" data-tchmi-width="54" data-tchmi-width-unit="px" data-tchmi-zindex="1" data-tchmi-text-horizontal-alignment="Center" data-tchmi-creator-locked="True">
+<div id="TcHmiTextbox_100" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="15" data-tchmi-height-unit="px" data-tchmi-left="1798" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.ChargeTime_DB.ChargingTimeElapse.7|BindingMode=OneWay%/s%" data-tchmi-top="409" data-tchmi-top-unit="px" data-tchmi-width="54" data-tchmi-width-unit="px" data-tchmi-zindex="1" data-tchmi-text-horizontal-alignment="Center" data-tchmi-creator-locked="True" data-tchmi-is-enabled="false" data-tchmi-opacity="1">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {
   "top": 3,
@@ -9857,9 +10030,17 @@
     "permission": "Deny"
   }
 ]
+</script>
+
+
+
+<script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
+{
+  "color": "rgba(0, 0, 0, 1)"
+}
 </script>
 </div>
-<div id="TcHmiTextbox_101" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="15" data-tchmi-height-unit="px" data-tchmi-left="1728" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.ChargeTime_DB.ChargeTimeStartDelay.7|BindingMode=OneWay%/s%" data-tchmi-top="409" data-tchmi-top-unit="px" data-tchmi-width="54" data-tchmi-width-unit="px" data-tchmi-zindex="1" data-tchmi-text-horizontal-alignment="Center" data-tchmi-creator-locked="True">
+<div id="TcHmiTextbox_101" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="15" data-tchmi-height-unit="px" data-tchmi-left="1728" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.ChargeTime_DB.ChargeTimeStartDelay.7|BindingMode=OneWay%/s%" data-tchmi-top="409" data-tchmi-top-unit="px" data-tchmi-width="54" data-tchmi-width-unit="px" data-tchmi-zindex="1" data-tchmi-text-horizontal-alignment="Center" data-tchmi-creator-locked="True" data-tchmi-is-enabled="false" data-tchmi-opacity="1">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {
   "top": 3,
@@ -9880,9 +10061,17 @@
     "permission": "Deny"
   }
 ]
+</script>
+
+
+
+<script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
+{
+  "color": "rgba(0, 0, 0, 1)"
+}
 </script>
 </div>
-<div id="TcHmiTextbox_102" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="15" data-tchmi-height-unit="px" data-tchmi-left="1728" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.ChargeTime_DB.PreFormChargeTimeStartDelay|BindingMode=OneWay%/s%" data-tchmi-top="426" data-tchmi-top-unit="px" data-tchmi-width="54" data-tchmi-width-unit="px" data-tchmi-zindex="1" data-tchmi-text-horizontal-alignment="Center" data-tchmi-creator-locked="True">
+<div id="TcHmiTextbox_102" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="15" data-tchmi-height-unit="px" data-tchmi-left="1728" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.ChargeTime_DB.PreFormChargeTimeStartDelay|BindingMode=OneWay%/s%" data-tchmi-top="426" data-tchmi-top-unit="px" data-tchmi-width="54" data-tchmi-width-unit="px" data-tchmi-zindex="1" data-tchmi-text-horizontal-alignment="Center" data-tchmi-creator-locked="True" data-tchmi-is-enabled="false" data-tchmi-opacity="1">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {
   "top": 3,
@@ -9903,9 +10092,17 @@
     "permission": "Deny"
   }
 ]
+</script>
+
+
+
+<script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
+{
+  "color": "rgba(0, 0, 0, 1)"
+}
 </script>
 </div>
-<div id="TcHmiTextbox_103" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="15" data-tchmi-height-unit="px" data-tchmi-left="1798" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.ChargeTime_DB.PreFormChargingTimeElapse|BindingMode=OneWay%/s%" data-tchmi-top="426" data-tchmi-top-unit="px" data-tchmi-width="54" data-tchmi-width-unit="px" data-tchmi-zindex="1" data-tchmi-text-horizontal-alignment="Center" data-tchmi-creator-locked="True">
+<div id="TcHmiTextbox_103" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="15" data-tchmi-height-unit="px" data-tchmi-left="1798" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.ChargeTime_DB.PreFormChargingTimeElapse|BindingMode=OneWay%/s%" data-tchmi-top="426" data-tchmi-top-unit="px" data-tchmi-width="54" data-tchmi-width-unit="px" data-tchmi-zindex="1" data-tchmi-text-horizontal-alignment="Center" data-tchmi-creator-locked="True" data-tchmi-is-enabled="false" data-tchmi-opacity="1">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {
   "top": 3,
@@ -9926,6 +10123,14 @@
     "permission": "Deny"
   }
 ]
+</script>
+
+
+
+<script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
+{
+  "color": "rgba(0, 0, 0, 1)"
+}
 </script>
 </div>
 </div>

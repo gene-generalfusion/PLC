@@ -481,7 +481,59 @@
 			</EventId>
 		</DataType>
 		<DataType>
-			<Name GUID="{5D4F0B22-5CBD-45A5-BB6C-676861945713}" PersistentType="true">AlarmWord1</Name>
+			<Name GUID="{9A7CC1E2-2FA6-4203-BABB-7D3AE39B7142}" PersistentType="true">AlarmWord7</Name>
+			<DisplayName TxtId=""><![CDATA[AlarmWord7]]></DisplayName>
+			<EventId>
+				<Name Id="1">b0</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Charger 6 - Over Temp]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="2">b1</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Charger 6 - Interlock Open]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="3">b2</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Charger 6 - Load Faulted]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="4">b3</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Charger 7 - Over Temp]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="5">b4</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Charger 7 - Interlock Open]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="6">b5</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Charger 7 - Load Faulted]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="7">b6</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Charger 8 - Over Temp]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="8">b7</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Charger 8 - Interlock Open]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="9">b8</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Charger 8 - Load Faulted]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<Hides>
+				<Hide GUID="{B955C0FB-9E51-46AF-8AC4-BBF6DA7DF9C8}"/>
+			</Hides>
+		</DataType>
+		<DataType>
+			<Name GUID="{DECDCC9D-1034-4102-AE63-C3A043DF438B}" PersistentType="true">AlarmWord1</Name>
 			<DisplayName TxtId=""><![CDATA[AlarmWord1]]></DisplayName>
 			<EventId>
 				<Name Id="1">b0</Name>
@@ -544,13 +596,8 @@
 				<Severity>Warning</Severity>
 			</EventId>
 			<EventId>
-				<Name Id="13">b12</Name>
-				<DisplayName TxtId=""><![CDATA[Spare]]></DisplayName>
-				<Severity>Warning</Severity>
-			</EventId>
-			<EventId>
 				<Name Id="14">b13</Name>
-				<DisplayName TxtId=""><![CDATA[AlarmWord1Event14_DisplayText]]></DisplayName>
+				<DisplayName TxtId=""><![CDATA[FOT - Charging Time Out]]></DisplayName>
 				<Severity>Warning</Severity>
 			</EventId>
 			<EventId>
@@ -563,6 +610,11 @@
 				<DisplayName TxtId=""><![CDATA[AlarmWord1Event16_DisplayText]]></DisplayName>
 				<Severity>Warning</Severity>
 			</EventId>
+			<EventId>
+				<Name Id="13">b12</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Charged Time Out]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
 			<Hides>
 				<Hide GUID="{9380CE49-8E6C-47D0-83B5-0ACFFC08D202}"/>
 				<Hide GUID="{1F1B1BBF-F1A3-4CCA-A4CE-DAD7297FDD15}"/>
@@ -570,66 +622,8 @@
 				<Hide GUID="{7E46E9CC-94E1-430A-A2D8-0C110B73519E}"/>
 				<Hide GUID="{D5DCAC24-A327-4F4D-8249-5E35FE84AF85}"/>
 				<Hide GUID="{462739D1-DF36-4C36-BCD0-09293B4C9D13}"/>
+				<Hide GUID="{5D4F0B22-5CBD-45A5-BB6C-676861945713}"/>
 			</Hides>
-		</DataType>
-		<DataType>
-			<Name GUID="{B955C0FB-9E51-46AF-8AC4-BBF6DA7DF9C8}" PersistentType="true">AlarmWord7</Name>
-			<DisplayName TxtId=""><![CDATA[AlarmWord7]]></DisplayName>
-			<EventId>
-				<Name Id="1">b0</Name>
-				<DisplayName TxtId=""><![CDATA[FOT - Charger 6 - Over Temp]]></DisplayName>
-				<Severity>Warning</Severity>
-			</EventId>
-			<EventId>
-				<Name Id="2">b1</Name>
-				<DisplayName TxtId=""><![CDATA[FOT - Charger 6 - Interlock Open]]></DisplayName>
-				<Severity>Warning</Severity>
-			</EventId>
-			<EventId>
-				<Name Id="3">b2</Name>
-				<DisplayName TxtId=""><![CDATA[FOT - Charger 6 - Load Faulted]]></DisplayName>
-				<Severity>Warning</Severity>
-			</EventId>
-			<EventId>
-				<Name Id="4">b3</Name>
-				<DisplayName TxtId=""><![CDATA[FOT - Charger 7 - Over Temp]]></DisplayName>
-				<Severity>Warning</Severity>
-			</EventId>
-			<EventId>
-				<Name Id="5">b4</Name>
-				<DisplayName TxtId=""><![CDATA[FOT - Charger 7 - Interlock Open]]></DisplayName>
-				<Severity>Warning</Severity>
-			</EventId>
-			<EventId>
-				<Name Id="6">b5</Name>
-				<DisplayName TxtId=""><![CDATA[FOT - Charger 7 - Load Faulted]]></DisplayName>
-				<Severity>Warning</Severity>
-			</EventId>
-			<EventId>
-				<Name Id="7">b6</Name>
-				<DisplayName TxtId=""><![CDATA[FOT - Charger 8 - Over Temp]]></DisplayName>
-				<Severity>Warning</Severity>
-			</EventId>
-			<EventId>
-				<Name Id="8">b7</Name>
-				<DisplayName TxtId=""><![CDATA[FOT - Charger 8 - Interlock Open]]></DisplayName>
-				<Severity>Warning</Severity>
-			</EventId>
-			<EventId>
-				<Name Id="9">b8</Name>
-				<DisplayName TxtId=""><![CDATA[FOT - Charger 8 - Load Faulted]]></DisplayName>
-				<Severity>Warning</Severity>
-			</EventId>
-			<EventId>
-				<Name Id="10">b9</Name>
-				<DisplayName TxtId=""><![CDATA[FOT - Charged Time Out]]></DisplayName>
-				<Severity>Warning</Severity>
-			</EventId>
-			<EventId>
-				<Name Id="11">b10</Name>
-				<DisplayName TxtId=""><![CDATA[FOT - Charging Time Out]]></DisplayName>
-				<Severity>Warning</Severity>
-			</EventId>
 		</DataType>
 	</DataTypes>
 	<ImageDatas>
@@ -2589,6 +2583,11 @@ EL2008 - DQ1]]></Comment>
 					<Vars VarGrpType="8" AreaNo="4">
 						<Name>PlcTask Retains</Name>
 						<Var>
+							<Name>ChargeTime_DB.PreFormChargeTimeStartDelay</Name>
+							<Type>INT</Type>
+							<InOut>7</InOut>
+						</Var>
+						<Var>
 							<Name>ChargeTime_DB.PreFormChargeTime_PT</Name>
 							<Type>TIME</Type>
 							<InOut>7</InOut>
@@ -2650,18 +2649,13 @@ FormChargeTime_ET  : ARRAY[1..2] OF TIME;]]></Comment>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
-							<Name>ChargeTime_DB.ChargingTimeElapse_TON</Name>
-							<Type GUID="{D079E1ED-47E3-F617-5E84-485042BED8B1}">ARRAY [1..8] OF Tc2_Standard.TON</Type>
-							<InOut>7</InOut>
-						</Var>
-						<Var>
-							<Name>ChargeTime_DB.PreFormChargeTimeStartDelay</Name>
-							<Type>INT</Type>
-							<InOut>7</InOut>
-						</Var>
-						<Var>
 							<Name>ChargeTime_DB.PreFormChargingTimeElapse</Name>
 							<Type>INT</Type>
+							<InOut>7</InOut>
+						</Var>
+						<Var>
+							<Name>ChargeTime_DB.ChargingTimeElapse_TON</Name>
+							<Type GUID="{D079E1ED-47E3-F617-5E84-485042BED8B1}">ARRAY [1..8] OF Tc2_Standard.TON</Type>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
