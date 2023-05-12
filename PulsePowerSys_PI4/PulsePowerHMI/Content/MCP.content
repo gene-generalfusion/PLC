@@ -1,5 +1,5 @@
 ﻿<div id="Coil1_2" data-tchmi-type="TcHmi.Controls.System.TcHmiContent" data-tchmi-top="0" data-tchmi-left="0" data-tchmi-height="637" data-tchmi-creator-viewport-height="1080" data-tchmi-creator-viewport-width="1920" data-tchmi-is-enabled="true" data-tchmi-creator-locked="False" data-tchmi-width="1881" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center">
-<div id="TcHmiRectangle_45" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiRectangle" data-tchmi-height="520" data-tchmi-height-unit="px" data-tchmi-left="324" data-tchmi-left-unit="px" data-tchmi-top="10" data-tchmi-top-unit="px" data-tchmi-width="297" data-tchmi-width-unit="px" data-tchmi-opacity="3" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible">
+<div id="TcHmiRectangle_45" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiRectangle" data-tchmi-height="520" data-tchmi-height-unit="px" data-tchmi-left="324" data-tchmi-left-unit="px" data-tchmi-top="10" data-tchmi-top-unit="px" data-tchmi-width="297" data-tchmi-width-unit="px" data-tchmi-opacity="3" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-border-radius" type="application/json">
 {
   "topLeft": 10.0,
@@ -122,7 +122,7 @@
 ]
 </script>
 </div>
-<div id="TcHmiTextbox_30" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="530" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MCP_IO.Charger.0.voltageFeedback%/s%" data-tchmi-top="43" data-tchmi-top-unit="px" data-tchmi-width="75" data-tchmi-width-unit="px" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center">
+<div id="TcHmiTextbox_30" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="530" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MCP_IO.Charger.0.voltageFeedback%/s%" data-tchmi-top="43" data-tchmi-top-unit="px" data-tchmi-width="75" data-tchmi-width-unit="px" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {"top":3,"right":3,"bottom":3,"left":3}
 </script>
@@ -130,7 +130,7 @@
 
 
 </div>
-<div id="TcHmiTextblock_117" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="347" data-tchmi-left-unit="px" data-tchmi-text="Charger 1 - Voltage (V)" data-tchmi-top="43" data-tchmi-top-unit="px" data-tchmi-width="173" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="16" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible">
+<div id="TcHmiTextblock_117" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="347" data-tchmi-left-unit="px" data-tchmi-text="Charger 1 - Voltage (V)" data-tchmi-top="43" data-tchmi-top-unit="px" data-tchmi-width="173" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="16" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
 {
   "color": "rgba(25, 0, 0, 1)"
@@ -139,7 +139,7 @@
 
 
 </div>
-<div id="TcHmiTextbox_31" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="530" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MCP_IO.Charger.0.currentFeedback|BindingMode=OneWay%/s%" data-tchmi-top="73" data-tchmi-top-unit="px" data-tchmi-width="75" data-tchmi-width-unit="px" data-tchmi-auto-focus-out="false" data-tchmi-auto-select-text="false" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false">
+<div id="TcHmiTextbox_31" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="530" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MCP_IO.Charger.0.currentFeedback|BindingMode=OneWay%/s%" data-tchmi-top="73" data-tchmi-top-unit="px" data-tchmi-width="75" data-tchmi-width-unit="px" data-tchmi-auto-focus-out="false" data-tchmi-auto-select-text="false" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {"top":3,"right":3,"bottom":3,"left":3}
 </script>
@@ -147,7 +147,7 @@
 
 
 </div>
-<div id="TcHmiTextblock_118" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="347" data-tchmi-left-unit="px" data-tchmi-text="Charger 1 - Current (A)" data-tchmi-top="73" data-tchmi-top-unit="px" data-tchmi-width="173" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="16" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible">
+<div id="TcHmiTextblock_118" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="347" data-tchmi-left-unit="px" data-tchmi-text="Charger 1 - Current (A)" data-tchmi-top="73" data-tchmi-top-unit="px" data-tchmi-width="173" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="16" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
 {
   "color": "rgba(25, 0, 0, 1)"
@@ -156,7 +156,7 @@
 
 
 </div>
-<div id="TcHmiTextblock_119" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="347" data-tchmi-left-unit="px" data-tchmi-text="Charger 2 - Voltage (V)" data-tchmi-top="103" data-tchmi-top-unit="px" data-tchmi-width="173" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="16" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible">
+<div id="TcHmiTextblock_119" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="347" data-tchmi-left-unit="px" data-tchmi-text="Charger 2 - Voltage (V)" data-tchmi-top="103" data-tchmi-top-unit="px" data-tchmi-width="173" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="16" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
 {
   "color": "rgba(25, 0, 0, 1)"
@@ -165,7 +165,7 @@
 
 
 </div>
-<div id="TcHmiTextbox_32" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="530" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MCP_IO.Charger.1.voltageFeedback|BindingMode=OneWay%/s%" data-tchmi-top="103" data-tchmi-top-unit="px" data-tchmi-width="75" data-tchmi-width-unit="px" data-tchmi-auto-focus-out="false" data-tchmi-auto-select-text="false" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false">
+<div id="TcHmiTextbox_32" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="530" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MCP_IO.Charger.1.voltageFeedback|BindingMode=OneWay%/s%" data-tchmi-top="103" data-tchmi-top-unit="px" data-tchmi-width="75" data-tchmi-width-unit="px" data-tchmi-auto-focus-out="false" data-tchmi-auto-select-text="false" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {"top":3,"right":3,"bottom":3,"left":3}
 </script>
@@ -173,7 +173,7 @@
 
 
 </div>
-<div id="TcHmiTrendLineChart_4" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTrendLineChart" data-tchmi-height="600" data-tchmi-height-unit="px" data-tchmi-left="629" data-tchmi-left-unit="px" data-tchmi-top="10" data-tchmi-top-unit="px" data-tchmi-width="620" data-tchmi-width-unit="px" data-tchmi-x-axis-name="Time" data-tchmi-x-sub-tick-steps="1" data-tchmi-show-legend="true" data-tchmi-show-x-axis="true" data-tchmi-x-show-labels="true" data-tchmi-show-x-sub-ticks="true" data-tchmi-show-x-axis-name="true" data-tchmi-show-y-sub-ticks="true" data-tchmi-show-grid="true" data-tchmi-grid-show-horizontal-lines="true" data-tchmi-grid-show-vertical-lines="true" data-tchmi-subgrid-show-horizontal-lines="false" data-tchmi-subgrid-show-vertical-lines="false" data-tchmi-show-menu-bar="true" data-tchmi-show-tooltip="true" data-tchmi-is-enabled="true" data-tchmi-x-main-tick-steps="4" data-tchmi-grid-line-style="Dashed" data-tchmi-mouse-mode="ZoomXY" data-tchmi-y-main-tick-steps="5" data-tchmi-y-sub-tick-steps="4" data-tchmi-interval="1000" data-tchmi-x-axis-name-font-size="12" data-tchmi-x-axis-width="1" data-tchmi-end="Latest" data-tchmi-menu-bar-label-font-size="10" data-tchmi-menu-bar-position="Bottom" data-tchmi-start="First">
+<div id="TcHmiTrendLineChart_4" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTrendLineChart" data-tchmi-height="600" data-tchmi-height-unit="px" data-tchmi-left="629" data-tchmi-left-unit="px" data-tchmi-top="10" data-tchmi-top-unit="px" data-tchmi-width="620" data-tchmi-width-unit="px" data-tchmi-x-axis-name="Time" data-tchmi-x-sub-tick-steps="1" data-tchmi-show-legend="true" data-tchmi-show-x-axis="true" data-tchmi-x-show-labels="true" data-tchmi-show-x-sub-ticks="true" data-tchmi-show-x-axis-name="true" data-tchmi-show-y-sub-ticks="true" data-tchmi-show-grid="true" data-tchmi-grid-show-horizontal-lines="true" data-tchmi-grid-show-vertical-lines="true" data-tchmi-subgrid-show-horizontal-lines="false" data-tchmi-subgrid-show-vertical-lines="false" data-tchmi-show-menu-bar="true" data-tchmi-show-tooltip="true" data-tchmi-is-enabled="true" data-tchmi-x-main-tick-steps="4" data-tchmi-grid-line-style="Dashed" data-tchmi-mouse-mode="ZoomXY" data-tchmi-y-main-tick-steps="5" data-tchmi-y-sub-tick-steps="4" data-tchmi-interval="1000" data-tchmi-x-axis-name-font-size="12" data-tchmi-x-axis-width="1" data-tchmi-end="Latest" data-tchmi-menu-bar-label-font-size="10" data-tchmi-menu-bar-position="Bottom" data-tchmi-start="First" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-y-axis" type="application/json">
 [
   {
@@ -379,7 +379,7 @@
 ]
 </script>
 </div>
-<div id="TcHmiTrendLineChart_5" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTrendLineChart" data-tchmi-height="600" data-tchmi-height-unit="px" data-tchmi-left="1253" data-tchmi-left-unit="px" data-tchmi-top="10" data-tchmi-top-unit="px" data-tchmi-width="620" data-tchmi-width-unit="px" data-tchmi-x-axis-name="Time" data-tchmi-x-sub-tick-steps="1" data-tchmi-show-legend="true" data-tchmi-show-x-axis="true" data-tchmi-x-show-labels="true" data-tchmi-show-x-sub-ticks="true" data-tchmi-show-x-axis-name="true" data-tchmi-show-y-sub-ticks="true" data-tchmi-show-grid="true" data-tchmi-grid-show-horizontal-lines="true" data-tchmi-grid-show-vertical-lines="true" data-tchmi-subgrid-show-horizontal-lines="false" data-tchmi-subgrid-show-vertical-lines="false" data-tchmi-show-menu-bar="true" data-tchmi-show-tooltip="true" data-tchmi-is-enabled="true" data-tchmi-x-main-tick-steps="4" data-tchmi-grid-line-style="Dashed" data-tchmi-mouse-mode="ZoomXY" data-tchmi-y-main-tick-steps="5" data-tchmi-y-sub-tick-steps="4" data-tchmi-interval="1000" data-tchmi-x-axis-name-font-size="12" data-tchmi-x-axis-width="1" data-tchmi-end="Latest" data-tchmi-menu-bar-label-font-size="10" data-tchmi-menu-bar-position="Bottom" data-tchmi-start="First">
+<div id="TcHmiTrendLineChart_5" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTrendLineChart" data-tchmi-height="600" data-tchmi-height-unit="px" data-tchmi-left="1253" data-tchmi-left-unit="px" data-tchmi-top="10" data-tchmi-top-unit="px" data-tchmi-width="620" data-tchmi-width-unit="px" data-tchmi-x-axis-name="Time" data-tchmi-x-sub-tick-steps="1" data-tchmi-show-legend="true" data-tchmi-show-x-axis="true" data-tchmi-x-show-labels="true" data-tchmi-show-x-sub-ticks="true" data-tchmi-show-x-axis-name="true" data-tchmi-show-y-sub-ticks="true" data-tchmi-show-grid="true" data-tchmi-grid-show-horizontal-lines="true" data-tchmi-grid-show-vertical-lines="true" data-tchmi-subgrid-show-horizontal-lines="false" data-tchmi-subgrid-show-vertical-lines="false" data-tchmi-show-menu-bar="true" data-tchmi-show-tooltip="true" data-tchmi-is-enabled="true" data-tchmi-x-main-tick-steps="4" data-tchmi-grid-line-style="Dashed" data-tchmi-mouse-mode="ZoomXY" data-tchmi-y-main-tick-steps="5" data-tchmi-y-sub-tick-steps="4" data-tchmi-interval="1000" data-tchmi-x-axis-name-font-size="12" data-tchmi-x-axis-width="1" data-tchmi-end="Latest" data-tchmi-menu-bar-label-font-size="10" data-tchmi-menu-bar-position="Bottom" data-tchmi-start="First" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-y-axis" type="application/json">
 [
   {
@@ -581,7 +581,7 @@
 ]
 </script>
 </div>
-<div id="TcHmiTextblock_138" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="347" data-tchmi-left-unit="px" data-tchmi-text="Charger 2 - Current (A)" data-tchmi-top="133" data-tchmi-top-unit="px" data-tchmi-width="173" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="16" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible">
+<div id="TcHmiTextblock_138" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="347" data-tchmi-left-unit="px" data-tchmi-text="Charger 2 - Current (A)" data-tchmi-top="133" data-tchmi-top-unit="px" data-tchmi-width="173" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="16" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
 {
   "color": "rgba(25, 0, 0, 1)"
@@ -590,7 +590,7 @@
 
 
 </div>
-<div id="TcHmiTextbox_39" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="530" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MCP_IO.Charger.1.currentFeedback|BindingMode=OneWay%/s%" data-tchmi-top="133" data-tchmi-top-unit="px" data-tchmi-width="75" data-tchmi-width-unit="px" data-tchmi-auto-focus-out="false" data-tchmi-auto-select-text="false" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false">
+<div id="TcHmiTextbox_39" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="530" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MCP_IO.Charger.1.currentFeedback|BindingMode=OneWay%/s%" data-tchmi-top="133" data-tchmi-top-unit="px" data-tchmi-width="75" data-tchmi-width-unit="px" data-tchmi-auto-focus-out="false" data-tchmi-auto-select-text="false" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {"top":3,"right":3,"bottom":3,"left":3}
 </script>
@@ -598,7 +598,7 @@
 
 
 </div>
-<div id="TcHmiTextblock_139" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="347" data-tchmi-left-unit="px" data-tchmi-text="Charger 3- Current (A)" data-tchmi-top="193" data-tchmi-top-unit="px" data-tchmi-width="173" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="16" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible">
+<div id="TcHmiTextblock_139" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="347" data-tchmi-left-unit="px" data-tchmi-text="Charger 3- Current (A)" data-tchmi-top="193" data-tchmi-top-unit="px" data-tchmi-width="173" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="16" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
 {
   "color": "rgba(25, 0, 0, 1)"
@@ -607,7 +607,7 @@
 
 
 </div>
-<div id="TcHmiTextblock_140" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="347" data-tchmi-left-unit="px" data-tchmi-text="Charger 3 - Voltage (V)" data-tchmi-top="163" data-tchmi-top-unit="px" data-tchmi-width="173" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="16" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible">
+<div id="TcHmiTextblock_140" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="347" data-tchmi-left-unit="px" data-tchmi-text="Charger 3 - Voltage (V)" data-tchmi-top="163" data-tchmi-top-unit="px" data-tchmi-width="173" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="16" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
 {
   "color": "rgba(25, 0, 0, 1)"
@@ -616,7 +616,7 @@
 
 
 </div>
-<div id="TcHmiTextbox_40" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="530" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MCP_IO.Charger.2.voltageFeedback|BindingMode=OneWay%/s%" data-tchmi-top="163" data-tchmi-top-unit="px" data-tchmi-width="75" data-tchmi-width-unit="px" data-tchmi-auto-focus-out="false" data-tchmi-auto-select-text="false" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false">
+<div id="TcHmiTextbox_40" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="530" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MCP_IO.Charger.2.voltageFeedback|BindingMode=OneWay%/s%" data-tchmi-top="163" data-tchmi-top-unit="px" data-tchmi-width="75" data-tchmi-width-unit="px" data-tchmi-auto-focus-out="false" data-tchmi-auto-select-text="false" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {"top":3,"right":3,"bottom":3,"left":3}
 </script>
@@ -624,7 +624,7 @@
 
 
 </div>
-<div id="TcHmiTextbox_41" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="530" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MCP_IO.Charger.2.currentFeedback|BindingMode=OneWay%/s%" data-tchmi-top="193" data-tchmi-top-unit="px" data-tchmi-width="75" data-tchmi-width-unit="px" data-tchmi-auto-focus-out="false" data-tchmi-auto-select-text="false" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false">
+<div id="TcHmiTextbox_41" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="530" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MCP_IO.Charger.2.currentFeedback|BindingMode=OneWay%/s%" data-tchmi-top="193" data-tchmi-top-unit="px" data-tchmi-width="75" data-tchmi-width-unit="px" data-tchmi-auto-focus-out="false" data-tchmi-auto-select-text="false" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {"top":3,"right":3,"bottom":3,"left":3}
 </script>
@@ -632,7 +632,7 @@
 
 
 </div>
-<div id="TcHmiTextblock_141" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="347" data-tchmi-left-unit="px" data-tchmi-text="Charger 4 - Current (A)" data-tchmi-top="253" data-tchmi-top-unit="px" data-tchmi-width="173" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="16" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible">
+<div id="TcHmiTextblock_141" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="347" data-tchmi-left-unit="px" data-tchmi-text="Charger 4 - Current (A)" data-tchmi-top="253" data-tchmi-top-unit="px" data-tchmi-width="173" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="16" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
 {
   "color": "rgba(25, 0, 0, 1)"
@@ -641,7 +641,7 @@
 
 
 </div>
-<div id="TcHmiTextblock_142" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="347" data-tchmi-left-unit="px" data-tchmi-text="Charger 4 - Voltage (V)" data-tchmi-top="223" data-tchmi-top-unit="px" data-tchmi-width="173" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="16" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible">
+<div id="TcHmiTextblock_142" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="347" data-tchmi-left-unit="px" data-tchmi-text="Charger 4 - Voltage (V)" data-tchmi-top="223" data-tchmi-top-unit="px" data-tchmi-width="173" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="16" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
 {
   "color": "rgba(25, 0, 0, 1)"
@@ -650,7 +650,7 @@
 
 
 </div>
-<div id="TcHmiTextbox_42" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="530" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MCP_IO.Charger.3.voltageFeedback|BindingMode=OneWay%/s%" data-tchmi-top="223" data-tchmi-top-unit="px" data-tchmi-width="75" data-tchmi-width-unit="px" data-tchmi-auto-focus-out="false" data-tchmi-auto-select-text="false" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false">
+<div id="TcHmiTextbox_42" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="530" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MCP_IO.Charger.3.voltageFeedback|BindingMode=OneWay%/s%" data-tchmi-top="223" data-tchmi-top-unit="px" data-tchmi-width="75" data-tchmi-width-unit="px" data-tchmi-auto-focus-out="false" data-tchmi-auto-select-text="false" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {"top":3,"right":3,"bottom":3,"left":3}
 </script>
@@ -658,7 +658,7 @@
 
 
 </div>
-<div id="TcHmiTextbox_43" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="530" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MCP_IO.Charger.3.currentFeedback|BindingMode=OneWay%/s%" data-tchmi-top="253" data-tchmi-top-unit="px" data-tchmi-width="75" data-tchmi-width-unit="px" data-tchmi-auto-focus-out="false" data-tchmi-auto-select-text="false" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false">
+<div id="TcHmiTextbox_43" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="530" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MCP_IO.Charger.3.currentFeedback|BindingMode=OneWay%/s%" data-tchmi-top="253" data-tchmi-top-unit="px" data-tchmi-width="75" data-tchmi-width-unit="px" data-tchmi-auto-focus-out="false" data-tchmi-auto-select-text="false" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {"top":3,"right":3,"bottom":3,"left":3}
 </script>
@@ -666,7 +666,7 @@
 
 
 </div>
-<div id="TcHmiTextblock_143" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="347" data-tchmi-left-unit="px" data-tchmi-text="Charger 5 - Current (A)" data-tchmi-top="313" data-tchmi-top-unit="px" data-tchmi-width="173" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="16" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible">
+<div id="TcHmiTextblock_143" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="347" data-tchmi-left-unit="px" data-tchmi-text="Charger 5 - Current (A)" data-tchmi-top="313" data-tchmi-top-unit="px" data-tchmi-width="173" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="16" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
 {
   "color": "rgba(25, 0, 0, 1)"
@@ -675,7 +675,7 @@
 
 
 </div>
-<div id="TcHmiTextblock_144" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="347" data-tchmi-left-unit="px" data-tchmi-text="Charger 5 - Voltage (V)" data-tchmi-top="283" data-tchmi-top-unit="px" data-tchmi-width="173" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="16" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible">
+<div id="TcHmiTextblock_144" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="347" data-tchmi-left-unit="px" data-tchmi-text="Charger 5 - Voltage (V)" data-tchmi-top="283" data-tchmi-top-unit="px" data-tchmi-width="173" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="16" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
 {
   "color": "rgba(25, 0, 0, 1)"
@@ -684,7 +684,7 @@
 
 
 </div>
-<div id="TcHmiTextbox_44" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="530" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MCP_IO.Charger.4.voltageFeedback|BindingMode=OneWay%/s%" data-tchmi-top="283" data-tchmi-top-unit="px" data-tchmi-width="75" data-tchmi-width-unit="px" data-tchmi-auto-focus-out="false" data-tchmi-auto-select-text="false" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false">
+<div id="TcHmiTextbox_44" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="530" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MCP_IO.Charger.4.voltageFeedback|BindingMode=OneWay%/s%" data-tchmi-top="283" data-tchmi-top-unit="px" data-tchmi-width="75" data-tchmi-width-unit="px" data-tchmi-auto-focus-out="false" data-tchmi-auto-select-text="false" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {"top":3,"right":3,"bottom":3,"left":3}
 </script>
@@ -692,7 +692,7 @@
 
 
 </div>
-<div id="TcHmiTextbox_45" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="530" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MCP_IO.Charger.4.currentFeedback|BindingMode=OneWay%/s%" data-tchmi-top="313" data-tchmi-top-unit="px" data-tchmi-width="75" data-tchmi-width-unit="px" data-tchmi-auto-focus-out="false" data-tchmi-auto-select-text="false" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false">
+<div id="TcHmiTextbox_45" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="530" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MCP_IO.Charger.4.currentFeedback|BindingMode=OneWay%/s%" data-tchmi-top="313" data-tchmi-top-unit="px" data-tchmi-width="75" data-tchmi-width-unit="px" data-tchmi-auto-focus-out="false" data-tchmi-auto-select-text="false" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {"top":3,"right":3,"bottom":3,"left":3}
 </script>
@@ -700,7 +700,7 @@
 
 
 </div>
-<div id="TcHmiTextblock_145" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="347" data-tchmi-left-unit="px" data-tchmi-text="Charger 6 - Current (A)" data-tchmi-top="373" data-tchmi-top-unit="px" data-tchmi-width="173" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="16" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible">
+<div id="TcHmiTextblock_145" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="347" data-tchmi-left-unit="px" data-tchmi-text="Charger 6 - Current (A)" data-tchmi-top="373" data-tchmi-top-unit="px" data-tchmi-width="173" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="16" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
 {
   "color": "rgba(25, 0, 0, 1)"
@@ -709,7 +709,7 @@
 
 
 </div>
-<div id="TcHmiTextblock_146" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="347" data-tchmi-left-unit="px" data-tchmi-text="Charger 6 - Voltage (V)" data-tchmi-top="343" data-tchmi-top-unit="px" data-tchmi-width="173" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="16" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible">
+<div id="TcHmiTextblock_146" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="347" data-tchmi-left-unit="px" data-tchmi-text="Charger 6 - Voltage (V)" data-tchmi-top="343" data-tchmi-top-unit="px" data-tchmi-width="173" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="16" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
 {
   "color": "rgba(25, 0, 0, 1)"
@@ -718,7 +718,7 @@
 
 
 </div>
-<div id="TcHmiTextbox_46" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="530" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MCP_IO.Charger.5.voltageFeedback|BindingMode=OneWay%/s%" data-tchmi-top="343" data-tchmi-top-unit="px" data-tchmi-width="75" data-tchmi-width-unit="px" data-tchmi-auto-focus-out="false" data-tchmi-auto-select-text="false" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false">
+<div id="TcHmiTextbox_46" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="530" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MCP_IO.Charger.5.voltageFeedback|BindingMode=OneWay%/s%" data-tchmi-top="343" data-tchmi-top-unit="px" data-tchmi-width="75" data-tchmi-width-unit="px" data-tchmi-auto-focus-out="false" data-tchmi-auto-select-text="false" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {"top":3,"right":3,"bottom":3,"left":3}
 </script>
@@ -726,7 +726,7 @@
 
 
 </div>
-<div id="TcHmiTextbox_47" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="530" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MCP_IO.Charger.5.currentFeedback|BindingMode=OneWay%/s%" data-tchmi-top="373" data-tchmi-top-unit="px" data-tchmi-width="75" data-tchmi-width-unit="px" data-tchmi-auto-focus-out="false" data-tchmi-auto-select-text="false" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false">
+<div id="TcHmiTextbox_47" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="530" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MCP_IO.Charger.5.currentFeedback|BindingMode=OneWay%/s%" data-tchmi-top="373" data-tchmi-top-unit="px" data-tchmi-width="75" data-tchmi-width-unit="px" data-tchmi-auto-focus-out="false" data-tchmi-auto-select-text="false" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {"top":3,"right":3,"bottom":3,"left":3}
 </script>
@@ -734,7 +734,7 @@
 
 
 </div>
-<div id="TcHmiTextblock_147" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="347" data-tchmi-left-unit="px" data-tchmi-text="Charger 7 - Current (A)" data-tchmi-top="433" data-tchmi-top-unit="px" data-tchmi-width="173" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="16" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible">
+<div id="TcHmiTextblock_147" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="347" data-tchmi-left-unit="px" data-tchmi-text="Charger 7 - Current (A)" data-tchmi-top="433" data-tchmi-top-unit="px" data-tchmi-width="173" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="16" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
 {
   "color": "rgba(25, 0, 0, 1)"
@@ -743,7 +743,7 @@
 
 
 </div>
-<div id="TcHmiTextblock_148" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="347" data-tchmi-left-unit="px" data-tchmi-text="Charger 7 - Voltage (V)" data-tchmi-top="403" data-tchmi-top-unit="px" data-tchmi-width="173" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="16" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible">
+<div id="TcHmiTextblock_148" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="347" data-tchmi-left-unit="px" data-tchmi-text="Charger 7 - Voltage (V)" data-tchmi-top="403" data-tchmi-top-unit="px" data-tchmi-width="173" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="16" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
 {
   "color": "rgba(25, 0, 0, 1)"
@@ -752,7 +752,7 @@
 
 
 </div>
-<div id="TcHmiTextbox_48" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="530" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MCP_IO.Charger.6.voltageFeedback|BindingMode=OneWay%/s%" data-tchmi-top="403" data-tchmi-top-unit="px" data-tchmi-width="75" data-tchmi-width-unit="px" data-tchmi-auto-focus-out="false" data-tchmi-auto-select-text="false" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false">
+<div id="TcHmiTextbox_48" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="530" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MCP_IO.Charger.6.voltageFeedback|BindingMode=OneWay%/s%" data-tchmi-top="403" data-tchmi-top-unit="px" data-tchmi-width="75" data-tchmi-width-unit="px" data-tchmi-auto-focus-out="false" data-tchmi-auto-select-text="false" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {"top":3,"right":3,"bottom":3,"left":3}
 </script>
@@ -760,7 +760,7 @@
 
 
 </div>
-<div id="TcHmiTextbox_49" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="530" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MCP_IO.Charger.6.currentFeedback|BindingMode=OneWay%/s%" data-tchmi-top="433" data-tchmi-top-unit="px" data-tchmi-width="75" data-tchmi-width-unit="px" data-tchmi-auto-focus-out="false" data-tchmi-auto-select-text="false" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false">
+<div id="TcHmiTextbox_49" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="530" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MCP_IO.Charger.6.currentFeedback|BindingMode=OneWay%/s%" data-tchmi-top="433" data-tchmi-top-unit="px" data-tchmi-width="75" data-tchmi-width-unit="px" data-tchmi-auto-focus-out="false" data-tchmi-auto-select-text="false" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {"top":3,"right":3,"bottom":3,"left":3}
 </script>
@@ -768,7 +768,7 @@
 
 
 </div>
-<div id="TcHmiTextblock_149" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="347" data-tchmi-left-unit="px" data-tchmi-text="Charger 8 - Current (A)" data-tchmi-top="493" data-tchmi-top-unit="px" data-tchmi-width="173" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="16" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible">
+<div id="TcHmiTextblock_149" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="347" data-tchmi-left-unit="px" data-tchmi-text="Charger 8 - Current (A)" data-tchmi-top="493" data-tchmi-top-unit="px" data-tchmi-width="173" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="16" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
 {
   "color": "rgba(25, 0, 0, 1)"
@@ -777,7 +777,7 @@
 
 
 </div>
-<div id="TcHmiTextblock_150" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="347" data-tchmi-left-unit="px" data-tchmi-text="Charger 8 - Voltage (V)" data-tchmi-top="463" data-tchmi-top-unit="px" data-tchmi-width="173" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="16" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible">
+<div id="TcHmiTextblock_150" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="347" data-tchmi-left-unit="px" data-tchmi-text="Charger 8 - Voltage (V)" data-tchmi-top="463" data-tchmi-top-unit="px" data-tchmi-width="173" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="16" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
 {
   "color": "rgba(25, 0, 0, 1)"
@@ -786,7 +786,7 @@
 
 
 </div>
-<div id="TcHmiTextbox_50" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="530" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MCP_IO.Charger.7.voltageFeedback|BindingMode=OneWay%/s%" data-tchmi-top="463" data-tchmi-top-unit="px" data-tchmi-width="75" data-tchmi-width-unit="px" data-tchmi-auto-focus-out="false" data-tchmi-auto-select-text="false" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false">
+<div id="TcHmiTextbox_50" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="530" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MCP_IO.Charger.7.voltageFeedback|BindingMode=OneWay%/s%" data-tchmi-top="463" data-tchmi-top-unit="px" data-tchmi-width="75" data-tchmi-width-unit="px" data-tchmi-auto-focus-out="false" data-tchmi-auto-select-text="false" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {"top":3,"right":3,"bottom":3,"left":3}
 </script>
@@ -794,7 +794,7 @@
 
 
 </div>
-<div id="TcHmiTextbox_51" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="530" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MCP_IO.Charger.7.currentFeedback|BindingMode=OneWay%/s%" data-tchmi-top="493" data-tchmi-top-unit="px" data-tchmi-width="75" data-tchmi-width-unit="px" data-tchmi-auto-focus-out="false" data-tchmi-auto-select-text="false" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false">
+<div id="TcHmiTextbox_51" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="530" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MCP_IO.Charger.7.currentFeedback|BindingMode=OneWay%/s%" data-tchmi-top="493" data-tchmi-top-unit="px" data-tchmi-width="75" data-tchmi-width-unit="px" data-tchmi-auto-focus-out="false" data-tchmi-auto-select-text="false" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {"top":3,"right":3,"bottom":3,"left":3}
 </script>
@@ -802,7 +802,7 @@
 
 
 </div>
-<div id="TcHmiTextblock_151" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="337" data-tchmi-left-unit="px" data-tchmi-text="Charger Readings" data-tchmi-top="13" data-tchmi-top-unit="px" data-tchmi-width="173" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="16" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible">
+<div id="TcHmiTextblock_151" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="337" data-tchmi-left-unit="px" data-tchmi-text="Charger Readings" data-tchmi-top="13" data-tchmi-top-unit="px" data-tchmi-width="173" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="16" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
 {
   "color": "rgba(25, 0, 0, 1)"
@@ -811,7 +811,7 @@
 
 
 </div>
-<div id="TcHmiRectangle_62" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiRectangle" data-tchmi-height="369" data-tchmi-height-unit="px" data-tchmi-left="10" data-tchmi-left-unit="px" data-tchmi-top="10" data-tchmi-top-unit="px" data-tchmi-width="304" data-tchmi-width-unit="px" data-tchmi-opacity="3" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center">
+<div id="TcHmiRectangle_62" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiRectangle" data-tchmi-height="369" data-tchmi-height-unit="px" data-tchmi-left="10" data-tchmi-left-unit="px" data-tchmi-top="10" data-tchmi-top-unit="px" data-tchmi-width="304" data-tchmi-width-unit="px" data-tchmi-opacity="3" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-border-radius" type="application/json">
 {
   "topLeft": 10.0,
@@ -934,7 +934,7 @@
 ]
 </script>
 </div>
-<div id="TcHmiTextblock_152" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="17" data-tchmi-left-unit="px" data-tchmi-text="Setpoints" data-tchmi-top="13" data-tchmi-top-unit="px" data-tchmi-width="130" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="16" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center">
+<div id="TcHmiTextblock_152" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="17" data-tchmi-left-unit="px" data-tchmi-text="Setpoints" data-tchmi-top="13" data-tchmi-top-unit="px" data-tchmi-width="130" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="16" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
 {
   "color": "rgba(25, 0, 0, 1)"
@@ -943,7 +943,7 @@
 
 
 </div>
-<div id="TcHmiTextbox_52" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="170" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MCP_IO.Charger.0.voltageSP|BindingMode=TwoWay%/s%" data-tchmi-top="43" data-tchmi-top-unit="px" data-tchmi-width="50" data-tchmi-width-unit="px" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false">
+<div id="TcHmiTextbox_52" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="170" data-tchmi-left-unit="px" data-tchmi-top="43" data-tchmi-top-unit="px" data-tchmi-width="50" data-tchmi-width-unit="px" data-tchmi-zindex="2" data-tchmi-is-enabled="false" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false" data-tchmi-creator-locked="True" data-tchmi-text="%s%PLC1.MCP_IO.Charger.0.voltageSP|BindingMode=TwoWay%/s%">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {"top":3,"right":3,"bottom":3,"left":3}
 </script>
@@ -951,7 +951,7 @@
 
 
 </div>
-<div id="TcHmiTextblock_153" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="17" data-tchmi-left-unit="px" data-tchmi-text="Charger 1 - Voltage SP (V)" data-tchmi-top="43" data-tchmi-top-unit="px" data-tchmi-width="150" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="14" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible">
+<div id="TcHmiTextblock_153" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="17" data-tchmi-left-unit="px" data-tchmi-text="Charger 1 - Voltage SP (V)" data-tchmi-top="43" data-tchmi-top-unit="px" data-tchmi-width="150" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="14" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
 {
   "color": "rgba(25, 0, 0, 1)"
@@ -960,7 +960,7 @@
 
 
 </div>
-<div id="TcHmiTextbox_53" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="170" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MCP_IO.Charger.1.voltageSP|BindingMode=TwoWay%/s%" data-tchmi-top="73" data-tchmi-top-unit="px" data-tchmi-width="50" data-tchmi-width-unit="px" data-tchmi-auto-focus-out="false" data-tchmi-auto-select-text="false" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false">
+<div id="TcHmiTextbox_53" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="170" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MCP_IO.Charger.1.voltageSP|BindingMode=TwoWay%/s%" data-tchmi-top="73" data-tchmi-top-unit="px" data-tchmi-width="50" data-tchmi-width-unit="px" data-tchmi-auto-focus-out="false" data-tchmi-auto-select-text="false" data-tchmi-zindex="2" data-tchmi-is-enabled="false" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {"top":3,"right":3,"bottom":3,"left":3}
 </script>
@@ -968,7 +968,7 @@
 
 
 </div>
-<div id="TcHmiTextblock_155" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="17" data-tchmi-left-unit="px" data-tchmi-text="Charger 2 - Voltage SP (V)" data-tchmi-top="73" data-tchmi-top-unit="px" data-tchmi-width="150" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="14" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible">
+<div id="TcHmiTextblock_155" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="17" data-tchmi-left-unit="px" data-tchmi-text="Charger 2 - Voltage SP (V)" data-tchmi-top="73" data-tchmi-top-unit="px" data-tchmi-width="150" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="14" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
 {
   "color": "rgba(25, 0, 0, 1)"
@@ -977,7 +977,7 @@
 
 
 </div>
-<div id="TcHmiTextbox_54" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="170" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MCP_IO.Charger.2.voltageSP|BindingMode=TwoWay%/s%" data-tchmi-top="103" data-tchmi-top-unit="px" data-tchmi-width="50" data-tchmi-width-unit="px" data-tchmi-auto-focus-out="false" data-tchmi-auto-select-text="false" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false">
+<div id="TcHmiTextbox_54" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="170" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MCP_IO.Charger.2.voltageSP|BindingMode=TwoWay%/s%" data-tchmi-top="103" data-tchmi-top-unit="px" data-tchmi-width="50" data-tchmi-width-unit="px" data-tchmi-auto-focus-out="false" data-tchmi-auto-select-text="false" data-tchmi-zindex="2" data-tchmi-is-enabled="false" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {"top":3,"right":3,"bottom":3,"left":3}
 </script>
@@ -985,7 +985,7 @@
 
 
 </div>
-<div id="TcHmiTextbox_55" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="170" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MCP_IO.Charger.3.voltageSP|BindingMode=TwoWay%/s%" data-tchmi-top="133" data-tchmi-top-unit="px" data-tchmi-width="50" data-tchmi-width-unit="px" data-tchmi-auto-focus-out="false" data-tchmi-auto-select-text="false" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false">
+<div id="TcHmiTextbox_55" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="170" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MCP_IO.Charger.3.voltageSP|BindingMode=TwoWay%/s%" data-tchmi-top="133" data-tchmi-top-unit="px" data-tchmi-width="50" data-tchmi-width-unit="px" data-tchmi-auto-focus-out="false" data-tchmi-auto-select-text="false" data-tchmi-zindex="2" data-tchmi-is-enabled="false" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {"top":3,"right":3,"bottom":3,"left":3}
 </script>
@@ -993,7 +993,7 @@
 
 
 </div>
-<div id="TcHmiTextblock_158" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="17" data-tchmi-left-unit="px" data-tchmi-text="Charger 3 - Voltage SP (V)" data-tchmi-top="103" data-tchmi-top-unit="px" data-tchmi-width="150" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="14" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible">
+<div id="TcHmiTextblock_158" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="17" data-tchmi-left-unit="px" data-tchmi-text="Charger 3 - Voltage SP (V)" data-tchmi-top="103" data-tchmi-top-unit="px" data-tchmi-width="150" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="14" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
 {
   "color": "rgba(25, 0, 0, 1)"
@@ -1002,7 +1002,7 @@
 
 
 </div>
-<div id="TcHmiTextbox_56" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="170" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MCP_IO.Charger.4.voltageSP|BindingMode=TwoWay%/s%" data-tchmi-top="163" data-tchmi-top-unit="px" data-tchmi-width="50" data-tchmi-width-unit="px" data-tchmi-auto-focus-out="false" data-tchmi-auto-select-text="false" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false">
+<div id="TcHmiTextbox_56" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="170" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MCP_IO.Charger.4.voltageSP|BindingMode=TwoWay%/s%" data-tchmi-top="163" data-tchmi-top-unit="px" data-tchmi-width="50" data-tchmi-width-unit="px" data-tchmi-auto-focus-out="false" data-tchmi-auto-select-text="false" data-tchmi-zindex="2" data-tchmi-is-enabled="false" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {"top":3,"right":3,"bottom":3,"left":3}
 </script>
@@ -1010,7 +1010,7 @@
 
 
 </div>
-<div id="TcHmiTextbox_57" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="170" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MCP_IO.Charger.5.voltageSP|BindingMode=TwoWay%/s%" data-tchmi-top="193" data-tchmi-top-unit="px" data-tchmi-width="50" data-tchmi-width-unit="px" data-tchmi-auto-focus-out="false" data-tchmi-auto-select-text="false" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false">
+<div id="TcHmiTextbox_57" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="170" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MCP_IO.Charger.5.voltageSP|BindingMode=TwoWay%/s%" data-tchmi-top="193" data-tchmi-top-unit="px" data-tchmi-width="50" data-tchmi-width-unit="px" data-tchmi-auto-focus-out="false" data-tchmi-auto-select-text="false" data-tchmi-zindex="2" data-tchmi-is-enabled="false" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {"top":3,"right":3,"bottom":3,"left":3}
 </script>
@@ -1018,7 +1018,7 @@
 
 
 </div>
-<div id="TcHmiTextblock_160" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="17" data-tchmi-left-unit="px" data-tchmi-text="Charger 4 - Voltage SP (V)" data-tchmi-top="133" data-tchmi-top-unit="px" data-tchmi-width="150" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="14" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible">
+<div id="TcHmiTextblock_160" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="17" data-tchmi-left-unit="px" data-tchmi-text="Charger 4 - Voltage SP (V)" data-tchmi-top="133" data-tchmi-top-unit="px" data-tchmi-width="150" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="14" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
 {
   "color": "rgba(25, 0, 0, 1)"
@@ -1027,7 +1027,7 @@
 
 
 </div>
-<div id="TcHmiTextbox_58" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="170" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MCP_IO.Charger.6.voltageSP|BindingMode=TwoWay%/s%" data-tchmi-top="223" data-tchmi-top-unit="px" data-tchmi-width="50" data-tchmi-width-unit="px" data-tchmi-auto-focus-out="false" data-tchmi-auto-select-text="false" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false">
+<div id="TcHmiTextbox_58" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="170" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MCP_IO.Charger.6.voltageSP|BindingMode=TwoWay%/s%" data-tchmi-top="223" data-tchmi-top-unit="px" data-tchmi-width="50" data-tchmi-width-unit="px" data-tchmi-auto-focus-out="false" data-tchmi-auto-select-text="false" data-tchmi-zindex="2" data-tchmi-is-enabled="false" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {"top":3,"right":3,"bottom":3,"left":3}
 </script>
@@ -1035,7 +1035,7 @@
 
 
 </div>
-<div id="TcHmiTextbox_59" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="170" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MCP_IO.Charger.7.voltageSP|BindingMode=TwoWay%/s%" data-tchmi-top="253" data-tchmi-top-unit="px" data-tchmi-width="50" data-tchmi-width-unit="px" data-tchmi-auto-focus-out="false" data-tchmi-auto-select-text="false" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false">
+<div id="TcHmiTextbox_59" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="170" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MCP_IO.Charger.7.voltageSP|BindingMode=TwoWay%/s%" data-tchmi-top="253" data-tchmi-top-unit="px" data-tchmi-width="50" data-tchmi-width-unit="px" data-tchmi-auto-focus-out="false" data-tchmi-auto-select-text="false" data-tchmi-zindex="2" data-tchmi-is-enabled="false" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {"top":3,"right":3,"bottom":3,"left":3}
 </script>
@@ -1043,7 +1043,7 @@
 
 
 </div>
-<div id="TcHmiTextblock_162" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="17" data-tchmi-left-unit="px" data-tchmi-text="Charger 5 - Voltage SP (V)" data-tchmi-top="163" data-tchmi-top-unit="px" data-tchmi-width="150" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="14" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible">
+<div id="TcHmiTextblock_162" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="17" data-tchmi-left-unit="px" data-tchmi-text="Charger 5 - Voltage SP (V)" data-tchmi-top="163" data-tchmi-top-unit="px" data-tchmi-width="150" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="14" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
 {
   "color": "rgba(25, 0, 0, 1)"
@@ -1052,7 +1052,7 @@
 
 
 </div>
-<div id="TcHmiTextbox_60" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="170" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MCP_IO.GLS1_voltageSP|BindingMode=TwoWay%/s%" data-tchmi-top="283" data-tchmi-top-unit="px" data-tchmi-width="50" data-tchmi-width-unit="px" data-tchmi-auto-focus-out="false" data-tchmi-auto-select-text="false" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false">
+<div id="TcHmiTextbox_60" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="170" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MCP_IO.GLS1_voltageSP|BindingMode=TwoWay%/s%" data-tchmi-top="283" data-tchmi-top-unit="px" data-tchmi-width="50" data-tchmi-width-unit="px" data-tchmi-auto-focus-out="false" data-tchmi-auto-select-text="false" data-tchmi-zindex="2" data-tchmi-is-enabled="false" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {"top":3,"right":3,"bottom":3,"left":3}
 </script>
@@ -1060,7 +1060,7 @@
 
 
 </div>
-<div id="TcHmiTextbox_61" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="170" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MCP_IO.GLS2_voltageSP|BindingMode=TwoWay%/s%" data-tchmi-top="313" data-tchmi-top-unit="px" data-tchmi-width="50" data-tchmi-width-unit="px" data-tchmi-auto-focus-out="false" data-tchmi-auto-select-text="false" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false">
+<div id="TcHmiTextbox_61" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="170" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MCP_IO.GLS2_voltageSP|BindingMode=TwoWay%/s%" data-tchmi-top="313" data-tchmi-top-unit="px" data-tchmi-width="50" data-tchmi-width-unit="px" data-tchmi-auto-focus-out="false" data-tchmi-auto-select-text="false" data-tchmi-zindex="2" data-tchmi-is-enabled="false" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {"top":3,"right":3,"bottom":3,"left":3}
 </script>
@@ -1068,7 +1068,7 @@
 
 
 </div>
-<div id="TcHmiTextblock_164" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="17" data-tchmi-left-unit="px" data-tchmi-text="Charger 6 - Voltage SP (V)" data-tchmi-top="193" data-tchmi-top-unit="px" data-tchmi-width="150" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="14" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible">
+<div id="TcHmiTextblock_164" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="17" data-tchmi-left-unit="px" data-tchmi-text="Charger 6 - Voltage SP (V)" data-tchmi-top="193" data-tchmi-top-unit="px" data-tchmi-width="150" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="14" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
 {
   "color": "rgba(25, 0, 0, 1)"
@@ -1077,7 +1077,7 @@
 
 
 </div>
-<div id="TcHmiTextbox_62" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="170" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MCP_IO.GLS3_voltageSP|BindingMode=TwoWay%/s%" data-tchmi-top="343" data-tchmi-top-unit="px" data-tchmi-width="50" data-tchmi-width-unit="px" data-tchmi-auto-focus-out="false" data-tchmi-auto-select-text="false" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false">
+<div id="TcHmiTextbox_62" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="170" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MCP_IO.GLS3_voltageSP|BindingMode=TwoWay%/s%" data-tchmi-top="343" data-tchmi-top-unit="px" data-tchmi-width="50" data-tchmi-width-unit="px" data-tchmi-auto-focus-out="false" data-tchmi-auto-select-text="false" data-tchmi-zindex="2" data-tchmi-is-enabled="false" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {"top":3,"right":3,"bottom":3,"left":3}
 </script>
@@ -1085,7 +1085,7 @@
 
 
 </div>
-<div id="TcHmiTextblock_166" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="17" data-tchmi-left-unit="px" data-tchmi-text="Charger 7 - Voltage SP (V)" data-tchmi-top="223" data-tchmi-top-unit="px" data-tchmi-width="150" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="14" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible">
+<div id="TcHmiTextblock_166" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="17" data-tchmi-left-unit="px" data-tchmi-text="Charger 7 - Voltage SP (V)" data-tchmi-top="223" data-tchmi-top-unit="px" data-tchmi-width="150" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="14" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
 {
   "color": "rgba(25, 0, 0, 1)"
@@ -1094,7 +1094,7 @@
 
 
 </div>
-<div id="TcHmiTextblock_168" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="17" data-tchmi-left-unit="px" data-tchmi-text="Charger 8 - Voltage SP (V)" data-tchmi-top="253" data-tchmi-top-unit="px" data-tchmi-width="150" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="14" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible">
+<div id="TcHmiTextblock_168" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="17" data-tchmi-left-unit="px" data-tchmi-text="Charger 8 - Voltage SP (V)" data-tchmi-top="253" data-tchmi-top-unit="px" data-tchmi-width="150" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="14" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
 {
   "color": "rgba(25, 0, 0, 1)"
@@ -1103,7 +1103,7 @@
 
 
 </div>
-<div id="TcHmiTextblock_169" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="17" data-tchmi-left-unit="px" data-tchmi-text="GLS 1 - Voltage SP (V)" data-tchmi-top="283" data-tchmi-top-unit="px" data-tchmi-width="150" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="14" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center">
+<div id="TcHmiTextblock_169" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="17" data-tchmi-left-unit="px" data-tchmi-text="GLS 1 - Voltage SP (V)" data-tchmi-top="283" data-tchmi-top-unit="px" data-tchmi-width="150" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="14" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
 {
   "color": "rgba(25, 0, 0, 1)"
@@ -1112,7 +1112,7 @@
 
 
 </div>
-<div id="TcHmiTextblock_170" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="17" data-tchmi-left-unit="px" data-tchmi-text="GLS 2 - Voltage SP (V)" data-tchmi-top="313" data-tchmi-top-unit="px" data-tchmi-width="150" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="14" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible">
+<div id="TcHmiTextblock_170" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="17" data-tchmi-left-unit="px" data-tchmi-text="GLS 2 - Voltage SP (V)" data-tchmi-top="313" data-tchmi-top-unit="px" data-tchmi-width="150" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="14" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
 {
   "color": "rgba(25, 0, 0, 1)"
@@ -1121,7 +1121,7 @@
 
 
 </div>
-<div id="TcHmiTextblock_171" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="17" data-tchmi-left-unit="px" data-tchmi-text="GLS 3 - Voltage SP (V)" data-tchmi-top="343" data-tchmi-top-unit="px" data-tchmi-width="150" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="14" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center">
+<div id="TcHmiTextblock_171" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="17" data-tchmi-left-unit="px" data-tchmi-text="GLS 3 - Voltage SP (V)" data-tchmi-top="343" data-tchmi-top-unit="px" data-tchmi-width="150" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="14" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
 {
   "color": "rgba(25, 0, 0, 1)"
@@ -1130,7 +1130,7 @@
 
 
 </div>
-<div id="TcHmiToggleSwitch_8" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleSwitch" data-tchmi-height="20" data-tchmi-height-unit="px" data-tchmi-left="240" data-tchmi-left-unit="px" data-tchmi-text="50kV" data-tchmi-top="43" data-tchmi-top-unit="px" data-tchmi-width="69" data-tchmi-width-unit="px" data-tchmi-text-vertical-alignment="Center" data-tchmi-state-symbol="%s%PLC1.MCP_IO.Charger.0.ChargerType_50kV%/s%" data-tchmi-toggle-state="Active" data-tchmi-text-horizontal-alignment="Left" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-position="Right">
+<div id="TcHmiToggleSwitch_8" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleSwitch" data-tchmi-height="20" data-tchmi-height-unit="px" data-tchmi-left="240" data-tchmi-left-unit="px" data-tchmi-text="50kV" data-tchmi-top="43" data-tchmi-top-unit="px" data-tchmi-width="69" data-tchmi-width-unit="px" data-tchmi-text-vertical-alignment="Center" data-tchmi-state-symbol="%s%PLC1.MCP_IO.Charger.0.ChargerType_50kV%/s%" data-tchmi-toggle-state="Active" data-tchmi-text-horizontal-alignment="Left" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-position="Right" data-tchmi-creator-locked="True">
 
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
@@ -1195,7 +1195,7 @@
 ]
 </script>
 </div>
-<div id="TcHmiToggleSwitch_9" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleSwitch" data-tchmi-height="20" data-tchmi-height-unit="px" data-tchmi-left="240" data-tchmi-left-unit="px" data-tchmi-text="50kV" data-tchmi-top="73" data-tchmi-top-unit="px" data-tchmi-width="69" data-tchmi-width-unit="px" data-tchmi-text-vertical-alignment="Center" data-tchmi-state-symbol="%s%PLC1.MCP_IO.Charger.1.ChargerType_50kV%/s%" data-tchmi-toggle-state="Active" data-tchmi-text-horizontal-alignment="Left" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-position="Right">
+<div id="TcHmiToggleSwitch_9" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleSwitch" data-tchmi-height="20" data-tchmi-height-unit="px" data-tchmi-left="240" data-tchmi-left-unit="px" data-tchmi-text="50kV" data-tchmi-top="73" data-tchmi-top-unit="px" data-tchmi-width="69" data-tchmi-width-unit="px" data-tchmi-text-vertical-alignment="Center" data-tchmi-state-symbol="%s%PLC1.MCP_IO.Charger.1.ChargerType_50kV%/s%" data-tchmi-toggle-state="Active" data-tchmi-text-horizontal-alignment="Left" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-position="Right" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
@@ -1259,7 +1259,7 @@
 ]
 </script>
 </div>
-<div id="TcHmiToggleSwitch_10" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleSwitch" data-tchmi-height="20" data-tchmi-height-unit="px" data-tchmi-left="240" data-tchmi-left-unit="px" data-tchmi-text="50kV" data-tchmi-top="103" data-tchmi-top-unit="px" data-tchmi-width="69" data-tchmi-width-unit="px" data-tchmi-text-vertical-alignment="Center" data-tchmi-state-symbol="%s%PLC1.MCP_IO.Charger.2.ChargerType_50kV%/s%" data-tchmi-toggle-state="Active" data-tchmi-text-horizontal-alignment="Left" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-position="Right">
+<div id="TcHmiToggleSwitch_10" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleSwitch" data-tchmi-height="20" data-tchmi-height-unit="px" data-tchmi-left="240" data-tchmi-left-unit="px" data-tchmi-text="50kV" data-tchmi-top="103" data-tchmi-top-unit="px" data-tchmi-width="69" data-tchmi-width-unit="px" data-tchmi-text-vertical-alignment="Center" data-tchmi-state-symbol="%s%PLC1.MCP_IO.Charger.2.ChargerType_50kV%/s%" data-tchmi-toggle-state="Active" data-tchmi-text-horizontal-alignment="Left" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-position="Right" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
@@ -1323,7 +1323,7 @@
 ]
 </script>
 </div>
-<div id="TcHmiToggleSwitch_11" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleSwitch" data-tchmi-height="20" data-tchmi-height-unit="px" data-tchmi-left="240" data-tchmi-left-unit="px" data-tchmi-text="50kV" data-tchmi-top="133" data-tchmi-top-unit="px" data-tchmi-width="69" data-tchmi-width-unit="px" data-tchmi-text-vertical-alignment="Center" data-tchmi-state-symbol="%s%PLC1.MCP_IO.Charger.3.ChargerType_50kV%/s%" data-tchmi-toggle-state="Active" data-tchmi-text-horizontal-alignment="Left" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-position="Right">
+<div id="TcHmiToggleSwitch_11" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleSwitch" data-tchmi-height="20" data-tchmi-height-unit="px" data-tchmi-left="240" data-tchmi-left-unit="px" data-tchmi-text="50kV" data-tchmi-top="133" data-tchmi-top-unit="px" data-tchmi-width="69" data-tchmi-width-unit="px" data-tchmi-text-vertical-alignment="Center" data-tchmi-state-symbol="%s%PLC1.MCP_IO.Charger.3.ChargerType_50kV%/s%" data-tchmi-toggle-state="Active" data-tchmi-text-horizontal-alignment="Left" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-position="Right" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
@@ -1387,7 +1387,7 @@
 ]
 </script>
 </div>
-<div id="TcHmiToggleSwitch_12" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleSwitch" data-tchmi-height="20" data-tchmi-height-unit="px" data-tchmi-left="240" data-tchmi-left-unit="px" data-tchmi-text="50kV" data-tchmi-top="163" data-tchmi-top-unit="px" data-tchmi-width="69" data-tchmi-width-unit="px" data-tchmi-text-vertical-alignment="Center" data-tchmi-state-symbol="%s%PLC1.MCP_IO.Charger.4.ChargerType_50kV%/s%" data-tchmi-toggle-state="Active" data-tchmi-text-horizontal-alignment="Left" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-position="Right">
+<div id="TcHmiToggleSwitch_12" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleSwitch" data-tchmi-height="20" data-tchmi-height-unit="px" data-tchmi-left="240" data-tchmi-left-unit="px" data-tchmi-text="50kV" data-tchmi-top="163" data-tchmi-top-unit="px" data-tchmi-width="69" data-tchmi-width-unit="px" data-tchmi-text-vertical-alignment="Center" data-tchmi-state-symbol="%s%PLC1.MCP_IO.Charger.4.ChargerType_50kV%/s%" data-tchmi-toggle-state="Active" data-tchmi-text-horizontal-alignment="Left" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-position="Right" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
@@ -1451,7 +1451,7 @@
 ]
 </script>
 </div>
-<div id="TcHmiToggleSwitch_13" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleSwitch" data-tchmi-height="20" data-tchmi-height-unit="px" data-tchmi-left="240" data-tchmi-left-unit="px" data-tchmi-text="50kV" data-tchmi-top="193" data-tchmi-top-unit="px" data-tchmi-width="69" data-tchmi-width-unit="px" data-tchmi-text-vertical-alignment="Center" data-tchmi-state-symbol="%s%PLC1.MCP_IO.Charger.5.ChargerType_50kV%/s%" data-tchmi-toggle-state="Active" data-tchmi-text-horizontal-alignment="Left" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-position="Right">
+<div id="TcHmiToggleSwitch_13" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleSwitch" data-tchmi-height="20" data-tchmi-height-unit="px" data-tchmi-left="240" data-tchmi-left-unit="px" data-tchmi-text="50kV" data-tchmi-top="193" data-tchmi-top-unit="px" data-tchmi-width="69" data-tchmi-width-unit="px" data-tchmi-text-vertical-alignment="Center" data-tchmi-state-symbol="%s%PLC1.MCP_IO.Charger.5.ChargerType_50kV%/s%" data-tchmi-toggle-state="Active" data-tchmi-text-horizontal-alignment="Left" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-position="Right" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
@@ -1515,7 +1515,7 @@
 ]
 </script>
 </div>
-<div id="TcHmiToggleSwitch_14" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleSwitch" data-tchmi-height="20" data-tchmi-height-unit="px" data-tchmi-left="240" data-tchmi-left-unit="px" data-tchmi-text="50kV" data-tchmi-top="223" data-tchmi-top-unit="px" data-tchmi-width="69" data-tchmi-width-unit="px" data-tchmi-text-vertical-alignment="Center" data-tchmi-state-symbol="%s%PLC1.MCP_IO.Charger.6.ChargerType_50kV%/s%" data-tchmi-toggle-state="Active" data-tchmi-text-horizontal-alignment="Left" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-position="Right">
+<div id="TcHmiToggleSwitch_14" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleSwitch" data-tchmi-height="20" data-tchmi-height-unit="px" data-tchmi-left="240" data-tchmi-left-unit="px" data-tchmi-text="50kV" data-tchmi-top="223" data-tchmi-top-unit="px" data-tchmi-width="69" data-tchmi-width-unit="px" data-tchmi-text-vertical-alignment="Center" data-tchmi-state-symbol="%s%PLC1.MCP_IO.Charger.6.ChargerType_50kV%/s%" data-tchmi-toggle-state="Active" data-tchmi-text-horizontal-alignment="Left" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-position="Right" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
@@ -1579,7 +1579,7 @@
 ]
 </script>
 </div>
-<div id="TcHmiToggleSwitch_15" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleSwitch" data-tchmi-height="20" data-tchmi-height-unit="px" data-tchmi-left="240" data-tchmi-left-unit="px" data-tchmi-text="50kV" data-tchmi-top="253" data-tchmi-top-unit="px" data-tchmi-width="69" data-tchmi-width-unit="px" data-tchmi-text-vertical-alignment="Center" data-tchmi-state-symbol="%s%PLC1.MCP_IO.Charger.7.ChargerType_50kV%/s%" data-tchmi-toggle-state="Active" data-tchmi-text-horizontal-alignment="Left" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-position="Right">
+<div id="TcHmiToggleSwitch_15" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleSwitch" data-tchmi-height="20" data-tchmi-height-unit="px" data-tchmi-left="240" data-tchmi-left-unit="px" data-tchmi-text="50kV" data-tchmi-top="253" data-tchmi-top-unit="px" data-tchmi-width="69" data-tchmi-width-unit="px" data-tchmi-text-vertical-alignment="Center" data-tchmi-state-symbol="%s%PLC1.MCP_IO.Charger.7.ChargerType_50kV%/s%" data-tchmi-toggle-state="Active" data-tchmi-text-horizontal-alignment="Left" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-position="Right" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
@@ -1643,7 +1643,7 @@
 ]
 </script>
 </div>
-<div id="TcHmiTextblock_233" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="240" data-tchmi-left-unit="px" data-tchmi-text="(0-50kV)" data-tchmi-top="283" data-tchmi-top-unit="px" data-tchmi-width="69" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="14" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center">
+<div id="TcHmiTextblock_233" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="240" data-tchmi-left-unit="px" data-tchmi-text="(0-50kV)" data-tchmi-top="283" data-tchmi-top-unit="px" data-tchmi-width="69" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="14" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
 {
   "color": "rgba(25, 0, 0, 1)"
@@ -1652,7 +1652,7 @@
 
 
 </div>
-<div id="TcHmiTextblock_234" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="240" data-tchmi-left-unit="px" data-tchmi-text="(0-50kV)" data-tchmi-top="313" data-tchmi-top-unit="px" data-tchmi-width="69" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="14" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center">
+<div id="TcHmiTextblock_234" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="240" data-tchmi-left-unit="px" data-tchmi-text="(0-50kV)" data-tchmi-top="313" data-tchmi-top-unit="px" data-tchmi-width="69" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="14" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
 {
   "color": "rgba(25, 0, 0, 1)"
@@ -1661,7 +1661,7 @@
 
 
 </div>
-<div id="TcHmiTextblock_235" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="240" data-tchmi-left-unit="px" data-tchmi-text="(0-30kV)" data-tchmi-top="343" data-tchmi-top-unit="px" data-tchmi-width="69" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="14" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center">
+<div id="TcHmiTextblock_235" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="240" data-tchmi-left-unit="px" data-tchmi-text="(0-30kV)" data-tchmi-top="343" data-tchmi-top-unit="px" data-tchmi-width="69" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="14" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
 {
   "color": "rgba(25, 0, 0, 1)"
@@ -1670,7 +1670,7 @@
 
 
 </div>
-<div id="TcHmiTextblock_236" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="17" data-tchmi-height-unit="px" data-tchmi-left="230" data-tchmi-left-unit="px" data-tchmi-text="(12kV/50kV)" data-tchmi-top="19" data-tchmi-top-unit="px" data-tchmi-width="69" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="12" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center">
+<div id="TcHmiTextblock_236" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="17" data-tchmi-height-unit="px" data-tchmi-left="230" data-tchmi-left-unit="px" data-tchmi-text="(12kV/50kV)" data-tchmi-top="19" data-tchmi-top-unit="px" data-tchmi-width="69" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="12" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
 {
   "color": "rgba(25, 0, 0, 1)"

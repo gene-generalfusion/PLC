@@ -15,6 +15,33 @@ VAR_GLOBAL
 	NoInterlockPressureLoss : BOOL;
 	SafetyOK				: BOOL;
 	AllChargerEOC			: BOOL;
+	
+	AllSection1ChargeRlyClose : BOOL;
+	AllSection2ChargeRlyClose : BOOL;
+	AllSection3ChargeRlyClose : BOOL;
+	AllSection4ChargeRlyClose : BOOL;
+	
+	AllSection1DumpRlyOpen : BOOL;
+	AllSection2DumpRlyOpen : BOOL;
+	AllSection3DumpRlyOpen : BOOL;
+	AllSection4DumpRlyOpen : BOOL;
+	
+	AllPeakChargeRlyClose	: BOOL;
+	AllSustChargeRlyClose	: BOOL;
+	AllFormChargeRlyClose	: BOOL;
+	
+	AllPeakDumpRlyOpen		: BOOL;
+	AllSustDumpRlyOpen		: BOOL;
+	AllFormDumpRlyOpen		: BOOL;
+	
+	AllPeakChargerHVisON	: BOOL;
+	AllSustChargerHVisOn	: BOOL;
+	AllFormChargerHVisOn	: BOOL;
+	
+	AllPeakChargerInhibited : BOOL;
+	AllSustChargerInhibited	: BOOL;
+	AllFormChargerInhibited : BOOL;
+	
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

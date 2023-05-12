@@ -982,7 +982,7 @@
 ]
 </script>
 </div>
-<div id="TcHmiNumericInput_54" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiNumericInput" data-tchmi-auto-focus-out="true" data-tchmi-decimal-digits="3" data-tchmi-height="32" data-tchmi-height-unit="px" data-tchmi-left="1002" data-tchmi-left-unit="px" data-tchmi-min-value="0" data-tchmi-reset-to-last-valid-value="true" data-tchmi-top="374" data-tchmi-top-unit="px" data-tchmi-width="73" data-tchmi-width-unit="px" data-tchmi-value-horizontal-alignment="Center" data-tchmi-value-font-size="18" data-tchmi-zindex="1" data-tchmi-creator-locked="True" data-tchmi-value="%s%PLC1.HMI_DB.TDKLoad.5.TotalCapacitance|BindingMode=TwoWay%/s%">
+<div id="TcHmiNumericInput_54" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiNumericInput" data-tchmi-auto-focus-out="true" data-tchmi-decimal-digits="3" data-tchmi-height="32" data-tchmi-height-unit="px" data-tchmi-left="1002" data-tchmi-left-unit="px" data-tchmi-min-value="0" data-tchmi-reset-to-last-valid-value="true" data-tchmi-top="374" data-tchmi-top-unit="px" data-tchmi-width="73" data-tchmi-width-unit="px" data-tchmi-value-horizontal-alignment="Center" data-tchmi-value-font-size="18" data-tchmi-zindex="1" data-tchmi-creator-locked="True" data-tchmi-value="%s%PLC1.HMI_DB.TDKLoad.5.TotalCapacitance|BindingMode=TwoWay%/s%" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {
   "top": 3,
@@ -1080,7 +1080,7 @@
 ]
 </script>
 </div>
-<div id="TcHmiNumericInput_55" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiNumericInput" data-tchmi-auto-focus-out="true" data-tchmi-decimal-digits="3" data-tchmi-height="32" data-tchmi-height-unit="px" data-tchmi-left="1002" data-tchmi-left-unit="px" data-tchmi-min-value="0" data-tchmi-reset-to-last-valid-value="true" data-tchmi-top="414" data-tchmi-top-unit="px" data-tchmi-width="73" data-tchmi-width-unit="px" data-tchmi-value-horizontal-alignment="Center" data-tchmi-value-font-size="18" data-tchmi-zindex="1" data-tchmi-creator-locked="True" data-tchmi-value="%s%PLC1.HMI_DB.TDKLoad.6.TotalCapacitance|BindingMode=TwoWay%/s%">
+<div id="TcHmiNumericInput_55" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiNumericInput" data-tchmi-auto-focus-out="true" data-tchmi-decimal-digits="3" data-tchmi-height="32" data-tchmi-height-unit="px" data-tchmi-left="1002" data-tchmi-left-unit="px" data-tchmi-min-value="0" data-tchmi-reset-to-last-valid-value="true" data-tchmi-top="414" data-tchmi-top-unit="px" data-tchmi-width="73" data-tchmi-width-unit="px" data-tchmi-value-horizontal-alignment="Center" data-tchmi-value-font-size="18" data-tchmi-zindex="1" data-tchmi-creator-locked="True" data-tchmi-value="%s%PLC1.HMI_DB.TDKLoad.6.TotalCapacitance|BindingMode=TwoWay%/s%" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-is-enabled="true">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {
   "top": 3,
@@ -1164,7 +1164,7 @@
                 "value": {
                   "objectType": "StaticValue",
                   "valueType": "tchmi:general#/definitions/Boolean",
-                  "value": false
+                  "value": true
                 },
                 "asyncWait": true
               }

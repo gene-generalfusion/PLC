@@ -21,7 +21,6 @@ VAR_GLOBAL PERSISTENT
 	
 	ChargingRunOutTMR_elapse	: INT;
 	
-	LiftMachineGNDsw			: BOOL;
 	//admin bypasses
 	SafetyOKBP					: BOOL;
 	AllDumpRelaysOpenBP			: BOOL;
@@ -36,11 +35,52 @@ VAR_GLOBAL PERSISTENT
 	//GLSchargeTime	 			: ARRAY [1..3] OF REAL;
 	TDKLoad 					: ARRAY [1..8] OF ST_Setpoints_Base; //or RETAIN
 	GLSLoad	 					: ST_Setpoints_Base;
+	
 	(*PSratedV					: REAL := 50;
 	RequiredChargeV				: REAL := 30;
 	LoadCapacitance				: REAL := 600;
 	wLCA						: BOOL := TRUE;
 	NumOfCharger				: INT := 1;*)
+END_VAR
+
+VAR_GLOBAL
+	LiftMachineGNDsw			: BOOL;
+	//for startup run
+	PeakChargerSP				: DINT;
+	SustChargerSP				: DINT;
+	FormChargerSP				: DINT;
+	PreFormChargerSP			: DINT;
+	FormTrigChargerSP			: DINT;
+	PreFormTrigChargerSP		: DINT;
+	
+	OpenAllPeakDumpRlySW		: BOOL;
+	OpenAllSustDumpRlySW		: BOOL;
+	OpenAllFormDumpRlySW		: BOOL;
+	OpenAllPreFormDumpRlySW		: BOOL;
+	OpenFormTrigDumpRlySW		: BOOL;
+	OpenPreFormTrigDumpRlySW	: BOOL;
+	
+	CloseAllPeakChargRlySW		: BOOL;
+	CloseAllSustChargRlySW		: BOOL;
+	CloseAllFormChargRlySW		: BOOL;
+	CloseAllPreFormChargRlySW	: BOOL;
+	CloseFormTrigChargeRlySW	: BOOL;
+	ClosePreFormTrigChargeRlySW : BOOL;
+	
+	PeakHVONsw					: BOOL; //enable
+	SustHVONsw					: BOOL; //enable
+	FormHVONsw					: BOOL; //enable
+	PreFormHVONsw				: BOOL;
+	GLS1HVONsw					: BOOL;
+	GLS2HVONsw					: BOOL;
+	
+	ResetPB_Local				: BOOL;
+	
+	(*PeakInhibitONsw				: BOOL;
+	SustInhibitONsw				: BOOL;
+	FormInhibitONsw				: BOOL;
+	PreFormInhibitONsw			: BOOL;
+	*)	
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

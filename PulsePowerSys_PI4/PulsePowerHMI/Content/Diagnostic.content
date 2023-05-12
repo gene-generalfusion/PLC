@@ -42,7 +42,7 @@
   "color": "rgba(181, 181, 181, 1)"
 }
 </script>
-<div id="TcHmiTextblock_8" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="35" data-tchmi-height-unit="px" data-tchmi-left="10" data-tchmi-left-unit="px" data-tchmi-text="Diagnostic" data-tchmi-top="10" data-tchmi-top-unit="px" data-tchmi-width="159" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="24" data-tchmi-zindex="4" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-ignore-escape-sequences="false">
+<div id="TcHmiTextblock_8" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="35" data-tchmi-height-unit="px" data-tchmi-left="10" data-tchmi-left-unit="px" data-tchmi-text="Pulsed Power Diagnostic" data-tchmi-top="10" data-tchmi-top-unit="px" data-tchmi-width="237" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="24" data-tchmi-zindex="4" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-ignore-escape-sequences="false">
 <script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
 {
   "color": "rgba(25, 0, 0, 1)"

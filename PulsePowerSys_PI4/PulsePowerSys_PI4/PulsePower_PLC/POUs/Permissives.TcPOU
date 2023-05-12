@@ -270,6 +270,59 @@ IF MCP_IO.Charger[1].HV_isON = TRUE AND
 			Permissives_DB.AllChargerHVisON := FALSE;
 END_IF;
 
+//peaking ch hv on
+IF MCP_IO.Charger[1].HV_isON = TRUE AND 
+	MCP_IO.Charger[2].HV_isON = TRUE AND 
+	MCP_IO.Charger[3].HV_isON = TRUE 
+	THEN
+		Permissives_DB.AllPeakChargerHVisON := TRUE;
+		ELSE
+			Permissives_DB.AllPeakChargerHVisON := FALSE;
+END_IF
+//sustain ch hv on
+IF MCP_IO.Charger[4].HV_isON = TRUE AND 
+	MCP_IO.Charger[5].HV_isON = TRUE AND 
+	MCP_IO.Charger[6].HV_isON = TRUE 
+	THEN
+		Permissives_DB.AllSustChargerHVisON := TRUE;
+		ELSE
+			Permissives_DB.AllSustChargerHVisON := FALSE;
+END_IF
+//Form ch hv on
+IF MCP_IO.Charger[7].HV_isON = TRUE AND 
+	MCP_IO.Charger[8].HV_isON = TRUE  
+	THEN
+		Permissives_DB.AllFormChargerHVisON := TRUE;
+		ELSE
+			Permissives_DB.AllFormChargerHVisON := FALSE;
+END_IF
+//peaking ch inhibit
+IF MCP_IO.Charger[1].inhibited = TRUE AND 
+	MCP_IO.Charger[2].inhibited = TRUE AND 
+	MCP_IO.Charger[3].inhibited = TRUE 
+	THEN
+		Permissives_DB.AllPeakChargerInhibited := TRUE;
+		ELSE
+			Permissives_DB.AllPeakChargerInhibited := FALSE;
+END_IF
+//sust ch inhibit
+IF MCP_IO.Charger[4].inhibited = TRUE AND 
+	MCP_IO.Charger[5].inhibited = TRUE AND 
+	MCP_IO.Charger[6].inhibited = TRUE 
+	THEN
+		Permissives_DB.AllSustChargerInhibited := TRUE;
+		ELSE
+			Permissives_DB.AllSustChargerInhibited := FALSE;
+END_IF
+//form ch inhibit
+IF MCP_IO.Charger[7].inhibited = TRUE AND 
+	MCP_IO.Charger[8].inhibited = TRUE
+	THEN
+		Permissives_DB.AllFormChargerInhibited := TRUE;
+		ELSE
+			Permissives_DB.AllFormChargerInhibited := FALSE;
+END_IF
+
 IF MCP_IO.Charger[1].EndOfCharge = TRUE AND 
 	MCP_IO.Charger[1].EndOfCharge = TRUE AND
 	MCP_IO.Charger[2].EndOfCharge = TRUE AND
@@ -285,8 +338,116 @@ IF MCP_IO.Charger[1].EndOfCharge = TRUE AND
 			Permissives_DB.AllChargerEOC := FALSE;
 END_IF
 
+//all peaking charg
+IF LCP.Section[1].Peak.ChargeRelay1_close = TRUE AND
+	LCP.Section[1].Peak.ChargeRelay2_close = TRUE AND
+	LCP.Section[2].Peak.ChargeRelay1_close = TRUE AND
+	LCP.Section[2].Peak.ChargeRelay2_close = TRUE AND
+	LCP.Section[3].Peak.ChargeRelay1_close = TRUE AND
+	LCP.Section[3].Peak.ChargeRelay2_close = TRUE 
+	THEN
+		Permissives_DB.AllPeakChargeRlyClose := TRUE;
+		ELSE
+			Permissives_DB.AllPeakChargeRlyClose := FALSE;
+END_IF
 
+//all sust charge
+IF LCP.Section[1].Sust.ChargeRelay1_close = TRUE AND
+	LCP.Section[1].Sust.ChargeRelay2_close = TRUE AND
+	LCP.Section[2].Sust.ChargeRelay1_close = TRUE AND
+	LCP.Section[2].Sust.ChargeRelay2_close = TRUE AND
+	LCP.Section[3].Sust.ChargeRelay1_close = TRUE AND
+	LCP.Section[3].Sust.ChargeRelay2_close = TRUE 
+	THEN
+		Permissives_DB.AllSustChargeRlyClose := TRUE;
+		ELSE
+			Permissives_DB.AllSustChargeRlyClose := FALSE;
+END_IF
+//all form charge
+IF	LCP.Section[4].Form.ChargeRelay1_close = TRUE AND
+	LCP.Section[4].Form.ChargeRelay2_close = TRUE 
+	THEN
+		Permissives_DB.AllFormChargeRlyClose := TRUE;
+		ELSE
+			Permissives_DB.AllFormChargeRlyClose := FALSE;
+END_IF
 
+//all peak dump
+IF LCP.Section[1].Peak.DumpRelay1_close = TRUE AND
+	LCP.Section[1].Peak.DumpRelay2_close = TRUE AND
+	LCP.Section[2].Peak.DumpRelay1_close = TRUE AND
+	LCP.Section[2].Peak.DumpRelay2_close = TRUE AND
+	LCP.Section[3].Peak.DumpRelay1_close = TRUE AND
+	LCP.Section[3].Peak.DumpRelay2_close = TRUE 
+	THEN
+		Permissives_DB.AllPeakDumpRlyOpen := FALSE;
+		ELSE
+			Permissives_DB.AllPeakDumpRlyOpen := TRUE;
+END_IF
+//all sust dump
+IF LCP.Section[1].Sust.DumpRelay1_close = TRUE AND
+	LCP.Section[1].Sust.DumpRelay2_close = TRUE AND
+	LCP.Section[2].Sust.DumpRelay1_close = TRUE AND
+	LCP.Section[2].Sust.DumpRelay2_close = TRUE AND
+	LCP.Section[3].Sust.DumpRelay1_close = TRUE AND
+	LCP.Section[3].Sust.DumpRelay2_close = TRUE 
+	THEN
+		Permissives_DB.AllSustDumpRlyOpen := FALSE;
+		ELSE
+			Permissives_DB.AllSustDumpRlyOpen := TRUE;
+END_IF
+//all form dump
+IF LCP.Section[4].Form.DumpRelay1_close = TRUE AND
+	LCP.Section[4].Form.DumpRelay2_close = TRUE 
+	THEN
+		Permissives_DB.AllFormDumpRlyOpen := FALSE;
+		ELSE
+			Permissives_DB.AllFormDumpRlyOpen := TRUE;
+END_IF
+// GLS 1 & 2 can use raw input bit.
+
+//section 1 charge
+IF LCP.Section[1].Peak.ChargeRelay1_close = TRUE AND
+	LCP.Section[1].Peak.ChargeRelay2_close = TRUE AND
+	LCP.Section[1].Sust.ChargeRelay1_close = TRUE AND
+	LCP.Section[1].Sust.ChargeRelay2_close = TRUE 
+	THEN
+		Permissives_DB.AllSection1ChargeRlyClose := TRUE;
+		ELSE
+			Permissives_DB.AllSection1ChargeRlyClose := FALSE;
+END_IF;
+//section 2 charge
+IF LCP.Section[2].Peak.ChargeRelay1_close = TRUE AND
+	LCP.Section[2].Peak.ChargeRelay2_close = TRUE AND
+	LCP.Section[2].Sust.ChargeRelay1_close = TRUE AND
+	LCP.Section[2].Sust.ChargeRelay2_close = TRUE 
+	THEN
+		Permissives_DB.AllSection2ChargeRlyClose := TRUE;
+		ELSE
+			Permissives_DB.AllSection2ChargeRlyClose := FALSE;
+END_IF;
+//section 3 charge
+IF LCP.Section[3].Peak.ChargeRelay1_close = TRUE AND
+	LCP.Section[3].Peak.ChargeRelay2_close = TRUE AND
+	LCP.Section[3].Sust.ChargeRelay1_close = TRUE AND
+	LCP.Section[3].Sust.ChargeRelay2_close = TRUE 
+	THEN
+		Permissives_DB.AllSection3ChargeRlyClose := TRUE;
+		ELSE
+			Permissives_DB.AllSection3ChargeRlyClose := FALSE;
+END_IF;
+//section 4 charge
+IF	LCP.Section[4].Form.ChargeRelay1_close = TRUE AND
+	LCP.Section[4].Form.ChargeRelay2_close = TRUE AND						
+	LCP.Section[4].Form.PreFormChargeRly_close = TRUE AND
+	LCP.Section[4].Form.FormTrigChargeRly_close = TRUE AND
+	LCP.Section[4].Form.PreFormTrigChargeRly_close = TRUE
+	THEN
+		Permissives_DB.AllSection4ChargeRlyClose := TRUE;
+		ELSE
+			Permissives_DB.AllSection4ChargeRlyClose := FALSE;
+END_IF
+	
 //All charge relay close
 IF (LCP.Section[1].Peak.ChargeRelay1_close = TRUE AND
 	LCP.Section[1].Peak.ChargeRelay2_close = TRUE AND
@@ -311,6 +472,48 @@ IF (LCP.Section[1].Peak.ChargeRelay1_close = TRUE AND
 	ELSE
 		Permissives_DB.AllChargeRelaysClosed := FALSE;
 END_IF;
+
+//section 1 dump
+IF LCP.Section[1].Peak.DumpRelay1_close = FALSE AND
+	LCP.Section[1].Peak.DumpRelay2_close = FALSE AND
+	LCP.Section[1].Sust.DumpRelay1_close = FALSE AND
+	LCP.Section[1].Sust.DumpRelay2_close = FALSE
+	THEN
+		Permissives_DB.AllSection1DumpRlyOpen := TRUE;
+		ELSE
+			Permissives_DB.AllSection1DumpRlyOpen := FALSE;
+END_IF
+//section 2 dump
+IF LCP.Section[2].Peak.DumpRelay1_close = FALSE AND
+	LCP.Section[2].Peak.DumpRelay2_close = FALSE AND
+	LCP.Section[2].Sust.DumpRelay1_close = FALSE AND
+	LCP.Section[2].Sust.DumpRelay2_close = FALSE
+	THEN
+		Permissives_DB.AllSection2DumpRlyOpen := TRUE;
+		ELSE
+			Permissives_DB.AllSection2DumpRlyOpen := FALSE;
+END_IF
+//section 3 dump
+IF LCP.Section[3].Peak.DumpRelay1_close = FALSE AND
+	LCP.Section[3].Peak.DumpRelay2_close = FALSE AND
+	LCP.Section[3].Sust.DumpRelay1_close = FALSE AND
+	LCP.Section[3].Sust.DumpRelay2_close = FALSE
+	THEN
+		Permissives_DB.AllSection3DumpRlyOpen := TRUE;
+		ELSE
+			Permissives_DB.AllSection3DumpRlyOpen := FALSE;
+END_IF
+//section 4 dump
+IF 	LCP.Section[4].Form.DumpRelay1_close = FALSE AND
+	LCP.Section[4].Form.DumpRelay2_close = FALSE AND						
+	LCP.Section[4].Form.PreFormDumpRly_close = FALSE AND
+	LCP.Section[4].Form.FormTrigDumpRly1_close = FALSE AND
+	LCP.Section[4].Form.PreFormTrigDumpRly1_close = FALSE
+	THEN
+		Permissives_DB.AllSection4DumpRlyOpen := TRUE;
+		ELSE
+			Permissives_DB.AllSection4DumpRlyOpen := FALSE;
+END_IF
 
 //All Dump relays open  ******
 IF (LCP.Section[1].Peak.DumpRelay1_close = FALSE AND
@@ -708,6 +911,24 @@ END_IF;]]></ST>
       <LineId Id="620" Count="0" />
       <LineId Id="134" Count="3" />
       <LineId Id="110" Count="0" />
+      <LineId Id="971" Count="0" />
+      <LineId Id="962" Count="0" />
+      <LineId Id="961" Count="0" />
+      <LineId Id="963" Count="0" />
+      <LineId Id="965" Count="4" />
+      <LineId Id="964" Count="0" />
+      <LineId Id="973" Count="7" />
+      <LineId Id="972" Count="0" />
+      <LineId Id="982" Count="2" />
+      <LineId Id="986" Count="3" />
+      <LineId Id="981" Count="0" />
+      <LineId Id="991" Count="7" />
+      <LineId Id="990" Count="0" />
+      <LineId Id="1000" Count="7" />
+      <LineId Id="999" Count="0" />
+      <LineId Id="1009" Count="2" />
+      <LineId Id="1013" Count="3" />
+      <LineId Id="1008" Count="0" />
       <LineId Id="621" Count="0" />
       <LineId Id="101" Count="0" />
       <LineId Id="624" Count="6" />
@@ -716,9 +937,49 @@ END_IF;]]></ST>
       <LineId Id="631" Count="0" />
       <LineId Id="633" Count="1" />
       <LineId Id="636" Count="0" />
+      <LineId Id="886" Count="0" />
+      <LineId Id="885" Count="0" />
+      <LineId Id="888" Count="0" />
+      <LineId Id="887" Count="0" />
+      <LineId Id="889" Count="5" />
+      <LineId Id="896" Count="2" />
+      <LineId Id="900" Count="0" />
+      <LineId Id="899" Count="0" />
+      <LineId Id="903" Count="9" />
+      <LineId Id="901" Count="0" />
+      <LineId Id="913" Count="0" />
+      <LineId Id="915" Count="0" />
+      <LineId Id="914" Count="0" />
+      <LineId Id="916" Count="4" />
+      <LineId Id="923" Count="0" />
+      <LineId Id="921" Count="0" />
+      <LineId Id="924" Count="1" />
+      <LineId Id="927" Count="7" />
+      <LineId Id="926" Count="0" />
+      <LineId Id="937" Count="10" />
+      <LineId Id="936" Count="0" />
+      <LineId Id="949" Count="2" />
+      <LineId Id="956" Count="3" />
+      <LineId Id="948" Count="0" />
+      <LineId Id="960" Count="0" />
+      <LineId Id="804" Count="0" />
       <LineId Id="638" Count="0" />
+      <LineId Id="801" Count="2" />
       <LineId Id="640" Count="0" />
-      <LineId Id="9" Count="0" />
+      <LineId Id="807" Count="0" />
+      <LineId Id="805" Count="0" />
+      <LineId Id="808" Count="1" />
+      <LineId Id="806" Count="0" />
+      <LineId Id="813" Count="8" />
+      <LineId Id="812" Count="0" />
+      <LineId Id="824" Count="8" />
+      <LineId Id="823" Count="0" />
+      <LineId Id="833" Count="4" />
+      <LineId Id="822" Count="0" />
+      <LineId Id="811" Count="0" />
+      <LineId Id="838" Count="0" />
+      <LineId Id="840" Count="2" />
+      <LineId Id="839" Count="0" />
       <LineId Id="166" Count="0" />
       <LineId Id="163" Count="0" />
       <LineId Id="168" Count="0" />
@@ -734,6 +995,18 @@ END_IF;]]></ST>
       <LineId Id="174" Count="0" />
       <LineId Id="183" Count="0" />
       <LineId Id="169" Count="0" />
+      <LineId Id="848" Count="0" />
+      <LineId Id="844" Count="3" />
+      <LineId Id="843" Count="0" />
+      <LineId Id="849" Count="4" />
+      <LineId Id="855" Count="8" />
+      <LineId Id="854" Count="0" />
+      <LineId Id="865" Count="8" />
+      <LineId Id="864" Count="0" />
+      <LineId Id="874" Count="0" />
+      <LineId Id="876" Count="3" />
+      <LineId Id="875" Count="0" />
+      <LineId Id="880" Count="4" />
       <LineId Id="164" Count="0" />
       <LineId Id="191" Count="22" />
       <LineId Id="165" Count="0" />

@@ -5,8 +5,8 @@
 VAR_GLOBAL
 	TDKLoad : ARRAY [1..8] OF ST_Recipe;
 	GLSLoad : ST_Recipe;
-	GLS1_VSP : DINT := 50;
-	GLS2_VSP : DINT := 50;
+	GLS1_VSP : REAL := 50;
+	GLS2_VSP : REAL := 50;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

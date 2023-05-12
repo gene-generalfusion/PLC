@@ -3422,6 +3422,16 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.GVL.RemoteModeSelected": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL::RemoteModeSelected",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
         "PLC1.GVL.alarm_test": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -3517,6 +3527,116 @@
             "DOMAIN": "ADS",
             "DYNAMIC": true,
             "MAPPING": "PLC1::HMI_DB::CloseAllChargeRlyPB",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.CloseAllFormChargRlySW": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::CloseAllFormChargRlySW",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.CloseAllPeakChargRlySW": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::CloseAllPeakChargRlySW",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.CloseAllPreFormChargRlySW": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::CloseAllPreFormChargRlySW",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.CloseAllSustChargRlySW": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::CloseAllSustChargRlySW",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.CloseFormTrigChargeRlySW": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::CloseFormTrigChargeRlySW",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.ClosePreFormTrigChargeRlySW": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::ClosePreFormTrigChargeRlySW",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.FormChargerSP": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::FormChargerSP",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/DINT"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.FormHVONsw": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::FormHVONsw",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.FormTrigChargerSP": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::FormTrigChargerSP",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/DINT"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.GLS1HVONsw": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::GLS1HVONsw",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.GLS2HVONsw": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::GLS2HVONsw",
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
@@ -3639,6 +3759,123 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.HMI_DB.OpenAllFormDumpRlySW": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::OpenAllFormDumpRlySW",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.OpenAllPeakDumpRlySW": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::OpenAllPeakDumpRlySW",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.OpenAllPreFormDumpRlySW": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::OpenAllPreFormDumpRlySW",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.OpenAllSustDumpRlySW": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::OpenAllSustDumpRlySW",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.OpenFormTrigDumpRlySW": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::OpenFormTrigDumpRlySW",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.OpenPreFormTrigDumpRlySW": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::OpenPreFormTrigDumpRlySW",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.PeakChargerSP": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::PeakChargerSP",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/DINT"
+                    },
+                    {
+                        "comment": "for startup run"
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.PeakHVONsw": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::PeakHVONsw",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.PreFormChargerSP": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::PreFormChargerSP",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/DINT"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.PreFormHVONsw": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::PreFormHVONsw",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.PreFormTrigChargerSP": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::PreFormTrigChargerSP",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/DINT"
+            },
+            "USEMAPPING": true
+        },
         "PLC1.HMI_DB.RemoteModeSelected": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -3683,6 +3920,26 @@
                         "comment": "admin bypasses"
                     }
                 ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.SustChargerSP": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::SustChargerSP",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/DINT"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.SustHVONsw": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::SustHVONsw",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
             },
             "USEMAPPING": true
         },
@@ -6346,23 +6603,6 @@
             },
             "USEMAPPING": true
         },
-        "PLC1.MCP_IO.Charger.0.voltageSP": {
-            "ACCESS": 3,
-            "DOMAIN": "ADS",
-            "DYNAMIC": true,
-            "MAPPING": "PLC1::MCP_IO::Charger[0]::voltageSP",
-            "SCHEMA": {
-                "allOf": [
-                    {
-                        "$ref": "tchmi:general#/definitions/INT"
-                    },
-                    {
-                        "comment": "AQ"
-                    }
-                ]
-            },
-            "USEMAPPING": true
-        },
         "PLC1.MCP_IO.Charger.1.ChargeTime.Power": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -6514,23 +6754,6 @@
             "MAPPING": "PLC1::MCP_IO::Charger[1]::voltageFeedback",
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
-            },
-            "USEMAPPING": true
-        },
-        "PLC1.MCP_IO.Charger.1.voltageSP": {
-            "ACCESS": 3,
-            "DOMAIN": "ADS",
-            "DYNAMIC": true,
-            "MAPPING": "PLC1::MCP_IO::Charger[1]::voltageSP",
-            "SCHEMA": {
-                "allOf": [
-                    {
-                        "$ref": "tchmi:general#/definitions/INT"
-                    },
-                    {
-                        "comment": "AQ"
-                    }
-                ]
             },
             "USEMAPPING": true
         },
@@ -6688,23 +6911,6 @@
             },
             "USEMAPPING": true
         },
-        "PLC1.MCP_IO.Charger.2.voltageSP": {
-            "ACCESS": 3,
-            "DOMAIN": "ADS",
-            "DYNAMIC": true,
-            "MAPPING": "PLC1::MCP_IO::Charger[2]::voltageSP",
-            "SCHEMA": {
-                "allOf": [
-                    {
-                        "$ref": "tchmi:general#/definitions/INT"
-                    },
-                    {
-                        "comment": "AQ"
-                    }
-                ]
-            },
-            "USEMAPPING": true
-        },
         "PLC1.MCP_IO.Charger.3.ChargeTime.Power": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -6856,23 +7062,6 @@
             "MAPPING": "PLC1::MCP_IO::Charger[3]::voltageFeedback",
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
-            },
-            "USEMAPPING": true
-        },
-        "PLC1.MCP_IO.Charger.3.voltageSP": {
-            "ACCESS": 3,
-            "DOMAIN": "ADS",
-            "DYNAMIC": true,
-            "MAPPING": "PLC1::MCP_IO::Charger[3]::voltageSP",
-            "SCHEMA": {
-                "allOf": [
-                    {
-                        "$ref": "tchmi:general#/definitions/INT"
-                    },
-                    {
-                        "comment": "AQ"
-                    }
-                ]
             },
             "USEMAPPING": true
         },
@@ -7030,23 +7219,6 @@
             },
             "USEMAPPING": true
         },
-        "PLC1.MCP_IO.Charger.4.voltageSP": {
-            "ACCESS": 3,
-            "DOMAIN": "ADS",
-            "DYNAMIC": true,
-            "MAPPING": "PLC1::MCP_IO::Charger[4]::voltageSP",
-            "SCHEMA": {
-                "allOf": [
-                    {
-                        "$ref": "tchmi:general#/definitions/INT"
-                    },
-                    {
-                        "comment": "AQ"
-                    }
-                ]
-            },
-            "USEMAPPING": true
-        },
         "PLC1.MCP_IO.Charger.5.ChargeTime.Power": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -7198,23 +7370,6 @@
             "MAPPING": "PLC1::MCP_IO::Charger[5]::voltageFeedback",
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
-            },
-            "USEMAPPING": true
-        },
-        "PLC1.MCP_IO.Charger.5.voltageSP": {
-            "ACCESS": 3,
-            "DOMAIN": "ADS",
-            "DYNAMIC": true,
-            "MAPPING": "PLC1::MCP_IO::Charger[5]::voltageSP",
-            "SCHEMA": {
-                "allOf": [
-                    {
-                        "$ref": "tchmi:general#/definitions/INT"
-                    },
-                    {
-                        "comment": "AQ"
-                    }
-                ]
             },
             "USEMAPPING": true
         },
@@ -7372,23 +7527,6 @@
             },
             "USEMAPPING": true
         },
-        "PLC1.MCP_IO.Charger.6.voltageSP": {
-            "ACCESS": 3,
-            "DOMAIN": "ADS",
-            "DYNAMIC": true,
-            "MAPPING": "PLC1::MCP_IO::Charger[6]::voltageSP",
-            "SCHEMA": {
-                "allOf": [
-                    {
-                        "$ref": "tchmi:general#/definitions/INT"
-                    },
-                    {
-                        "comment": "AQ"
-                    }
-                ]
-            },
-            "USEMAPPING": true
-        },
         "PLC1.MCP_IO.Charger.7.ChargeTime.Power": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -7543,23 +7681,6 @@
             },
             "USEMAPPING": true
         },
-        "PLC1.MCP_IO.Charger.7.voltageSP": {
-            "ACCESS": 3,
-            "DOMAIN": "ADS",
-            "DYNAMIC": true,
-            "MAPPING": "PLC1::MCP_IO::Charger[7]::voltageSP",
-            "SCHEMA": {
-                "allOf": [
-                    {
-                        "$ref": "tchmi:general#/definitions/INT"
-                    },
-                    {
-                        "comment": "AQ"
-                    }
-                ]
-            },
-            "USEMAPPING": true
-        },
         "PLC1.MCP_IO.GLS1_hvON": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -7570,23 +7691,6 @@
             },
             "USEMAPPING": true
         },
-        "PLC1.MCP_IO.GLS1_voltageSP": {
-            "ACCESS": 3,
-            "DOMAIN": "ADS",
-            "DYNAMIC": true,
-            "MAPPING": "PLC1::MCP_IO::GLS1_voltageSP",
-            "SCHEMA": {
-                "allOf": [
-                    {
-                        "$ref": "tchmi:general#/definitions/INT"
-                    },
-                    {
-                        "comment": "AllChargeRelaysClose\t\t: BOOL; only for slim\r\nAllDumpRelaysOpen\t\t\t: BOOL; only for slim"
-                    }
-                ]
-            },
-            "USEMAPPING": true
-        },
         "PLC1.MCP_IO.GLS2_hvON": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -7594,16 +7698,6 @@
             "MAPPING": "PLC1::MCP_IO::GLS2_hvON",
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
-            },
-            "USEMAPPING": true
-        },
-        "PLC1.MCP_IO.GLS2_voltageSP": {
-            "ACCESS": 3,
-            "DOMAIN": "ADS",
-            "DYNAMIC": true,
-            "MAPPING": "PLC1::MCP_IO::GLS2_voltageSP",
-            "SCHEMA": {
-                "$ref": "tchmi:general#/definitions/INT"
             },
             "USEMAPPING": true
         },
@@ -7634,16 +7728,6 @@
             "MAPPING": "PLC1::MCP_IO::GLS3_hvON",
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
-            },
-            "USEMAPPING": true
-        },
-        "PLC1.MCP_IO.GLS3_voltageSP": {
-            "ACCESS": 3,
-            "DOMAIN": "ADS",
-            "DYNAMIC": true,
-            "MAPPING": "PLC1::MCP_IO::GLS3_voltageSP",
-            "SCHEMA": {
-                "$ref": "tchmi:general#/definitions/INT"
             },
             "USEMAPPING": true
         },
@@ -10358,6 +10442,7 @@
                 "PLC1.ChargeTime_DB.PreFormChargeTimeStartDelay": 3,
                 "PLC1.ChargeTime_DB.PreFormChargingTimeElapse": 3,
                 "PLC1.Command.eCommand": 3,
+                "PLC1.GVL.RemoteModeSelected": 3,
                 "PLC1.GVL.alarm_test": 3,
                 "PLC1.GVL.test": 3,
                 "PLC1.HMI_DB.AbortPB": 3,
@@ -10370,7 +10455,20 @@
                 "PLC1.HMI_DB.ChargerHVOFF_rlyDelayPT_INT": 3,
                 "PLC1.HMI_DB.ChargingRunOutTMR_elapse": 3,
                 "PLC1.HMI_DB.CloseAllChargeRlyPB": 3,
+                "PLC1.HMI_DB.CloseAllFormChargRlySW": 3,
+                "PLC1.HMI_DB.CloseAllPeakChargRlySW": 3,
+                "PLC1.HMI_DB.CloseAllPreFormChargRlySW": 3,
+                "PLC1.HMI_DB.CloseAllSustChargRlySW": 3,
+                "PLC1.HMI_DB.CloseFormTrigChargeRlySW": 3,
+                "PLC1.HMI_DB.ClosePreFormTrigChargeRlySW": 3,
                 "PLC1.HMI_DB.DumpPB": 3,
+                "PLC1.HMI_DB.FormChargerSP": 3,
+                "PLC1.HMI_DB.FormHVONsw": 3,
+                "PLC1.HMI_DB.FormInhibitOFFsw": 3,
+                "PLC1.HMI_DB.FormInhibitONsw": 3,
+                "PLC1.HMI_DB.FormTrigChargerSP": 3,
+                "PLC1.HMI_DB.GLS1HVONsw": 3,
+                "PLC1.HMI_DB.GLS2HVONsw": 3,
                 "PLC1.HMI_DB.GLSLoad.NumOfCharger": 3,
                 "PLC1.HMI_DB.GLSLoad.PSratedV": 3,
                 "PLC1.HMI_DB.GLSLoad.RequiredChargedV": 3,
@@ -10385,6 +10483,12 @@
                 "PLC1.HMI_DB.NoFaultDetectedBP": 3,
                 "PLC1.HMI_DB.NumOfCharger": 3,
                 "PLC1.HMI_DB.OpenAllDumpRlyPB": 3,
+                "PLC1.HMI_DB.OpenAllFormDumpRlySW": 3,
+                "PLC1.HMI_DB.OpenAllPeakDumpRlySW": 3,
+                "PLC1.HMI_DB.OpenAllPreFormDumpRlySW": 3,
+                "PLC1.HMI_DB.OpenAllSustDumpRlySW": 3,
+                "PLC1.HMI_DB.OpenFormTrigDumpRlySW": 3,
+                "PLC1.HMI_DB.OpenPreFormTrigDumpRlySW": 3,
                 "PLC1.HMI_DB.PSratedV": 3,
                 "PLC1.HMI_DB.PeakBank.0.NumOfCharger": 3,
                 "PLC1.HMI_DB.PeakBank.0.PSratedV": 3,
@@ -10401,6 +10505,15 @@
                 "PLC1.HMI_DB.PeakBank.2.RequiredChargedV": 3,
                 "PLC1.HMI_DB.PeakBank.2.TotalCapacitance": 3,
                 "PLC1.HMI_DB.PeakBank.2.wLCA": 3,
+                "PLC1.HMI_DB.PeakChargerSP": 3,
+                "PLC1.HMI_DB.PeakHVONsw": 3,
+                "PLC1.HMI_DB.PeakInhibitOFFsw": 3,
+                "PLC1.HMI_DB.PeakInhibitONsw": 3,
+                "PLC1.HMI_DB.PreFormChargerSP": 3,
+                "PLC1.HMI_DB.PreFormHVONsw": 3,
+                "PLC1.HMI_DB.PreFormInhibitOFFsw": 3,
+                "PLC1.HMI_DB.PreFormInhibitONsw": 3,
+                "PLC1.HMI_DB.PreFormTrigChargerSP": 3,
                 "PLC1.HMI_DB.RemoteModeSelected": 3,
                 "PLC1.HMI_DB.RequiredChargeV": 3,
                 "PLC1.HMI_DB.RunOutTMR_ET": 3,
@@ -10413,6 +10526,10 @@
                 "PLC1.HMI_DB.SustBank.0.PSratedV": 3,
                 "PLC1.HMI_DB.SustBank.0.TotalCapacitance": 3,
                 "PLC1.HMI_DB.SustBank.0.wLCA": 3,
+                "PLC1.HMI_DB.SustChargerSP": 3,
+                "PLC1.HMI_DB.SustHVONsw": 3,
+                "PLC1.HMI_DB.SustInhibitOFFsw": 3,
+                "PLC1.HMI_DB.SustInhibitONsw": 3,
                 "PLC1.HMI_DB.TDKLoad.0.NumOfCharger": 3,
                 "PLC1.HMI_DB.TDKLoad.0.PSratedV": 3,
                 "PLC1.HMI_DB.TDKLoad.0.RequiredChargedV": 3,
