@@ -332,9 +332,18 @@
     <Content Include="Server\ADS\ADS.Config.default.json" />
     <Content Include="Server\ADS\ADS.Config.default.json" />
     <Content Include="Server\ADS\ADS.Config.default.json" />
+    <Content Include="Server\ADS\ADS.Config.default.json" />
+    <Content Include="Server\ADS\ADS.Config.default.json" />
+    <Content Include="Server\ADS\ADS.Config.default.json" />
+    <Content Include="Server\ADS\ADS.Config.default.json" />
+    <Content Include="Server\ADS\ADS.Config.default.json" />
+    <Content Include="Server\ADS\ADS.Config.default.json" />
     <Content Include="Server\ADS\ADS.Config.remote.json">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="Server\ADS\ADS.Config.remote.json" />
+    <Content Include="Server\ADS\ADS.Config.remote.json" />
+    <Content Include="Server\ADS\ADS.Config.remote.json" />
     <Content Include="Server\ADS\ADS.Config.remote.json" />
     <Content Include="Server\ADS\ADS.Config.remote.json" />
     <Content Include="Server\ADS\ADS.Config.remote.json" />
@@ -360,6 +369,7 @@
     <Content Include="Server\ADS\ADS.Storage.json">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="Server\ADS\ADS.Storage.json" />
     <Content Include="Server\TcHmiEcDiagnostics\TcHmiEcDiagnostics.Config.default.json">
       <SubType>Content</SubType>
     </Content>

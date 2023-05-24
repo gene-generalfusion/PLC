@@ -44,7 +44,7 @@ VAR_GLOBAL PERSISTENT
 END_VAR
 
 VAR_GLOBAL
-	LiftMachineGNDsw			: BOOL;
+	LiftMachineGNDsw			: BOOL := FALSE;
 	//for startup run
 	PeakChargerSP				: DINT;
 	SustChargerSP				: DINT;
@@ -53,28 +53,28 @@ VAR_GLOBAL
 	FormTrigChargerSP			: DINT;
 	PreFormTrigChargerSP		: DINT;
 	
-	OpenAllPeakDumpRlySW		: BOOL;
-	OpenAllSustDumpRlySW		: BOOL;
-	OpenAllFormDumpRlySW		: BOOL;
-	OpenAllPreFormDumpRlySW		: BOOL;
-	OpenFormTrigDumpRlySW		: BOOL;
-	OpenPreFormTrigDumpRlySW	: BOOL;
+	OpenAllPeakDumpRlySW		: BOOL := FALSE;
+	OpenAllSustDumpRlySW		: BOOL := FALSE;
+	OpenAllFormDumpRlySW		: BOOL := FALSE;
+	OpenAllPreFormDumpRlySW		: BOOL := FALSE;
+	OpenFormTrigDumpRlySW		: BOOL := FALSE;
+	OpenPreFormTrigDumpRlySW	: BOOL := FALSE;
 	
-	CloseAllPeakChargRlySW		: BOOL;
-	CloseAllSustChargRlySW		: BOOL;
-	CloseAllFormChargRlySW		: BOOL;
-	CloseAllPreFormChargRlySW	: BOOL;
-	CloseFormTrigChargeRlySW	: BOOL;
-	ClosePreFormTrigChargeRlySW : BOOL;
+	CloseAllPeakChargRlySW		: BOOL := FALSE;
+	CloseAllSustChargRlySW		: BOOL := FALSE;
+	CloseAllFormChargRlySW		: BOOL := FALSE;
+	CloseAllPreFormChargRlySW	: BOOL := FALSE;
+	CloseFormTrigChargeRlySW	: BOOL := FALSE;
+	ClosePreFormTrigChargeRlySW : BOOL := FALSE;
 	
-	PeakHVONsw					: BOOL; //enable
-	SustHVONsw					: BOOL; //enable
-	FormHVONsw					: BOOL; //enable
-	PreFormHVONsw				: BOOL;
-	GLS1HVONsw					: BOOL;
-	GLS2HVONsw					: BOOL;
+	PeakHVONsw					: BOOL := FALSE; //enable
+	SustHVONsw					: BOOL := FALSE; //enable
+	FormHVONsw					: BOOL := FALSE; //enable
+	PreFormHVONsw				: BOOL := FALSE;
+	GLS1HVONsw					: BOOL := FALSE;
+	GLS2HVONsw					: BOOL := FALSE;
 	
-	ResetPB_Local				: BOOL;
+	DumpALLPB_Local				: BOOL := FALSE;
 	
 	(*PeakInhibitONsw				: BOOL;
 	SustInhibitONsw				: BOOL;

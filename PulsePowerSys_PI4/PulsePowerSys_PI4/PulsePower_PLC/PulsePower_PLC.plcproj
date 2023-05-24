@@ -168,6 +168,9 @@
     <Compile Include="POUs\Communication.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\Dump_FB.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\Heartbeat.TcPOU">
       <SubType>Code</SubType>
     </Compile>

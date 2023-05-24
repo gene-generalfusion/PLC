@@ -3592,6 +3592,16 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.HMI_DB.DumpALLPB_Local": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::DumpALLPB_Local",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
         "PLC1.HMI_DB.FormChargerSP": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -7851,6 +7861,46 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.Sequence.Dump.DONE": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::Sequence::Dump::DONE",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.Sequence.Dump.EN": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::Sequence::Dump::EN",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.Sequence.Dump.k": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::Sequence::Dump::k",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/USINT"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.Sequence.LocalDumpElapse": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::Sequence::LocalDumpElapse",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
         "PLC1.Sequence.eCommand": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -10461,6 +10511,7 @@
                 "PLC1.HMI_DB.CloseAllSustChargRlySW": 3,
                 "PLC1.HMI_DB.CloseFormTrigChargeRlySW": 3,
                 "PLC1.HMI_DB.ClosePreFormTrigChargeRlySW": 3,
+                "PLC1.HMI_DB.DumpALLPB_Local": 3,
                 "PLC1.HMI_DB.DumpPB": 3,
                 "PLC1.HMI_DB.FormChargerSP": 3,
                 "PLC1.HMI_DB.FormHVONsw": 3,
@@ -11157,6 +11208,10 @@
                 "PLC1.Permissives_DB.SafetyOK": 3,
                 "PLC1.Sequence.ChargeRunOutTMR_TON.ET": 3,
                 "PLC1.Sequence.ChargeTimeFinished": 3,
+                "PLC1.Sequence.Dump.DONE": 3,
+                "PLC1.Sequence.Dump.EN": 3,
+                "PLC1.Sequence.Dump.k": 3,
+                "PLC1.Sequence.LocalDumpElapse": 3,
                 "PLC1.Sequence.eCommand": 3,
                 "PLC1.Sequence.ePulseState": 3,
                 "PLC1.Sequence.eStatus": 3,

@@ -20,8 +20,11 @@ VAR
 	ChargedRunOutTMR_ET		: TIME;
 	
 	DumpingRunOutTMR_TON 	: TON;
-	DumpingRunOutTMR_PT		: TIME;
-	DumpingRunOutTME_ET		: TIME;
+	DumpingRunOutTMR_PT		: TIME := T#180S;
+	DumpingRunOutTMR_ET		: TIME;
+	LocalDumpActive			: BOOL := FALSE;
+	Dump					: Dump_FB;	
+	LocalDumpElapse			: REAL;				
 		
 	ReadyToCharge 			: BOOL;
 	StartChargingBroadcast	: BOOL := FALSE;
@@ -53,8 +56,9 @@ HMI_DB.ChargingRunOutTMR_elapse := TIME_TO_INT(ChargingRunOutTMR_TON.PT/1000 - C
 //charge realy timer 
 ChargeRlyDelayON_Timer(PT := ChargeRlyDelayON_PT);
 
-//screen room asks to go to idle, it will go to safe state.
-IF MCP_IO.RemoteModeSelected = TRUE AND eCommand = E_Command.IDLE AND Trips_DB.NoFaultDetected = TRUE 
+//screen room asks to go to idle, it will go to safe state. 
+//GVL.RemoteModeSelected is MCP_IO.RemoteModeSelected OR HMI_DB.RemoteModeSelected 
+IF GVL.RemoteModeSelected = TRUE AND eCommand = E_Command.IDLE AND Trips_DB.NoFaultDetected = TRUE 
 	THEN
 		ePulseState := E_PulseState.SAFE;
 END_IF;
@@ -69,7 +73,7 @@ IF Trips_DB.NoFaultDetected = FALSE
 			ePulseState := E_PulseState.TRIPPED;
 END_IF;
 
-IF GVL.RemoteModeSelected = FALSE THEN
+IF GVL.RemoteModeSelected = FALSE AND Trips_DB.NoFaultDetected = TRUE THEN
 	ePulseState := E_PulseState.LOCALMODE;
 END_IF;
 
@@ -176,10 +180,10 @@ CASE ePulseState OF
 					IF GVL.RemoteModeSelected = TRUE AND ReadyToCharge = TRUE AND eCommand = E_Command.CHARGE 
 						THEN
 							ePulseState := E_PulseState.CHARGING;
-						ELSIF MCP_IO.RemoteModeSelected = TRUE AND eCommand = E_Command.IDLE THEN
-							ePulseState := E_PulseState.SAFE;
+						//ELSIF MCP_IO.RemoteModeSelected = TRUE AND eCommand = E_Command.IDLE THEN
+							//ePulseState := E_PulseState.SAFE;
 						ELSIF MCP_IO.RemoteModeSelected = TRUE AND eCommand = E_Command.DUMP THEN
-							ePulseState := E_PulseState.DISCONNECTING;
+							ePulseState := E_PulseState.DUMPING;
 					END_IF;
 					ChargingRunOutTMR_TON (IN := FALSE);
 					ChargedRunOutTMR_TON (IN := FALSE);
@@ -474,7 +478,15 @@ CASE ePulseState OF
 					END_IF;
 	//Dumping
 	E_PulseState.DUMPING:  
-
+					//start dump runout timer
+					DumpingRunOutTMR_TON (IN := TRUE, PT := DumpingRunOutTMR_PT, ET => DumpingRunOutTMR_ET);
+					
+					IF DumpingRunOutTMR_TON.Q = TRUE THEN //if timer run out, and in remoter mode go to trip
+							Trips_DB.DumpTimerRunout := TRUE;
+							DumpingRunOutTMR_TON (IN := FALSE);
+							ePulseState := E_PulseState.TRIPPED;
+					END_IF
+					
 					//TURN OFF ALL CHARGERS
 					FOR i := 1 TO 8 BY 1 DO 
 						MCP_IO.Charger[i].inhibit := TRUE; 		
@@ -531,8 +543,12 @@ CASE ePulseState OF
 					
 					eStatus := E_Status.DUMPING;
 					
-					IF (Permissives_DB.AllSectCapsDischarged = TRUE AND Permissives_DB.AllDumpRelaysOpen = FALSE AND eCommand = E_Command.IDLE) THEN 
-						ePulseState := E_PulseState.SAFE;
+					IF (Permissives_DB.AllSectCapsDischarged = TRUE AND 
+						Permissives_DB.AllDumpRelaysOpen = FALSE AND 
+						eCommand = E_Command.IDLE AND 
+						GVL.RemoteModeSelected = TRUE) 
+						THEN 
+							ePulseState := E_PulseState.SAFE;
 					END_IF
 	
 	//Abort
@@ -661,6 +677,26 @@ CASE ePulseState OF
 	//lOCAL MODE
 	E_PulseState.LOCALMODE:
 					eStatus := E_Status.LOCAL_MODE;
+					
+					IF HMI_DB.DumpALLPB_Local = TRUE THEN
+						LocalDumpActive := TRUE;
+					END_IF
+					
+					//need more work *******************
+									
+					IF LocalDumpActive = TRUE THEN 
+						Dump( EN := TRUE, IN1 := Permissives_DB.AllSectCapsDischarged, IN2 := Permissives_DB.AllDumpRelaysOpen);
+						DumpingRunOutTMR_TON (IN := TRUE, PT := DumpingRunOutTMR_PT, ET => DumpingRunOutTMR_ET);
+						LocalDumpElapse := Dump.DumpingRunOut_Elapse;
+						ELSE 
+							Dump.EN := FALSE; 
+					END_IF;
+						
+ 					IF Dump.DONE = TRUE THEN 
+						LocalDumpActive := FALSE;
+						Dump.EN := FALSE; 
+						DumpingRunOutTMR_TON (IN := FALSE);
+					END_IF
 					//ChargingRunOutTMR_TON (IN := FALSE);
 				//Start up procedure run*******************************************	
 					//HMI Input TO Charger SP
@@ -1091,6 +1127,7 @@ END_IF]]></ST>
       <LineId Id="488" Count="0" />
       <LineId Id="487" Count="0" />
       <LineId Id="45" Count="1" />
+      <LineId Id="2155" Count="0" />
       <LineId Id="10" Count="0" />
       <LineId Id="152" Count="0" />
       <LineId Id="49" Count="0" />
@@ -1358,6 +1395,13 @@ END_IF]]></ST>
       <LineId Id="33" Count="0" />
       <LineId Id="29" Count="0" />
       <LineId Id="1531" Count="0" />
+      <LineId Id="2164" Count="0" />
+      <LineId Id="2175" Count="0" />
+      <LineId Id="2171" Count="0" />
+      <LineId Id="2173" Count="1" />
+      <LineId Id="2172" Count="0" />
+      <LineId Id="2169" Count="0" />
+      <LineId Id="2167" Count="0" />
       <LineId Id="198" Count="2" />
       <LineId Id="1413" Count="0" />
       <LineId Id="1294" Count="0" />
@@ -1378,7 +1422,9 @@ END_IF]]></ST>
       <LineId Id="1073" Count="0" />
       <LineId Id="197" Count="0" />
       <LineId Id="236" Count="1" />
-      <LineId Id="1521" Count="3" />
+      <LineId Id="1521" Count="1" />
+      <LineId Id="2181" Count="3" />
+      <LineId Id="1523" Count="1" />
       <LineId Id="37" Count="1" />
       <LineId Id="36" Count="0" />
       <LineId Id="39" Count="0" />
@@ -1437,6 +1483,22 @@ END_IF]]></ST>
       <LineId Id="303" Count="0" />
       <LineId Id="520" Count="0" />
       <LineId Id="522" Count="1" />
+      <LineId Id="2158" Count="1" />
+      <LineId Id="2163" Count="0" />
+      <LineId Id="2161" Count="0" />
+      <LineId Id="2319" Count="0" />
+      <LineId Id="2185" Count="0" />
+      <LineId Id="2365" Count="0" />
+      <LineId Id="2186" Count="0" />
+      <LineId Id="2230" Count="0" />
+      <LineId Id="2233" Count="0" />
+      <LineId Id="2322" Count="0" />
+      <LineId Id="2278" Count="1" />
+      <LineId Id="2231" Count="1" />
+      <LineId Id="2188" Count="1" />
+      <LineId Id="2416" Count="0" />
+      <LineId Id="2234" Count="0" />
+      <LineId Id="2190" Count="0" />
       <LineId Id="1112" Count="0" />
       <LineId Id="1646" Count="1" />
       <LineId Id="1662" Count="1" />

@@ -743,7 +743,8 @@ IF (Trips_DB.AnySystemTripped = FALSE AND
 	Trips_DB.AnyLossHVONsignal = FALSE AND 
 	Trips_DB.MachineGNDrlyFailed = FALSE AND 
 	Trips_DB.ChargingTimerRunout = FALSE AND
-	Trips_DB.ChargedTimerRunout = FALSE) OR HMI_DB.NoFaultDetectedBP = TRUE //admin bypass
+	Trips_DB.ChargedTimerRunout = FALSE AND
+	Trips_DB.DumpTimerRunout) OR HMI_DB.NoFaultDetectedBP = TRUE //admin bypass
 	THEN
 		Trips_DB.NoFaultDetected := TRUE;
 	ELSE
@@ -805,6 +806,7 @@ IF Trips_DB.ClearAllFaults = TRUE OR stControl.ClearAllFaults = TRUE THEN
 	Trips_DB.MachineGNDrlyFailed := FALSE;
 	Trips_DB.ChargingTimerRunout := FALSE;
 	Trips_DB.ChargedTimerRunout  := FALSE;
+	Trips_DB.DumpTimerRunout := FALSE;
 	//Trips_DB.AnyACInterlockFail := FALSE;
 	//reset relay trips
 	FOR j := 1 TO 3 BY 1 DO 
@@ -1173,6 +1175,7 @@ END_IF;]]></ST>
       <LineId Id="1873" Count="1" />
       <LineId Id="1897" Count="0" />
       <LineId Id="2095" Count="1" />
+      <LineId Id="2143" Count="0" />
       <LineId Id="970" Count="0" />
       <LineId Id="1780" Count="0" />
       <LineId Id="1784" Count="1" />
@@ -1217,6 +1220,7 @@ END_IF;]]></ST>
       <LineId Id="1896" Count="0" />
       <LineId Id="2094" Count="0" />
       <LineId Id="2097" Count="0" />
+      <LineId Id="2120" Count="0" />
       <LineId Id="611" Count="0" />
       <LineId Id="585" Count="0" />
       <LineId Id="465" Count="1" />

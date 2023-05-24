@@ -63,7 +63,7 @@
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.screen_refresh_pulse%/s%",
+    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -265,7 +265,7 @@
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.screen_refresh_pulse%/s%",
+    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -925,7 +925,7 @@
 
 <script data-tchmi-target-attribute="data-tchmi-background-color" type="application/json">
 {
-  "color": "rgba(218, 139, 229, 1)"
+  "color": "rgba(163, 234, 217, 1)"
 }
 </script>
 </div>
@@ -954,7 +954,7 @@
 
 <script data-tchmi-target-attribute="data-tchmi-background-color" type="application/json">
 {
-  "color": "rgba(218, 139, 229, 1)"
+  "color": "rgba(163, 234, 217, 1)"
 }
 </script>
 </div>
@@ -1080,7 +1080,7 @@
 
 <script data-tchmi-target-attribute="data-tchmi-background-color" type="application/json">
 {
-  "color": "rgba(218, 139, 229, 1)"
+  "color": "rgba(163, 234, 217, 1)"
 }
 </script>
 </div>
@@ -1167,7 +1167,7 @@
 
 <script data-tchmi-target-attribute="data-tchmi-background-color" type="application/json">
 {
-  "color": "rgba(218, 139, 229, 1)"
+  "color": "rgba(163, 234, 217, 1)"
 }
 </script>
 </div>
@@ -1227,7 +1227,7 @@
 
 <script data-tchmi-target-attribute="data-tchmi-background-color" type="application/json">
 {
-  "color": "rgba(218, 139, 229, 1)"
+  "color": "rgba(163, 234, 217, 1)"
 }
 </script>
 </div>
@@ -1285,7 +1285,7 @@
 
 <script data-tchmi-target-attribute="data-tchmi-background-color" type="application/json">
 {
-  "color": "rgba(218, 139, 229, 1)"
+  "color": "rgba(236, 222, 151, 1)"
 }
 </script>
 </div>
@@ -1314,7 +1314,7 @@
 
 <script data-tchmi-target-attribute="data-tchmi-background-color" type="application/json">
 {
-  "color": "rgba(163, 234, 217, 1)"
+  "color": "rgba(236, 222, 151, 1)"
 }
 </script>
 </div>
@@ -1419,7 +1419,7 @@
 
 <script data-tchmi-target-attribute="data-tchmi-background-color" type="application/json">
 {
-  "color": "rgba(218, 139, 229, 1)"
+  "color": "rgba(163, 234, 217, 1)"
 }
 </script>
 </div>
@@ -1448,7 +1448,7 @@
 
 <script data-tchmi-target-attribute="data-tchmi-background-color" type="application/json">
 {
-  "color": "rgba(218, 139, 229, 1)"
+  "color": "rgba(163, 234, 217, 1)"
 }
 </script>
 </div>
@@ -1574,7 +1574,7 @@
 
 <script data-tchmi-target-attribute="data-tchmi-background-color" type="application/json">
 {
-  "color": "rgba(218, 139, 229, 1)"
+  "color": "rgba(163, 234, 217, 1)"
 }
 </script>
 </div>
@@ -1661,7 +1661,7 @@
 
 <script data-tchmi-target-attribute="data-tchmi-background-color" type="application/json">
 {
-  "color": "rgba(218, 139, 229, 1)"
+  "color": "rgba(163, 234, 217, 1)"
 }
 </script>
 </div>
@@ -1721,7 +1721,7 @@
 
 <script data-tchmi-target-attribute="data-tchmi-background-color" type="application/json">
 {
-  "color": "rgba(218, 139, 229, 1)"
+  "color": "rgba(163, 234, 217, 1)"
 }
 </script>
 </div>
@@ -1779,7 +1779,7 @@
 
 <script data-tchmi-target-attribute="data-tchmi-background-color" type="application/json">
 {
-  "color": "rgba(218, 139, 229, 1)"
+  "color": "rgba(236, 222, 151, 1)"
 }
 </script>
 </div>
@@ -1808,7 +1808,7 @@
 
 <script data-tchmi-target-attribute="data-tchmi-background-color" type="application/json">
 {
-  "color": "rgba(163, 234, 217, 1)"
+  "color": "rgba(236, 222, 151, 1)"
 }
 </script>
 </div>
@@ -1913,7 +1913,7 @@
 
 <script data-tchmi-target-attribute="data-tchmi-background-color" type="application/json">
 {
-  "color": "rgba(218, 139, 229, 1)"
+  "color": "rgba(163, 234, 217, 1)"
 }
 </script>
 </div>
@@ -1942,7 +1942,7 @@
 
 <script data-tchmi-target-attribute="data-tchmi-background-color" type="application/json">
 {
-  "color": "rgba(218, 139, 229, 1)"
+  "color": "rgba(163, 234, 217, 1)"
 }
 </script>
 </div>
@@ -2068,7 +2068,7 @@
 
 <script data-tchmi-target-attribute="data-tchmi-background-color" type="application/json">
 {
-  "color": "rgba(218, 139, 229, 1)"
+  "color": "rgba(163, 234, 217, 1)"
 }
 </script>
 </div>
@@ -2155,7 +2155,7 @@
 
 <script data-tchmi-target-attribute="data-tchmi-background-color" type="application/json">
 {
-  "color": "rgba(218, 139, 229, 1)"
+  "color": "rgba(163, 234, 217, 1)"
 }
 </script>
 </div>
@@ -2215,7 +2215,7 @@
 
 <script data-tchmi-target-attribute="data-tchmi-background-color" type="application/json">
 {
-  "color": "rgba(218, 139, 229, 1)"
+  "color": "rgba(163, 234, 217, 1)"
 }
 </script>
 </div>
@@ -2273,7 +2273,7 @@
 
 <script data-tchmi-target-attribute="data-tchmi-background-color" type="application/json">
 {
-  "color": "rgba(218, 139, 229, 1)"
+  "color": "rgba(236, 222, 151, 1)"
 }
 </script>
 </div>
@@ -2302,7 +2302,7 @@
 
 <script data-tchmi-target-attribute="data-tchmi-background-color" type="application/json">
 {
-  "color": "rgba(163, 234, 217, 1)"
+  "color": "rgba(236, 222, 151, 1)"
 }
 </script>
 </div>
@@ -3013,7 +3013,7 @@
     ]
   },
   {
-    "event": "%s%PLC1.Heartbeat.screen_refresh_pulse%/s%",
+    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -9366,6 +9366,10 @@
 </script>
 </div>
 <div id="TcHmiToggleSwitch_29" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleSwitch" data-tchmi-height="20" data-tchmi-height-unit="px" data-tchmi-left="66" data-tchmi-left-unit="px" data-tchmi-text="CLOSE" data-tchmi-top="380" data-tchmi-top-unit="px" data-tchmi-width="71" data-tchmi-width-unit="px" data-tchmi-zindex="4" data-tchmi-text-vertical-alignment="Center" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-font-size="10" data-tchmi-state-symbol="%s%PLC1.HMI_DB.OpenAllPeakDumpRlySW%/s%" data-tchmi-creator-locked="True">
+
+
+
+
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
@@ -9479,7 +9483,7 @@
       },
       {
         "objectType": "Condition",
-        "active": true,
+        "active": false,
         "parts": [
           {
             "if": [
@@ -9820,7 +9824,7 @@
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.screen_refresh_pulse%/s%",
+    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -9884,7 +9888,7 @@
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.screen_refresh_pulse%/s%",
+    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -10250,14 +10254,14 @@
       },
       {
         "objectType": "Condition",
-        "active": true,
+        "active": false,
         "parts": [
           {
             "if": [
               {
                 "compare1": {
                   "objectType": "Symbol",
-                  "valueType": "tchmi:general#/definitions/String",
+                  "valueType": "tchmi:general#/definitions/BOOL",
                   "symbolExpression": "%s%PLC1.HMI_DB.PeakHVONsw%/s%"
                 },
                 "compare2": {
@@ -10267,6 +10271,20 @@
                 },
                 "compareOperator": "==",
                 "logic": null
+              },
+              {
+                "compare1": {
+                  "objectType": "Symbol",
+                  "valueType": "tchmi:general#/definitions/BOOL",
+                  "symbolExpression": "%s%PLC1.HMI_DB.CloseAllPeakChargRlySW%/s%"
+                },
+                "compare2": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:general#/definitions/BOOL",
+                  "value": true
+                },
+                "compareOperator": "==",
+                "logic": "AND"
               }
             ],
             "then": [
@@ -10484,7 +10502,7 @@
       },
       {
         "objectType": "Condition",
-        "active": true,
+        "active": false,
         "parts": [
           {
             "if": [
@@ -10654,7 +10672,7 @@
       },
       {
         "objectType": "Condition",
-        "active": true,
+        "active": false,
         "parts": [
           {
             "if": [
@@ -10849,7 +10867,7 @@
       },
       {
         "objectType": "Condition",
-        "active": true,
+        "active": false,
         "parts": [
           {
             "if": [
@@ -11019,7 +11037,7 @@
       },
       {
         "objectType": "Condition",
-        "active": true,
+        "active": false,
         "parts": [
           {
             "if": [
@@ -11189,7 +11207,7 @@
       },
       {
         "objectType": "Condition",
-        "active": true,
+        "active": false,
         "parts": [
           {
             "if": [
@@ -11384,7 +11402,7 @@
       },
       {
         "objectType": "Condition",
-        "active": true,
+        "active": false,
         "parts": [
           {
             "if": [
@@ -11554,7 +11572,7 @@
       },
       {
         "objectType": "Condition",
-        "active": true,
+        "active": false,
         "parts": [
           {
             "if": [
@@ -11724,7 +11742,7 @@
       },
       {
         "objectType": "Condition",
-        "active": true,
+        "active": false,
         "parts": [
           {
             "if": [
@@ -11919,7 +11937,7 @@
       },
       {
         "objectType": "Condition",
-        "active": true,
+        "active": false,
         "parts": [
           {
             "if": [
@@ -12089,7 +12107,7 @@
       },
       {
         "objectType": "Condition",
-        "active": true,
+        "active": false,
         "parts": [
           {
             "if": [
@@ -12159,7 +12177,7 @@
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.screen_refresh_pulse%/s%",
+    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -12233,7 +12251,7 @@
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.screen_refresh_pulse%/s%",
+    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -12307,7 +12325,7 @@
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.screen_refresh_pulse%/s%",
+    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -12381,7 +12399,7 @@
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.screen_refresh_pulse%/s%",
+    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -13009,7 +13027,7 @@
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.screen_refresh_pulse%/s%",
+    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -13381,7 +13399,7 @@
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.screen_refresh_pulse%/s%",
+    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -13675,6 +13693,301 @@
 ]
 </script>
 </div>
-<div id="TcHmiButton_30" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height="35" data-tchmi-height-unit="px" data-tchmi-left="281" data-tchmi-left-unit="px" data-tchmi-text="Reset" data-tchmi-top="472" data-tchmi-top-unit="px" data-tchmi-width="74" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-zindex="15">
+<div id="TcHmiButton_30" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height="31" data-tchmi-height-unit="px" data-tchmi-left="144" data-tchmi-left-unit="px" data-tchmi-text="DUMP ALL" data-tchmi-top="472" data-tchmi-top-unit="px" data-tchmi-width="69" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-zindex="15">
+
+<script data-tchmi-target-attribute="data-tchmi-border-width" type="application/json">
+{
+  "left": 2,
+  "right": 2,
+  "top": 2,
+  "bottom": 2,
+  "leftUnit": "px",
+  "rightUnit": "px",
+  "topUnit": "px",
+  "bottomUnit": "px"
+}
+</script>
+
+<script data-tchmi-target-attribute="data-tchmi-border-style" type="application/json">
+{
+  "left": "Solid",
+  "right": "Solid",
+  "top": "Solid",
+  "bottom": "Solid"
+}
+</script>
+
+<script data-tchmi-target-attribute="data-tchmi-border-radius" type="application/json">
+{
+  "topLeft": 2.0,
+  "topRight": 2.0,
+  "bottomLeft": 2.0,
+  "bottomRight": 2.0,
+  "topLeftUnit": "px",
+  "topRightUnit": "px",
+  "bottomLeftUnit": "px",
+  "bottomRightUnit": "px"
+}
+</script>
+
+<script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
+{
+  "color": "rgba(0, 0, 0, 1)"
+}
+</script>
+
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
+[
+  {
+    "event": "TcHmiButton_30.onStatePressed",
+    "actions": [
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%s%PLC1.HMI_DB.DumpALLPB_Local%/s%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:general#/definitions/BOOL",
+          "value": true
+        },
+        "asyncWait": true
+      }
+    ]
+  },
+  {
+    "event": "TcHmiButton_30.onStateReleased",
+    "actions": [
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%s%PLC1.HMI_DB.DumpALLPB_Local%/s%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:general#/definitions/BOOL",
+          "value": false
+        },
+        "asyncWait": true
+      }
+    ]
+  }
+]
+</script>
+</div>
+<div id="TcHmiTextblock_298" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="31" data-tchmi-height-unit="px" data-tchmi-left="215" data-tchmi-left-unit="px" data-tchmi-text="Local Dump" data-tchmi-top="472" data-tchmi-top-unit="px" data-tchmi-width="131" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-zindex="10" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-text-font-size="14" data-tchmi-creator-locked="True">
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
+[
+  {
+    "event": "%s%PLC1.Heartbeat.screen_refresh_pulse%/s%",
+    "actions": [
+      {
+        "objectType": "Condition",
+        "active": true,
+        "parts": [
+          {
+            "if": [
+              {
+                "compare1": {
+                  "objectType": "Symbol",
+                  "valueType": "tchmi:general#/definitions/BOOL",
+                  "symbolExpression": "%s%PLC1.Sequence.Dump.EN%/s%"
+                },
+                "compare2": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:general#/definitions/BOOL",
+                  "value": true
+                },
+                "compareOperator": "==",
+                "logic": null
+              }
+            ],
+            "then": [
+              {
+                "objectType": "WriteToSymbol",
+                "active": true,
+                "symbolExpression": "%ctrl%TcHmiTextblock_298::Text%/ctrl%",
+                "value": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:general#/definitions/String",
+                  "value": "Dumping"
+                },
+                "asyncWait": true
+              }
+            ]
+          },
+          {
+            "elseif": [
+              {
+                "compare1": {
+                  "objectType": "Symbol",
+                  "valueType": "tchmi:general#/definitions/BOOL",
+                  "symbolExpression": "%s%PLC1.Sequence.Dump.DONE%/s%"
+                },
+                "compare2": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:general#/definitions/BOOL",
+                  "value": false
+                },
+                "compareOperator": "==",
+                "logic": null
+              }
+            ],
+            "then": [
+              {
+                "objectType": "WriteToSymbol",
+                "active": true,
+                "symbolExpression": "%ctrl%TcHmiTextblock_298::Text%/ctrl%",
+                "value": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:general#/definitions/String",
+                  "value": "Local Dump Done"
+                },
+                "asyncWait": true
+              }
+            ]
+          },
+          {
+            "else": [
+              {
+                "objectType": "WriteToSymbol",
+                "active": true,
+                "symbolExpression": "%ctrl%TcHmiTextblock_298::Text%/ctrl%",
+                "value": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:general#/definitions/String",
+                  "value": ""
+                },
+                "asyncWait": true
+              }
+            ]
+          }
+        ],
+        "asyncWait": true
+      }
+    ]
+  }
+]
+</script>
+</div>
+<div id="TcHmiNumericInput_116" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiNumericInput" data-tchmi-auto-focus-out="true" data-tchmi-decimal-digits="2" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="84" data-tchmi-left-unit="px" data-tchmi-min-value="0" data-tchmi-reset-to-last-valid-value="true" data-tchmi-top="474" data-tchmi-top-unit="px" data-tchmi-value="%s%PLC1.Sequence.LocalDumpElapse%/s%" data-tchmi-width="46" data-tchmi-width-unit="px" data-tchmi-zindex="16" data-tchmi-is-enabled="false" data-tchmi-creator-locked="True" data-tchmi-value-horizontal-alignment="Right">
+<script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
+{
+  "top": 3,
+  "right": 3,
+  "bottom": 3,
+  "left": 3
+}
+</script>
+
+</div>
+<div id="TcHmiTextblock_299" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="20" data-tchmi-height-unit="px" data-tchmi-left="382" data-tchmi-left-unit="px" data-tchmi-text="Sustain" data-tchmi-top="614" data-tchmi-top-unit="px" data-tchmi-width="60" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="12" data-tchmi-text-horizontal-alignment="Center" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-zindex="5" data-tchmi-creator-locked="True">
+<script data-tchmi-target-attribute="data-tchmi-border-width" type="application/json">
+{
+  "left": 1,
+  "right": 1,
+  "top": 1,
+  "bottom": 1,
+  "leftUnit": "px",
+  "rightUnit": "px",
+  "topUnit": "px",
+  "bottomUnit": "px"
+}
+</script>
+
+<script data-tchmi-target-attribute="data-tchmi-border-style" type="application/json">
+{
+  "left": "Solid",
+  "right": "Solid",
+  "top": "Solid",
+  "bottom": "Solid"
+}
+</script>
+
+<script data-tchmi-target-attribute="data-tchmi-background-color" type="application/json">
+{
+  "color": "rgba(236, 222, 151, 1)"
+}
+</script>
+</div>
+<div id="TcHmiTextblock_300" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="20" data-tchmi-height-unit="px" data-tchmi-left="452" data-tchmi-left-unit="px" data-tchmi-text="Peaking" data-tchmi-top="614" data-tchmi-top-unit="px" data-tchmi-width="60" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="12" data-tchmi-text-horizontal-alignment="Center" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-zindex="5" data-tchmi-creator-locked="True">
+<script data-tchmi-target-attribute="data-tchmi-border-width" type="application/json">
+{
+  "left": 1,
+  "right": 1,
+  "top": 1,
+  "bottom": 1,
+  "leftUnit": "px",
+  "rightUnit": "px",
+  "topUnit": "px",
+  "bottomUnit": "px"
+}
+</script>
+
+<script data-tchmi-target-attribute="data-tchmi-border-style" type="application/json">
+{
+  "left": "Solid",
+  "right": "Solid",
+  "top": "Solid",
+  "bottom": "Solid"
+}
+</script>
+
+<script data-tchmi-target-attribute="data-tchmi-background-color" type="application/json">
+{
+  "color": "rgba(163, 234, 217, 1)"
+}
+</script>
+</div>
+<div id="TcHmiTextbox_104" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="40" data-tchmi-height-unit="px" data-tchmi-left="794" data-tchmi-left-unit="px" data-tchmi-text="PREFORM\nSPARK GAP" data-tchmi-top="130" data-tchmi-top-unit="px" data-tchmi-width="67" data-tchmi-width-unit="px" data-tchmi-text-horizontal-alignment="Center" data-tchmi-zindex="5" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-auto-focus-out="true" data-tchmi-auto-select-text="true" data-tchmi-multiline="true" data-tchmi-creator-locked="True">
+<script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
+{
+  "top": 3,
+  "right": 3,
+  "bottom": 3,
+  "left": 3
+}
+</script>
+
+</div>
+<div id="TcHmiTextbox_105" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="40" data-tchmi-height-unit="px" data-tchmi-left="704" data-tchmi-left-unit="px" data-tchmi-text="PREFORM" data-tchmi-top="130" data-tchmi-top-unit="px" data-tchmi-width="67" data-tchmi-width-unit="px" data-tchmi-text-horizontal-alignment="Center" data-tchmi-zindex="5" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-auto-focus-out="true" data-tchmi-auto-select-text="true" data-tchmi-creator-locked="True">
+<script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
+{
+  "top": 3,
+  "right": 3,
+  "bottom": 3,
+  "left": 3
+}
+</script>
+
+</div>
+<div id="TcHmiTextblock_301" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="20" data-tchmi-height-unit="px" data-tchmi-left="522" data-tchmi-left-unit="px" data-tchmi-text="Form/PreForm" data-tchmi-top="614" data-tchmi-top-unit="px" data-tchmi-width="87" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="12" data-tchmi-text-horizontal-alignment="Center" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-zindex="5" data-tchmi-creator-locked="True">
+<script data-tchmi-target-attribute="data-tchmi-border-width" type="application/json">
+{
+  "left": 1,
+  "right": 1,
+  "top": 1,
+  "bottom": 1,
+  "leftUnit": "px",
+  "rightUnit": "px",
+  "topUnit": "px",
+  "bottomUnit": "px"
+}
+</script>
+
+<script data-tchmi-target-attribute="data-tchmi-border-style" type="application/json">
+{
+  "left": "Solid",
+  "right": "Solid",
+  "top": "Solid",
+  "bottom": "Solid"
+}
+</script>
+
+
+
+<script data-tchmi-target-attribute="data-tchmi-background-color" type="application/json">
+{
+  "color": "rgba(255, 255, 255, 1)"
+}
+</script>
 </div>
 </div>

@@ -29,6 +29,7 @@ VAR_GLOBAL
 	
 	ChargingTimerRunout         : BOOL;
 	ChargedTimerRunout			: BOOL;
+	DumpTimerRunout				: BOOL;
 	//SystemTimeOut				: BOOL;
 	NoFaultDetected				: BOOL;
 	ClearAllFaults				: BOOL;

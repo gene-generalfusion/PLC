@@ -125,70 +125,9 @@
   "bottom": "Solid"
 }
 </script>
-<div id="TcHmiToggleSwitch_1" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleSwitch" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="39" data-tchmi-left-unit="px" data-tchmi-text="Safety OK" data-tchmi-top="144" data-tchmi-top-unit="px" data-tchmi-width="123" data-tchmi-width-unit="px" data-tchmi-zindex="3" data-tchmi-state-symbol="%s%PLC1.HMI_DB.SafetyOKBP%/s%" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-vertical-alignment="Center">
+<div id="TcHmiToggleSwitch_1" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleSwitch" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="39" data-tchmi-left-unit="px" data-tchmi-text="Safety OK" data-tchmi-top="144" data-tchmi-top-unit="px" data-tchmi-width="123" data-tchmi-width-unit="px" data-tchmi-zindex="3" data-tchmi-state-symbol="%s%PLC1.HMI_DB.SafetyOKBP%/s%" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-creator-locked="True">
 
-<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
-[
-  {
-    "event": "TcHmiToggleSwitch_1.onToggleStateChanged",
-    "actions": [
-      {
-        "objectType": "Condition",
-        "active": false,
-        "parts": [
-          {
-            "if": [
-              {
-                "compare1": {
-                  "objectType": "Symbol",
-                  "valueType": "tchmi:general#/definitions/String",
-                  "symbolExpression": "%s%PLC1.HMI_DB.SafetyOK%/s%"
-                },
-                "compare2": {
-                  "objectType": "StaticValue",
-                  "valueType": "tchmi:general#/definitions/BOOL",
-                  "value": true
-                },
-                "compareOperator": "==",
-                "logic": null
-              }
-            ],
-            "then": [
-              {
-                "objectType": "WriteToSymbol",
-                "active": true,
-                "symbolExpression": "%ctrl%TcHmiToggleSwitch_1::ToggleState%/ctrl%",
-                "value": {
-                  "objectType": "StaticValue",
-                  "valueType": "tchmi:framework#/definitions/ToggleState",
-                  "value": "Active"
-                },
-                "asyncWait": true
-              }
-            ]
-          },
-          {
-            "else": [
-              {
-                "objectType": "WriteToSymbol",
-                "active": true,
-                "symbolExpression": "%ctrl%TcHmiToggleSwitch_1::ToggleState%/ctrl%",
-                "value": {
-                  "objectType": "StaticValue",
-                  "valueType": "tchmi:framework#/definitions/ToggleState",
-                  "value": "Normal"
-                },
-                "asyncWait": true
-              }
-            ]
-          }
-        ],
-        "asyncWait": true
-      }
-    ]
-  }
-]
-</script>
+
 
 <script data-tchmi-target-attribute="data-tchmi-access-config" type="application/json">
 [
@@ -200,7 +139,7 @@
 ]
 </script>
 </div>
-<div id="TcHmiToggleSwitch_2" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleSwitch" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="39" data-tchmi-left-unit="px" data-tchmi-text="All Dump Relays Open" data-tchmi-top="174" data-tchmi-top-unit="px" data-tchmi-width="140" data-tchmi-width-unit="px" data-tchmi-zindex="3" data-tchmi-state-symbol="%s%PLC1.HMI_DB.AllDumpRelaysOpenBP%/s%" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-creator-locked="True">
+<div id="TcHmiToggleSwitch_2" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleSwitch" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="39" data-tchmi-left-unit="px" data-tchmi-text="All Dump Relays Open" data-tchmi-top="174" data-tchmi-top-unit="px" data-tchmi-width="170" data-tchmi-width-unit="px" data-tchmi-zindex="3" data-tchmi-state-symbol="%s%PLC1.HMI_DB.AllDumpRelaysOpenBP%/s%" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-creator-locked="True">
 
 <script data-tchmi-target-attribute="data-tchmi-access-config" type="application/json">
 [
@@ -212,7 +151,7 @@
 ]
 </script>
 </div>
-<div id="TcHmiToggleSwitch_3" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleSwitch" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="39" data-tchmi-left-unit="px" data-tchmi-text="All Charge Relays Closed" data-tchmi-top="204" data-tchmi-top-unit="px" data-tchmi-width="140" data-tchmi-width-unit="px" data-tchmi-zindex="3" data-tchmi-state-symbol="%s%PLC1.HMI_DB.AllChargeRelayCloseBP%/s%" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-creator-locked="True">
+<div id="TcHmiToggleSwitch_3" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleSwitch" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="39" data-tchmi-left-unit="px" data-tchmi-text="All Charge Relays Closed" data-tchmi-top="204" data-tchmi-top-unit="px" data-tchmi-width="180" data-tchmi-width-unit="px" data-tchmi-zindex="3" data-tchmi-state-symbol="%s%PLC1.HMI_DB.AllChargeRelayCloseBP%/s%" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-creator-locked="True">
 
 <script data-tchmi-target-attribute="data-tchmi-access-config" type="application/json">
 [
@@ -396,69 +335,8 @@
 }
 </script>
 </div>
-<div id="TcHmiToggleSwitch_17" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleSwitch" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="39" data-tchmi-left-unit="px" data-tchmi-text="No Interlock Pressure Loss" data-tchmi-top="234" data-tchmi-top-unit="px" data-tchmi-width="138" data-tchmi-width-unit="px" data-tchmi-zindex="3" data-tchmi-state-symbol="%s%PLC1.HMI_DB.InterlockPressureLossBP%/s%" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-creator-locked="True">
-<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
-[
-  {
-    "event": "TcHmiToggleSwitch_17.onToggleStateChanged",
-    "actions": [
-      {
-        "objectType": "Condition",
-        "active": false,
-        "parts": [
-          {
-            "if": [
-              {
-                "compare1": {
-                  "objectType": "Symbol",
-                  "valueType": "tchmi:general#/definitions/String",
-                  "symbolExpression": "%s%PLC1.HMI_DB.SafetyOK%/s%"
-                },
-                "compare2": {
-                  "objectType": "StaticValue",
-                  "valueType": "tchmi:general#/definitions/BOOL",
-                  "value": true
-                },
-                "compareOperator": "==",
-                "logic": null
-              }
-            ],
-            "then": [
-              {
-                "objectType": "WriteToSymbol",
-                "active": true,
-                "symbolExpression": "%ctrl%TcHmiToggleSwitch_1::ToggleState%/ctrl%",
-                "value": {
-                  "objectType": "StaticValue",
-                  "valueType": "tchmi:framework#/definitions/ToggleState",
-                  "value": "Active"
-                },
-                "asyncWait": true
-              }
-            ]
-          },
-          {
-            "else": [
-              {
-                "objectType": "WriteToSymbol",
-                "active": true,
-                "symbolExpression": "%ctrl%TcHmiToggleSwitch_1::ToggleState%/ctrl%",
-                "value": {
-                  "objectType": "StaticValue",
-                  "valueType": "tchmi:framework#/definitions/ToggleState",
-                  "value": "Normal"
-                },
-                "asyncWait": true
-              }
-            ]
-          }
-        ],
-        "asyncWait": true
-      }
-    ]
-  }
-]
-</script>
+<div id="TcHmiToggleSwitch_17" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleSwitch" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="39" data-tchmi-left-unit="px" data-tchmi-text="No Interlock Pressure Loss" data-tchmi-top="234" data-tchmi-top-unit="px" data-tchmi-width="192" data-tchmi-width-unit="px" data-tchmi-zindex="3" data-tchmi-state-symbol="%s%PLC1.HMI_DB.InterlockPressureLossBP%/s%" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-creator-locked="True">
+
 
 <script data-tchmi-target-attribute="data-tchmi-access-config" type="application/json">
 [
@@ -544,69 +422,8 @@
 ]
 </script>
 </div>
-<div id="TcHmiToggleSwitch_19" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleSwitch" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="39" data-tchmi-left-unit="px" data-tchmi-text="No Fault Detected" data-tchmi-top="294" data-tchmi-top-unit="px" data-tchmi-width="138" data-tchmi-width-unit="px" data-tchmi-zindex="3" data-tchmi-state-symbol="%s%PLC1.HMI_DB.NoFaultDetectedBP%/s%" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-creator-locked="True">
-<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
-[
-  {
-    "event": "TcHmiToggleSwitch_19.onToggleStateChanged",
-    "actions": [
-      {
-        "objectType": "Condition",
-        "active": false,
-        "parts": [
-          {
-            "if": [
-              {
-                "compare1": {
-                  "objectType": "Symbol",
-                  "valueType": "tchmi:general#/definitions/String",
-                  "symbolExpression": "%s%PLC1.HMI_DB.SafetyOK%/s%"
-                },
-                "compare2": {
-                  "objectType": "StaticValue",
-                  "valueType": "tchmi:general#/definitions/BOOL",
-                  "value": true
-                },
-                "compareOperator": "==",
-                "logic": null
-              }
-            ],
-            "then": [
-              {
-                "objectType": "WriteToSymbol",
-                "active": true,
-                "symbolExpression": "%ctrl%TcHmiToggleSwitch_1::ToggleState%/ctrl%",
-                "value": {
-                  "objectType": "StaticValue",
-                  "valueType": "tchmi:framework#/definitions/ToggleState",
-                  "value": "Active"
-                },
-                "asyncWait": true
-              }
-            ]
-          },
-          {
-            "else": [
-              {
-                "objectType": "WriteToSymbol",
-                "active": true,
-                "symbolExpression": "%ctrl%TcHmiToggleSwitch_1::ToggleState%/ctrl%",
-                "value": {
-                  "objectType": "StaticValue",
-                  "valueType": "tchmi:framework#/definitions/ToggleState",
-                  "value": "Normal"
-                },
-                "asyncWait": true
-              }
-            ]
-          }
-        ],
-        "asyncWait": true
-      }
-    ]
-  }
-]
-</script>
+<div id="TcHmiToggleSwitch_19" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleSwitch" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="39" data-tchmi-left-unit="px" data-tchmi-text="No Fault Detected" data-tchmi-top="294" data-tchmi-top-unit="px" data-tchmi-width="150" data-tchmi-width-unit="px" data-tchmi-zindex="3" data-tchmi-state-symbol="%s%PLC1.HMI_DB.NoFaultDetectedBP%/s%" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-creator-locked="True">
+
 
 <script data-tchmi-target-attribute="data-tchmi-access-config" type="application/json">
 [
@@ -908,7 +725,7 @@
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.screen_refresh_pulse%/s%",
+    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -1006,7 +823,7 @@
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.screen_refresh_pulse%/s%",
+    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -1104,7 +921,7 @@
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.screen_refresh_pulse%/s%",
+    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -1202,7 +1019,7 @@
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.screen_refresh_pulse%/s%",
+    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -1300,7 +1117,7 @@
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.screen_refresh_pulse%/s%",
+    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -1398,7 +1215,7 @@
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.screen_refresh_pulse%/s%",
+    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -1496,7 +1313,7 @@
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.screen_refresh_pulse%/s%",
+    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -1594,7 +1411,7 @@
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.screen_refresh_pulse%/s%",
+    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -1744,7 +1561,7 @@
     ]
   },
   {
-    "event": "%s%PLC1.Heartbeat.screen_refresh_pulse%/s%",
+    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -2257,7 +2074,7 @@ data-tchmi-value="%s%PLC1.MCP_IO.Charger.3.ChargeTime.Power|BindingMode=OneWay%/
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.screen_refresh_pulse%/s%",
+    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -2355,7 +2172,7 @@ data-tchmi-value="%s%PLC1.MCP_IO.Charger.3.ChargeTime.Power|BindingMode=OneWay%/
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.screen_refresh_pulse%/s%",
+    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -2453,7 +2270,7 @@ data-tchmi-value="%s%PLC1.MCP_IO.Charger.3.ChargeTime.Power|BindingMode=OneWay%/
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.screen_refresh_pulse%/s%",
+    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -2551,7 +2368,7 @@ data-tchmi-value="%s%PLC1.MCP_IO.Charger.3.ChargeTime.Power|BindingMode=OneWay%/
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.screen_refresh_pulse%/s%",
+    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -2649,7 +2466,7 @@ data-tchmi-value="%s%PLC1.MCP_IO.Charger.3.ChargeTime.Power|BindingMode=OneWay%/
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.screen_refresh_pulse%/s%",
+    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -2747,7 +2564,7 @@ data-tchmi-value="%s%PLC1.MCP_IO.Charger.3.ChargeTime.Power|BindingMode=OneWay%/
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.screen_refresh_pulse%/s%",
+    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -2845,7 +2662,7 @@ data-tchmi-value="%s%PLC1.MCP_IO.Charger.3.ChargeTime.Power|BindingMode=OneWay%/
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.screen_refresh_pulse%/s%",
+    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -2943,7 +2760,7 @@ data-tchmi-value="%s%PLC1.MCP_IO.Charger.3.ChargeTime.Power|BindingMode=OneWay%/
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.screen_refresh_pulse%/s%",
+    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -3126,7 +2943,7 @@ data-tchmi-value="%s%PLC1.MCP_IO.Charger.3.ChargeTime.Power|BindingMode=OneWay%/
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.screen_refresh_pulse%/s%",
+    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -3247,7 +3064,7 @@ data-tchmi-value="%s%PLC1.MCP_IO.Charger.3.ChargeTime.Power|BindingMode=OneWay%/
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.screen_refresh_pulse%/s%",
+    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -3398,7 +3215,7 @@ data-tchmi-value="%s%PLC1.MCP_IO.Charger.3.ChargeTime.Power|BindingMode=OneWay%/
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.screen_refresh_pulse%/s%",
+    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -3496,7 +3313,7 @@ data-tchmi-value="%s%PLC1.MCP_IO.Charger.3.ChargeTime.Power|BindingMode=OneWay%/
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.screen_refresh_pulse%/s%",
+    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -3594,7 +3411,7 @@ data-tchmi-value="%s%PLC1.MCP_IO.Charger.3.ChargeTime.Power|BindingMode=OneWay%/
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.screen_refresh_pulse%/s%",
+    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -3692,7 +3509,7 @@ data-tchmi-value="%s%PLC1.MCP_IO.Charger.3.ChargeTime.Power|BindingMode=OneWay%/
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.screen_refresh_pulse%/s%",
+    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -3790,7 +3607,7 @@ data-tchmi-value="%s%PLC1.MCP_IO.Charger.3.ChargeTime.Power|BindingMode=OneWay%/
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.screen_refresh_pulse%/s%",
+    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -3888,7 +3705,7 @@ data-tchmi-value="%s%PLC1.MCP_IO.Charger.3.ChargeTime.Power|BindingMode=OneWay%/
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.screen_refresh_pulse%/s%",
+    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -3986,7 +3803,7 @@ data-tchmi-value="%s%PLC1.MCP_IO.Charger.3.ChargeTime.Power|BindingMode=OneWay%/
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.screen_refresh_pulse%/s%",
+    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -4084,7 +3901,7 @@ data-tchmi-value="%s%PLC1.MCP_IO.Charger.3.ChargeTime.Power|BindingMode=OneWay%/
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.screen_refresh_pulse%/s%",
+    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -4182,7 +3999,7 @@ data-tchmi-value="%s%PLC1.MCP_IO.Charger.3.ChargeTime.Power|BindingMode=OneWay%/
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.screen_refresh_pulse%/s%",
+    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -4348,7 +4165,7 @@ data-tchmi-value="%s%PLC1.MCP_IO.Charger.3.ChargeTime.Power|BindingMode=OneWay%/
     ]
   },
   {
-    "event": "%s%PLC1.Heartbeat.screen_refresh_pulse%/s%",
+    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -4516,7 +4333,7 @@ data-tchmi-value="%s%PLC1.MCP_IO.Charger.3.ChargeTime.Power|BindingMode=OneWay%/
     ]
   },
   {
-    "event": "%s%PLC1.Heartbeat.screen_refresh_pulse%/s%",
+    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -4684,7 +4501,7 @@ data-tchmi-value="%s%PLC1.MCP_IO.Charger.3.ChargeTime.Power|BindingMode=OneWay%/
     ]
   },
   {
-    "event": "%s%PLC1.Heartbeat.screen_refresh_pulse%/s%",
+    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -4852,7 +4669,7 @@ data-tchmi-value="%s%PLC1.MCP_IO.Charger.3.ChargeTime.Power|BindingMode=OneWay%/
     ]
   },
   {
-    "event": "%s%PLC1.Heartbeat.screen_refresh_pulse%/s%",
+    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -5020,7 +4837,7 @@ data-tchmi-value="%s%PLC1.MCP_IO.Charger.3.ChargeTime.Power|BindingMode=OneWay%/
     ]
   },
   {
-    "event": "%s%PLC1.Heartbeat.screen_refresh_pulse%/s%",
+    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -5188,7 +5005,7 @@ data-tchmi-value="%s%PLC1.MCP_IO.Charger.3.ChargeTime.Power|BindingMode=OneWay%/
     ]
   },
   {
-    "event": "%s%PLC1.Heartbeat.screen_refresh_pulse%/s%",
+    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -5356,7 +5173,7 @@ data-tchmi-value="%s%PLC1.MCP_IO.Charger.3.ChargeTime.Power|BindingMode=OneWay%/
     ]
   },
   {
-    "event": "%s%PLC1.Heartbeat.screen_refresh_pulse%/s%",
+    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -5462,69 +5279,8 @@ data-tchmi-value="%s%PLC1.MCP_IO.Charger.3.ChargeTime.Power|BindingMode=OneWay%/
 ]
 </script>
 </div>
-<div id="TcHmiToggleSwitch_28" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleSwitch" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="199" data-tchmi-left-unit="px" data-tchmi-text="No Loss in HV ON " data-tchmi-top="144" data-tchmi-top-unit="px" data-tchmi-width="148" data-tchmi-width-unit="px" data-tchmi-zindex="3" data-tchmi-state-symbol="%s%PLC1.HMI_DB.LossHVsignalBP%/s%" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-creator-locked="True">
-<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
-[
-  {
-    "event": "TcHmiToggleSwitch_28.onToggleStateChanged",
-    "actions": [
-      {
-        "objectType": "Condition",
-        "active": false,
-        "parts": [
-          {
-            "if": [
-              {
-                "compare1": {
-                  "objectType": "Symbol",
-                  "valueType": "tchmi:general#/definitions/String",
-                  "symbolExpression": "%s%PLC1.HMI_DB.SafetyOK%/s%"
-                },
-                "compare2": {
-                  "objectType": "StaticValue",
-                  "valueType": "tchmi:general#/definitions/BOOL",
-                  "value": true
-                },
-                "compareOperator": "==",
-                "logic": null
-              }
-            ],
-            "then": [
-              {
-                "objectType": "WriteToSymbol",
-                "active": true,
-                "symbolExpression": "%ctrl%TcHmiToggleSwitch_1::ToggleState%/ctrl%",
-                "value": {
-                  "objectType": "StaticValue",
-                  "valueType": "tchmi:framework#/definitions/ToggleState",
-                  "value": "Active"
-                },
-                "asyncWait": true
-              }
-            ]
-          },
-          {
-            "else": [
-              {
-                "objectType": "WriteToSymbol",
-                "active": true,
-                "symbolExpression": "%ctrl%TcHmiToggleSwitch_1::ToggleState%/ctrl%",
-                "value": {
-                  "objectType": "StaticValue",
-                  "valueType": "tchmi:framework#/definitions/ToggleState",
-                  "value": "Normal"
-                },
-                "asyncWait": true
-              }
-            ]
-          }
-        ],
-        "asyncWait": true
-      }
-    ]
-  }
-]
-</script>
+<div id="TcHmiToggleSwitch_28" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleSwitch" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="219" data-tchmi-left-unit="px" data-tchmi-text="No Loss in HV ON " data-tchmi-top="144" data-tchmi-top-unit="px" data-tchmi-width="148" data-tchmi-width-unit="px" data-tchmi-zindex="3" data-tchmi-state-symbol="%s%PLC1.HMI_DB.LossHVsignalBP%/s%" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-creator-locked="True">
+
 
 <script data-tchmi-target-attribute="data-tchmi-access-config" type="application/json">
 [
