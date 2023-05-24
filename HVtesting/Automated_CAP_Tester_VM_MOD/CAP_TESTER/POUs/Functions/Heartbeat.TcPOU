@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
-  <POU Name="Heartbeat" Id="{e16dddae-d450-4971-842d-d2db31ef29f0}" SpecialFunc="None">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="Heartbeat" Id="{75f70c7f-6977-4f63-8075-a15f4b871ef8}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM Heartbeat
 VAR
 	start_TON: TON;

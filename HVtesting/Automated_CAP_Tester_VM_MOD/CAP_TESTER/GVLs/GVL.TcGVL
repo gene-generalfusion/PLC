@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
   <GVL Name="GVL" Id="{bb34f6bf-f00c-4215-8a35-eed073cdf29d}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL
@@ -68,41 +68,7 @@ VAR_GLOBAL
 (* PLC Internal *)
 	appRUN : BOOL;
 	
-(* HMI IO *)
-	hmiSTOP : BOOL; // In (Into PLC from LabView)
-	hmiSTART : BOOL;	// In
-	HOA : BOOL;	// In
-	
-	voltage_held_by_PSU :BOOL;
-	isnotSCRhvswitch : BOOL;	// If HV switch has feedback. SCR has ready feedback signal.
-	psu50kV_OutputSelected : BOOL; 
-	Cap_ratedVoltage : UINT; // unit is in V
-	targetVolt_exceed_CapRating_FAULT : BOOL;
-	expectedvoltage : INT;
-	psuTargetinvolt_echo : DINT;
-	
-	clearFAULT : BOOL;	// In
-	
-	testintervalsecs : DINT; 	// In
-	overall_cycle_time : DINT;
-	circuitcapcitanceuF : REAL;	// In
-	cap1THRESHOLDcel : INT;	// In
-	softdumpTHRESHOLDcel : INT := 95; // IN, added oct 14, 2022 GL
-	loadTHRESHOLDcel : INT := 95;  // IN, added oct 14, 2022 GL
-	ambientTHRESHOLDcel : INT := 95;  // IN, added oct 14, 2022 GL
-	allTemperatureInRange : BOOL; //OUT, added oct 14, 2022 GL
-	
-	targetPSUVOLT : DINT;	// In 
-	psuVOLTrating : DINT;	// In
-	psuPOWERpeak : DINT;	// In
-	chargeTIME : REAL;	// Out. Is estimated charge time of cap
-	chargeTIMEmanual : REAL;	// In
-	holdTIMEsec : REAL; // IN 
-		holdTIMEtime : TIME;
-	testNUM: INT;
-	testNUMmax : INT;	// In
-	testNUMexceed: BOOL;  //CHANGED FROM INT TO BOOL - JUNE 20, 2022
-	resettestNUM : BOOL;	// In
+
 	(* Manual HMI Controls *)
 	HMIhold : BOOL;
 	HMIcharge : BOOL;
@@ -125,9 +91,7 @@ VAR_GLOBAL
 	softexceptionFAULT : BOOL := FALSE;
 	test_interval_fault : BOOL := FALSE;
 	PreFire_Fault : BOOL := FALSE;
-(* Current Control *)
-	control_current : BOOL;
-	duty_cycle : REAL;
+
 (*DEBUG*)
 	ctrl_box_charge_feedback : BOOL;  //relay contact ??
 	ctrl_box_dump_feedback : BOOL;	//relay contact ??
@@ -208,6 +172,50 @@ VAR_GLOBAL
 	
 	// EtherCAT Module
 	DevCtrl AT %Q* : UINT;
+	
+
+END_VAR
+
+VAR_GLOBAL PERSISTENT
+	(* HMI IO *)
+	hmiSTOP : BOOL; // In (Into PLC from LabView)
+	hmiSTART : BOOL;	// In
+	HOA : BOOL;	// In
+	
+	voltage_held_by_PSU :BOOL;
+	isnotSCRhvswitch : BOOL;	// If HV switch has feedback. SCR has ready feedback signal.
+	psu50kV_OutputSelected : BOOL; 
+	Cap_ratedVoltage : UINT; // unit is in V
+	targetVolt_exceed_CapRating_FAULT : BOOL;
+	expectedvoltage : INT;
+	psuTargetinvolt_echo : DINT;
+	
+	clearFAULT : BOOL;	// In
+	
+	testintervalsecs : DINT; 	// In
+	overall_cycle_time : DINT;
+	circuitcapcitanceuF : REAL;	// In
+	cap1THRESHOLDcel : INT;	// In
+	softdumpTHRESHOLDcel : INT := 95; // IN, added oct 14, 2022 GL
+	loadTHRESHOLDcel : INT := 95;  // IN, added oct 14, 2022 GL
+	ambientTHRESHOLDcel : INT := 95;  // IN, added oct 14, 2022 GL
+	allTemperatureInRange : BOOL; //OUT, added oct 14, 2022 GL
+	
+	targetPSUVOLT : DINT;	// In 
+	psuVOLTrating : DINT;	// In
+	psuPOWERpeak : DINT;	// In
+	chargeTIME : REAL;	// Out. Is estimated charge time of cap
+	chargeTIMEmanual : REAL;	// In
+	holdTIMEsec : REAL; // IN 
+		holdTIMEtime : TIME;
+	testNUM: INT;
+	testNUMmax : INT;	// In
+	testNUMexceed: BOOL;  //CHANGED FROM INT TO BOOL - JUNE 20, 2022
+	resettestNUM : BOOL;	// In
+	
+	(* Current Control *)
+	control_current : BOOL;
+	duty_cycle : REAL;
 	
 	InstrumentationFault : BOOL := FALSE;
 	noFaultDetected: BOOL := TRUE;

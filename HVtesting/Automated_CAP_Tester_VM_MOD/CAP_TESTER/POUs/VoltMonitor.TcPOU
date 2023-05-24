@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
   <POU Name="VoltMonitor" Id="{ab398dd9-3a48-4aac-bec4-7b546cd8c4a7}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM VoltMonitor
 VAR
@@ -10,44 +10,46 @@ VAR
 	b2 : BOOL;
 	b3 : BOOL;
 	pause : BOOL;
+	
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[IF Heartbeat.pulse_ms = TRUE AND pause = FALSE THEN
-	i := i+1;
-	IF i > 16 THEN 
-		i := 0;
-	END_IF
-	counter := 16 - i;
-	IF counter > 15 THEN 
-		counter := 15;
+      <ST><![CDATA[
+(*IF Heartbeat.pulse_ms = TRUE AND pause = FALSE THEN
+	i := i + 1;
+	counter := 16-i;
+	IF counter >= 16 THEN 
+		counter := 0;
 	END_IF
 	VoltMonitor_DB.Channel := counter ;
 	VoltMonitor_DB.VoltageReading_raw[counter] := GVL.raw_VoltageMonitor;
-END_IF
+END_IF*)
 
-b[0] := VoltMonitor_DB.Channel.0;
-b[1] := VoltMonitor_DB.Channel.1;
-b[2] := VoltMonitor_DB.Channel.2;
-b[3] := VoltMonitor_DB.Channel.3;
+b[0] := 0; //VoltMonitor_DB.Channel.0;
+b[1] := 0; //VoltMonitor_DB.Channel.1;
+b[2] := 0; //VoltMonitor_DB.Channel.2;
+b[3] := 0; //VoltMonitor_DB.Channel.3;
+VoltMonitor_DB.VoltageReading_raw[0] := GVL.raw_VoltageMonitor;
 	
-]]></ST>
+IF i > 16 THEN 
+	i := 0;
+END_IF]]></ST>
     </Implementation>
     <LineIds Name="VoltMonitor">
-      <LineId Id="5" Count="0" />
-      <LineId Id="12" Count="0" />
-      <LineId Id="88" Count="1" />
       <LineId Id="87" Count="0" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="100" Count="0" />
       <LineId Id="90" Count="0" />
-      <LineId Id="95" Count="1" />
-      <LineId Id="94" Count="0" />
-      <LineId Id="68" Count="0" />
+      <LineId Id="101" Count="2" />
+      <LineId Id="96" Count="0" />
       <LineId Id="66" Count="0" />
       <LineId Id="7" Count="0" />
       <LineId Id="34" Count="0" />
       <LineId Id="13" Count="0" />
       <LineId Id="63" Count="2" />
+      <LineId Id="104" Count="0" />
       <LineId Id="18" Count="0" />
+      <LineId Id="75" Count="1" />
       <LineId Id="21" Count="0" />
     </LineIds>
   </POU>

@@ -5564,7 +5564,7 @@
 ]
 </script>
 </div>
-<div id="TcHmiNumericInput" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiNumericInput" data-tchmi-auto-focus-out="true" data-tchmi-decimal-digits="0" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="1471" data-tchmi-left-unit="px" data-tchmi-max-value="100" data-tchmi-min-value="0" data-tchmi-reset-to-last-valid-value="true" data-tchmi-top="353" data-tchmi-top-unit="px" data-tchmi-value="%s%PLC.VoltMonitor.counter%/s%" data-tchmi-width="41" data-tchmi-width-unit="px" data-tchmi-creator-locked="True" data-tchmi-value-horizontal-alignment="Right">
+<div id="TcHmiNumericInput" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiNumericInput" data-tchmi-auto-focus-out="true" data-tchmi-decimal-digits="0" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="1471" data-tchmi-left-unit="px" data-tchmi-max-value="100" data-tchmi-min-value="0" data-tchmi-reset-to-last-valid-value="true" data-tchmi-top="353" data-tchmi-top-unit="px" data-tchmi-value="%s%PLC.VoltMonitor.i|BindingMode=OneWay%/s%" data-tchmi-width="41" data-tchmi-width-unit="px" data-tchmi-creator-locked="True" data-tchmi-value-horizontal-alignment="Right">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {
   "top": 3,
