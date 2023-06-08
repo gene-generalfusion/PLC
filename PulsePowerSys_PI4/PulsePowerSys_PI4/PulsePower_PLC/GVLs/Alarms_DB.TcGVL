@@ -10,13 +10,15 @@ VAR_GLOBAL
 	Section4 : ST_Alarm_Base;
 	
 	AlarmWord5  : ST_Alarm_Base;
-	
+	AlarmWord6  : ST_Alarm_Base;
 	AlarmWord7  : ST_Alarm_Base;
-	AlarmWord11 : ST_Alarm_Base;
-	AlarmWord12 : ST_Alarm_Base;
-	AlarmWord13 : ST_Alarm_Base;
-	AlarmWord14 : ST_Alarm_Base;
-	AlarmWord15 : ST_Alarm_Base;
+	AlarmWord8  : ST_Alarm_Base;
+	AlarmWord9  : ST_Alarm_Base;
+	//AlarmWord11 : ST_Alarm_Base;
+	//AlarmWord12 : ST_Alarm_Base;
+	//AlarmWord13 : ST_Alarm_Base;
+	//AlarmWord14 : ST_Alarm_Base;
+	//AlarmWord15 : ST_Alarm_Base;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

@@ -4429,6 +4429,16 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.LCP.Section.0.AllCapsDischarged": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[0]::AllCapsDischarged",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
         "PLC1.LCP.Section.0.Form.ChargeRelay1_close": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -6613,6 +6623,16 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.MCP_IO.Charger.0.voltageSP": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[0]::voltageSP",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/DINT"
+            },
+            "USEMAPPING": true
+        },
         "PLC1.MCP_IO.Charger.1.ChargeTime.Power": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -6764,6 +6784,16 @@
             "MAPPING": "PLC1::MCP_IO::Charger[1]::voltageFeedback",
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.1.voltageSP": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[1]::voltageSP",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/DINT"
             },
             "USEMAPPING": true
         },
@@ -6921,6 +6951,16 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.MCP_IO.Charger.2.voltageSP": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[2]::voltageSP",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/DINT"
+            },
+            "USEMAPPING": true
+        },
         "PLC1.MCP_IO.Charger.3.ChargeTime.Power": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -7072,6 +7112,16 @@
             "MAPPING": "PLC1::MCP_IO::Charger[3]::voltageFeedback",
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.3.voltageSP": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[3]::voltageSP",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/DINT"
             },
             "USEMAPPING": true
         },
@@ -7229,6 +7279,16 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.MCP_IO.Charger.4.voltageSP": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[4]::voltageSP",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/DINT"
+            },
+            "USEMAPPING": true
+        },
         "PLC1.MCP_IO.Charger.5.ChargeTime.Power": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -7380,6 +7440,16 @@
             "MAPPING": "PLC1::MCP_IO::Charger[5]::voltageFeedback",
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.5.voltageSP": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[5]::voltageSP",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/DINT"
             },
             "USEMAPPING": true
         },
@@ -7537,6 +7607,16 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.MCP_IO.Charger.6.voltageSP": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[6]::voltageSP",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/DINT"
+            },
+            "USEMAPPING": true
+        },
         "PLC1.MCP_IO.Charger.7.ChargeTime.Power": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -7691,6 +7771,16 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.MCP_IO.Charger.7.voltageSP": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[7]::voltageSP",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/DINT"
+            },
+            "USEMAPPING": true
+        },
         "PLC1.MCP_IO.GLS1_hvON": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -7701,6 +7791,23 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.MCP_IO.GLS1_voltageSP": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::GLS1_voltageSP",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/DINT"
+                    },
+                    {
+                        "comment": "AllChargeRelaysClose\t\t: BOOL; only for slim\r\nAllDumpRelaysOpen\t\t\t: BOOL; only for slim"
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
         "PLC1.MCP_IO.GLS2_hvON": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -7708,6 +7815,16 @@
             "MAPPING": "PLC1::MCP_IO::GLS2_hvON",
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.GLS2_voltageSP": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::GLS2_voltageSP",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/DINT"
             },
             "USEMAPPING": true
         },
@@ -7738,6 +7855,16 @@
             "MAPPING": "PLC1::MCP_IO::GLS3_hvON",
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.GLS3_voltageSP": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::GLS3_voltageSP",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/DINT"
             },
             "USEMAPPING": true
         },
@@ -7816,6 +7943,86 @@
             "DOMAIN": "ADS",
             "DYNAMIC": true,
             "MAPPING": "PLC1::Permissives_DB::AllSectCapsFullyCharged",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.Permissives_DB.AllSection1ChargeRlyClose": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::Permissives_DB::AllSection1ChargeRlyClose",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.Permissives_DB.AllSection1DumpRlyOpen": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::Permissives_DB::AllSection1DumpRlyOpen",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.Permissives_DB.AllSection2ChargeRlyClose": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::Permissives_DB::AllSection2ChargeRlyClose",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.Permissives_DB.AllSection2DumpRlyOpen": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::Permissives_DB::AllSection2DumpRlyOpen",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.Permissives_DB.AllSection3ChargeRlyClose": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::Permissives_DB::AllSection3ChargeRlyClose",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.Permissives_DB.AllSection3DumpRlyOpen": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::Permissives_DB::AllSection3DumpRlyOpen",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.Permissives_DB.AllSection4ChargeRlyClose": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::Permissives_DB::AllSection4ChargeRlyClose",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.Permissives_DB.AllSection4DumpRlyOpen": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::Permissives_DB::AllSection4DumpRlyOpen",
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
@@ -10625,6 +10832,7 @@
                 "PLC1.Heartbeat.pulse_1Hz": 3,
                 "PLC1.Heartbeat.screen_refresh_pulse": 3,
                 "PLC1.LCP.Section": 3,
+                "PLC1.LCP.Section.0.AllCapsDischarged": 3,
                 "PLC1.LCP.Section.0.Form.Bank.0.Power": 3,
                 "PLC1.LCP.Section.0.Form.Bank.0.timeToChargeLoad": 3,
                 "PLC1.LCP.Section.0.Form.Bank.1.Power": 3,
@@ -11203,6 +11411,14 @@
                 "PLC1.Permissives_DB.AllChargerHVisON": 3,
                 "PLC1.Permissives_DB.AllDumpRelaysOpen": 3,
                 "PLC1.Permissives_DB.AllSectCapsFullyCharged": 3,
+                "PLC1.Permissives_DB.AllSection1ChargeRlyClose": 3,
+                "PLC1.Permissives_DB.AllSection1DumpRlyOpen": 3,
+                "PLC1.Permissives_DB.AllSection2ChargeRlyClose": 3,
+                "PLC1.Permissives_DB.AllSection2DumpRlyOpen": 3,
+                "PLC1.Permissives_DB.AllSection3ChargeRlyClose": 3,
+                "PLC1.Permissives_DB.AllSection3DumpRlyOpen": 3,
+                "PLC1.Permissives_DB.AllSection4ChargeRlyClose": 3,
+                "PLC1.Permissives_DB.AllSection4DumpRlyOpen": 3,
                 "PLC1.Permissives_DB.AllShortContactEngaged": 3,
                 "PLC1.Permissives_DB.NoInterlockPressureLoss": 3,
                 "PLC1.Permissives_DB.SafetyOK": 3,

@@ -481,7 +481,7 @@
 			</EventId>
 		</DataType>
 		<DataType>
-			<Name GUID="{9A7CC1E2-2FA6-4203-BABB-7D3AE39B7142}" PersistentType="true">AlarmWord7</Name>
+			<Name GUID="{0A9FA887-C469-4EEC-9BF8-4F5EB8AFC9E4}" PersistentType="true">AlarmWord7</Name>
 			<DisplayName TxtId=""><![CDATA[AlarmWord7]]></DisplayName>
 			<EventId>
 				<Name Id="1">b0</Name>
@@ -528,12 +528,303 @@
 				<DisplayName TxtId=""><![CDATA[FOT - Charger 8 - Load Faulted]]></DisplayName>
 				<Severity>Warning</Severity>
 			</EventId>
+			<EventId>
+				<Name Id="10">b9</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Charger Over Temp]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="11">b10</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Charger Load Fault]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="12">b11</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - System Tripped]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="13">b12</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Machine GND Relay Failed]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="14">b13</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Charge Relay Failed]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="15">b14</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Dump Relay Failed]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="16">b15</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Loss Inhibited Signal]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
 			<Hides>
 				<Hide GUID="{B955C0FB-9E51-46AF-8AC4-BBF6DA7DF9C8}"/>
+				<Hide GUID="{9A7CC1E2-2FA6-4203-BABB-7D3AE39B7142}"/>
 			</Hides>
 		</DataType>
 		<DataType>
-			<Name GUID="{DECDCC9D-1034-4102-AE63-C3A043DF438B}" PersistentType="true">AlarmWord1</Name>
+			<Name GUID="{29F1D8DD-D455-4FD7-8B3B-0AF13CC064D0}" PersistentType="true">AlarmWord6</Name>
+			<DisplayName TxtId=""><![CDATA[NewEventClass_DisplayText]]></DisplayName>
+			<EventId>
+				<Name Id="1">b0</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Charger 1 - Over Temp]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="2">b1</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Charger 1 - Interlock Open]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="3">b2</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Charger 1 - Load Faulted]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="4">b3</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Charger 2 - Over Temp]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="5">b4</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Charger 2 - Interlock Open]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="6">b5</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Charger 2 - Load Faulted]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="7">b6</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Charger 3 - Over Temp]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="8">b7</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Charger 3 - Interlock Open]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="9">b8</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Charger 3 - Load Faulted]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="10">b9</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Charger 4 - Over Temp]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="11">b10</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Charger 4 - Interlock Open]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="12">b11</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Charger 4 - Load Faulted]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="13">b12</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Charger 5 - Over Temp]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="14">b13</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Charger 5 - Interlock Open]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="15">b14</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Charger 5 - Load Faulted]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<Hides>
+				<Hide GUID="{0CC012D5-0F8B-4C48-944C-354FA4F83257}"/>
+				<Hide GUID="{C47D3766-AA55-4883-90EF-8F78F6718300}"/>
+				<Hide GUID="{2FA2182F-B085-4FC4-AE72-BD2C0B50B6C5}"/>
+			</Hides>
+		</DataType>
+		<DataType>
+			<Name GUID="{28A846FE-4286-468B-A3B9-31D2E335837F}" PersistentType="true">AlarmWord8</Name>
+			<DisplayName TxtId=""><![CDATA[NewEventClass_DisplayText]]></DisplayName>
+			<EventId>
+				<Name Id="1">b0</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Not All DC PSU OK]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="2">b1</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Charger]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="3">b2</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Loss HV ON Signal]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="4">b3</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - No Fault Detected Condition Not Satisfied]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="5">b4</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 1 Peak Short Contact 1 Unknown]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="6">b5</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 1 Peak Short Contact 2 Unknown]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="7">b6</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 2 Peak Short Contact 1 Unknown]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="8">b7</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 2 Peak Short Contact 2 Unknown]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="9">b8</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 3 Peak Short Contact 1 Unknown]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="10">b9</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 3 Peak Short Contact 2 Unknown]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="11">b10</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 1 Sust Short Contact 1 Unknown]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="12">b11</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 1 Sust Short Contact 2 Unknown]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="13">b12</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 2 Sust Short Contact 1 Unknown]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="14">b13</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 2 Sust Short Contact 2 Unknown]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="15">b14</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 3 Sust Short Contact 1 Unknown]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="16">b15</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 3 Sust Short Contact 2 Unknown]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<Hides>
+				<Hide GUID="{83144F46-3BF7-450C-9649-1FA9899DD42D}"/>
+			</Hides>
+		</DataType>
+		<DataType>
+			<Name GUID="{A10BE5A8-5E7D-4BD2-BE11-4A6693AC2113}" PersistentType="true">AlarmWord9</Name>
+			<DisplayName TxtId=""><![CDATA[NewEventClass_DisplayText]]></DisplayName>
+			<EventId>
+				<Name Id="1">b0</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 4 Form Short Contact 1 Unknown]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="2">b1</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 4 Form Short Contact 2 Unknown]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="3">b2</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 4 Form Trigger Short Contact Unknown]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="4">b3</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 4 PreForm Trigger Short Contact Unknown]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="5">b4</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Short Contacts Unknown]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="6">b5</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Loss Pneumatic Pressure]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="7">b6</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Safety Not OK]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="8">b7</Name>
+				<DisplayName TxtId=""><![CDATA[spare]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="9">b8</Name>
+				<DisplayName TxtId=""><![CDATA[spare]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="10">b9</Name>
+				<DisplayName TxtId=""><![CDATA[Spare]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="11">b10</Name>
+				<DisplayName TxtId=""><![CDATA[spare]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="12">b11</Name>
+				<DisplayName TxtId=""><![CDATA[spare]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="13">b12</Name>
+				<DisplayName TxtId=""><![CDATA[spare]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="14">b13</Name>
+				<DisplayName TxtId=""><![CDATA[spare]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="15">b14</Name>
+				<DisplayName TxtId=""><![CDATA[spare]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="16">b15</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Dump Timer Runout]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+		</DataType>
+		<DataType>
+			<Name GUID="{538F2FEA-D353-4CC6-A6C7-8C354AFA22DA}" PersistentType="true">AlarmWord1</Name>
 			<DisplayName TxtId=""><![CDATA[AlarmWord1]]></DisplayName>
 			<EventId>
 				<Name Id="1">b0</Name>
@@ -602,12 +893,13 @@
 			</EventId>
 			<EventId>
 				<Name Id="15">b14</Name>
-				<DisplayName TxtId=""><![CDATA[AlarmWord1Event15_DisplayText]]></DisplayName>
+				<DisplayName TxtId=""><![CDATA[FOT - MCP System Tripped]]></DisplayName>
 				<Severity>Warning</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="16">b15</Name>
 				<DisplayName TxtId=""><![CDATA[AlarmWord1Event16_DisplayText]]></DisplayName>
+				<Comment TxtId=""><![CDATA[FOT - Stop PB Pressed (Master Stop or Cage E-Stop)]]></Comment>
 				<Severity>Warning</Severity>
 			</EventId>
 			<EventId>
@@ -623,6 +915,7 @@
 				<Hide GUID="{D5DCAC24-A327-4F4D-8249-5E35FE84AF85}"/>
 				<Hide GUID="{462739D1-DF36-4C36-BCD0-09293B4C9D13}"/>
 				<Hide GUID="{5D4F0B22-5CBD-45A5-BB6C-676861945713}"/>
+				<Hide GUID="{DECDCC9D-1034-4102-AE63-C3A043DF438B}"/>
 			</Hides>
 		</DataType>
 	</DataTypes>
@@ -635,13 +928,6 @@
 	</ImageDatas>
 	<Project ProjectGUID="{5C3200E9-DDBA-458E-9CBF-7C94281CF3CD}" Target64Bit="true" ShowHideConfigurations="#x106">
 		<System>
-			<Licenses>
-				<Target>
-					<ManualSelect>{1C20D4D8-C732-464D-AF34-6EA5D2180E06}</ManualSelect>
-					<ManualSelect>{8161723B-0C2E-405C-B829-EDC5DAAB5104}</ManualSelect>
-					<ManualSelect>{3EBB9639-5FF3-42B6-8847-35C70DC013C8}</ManualSelect>
-				</Target>
-			</Licenses>
 			<Tasks>
 				<Task Id="3" Priority="20" CycleTime="100000" AmsPort="350" AdtTasks="true">
 					<Name>PlcTask</Name>

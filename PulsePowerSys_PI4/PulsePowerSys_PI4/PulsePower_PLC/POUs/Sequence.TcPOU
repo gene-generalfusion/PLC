@@ -46,13 +46,16 @@ END_VAR
       <ST><![CDATA[//Critical Delay Time
 HMI_DB.ChargerHVOFF_rlyDelayPT := INT_TO_TIME(HMI_DB.ChargerHVOFF_rlyDelayPT_INT);
 AbortPSnRlyDelay_PT := HMI_DB.ChargerHVOFF_rlyDelayPT;
+
 //hv output delay
 HMI_DB.HVONdelayPT := INT_TO_TIME (HMI_DB.HVONdelayPT_INT);
 ChargeRlyDelayON_PT := HMI_DB.HVONdelayPT;
+
 //runout timer
 HMI_DB.RunOutTMR_PT := INT_TO_TIME (HMI_DB.RunOutTMR_PT_INT*1000);
 HMI_DB.RunOutTMR_elapse := (TIME_TO_INT (HMI_DB.RunOutTMR_PT - ChargedRunOutTMR_TON.ET))/1000;
 HMI_DB.ChargingRunOutTMR_elapse := TIME_TO_INT(ChargingRunOutTMR_TON.PT/1000 - ChargingRunOutTMR_TON.ET/1000);
+
 //charge realy timer 
 ChargeRlyDelayON_Timer(PT := ChargeRlyDelayON_PT);
 
@@ -64,17 +67,18 @@ IF GVL.RemoteModeSelected = TRUE AND eCommand = E_Command.IDLE AND Trips_DB.NoFa
 END_IF;
 	//at anypoint if screen room wants abort or hmi abort pb is pressed
 IF eCommand = E_Command.ABORT OR HMI_DB.AbortPB = TRUE //OR Trips_DB.AnyEstopPressed = TRUE 
-		THEN
-	 		ePulseState := E_PulseState.ABORT;
+	THEN
+	 	ePulseState := E_PulseState.ABORT;
 END_IF;
 
 IF Trips_DB.NoFaultDetected = FALSE 
-		THEN
-			ePulseState := E_PulseState.TRIPPED;
+	THEN
+		ePulseState := E_PulseState.TRIPPED;
 END_IF;
 
-IF GVL.RemoteModeSelected = FALSE AND Trips_DB.NoFaultDetected = TRUE THEN
-	ePulseState := E_PulseState.LOCALMODE;
+IF GVL.RemoteModeSelected = FALSE AND Trips_DB.NoFaultDetected = TRUE 
+	THEN
+		ePulseState := E_PulseState.LOCALMODE;
 END_IF;
 
 //lift machine GND
@@ -187,6 +191,7 @@ CASE ePulseState OF
 					END_IF;
 					ChargingRunOutTMR_TON (IN := FALSE);
 					ChargedRunOutTMR_TON (IN := FALSE);
+					DumpingRunOutTMR_TON (IN := FALSE);
 	//Charging
 	E_PulseState.CHARGING: 
 					MCP_IO.LiftMachineGND := TRUE; //call the bit again in case it did not lift
@@ -482,9 +487,9 @@ CASE ePulseState OF
 					DumpingRunOutTMR_TON (IN := TRUE, PT := DumpingRunOutTMR_PT, ET => DumpingRunOutTMR_ET);
 					
 					IF DumpingRunOutTMR_TON.Q = TRUE THEN //if timer run out, and in remoter mode go to trip
-							Trips_DB.DumpTimerRunout := TRUE;
-							DumpingRunOutTMR_TON (IN := FALSE);
-							ePulseState := E_PulseState.TRIPPED;
+						Trips_DB.DumpTimerRunout := TRUE;
+						DumpingRunOutTMR_TON (IN := FALSE);
+						ePulseState := E_PulseState.TRIPPED;
 					END_IF
 					
 					//TURN OFF ALL CHARGERS
@@ -621,6 +626,9 @@ CASE ePulseState OF
 	//Abort
 	E_PulseState.TRIPPED: 
 					eStatus := E_Status.TRIPPED;
+					//reset dumping run out timer
+					DumpingRunOutTMR_TON (IN := FALSE, PT := DumpingRunOutTMR_PT, ET => DumpingRunOutTMR_ET);
+					
 					FOR i := 1 TO 8 BY 1 DO 
 						MCP_IO.Charger[i].inhibit := TRUE; //active low
 						MCP_IO.Charger[i].HV_ON := FALSE; 
@@ -682,16 +690,50 @@ CASE ePulseState OF
 						LocalDumpActive := TRUE;
 					END_IF
 					
-					//need more work *******************
-									
+					//Local dump activated			
 					IF LocalDumpActive = TRUE THEN 
+						//reset all HMI Switches
+						HMI_DB.OpenAllDumpRlyPB := FALSE;
+						HMI_DB.CloseAllChargeRlyPB := FALSE;
+						
+						HMI_DB.CloseAllPeakChargRlySW := FALSE;
+						HMI_DB.CloseAllSustChargRlySW := FALSE;
+						HMI_DB.CloseAllFormChargRlySW := FALSE;
+						HMI_DB.CloseAllPreFormChargRlySW := FALSE;
+						HMI_DB.ClosePreFormTrigChargeRlySW := FALSE;
+						HMI_DB.CloseFormTrigChargeRlySW := FALSE;
+						
+						HMI_DB.OpenAllPeakDumpRlySW := FALSE;
+						HMI_DB.OpenAllSustDumpRlySW := FALSE;
+						HMI_DB.OpenAllFormDumpRlySW := FALSE;
+						HMI_DB.OpenAllPreFormDumpRlySW := FALSE;
+						HMI_DB.OpenPreFormTrigDumpRlySW := FALSE;
+						HMI_DB.OpenFormTrigDumpRlySW := FALSE;
+						
+						HMI_DB.PeakHVONsw := FALSE;
+						HMI_DB.SustHVONsw := FALSE;
+						HMI_DB.FormHVONsw := FALSE;
+						HMI_DB.PreFormHVONsw := FALSE;
+						HMI_DB.GLS1HVONsw := FALSE;
+						HMI_DB.GLS2HVONsw := FALSE;			
+						
 						Dump( EN := TRUE, IN1 := Permissives_DB.AllSectCapsDischarged, IN2 := Permissives_DB.AllDumpRelaysOpen);
 						DumpingRunOutTMR_TON (IN := TRUE, PT := DumpingRunOutTMR_PT, ET => DumpingRunOutTMR_ET);
 						LocalDumpElapse := Dump.DumpingRunOut_Elapse;
 						ELSE 
 							Dump.EN := FALSE; 
+							DumpingRunOutTMR_TON (IN := FALSE);
 					END_IF;
-						
+					
+					IF DumpingRunOutTMR_TON.Q = TRUE THEN 
+						Trips_DB.DumpTimerRunout := TRUE;
+						DumpingRunOutTMR_TON (IN := FALSE);
+					END_IF
+					
+					IF Trips_DB.DumpTimerRunout = TRUE THEN
+						ePulseState := E_PulseState.TRIPPED;
+					END_IF
+
  					IF Dump.DONE = TRUE THEN 
 						LocalDumpActive := FALSE;
 						Dump.EN := FALSE; 
@@ -1096,7 +1138,7 @@ CASE ePulseState OF
 					END_IF	
 					
 					IF GVL.RemoteModeSelected = TRUE THEN 
-						ePulseState := E_PulseState.TRIPPED;
+						ePulseState := E_PulseState.SAFE;
 					END_IF
 END_CASE;
 
@@ -1117,13 +1159,16 @@ END_IF]]></ST>
       <LineId Id="329" Count="0" />
       <LineId Id="331" Count="0" />
       <LineId Id="330" Count="0" />
+      <LineId Id="2534" Count="0" />
       <LineId Id="335" Count="0" />
       <LineId Id="334" Count="0" />
       <LineId Id="336" Count="0" />
+      <LineId Id="2535" Count="0" />
       <LineId Id="685" Count="0" />
       <LineId Id="684" Count="0" />
       <LineId Id="699" Count="0" />
       <LineId Id="1111" Count="0" />
+      <LineId Id="2536" Count="0" />
       <LineId Id="488" Count="0" />
       <LineId Id="487" Count="0" />
       <LineId Id="45" Count="1" />
@@ -1142,6 +1187,7 @@ END_IF]]></ST>
       <LineId Id="452" Count="0" />
       <LineId Id="724" Count="0" />
       <LineId Id="723" Count="0" />
+      <LineId Id="2538" Count="0" />
       <LineId Id="725" Count="1" />
       <LineId Id="486" Count="0" />
       <LineId Id="451" Count="0" />
@@ -1218,6 +1264,7 @@ END_IF]]></ST>
       <LineId Id="142" Count="0" />
       <LineId Id="129" Count="0" />
       <LineId Id="22" Count="0" />
+      <LineId Id="2542" Count="0" />
       <LineId Id="15" Count="0" />
       <LineId Id="23" Count="0" />
       <LineId Id="455" Count="0" />
@@ -1459,6 +1506,7 @@ END_IF]]></ST>
       <LineId Id="273" Count="0" />
       <LineId Id="281" Count="2" />
       <LineId Id="287" Count="0" />
+      <LineId Id="2539" Count="2" />
       <LineId Id="1369" Count="1" />
       <LineId Id="1392" Count="0" />
       <LineId Id="1374" Count="0" />
@@ -1485,16 +1533,34 @@ END_IF]]></ST>
       <LineId Id="522" Count="1" />
       <LineId Id="2158" Count="1" />
       <LineId Id="2163" Count="0" />
+      <LineId Id="2485" Count="1" />
       <LineId Id="2161" Count="0" />
-      <LineId Id="2319" Count="0" />
-      <LineId Id="2185" Count="0" />
-      <LineId Id="2365" Count="0" />
       <LineId Id="2186" Count="0" />
+      <LineId Id="2457" Count="0" />
+      <LineId Id="2482" Count="2" />
+      <LineId Id="2460" Count="1" />
+      <LineId Id="2458" Count="0" />
+      <LineId Id="2462" Count="2" />
+      <LineId Id="2469" Count="0" />
+      <LineId Id="2465" Count="3" />
+      <LineId Id="2470" Count="1" />
+      <LineId Id="2473" Count="1" />
+      <LineId Id="2477" Count="0" />
+      <LineId Id="2476" Count="0" />
+      <LineId Id="2479" Count="2" />
+      <LineId Id="2459" Count="0" />
       <LineId Id="2230" Count="0" />
       <LineId Id="2233" Count="0" />
       <LineId Id="2322" Count="0" />
       <LineId Id="2278" Count="1" />
+      <LineId Id="2491" Count="0" />
       <LineId Id="2231" Count="1" />
+      <LineId Id="2487" Count="0" />
+      <LineId Id="2493" Count="0" />
+      <LineId Id="2548" Count="0" />
+      <LineId Id="2490" Count="0" />
+      <LineId Id="2544" Count="3" />
+      <LineId Id="2492" Count="0" />
       <LineId Id="2188" Count="1" />
       <LineId Id="2416" Count="0" />
       <LineId Id="2234" Count="0" />

@@ -18,9 +18,8 @@ VAR
 	//AbortPSnRlyDelay_Timer : TON;
 	//AbortPSnRlyDelay_PT : TIME;
 	DumpingRunOutTMR_TON : TON;
-	DumpingRunOutTMR_PT : TIME := T#10S;
+	DumpingRunOutTMR_PT : TIME := T#190S;
 	DumpingRunOutTMR_ET : TIME;
-	
 	
 	i : USINT := 1;
 	j : USINT := 1;

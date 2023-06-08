@@ -273,7 +273,7 @@
 		</Event>
 	</Source>
 	<Source>
-		<GUID>{9A7CC1E2-2FA6-4203-BABB-7D3AE39B7142}</GUID>
+		<GUID>{0A9FA887-C469-4EEC-9BF8-4F5EB8AFC9E4}</GUID>
 		<Name LcId="1033">AlarmWord7</Name>
 		<Event>
 			<Id>1</Id>
@@ -311,9 +311,169 @@
 			<Id>9</Id>
 			<Message LcId="1033">FOT - Charger 8 - Load Faulted</Message>
 		</Event>
+		<Event>
+			<Id>10</Id>
+			<Message LcId="1033">FOT - Charger Over Temp</Message>
+		</Event>
+		<Event>
+			<Id>11</Id>
+			<Message LcId="1033">FOT - Charger Load Fault</Message>
+		</Event>
+		<Event>
+			<Id>12</Id>
+			<Message LcId="1033">FOT - System Tripped</Message>
+		</Event>
+		<Event>
+			<Id>13</Id>
+			<Message LcId="1033">FOT - Machine GND Relay Failed</Message>
+		</Event>
+		<Event>
+			<Id>14</Id>
+			<Message LcId="1033">FOT - Charge Relay Failed</Message>
+		</Event>
+		<Event>
+			<Id>15</Id>
+			<Message LcId="1033">FOT - Dump Relay Failed</Message>
+		</Event>
+		<Event>
+			<Id>16</Id>
+			<Message LcId="1033">FOT - Loss Inhibited Signal</Message>
+		</Event>
 	</Source>
 	<Source>
-		<GUID>{DECDCC9D-1034-4102-AE63-C3A043DF438B}</GUID>
+		<GUID>{29F1D8DD-D455-4FD7-8B3B-0AF13CC064D0}</GUID>
+		<Name LcId="1033">NewEventClass_DisplayText</Name>
+		<Event>
+			<Id>1</Id>
+			<Message LcId="1033">FOT - Charger 1 - Over Temp</Message>
+		</Event>
+		<Event>
+			<Id>2</Id>
+			<Message LcId="1033">FOT - Charger 1 - Interlock Open</Message>
+		</Event>
+		<Event>
+			<Id>3</Id>
+			<Message LcId="1033">FOT - Charger 1 - Load Faulted</Message>
+		</Event>
+		<Event>
+			<Id>4</Id>
+			<Message LcId="1033">FOT - Charger 2 - Over Temp</Message>
+		</Event>
+		<Event>
+			<Id>5</Id>
+			<Message LcId="1033">FOT - Charger 2 - Interlock Open</Message>
+		</Event>
+		<Event>
+			<Id>6</Id>
+			<Message LcId="1033">FOT - Charger 2 - Load Faulted</Message>
+		</Event>
+		<Event>
+			<Id>7</Id>
+			<Message LcId="1033">FOT - Charger 3 - Over Temp</Message>
+		</Event>
+		<Event>
+			<Id>8</Id>
+			<Message LcId="1033">FOT - Charger 3 - Interlock Open</Message>
+		</Event>
+		<Event>
+			<Id>9</Id>
+			<Message LcId="1033">FOT - Charger 3 - Load Faulted</Message>
+		</Event>
+		<Event>
+			<Id>10</Id>
+			<Message LcId="1033">FOT - Charger 4 - Over Temp</Message>
+		</Event>
+		<Event>
+			<Id>11</Id>
+			<Message LcId="1033">FOT - Charger 4 - Interlock Open</Message>
+		</Event>
+		<Event>
+			<Id>12</Id>
+			<Message LcId="1033">FOT - Charger 4 - Load Faulted</Message>
+		</Event>
+		<Event>
+			<Id>13</Id>
+			<Message LcId="1033">FOT - Charger 5 - Over Temp</Message>
+		</Event>
+		<Event>
+			<Id>14</Id>
+			<Message LcId="1033">FOT - Charger 5 - Interlock Open</Message>
+		</Event>
+		<Event>
+			<Id>15</Id>
+			<Message LcId="1033">FOT - Charger 5 - Load Faulted</Message>
+		</Event>
+	</Source>
+	<Source>
+		<GUID>{A10BE5A8-5E7D-4BD2-BE11-4A6693AC2113}</GUID>
+		<Name LcId="1033">NewEventClass_DisplayText</Name>
+		<Event>
+			<Id>1</Id>
+			<Message LcId="1033">FOT - Section 4 Form Short Contact 1 Unknown</Message>
+		</Event>
+		<Event>
+			<Id>2</Id>
+			<Message LcId="1033">FOT - Section 4 Form Short Contact 2 Unknown</Message>
+		</Event>
+		<Event>
+			<Id>3</Id>
+			<Message LcId="1033">FOT - Section 4 Form Trigger Short Contact Unknown</Message>
+		</Event>
+		<Event>
+			<Id>4</Id>
+			<Message LcId="1033">FOT - Section 4 PreForm Trigger Short Contact Unknown</Message>
+		</Event>
+		<Event>
+			<Id>5</Id>
+			<Message LcId="1033">FOT - Short Contacts Unknown</Message>
+		</Event>
+		<Event>
+			<Id>6</Id>
+			<Message LcId="1033">FOT - Loss Pneumatic Pressure</Message>
+		</Event>
+		<Event>
+			<Id>7</Id>
+			<Message LcId="1033">FOT - Safety Not OK</Message>
+		</Event>
+		<Event>
+			<Id>8</Id>
+			<Message LcId="1033">spare</Message>
+		</Event>
+		<Event>
+			<Id>9</Id>
+			<Message LcId="1033">spare</Message>
+		</Event>
+		<Event>
+			<Id>10</Id>
+			<Message LcId="1033">Spare</Message>
+		</Event>
+		<Event>
+			<Id>11</Id>
+			<Message LcId="1033">spare</Message>
+		</Event>
+		<Event>
+			<Id>12</Id>
+			<Message LcId="1033">spare</Message>
+		</Event>
+		<Event>
+			<Id>13</Id>
+			<Message LcId="1033">spare</Message>
+		</Event>
+		<Event>
+			<Id>14</Id>
+			<Message LcId="1033">spare</Message>
+		</Event>
+		<Event>
+			<Id>15</Id>
+			<Message LcId="1033">spare</Message>
+		</Event>
+		<Event>
+			<Id>16</Id>
+			<Message LcId="1033">FOT - Dump Timer Runout</Message>
+		</Event>
+	</Source>
+	<Source>
+		<GUID>{538F2FEA-D353-4CC6-A6C7-8C354AFA22DA}</GUID>
 		<Name LcId="1033">AlarmWord1</Name>
 		<Event>
 			<Id>1</Id>
@@ -369,15 +529,87 @@
 		</Event>
 		<Event>
 			<Id>15</Id>
-			<Message LcId="1033">AlarmWord1Event15_DisplayText</Message>
+			<Message LcId="1033">FOT - MCP System Tripped</Message>
 		</Event>
 		<Event>
 			<Id>16</Id>
 			<Message LcId="1033">AlarmWord1Event16_DisplayText</Message>
+			<Detail>
+				<Name>Comment</Name>
+				<Text LcId="1033">FOT - Stop PB Pressed (Master Stop or Cage E-Stop)</Text>
+			</Detail>
 		</Event>
 		<Event>
 			<Id>13</Id>
 			<Message LcId="1033">FOT - Charged Time Out</Message>
+		</Event>
+	</Source>
+	<Source>
+		<GUID>{2F695BDC-938D-4EB8-B63D-13BB5ACDA610}</GUID>
+		<Name LcId="1033">NewEventClass_DisplayText</Name>
+		<Event>
+			<Id>1</Id>
+			<Message LcId="1033">FOT - Not All DC PSU OK</Message>
+		</Event>
+		<Event>
+			<Id>2</Id>
+			<Message LcId="1033">FOT - Charger Faulted</Message>
+		</Event>
+		<Event>
+			<Id>3</Id>
+			<Message LcId="1033">FOT - Loss HV ON Signal</Message>
+		</Event>
+		<Event>
+			<Id>4</Id>
+			<Message LcId="1033">FOT - No Fault Detected Condition Not Satisfied</Message>
+		</Event>
+		<Event>
+			<Id>5</Id>
+			<Message LcId="1033">FOT - Section 1 Peak Short Contact 1 Unknown</Message>
+		</Event>
+		<Event>
+			<Id>6</Id>
+			<Message LcId="1033">FOT - Section 1 Peak Short Contact 2 Unknown</Message>
+		</Event>
+		<Event>
+			<Id>7</Id>
+			<Message LcId="1033">FOT - Section 2 Peak Short Contact 1 Unknown</Message>
+		</Event>
+		<Event>
+			<Id>8</Id>
+			<Message LcId="1033">FOT - Section 2 Peak Short Contact 2 Unknown</Message>
+		</Event>
+		<Event>
+			<Id>9</Id>
+			<Message LcId="1033">FOT - Section 3 Peak Short Contact 1 Unknown</Message>
+		</Event>
+		<Event>
+			<Id>10</Id>
+			<Message LcId="1033">FOT - Section 3 Peak Short Contact 2 Unknown</Message>
+		</Event>
+		<Event>
+			<Id>11</Id>
+			<Message LcId="1033">FOT - Section 1 Sust Short Contact 1 Unknown</Message>
+		</Event>
+		<Event>
+			<Id>12</Id>
+			<Message LcId="1033">FOT - Section 1 Sust Short Contact 2 Unknown</Message>
+		</Event>
+		<Event>
+			<Id>13</Id>
+			<Message LcId="1033">FOT - Section 2 Sust Short Contact 1 Unknown</Message>
+		</Event>
+		<Event>
+			<Id>14</Id>
+			<Message LcId="1033">FOT - Section 2 Sust Short Contact 2 Unknown</Message>
+		</Event>
+		<Event>
+			<Id>15</Id>
+			<Message LcId="1033">FOT - Section 3 Sust Short Contact 1 Unknown</Message>
+		</Event>
+		<Event>
+			<Id>16</Id>
+			<Message LcId="1033">FOT - Section 3 Sust Short Contact 2 Unknown</Message>
 		</Event>
 	</Source>
 </TcEventSources>
