@@ -653,93 +653,6 @@
 			</Hides>
 		</DataType>
 		<DataType>
-			<Name GUID="{28A846FE-4286-468B-A3B9-31D2E335837F}" PersistentType="true">AlarmWord8</Name>
-			<DisplayName TxtId=""><![CDATA[NewEventClass_DisplayText]]></DisplayName>
-			<EventId>
-				<Name Id="1">b0</Name>
-				<DisplayName TxtId=""><![CDATA[FOT - Not All DC PSU OK]]></DisplayName>
-				<Severity>Verbose</Severity>
-			</EventId>
-			<EventId>
-				<Name Id="2">b1</Name>
-				<DisplayName TxtId=""><![CDATA[FOT - Charger]]></DisplayName>
-				<Severity>Verbose</Severity>
-			</EventId>
-			<EventId>
-				<Name Id="3">b2</Name>
-				<DisplayName TxtId=""><![CDATA[FOT - Loss HV ON Signal]]></DisplayName>
-				<Severity>Verbose</Severity>
-			</EventId>
-			<EventId>
-				<Name Id="4">b3</Name>
-				<DisplayName TxtId=""><![CDATA[FOT - No Fault Detected Condition Not Satisfied]]></DisplayName>
-				<Severity>Verbose</Severity>
-			</EventId>
-			<EventId>
-				<Name Id="5">b4</Name>
-				<DisplayName TxtId=""><![CDATA[FOT - Section 1 Peak Short Contact 1 Unknown]]></DisplayName>
-				<Severity>Verbose</Severity>
-			</EventId>
-			<EventId>
-				<Name Id="6">b5</Name>
-				<DisplayName TxtId=""><![CDATA[FOT - Section 1 Peak Short Contact 2 Unknown]]></DisplayName>
-				<Severity>Verbose</Severity>
-			</EventId>
-			<EventId>
-				<Name Id="7">b6</Name>
-				<DisplayName TxtId=""><![CDATA[FOT - Section 2 Peak Short Contact 1 Unknown]]></DisplayName>
-				<Severity>Verbose</Severity>
-			</EventId>
-			<EventId>
-				<Name Id="8">b7</Name>
-				<DisplayName TxtId=""><![CDATA[FOT - Section 2 Peak Short Contact 2 Unknown]]></DisplayName>
-				<Severity>Verbose</Severity>
-			</EventId>
-			<EventId>
-				<Name Id="9">b8</Name>
-				<DisplayName TxtId=""><![CDATA[FOT - Section 3 Peak Short Contact 1 Unknown]]></DisplayName>
-				<Severity>Verbose</Severity>
-			</EventId>
-			<EventId>
-				<Name Id="10">b9</Name>
-				<DisplayName TxtId=""><![CDATA[FOT - Section 3 Peak Short Contact 2 Unknown]]></DisplayName>
-				<Severity>Verbose</Severity>
-			</EventId>
-			<EventId>
-				<Name Id="11">b10</Name>
-				<DisplayName TxtId=""><![CDATA[FOT - Section 1 Sust Short Contact 1 Unknown]]></DisplayName>
-				<Severity>Verbose</Severity>
-			</EventId>
-			<EventId>
-				<Name Id="12">b11</Name>
-				<DisplayName TxtId=""><![CDATA[FOT - Section 1 Sust Short Contact 2 Unknown]]></DisplayName>
-				<Severity>Verbose</Severity>
-			</EventId>
-			<EventId>
-				<Name Id="13">b12</Name>
-				<DisplayName TxtId=""><![CDATA[FOT - Section 2 Sust Short Contact 1 Unknown]]></DisplayName>
-				<Severity>Verbose</Severity>
-			</EventId>
-			<EventId>
-				<Name Id="14">b13</Name>
-				<DisplayName TxtId=""><![CDATA[FOT - Section 2 Sust Short Contact 2 Unknown]]></DisplayName>
-				<Severity>Verbose</Severity>
-			</EventId>
-			<EventId>
-				<Name Id="15">b14</Name>
-				<DisplayName TxtId=""><![CDATA[FOT - Section 3 Sust Short Contact 1 Unknown]]></DisplayName>
-				<Severity>Verbose</Severity>
-			</EventId>
-			<EventId>
-				<Name Id="16">b15</Name>
-				<DisplayName TxtId=""><![CDATA[FOT - Section 3 Sust Short Contact 2 Unknown]]></DisplayName>
-				<Severity>Verbose</Severity>
-			</EventId>
-			<Hides>
-				<Hide GUID="{83144F46-3BF7-450C-9649-1FA9899DD42D}"/>
-			</Hides>
-		</DataType>
-		<DataType>
 			<Name GUID="{A10BE5A8-5E7D-4BD2-BE11-4A6693AC2113}" PersistentType="true">AlarmWord9</Name>
 			<DisplayName TxtId=""><![CDATA[NewEventClass_DisplayText]]></DisplayName>
 			<EventId>
@@ -916,6 +829,94 @@
 				<Hide GUID="{462739D1-DF36-4C36-BCD0-09293B4C9D13}"/>
 				<Hide GUID="{5D4F0B22-5CBD-45A5-BB6C-676861945713}"/>
 				<Hide GUID="{DECDCC9D-1034-4102-AE63-C3A043DF438B}"/>
+			</Hides>
+		</DataType>
+		<DataType>
+			<Name GUID="{2F695BDC-938D-4EB8-B63D-13BB5ACDA610}" PersistentType="true">AlarmWord8</Name>
+			<DisplayName TxtId=""><![CDATA[NewEventClass_DisplayText]]></DisplayName>
+			<EventId>
+				<Name Id="1">b0</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Not All DC PSU OK]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="2">b1</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Charger Faulted]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="3">b2</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Loss HV ON Signal]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="4">b3</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - No Fault Detected Condition Not Satisfied]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="5">b4</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 1 Peak Short Contact 1 Unknown]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="6">b5</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 1 Peak Short Contact 2 Unknown]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="7">b6</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 2 Peak Short Contact 1 Unknown]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="8">b7</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 2 Peak Short Contact 2 Unknown]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="9">b8</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 3 Peak Short Contact 1 Unknown]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="10">b9</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 3 Peak Short Contact 2 Unknown]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="11">b10</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 1 Sust Short Contact 1 Unknown]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="12">b11</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 1 Sust Short Contact 2 Unknown]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="13">b12</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 2 Sust Short Contact 1 Unknown]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="14">b13</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 2 Sust Short Contact 2 Unknown]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="15">b14</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 3 Sust Short Contact 1 Unknown]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="16">b15</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Section 3 Sust Short Contact 2 Unknown]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<Hides>
+				<Hide GUID="{83144F46-3BF7-450C-9649-1FA9899DD42D}"/>
+				<Hide GUID="{28A846FE-4286-468B-A3B9-31D2E335837F}"/>
 			</Hides>
 		</DataType>
 	</DataTypes>
@@ -2869,6 +2870,11 @@ EL2008 - DQ1]]></Comment>
 					<Vars VarGrpType="8" AreaNo="4">
 						<Name>PlcTask Retains</Name>
 						<Var>
+							<Name>ChargeTime_DB.PreFormChargeTime_PT</Name>
+							<Type>TIME</Type>
+							<InOut>7</InOut>
+						</Var>
+						<Var>
 							<Name>ChargeTime_DB.ChargerDelay_TON</Name>
 							<Type GUID="{D079E1ED-47E3-F617-5E84-485042BED8B1}">ARRAY [1..8] OF Tc2_Standard.TON</Type>
 							<InOut>7</InOut>
@@ -2895,23 +2901,18 @@ FormChargeTime_ET  : ARRAY[1..2] OF TIME;]]></Comment>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
-							<Name>ChargeTime_DB.PreFormChargeTime_PT</Name>
+							<Name>ChargeTime_DB.PreFormChargeTime_ET</Name>
 							<Type>TIME</Type>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
-							<Name>ChargeTime_DB.PreFormChargeTime_ET</Name>
+							<Name>ChargeTime_DB.LongestChargeTime_PT</Name>
 							<Type>TIME</Type>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
 							<Name>ChargeTime_DB.LongestChargeTime_TON</Name>
 							<Type GUID="{1337BBBA-9A3F-D9E7-4ED6-FA23E60881AB}" Namespace="Tc2_Standard">TON</Type>
-							<InOut>7</InOut>
-						</Var>
-						<Var>
-							<Name>ChargeTime_DB.LongestChargeTime_PT</Name>
-							<Type>TIME</Type>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
@@ -2930,11 +2931,6 @@ FormChargeTime_ET  : ARRAY[1..2] OF TIME;]]></Comment>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
-							<Name>ChargeTime_DB.ChargingTimeElapse_TON</Name>
-							<Type GUID="{D079E1ED-47E3-F617-5E84-485042BED8B1}">ARRAY [1..8] OF Tc2_Standard.TON</Type>
-							<InOut>7</InOut>
-						</Var>
-						<Var>
 							<Name>ChargeTime_DB.PreFormChargeTimeStartDelay</Name>
 							<Type>INT</Type>
 							<InOut>7</InOut>
@@ -2942,6 +2938,11 @@ FormChargeTime_ET  : ARRAY[1..2] OF TIME;]]></Comment>
 						<Var>
 							<Name>ChargeTime_DB.PreFormChargingTimeElapse</Name>
 							<Type>INT</Type>
+							<InOut>7</InOut>
+						</Var>
+						<Var>
+							<Name>ChargeTime_DB.ChargingTimeElapse_TON</Name>
+							<Type GUID="{D079E1ED-47E3-F617-5E84-485042BED8B1}">ARRAY [1..8] OF Tc2_Standard.TON</Type>
 							<InOut>7</InOut>
 						</Var>
 						<Var>

@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <GVL Name="GVL" Id="{73e409ee-2c80-4127-839a-abc26cd2f79c}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	
+	//actual_magnet_systemState	: DINT;
+	error_msg					: WORD;
+	shot_going_OK				: BOOL;
+	shot_is_done				: BOOL;
+	//RequestedMagnetSysState		: DINT;
+	cap_msg						: WORD; 
+	
+	test						: BOOL;
+	ClearAllFaults				: BOOL;
+	alarm_test					: BOOL;
+	
+	Analog_test					: REAL;
+	
+	fullshutdown_to_idle        : BOOL;
+	idle_to_charge				: BOOL;
+	idle_to_readyToCharge		: BOOL;
+	readyToCharge_to_Charging	: BOOL;
+	charge_to_pause				: BOOL;
+	charge_to_readyToShoot		: BOOL;
+	readyToShoot_to_Shoot		: BOOL;
+	shoot_to_postShot			: BOOL;
+	postShot_to_shutdown		: BOOL;
+	shutdown_to_idle			: BOOL;
+	dump_to_idle				: BOOL;
+	
+	AlwaysTrue					: BOOL;
+	AlwaysFalse					: BOOL;
+	
+	AllSystemsDischarged		: BOOL;
+	AllChargerReadywithSP		: BOOL;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

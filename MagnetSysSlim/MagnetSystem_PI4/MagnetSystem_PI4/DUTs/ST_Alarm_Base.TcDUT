@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="ST_Alarm_Base" Id="{70490729-2f84-4ff4-9813-1a3c5400bdf0}">
+    <Declaration><![CDATA[TYPE ST_Alarm_Base :
+STRUCT
+(*
+	AI_CH1_UnderVoltage		: BOOL;
+	AI_CH1_OverVoltage		: BOOL;
+	AI_CH1_belowLIM1		: BOOL;
+	AI_CH1_aboveLIM1		: BOOL;
+	
+	AI_CH2_UnderVoltage		: BOOL;
+	AI_CH2_OverVoltage		: BOOL;
+	AI_CH2_belowLIM1		: BOOL;
+	AI_CH2_aboveLIM1		: BOOL;
+	
+	AI_CH3_UnderVoltage		: BOOL;
+	AI_CH3_OverVoltage		: BOOL;
+	AI_CH3_belowLIM1		: BOOL;
+	AI_CH3_aboveLIM1		: BOOL;
+	
+	ChargerVoltageReading_Faulted	: BOOL;
+	CurrentReading_Faulted		 	: BOOL;
+	BfieldReading_Faulted			: BOOL;
+*)
+	AlarmWord : WORD;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

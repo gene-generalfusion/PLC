@@ -5,7 +5,7 @@
 VAR
 	bWarning : BOOL;
 	bConfirm : BOOL;
-	alarms : ARRAY[0..431] OF Alarms_FB;
+	alarms : ARRAY[0..128] OF Alarms_FB;
 	
 END_VAR
 ]]></Declaration>

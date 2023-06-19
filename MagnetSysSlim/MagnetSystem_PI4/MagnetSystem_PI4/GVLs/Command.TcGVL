@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <GVL Name="Command" Id="{461a0450-000e-4fb8-9b96-604c62830b5c}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+
+	eCommand : E_Command;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

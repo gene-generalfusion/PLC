@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="Tx_MasterPLC" Id="{2e0a025b-93ac-4e01-9dc1-4e600206f26f}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Tx_MasterPLC
+VAR
+	i : INT := 1;
+	j : INT := 1;
+	TotalCapacitance_REAL : ARRAY[1..10] OF REAL;
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//Calculations for Max Total Voltage and Total Capacitance
+FOR i := 1 TO 10 BY 1 DO
+	Setpoints.Coil[i].SysParameters.MaxVoltageTotal := Setpoints.Coil[i].SysParameters.NumOfCaps * Setpoints.Coil[i].SysParameters.MaxVoltagePerCap;
+	TotalCapacitance_REAL[i] := INT_TO_REAL(Setpoints.Coil[i].SysParameters.CapacitancePerCap) / INT_TO_REAL(Setpoints.Coil[i].SysParameters.NumOfCaps);
+	Setpoints.Coil[i].SysParameters.TotalCapacitance := TotalCapacitance_REAL[i];
+END_FOR
+
+
+//Grouping systemParameters and configuration for sending to main plc
+FOR i := 1 TO 10 BY 1 DO
+	Tx_Config.CoilSP[i].SysParameters.Direction := Setpoints.Coil[i].SysParameters.Direction;
+	Tx_Config.CoilSP[i].SysParameters.NumOfTurns := Setpoints.Coil[i].SysParameters.NumOfTurns;
+	Tx_Config.CoilSP[i].SysParameters.DriverMapping := Setpoints.Coil[i].SysParameters.DriverMapping;
+	Tx_Config.CoilSP[i].SysParameters.NumOfCaps := Setpoints.Coil[i].SysParameters.NumOfCaps;
+	Tx_Config.CoilSP[i].SysParameters.MaxVoltagePerCap := Setpoints.Coil[i].SysParameters.MaxVoltagePerCap;
+	Tx_Config.CoilSP[i].SysParameters.MaxVoltageTotal := Setpoints.Coil[i].SysParameters.MaxVoltageTotal;
+	Tx_Config.CoilSP[i].SysParameters.CapacitancePerCap := Setpoints.Coil[i].SysParameters.CapacitancePerCap;
+	Tx_Config.CoilSP[i].SysParameters.TotalCapacitance := Setpoints.Coil[i].SysParameters.TotalCapacitance;
+	Tx_Config.CoilSP[i].SysParameters.TotalCircuitResistance := Setpoints.Coil[i].SysParameters.TotalCircuitResistance;
+	
+	Tx_Config.CoilSP[i].RecipeLocal.chargerSetpoint	:= Setpoints.Coil[i].RecipeLocal.chargerSetpoint;//calculated locally, thought the mainPLC might want to have this 
+	Tx_Config.CoilSP[i].Recipe.CoilEnable			:= Recipe.Coil[i].CoilEnable;
+	Tx_Config.CoilSP[i].Recipe.CurrentDuration	:= Recipe.Coil[i].CurrentDuration; //total charge time?
+	Tx_Config.CoilSP[i].Recipe.currentSetpoint	:= Recipe.Coil[i].currentSetpoint;
+	Tx_Config.CoilSP[i].Recipe.TriggerTime		:= Recipe.Coil[i].TriggerTime;
+	
+	Tx_Config.CoilInst[i].ChargerVolt := Devices.Coil[i].ChargeVoltageFeedback;
+	
+	FOR j := 1 TO 15 BY 1 DO 
+		Tx_Config.CoilInst[i].CapVolt[j] := INT_TO_REAL (Devices.Coil[i].CapVoltage[j]); //1-15 uc
+		Tx_Config.CoilInst[i].TotalVoltage := Devices.Coil[i].TotalVoltage;
+	END_FOR
+	
+	Tx_Config.CoilInst[i].Cur := Devices.Coil[i].CurrentFeedback;
+	
+END_FOR
+
+//run out time of each state
+Tx_Config.ReadyToChargeRunOutTime := TIME_TO_REAL (MODE_SELECTION_1.ReadyToChargeRunOutTMR_PT);
+Tx_Config.ChargingRunOutTime := TIME_TO_REAL (MODE_SELECTION_1.ChargingRunOutTMR_PT);
+Tx_Config.ChargePausedRunOutTime := TIME_TO_REAL (MODE_SELECTION_1.ChargePausedRunOutTMR_PT);
+Tx_Config.ReadyToShootRunOutTime := TIME_TO_REAL (MODE_SELECTION_1.ReadyToShootRunOutTMR_PT);
+Tx_Config.ShootingRunOutTime := TIME_TO_REAL (MODE_SELECTION_1.ShootingRunOutTMR_PT);
+Tx_Config.PostShotRunOutTime := TIME_TO_REAL (MODE_SELECTION_1.PostShotRunOutTMR_PT);
+Tx_Config.DumpingRunOutTime := TIME_TO_REAL (MODE_SELECTION_1.DumpingRunOutTMR_PT);
+
+//voltage and current feedback???
+
+//TxRx
+(*
+FB_ReadAdsSymByName (
+			bRead		:= TRUE, // on or off
+			sNetID		:= 5.104.224.86.1.333, //AmsNetID
+			nPort		:= 852, // plc port
+			sVarName	:= E_Command,  //read from
+			nDestAddr	:= E_Command, //write to 
+			nLen		:= 2, //2 bytes	
+			);
+
+FB_WriteAdsSymByName (
+			bWrite		:= TRUE,
+			sNetID		:= 5.1.121.21.21.2,
+			nPort		:= 851,
+			sVarName	:= E_Status,
+			nSrcAddr	:= E_Status,
+			nLen		:= 2, //2byte
+			);
+*)
+
+
+IF i > 10 THEN 
+	i := 1;
+END_IF
+
+IF j > 15 THEN 
+	j := 1;
+END_IF
+]]></ST>
+    </Implementation>
+    <LineIds Name="Tx_MasterPLC">
+      <LineId Id="57" Count="0" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="116" Count="0" />
+      <LineId Id="59" Count="0" />
+      <LineId Id="47" Count="0" />
+      <LineId Id="60" Count="0" />
+      <LineId Id="48" Count="0" />
+      <LineId Id="66" Count="3" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="71" Count="0" />
+      <LineId Id="73" Count="1" />
+      <LineId Id="77" Count="0" />
+      <LineId Id="85" Count="0" />
+      <LineId Id="87" Count="3" />
+      <LineId Id="120" Count="0" />
+      <LineId Id="128" Count="0" />
+      <LineId Id="139" Count="0" />
+      <LineId Id="136" Count="1" />
+      <LineId Id="140" Count="0" />
+      <LineId Id="138" Count="0" />
+      <LineId Id="129" Count="1" />
+      <LineId Id="97" Count="0" />
+      <LineId Id="49" Count="0" />
+      <LineId Id="127" Count="0" />
+      <LineId Id="100" Count="0" />
+      <LineId Id="99" Count="0" />
+      <LineId Id="102" Count="5" />
+      <LineId Id="110" Count="0" />
+      <LineId Id="109" Count="0" />
+      <LineId Id="78" Count="0" />
+      <LineId Id="26" Count="18" />
+      <LineId Id="46" Count="0" />
+      <LineId Id="62" Count="3" />
+      <LineId Id="61" Count="0" />
+      <LineId Id="133" Count="2" />
+      <LineId Id="132" Count="0" />
+      <LineId Id="25" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

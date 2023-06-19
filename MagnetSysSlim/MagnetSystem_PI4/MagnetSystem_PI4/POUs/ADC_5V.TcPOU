@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="ADC_5V" Id="{3d67c97b-d51a-4a8a-a967-1811c00ef817}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION ADC_5V : REAL
+VAR_INPUT
+	normal_input : REAL;
+	x_max : REAL := 4.5;
+	x_min : REAL := 0.5;
+END_VAR
+VAR
+	voltage_reading : REAL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// 0.5 - 4.5V AI INPUT  | normal_input 0 - 100%
+voltage_reading := x_max * normal_input;
+ADC_5V := (voltage_reading - x_min) / (x_max - x_min);]]></ST>
+    </Implementation>
+    <LineIds Name="ADC_5V">
+      <LineId Id="11" Count="1" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

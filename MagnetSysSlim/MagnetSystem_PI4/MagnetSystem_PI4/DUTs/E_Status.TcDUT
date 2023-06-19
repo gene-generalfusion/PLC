@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="E_Status" Id="{ccb993a3-5d36-42c6-942b-dcc84eec1dde}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+{attribute 'to_string'}
+TYPE E_Status :
+(
+	//Actual Magnetic State
+	FULL_SHUTDOWN	:= 0,
+	IDLE			:= 1, 
+	READY_TO_CHARGE	:= 2, 
+	CHARGING		:= 3, 
+	CHARGING_PAUSED := 4,		
+	READY_TO_SHOOT	:= 5, 
+	SHOOTING		:= 6, 
+	POST_SHOT		:= 7, 
+	//SHUTDOWN		:= 8, 
+	DUMPING			:= 9,
+	TRIPPED			:= 10,
+	MANUAL_MODE		:= 11 // LOCAL MODE
+) ;
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

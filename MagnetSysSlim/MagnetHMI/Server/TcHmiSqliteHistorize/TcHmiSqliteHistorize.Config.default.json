@@ -1,0 +1,40 @@
+{
+    "commitInterval": "PT10S",
+    "enableBackup": false,
+    "historizedSymbolList": {
+        "PLC1.Devices.Coil.1.ChargeVoltageFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 100
+        },
+        "PLC1.Devices.Coil.1.CurrentFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 100
+        },
+        "PLC1.Devices.Coil.1.Measured_Bfield": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 100
+        },
+        "PLC1.Devices.Coil.2.ChargeVoltageFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 100
+        },
+        "PLC1.Devices.Coil.2.CurrentFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 100
+        }
+    },
+    "inMemory": false,
+    "maxBackups": 1,
+    "mode": 3,
+    "vacuumOnStartup": false
+}

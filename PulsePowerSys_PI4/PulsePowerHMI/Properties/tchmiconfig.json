@@ -88,14 +88,7 @@
       "preloadBindings": false
     },
     {
-      "url": "Content/Section1.content",
-      "preload": false,
-      "keepAlive": false,
-      "loadSync": false,
-      "preloadBindings": false
-    },
-    {
-      "url": "Content/Section2.content",
+      "url": "Content/Section4.content",
       "preload": false,
       "keepAlive": false,
       "loadSync": false,
@@ -109,7 +102,14 @@
       "preloadBindings": false
     },
     {
-      "url": "Content/Section4.content",
+      "url": "Content/Section2.content",
+      "preload": false,
+      "keepAlive": false,
+      "loadSync": false,
+      "preloadBindings": false
+    },
+    {
+      "url": "Content/Section1.content",
       "preload": false,
       "keepAlive": false,
       "loadSync": false,

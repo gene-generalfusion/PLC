@@ -1,0 +1,575 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="Permissives" Id="{10f7449e-ceca-4ebc-9f71-340d6aec6e43}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Permissives
+VAR
+
+	stPermissives			: ST_PermissivesToMainPLC;
+	
+	AdminFaultBypassOn		: BOOL;
+	
+	i : INT := 1;
+	j : INT := 1;	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//HMI Admin bypass button
+AdminFaultBypassOn := HMI_DB.SafetyOK;
+
+//Check to see if any coil is disabled
+IF Devices.Coil[1].CoilEnabled = FALSE OR
+	Devices.Coil[2].CoilEnabled = FALSE OR
+	Devices.Coil[3].CoilEnabled = FALSE OR
+	Devices.Coil[4].CoilEnabled = FALSE OR
+	Devices.Coil[5].CoilEnabled = FALSE OR
+	Devices.Coil[6].CoilEnabled = FALSE OR
+	Devices.Coil[7].CoilEnabled = FALSE OR
+	Devices.Coil[8].CoilEnabled = FALSE OR
+	Devices.Coil[9].CoilEnabled = FALSE OR
+	Devices.Coil[10].CoilEnabled = FALSE 
+	THEN
+		Permissives_DB.AnyCoilDisabled := TRUE;
+	ELSE
+		Permissives_DB.AnyCoilDisabled := FALSE;
+END_IF;
+
+//check to see if each LCP system is ready based on the selected safety parameters.
+FOR i := 1 TO 10 BY 1 DO
+	IF Devices.Coil[i].AC_Interlock_RlyClose = TRUE AND 
+		Devices.Coil[i].ChargeRelay_closed = TRUE AND
+		Devices.Coil[i].CoilTemperatureHigh = FALSE AND
+		Devices.Coil[i].DumpResistorTemperatureHigh = FALSE AND
+		Devices.Coil[i].DumpRelay1_closed = TRUE AND
+		Devices.Coil[i].DumpRelay2_closed = TRUE AND
+		Devices.Coil[i].FlybackD1_Alive = TRUE AND
+		Devices.Coil[i].FlybackD2_Alive = TRUE AND
+		Devices.Coil[i].GroundLoopCurrentDetected = FALSE AND
+		Devices.Coil[i].Local_StopPB_Pressed = FALSE AND
+		Devices.Coil[i].LossPneumaticPressure = FALSE 
+		THEN
+			Devices.Coil[i].SystemReady := TRUE;
+		ELSE
+			Devices.Coil[i].SystemReady := FALSE;
+	END_IF;
+END_FOR;
+
+
+//Safety Permissives
+	//Interlock Safety
+	IF (Devices.Coil[1].AC_Interlock_RlyClose = TRUE OR Devices.Coil[1].CoilEnabled = FALSE) AND 
+		(Devices.Coil[2].AC_Interlock_RlyClose = TRUE OR Devices.Coil[2].CoilEnabled = FALSE) AND 
+		(Devices.Coil[3].AC_Interlock_RlyClose = TRUE OR Devices.Coil[3].CoilEnabled = FALSE) AND
+		(Devices.Coil[4].AC_Interlock_RlyClose = TRUE OR Devices.Coil[4].CoilEnabled = FALSE) AND
+		(Devices.Coil[5].AC_Interlock_RlyClose = TRUE OR Devices.Coil[5].CoilEnabled = FALSE) AND
+		(Devices.Coil[6].AC_Interlock_RlyClose = TRUE OR Devices.Coil[6].CoilEnabled = FALSE) AND
+		(Devices.Coil[7].AC_Interlock_RlyClose = TRUE OR Devices.Coil[7].CoilEnabled = FALSE) AND
+		(Devices.Coil[8].AC_Interlock_RlyClose = TRUE OR Devices.Coil[8].CoilEnabled = FALSE) AND
+		(Devices.Coil[9].AC_Interlock_RlyClose = TRUE OR Devices.Coil[9].CoilEnabled = FALSE) AND 
+		(Devices.Coil[10].AC_Interlock_RlyClose = TRUE OR Devices.Coil[10].CoilEnabled = FALSE)
+		
+		THEN 
+			Permissives_DB.AllacInterlock_Closed := TRUE;
+		ELSE 
+			Permissives_DB.AllacInterlock_Closed := FALSE;
+	END_IF;
+
+	//Coil Temperature
+	IF Devices.Coil[1].CoilTemperatureHigh = FALSE AND
+		Devices.Coil[2].CoilTemperatureHigh = FALSE 
+		THEN
+			Permissives_DB.All_Coil_TemperatureOK := TRUE;
+		ELSE 
+			Permissives_DB.All_Coil_TemperatureOK := FALSE;
+	END_IF;
+
+	//Dump Resistor Temperature
+	IF Devices.Coil[1].DumpResistorTemperatureHigh = FALSE AND
+		Devices.Coil[2].DumpResistorTemperatureHigh = FALSE 
+		THEN
+			Permissives_DB.AllDumpResistorTempOK := TRUE;
+		ELSE 
+			Permissives_DB.AllDumpResistorTempOK := FALSE;
+	END_IF;
+	
+	//Ground loop current
+	IF Devices.Coil[1].GroundLoopCurrentDetected = FALSE AND
+		Devices.Coil[2].GroundLoopCurrentDetected = FALSE 
+		THEN
+			Permissives_DB.NoGroundLoopCurrentDetected := TRUE;
+		ELSE 
+			Permissives_DB.NoGroundLoopCurrentDetected := FALSE;
+	END_IF;
+	
+	//Flyback Diodes - Not enought time for PI3 - temporarily disabled for PI3
+(*	IF ((Devices.coil[1].FlybackD1_Alive = TRUE AND Devices.coil[1].FlybackD2_Alive = TRUE) OR Devices.Coil[1].CoilEnabled = FALSE) AND
+		((Devices.coil[2].FlybackD1_Alive = TRUE AND Devices.coil[2].FlybackD2_Alive = TRUE) OR Devices.Coil[2].CoilEnabled = FALSE)
+		THEN 
+			AllFlybackDiodes_Alive := TRUE;
+		ELSE 
+			AllFlybackDiodes_Alive := FALSE;
+	END_IF;
+*)	
+	IF (Permissives_DB.All_Coil_TemperatureOK = TRUE AND
+		Permissives_DB.AllDumpResistorTempOK = TRUE AND
+		Permissives_DB.NoGroundLoopCurrentDetected = TRUE AND
+		//AllFlybackDiodes_Alive = TRUE AND 
+		Trips_DB.AnyACInterlockFail = FALSE AND
+		Trips_DB.AnyHVisoRelayFailed = FALSE AND
+		Trips_DB.AnyChargeRlyFail = FALSE AND
+		Trips_DB.AnyDumpRlyFail = FALSE AND
+		Trips_DB.AnyEstopPressed = FALSE AND
+		Permissives_DB.AlldcPSUok = TRUE AND
+		MCP_IO.CageEstopCircuitOK = TRUE) OR HMI_DB.SafetyOK = TRUE 
+		THEN
+			Permissives_DB.SafetyOK := TRUE;
+		ELSE 
+			Permissives_DB.SafetyOK := FALSE; 
+	END_IF;
+
+//Charger Active Status - obsolete
+(*
+IF (Devices.Coil[1].PSU0_active = TRUE OR Devices.Coil[1].CoilEnabled = FALSE) AND
+	(Devices.Coil[2].PSU0_active = TRUE OR Devices.Coil[2].CoilEnabled = FALSE) //AND
+	//Coil3.PSU.active AND 
+	THEN 
+		AllChargers_Active := TRUE;
+	ELSE 
+		AllChargers_Active := FALSE;
+END_IF;
+*)
+
+IF (Devices.Coil[1].PSU1_DCOK = TRUE OR Devices.Coil[1].CoilEnabled = FALSE) AND
+	(Devices.Coil[2].PSU1_DCOK = TRUE OR Devices.Coil[2].CoilEnabled = FALSE) (*AND Coil3.PSU.active*) AND
+	MCP_IO.PSU1_DCOK = TRUE
+	THEN 
+		Permissives_DB.AlldcPSUok := TRUE;
+	ELSE 
+		Permissives_DB.AlldcPSUok := FALSE;
+END_IF;
+
+//Charger Enabled Status
+IF (Devices.Coil[1].ChargerIsEnabled = TRUE OR Devices.Coil[1].CoilEnabled = FALSE) AND
+	(Devices.Coil[2].ChargerIsEnabled = TRUE OR Devices.Coil[2].CoilEnabled = FALSE) AND
+	(Devices.Coil[3].ChargerIsEnabled = TRUE OR Devices.Coil[3].CoilEnabled = FALSE) AND
+	(Devices.Coil[4].ChargerIsEnabled = TRUE OR Devices.Coil[4].CoilEnabled = FALSE) AND
+	(Devices.Coil[5].ChargerIsEnabled = TRUE OR Devices.Coil[5].CoilEnabled = FALSE) AND
+	(Devices.Coil[6].ChargerIsEnabled = TRUE OR Devices.Coil[6].CoilEnabled = FALSE) AND
+	(Devices.Coil[7].ChargerIsEnabled = TRUE OR Devices.Coil[7].CoilEnabled = FALSE) AND	
+	(Devices.Coil[8].ChargerIsEnabled = TRUE OR Devices.Coil[8].CoilEnabled = FALSE) AND
+	(Devices.Coil[9].ChargerIsEnabled = TRUE OR Devices.Coil[9].CoilEnabled = FALSE) AND
+	(Devices.Coil[10].ChargerIsEnabled = TRUE OR Devices.Coil[10].CoilEnabled = FALSE) 
+	THEN 
+		Permissives_DB.AllChargerEnabled := TRUE;
+	ELSE 
+		Permissives_DB.AllChargerEnabled := FALSE;
+END_IF
+
+//???? need more work
+IF ((Devices.Coil[1].chargerSetpoint >= Setpoints.Coil[1].RecipeLocal.chargerSetpoint) OR Devices.Coil[1].CoilEnabled = FALSE) AND
+	((Devices.Coil[2].chargerSetpoint >= Setpoints.Coil[2].RecipeLocal.chargerSetpoint) OR Devices.Coil[2].CoilEnabled = FALSE) AND 
+	((Devices.Coil[3].chargerSetpoint >= Setpoints.Coil[3].RecipeLocal.chargerSetpoint) OR Devices.Coil[3].CoilEnabled = FALSE) AND
+	((Devices.Coil[4].chargerSetpoint >= Setpoints.Coil[4].RecipeLocal.chargerSetpoint) OR Devices.Coil[4].CoilEnabled = FALSE) AND
+	((Devices.Coil[5].chargerSetpoint >= Setpoints.Coil[5].RecipeLocal.chargerSetpoint) OR Devices.Coil[5].CoilEnabled = FALSE) AND
+	((Devices.Coil[6].chargerSetpoint >= Setpoints.Coil[6].RecipeLocal.chargerSetpoint) OR Devices.Coil[6].CoilEnabled = FALSE) AND
+	((Devices.Coil[7].chargerSetpoint >= Setpoints.Coil[7].RecipeLocal.chargerSetpoint) OR Devices.Coil[7].CoilEnabled = FALSE) AND
+	((Devices.Coil[8].chargerSetpoint >= Setpoints.Coil[8].RecipeLocal.chargerSetpoint) OR Devices.Coil[8].CoilEnabled = FALSE) AND
+	((Devices.Coil[9].chargerSetpoint >= Setpoints.Coil[9].RecipeLocal.chargerSetpoint) OR Devices.Coil[9].CoilEnabled = FALSE) AND
+	((Devices.Coil[10].chargerSetpoint >= Setpoints.Coil[10].RecipeLocal.chargerSetpoint) OR Devices.Coil[10].CoilEnabled = FALSE)
+	THEN
+		GVL.AllChargerReadywithSP := TRUE;
+	ELSE
+		GVL.AllChargerReadywithSP := FALSE;
+END_IF;
+
+//check to see if all cap voltage ready to shoot
+FOR i := 1 TO 10 BY 1 DO
+		IF ((Devices.Coil[i].CapVoltage[1] >= Devices.Coil[i].chargerSetpoint) AND
+			(Devices.Coil[i].CapVoltage[2] >= Devices.Coil[i].chargerSetpoint) AND
+			(Devices.Coil[i].CapVoltage[3] >= Devices.Coil[i].chargerSetpoint) AND
+			(Devices.Coil[i].CapVoltage[4] >= Devices.Coil[i].chargerSetpoint) AND
+			(Devices.Coil[i].CapVoltage[5] >= Devices.Coil[i].chargerSetpoint) AND
+			(Devices.Coil[i].CapVoltage[6] >= Devices.Coil[i].chargerSetpoint) AND
+			(Devices.Coil[i].CapVoltage[7] >= Devices.Coil[i].chargerSetpoint) AND
+			(Devices.Coil[i].CapVoltage[8] >= Devices.Coil[i].chargerSetpoint) AND
+			(Devices.Coil[i].CapVoltage[9] >= Devices.Coil[i].chargerSetpoint) AND
+			(Devices.Coil[i].CapVoltage[10] >= Devices.Coil[i].chargerSetpoint)) OR 
+			Devices.Coil[i].CoilEnabled = FALSE
+		THEN
+			Devices.Coil[i].AllCapsCharged := TRUE;
+	END_IF
+END_FOR;
+//check to see if all coils are charged
+IF Devices.Coil[1].AllCapsCharged = TRUE AND 
+	Devices.Coil[2].AllCapsCharged = TRUE AND 
+	Devices.Coil[3].AllCapsCharged = TRUE AND 
+	Devices.Coil[4].AllCapsCharged = TRUE AND 
+	Devices.Coil[5].AllCapsCharged = TRUE AND 
+	Devices.Coil[6].AllCapsCharged = TRUE AND 
+	Devices.Coil[7].AllCapsCharged = TRUE AND 
+	Devices.Coil[8].AllCapsCharged = TRUE AND 
+	Devices.Coil[9].AllCapsCharged = TRUE AND 
+	Devices.Coil[10].AllCapsCharged = TRUE 
+THEN 
+	Permissives_DB.AllCoilCapsCharged := TRUE;
+ELSE
+	Permissives_DB.AllCoilCapsCharged := FALSE;	
+END_IF
+
+//check to see if all cap voltage drops to 1
+IF ((Devices.Coil[i].CapVoltage[1] <= 1) AND
+	(Devices.Coil[i].CapVoltage[2] <= 1) AND
+	(Devices.Coil[i].CapVoltage[3] <= 1) AND
+	(Devices.Coil[i].CapVoltage[4] <= 1) AND
+	(Devices.Coil[i].CapVoltage[5] <= 1) AND
+	(Devices.Coil[i].CapVoltage[6] <= 1) AND
+	(Devices.Coil[i].CapVoltage[7] <= 1) AND
+	(Devices.Coil[i].CapVoltage[8] <= 1) AND
+	(Devices.Coil[i].CapVoltage[9] <= 1) AND
+	(Devices.Coil[i].CapVoltage[10] <= 1)) OR 
+	Devices.Coil[i].CoilEnabled = FALSE
+THEN
+	Devices.Coil[i].AllCapsCharged := FALSE;
+END_IF;
+
+
+
+//Charger Relay
+IF Devices.Coil[1].ChargeRelay_closed = FALSE AND
+	Devices.Coil[2].ChargeRelay_closed = FALSE 
+	//coil n
+	THEN
+		Permissives_DB.AllChargerRelay_Closed := TRUE;
+	ELSE 
+		Permissives_DB.AllChargerRelay_Closed := FALSE;
+END_IF
+
+	
+//Dump Relay Status
+(* obsolete - use the one at the bottom
+IF ((Devices.Coil[1].DumpRelay1_closed = FALSE AND Devices.Coil[1].DumpRelay2_closed = FALSE) OR Devices.Coil[1].CoilEnabled = FALSE) AND
+	((Devices.Coil[2].DumpRelay1_closed = FALSE AND Devices.Coil[2].DumpRelay2_closed = FALSE) OR Devices.Coil[2].CoilEnabled = FALSE) AND
+	((Devices.Coil[3].DumpRelay1_closed = FALSE AND Devices.Coil[3].DumpRelay2_closed = FALSE) OR Devices.Coil[3].CoilEnabled = FALSE) AND
+	((Devices.Coil[4].DumpRelay1_closed = FALSE AND Devices.Coil[4].DumpRelay2_closed = FALSE) OR Devices.Coil[4].CoilEnabled = FALSE) AND
+	((Devices.Coil[5].DumpRelay1_closed = FALSE AND Devices.Coil[5].DumpRelay2_closed = FALSE) OR Devices.Coil[5].CoilEnabled = FALSE) AND
+	((Devices.Coil[6].DumpRelay1_closed = FALSE AND Devices.Coil[6].DumpRelay2_closed = FALSE) OR Devices.Coil[6].CoilEnabled = FALSE) AND
+	((Devices.Coil[7].DumpRelay1_closed = FALSE AND Devices.Coil[7].DumpRelay2_closed = FALSE) OR Devices.Coil[7].CoilEnabled = FALSE) AND
+	((Devices.Coil[8].DumpRelay1_closed = FALSE AND Devices.Coil[8].DumpRelay2_closed = FALSE) OR Devices.Coil[8].CoilEnabled = FALSE) AND
+	((Devices.Coil[9].DumpRelay1_closed = FALSE AND Devices.Coil[9].DumpRelay2_closed = FALSE) OR Devices.Coil[9].CoilEnabled = FALSE) AND
+	((Devices.Coil[10].DumpRelay1_closed = FALSE AND Devices.Coil[10].DumpRelay2_closed = FALSE) OR Devices.Coil[10].CoilEnabled = FALSE)
+
+	THEN
+		AllDumpRelayOpen := TRUE;
+		ELSE 
+			AllDumpRelayOpen := FALSE;
+END_IF;
+*)	
+IF ((Devices.Coil[1].DumpRelay1_closed = TRUE AND Devices.Coil[1].DumpRelay2_closed = TRUE) OR Devices.Coil[1].CoilEnabled = FALSE) AND
+	((Devices.Coil[2].DumpRelay1_closed = TRUE AND Devices.Coil[2].DumpRelay2_closed = TRUE) OR Devices.Coil[2].CoilEnabled = FALSE) AND
+	((Devices.Coil[3].DumpRelay1_closed = TRUE AND Devices.Coil[3].DumpRelay2_closed = TRUE) OR Devices.Coil[3].CoilEnabled = FALSE) AND
+	((Devices.Coil[4].DumpRelay1_closed = TRUE AND Devices.Coil[4].DumpRelay2_closed = TRUE) OR Devices.Coil[4].CoilEnabled = FALSE) AND
+	((Devices.Coil[5].DumpRelay1_closed = TRUE AND Devices.Coil[5].DumpRelay2_closed = TRUE) OR Devices.Coil[5].CoilEnabled = FALSE) AND
+	((Devices.Coil[6].DumpRelay1_closed = TRUE AND Devices.Coil[6].DumpRelay2_closed = TRUE) OR Devices.Coil[6].CoilEnabled = FALSE) AND
+	((Devices.Coil[7].DumpRelay1_closed = TRUE AND Devices.Coil[7].DumpRelay2_closed = TRUE) OR Devices.Coil[7].CoilEnabled = FALSE) AND
+	((Devices.Coil[8].DumpRelay1_closed = TRUE AND Devices.Coil[8].DumpRelay2_closed = TRUE) OR Devices.Coil[8].CoilEnabled = FALSE) AND
+	((Devices.Coil[9].DumpRelay1_closed = TRUE AND Devices.Coil[9].DumpRelay2_closed = TRUE) OR Devices.Coil[9].CoilEnabled = FALSE) AND
+	((Devices.Coil[10].DumpRelay1_closed = TRUE AND Devices.Coil[10].DumpRelay2_closed = TRUE) OR Devices.Coil[10].CoilEnabled = FALSE) 
+	THEN
+		Permissives_DB.AllDumpRelayOpen := FALSE;
+		ELSE
+			Permissives_DB.AllDumpRelayOpen := TRUE;;
+END_IF;
+
+//any pneumatic pressure loss
+FOR i := 1 TO 10 BY 1 DO
+	IF Devices.Coil[i].LossPneumaticPressure = FALSE THEN
+		Permissives_DB.NoPneumaticPressureLoss := TRUE;
+		ELSE 
+			Permissives_DB.NoPneumaticPressureLoss := FALSE;
+	END_IF
+END_FOR
+
+//When disable a coil, ignore the permissives of it
+IF Permissives_DB.AnyCoilDisabled = TRUE THEN
+	FOR i := 1 TO 10 BY 1 DO
+		IF Devices.Coil[i].CoilEnabled = FALSE THEN
+			Devices.Coil[i].SystemReady := TRUE;
+			Devices.Coil[i].PSU0_active := TRUE;
+			Devices.Coil[i].Local_StopPB_Pressed := FALSE;
+			Devices.Coil[i].FlybackD1_Alive := TRUE;
+			Devices.Coil[i].FlybackD2_Alive := TRUE;
+			Devices.Coil[i].DumpResistorTemperatureHigh := FALSE;
+			Devices.Coil[i].GroundLoopCurrentDetected := FALSE;
+			Devices.Coil[i].CoilTemperatureHigh := FALSE;
+			Devices.Coil[i].LossPneumaticPressure := FALSE;
+			ELSE
+				Devices.Coil[i].SystemReady := FALSE;
+		END_IF;
+	END_FOR;
+END_IF;	
+
+
+//TURN OFF the outputs of the coil when it is disabled
+IF Permissives_DB.AnyCoilDisabled = TRUE THEN
+	FOR i := 1 TO 10 BY 1 DO
+		IF Devices.Coil[i].CoilEnabled = TRUE THEN
+			Devices.Coil[i].CloseACInterlockRly := FALSE;
+			Devices.Coil[i].OpenDumpRelays := FALSE;
+			Devices.Coil[i].closeChargeRelay := FALSE;
+		END_IF;
+	END_FOR;
+END_IF;
+
+//*******************************************************************//	
+//Charge Permissives
+IF (Permissives_DB.SafetyOK = TRUE OR HMI_DB.SafetyOK) AND (Permissives_DB.AllDumpRelayOpen = TRUE OR HMI_DB.AllDumpRelaysOpen  = TRUE) AND (Trips_DB.InstrumentationFaulted = FALSE OR HMI_DB.IntrumentationFaulted = FALSE) THEN 
+	Permissives_DB.ChargePermOK := TRUE;	
+	ELSE Permissives_DB.ChargePermOK := FALSE;	
+END_IF;
+
+
+//Shoot Permissives
+IF Permissives_DB.SafetyOK = TRUE AND (Permissives_DB.AlldcPSUok = FALSE OR HMI_DB.AllChargesAreActive = FALSE) AND (Permissives_DB.AllDumpRelayOpen = TRUE OR HMI_DB.AllDumpRelaysOpen = TRUE) THEN
+	Permissives_DB.ShootPermOK := TRUE;
+	ELSE Permissives_DB.ShootPermOK := FALSE;
+END_IF;
+
+//sending permissives to Main PLC (screen room)
+stPermissives.All_Coil_TemperatureOK := Permissives_DB.All_Coil_TemperatureOK;
+stPermissives.AllacInterlock_Closed := Permissives_DB.AllacInterlock_Closed;
+stPermissives.AllChargerEnabled := Permissives_DB.AllChargerEnabled;
+stPermissives.AllChargerRelay_Closed := Permissives_DB.AllChargerRelay_Closed;
+stPermissives.AlldcPSUok := Permissives_DB.AlldcPSUok;
+stPermissives.AllDumpRelayOpen := Permissives_DB.AllDumpRelayOpen;
+stPermissives.AllDumpResistorTempOK := Permissives_DB.AllDumpResistorTempOK;
+//stPermissives.AllFlybackDiodes_Alive := AllFylbackDiodes_Alive;
+stPermissives.AnyCoilDisabled := Permissives_DB.AnyCoilDisabled;
+stPermissives.ChargePermOK := Permissives_DB.ChargePermOK;
+stPermissives.NoGroundLoopCurrentDetected := Permissives_DB.NoGroundLoopCurrentDetected;
+stPermissives.SafetyOK := Permissives_DB.SafetyOK;
+stPermissives.ShootPermOK := Permissives_DB.ShootPermOK;
+stPermissives.AdminFaultBypassOn := AdminFaultBypassOn;
+
+
+IF i > 10 THEN
+	i := 1;
+END_IF;
+
+IF j > 10 THEN
+	j := 1;
+END_IF;
+]]></ST>
+    </Implementation>
+    <LineIds Name="Permissives">
+      <LineId Id="790" Count="0" />
+      <LineId Id="817" Count="0" />
+      <LineId Id="791" Count="0" />
+      <LineId Id="402" Count="0" />
+      <LineId Id="396" Count="0" />
+      <LineId Id="404" Count="0" />
+      <LineId Id="406" Count="7" />
+      <LineId Id="403" Count="0" />
+      <LineId Id="397" Count="2" />
+      <LineId Id="394" Count="1" />
+      <LineId Id="329" Count="1" />
+      <LineId Id="250" Count="0" />
+      <LineId Id="331" Count="0" />
+      <LineId Id="333" Count="8" />
+      <LineId Id="372" Count="0" />
+      <LineId Id="343" Count="0" />
+      <LineId Id="389" Count="1" />
+      <LineId Id="332" Count="0" />
+      <LineId Id="378" Count="0" />
+      <LineId Id="401" Count="0" />
+      <LineId Id="251" Count="0" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="54" Count="0" />
+      <LineId Id="45" Count="0" />
+      <LineId Id="48" Count="0" />
+      <LineId Id="460" Count="0" />
+      <LineId Id="55" Count="0" />
+      <LineId Id="461" Count="4" />
+      <LineId Id="469" Count="0" />
+      <LineId Id="467" Count="1" />
+      <LineId Id="108" Count="0" />
+      <LineId Id="157" Count="0" />
+      <LineId Id="188" Count="0" />
+      <LineId Id="49" Count="0" />
+      <LineId Id="46" Count="1" />
+      <LineId Id="56" Count="0" />
+      <LineId Id="61" Count="0" />
+      <LineId Id="189" Count="0" />
+      <LineId Id="107" Count="0" />
+      <LineId Id="160" Count="0" />
+      <LineId Id="190" Count="0" />
+      <LineId Id="62" Count="0" />
+      <LineId Id="72" Count="0" />
+      <LineId Id="44" Count="0" />
+      <LineId Id="57" Count="0" />
+      <LineId Id="67" Count="0" />
+      <LineId Id="191" Count="0" />
+      <LineId Id="106" Count="0" />
+      <LineId Id="161" Count="0" />
+      <LineId Id="192" Count="0" />
+      <LineId Id="68" Count="0" />
+      <LineId Id="58" Count="1" />
+      <LineId Id="73" Count="1" />
+      <LineId Id="193" Count="0" />
+      <LineId Id="76" Count="0" />
+      <LineId Id="162" Count="0" />
+      <LineId Id="194" Count="0" />
+      <LineId Id="75" Count="0" />
+      <LineId Id="81" Count="2" />
+      <LineId Id="86" Count="0" />
+      <LineId Id="208" Count="0" />
+      <LineId Id="88" Count="0" />
+      <LineId Id="163" Count="0" />
+      <LineId Id="196" Count="0" />
+      <LineId Id="85" Count="0" />
+      <LineId Id="60" Count="0" />
+      <LineId Id="92" Count="0" />
+      <LineId Id="102" Count="2" />
+      <LineId Id="574" Count="0" />
+      <LineId Id="839" Count="0" />
+      <LineId Id="575" Count="1" />
+      <LineId Id="209" Count="0" />
+      <LineId Id="669" Count="0" />
+      <LineId Id="228" Count="0" />
+      <LineId Id="197" Count="0" />
+      <LineId Id="110" Count="0" />
+      <LineId Id="156" Count="0" />
+      <LineId Id="198" Count="0" />
+      <LineId Id="98" Count="0" />
+      <LineId Id="80" Count="0" />
+      <LineId Id="43" Count="0" />
+      <LineId Id="622" Count="0" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="28" Count="1" />
+      <LineId Id="148" Count="1" />
+      <LineId Id="164" Count="0" />
+      <LineId Id="199" Count="0" />
+      <LineId Id="42" Count="0" />
+      <LineId Id="152" Count="0" />
+      <LineId Id="655" Count="2" />
+      <LineId Id="663" Count="0" />
+      <LineId Id="659" Count="3" />
+      <LineId Id="654" Count="0" />
+      <LineId Id="653" Count="0" />
+      <LineId Id="141" Count="1" />
+      <LineId Id="144" Count="0" />
+      <LineId Id="583" Count="7" />
+      <LineId Id="147" Count="0" />
+      <LineId Id="150" Count="0" />
+      <LineId Id="165" Count="0" />
+      <LineId Id="200" Count="0" />
+      <LineId Id="145" Count="0" />
+      <LineId Id="840" Count="0" />
+      <LineId Id="140" Count="0" />
+      <LineId Id="843" Count="13" />
+      <LineId Id="842" Count="0" />
+      <LineId Id="841" Count="0" />
+      <LineId Id="695" Count="0" />
+      <LineId Id="714" Count="0" />
+      <LineId Id="697" Count="0" />
+      <LineId Id="699" Count="0" />
+      <LineId Id="701" Count="7" />
+      <LineId Id="721" Count="0" />
+      <LineId Id="709" Count="0" />
+      <LineId Id="713" Count="0" />
+      <LineId Id="700" Count="0" />
+      <LineId Id="696" Count="0" />
+      <LineId Id="722" Count="0" />
+      <LineId Id="720" Count="0" />
+      <LineId Id="723" Count="0" />
+      <LineId Id="726" Count="8" />
+      <LineId Id="725" Count="0" />
+      <LineId Id="736" Count="1" />
+      <LineId Id="724" Count="0" />
+      <LineId Id="740" Count="1" />
+      <LineId Id="743" Count="0" />
+      <LineId Id="753" Count="9" />
+      <LineId Id="742" Count="0" />
+      <LineId Id="719" Count="0" />
+      <LineId Id="763" Count="0" />
+      <LineId Id="765" Count="0" />
+      <LineId Id="764" Count="0" />
+      <LineId Id="129" Count="0" />
+      <LineId Id="128" Count="0" />
+      <LineId Id="131" Count="1" />
+      <LineId Id="203" Count="0" />
+      <LineId Id="201" Count="0" />
+      <LineId Id="136" Count="0" />
+      <LineId Id="166" Count="0" />
+      <LineId Id="202" Count="0" />
+      <LineId Id="133" Count="0" />
+      <LineId Id="138" Count="0" />
+      <LineId Id="38" Count="0" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="499" Count="0" />
+      <LineId Id="503" Count="1" />
+      <LineId Id="507" Count="7" />
+      <LineId Id="505" Count="1" />
+      <LineId Id="500" Count="0" />
+      <LineId Id="547" Count="1" />
+      <LineId Id="550" Count="0" />
+      <LineId Id="501" Count="0" />
+      <LineId Id="551" Count="0" />
+      <LineId Id="537" Count="7" />
+      <LineId Id="535" Count="0" />
+      <LineId Id="502" Count="0" />
+      <LineId Id="545" Count="0" />
+      <LineId Id="552" Count="1" />
+      <LineId Id="122" Count="0" />
+      <LineId Id="818" Count="2" />
+      <LineId Id="822" Count="0" />
+      <LineId Id="825" Count="0" />
+      <LineId Id="827" Count="1" />
+      <LineId Id="826" Count="0" />
+      <LineId Id="823" Count="0" />
+      <LineId Id="414" Count="0" />
+      <LineId Id="417" Count="4" />
+      <LineId Id="452" Count="7" />
+      <LineId Id="422" Count="0" />
+      <LineId Id="470" Count="0" />
+      <LineId Id="424" Count="1" />
+      <LineId Id="415" Count="0" />
+      <LineId Id="619" Count="1" />
+      <LineId Id="611" Count="0" />
+      <LineId Id="416" Count="0" />
+      <LineId Id="612" Count="0" />
+      <LineId Id="614" Count="0" />
+      <LineId Id="616" Count="0" />
+      <LineId Id="618" Count="0" />
+      <LineId Id="621" Count="0" />
+      <LineId Id="617" Count="0" />
+      <LineId Id="615" Count="0" />
+      <LineId Id="613" Count="0" />
+      <LineId Id="153" Count="0" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="118" Count="0" />
+      <LineId Id="168" Count="0" />
+      <LineId Id="117" Count="0" />
+      <LineId Id="10" Count="1" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="154" Count="0" />
+      <LineId Id="169" Count="0" />
+      <LineId Id="155" Count="0" />
+      <LineId Id="643" Count="1" />
+      <LineId Id="646" Count="0" />
+      <LineId Id="648" Count="3" />
+      <LineId Id="665" Count="1" />
+      <LineId Id="668" Count="0" />
+      <LineId Id="667" Count="0" />
+      <LineId Id="670" Count="3" />
+      <LineId Id="792" Count="0" />
+      <LineId Id="652" Count="0" />
+      <LineId Id="345" Count="1" />
+      <LineId Id="17" Count="1" />
+      <LineId Id="716" Count="2" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="16" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

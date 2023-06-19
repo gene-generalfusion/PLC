@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <GVL Name="Output" Id="{43c44948-a042-4d4b-b02b-4b218e878c9f}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+//LCP 1	
+	//EL2502 - PWM Output
+	R2_02_00 AT %Q*: INT;
+	R2_02_01 AT %Q*: INT;
+	
+	// EL 2008 - DQ
+	R2_05_00 AT %Q*: BOOL;
+	R2_05_01 AT %Q*: BOOL;
+	R2_05_02 AT %Q*: BOOL;
+	R2_05_03 AT %Q*: BOOL;
+	R2_05_04 AT %Q*: BOOL;
+	R2_05_05 AT %Q*: BOOL;
+	R2_05_06 AT %Q*: BOOL;
+	R2_05_07 AT %Q*: BOOL; //spare
+	
+	R2_06_CANrequest AT %Q*: EXTCANQUEUE;
+//LCP 2	***********************************************
+	//EL2502 - PWM Output
+	R3_02_00 AT %Q*: INT;
+	R3_02_01 AT %Q*: INT;
+	
+	// EL 2008 - DQ
+	R3_05_00 AT %Q*: BOOL;
+	R3_05_01 AT %Q*: BOOL;
+	R3_05_02 AT %Q*: BOOL;
+	R3_05_03 AT %Q*: BOOL;
+	R3_05_04 AT %Q*: BOOL;
+	R3_05_05 AT %Q*: BOOL;
+	R3_05_06 AT %Q*: BOOL;
+	R3_05_07 AT %Q*: BOOL; //spare
+	
+	R3_06_CANrequest AT %Q*: EXTCANQUEUE;	
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

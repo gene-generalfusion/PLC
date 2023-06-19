@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <GVL Name="Tx_Config" Id="{43ee2fda-a0c2-407c-8552-65fdcc67dcf5}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	CoilSP : ARRAY[1..10] OF ST_Setpoints;
+	
+	ReadyToChargeRunOutTime	: REAL;
+	ChargingRunOutTime		: REAL;
+	ChargePausedRunOutTime	: REAL;
+	ReadyToShootRunOutTime	: REAL;				
+	ShootingRunOutTime		: REAL;
+	PostShotRunOutTime		: REAL;
+	DumpingRunOutTime		: REAL;
+	CoilInst				: ARRAY[1..10] OF ST_InstFeedback;
+	
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

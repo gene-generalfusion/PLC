@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="ST_SysParameters" Id="{32d94ea9-bd5b-4a73-95b7-81db8d2c29ce}">
+    <Declaration><![CDATA[TYPE ST_SysParameters :
+STRUCT
+	NumOfCaps				: INT := 2;
+	Direction				: STRING[1] :='0';
+	NumOfTurns				: INT := 0;
+	DriverMapping			: STRING[10] := '0';
+	MaxVoltagePerCap		: INT := 0;
+	MaxVoltageTotal 		: INT := 0;
+	CapacitancePerCap		: INT := 88;
+	TotalCapacitance		: REAL := 0.0;
+	TotalCircuitResistance	: REAL := 0.0;
+	//TriggerTime				: INT := 0;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

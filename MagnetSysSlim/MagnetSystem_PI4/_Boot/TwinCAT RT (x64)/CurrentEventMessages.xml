@@ -1,0 +1,543 @@
+<?xml version="1.0"?>
+<TcEventSources Version="2">
+	<Source>
+		<GUID>{12D4E68C-23D0-4828-96DB-E58EAA58AD88}</GUID>
+		<Name LcId="1033">Alarms</Name>
+		<Event>
+			<Id>999</Id>
+			<Message LcId="1033">Instrumentation Fault</Message>
+		</Event>
+		<Event>
+			<Id>998</Id>
+			<Message LcId="1033">Control System Tripped</Message>
+		</Event>
+		<Event>
+			<Id>0</Id>
+			<Message LcId="1033">Coil 1 AI 1 Under Voltage</Message>
+		</Event>
+		<Event>
+			<Id>1</Id>
+			<Message LcId="1033">Coil 1 AI 1 Over Voltage</Message>
+		</Event>
+		<Event>
+			<Id>2</Id>
+			<Message LcId="1033">Coil 1 AI 1 Value smaller/equal Limit1</Message>
+		</Event>
+		<Event>
+			<Id>3</Id>
+			<Message LcId="1033">Coil 1 AI 1 Under Voltage</Message>
+		</Event>
+		<Event>
+			<Id>4</Id>
+			<Message LcId="1033">Coil 1 AI 2 Over Voltage</Message>
+		</Event>
+		<Event>
+			<Id>5</Id>
+			<Message LcId="1033">Coil 1 AI 2 Over Voltage</Message>
+		</Event>
+		<Event>
+			<Id>6</Id>
+			<Message LcId="1033">Coil 1 AI 2 Value smaller/equal Limit1</Message>
+		</Event>
+		<Event>
+			<Id>7</Id>
+			<Message LcId="1033">Coil 1 AI 2 Value bigger/equal Limit1</Message>
+		</Event>
+		<Event>
+			<Id>8</Id>
+			<Message LcId="1033">Coil 1 AI 3 Under Voltage</Message>
+		</Event>
+		<Event>
+			<Id>9</Id>
+			<Message LcId="1033">Coil 1 AI 3 Over Voltage</Message>
+		</Event>
+		<Event>
+			<Id>10</Id>
+			<Message LcId="1033">Coil 1 AI 3 Value smaller/equal Limit1</Message>
+		</Event>
+		<Event>
+			<Id>11</Id>
+			<Message LcId="1033">Coil 1 AI 3 Value bigger/equal Limit1</Message>
+		</Event>
+		<Event>
+			<Id>12</Id>
+			<Message LcId="1033">Coil 1 Charger Voltage Reading Faulted</Message>
+		</Event>
+		<Event>
+			<Id>13</Id>
+			<Message LcId="1033">Coil 1 Current Reading Faulted</Message>
+		</Event>
+		<Event>
+			<Id>14</Id>
+			<Message LcId="1033">Coil 1 Bfield Reading Faulted</Message>
+		</Event>
+	</Source>
+	<Source>
+		<GUID>{4C49288A-38C6-49BB-BC1D-8226D13E9C58}</GUID>
+		<Name LcId="1033">Alarms</Name>
+		<Event>
+			<Id>160</Id>
+			<Message LcId="1033">Coil 1 Interlock Relay Open</Message>
+		</Event>
+		<Event>
+			<Id>161</Id>
+			<Message LcId="1033">Coil 2 Interlock Relay Open</Message>
+		</Event>
+		<Event>
+			<Id>162</Id>
+			<Message LcId="1033">Coil 3 Interlock Relay Open</Message>
+		</Event>
+		<Event>
+			<Id>163</Id>
+			<Message LcId="1033">Coil 4 Interlock Relay Open</Message>
+		</Event>
+		<Event>
+			<Id>164</Id>
+			<Message LcId="1033">Coil 5 Interlock Relay Open</Message>
+		</Event>
+		<Event>
+			<Id>165</Id>
+			<Message LcId="1033">Coil 6 Interlock Relay Open</Message>
+		</Event>
+		<Event>
+			<Id>166</Id>
+			<Message LcId="1033">Coil 7 Interlock Relay Open</Message>
+		</Event>
+		<Event>
+			<Id>167</Id>
+			<Message LcId="1033">Coil 8 Interlock Relay Open</Message>
+		</Event>
+		<Event>
+			<Id>168</Id>
+			<Message LcId="1033">Coil 9 Interlock Relay Open</Message>
+		</Event>
+		<Event>
+			<Id>169</Id>
+			<Message LcId="1033">Coil 10 Interlock Relay Open</Message>
+		</Event>
+		<Event>
+			<Id>170</Id>
+			<Message LcId="1033">All Interlock Open</Message>
+		</Event>
+	</Source>
+	<Source>
+		<GUID>{DDA2B39D-A740-4013-80FD-087906D18786}</GUID>
+		<Name LcId="1033">Alarms</Name>
+		<Event>
+			<Id>336</Id>
+			<Message LcId="1033">Master Stop PB is Pressed</Message>
+		</Event>
+		<Event>
+			<Id>337</Id>
+			<Message LcId="1033">Coil 1 Local E-stop is Pressed</Message>
+		</Event>
+		<Event>
+			<Id>338</Id>
+			<Message LcId="1033">Coil 2 Local E-stop is Pressed</Message>
+		</Event>
+		<Event>
+			<Id>339</Id>
+			<Message LcId="1033">Coil 3 Local E-stop is Pressed</Message>
+		</Event>
+		<Event>
+			<Id>340</Id>
+			<Message LcId="1033">Coil 4 Local E-stop is Pressed</Message>
+		</Event>
+		<Event>
+			<Id>341</Id>
+			<Message LcId="1033">Coil 5 Local E-stop is Pressed</Message>
+		</Event>
+		<Event>
+			<Id>342</Id>
+			<Message LcId="1033">Coil 6 Local E-stop is Pressed</Message>
+		</Event>
+		<Event>
+			<Id>343</Id>
+			<Message LcId="1033">Coil 7 Local E-stop is Pressed</Message>
+		</Event>
+		<Event>
+			<Id>344</Id>
+			<Message LcId="1033">Coil 8 Local E-stop is Pressed</Message>
+		</Event>
+		<Event>
+			<Id>345</Id>
+			<Message LcId="1033">Coil 9 Local E-stop is Pressed</Message>
+		</Event>
+		<Event>
+			<Id>346</Id>
+			<Message LcId="1033">Coil 10 Local E-stop is Pressed</Message>
+		</Event>
+		<Event>
+			<Id>347</Id>
+			<Message LcId="1033">Manual Mode Selected</Message>
+		</Event>
+		<Event>
+			<Id>348</Id>
+			<Message LcId="1033">Cage E-Stop Circuit not OK</Message>
+		</Event>
+	</Source>
+	<Source>
+		<GUID>{66CD71F3-1B5A-46D0-A4D6-89592EFF66B6}</GUID>
+		<Name LcId="1033">Alarms</Name>
+		<Event>
+			<Id>352</Id>
+			<Message LcId="1033">FOT - Coil 1 Charge Relay Failed to Close</Message>
+		</Event>
+		<Event>
+			<Id>353</Id>
+			<Message LcId="1033">FOT - Coil 1 Charge Relay Failed to Open</Message>
+		</Event>
+		<Event>
+			<Id>354</Id>
+			<Message LcId="1033">FOT - Coil 2 Charge Relay Failed to Close</Message>
+		</Event>
+		<Event>
+			<Id>355</Id>
+			<Message LcId="1033">FOT - Coil 2 Charge Relay Failed to Open</Message>
+		</Event>
+		<Event>
+			<Id>356</Id>
+			<Message LcId="1033">FOT - Coil 3 Charge Relay Failed to Close</Message>
+		</Event>
+		<Event>
+			<Id>357</Id>
+			<Message LcId="1033">FOT - Coil 3 Charge Relay Failed to Open</Message>
+		</Event>
+		<Event>
+			<Id>358</Id>
+			<Message LcId="1033">FOT - Coil 4 Charge Relay Failed to Close</Message>
+		</Event>
+		<Event>
+			<Id>359</Id>
+			<Message LcId="1033">FOT - Coil 4 Charge Relay Failed to Open</Message>
+		</Event>
+		<Event>
+			<Id>360</Id>
+			<Message LcId="1033">FOT - Coil 5 Charge Relay Failed to Close</Message>
+		</Event>
+		<Event>
+			<Id>361</Id>
+			<Message LcId="1033">FOT - Coil 5 Charge Relay Failed to Open</Message>
+		</Event>
+		<Event>
+			<Id>362</Id>
+			<Message LcId="1033">FOT - Coil 6 Charge Relay Failed to Close</Message>
+		</Event>
+		<Event>
+			<Id>363</Id>
+			<Message LcId="1033">FOT - Coil 6 Charge Relay Failed to Open</Message>
+		</Event>
+		<Event>
+			<Id>364</Id>
+			<Message LcId="1033">FOT - Coil 7 Charge Relay Failed to Close</Message>
+		</Event>
+		<Event>
+			<Id>365</Id>
+			<Message LcId="1033">FOT - Coil 7 Charge Relay Failed to Open</Message>
+		</Event>
+		<Event>
+			<Id>366</Id>
+			<Message LcId="1033">FOT - Coil 8 Charge Relay Failed to Close</Message>
+		</Event>
+		<Event>
+			<Id>367</Id>
+			<Message LcId="1033">FOT - Coil 8 Charge Relay Failed to Open</Message>
+		</Event>
+	</Source>
+	<Source>
+		<GUID>{FEF4C2DD-CEFF-4722-AE98-263AA7C6E771}</GUID>
+		<Name LcId="1033">Alarms</Name>
+		<Event>
+			<Id>368</Id>
+			<Message LcId="1033">FOT - Coil 9 Charge Relay Failed to Close</Message>
+		</Event>
+		<Event>
+			<Id>369</Id>
+			<Message LcId="1033">FOT - Coil 9 Charge Relay Failed to Open</Message>
+		</Event>
+		<Event>
+			<Id>370</Id>
+			<Message LcId="1033">FOT - Coil 10 Charge Relay Failed to Close</Message>
+		</Event>
+		<Event>
+			<Id>371</Id>
+			<Message LcId="1033">FOT - Coil 10 Charge Relay Failed to Open</Message>
+		</Event>
+		<Event>
+			<Id>372</Id>
+			<Message LcId="1033">FOT - Coil 1 AC Interlock Relay Failed to Close</Message>
+		</Event>
+		<Event>
+			<Id>373</Id>
+			<Message LcId="1033">FOT - Coil 1 AC Interlock Relay Failed to Open</Message>
+		</Event>
+		<Event>
+			<Id>374</Id>
+			<Message LcId="1033">FOT - Coil 2 AC Interlock Relay Failed to Close</Message>
+		</Event>
+		<Event>
+			<Id>375</Id>
+			<Message LcId="1033">FOT - Coil 2 AC Interlock Relay Failed to Open</Message>
+		</Event>
+		<Event>
+			<Id>376</Id>
+			<Message LcId="1033">FOT - Coil 3 AC Interlock Relay Failed to Close</Message>
+		</Event>
+		<Event>
+			<Id>377</Id>
+			<Message LcId="1033">FOT - Coil 3 AC Interlock Relay Failed to Open</Message>
+		</Event>
+		<Event>
+			<Id>378</Id>
+			<Message LcId="1033">FOT - Coil 4 AC Interlock Relay Failed to Close</Message>
+		</Event>
+		<Event>
+			<Id>379</Id>
+			<Message LcId="1033">FOT - Coil 4 AC Interlock Relay Failed to Open</Message>
+		</Event>
+		<Event>
+			<Id>380</Id>
+			<Message LcId="1033">FOT - Coil 5 AC Interlock Relay Failed to Close</Message>
+		</Event>
+		<Event>
+			<Id>381</Id>
+			<Message LcId="1033">FOT - Coil 5 AC Interlock Relay Failed to Open</Message>
+		</Event>
+		<Event>
+			<Id>382</Id>
+			<Message LcId="1033">FOT - Coil 6 AC Interlock Relay Failed to Close</Message>
+		</Event>
+		<Event>
+			<Id>383</Id>
+			<Message LcId="1033">FOT - Coil 6 AC Interlock Relay Failed to Open</Message>
+		</Event>
+	</Source>
+	<Source>
+		<GUID>{C1BA6412-9519-4907-AEAA-F10A3E33D3B6}</GUID>
+		<Name LcId="1033">Alarms</Name>
+		<Event>
+			<Id>384</Id>
+			<Message LcId="1033">FOT - Coil 7 AC Interlock Relay Failed to Close</Message>
+		</Event>
+		<Event>
+			<Id>385</Id>
+			<Message LcId="1033">FOT - Coil 7 AC Interlock Relay Failed to Open</Message>
+		</Event>
+		<Event>
+			<Id>386</Id>
+			<Message LcId="1033">FOT - Coil 8 AC Interlock Relay Failed to Close</Message>
+		</Event>
+		<Event>
+			<Id>287</Id>
+			<Message LcId="1033">FOT - Coil 8 AC Interlock Relay Failed to Open</Message>
+		</Event>
+		<Event>
+			<Id>388</Id>
+			<Message LcId="1033">FOT - Coil 9 AC Interlock Relay Failed to Close</Message>
+		</Event>
+		<Event>
+			<Id>389</Id>
+			<Message LcId="1033">FOT - Coil 9 AC Interlock Relay Failed to Open</Message>
+		</Event>
+		<Event>
+			<Id>390</Id>
+			<Message LcId="1033">FOT - Coil 10 AC Interlock Relay Failed to Close</Message>
+		</Event>
+		<Event>
+			<Id>391</Id>
+			<Message LcId="1033">FOT - Coil 10 AC Interlock Relay Failed to Open</Message>
+		</Event>
+		<Event>
+			<Id>392</Id>
+			<Message LcId="1033">FOT - Coil 1 Dump Relay 1 Relay Failed to Close</Message>
+		</Event>
+		<Event>
+			<Id>393</Id>
+			<Message LcId="1033">FOT - Coil 1 Dump Relay 1 Relay Failed to Open</Message>
+		</Event>
+		<Event>
+			<Id>394</Id>
+			<Message LcId="1033">FOT - Coil 2 Dump Relay 1 Relay Failed to Close</Message>
+		</Event>
+		<Event>
+			<Id>395</Id>
+			<Message LcId="1033">FOT - Coil 2 Dump Relay 1 Relay Failed to Open</Message>
+		</Event>
+		<Event>
+			<Id>396</Id>
+			<Message LcId="1033">FOT - Coil 3 Dump Relay 1 Relay Failed to Close</Message>
+		</Event>
+		<Event>
+			<Id>397</Id>
+			<Message LcId="1033">FOT - Coil 3 Dump Relay 1 Relay Failed to Open</Message>
+		</Event>
+		<Event>
+			<Id>398</Id>
+			<Message LcId="1033">FOT - Coil 4 Dump Relay 1 Relay Failed to Close</Message>
+		</Event>
+		<Event>
+			<Id>399</Id>
+			<Message LcId="1033">FOT - Coil 4 Dump Relay 1 Relay Failed to Open</Message>
+		</Event>
+	</Source>
+	<Source>
+		<GUID>{D47BA754-14B1-4C02-9F66-C1254BC480AD}</GUID>
+		<Name LcId="1033">Alarms</Name>
+		<Event>
+			<Id>400</Id>
+			<Message LcId="1033">FOT - Coil 5 Dump Relay 1 Relay Failed to Close</Message>
+		</Event>
+		<Event>
+			<Id>401</Id>
+			<Message LcId="1033">FOT - Coil 5 Dump Relay 1 Relay Failed to Open</Message>
+		</Event>
+		<Event>
+			<Id>402</Id>
+			<Message LcId="1033">FOT - Coil 6 Dump Relay 1 Relay Failed to Close</Message>
+		</Event>
+		<Event>
+			<Id>403</Id>
+			<Message LcId="1033">FOT - Coil 6 Dump Relay 1 Relay Failed to Open</Message>
+		</Event>
+		<Event>
+			<Id>404</Id>
+			<Message LcId="1033">FOT - Coil 7 Dump Relay 1 Relay Failed to Close</Message>
+		</Event>
+		<Event>
+			<Id>405</Id>
+			<Message LcId="1033">FOT - Coil 7 Dump Relay 1 Relay Failed to Open</Message>
+		</Event>
+		<Event>
+			<Id>406</Id>
+			<Message LcId="1033">FOT - Coil 8 Dump Relay 1 Relay Failed to Close</Message>
+		</Event>
+		<Event>
+			<Id>407</Id>
+			<Message LcId="1033">FOT - Coil 8 Dump Relay 1 Relay Failed to Open</Message>
+		</Event>
+		<Event>
+			<Id>408</Id>
+			<Message LcId="1033">FOT - Coil 9 Dump Relay 1 Relay Failed to Close</Message>
+		</Event>
+		<Event>
+			<Id>409</Id>
+			<Message LcId="1033">FOT - Coil 9 Dump Relay 1 Relay Failed to Open</Message>
+		</Event>
+		<Event>
+			<Id>410</Id>
+			<Message LcId="1033">FOT - Coil 10 Dump Relay 1 Relay Failed to Close</Message>
+		</Event>
+		<Event>
+			<Id>411</Id>
+			<Message LcId="1033">FOT - Coil 10 Dump Relay 1 Relay Failed to Open</Message>
+		</Event>
+		<Event>
+			<Id>412</Id>
+			<Message LcId="1033">FOT - Coil 1 Dump Relay 2 Relay Failed to Close</Message>
+		</Event>
+		<Event>
+			<Id>413</Id>
+			<Message LcId="1033">FOT - Coil 1 Dump Relay 2 Relay Failed to Open</Message>
+		</Event>
+		<Event>
+			<Id>414</Id>
+			<Message LcId="1033">FOT - Coil 2 Dump Relay 2 Relay Failed to Close</Message>
+		</Event>
+		<Event>
+			<Id>415</Id>
+			<Message LcId="1033">FOT - Coil 2 Dump Relay 2 Relay Failed to Open</Message>
+		</Event>
+	</Source>
+	<Source>
+		<GUID>{B29661DD-BA3E-4B88-9F0D-EDFFA249764E}</GUID>
+		<Name LcId="1033">Alarms</Name>
+		<Event>
+			<Id>416</Id>
+			<Message LcId="1033">FOT - Coil 3 Dump Relay 2 Relay Failed to Close</Message>
+		</Event>
+		<Event>
+			<Id>417</Id>
+			<Message LcId="1033">FOT - Coil 3 Dump Relay 2 Relay Failed to Open</Message>
+		</Event>
+		<Event>
+			<Id>418</Id>
+			<Message LcId="1033">FOT - Coil 4 Dump Relay 2 Relay Failed to Close</Message>
+		</Event>
+		<Event>
+			<Id>419</Id>
+			<Message LcId="1033">FOT - Coil 4 Dump Relay 2 Relay Failed to Open</Message>
+		</Event>
+		<Event>
+			<Id>420</Id>
+			<Message LcId="1033">FOT - Coil 5 Dump Relay 2 Relay Failed to Close</Message>
+		</Event>
+		<Event>
+			<Id>421</Id>
+			<Message LcId="1033">FOT - Coil 5 Dump Relay 2 Relay Failed to Open</Message>
+		</Event>
+		<Event>
+			<Id>422</Id>
+			<Message LcId="1033">FOT - Coil 6 Dump Relay 2 Relay Failed to Close</Message>
+		</Event>
+		<Event>
+			<Id>423</Id>
+			<Message LcId="1033">FOT - Coil 6 Dump Relay 2 Relay Failed to Open</Message>
+		</Event>
+		<Event>
+			<Id>424</Id>
+			<Message LcId="1033">FOT - Coil 7 Dump Relay 2 Relay Failed to Close</Message>
+		</Event>
+		<Event>
+			<Id>425</Id>
+			<Message LcId="1033">FOT - Coil 7 Dump Relay 2 Relay Failed to Open</Message>
+		</Event>
+		<Event>
+			<Id>426</Id>
+			<Message LcId="1033">FOT - Coil 8 Dump Relay 2 Relay Failed to Close</Message>
+		</Event>
+		<Event>
+			<Id>427</Id>
+			<Message LcId="1033">FOT - Coil 8 Dump Relay 2 Relay Failed to Open</Message>
+		</Event>
+		<Event>
+			<Id>428</Id>
+			<Message LcId="1033">FOT - Coil 9 Dump Relay 2 Relay Failed to Close</Message>
+		</Event>
+		<Event>
+			<Id>429</Id>
+			<Message LcId="1033">FOT - Coil 9 Dump Relay 2 Relay Failed to Open</Message>
+		</Event>
+		<Event>
+			<Id>430</Id>
+			<Message LcId="1033">FOT - Coil 10 Dump Relay 2 Relay Failed to Close</Message>
+		</Event>
+		<Event>
+			<Id>431</Id>
+			<Message LcId="1033">FOT - Coil 10 Dump Relay 2 Relay Failed to Open</Message>
+		</Event>
+	</Source>
+	<Source>
+		<GUID>{7FD75A52-B96A-4BA7-A390-7E0E53E11661}</GUID>
+		<Name LcId="1033">Alarms</Name>
+		<Event>
+			<Id>1392</Id>
+			<Message LcId="1033">FOT - Machine Time Out</Message>
+		</Event>
+		<Event>
+			<Id>1393</Id>
+			<Message LcId="1033">Spare</Message>
+		</Event>
+		<Event>
+			<Id>1394</Id>
+			<Message LcId="1033">spare</Message>
+		</Event>
+		<Event>
+			<Id>1395</Id>
+			<Message LcId="1033">spare</Message>
+		</Event>
+		<Event>
+			<Id>1396</Id>
+			<Message LcId="1033">spare</Message>
+		</Event>
+	</Source>
+</TcEventSources>

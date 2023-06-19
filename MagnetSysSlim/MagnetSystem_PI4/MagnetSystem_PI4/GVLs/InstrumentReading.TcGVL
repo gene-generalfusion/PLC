@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <GVL Name="InstrumentReading" Id="{666695df-69ac-4ec1-8d55-e50ecd0788a4}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	//LCP 1 Instrument reading
+	R2_01_CH00 : REAL;
+	R2_01_CH01 : REAL;
+	R2_01_CH02 : REAL;
+	
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

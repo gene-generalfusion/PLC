@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <GVL Name="Input" Id="{4c9dfc78-dde0-47bb-a8fe-9d550e4bab0d}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+//***MCP
+//EL1008 - DI
+	R1_01_00 AT	%I*: BOOL; //Master stop PB not pressed - black pb on mcp
+	R1_01_01 AT	%I*: BOOL; //case Estop circuit okay (Rly1 (120vac)
+	R1_01_02 AT %I*: BOOL; //Automatic Mode Selected (NO)
+	R1_01_03 AT %I*: BOOL; //24VDC OK
+	R1_01_04 AT %I*: BOOL; //spare
+	R1_01_05 AT %I*: BOOL; //spare
+	R1_01_06 AT %I*: BOOL; //spare
+	R1_01_07 AT %I*: BOOL; //spare
+
+
+//***LCP
+//EL3064 - AI
+	R2_01_00 		AT %I*: INT;
+	R2_01_00_Status AT %I*: WORD;
+	
+	R2_01_01		AT %I*: INT;
+	R2_01_01_Status AT %I*: WORD;
+	
+	R2_01_02 		AT %I*: INT;
+	R2_01_02_Status AT %I*: WORD;
+	
+//EL1008 - DI
+	R2_03_00 AT %I*: BOOL;
+	R2_03_01 AT %I*: BOOL;
+	R2_03_02 AT %I*: BOOL;
+	R2_03_03 AT %I*: BOOL;
+	R2_03_04 AT %I*: BOOL;
+	R2_03_05 AT %I*: BOOL;
+	R2_03_06 AT %I*: BOOL;
+	R2_03_07 AT %I*: BOOL;
+	
+	R2_04_00 AT %I*: BOOL;
+	R2_04_01 AT %I*: BOOL;
+	R2_04_02 AT %I*: BOOL;
+	R2_04_03 AT %I*: BOOL;
+	R2_04_04 AT %I*: BOOL;
+	R2_04_05 AT %I*: BOOL; //spare
+	R2_04_06 AT %I*: BOOL; //spare
+	R2_04_07 AT %I*: BOOL; //spare
+
+//EL6751 - CAN Open	
+	
+	//R2_06_UC_Rx AT %I*		: ARRAY [0..1] OF EXTCANQUEUE; // only used for raw address.
+	// each Rack has 10 caps + 1 dummy varible to park the swapped cap
+	R2_06_CapNumber AT %I* : ARRAY [1..10] OF  ST_UCDevices; //only used with DBC file.
+	R2_06_UC_7F_status AT %I* : ST_UC_Status_Dummy;
+	
+//R3****** LCP2
+//EL3064 - AI
+	R3_01_00 		AT %I*: INT;
+	R3_01_00_Status AT %I*: WORD;
+	
+	R3_01_01		AT %I*: INT;
+	R3_01_01_Status AT %I*: WORD;
+	
+	R3_01_02 		AT %I*: INT;
+	R3_01_02_Status AT %I*: WORD;
+	
+//EL1008 - DI
+	R3_03_00 AT %I*: BOOL;
+	R3_03_01 AT %I*: BOOL;
+	R3_03_02 AT %I*: BOOL;
+	R3_03_03 AT %I*: BOOL;
+	R3_03_04 AT %I*: BOOL;
+	R3_03_05 AT %I*: BOOL;
+	R3_03_06 AT %I*: BOOL;
+	R3_03_07 AT %I*: BOOL;
+	
+	R3_04_00 AT %I*: BOOL;
+	R3_04_01 AT %I*: BOOL;
+	R3_04_02 AT %I*: BOOL;
+	R3_04_03 AT %I*: BOOL;
+	R3_04_04 AT %I*: BOOL;
+	R3_04_05 AT %I*: BOOL; //spare
+	R3_04_06 AT %I*: BOOL; //rly - output relay
+	R3_04_07 AT %I*: BOOL; //spare
+
+//EL6751 - CAN Open	
+	
+	//R2_06_UC_Rx AT %I*		: ARRAY [0..1] OF EXTCANQUEUE; // only used for raw address.
+	// each Rack has 10 caps + 1 dummy varible to park the swapped cap
+	R3_06_CapNumber AT %I* : ARRAY [1..10] OF  ST_UCDevices; //only used with DBC file.
+	R3_06_UC_7F_status AT %I* : ST_UC_Status_Dummy;
+	//R3_06_UC_status AT %I* : ARRAY [1..10] OF ST_UC_Status;
+
+	//R4 
+	//R5	
+	//..
+	//R10
+
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

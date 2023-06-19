@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="Graphs" Id="{48b42e7d-bb61-43e4-a8d0-e1383f551800}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Graphs
+VAR
+	i : INT :=0;
+	coil1_current: ARRAY[1..1, 1..100] OF REAL;
+	//coil1_current : ARRAY	
+
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// still need more work
+
+FOR i := 1 TO 100 DO 
+	coil1_current[1, i] := Devices.coil1.CurrentFeedback;
+	
+END_FOR
+
+FOR i := 100 TO 2 BY -1 DO
+	coil1_current[1, i-1] := Devices.coil1.CurrentFeedback;
+END_FOR
+
+IF coil1_current[1, 1] = 100 THEN
+	i := -1;
+ELSIF coil1_current[1, 1] = 1 THEN
+	i := 1;
+END_IF 
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="Graphs">
+      <LineId Id="108" Count="1" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="43" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="92" Count="2" />
+      <LineId Id="91" Count="0" />
+      <LineId Id="96" Count="4" />
+      <LineId Id="95" Count="0" />
+      <LineId Id="56" Count="0" />
+      <LineId Id="38" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

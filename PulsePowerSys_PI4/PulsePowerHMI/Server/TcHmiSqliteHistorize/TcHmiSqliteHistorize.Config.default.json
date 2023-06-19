@@ -74,6 +74,300 @@
             "recordingEnabled": true,
             "rowLimit": 1000
         },
+        "PLC1.LCP.Section.1.Peak.Cap.0.currentFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 1000
+        },
+        "PLC1.LCP.Section.1.Peak.Cap.0.voltageFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 1000
+        },
+        "PLC1.LCP.Section.1.Peak.Cap.1.currentFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 1000
+        },
+        "PLC1.LCP.Section.1.Peak.Cap.1.voltageFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 1000
+        },
+        "PLC1.LCP.Section.1.Peak.Cap.2.currentFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 1000
+        },
+        "PLC1.LCP.Section.1.Peak.Cap.2.voltageFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 1000
+        },
+        "PLC1.LCP.Section.1.Peak.Cap.3.currentFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 1000
+        },
+        "PLC1.LCP.Section.1.Peak.Cap.3.voltageFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 1000
+        },
+        "PLC1.LCP.Section.1.Peak.Cap.4.currentFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 1000
+        },
+        "PLC1.LCP.Section.1.Peak.Cap.4.voltageFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 1000
+        },
+        "PLC1.LCP.Section.1.Peak.Cap.5.currentFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 1000
+        },
+        "PLC1.LCP.Section.1.Peak.Cap.5.voltageFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 1000
+        },
+        "PLC1.LCP.Section.1.Peak.Cap.6.currentFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 1000
+        },
+        "PLC1.LCP.Section.1.Peak.Cap.6.voltageFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 1000
+        },
+        "PLC1.LCP.Section.1.Peak.Cap.7.currentFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 1000
+        },
+        "PLC1.LCP.Section.1.Peak.Cap.7.voltageFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 1000
+        },
+        "PLC1.LCP.Section.1.Peak.Cap.8.currentFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 1000
+        },
+        "PLC1.LCP.Section.1.Peak.Cap.8.voltageFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 1000
+        },
+        "PLC1.LCP.Section.1.Peak.Cap.9.currentFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 1000
+        },
+        "PLC1.LCP.Section.1.Peak.Cap.9.voltageFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 1000
+        },
+        "PLC1.LCP.Section.1.Sust.Cap.0.voltageFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 1000
+        },
+        "PLC1.LCP.Section.1.Sust.Cap.1.voltageFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 1000
+        },
+        "PLC1.LCP.Section.2.Peak.Cap.0.voltageFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 1000
+        },
+        "PLC1.LCP.Section.2.Peak.Cap.1.voltageFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 1000
+        },
+        "PLC1.LCP.Section.2.Peak.Cap.2.voltageFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 1000
+        },
+        "PLC1.LCP.Section.2.Peak.Cap.3.voltageFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 1000
+        },
+        "PLC1.LCP.Section.2.Peak.Cap.4.voltageFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 1000
+        },
+        "PLC1.LCP.Section.2.Peak.Cap.5.voltageFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 1000
+        },
+        "PLC1.LCP.Section.2.Peak.Cap.6.voltageFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 1000
+        },
+        "PLC1.LCP.Section.2.Peak.Cap.7.voltageFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 1000
+        },
+        "PLC1.LCP.Section.2.Peak.Cap.8.voltageFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 1000
+        },
+        "PLC1.LCP.Section.2.Peak.Cap.9.voltageFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 1000
+        },
+        "PLC1.LCP.Section.2.Sust.Cap.0.voltageFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 1000
+        },
+        "PLC1.LCP.Section.2.Sust.Cap.1.voltageFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 1000
+        },
+        "PLC1.LCP.Section.3.Form.Cap.0.voltageFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 1000
+        },
+        "PLC1.LCP.Section.3.Form.Cap.1.voltageFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 1000
+        },
+        "PLC1.LCP.Section.3.Form.Cap.10.voltageFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 1000
+        },
+        "PLC1.LCP.Section.3.Form.Cap.11.voltageFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 1000
+        },
+        "PLC1.LCP.Section.3.Form.Cap.2.voltageFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 1000
+        },
+        "PLC1.LCP.Section.3.Form.Cap.3.voltageFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 1000
+        },
+        "PLC1.LCP.Section.3.Form.Cap.4.voltageFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 1000
+        },
+        "PLC1.LCP.Section.3.Form.Cap.5.voltageFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 1000
+        },
+        "PLC1.LCP.Section.3.Form.Cap.6.voltageFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 1000
+        },
+        "PLC1.LCP.Section.3.Form.Cap.7.voltageFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 1000
+        },
+        "PLC1.LCP.Section.3.Form.Cap.8.voltageFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 1000
+        },
+        "PLC1.LCP.Section.3.Form.Cap.9.voltageFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 1000
+        },
+        "PLC1.LCP.Section.3.FormTriggerVoltageFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 1000
+        },
+        "PLC1.LCP.Section.3.PreFormCapVoltageFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 1000
+        },
+        "PLC1.LCP.Section.3.PreFormTriggerVoltageFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 100000
+        },
         "PLC1.MCP_IO.Charger.0.currentFeedback": {
             "interval": "PT1S",
             "maxEntries": 100,

@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<TcLicenseInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2011/11/TcLicenseInfo">
+	<LicenseInfo>
+		<SystemId>{F40E1F8F-1399-CF7D-276D-B7A354E3F6D7}</SystemId>
+		<IssueTime>2023-06-16T21:15:00</IssueTime>
+		<ExpireTime>2023-06-24T00:00:00</ExpireTime>
+		<LicenseKey>ddbd07d1589bdd246802ab6488bd879786bc90a9bdd895c883094ec01353c00102db45238afcc99d1908347083d6f20256c40f1aa22b901ade35de92f144f4576c2df6e74ae5f7eff1c7ca0c1a021f57910fa309cda3e44bd25460727f40f9e58c913b3d9c0d7a4cd719144c0c0ceb112da3c3970ef012b59828967e0cb01ba06f190b7d1f3d7c4ceb9e3a2ea11a2c04fe521e4e495ab085a6290fb5a9efeac2c97dce6daf54c6f2611aed6cec9259185e5237cf80e5b81d5d343f3cdc8c8f87887b64652bc82e587d8d18b798ff9432308193595dd202a90271dfd3942c5d3cb26d00ba685957f91eb625a6fce7a562b837b705aba45fa73aa9b6c1d19b588b</LicenseKey>
+		<License>
+			<LicenseId>{4C256767-E6E6-4AF5-BD68-9F7ABAD0C200}</LicenseId>
+			<Name>TC3 ADS</Name>
+			<OrderNo>TC1000</OrderNo>
+		</License>
+		<License>
+			<LicenseId>{3FF18E97-7754-401B-93FB-70544DE28A13}</LicenseId>
+			<Name>TC3 IO</Name>
+			<OrderNo>TC1100</OrderNo>
+		</License>
+		<License>
+			<LicenseId>{66689887-CCBD-452C-AC9A-039D997C6E66}</LicenseId>
+			<Name>TC3 PLC</Name>
+			<OrderNo>TC1200</OrderNo>
+		</License>
+		<License>
+			<LicenseId>{ACBFB8AA-FBCB-462F-ACD0-4E6FBC225384}</LicenseId>
+			<Name>TC3 DBC-Import</Name>
+			<OrderNo>TF6650</OrderNo>
+		</License>
+		<License>
+			<LicenseId>{37E5160D-987B-4640-888D-0F97727B53E2}</LicenseId>
+			<Name>TC3 HMI Clients</Name>
+			<Instances>11</Instances>
+		</License>
+		<License>
+			<LicenseId>{A2091C4C-7D04-4202-B173-9984E7125BC0}</LicenseId>
+			<Name>TC3 HMI Targets</Name>
+			<Instances>1</Instances>
+		</License>
+		<License>
+			<LicenseId>{796D380F-D49E-4C0C-A05F-500052FAC883}</LicenseId>
+			<Name>TC3 HMI Server</Name>
+			<OrderNo>TF2000</OrderNo>
+		</License>
+		<License>
+			<LicenseId>{8161723B-0C2E-405C-B829-EDC5DAAB5104}</LicenseId>
+			<Name>TC3 HMI Clients Pack 10</Name>
+			<OrderNo>TF2030</OrderNo>
+		</License>
+		<License>
+			<LicenseId>{3EBB9639-5FF3-42B6-8847-35C70DC013C8}</LicenseId>
+			<Name>TC3 TCP/IP</Name>
+			<OrderNo>TF6310</OrderNo>
+		</License>
+	</LicenseInfo>
+</TcLicenseInfo>

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="ST_Coil_Ext_Analog1" Id="{a363b660-88c4-4938-837b-57000f47548d}">
+    <Declaration><![CDATA[TYPE ST_Coil_Ext_Analog1 EXTENDS ST_Coil_Base :
+STRUCT
+	iAnalogOfWinning : INT;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

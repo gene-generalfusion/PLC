@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="E_Command" Id="{5736869e-81f5-4303-8652-5bc63df8bdc6}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+{attribute 'to_string'}
+//Command from Master PLC
+TYPE E_Command :
+(
+	//Requested Magnetic State
+	FULL_SHUTDOWN 	:= 0, 
+	IDLE			:= 1, 
+	CHARGE			:= 3, 
+	//PAUSE_CHARGE	:= 4, //no need to use pause charge
+	SHOOT			:= 6, 
+	//SHUTDOWN		:= 8, //remove
+	DUMP			:= 9
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

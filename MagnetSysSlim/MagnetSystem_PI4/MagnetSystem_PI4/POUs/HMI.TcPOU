@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="HMI" Id="{f6f5b33e-a4fa-4ac0-80a8-1123a7ed35ab}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM HMI
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+
+HMI_DB.ReadyToChargeRunOutTime	:= TIME_TO_DINT (MODE_SELECTION_1.ReadyToChargeRunOutTMR_PT - MODE_SELECTION_1.ReadyToChargeRunOutTMR_TON.ET)/1000;
+HMI_DB.ChargingRunOutTime		:= TIME_TO_DINT (MODE_SELECTION_1.ChargingRunOutTMR_PT - MODE_SELECTION_1.ChargingRunOutTMR_TON.ET)/1000;	
+HMI_DB.ChargePausedRunOutTime	:= TIME_TO_DINT (MODE_SELECTION_1.ChargePausedRunOutTMR_PT - MODE_SELECTION_1.ChargePausedRunOutTMR_ET)/1000;	
+HMI_DB.ReadyToShootRunOutTime	:= TIME_TO_DINT (MODE_SELECTION_1.ReadyToShootRunOutTMR_PT - MODE_SELECTION_1.ReadyToShootRunOutTMR_ET)/1000;					
+HMI_DB.ShootingRunOutTime		:= TIME_TO_DINT (MODE_SELECTION_1.ShootingRunOutTMR_PT - MODE_SELECTION_1.ShootingRunOutTMR_ET)/1000;			
+HMI_DB.PostShotRunOutTime		:= TIME_TO_DINT (MODE_SELECTION_1.PostShotRunOutTMR_PT - MODE_SELECTION_1.PostShotRunOutTMR_ET)/1000;			
+HMI_DB.DumpingRunOutTime		:= TIME_TO_DINT (MODE_SELECTION_1.DumpingRunOutTMR_PT - MODE_SELECTION_1.DumpingRunOutTMR_ET)/1000;			
+	
+
+		]]></ST>
+    </Implementation>
+    <LineIds Name="HMI">
+      <LineId Id="6" Count="2" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="9" Count="4" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="20" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

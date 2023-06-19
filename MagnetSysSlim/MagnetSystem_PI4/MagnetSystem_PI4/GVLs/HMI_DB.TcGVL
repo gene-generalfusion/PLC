@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <GVL Name="HMI_DB" Id="{f3eaca17-b869-4d6d-9679-0aa27019baf4}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	chargePB			: BOOL;
+	shootPB				: BOOL;
+	dumpPB				: BOOL;
+	StartPB				: BOOL;
+	StopPB				: BOOL;
+	PausePB				: BOOL;			 
+	RemoteModeSelected	: BOOL;
+	Idle_mode			: BOOL;
+	SafetyOK			: BOOL;
+	AllDumpRelaysOpen	: BOOL;
+	AllACInterlocksClosed : BOOL;
+	AllFlybackDiodesActive	: BOOL;
+	IntrumentationFaulted	: BOOL;
+	AllChargesAreActive		: BOOL;
+	
+	ReadyToChargeRunOutTime	: DINT := 0;
+	ChargingRunOutTime		: DINT := 0;
+	ChargePausedRunOutTime	: DINT := 0;
+	ReadyToShootRunOutTime	: DINT := 0;				
+	ShootingRunOutTime		: DINT := 0;
+	PostShotRunOutTime		: DINT := 0;
+	DumpingRunOutTime		: DINT := 0;
+	
+	CoilEnable				: ARRAY [1..10] OF BOOL;
+	
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

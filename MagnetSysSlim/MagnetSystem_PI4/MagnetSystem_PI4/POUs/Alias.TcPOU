@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="Alias" Id="{d4a38808-8ce2-45c5-9fa4-1d0244108a86}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Alias
+VAR
+	i : INT := 1; //coil 1 - 10 
+	j : INT := 1;  // msg 0-1 (could be 0-31 later)
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//R1 = MCP**
+//DI
+	MCP_IO.MasterStopPB_Pressed					:= Input.R1_01_00;//NC
+	//MCP_IO.MasterStopPB_Pressed					:= NOT Input.R2_04_07; //Temporarily used for testing.
+	MCP_IO.CageEstopCircuitOK					:= Input.R1_01_01; //NO use R2_04_07 for dev test
+	MCP_IO.RemoteModeSelected					:= Input.R1_01_02; // 0 = manual, 1=auto  *temporarily used for dev test
+	MCP_IO.PSU1_DCOK							:= Input.R1_01_03;
+	
+//R2 = Coil 1
+//AI
+	Devices.Coil[1].ChargeVoltageFeedback_raw 	:= Input.R2_01_00;	
+	Devices.Coil[1].CurrentFeedback_raw 		:= Input.R2_01_01;
+	Devices.Coil[1].Measured_Bfield_raw 		:= Input.R2_01_02;
+	
+//PWM O
+ 	Output.R2_02_00 := Devices.Coil[1].ChargerSetpoint;
+	Output.R2_02_01 := Devices.Coil[1].CurrentSetpoint;
+
+
+//DI
+	Devices.Coil[1].PSU0_active 				:= Input.R2_03_00;
+	Devices.Coil[1].Local_StopPB_Pressed 		:= NOT Input.R2_03_01; //NC 
+	Devices.Coil[1].DumpRelay1_closed 			:= Input.R2_03_02;
+	Devices.Coil[1].DumpRelay2_closed 			:= Input.R2_03_03;
+	//Devices.Coil[1].ChargeRelay_closed 			:= Input.R2_03_04;
+	Devices.Coil[1].ChargerIsEnabled 			:= Input.R2_03_05;
+	//Devices.Coil[1].FlybackD1_Alive 			:= Input.R2_03_06;
+	//Devices.Coil[1].FlybackD2_Alive 			:= Input.R2_03_07;
+	Devices.Coil[1].PSU1_DCOK					:= Input.R2_03_06;
+	Devices.Coil[1].HVisolationRelayClosed		:= Input.R2_03_07; 
+	
+	Devices.Coil[1].DumpResistorTemperatureHigh := Input.R2_04_00;
+	Devices.Coil[1].GroundLoopCurrentDetected 	:= Input.R2_04_01;
+	Devices.Coil[1].CoilTemperatureHigh 		:= Input.R2_04_02;
+	Devices.Coil[1].AC_Interlock_RlyClose		:= Input.R2_04_03;  //3P contactor
+	Devices.Coil[1].LossPneumaticPressure       := Input.R2_04_04;
+	//Spare Input.R2_04_05;  
+	Devices.Coil[1].OutputRelayOpen				:= Input.R2_04_06; // rly 5
+	//Spare Input.R2_04_07;  temp used for MCP estop input
+	
+//DQ
+	Output.R2_05_00 := Devices.Coil[1].OpenDumpRelays;
+	Output.R2_05_01 := Devices.Coil[1].closeChargeRelay;
+	Output.R2_05_02 := Devices.Coil[1].enableOutputToCharger;
+	Output.R2_05_03 := Devices.Coil[1].CloseACInterlockRly;  //3P contactor
+	Output.R2_05_04 := Devices.Coil[1].CloseHVisolationRelay; // 24VDC to control 2 120Vac HV Ross Relayas  (rly6)
+	Output.R2_05_05 := Devices.Coil[1].SystemFaulted; //LCP LED AMBER
+	Output.R2_05_06 := Devices.Coil[1].SystemCharging;  //LCP LED RED (charging or Charged)
+	Output.R2_05_07 := Devices.Coil[1].SystemReady;  // LCP LED GREEN
+	
+//CANOpen
+	
+	//Output.R2_05_CANrequest := CAN_comm.
+	Output.R2_06_CANrequest.cobId := Devices.Coil[1].CanTx_config_ID;
+	Output.R2_06_CANrequest.data[0] := Devices.Coil[1].CanTx_config_request[0];
+	Output.R2_06_CANrequest.data[1] := Devices.Coil[1].CanTx_config_request[1];
+	Output.R2_06_CANrequest.data[2] := Devices.Coil[1].CanTx_config_request[2];
+	Output.R2_06_CANrequest.data[3] := Devices.Coil[1].CanTx_config_request[3];
+	Output.R2_06_CANrequest.data[4] := Devices.Coil[1].CanTx_config_request[4];
+	Output.R2_06_CANrequest.data[5] := Devices.Coil[1].CanTx_config_request[5];
+	Output.R2_06_CANrequest.data[6] := Devices.Coil[1].CanTx_config_request[6];
+	Output.R2_06_CANrequest.data[7] := Devices.Coil[1].CanTx_config_request[7];
+	
+	// input
+FOR i := 1 TO 10 BY 1 DO
+	FOR j := 1 TO 10 BY 1 DO 
+		Devices.Coil[i].UltraCap[j].Elec_AveVolt 		:= Input.R2_06_CapNumber[j].Status.Elec_AveVolt; //per cell
+		Devices.Coil[i].UltraCap[j].Elec_Balancing 		:= Input.R2_06_CapNumber[j].Status.Elec_Balancing; // 0x0[Not Active], 0x1[Active], 0x2[Error], 0x3[Not Available]
+		Devices.Coil[i].UltraCap[j].Elec_HighestVolt 	:= Input.R2_06_CapNumber[j].Status.Elec_HighestVolt; //per cell
+		Devices.Coil[i].UltraCap[j].Elec_Imbalance 		:= Input.R2_06_CapNumber[j].Status.Elec_Imbalance;  // 0x0[No Warnings], 0x1[Warning Active], 0x2[Alarm Active], 0x3[Not Available]
+		Devices.Coil[i].UltraCap[j].Elec_OverVoltage	:= Input.R2_06_CapNumber[j].Status.Elec_OverVoltage;  // 0x0[No Warnings], 0x1[Warning Active], 0x2[Alarm Active], 0x3[NOT Available] 
+		Devices.Coil[i].UltraCap[j].Elec_VoltageSum		:= Input.R2_06_CapNumber[j].Status.Elec_VoltageSum; //total voltage in one UC
+		Devices.Coil[i].UltraCap[j].Therm_HighestCell	:= Input.R2_06_CapNumber[j].Status.Therm_HighestCell; //C
+		Devices.Coil[i].UltraCap[j].Therm_HighTemp		:= Input.R2_06_CapNumber[j].Status.Therm_HighTemp;  //0x0[No Warnings], 0x1[Warning Active], 0x2[Alarm Active], 0x3[NOT Available]
+	END_FOR;
+END_FOR;
+	Devices.Coil[1].UltraCap_Dummy.R2_06_UC_Rx_cobID := Input.R2_06_UC_7F_status.R2_06_UC_Rx_cobID;
+	Devices.Coil[1].UltraCap_Dummy.R2_06_UC_Rx_data := Input.R2_06_UC_7F_status.R2_06_UC_Rx_data;
+
+//Recipe: Coil enable from screenroom
+IF MCP_IO.RemoteModeSelected = TRUE OR HMI_DB.RemoteModeSelected = TRUE THEN
+	FOR i := 1 TO 10 BY 1 DO
+		Devices.Coil[i].CoilEnabled :=  Recipe.Coil[i].CoilEnable;
+	END_FOR;
+	
+ELSIF MCP_IO.RemoteModeSelected = FALSE OR HMI_DB.RemoteModeSelected = FALSE THEN
+	FOR i := 1 TO 10 BY 1 DO
+		Devices.Coil[i].CoilEnabled :=  HMI_DB.CoilEnable[i];	
+	END_FOR;
+END_IF;
+
+
+IF i > 10 THEN
+	i := 1;
+END_IF;
+
+IF j > 10 THEN
+	j := 1;
+END_IF;]]></ST>
+    </Implementation>
+    <LineIds Name="Alias">
+      <LineId Id="111" Count="0" />
+      <LineId Id="115" Count="1" />
+      <LineId Id="123" Count="0" />
+      <LineId Id="117" Count="0" />
+      <LineId Id="128" Count="0" />
+      <LineId Id="169" Count="0" />
+      <LineId Id="119" Count="0" />
+      <LineId Id="77" Count="0" />
+      <LineId Id="26" Count="1" />
+      <LineId Id="76" Count="0" />
+      <LineId Id="45" Count="0" />
+      <LineId Id="100" Count="2" />
+      <LineId Id="46" Count="0" />
+      <LineId Id="104" Count="1" />
+      <LineId Id="53" Count="8" />
+      <LineId Id="170" Count="1" />
+      <LineId Id="62" Count="7" />
+      <LineId Id="47" Count="0" />
+      <LineId Id="73" Count="2" />
+      <LineId Id="78" Count="1" />
+      <LineId Id="107" Count="1" />
+      <LineId Id="176" Count="0" />
+      <LineId Id="109" Count="1" />
+      <LineId Id="88" Count="1" />
+      <LineId Id="226" Count="1" />
+      <LineId Id="233" Count="4" />
+      <LineId Id="192" Count="0" />
+      <LineId Id="240" Count="0" />
+      <LineId Id="238" Count="1" />
+      <LineId Id="241" Count="0" />
+      <LineId Id="198" Count="0" />
+      <LineId Id="277" Count="0" />
+      <LineId Id="201" Count="1" />
+      <LineId Id="257" Count="0" />
+      <LineId Id="250" Count="0" />
+      <LineId Id="265" Count="0" />
+      <LineId Id="268" Count="0" />
+      <LineId Id="264" Count="0" />
+      <LineId Id="271" Count="0" />
+      <LineId Id="274" Count="0" />
+      <LineId Id="203" Count="0" />
+      <LineId Id="278" Count="0" />
+      <LineId Id="200" Count="0" />
+      <LineId Id="255" Count="0" />
+      <LineId Id="207" Count="0" />
+      <LineId Id="160" Count="0" />
+      <LineId Id="163" Count="0" />
+      <LineId Id="136" Count="0" />
+      <LineId Id="138" Count="1" />
+      <LineId Id="288" Count="0" />
+      <LineId Id="286" Count="0" />
+      <LineId Id="289" Count="1" />
+      <LineId Id="296" Count="0" />
+      <LineId Id="141" Count="0" />
+      <LineId Id="284" Count="0" />
+      <LineId Id="164" Count="0" />
+      <LineId Id="140" Count="0" />
+      <LineId Id="142" Count="1" />
+      <LineId Id="212" Count="2" />
+      <LineId Id="211" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

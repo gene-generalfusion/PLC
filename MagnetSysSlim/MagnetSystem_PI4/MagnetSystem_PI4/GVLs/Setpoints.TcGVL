@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <GVL Name="Setpoints" Id="{da508e94-c5f9-4f2d-a5a6-915ac32ca299}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	//HMI Input -> Setpoints -> EngVal		-> PLC ---------> Tx_Config
+	//						-> SysParameters-> PLC ---------> Tx_Config
+	//										   PLC - Recipe -> Tx_Config 	 
+	Coil : ARRAY[1..10] OF ST_Setpoints; // EngVal & SysParameters
+	
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

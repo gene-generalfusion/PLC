@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <GVL Name="Permissives_DB" Id="{cc9764b3-8dc3-4d70-ae92-afcaa07c0c18}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	ChargePermOK			: BOOL;
+	ShootPermOK				: BOOL;
+	//AllChargers_Active		: BOOL;
+	AlldcPSUok				: BOOL;
+	AllacInterlock_Closed	: BOOL;
+	All_Coil_TemperatureOK	: BOOL;
+	AllDumpResistorTempOK	: BOOL;
+	NoGroundLoopCurrentDetected: BOOL;
+	//AllFlybackDiodes_Alive	: BOOL;
+	AllChargerEnabled		: BOOL;
+	AnyCoilDisabled 		: BOOL;		
+	SafetyOK				: BOOL;
+	AllDumpRelayOpen		: BOOL;
+	//AllDumpRelayClose		: BOOL;
+	AllChargerRelay_Closed	: BOOL;
+	AllCoilCapsCharged		: BOOL;
+	NoPneumaticPressureLoss : BOOL;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

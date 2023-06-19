@@ -166,16 +166,16 @@
     <Content Include="Content\MCP.content">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Content\Section1.content">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="Content\Section2.content">
+    <Content Include="Content\Section4.content">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Content\Section3.content">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Content\Section4.content">
+    <Content Include="Content\Section2.content">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\Section1.content">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Desktop.view">
@@ -247,6 +247,8 @@
     <Content Include="Server\ADS\ADS.Config.default.json">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="Server\ADS\ADS.Config.default.json" />
+    <Content Include="Server\ADS\ADS.Config.default.json" />
     <Content Include="Server\ADS\ADS.Config.default.json" />
     <Content Include="Server\ADS\ADS.Config.default.json" />
     <Content Include="Server\ADS\ADS.Config.default.json" />

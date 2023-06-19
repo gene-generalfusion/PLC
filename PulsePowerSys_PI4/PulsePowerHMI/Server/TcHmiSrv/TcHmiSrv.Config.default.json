@@ -5199,6 +5199,16 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.LCP.Section.1.AllCapsDischarged": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[1]::AllCapsDischarged",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
         "PLC1.LCP.Section.1.Form.ChargeRelay1_close": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -5459,6 +5469,246 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.LCP.Section.1.Peak.Cap.0.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[1]::Peak::Cap[0]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.1.Peak.Cap.0.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[1]::Peak::Cap[0]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.1.Peak.Cap.1.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[1]::Peak::Cap[1]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.1.Peak.Cap.1.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[1]::Peak::Cap[1]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.1.Peak.Cap.10.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[1]::Peak::Cap[10]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.1.Peak.Cap.10.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[1]::Peak::Cap[10]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.1.Peak.Cap.11.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[1]::Peak::Cap[11]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.1.Peak.Cap.11.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[1]::Peak::Cap[11]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.1.Peak.Cap.2.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[1]::Peak::Cap[2]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.1.Peak.Cap.2.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[1]::Peak::Cap[2]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.1.Peak.Cap.3.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[1]::Peak::Cap[3]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.1.Peak.Cap.3.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[1]::Peak::Cap[3]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.1.Peak.Cap.4.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[1]::Peak::Cap[4]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.1.Peak.Cap.4.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[1]::Peak::Cap[4]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.1.Peak.Cap.5.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[1]::Peak::Cap[5]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.1.Peak.Cap.5.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[1]::Peak::Cap[5]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.1.Peak.Cap.6.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[1]::Peak::Cap[6]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.1.Peak.Cap.6.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[1]::Peak::Cap[6]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.1.Peak.Cap.7.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[1]::Peak::Cap[7]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.1.Peak.Cap.7.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[1]::Peak::Cap[7]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.1.Peak.Cap.8.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[1]::Peak::Cap[8]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.1.Peak.Cap.8.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[1]::Peak::Cap[8]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.1.Peak.Cap.9.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[1]::Peak::Cap[9]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.1.Peak.Cap.9.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[1]::Peak::Cap[9]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
         "PLC1.LCP.Section.1.Peak.ChargeRelay1_close": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -5579,6 +5829,246 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.LCP.Section.1.Sust.Cap.0.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[1]::Sust::Cap[0]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.1.Sust.Cap.0.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[1]::Sust::Cap[0]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.1.Sust.Cap.1.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[1]::Sust::Cap[1]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.1.Sust.Cap.1.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[1]::Sust::Cap[1]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.1.Sust.Cap.10.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[1]::Sust::Cap[10]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.1.Sust.Cap.10.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[1]::Sust::Cap[10]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.1.Sust.Cap.11.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[1]::Sust::Cap[11]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.1.Sust.Cap.11.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[1]::Sust::Cap[11]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.1.Sust.Cap.2.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[1]::Sust::Cap[2]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.1.Sust.Cap.2.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[1]::Sust::Cap[2]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.1.Sust.Cap.3.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[1]::Sust::Cap[3]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.1.Sust.Cap.3.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[1]::Sust::Cap[3]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.1.Sust.Cap.4.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[1]::Sust::Cap[4]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.1.Sust.Cap.4.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[1]::Sust::Cap[4]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.1.Sust.Cap.5.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[1]::Sust::Cap[5]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.1.Sust.Cap.5.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[1]::Sust::Cap[5]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.1.Sust.Cap.6.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[1]::Sust::Cap[6]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.1.Sust.Cap.6.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[1]::Sust::Cap[6]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.1.Sust.Cap.7.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[1]::Sust::Cap[7]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.1.Sust.Cap.7.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[1]::Sust::Cap[7]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.1.Sust.Cap.8.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[1]::Sust::Cap[8]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.1.Sust.Cap.8.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[1]::Sust::Cap[8]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.1.Sust.Cap.9.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[1]::Sust::Cap[9]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.1.Sust.Cap.9.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[1]::Sust::Cap[9]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
         "PLC1.LCP.Section.1.Sust.ChargeRelay1_close": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -5694,6 +6184,16 @@
             "DOMAIN": "ADS",
             "DYNAMIC": true,
             "MAPPING": "PLC1::LCP::Section[1]::Sust::UnshortContact2_close",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.2.AllCapsDischarged": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[2]::AllCapsDischarged",
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
@@ -5959,6 +6459,246 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.LCP.Section.2.Peak.Cap.0.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[2]::Peak::Cap[0]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.2.Peak.Cap.0.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[2]::Peak::Cap[0]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.2.Peak.Cap.1.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[2]::Peak::Cap[1]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.2.Peak.Cap.1.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[2]::Peak::Cap[1]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.2.Peak.Cap.10.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[2]::Peak::Cap[10]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.2.Peak.Cap.10.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[2]::Peak::Cap[10]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.2.Peak.Cap.11.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[2]::Peak::Cap[11]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.2.Peak.Cap.11.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[2]::Peak::Cap[11]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.2.Peak.Cap.2.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[2]::Peak::Cap[2]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.2.Peak.Cap.2.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[2]::Peak::Cap[2]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.2.Peak.Cap.3.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[2]::Peak::Cap[3]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.2.Peak.Cap.3.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[2]::Peak::Cap[3]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.2.Peak.Cap.4.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[2]::Peak::Cap[4]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.2.Peak.Cap.4.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[2]::Peak::Cap[4]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.2.Peak.Cap.5.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[2]::Peak::Cap[5]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.2.Peak.Cap.5.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[2]::Peak::Cap[5]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.2.Peak.Cap.6.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[2]::Peak::Cap[6]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.2.Peak.Cap.6.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[2]::Peak::Cap[6]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.2.Peak.Cap.7.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[2]::Peak::Cap[7]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.2.Peak.Cap.7.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[2]::Peak::Cap[7]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.2.Peak.Cap.8.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[2]::Peak::Cap[8]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.2.Peak.Cap.8.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[2]::Peak::Cap[8]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.2.Peak.Cap.9.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[2]::Peak::Cap[9]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.2.Peak.Cap.9.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[2]::Peak::Cap[9]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
         "PLC1.LCP.Section.2.Peak.ChargeRelay1_close": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -6079,6 +6819,246 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.LCP.Section.2.Sust.Cap.0.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[2]::Sust::Cap[0]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.2.Sust.Cap.0.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[2]::Sust::Cap[0]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.2.Sust.Cap.1.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[2]::Sust::Cap[1]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.2.Sust.Cap.1.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[2]::Sust::Cap[1]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.2.Sust.Cap.10.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[2]::Sust::Cap[10]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.2.Sust.Cap.10.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[2]::Sust::Cap[10]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.2.Sust.Cap.11.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[2]::Sust::Cap[11]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.2.Sust.Cap.11.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[2]::Sust::Cap[11]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.2.Sust.Cap.2.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[2]::Sust::Cap[2]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.2.Sust.Cap.2.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[2]::Sust::Cap[2]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.2.Sust.Cap.3.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[2]::Sust::Cap[3]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.2.Sust.Cap.3.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[2]::Sust::Cap[3]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.2.Sust.Cap.4.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[2]::Sust::Cap[4]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.2.Sust.Cap.4.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[2]::Sust::Cap[4]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.2.Sust.Cap.5.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[2]::Sust::Cap[5]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.2.Sust.Cap.5.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[2]::Sust::Cap[5]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.2.Sust.Cap.6.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[2]::Sust::Cap[6]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.2.Sust.Cap.6.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[2]::Sust::Cap[6]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.2.Sust.Cap.7.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[2]::Sust::Cap[7]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.2.Sust.Cap.7.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[2]::Sust::Cap[7]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.2.Sust.Cap.8.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[2]::Sust::Cap[8]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.2.Sust.Cap.8.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[2]::Sust::Cap[8]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.2.Sust.Cap.9.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[2]::Sust::Cap[9]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.2.Sust.Cap.9.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[2]::Sust::Cap[9]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
         "PLC1.LCP.Section.2.Sust.ChargeRelay1_close": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -6196,6 +7176,256 @@
             "MAPPING": "PLC1::LCP::Section[2]::Sust::UnshortContact2_close",
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.3.AllCapsDischarged": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[3]::AllCapsDischarged",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.3.Form.Cap.0.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[3]::Form::Cap[0]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.3.Form.Cap.0.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[3]::Form::Cap[0]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.3.Form.Cap.1.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[3]::Form::Cap[1]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.3.Form.Cap.1.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[3]::Form::Cap[1]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.3.Form.Cap.10.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[3]::Form::Cap[10]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.3.Form.Cap.10.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[3]::Form::Cap[10]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.3.Form.Cap.11.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[3]::Form::Cap[11]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.3.Form.Cap.11.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[3]::Form::Cap[11]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.3.Form.Cap.2.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[3]::Form::Cap[2]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.3.Form.Cap.2.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[3]::Form::Cap[2]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.3.Form.Cap.3.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[3]::Form::Cap[3]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.3.Form.Cap.3.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[3]::Form::Cap[3]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.3.Form.Cap.4.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[3]::Form::Cap[4]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.3.Form.Cap.4.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[3]::Form::Cap[4]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.3.Form.Cap.5.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[3]::Form::Cap[5]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.3.Form.Cap.5.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[3]::Form::Cap[5]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.3.Form.Cap.6.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[3]::Form::Cap[6]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.3.Form.Cap.6.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[3]::Form::Cap[6]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.3.Form.Cap.7.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[3]::Form::Cap[7]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.3.Form.Cap.7.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[3]::Form::Cap[7]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.3.Form.Cap.8.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[3]::Form::Cap[8]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.3.Form.Cap.8.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[3]::Form::Cap[8]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.3.Form.Cap.9.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[3]::Form::Cap[9]::currentFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.3.Form.Cap.9.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[3]::Form::Cap[9]::voltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
             },
             "USEMAPPING": true
         },
@@ -6456,6 +7686,36 @@
             "MAPPING": "PLC1::LCP::Section[3]::Form::UnshortContact2_close",
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.3.FormTriggerVoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[3]::FormTriggerVoltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.3.PreFormCapVoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[3]::PreFormCapVoltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP.Section.3.PreFormTriggerVoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP::Section[3]::PreFormTriggerVoltageFeedback",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
             },
             "USEMAPPING": true
         },
@@ -11002,6 +12262,7 @@
                 "PLC1.LCP.Section.0.Sust.cap.8.voltageFeedback": 3,
                 "PLC1.LCP.Section.0.Sust.cap.9.currentFeedback": 3,
                 "PLC1.LCP.Section.0.Sust.cap.9.voltageFeedback": 3,
+                "PLC1.LCP.Section.1.AllCapsDischarged": 3,
                 "PLC1.LCP.Section.1.Form.ChargeRelay1_close": 3,
                 "PLC1.LCP.Section.1.Form.ChargeRelay2_close": 3,
                 "PLC1.LCP.Section.1.Form.DumpRelay1_close": 3,
@@ -11052,6 +12313,30 @@
                 "PLC1.LCP.Section.1.Form.cap.8.voltageFeedback": 3,
                 "PLC1.LCP.Section.1.Form.cap.9.currentFeedback": 3,
                 "PLC1.LCP.Section.1.Form.cap.9.voltageFeedback": 3,
+                "PLC1.LCP.Section.1.Peak.Cap.0.currentFeedback": 3,
+                "PLC1.LCP.Section.1.Peak.Cap.0.voltageFeedback": 3,
+                "PLC1.LCP.Section.1.Peak.Cap.1.currentFeedback": 3,
+                "PLC1.LCP.Section.1.Peak.Cap.1.voltageFeedback": 3,
+                "PLC1.LCP.Section.1.Peak.Cap.10.currentFeedback": 3,
+                "PLC1.LCP.Section.1.Peak.Cap.10.voltageFeedback": 3,
+                "PLC1.LCP.Section.1.Peak.Cap.11.currentFeedback": 3,
+                "PLC1.LCP.Section.1.Peak.Cap.11.voltageFeedback": 3,
+                "PLC1.LCP.Section.1.Peak.Cap.2.currentFeedback": 3,
+                "PLC1.LCP.Section.1.Peak.Cap.2.voltageFeedback": 3,
+                "PLC1.LCP.Section.1.Peak.Cap.3.currentFeedback": 3,
+                "PLC1.LCP.Section.1.Peak.Cap.3.voltageFeedback": 3,
+                "PLC1.LCP.Section.1.Peak.Cap.4.currentFeedback": 3,
+                "PLC1.LCP.Section.1.Peak.Cap.4.voltageFeedback": 3,
+                "PLC1.LCP.Section.1.Peak.Cap.5.currentFeedback": 3,
+                "PLC1.LCP.Section.1.Peak.Cap.5.voltageFeedback": 3,
+                "PLC1.LCP.Section.1.Peak.Cap.6.currentFeedback": 3,
+                "PLC1.LCP.Section.1.Peak.Cap.6.voltageFeedback": 3,
+                "PLC1.LCP.Section.1.Peak.Cap.7.currentFeedback": 3,
+                "PLC1.LCP.Section.1.Peak.Cap.7.voltageFeedback": 3,
+                "PLC1.LCP.Section.1.Peak.Cap.8.currentFeedback": 3,
+                "PLC1.LCP.Section.1.Peak.Cap.8.voltageFeedback": 3,
+                "PLC1.LCP.Section.1.Peak.Cap.9.currentFeedback": 3,
+                "PLC1.LCP.Section.1.Peak.Cap.9.voltageFeedback": 3,
                 "PLC1.LCP.Section.1.Peak.ChargeRelay1_close": 3,
                 "PLC1.LCP.Section.1.Peak.ChargeRelay2_close": 3,
                 "PLC1.LCP.Section.1.Peak.DumpRelay1_close": 3,
@@ -11088,6 +12373,30 @@
                 "PLC1.LCP.Section.1.Peak.cap.8.voltageFeedback": 3,
                 "PLC1.LCP.Section.1.Peak.cap.9.currentFeedback": 3,
                 "PLC1.LCP.Section.1.Peak.cap.9.voltageFeedback": 3,
+                "PLC1.LCP.Section.1.Sust.Cap.0.currentFeedback": 3,
+                "PLC1.LCP.Section.1.Sust.Cap.0.voltageFeedback": 3,
+                "PLC1.LCP.Section.1.Sust.Cap.1.currentFeedback": 3,
+                "PLC1.LCP.Section.1.Sust.Cap.1.voltageFeedback": 3,
+                "PLC1.LCP.Section.1.Sust.Cap.10.currentFeedback": 3,
+                "PLC1.LCP.Section.1.Sust.Cap.10.voltageFeedback": 3,
+                "PLC1.LCP.Section.1.Sust.Cap.11.currentFeedback": 3,
+                "PLC1.LCP.Section.1.Sust.Cap.11.voltageFeedback": 3,
+                "PLC1.LCP.Section.1.Sust.Cap.2.currentFeedback": 3,
+                "PLC1.LCP.Section.1.Sust.Cap.2.voltageFeedback": 3,
+                "PLC1.LCP.Section.1.Sust.Cap.3.currentFeedback": 3,
+                "PLC1.LCP.Section.1.Sust.Cap.3.voltageFeedback": 3,
+                "PLC1.LCP.Section.1.Sust.Cap.4.currentFeedback": 3,
+                "PLC1.LCP.Section.1.Sust.Cap.4.voltageFeedback": 3,
+                "PLC1.LCP.Section.1.Sust.Cap.5.currentFeedback": 3,
+                "PLC1.LCP.Section.1.Sust.Cap.5.voltageFeedback": 3,
+                "PLC1.LCP.Section.1.Sust.Cap.6.currentFeedback": 3,
+                "PLC1.LCP.Section.1.Sust.Cap.6.voltageFeedback": 3,
+                "PLC1.LCP.Section.1.Sust.Cap.7.currentFeedback": 3,
+                "PLC1.LCP.Section.1.Sust.Cap.7.voltageFeedback": 3,
+                "PLC1.LCP.Section.1.Sust.Cap.8.currentFeedback": 3,
+                "PLC1.LCP.Section.1.Sust.Cap.8.voltageFeedback": 3,
+                "PLC1.LCP.Section.1.Sust.Cap.9.currentFeedback": 3,
+                "PLC1.LCP.Section.1.Sust.Cap.9.voltageFeedback": 3,
                 "PLC1.LCP.Section.1.Sust.ChargeRelay1_close": 3,
                 "PLC1.LCP.Section.1.Sust.ChargeRelay2_close": 3,
                 "PLC1.LCP.Section.1.Sust.DumpRelay1_close": 3,
@@ -11124,6 +12433,7 @@
                 "PLC1.LCP.Section.1.Sust.cap.8.voltageFeedback": 3,
                 "PLC1.LCP.Section.1.Sust.cap.9.currentFeedback": 3,
                 "PLC1.LCP.Section.1.Sust.cap.9.voltageFeedback": 3,
+                "PLC1.LCP.Section.2.AllCapsDischarged": 3,
                 "PLC1.LCP.Section.2.Form.ChargeRelay1_close": 3,
                 "PLC1.LCP.Section.2.Form.ChargeRelay2_close": 3,
                 "PLC1.LCP.Section.2.Form.DumpRelay1_close": 3,
@@ -11174,6 +12484,30 @@
                 "PLC1.LCP.Section.2.Form.cap.8.voltageFeedback": 3,
                 "PLC1.LCP.Section.2.Form.cap.9.currentFeedback": 3,
                 "PLC1.LCP.Section.2.Form.cap.9.voltageFeedback": 3,
+                "PLC1.LCP.Section.2.Peak.Cap.0.currentFeedback": 3,
+                "PLC1.LCP.Section.2.Peak.Cap.0.voltageFeedback": 3,
+                "PLC1.LCP.Section.2.Peak.Cap.1.currentFeedback": 3,
+                "PLC1.LCP.Section.2.Peak.Cap.1.voltageFeedback": 3,
+                "PLC1.LCP.Section.2.Peak.Cap.10.currentFeedback": 3,
+                "PLC1.LCP.Section.2.Peak.Cap.10.voltageFeedback": 3,
+                "PLC1.LCP.Section.2.Peak.Cap.11.currentFeedback": 3,
+                "PLC1.LCP.Section.2.Peak.Cap.11.voltageFeedback": 3,
+                "PLC1.LCP.Section.2.Peak.Cap.2.currentFeedback": 3,
+                "PLC1.LCP.Section.2.Peak.Cap.2.voltageFeedback": 3,
+                "PLC1.LCP.Section.2.Peak.Cap.3.currentFeedback": 3,
+                "PLC1.LCP.Section.2.Peak.Cap.3.voltageFeedback": 3,
+                "PLC1.LCP.Section.2.Peak.Cap.4.currentFeedback": 3,
+                "PLC1.LCP.Section.2.Peak.Cap.4.voltageFeedback": 3,
+                "PLC1.LCP.Section.2.Peak.Cap.5.currentFeedback": 3,
+                "PLC1.LCP.Section.2.Peak.Cap.5.voltageFeedback": 3,
+                "PLC1.LCP.Section.2.Peak.Cap.6.currentFeedback": 3,
+                "PLC1.LCP.Section.2.Peak.Cap.6.voltageFeedback": 3,
+                "PLC1.LCP.Section.2.Peak.Cap.7.currentFeedback": 3,
+                "PLC1.LCP.Section.2.Peak.Cap.7.voltageFeedback": 3,
+                "PLC1.LCP.Section.2.Peak.Cap.8.currentFeedback": 3,
+                "PLC1.LCP.Section.2.Peak.Cap.8.voltageFeedback": 3,
+                "PLC1.LCP.Section.2.Peak.Cap.9.currentFeedback": 3,
+                "PLC1.LCP.Section.2.Peak.Cap.9.voltageFeedback": 3,
                 "PLC1.LCP.Section.2.Peak.ChargeRelay1_close": 3,
                 "PLC1.LCP.Section.2.Peak.ChargeRelay2_close": 3,
                 "PLC1.LCP.Section.2.Peak.DumpRelay1_close": 3,
@@ -11210,6 +12544,30 @@
                 "PLC1.LCP.Section.2.Peak.cap.8.voltageFeedback": 3,
                 "PLC1.LCP.Section.2.Peak.cap.9.currentFeedback": 3,
                 "PLC1.LCP.Section.2.Peak.cap.9.voltageFeedback": 3,
+                "PLC1.LCP.Section.2.Sust.Cap.0.currentFeedback": 3,
+                "PLC1.LCP.Section.2.Sust.Cap.0.voltageFeedback": 3,
+                "PLC1.LCP.Section.2.Sust.Cap.1.currentFeedback": 3,
+                "PLC1.LCP.Section.2.Sust.Cap.1.voltageFeedback": 3,
+                "PLC1.LCP.Section.2.Sust.Cap.10.currentFeedback": 3,
+                "PLC1.LCP.Section.2.Sust.Cap.10.voltageFeedback": 3,
+                "PLC1.LCP.Section.2.Sust.Cap.11.currentFeedback": 3,
+                "PLC1.LCP.Section.2.Sust.Cap.11.voltageFeedback": 3,
+                "PLC1.LCP.Section.2.Sust.Cap.2.currentFeedback": 3,
+                "PLC1.LCP.Section.2.Sust.Cap.2.voltageFeedback": 3,
+                "PLC1.LCP.Section.2.Sust.Cap.3.currentFeedback": 3,
+                "PLC1.LCP.Section.2.Sust.Cap.3.voltageFeedback": 3,
+                "PLC1.LCP.Section.2.Sust.Cap.4.currentFeedback": 3,
+                "PLC1.LCP.Section.2.Sust.Cap.4.voltageFeedback": 3,
+                "PLC1.LCP.Section.2.Sust.Cap.5.currentFeedback": 3,
+                "PLC1.LCP.Section.2.Sust.Cap.5.voltageFeedback": 3,
+                "PLC1.LCP.Section.2.Sust.Cap.6.currentFeedback": 3,
+                "PLC1.LCP.Section.2.Sust.Cap.6.voltageFeedback": 3,
+                "PLC1.LCP.Section.2.Sust.Cap.7.currentFeedback": 3,
+                "PLC1.LCP.Section.2.Sust.Cap.7.voltageFeedback": 3,
+                "PLC1.LCP.Section.2.Sust.Cap.8.currentFeedback": 3,
+                "PLC1.LCP.Section.2.Sust.Cap.8.voltageFeedback": 3,
+                "PLC1.LCP.Section.2.Sust.Cap.9.currentFeedback": 3,
+                "PLC1.LCP.Section.2.Sust.Cap.9.voltageFeedback": 3,
                 "PLC1.LCP.Section.2.Sust.ChargeRelay1_close": 3,
                 "PLC1.LCP.Section.2.Sust.ChargeRelay2_close": 3,
                 "PLC1.LCP.Section.2.Sust.DumpRelay1_close": 3,
@@ -11222,6 +12580,31 @@
                 "PLC1.LCP.Section.2.Sust.ShortContact2unknown": 3,
                 "PLC1.LCP.Section.2.Sust.UnshortContact1_close": 3,
                 "PLC1.LCP.Section.2.Sust.UnshortContact2_close": 3,
+                "PLC1.LCP.Section.3.AllCapsDischarged": 3,
+                "PLC1.LCP.Section.3.Form.Cap.0.currentFeedback": 3,
+                "PLC1.LCP.Section.3.Form.Cap.0.voltageFeedback": 3,
+                "PLC1.LCP.Section.3.Form.Cap.1.currentFeedback": 3,
+                "PLC1.LCP.Section.3.Form.Cap.1.voltageFeedback": 3,
+                "PLC1.LCP.Section.3.Form.Cap.10.currentFeedback": 3,
+                "PLC1.LCP.Section.3.Form.Cap.10.voltageFeedback": 3,
+                "PLC1.LCP.Section.3.Form.Cap.11.currentFeedback": 3,
+                "PLC1.LCP.Section.3.Form.Cap.11.voltageFeedback": 3,
+                "PLC1.LCP.Section.3.Form.Cap.2.currentFeedback": 3,
+                "PLC1.LCP.Section.3.Form.Cap.2.voltageFeedback": 3,
+                "PLC1.LCP.Section.3.Form.Cap.3.currentFeedback": 3,
+                "PLC1.LCP.Section.3.Form.Cap.3.voltageFeedback": 3,
+                "PLC1.LCP.Section.3.Form.Cap.4.currentFeedback": 3,
+                "PLC1.LCP.Section.3.Form.Cap.4.voltageFeedback": 3,
+                "PLC1.LCP.Section.3.Form.Cap.5.currentFeedback": 3,
+                "PLC1.LCP.Section.3.Form.Cap.5.voltageFeedback": 3,
+                "PLC1.LCP.Section.3.Form.Cap.6.currentFeedback": 3,
+                "PLC1.LCP.Section.3.Form.Cap.6.voltageFeedback": 3,
+                "PLC1.LCP.Section.3.Form.Cap.7.currentFeedback": 3,
+                "PLC1.LCP.Section.3.Form.Cap.7.voltageFeedback": 3,
+                "PLC1.LCP.Section.3.Form.Cap.8.currentFeedback": 3,
+                "PLC1.LCP.Section.3.Form.Cap.8.voltageFeedback": 3,
+                "PLC1.LCP.Section.3.Form.Cap.9.currentFeedback": 3,
+                "PLC1.LCP.Section.3.Form.Cap.9.voltageFeedback": 3,
                 "PLC1.LCP.Section.3.Form.ChargeRelay1_close": 3,
                 "PLC1.LCP.Section.3.Form.ChargeRelay2_close": 3,
                 "PLC1.LCP.Section.3.Form.DumpRelay1_close": 3,
@@ -11272,6 +12655,9 @@
                 "PLC1.LCP.Section.3.Form.cap.8.voltageFeedback": 3,
                 "PLC1.LCP.Section.3.Form.cap.9.currentFeedback": 3,
                 "PLC1.LCP.Section.3.Form.cap.9.voltageFeedback": 3,
+                "PLC1.LCP.Section.3.FormTriggerVoltageFeedback": 3,
+                "PLC1.LCP.Section.3.PreFormCapVoltageFeedback": 3,
+                "PLC1.LCP.Section.3.PreFormTriggerVoltageFeedback": 3,
                 "PLC1.MCP_IO.AutoModeSelected": 3,
                 "PLC1.MCP_IO.CageEstopCircuitOK": 3,
                 "PLC1.MCP_IO.Charger": 3,

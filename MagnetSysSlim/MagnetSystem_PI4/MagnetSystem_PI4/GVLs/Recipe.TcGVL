@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <GVL Name="Recipe" Id="{76a52482-bd91-4c6a-bc62-c12593ed89ca}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	Coil : ARRAY[1..10] OF ST_Recipe;
+	General : ST_Recipe;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>
