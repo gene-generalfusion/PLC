@@ -1,0 +1,1259 @@
+<?xml version="1.0"?>
+<TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.29">
+	<DataTypes>
+		<DataType>
+			<Name GUID="{89AA7952-E0A8-B4EE-B8C2-33A2F92DEFB2}" AutoDeleteType="true">ST_UC_Status</Name>
+			<BitSize>448</BitSize>
+			<SubItem>
+				<Name>Elec_Balancing</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000002}">USINT</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Elec_Imbalance</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000002}">USINT</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>8</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Elec_VoltageSum</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>64</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Elec_HighestVolt</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>128</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Elec_AveVolt</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>192</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Elec_OverVoltage</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000002}">USINT</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>256</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Therm_LowTemp</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000002}">USINT</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>264</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Therm_HighTemp</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000002}">USINT</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>272</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Therm_HighestCell</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>320</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Therm_LowestCell</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>384</BitOffs>
+			</SubItem>
+		</DataType>
+		<DataType>
+			<Name GUID="{E0A8E2E6-6132-013F-6A7F-5D7E81E2036E}" AutoDeleteType="true">ST_UCDevices</Name>
+			<BitSize>448</BitSize>
+			<SubItem>
+				<Name>Status</Name>
+				<Type GUID="{89AA7952-E0A8-B4EE-B8C2-33A2F92DEFB2}">ST_UC_Status</Type>
+				<BitSize>448</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+		</DataType>
+		<DataType>
+			<Name IecBaseType="true">ARRAY [1..10] OF ST_UCDevices</Name>
+			<Comment><![CDATA[only used with DBC file.]]></Comment>
+			<BitSize>4480</BitSize>
+			<BaseType GUID="{E0A8E2E6-6132-013F-6A7F-5D7E81E2036E}">ST_UCDevices</BaseType>
+			<ArrayInfo>
+				<LBound>1</LBound>
+				<Elements>10</Elements>
+			</ArrayInfo>
+		</DataType>
+		<DataType>
+			<Name GUID="{AD38D94B-C7A1-A5B5-A8CA-488FD117A7B9}" AutoDeleteType="true">ST_UC_Status_Dummy</Name>
+			<BitSize>576</BitSize>
+			<ExtendsType GUID="{89AA7952-E0A8-B4EE-B8C2-33A2F92DEFB2}">ST_UC_Status</ExtendsType>
+			<SubItem>
+				<Name>R2_06_UC_Rx_cobID</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>448</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>R2_06_UC_Rx_data</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000001}">BYTE</Type>
+				<ArrayInfo>
+					<LBound>0</LBound>
+					<Elements>8</Elements>
+				</ArrayInfo>
+				<BitSize>64</BitSize>
+				<BitOffs>480</BitOffs>
+			</SubItem>
+		</DataType>
+		<DataType>
+			<Name GUID="{AC4BB20D-5D03-4CE5-96C6-86DFFE816AA7}" Namespace="IO" TcBaseType="true">CANMESSAGE</Name>
+			<BitSize>64</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000002}">USINT</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>8</Elements>
+			</ArrayInfo>
+		</DataType>
+		<DataType>
+			<Name GUID="{097EA4EA-7ACD-4562-9D25-EE45E0B0C673}" Namespace="IO" TcBaseType="true" HideType="true">EXTCANQUEUE</Name>
+			<BitSize>112</BitSize>
+			<SubItem>
+				<Name>length</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000005}">UINT</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>cobId</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>16</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>data</Name>
+				<Type GUID="{AC4BB20D-5D03-4CE5-96C6-86DFFE816AA7}" Namespace="IO">CANMESSAGE</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>48</BitOffs>
+			</SubItem>
+		</DataType>
+		<DataType>
+			<Name GUID="{12D4E68C-23D0-4828-96DB-E58EAA58AD88}" PersistentType="true">AlarmWord1</Name>
+			<DisplayName TxtId=""><![CDATA[Alarms]]></DisplayName>
+			<EventId>
+				<Name Id="999">Instrumentation_Fault</Name>
+				<DisplayName TxtId=""><![CDATA[Instrumentation Fault]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="998">System_Tripped</Name>
+				<DisplayName TxtId=""><![CDATA[Control System Tripped]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="0">b0</Name>
+				<DisplayName TxtId=""><![CDATA[Coil 1 AI 1 Under Voltage]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="1">b1</Name>
+				<DisplayName TxtId=""><![CDATA[Coil 1 AI 1 Over Voltage]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="2">b2</Name>
+				<DisplayName TxtId=""><![CDATA[Coil 1 AI 1 Value smaller/equal Limit1]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="3">b3</Name>
+				<DisplayName TxtId=""><![CDATA[Coil 1 AI 1 Under Voltage]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="4">b4</Name>
+				<DisplayName TxtId=""><![CDATA[Coil 1 AI 2 Over Voltage]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="5">b5</Name>
+				<DisplayName TxtId=""><![CDATA[Coil 1 AI 2 Over Voltage]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="6">b6</Name>
+				<DisplayName TxtId=""><![CDATA[Coil 1 AI 2 Value smaller/equal Limit1]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="7">b7</Name>
+				<DisplayName TxtId=""><![CDATA[Coil 1 AI 2 Value bigger/equal Limit1]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="8">b8</Name>
+				<DisplayName TxtId=""><![CDATA[Coil 1 AI 3 Under Voltage]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="9">b9</Name>
+				<DisplayName TxtId=""><![CDATA[Coil 1 AI 3 Over Voltage]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="10">b10</Name>
+				<DisplayName TxtId=""><![CDATA[Coil 1 AI 3 Value smaller/equal Limit1]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="11">b11</Name>
+				<DisplayName TxtId=""><![CDATA[Coil 1 AI 3 Value bigger/equal Limit1]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="12">b12</Name>
+				<DisplayName TxtId=""><![CDATA[Coil 1 Charger Voltage Reading Faulted]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="13">b13</Name>
+				<DisplayName TxtId=""><![CDATA[Coil 1 Current Reading Faulted]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="14">b14</Name>
+				<DisplayName TxtId=""><![CDATA[Coil 1 Bfield Reading Faulted]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<Hides>
+				<Hide GUID="{1766A044-3E5A-4AA2-A973-9A4E3AFDB381}"/>
+				<Hide GUID="{15AA5795-8A31-4C86-A3FB-FAA56A378159}"/>
+				<Hide GUID="{F88DCBEC-58FD-401D-9FEB-B639C4AE41D7}"/>
+				<Hide GUID="{45104F70-A0EE-4B6D-A441-5E8E2A246293}"/>
+				<Hide GUID="{680185D6-36A8-422D-82EF-202536A125F3}"/>
+				<Hide GUID="{2279B261-1BAE-4540-8EBB-AED7BC3003DB}"/>
+				<Hide GUID="{6DDA0936-75A8-4D74-9F32-12B1F89DA6EE}"/>
+				<Hide GUID="{C6A29170-A2A7-40CD-B917-D04D76474E11}"/>
+				<Hide GUID="{4D198161-407A-4316-BBAE-34EB3A405BB3}"/>
+				<Hide GUID="{C29A1CFD-41F4-4AEC-AC1A-4B626E756604}"/>
+				<Hide GUID="{821F0D3C-7614-4253-84B5-44CDA5B4A59B}"/>
+				<Hide GUID="{F2C1BE9C-2B86-4C49-A5DC-55F608DD5BC8}"/>
+				<Hide GUID="{6A9DC145-CE61-4069-A34F-90448B6A66EA}"/>
+				<Hide GUID="{A9AFCF07-A66B-4334-B0B1-E1DF3B1E3739}"/>
+				<Hide GUID="{D224C629-16B1-4A42-965E-E9ABDFE68671}"/>
+				<Hide GUID="{7C52C957-A57F-4916-86FD-4C82B118DAF5}"/>
+				<Hide GUID="{1A5FE04F-9FA6-447C-9E62-D0050DF4A6D9}"/>
+				<Hide GUID="{8F675F7E-76BA-4D5A-B03C-78B4CE6D113B}"/>
+				<Hide GUID="{69841D83-6613-439E-99DD-CCED921060A7}"/>
+				<Hide GUID="{7C568E49-6149-47ED-95A4-E020618AC211}"/>
+				<Hide GUID="{553AF8C2-B458-44FA-B95B-92C8C5EA895F}"/>
+				<Hide GUID="{21DC5004-50DF-4732-AECB-9C0132AEB257}"/>
+				<Hide GUID="{B683D64B-F534-4CEC-AF5B-328FDEC4C29C}"/>
+				<Hide GUID="{ADB03749-6746-4982-84F0-29C9FFFF58EB}"/>
+				<Hide GUID="{5E368A12-AE12-4F7F-8D0A-D10C341A590C}"/>
+				<Hide GUID="{A44D88A9-32AB-4441-81B2-CF78384D2794}"/>
+				<Hide GUID="{8A86BE17-FAB5-42F0-A36D-876FF24615AC}"/>
+			</Hides>
+		</DataType>
+		<DataType>
+			<Name GUID="{4C49288A-38C6-49BB-BC1D-8226D13E9C58}" PersistentType="true">AlarmWord11</Name>
+			<DisplayName TxtId=""><![CDATA[Alarms]]></DisplayName>
+			<EventId>
+				<Name Id="160">b0</Name>
+				<DisplayName TxtId=""><![CDATA[Coil 1 Interlock Relay Open]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="161">b1</Name>
+				<DisplayName TxtId=""><![CDATA[Coil 2 Interlock Relay Open]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="162">b2</Name>
+				<DisplayName TxtId=""><![CDATA[Coil 3 Interlock Relay Open]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="163">b3</Name>
+				<DisplayName TxtId=""><![CDATA[Coil 4 Interlock Relay Open]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="164">b4</Name>
+				<DisplayName TxtId=""><![CDATA[Coil 5 Interlock Relay Open]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="165">b5</Name>
+				<DisplayName TxtId=""><![CDATA[Coil 6 Interlock Relay Open]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="166">b6</Name>
+				<DisplayName TxtId=""><![CDATA[Coil 7 Interlock Relay Open]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="167">b7</Name>
+				<DisplayName TxtId=""><![CDATA[Coil 8 Interlock Relay Open]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="168">b8</Name>
+				<DisplayName TxtId=""><![CDATA[Coil 9 Interlock Relay Open]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="169">b9</Name>
+				<DisplayName TxtId=""><![CDATA[Coil 10 Interlock Relay Open]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="170">b10</Name>
+				<DisplayName TxtId=""><![CDATA[All Interlock Open]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<Hides>
+				<Hide GUID="{460A0E86-92EC-4EF3-B308-F48880DF088E}"/>
+				<Hide GUID="{BA0915DE-3583-4FF9-ACEF-F3265A7BDF3A}"/>
+				<Hide GUID="{4B4AC157-15D0-43D5-BA6F-390AF1847D28}"/>
+				<Hide GUID="{DDD5A228-4B22-46DF-BAF8-34F2F4A10CEA}"/>
+			</Hides>
+		</DataType>
+		<DataType>
+			<Name GUID="{DDA2B39D-A740-4013-80FD-087906D18786}" PersistentType="true">AlarmWord22</Name>
+			<DisplayName TxtId=""><![CDATA[Alarms]]></DisplayName>
+			<EventId>
+				<Name Id="336">b0</Name>
+				<DisplayName TxtId=""><![CDATA[Master Stop PB is Pressed]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="337">b1</Name>
+				<DisplayName TxtId=""><![CDATA[Coil 1 Local E-stop is Pressed]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="338">b2</Name>
+				<DisplayName TxtId=""><![CDATA[Coil 2 Local E-stop is Pressed]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="339">b3</Name>
+				<DisplayName TxtId=""><![CDATA[Coil 3 Local E-stop is Pressed]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="340">b4</Name>
+				<DisplayName TxtId=""><![CDATA[Coil 4 Local E-stop is Pressed]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="341">b5</Name>
+				<DisplayName TxtId=""><![CDATA[Coil 5 Local E-stop is Pressed]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="342">b6</Name>
+				<DisplayName TxtId=""><![CDATA[Coil 6 Local E-stop is Pressed]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="343">b7</Name>
+				<DisplayName TxtId=""><![CDATA[Coil 7 Local E-stop is Pressed]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="344">b8</Name>
+				<DisplayName TxtId=""><![CDATA[Coil 8 Local E-stop is Pressed]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="345">b9</Name>
+				<DisplayName TxtId=""><![CDATA[Coil 9 Local E-stop is Pressed]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="346">b10</Name>
+				<DisplayName TxtId=""><![CDATA[Coil 10 Local E-stop is Pressed]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="347">b11</Name>
+				<DisplayName TxtId=""><![CDATA[Manual Mode Selected]]></DisplayName>
+				<Severity>Info</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="348">b12</Name>
+				<DisplayName TxtId=""><![CDATA[Cage E-Stop Circuit not OK]]></DisplayName>
+				<Severity>Warning</Severity>
+			</EventId>
+			<Hides>
+				<Hide GUID="{754AA4C6-03AB-4142-BBED-145925D33395}"/>
+				<Hide GUID="{8DFB01DF-BBFF-437C-8477-E74CC9EF51F9}"/>
+				<Hide GUID="{8DD6D01A-CCB6-4486-A529-3D0FB75266B8}"/>
+				<Hide GUID="{A519FA9F-1DE2-4851-814F-6E31AB15BE4A}"/>
+			</Hides>
+		</DataType>
+		<DataType>
+			<Name GUID="{66CD71F3-1B5A-46D0-A4D6-89592EFF66B6}" PersistentType="true">AlarmWord23</Name>
+			<DisplayName TxtId=""><![CDATA[Alarms]]></DisplayName>
+			<EventId>
+				<Name Id="352">b0</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 1 Charge Relay Failed to Close]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="353">b1</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 1 Charge Relay Failed to Open]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="354">b2</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 2 Charge Relay Failed to Close]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="355">b3</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 2 Charge Relay Failed to Open]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="356">b4</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 3 Charge Relay Failed to Close]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="357">b5</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 3 Charge Relay Failed to Open]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="358">b6</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 4 Charge Relay Failed to Close]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="359">b7</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 4 Charge Relay Failed to Open]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="360">b8</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 5 Charge Relay Failed to Close]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="361">b9</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 5 Charge Relay Failed to Open]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="362">b10</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 6 Charge Relay Failed to Close]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="363">b11</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 6 Charge Relay Failed to Open]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="364">b12</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 7 Charge Relay Failed to Close]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="365">b13</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 7 Charge Relay Failed to Open]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="366">b14</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 8 Charge Relay Failed to Close]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="367">b15</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 8 Charge Relay Failed to Open]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<Hides>
+				<Hide GUID="{04387508-AA8F-433C-B7A7-85E60EFC2E33}"/>
+				<Hide GUID="{F00864DE-8C97-442A-A68A-B99EF9B7338F}"/>
+				<Hide GUID="{99C99450-9754-48CE-A0B8-75339C0B54CC}"/>
+				<Hide GUID="{069CA019-CF22-4C32-8CCE-E6ECFCD76BB4}"/>
+			</Hides>
+		</DataType>
+		<DataType>
+			<Name GUID="{FEF4C2DD-CEFF-4722-AE98-263AA7C6E771}" PersistentType="true">AlarmWord24</Name>
+			<DisplayName TxtId=""><![CDATA[Alarms]]></DisplayName>
+			<EventId>
+				<Name Id="368">b0</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 9 Charge Relay Failed to Close]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="369">b1</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 9 Charge Relay Failed to Open]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="370">b2</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 10 Charge Relay Failed to Close]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="371">b3</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 10 Charge Relay Failed to Open]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="372">b4</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 1 AC Interlock Relay Failed to Close]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="373">b5</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 1 AC Interlock Relay Failed to Open]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="374">b6</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 2 AC Interlock Relay Failed to Close]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="375">b7</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 2 AC Interlock Relay Failed to Open]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="376">b8</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 3 AC Interlock Relay Failed to Close]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="377">b9</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 3 AC Interlock Relay Failed to Open]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="378">b10</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 4 AC Interlock Relay Failed to Close]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="379">b11</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 4 AC Interlock Relay Failed to Open]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="380">b12</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 5 AC Interlock Relay Failed to Close]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="381">b13</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 5 AC Interlock Relay Failed to Open]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="382">b14</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 6 AC Interlock Relay Failed to Close]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="383">b15</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 6 AC Interlock Relay Failed to Open]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<Hides>
+				<Hide GUID="{A44C268C-D328-4246-BAA7-5C494360D5EB}"/>
+				<Hide GUID="{0D412B97-CDD7-489A-9678-816C43BB6C54}"/>
+				<Hide GUID="{F41B9F4C-7E33-4C06-9CDD-DE46F5837D09}"/>
+				<Hide GUID="{120292D3-5D60-4C30-A516-E695EDBD5742}"/>
+			</Hides>
+		</DataType>
+		<DataType>
+			<Name GUID="{C1BA6412-9519-4907-AEAA-F10A3E33D3B6}" PersistentType="true">AlarmWord25</Name>
+			<DisplayName TxtId=""><![CDATA[Alarms]]></DisplayName>
+			<EventId>
+				<Name Id="384">b0</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 7 AC Interlock Relay Failed to Close]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="385">b1</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 7 AC Interlock Relay Failed to Open]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="386">b2</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 8 AC Interlock Relay Failed to Close]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="287">b3</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 8 AC Interlock Relay Failed to Open]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="388">b4</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 9 AC Interlock Relay Failed to Close]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="389">b5</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 9 AC Interlock Relay Failed to Open]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="390">b6</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 10 AC Interlock Relay Failed to Close]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="391">b7</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 10 AC Interlock Relay Failed to Open]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="392">b8</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 1 Dump Relay 1 Relay Failed to Close]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="393">b9</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 1 Dump Relay 1 Relay Failed to Open]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="394">b10</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 2 Dump Relay 1 Relay Failed to Close]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="395">b11</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 2 Dump Relay 1 Relay Failed to Open]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="396">b12</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 3 Dump Relay 1 Relay Failed to Close]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="397">b13</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 3 Dump Relay 1 Relay Failed to Open]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="398">b14</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 4 Dump Relay 1 Relay Failed to Close]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="399">b15</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 4 Dump Relay 1 Relay Failed to Open]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<Hides>
+				<Hide GUID="{2BD67FB4-E78F-49EB-AFCA-44BD2EDCC369}"/>
+				<Hide GUID="{62CB5F13-E1C2-44B9-937E-B345A59DBAC0}"/>
+				<Hide GUID="{73F16F29-1768-4ED5-91AF-57EF6BA2753F}"/>
+			</Hides>
+		</DataType>
+		<DataType>
+			<Name GUID="{D47BA754-14B1-4C02-9F66-C1254BC480AD}" PersistentType="true">AlarmWord26</Name>
+			<DisplayName TxtId=""><![CDATA[Alarms]]></DisplayName>
+			<EventId>
+				<Name Id="400">b0</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 5 Dump Relay 1 Relay Failed to Close]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="401">b1</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 5 Dump Relay 1 Relay Failed to Open]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="402">b2</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 6 Dump Relay 1 Relay Failed to Close]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="403">b3</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 6 Dump Relay 1 Relay Failed to Open]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="404">b4</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 7 Dump Relay 1 Relay Failed to Close]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="405">b5</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 7 Dump Relay 1 Relay Failed to Open]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="406">b6</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 8 Dump Relay 1 Relay Failed to Close]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="407">b7</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 8 Dump Relay 1 Relay Failed to Open]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="408">b8</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 9 Dump Relay 1 Relay Failed to Close]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="409">b9</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 9 Dump Relay 1 Relay Failed to Open]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="410">b10</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 10 Dump Relay 1 Relay Failed to Close]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="411">b11</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 10 Dump Relay 1 Relay Failed to Open]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="412">b12</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 1 Dump Relay 2 Relay Failed to Close]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="413">b13</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 1 Dump Relay 2 Relay Failed to Open]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="414">b14</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 2 Dump Relay 2 Relay Failed to Close]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="415">b15</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 2 Dump Relay 2 Relay Failed to Open]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<Hides>
+				<Hide GUID="{2D64CF54-986F-415F-AFC9-FF5828A5C246}"/>
+				<Hide GUID="{4D3F14F3-AC4A-4380-AC5B-FEC1EFE853E3}"/>
+			</Hides>
+		</DataType>
+		<DataType>
+			<Name GUID="{B29661DD-BA3E-4B88-9F0D-EDFFA249764E}" PersistentType="true">AlarmWord27</Name>
+			<DisplayName TxtId=""><![CDATA[Alarms]]></DisplayName>
+			<EventId>
+				<Name Id="416">b0</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 3 Dump Relay 2 Relay Failed to Close]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="417">b1</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 3 Dump Relay 2 Relay Failed to Open]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="418">b2</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 4 Dump Relay 2 Relay Failed to Close]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="419">b3</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 4 Dump Relay 2 Relay Failed to Open]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="420">b4</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 5 Dump Relay 2 Relay Failed to Close]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="421">b5</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 5 Dump Relay 2 Relay Failed to Open]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="422">b6</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 6 Dump Relay 2 Relay Failed to Close]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="423">b7</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 6 Dump Relay 2 Relay Failed to Open]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="424">b8</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 7 Dump Relay 2 Relay Failed to Close]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="425">b9</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 7 Dump Relay 2 Relay Failed to Open]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="426">b10</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 8 Dump Relay 2 Relay Failed to Close]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="427">b11</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 8 Dump Relay 2 Relay Failed to Open]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="428">b12</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 9 Dump Relay 2 Relay Failed to Close]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="429">b13</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 9 Dump Relay 2 Relay Failed to Open]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="430">b14</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 10 Dump Relay 2 Relay Failed to Close]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="431">b15</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Coil 10 Dump Relay 2 Relay Failed to Open]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<Hides>
+				<Hide GUID="{DC82EDF9-7141-451B-8C0D-2A969639E1BF}"/>
+				<Hide GUID="{7C408ED0-3420-4C7A-A9E9-C914114EBBB7}"/>
+			</Hides>
+		</DataType>
+		<DataType>
+			<Name GUID="{7FD75A52-B96A-4BA7-A390-7E0E53E11661}" PersistentType="true">AlarmWord88</Name>
+			<DisplayName TxtId=""><![CDATA[Alarms]]></DisplayName>
+			<EventId>
+				<Name Id="1392">b0</Name>
+				<DisplayName TxtId=""><![CDATA[FOT - Machine Time Out]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="1393">b1</Name>
+				<DisplayName TxtId=""><![CDATA[Spare]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="1394">b2</Name>
+				<DisplayName TxtId=""><![CDATA[spare]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="1395">b3</Name>
+				<DisplayName TxtId=""><![CDATA[spare]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<EventId>
+				<Name Id="1396">b4</Name>
+				<DisplayName TxtId=""><![CDATA[spare]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
+			<Hides>
+				<Hide GUID="{B5F32580-6AB1-45EC-ADE2-F4A5C506975F}"/>
+				<Hide GUID="{6C53A6FA-F753-448C-86EE-3719F6572E0D}"/>
+				<Hide GUID="{EEC141B7-2120-4925-A9B2-20BBC22EE669}"/>
+				<Hide GUID="{5C2E98FA-ADD2-40A4-BEA0-01E10D27E187}"/>
+				<Hide GUID="{731A53EC-0C2A-4D0E-9815-C55FDCB6FE88}"/>
+			</Hides>
+		</DataType>
+	</DataTypes>
+	<Project ProjectGUID="{76441871-8C58-45C5-B1D1-88899F64034B}" Target64Bit="true" ShowHideConfigurations="#x106">
+		<System>
+			<Tasks>
+				<Task Id="3" Priority="20" CycleTime="100000" AmsPort="350" AdtTasks="true">
+					<Name>PlcTask</Name>
+				</Task>
+			</Tasks>
+		</System>
+		<Plc>
+			<Project GUID="{79180BF2-5140-4E7A-BB10-C7538A1A7770}" Name="MagnetSystem_PI4" PrjFilePath="MagnetSystem_PI4\MagnetSystem_PI4.plcproj" TmcFilePath="MagnetSystem_PI4\MagnetSystem_PI4.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="MagnetSystem_PI4\MagnetSystem_PI4.tmc">
+					<Name>MagnetSystem_PI4 Instance</Name>
+					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
+					<Vars VarGrpType="1">
+						<Name>PlcTask Inputs</Name>
+						<Var>
+							<Name>Input.R1_01_00</Name>
+							<Comment><![CDATA[Master stop PB not pressed - black pb on mcp]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_01_01</Name>
+							<Comment><![CDATA[case Estop circuit okay (Rly1 (120vac)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_01_02</Name>
+							<Comment><![CDATA[Automatic Mode Selected (NO)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_01_03</Name>
+							<Comment><![CDATA[24VDC OK]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_01_04</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_01_05</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_01_06</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_01_07</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_03_00</Name>
+							<Comment><![CDATA[EL1008 - DI]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_01_00</Name>
+							<Comment><![CDATA[***LCP
+EL3064 - AI]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_01_00_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_01_01</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_01_01_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_01_02</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_01_02_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_03_01</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_03_02</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_03_03</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_03_04</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_03_05</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_03_06</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_03_07</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_04_00</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_04_01</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_04_02</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_04_03</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_04_04</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_04_05</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_04_06</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_04_07</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_03_00</Name>
+							<Comment><![CDATA[EL1008 - DI]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_06_CapNumber</Name>
+							<Comment><![CDATA[only used with DBC file.]]></Comment>
+							<Type GUID="{89F8E966-3D08-BEE1-67FF-C530146E3259}">ARRAY [1..10] OF ST_UCDevices</Type>
+						</Var>
+						<Var>
+							<Name>Input.R2_06_UC_7F_status</Name>
+							<Type GUID="{AD38D94B-C7A1-A5B5-A8CA-488FD117A7B9}">ST_UC_Status_Dummy</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_01_00</Name>
+							<Comment><![CDATA[R3****** LCP2
+EL3064 - AI]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_01_00_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_01_01</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_01_01_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_01_02</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_01_02_Status</Name>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_03_01</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_03_02</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_03_03</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_03_04</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_03_05</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_03_06</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_03_07</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_04_00</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_04_01</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_04_02</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_04_03</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_04_04</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_04_05</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_04_06</Name>
+							<Comment><![CDATA[rly - output relay]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_04_07</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_06_CapNumber</Name>
+							<Comment><![CDATA[only used with DBC file.]]></Comment>
+							<Type GUID="{89F8E966-3D08-BEE1-67FF-C530146E3259}">ARRAY [1..10] OF ST_UCDevices</Type>
+						</Var>
+						<Var>
+							<Name>Input.R3_06_UC_7F_status</Name>
+							<Type GUID="{AD38D94B-C7A1-A5B5-A8CA-488FD117A7B9}">ST_UC_Status_Dummy</Type>
+						</Var>
+					</Vars>
+					<Vars VarGrpType="2" AreaNo="1">
+						<Name>PlcTask Outputs</Name>
+						<Var>
+							<Name>Output.R2_05_00</Name>
+							<Comment><![CDATA[ EL 2008 - DQ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_02_00</Name>
+							<Comment><![CDATA[LCP 1	
+EL2502 - PWM Output]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_02_01</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_05_01</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_05_02</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_05_03</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_05_04</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_05_05</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_05_06</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_05_07</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_06_CANrequest</Name>
+							<Type GUID="{097EA4EA-7ACD-4562-9D25-EE45E0B0C673}" Namespace="IO">EXTCANQUEUE</Type>
+						</Var>
+						<Var>
+							<Name>Output.R3_05_00</Name>
+							<Comment><![CDATA[ EL 2008 - DQ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R3_02_00</Name>
+							<Comment><![CDATA[LCP 2	***********************************************
+EL2502 - PWM Output]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Output.R3_02_01</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Output.R3_05_01</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R3_05_02</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R3_05_03</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R3_05_04</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R3_05_05</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R3_05_06</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R3_05_07</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R3_06_CANrequest</Name>
+							<Type GUID="{097EA4EA-7ACD-4562-9D25-EE45E0B0C673}" Namespace="IO">EXTCANQUEUE</Type>
+						</Var>
+					</Vars>
+					<Contexts>
+						<Context>
+							<Id NeedCalleeCall="true">0</Id>
+							<Name>PlcTask</Name>
+							<ManualConfig>
+								<OTCID>#x02010030</OTCID>
+							</ManualConfig>
+							<Priority>20</Priority>
+							<CycleTime>10000000</CycleTime>
+						</Context>
+					</Contexts>
+					<TaskPouOids>
+						<TaskPouOid Prio="20" OTCID="#x08502001"/>
+					</TaskPouOids>
+				</Instance>
+			</Project>
+		</Plc>
+	</Project>
+</TcSmProject>
