@@ -3,8 +3,8 @@
   <DUT Name="ST_Echo_MCP" Id="{046077e8-8653-492e-8ab0-fca8bbe346f5}">
     <Declaration><![CDATA[TYPE ST_Echo_MCP :
 STRUCT
-	VoltageFeedback : REAL;
-	CurrentFeedback : REAL;
+	VoltageFeedback : REAL; //DINT;
+	CurrentFeedback : REAL; //DINT;
 	TDKLoad			: ST_ChargeTime;
 	
 END_STRUCT

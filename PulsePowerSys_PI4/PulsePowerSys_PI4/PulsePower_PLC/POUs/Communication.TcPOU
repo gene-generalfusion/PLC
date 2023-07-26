@@ -15,7 +15,7 @@ END_VAR
       <ST><![CDATA[//echoing voltage feedback to main plc
 
 FOR m := 1 TO 8 BY 1 DO
-	TxMainPLC.Charger[m].VoltageFeedback := MCP_IO.Charger[m].voltageFeedback;
+	TxMainPLC.Charger[m].VoltageFeedback := MCP_IO.Charger[m].voltageFeedback; 
 	TxMainPLC.Charger[m].CurrentFeedback := MCP_IO.Charger[m].currentFeedback;
 	
 	//recipe to setpoints

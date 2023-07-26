@@ -3,7 +3,7 @@
   <DUT Name="ST_Recipe" Id="{2065798b-e446-4a94-ba0f-3197caff863b}">
     <Declaration><![CDATA[TYPE ST_Recipe :
 STRUCT
-	RequiredChargedV : REAL := 10;
+	RequiredChargedV : REAL := 10; //DINT;
 END_STRUCT
 END_TYPE
 ]]></Declaration>
