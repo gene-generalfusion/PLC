@@ -628,13 +628,13 @@
               {
                 "compare1": {
                   "objectType": "Symbol",
-                  "valueType": "tchmi:general#/definitions/String",
+                  "valueType": "tchmi:general#/definitions/BOOL",
                   "symbolExpression": "%s%PLC1.LCP.Section.3.Form.ShortContact1Engaged%/s%"
                 },
                 "compare2": {
                   "objectType": "StaticValue",
                   "valueType": "tchmi:general#/definitions/BOOL",
-                  "value": false
+                  "value": true
                 },
                 "compareOperator": "==",
                 "logic": null

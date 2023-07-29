@@ -9318,6 +9318,46 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.Recipe.FormSupplyEN": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::Recipe::FormSupplyEN",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.Recipe.PFormSupplyEN": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::Recipe::PFormSupplyEN",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.Recipe.PeakSupplyEN": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::Recipe::PeakSupplyEN",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.Recipe.SustSupplyEN": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::Recipe::SustSupplyEN",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
         "PLC1.Sequence.ChargeTimeFinished": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -12808,6 +12848,10 @@
                 "PLC1.Permissives_DB.AllShortContactEngaged": 3,
                 "PLC1.Permissives_DB.NoInterlockPressureLoss": 3,
                 "PLC1.Permissives_DB.SafetyOK": 3,
+                "PLC1.Recipe.FormSupplyEN": 3,
+                "PLC1.Recipe.PFormSupplyEN": 3,
+                "PLC1.Recipe.PeakSupplyEN": 3,
+                "PLC1.Recipe.SustSupplyEN": 3,
                 "PLC1.Sequence.ChargeRunOutTMR_TON.ET": 3,
                 "PLC1.Sequence.ChargeTimeFinished": 3,
                 "PLC1.Sequence.Dump.DONE": 3,

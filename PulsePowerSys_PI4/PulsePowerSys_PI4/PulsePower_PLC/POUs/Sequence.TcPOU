@@ -195,6 +195,25 @@ CASE ePulseState OF
 	//Charging
 	E_PulseState.CHARGING: 
 					MCP_IO.LiftMachineGND := TRUE; //call the bit again in case it did not lift
+					
+					IF Recipe.PeakSupplyEN = FALSE THEN
+						MCP_IO.Charger[1].voltageSP := 0;
+						MCP_IO.Charger[2].voltageSP := 0;
+						MCP_IO.Charger[3].voltageSP := 0;
+					END_IF
+					IF Recipe.SustSupplyEN = FALSE THEN
+						MCP_IO.Charger[4].voltageSP := 0;
+						MCP_IO.Charger[5].voltageSP := 0;
+						MCP_IO.Charger[6].voltageSP := 0;
+					END_IF
+					IF Recipe.FormSupplyEN = FALSE THEN
+						MCP_IO.Charger[7].voltageSP := 0;
+						MCP_IO.Charger[8].voltageSP := 0;
+					END_IF
+					IF Recipe.PFormSupplyEN = FALSE THEN
+						MCP_IO.GLS3_voltageSP := 0;
+					END_IF
+					
 					//start charging runout timer
 					ChargingRunOutTMR_TON (IN := TRUE, PT := (ChargeTime_DB.LongestChargeTime_PT + HMI_DB.RunOutTMR_PT), ET => ChargingRunOutTMR_ET);
 	
@@ -216,18 +235,40 @@ CASE ePulseState OF
 						//if all dump relays open then close charger relays
 						IF Permissives_DB.AllDumpRelaysOpen = TRUE THEN 
 							//close all charge rly 
-							FOR j := 1 TO 3 BY 1 DO  
-								LCP.Section[j].Peak.CloseChargeRelay1 := TRUE; 
-								LCP.Section[j].Peak.CloseChargeRelay2 := TRUE; 
-								LCP.Section[j].Sust.CloseChargeRelay1 := TRUE;
-								LCP.Section[j].Sust.CloseChargeRelay2 := TRUE;	
+							FOR j := 1 TO 3 BY 1 DO
+								IF Recipe.PeakSupplyEN THEN
+									LCP.Section[j].Peak.CloseChargeRelay1 := TRUE; 
+									LCP.Section[j].Peak.CloseChargeRelay2 := TRUE; 
+									ELSE
+										LCP.Section[j].Peak.CloseChargeRelay1 := FALSE; 
+										LCP.Section[j].Peak.CloseChargeRelay2 := FALSE; 
+								END_IF;
+								IF Recipe.SustSupplyEN THEN
+									LCP.Section[j].Sust.CloseChargeRelay1 := TRUE;
+									LCP.Section[j].Sust.CloseChargeRelay2 := TRUE;
+									ELSE
+										LCP.Section[j].Sust.CloseChargeRelay1 := FALSE;
+										LCP.Section[j].Sust.CloseChargeRelay2 := FALSE;
+								END_IF
 							END_FOR;
 							//close all charge rly on form
-							LCP.Section[4].Form.CloseChargeRelay1 := TRUE;
-							LCP.Section[4].Form.CloseChargeRelay2 := TRUE;
-							LCP.Section[4].Form.CloseFormTrigChargeRly := TRUE;
-							LCP.Section[4].Form.ClosePreFormChargeRly := TRUE;
-							LCP.Section[4].Form.ClosePreFormTrigChargeRly := TRUE;
+							IF Recipe.FormSupplyEN THEN
+								LCP.Section[4].Form.CloseChargeRelay1 := TRUE;
+								LCP.Section[4].Form.CloseChargeRelay2 := TRUE;
+								LCP.Section[4].Form.CloseFormTrigChargeRly := TRUE;
+								ELSE
+									LCP.Section[4].Form.CloseChargeRelay1 := FALSE;
+									LCP.Section[4].Form.CloseChargeRelay2 := FALSE;
+									LCP.Section[4].Form.CloseFormTrigChargeRly := FALSE;
+							END_IF
+							
+							IF Recipe.PFormSupplyEN THEN
+								LCP.Section[4].Form.ClosePreFormChargeRly := TRUE;
+								LCP.Section[4].Form.ClosePreFormTrigChargeRly := TRUE;
+								ELSE
+									LCP.Section[4].Form.ClosePreFormChargeRly := FALSE;
+									LCP.Section[4].Form.ClosePreFormTrigChargeRly := FALSE;
+							END_IF
 						END_IF;	
 					END_IF;
 					
@@ -252,28 +293,44 @@ CASE ePulseState OF
 							//ChargeTime_DB.ChargerDelay_TON[i] (IN := TRUE, PT := ChargeTime_DB.ChargerDelay_PT[i], ET => ChargeTime_DB.ChargerDelay_ET[i]);
 						END_FOR;*)
 						//send voltage SP to chargers
-						MCP_IO.Charger[1].voltageSP := REAL_TO_DINT (Setpoints.TDKLoad[1].RequiredChargedV * 1000);
-						MCP_IO.Charger[2].voltageSP := REAL_TO_DINT (Setpoints.TDKLoad[2].RequiredChargedV * 1000);
-						MCP_IO.Charger[3].voltageSP := REAL_TO_DINT (Setpoints.TDKLoad[3].RequiredChargedV * 1000);
-						MCP_IO.Charger[4].voltageSP := REAL_TO_DINT (Setpoints.TDKLoad[4].RequiredChargedV * 1000);
-						MCP_IO.Charger[5].voltageSP := REAL_TO_DINT (Setpoints.TDKLoad[5].RequiredChargedV * 1000);
-						MCP_IO.Charger[6].voltageSP := REAL_TO_DINT (Setpoints.TDKLoad[6].RequiredChargedV * 1000);
-						MCP_IO.Charger[7].voltageSP := REAL_TO_DINT (Setpoints.TDKLoad[7].RequiredChargedV * 1000);
-						MCP_IO.Charger[8].voltageSP := REAL_TO_DINT (Setpoints.TDKLoad[8].RequiredChargedV * 1000);
+						IF Recipe.PeakSupplyEN = TRUE THEN
+							MCP_IO.Charger[1].voltageSP := REAL_TO_DINT (Setpoints.TDKLoad[1].RequiredChargedV * 1000);
+							MCP_IO.Charger[2].voltageSP := REAL_TO_DINT (Setpoints.TDKLoad[2].RequiredChargedV * 1000);
+							MCP_IO.Charger[3].voltageSP := REAL_TO_DINT (Setpoints.TDKLoad[3].RequiredChargedV * 1000);
+							END_IF;
+						IF Recipe.SustSupplyEN = TRUE THEN
+							MCP_IO.Charger[4].voltageSP := REAL_TO_DINT (Setpoints.TDKLoad[4].RequiredChargedV * 1000);
+							MCP_IO.Charger[5].voltageSP := REAL_TO_DINT (Setpoints.TDKLoad[5].RequiredChargedV * 1000);
+							MCP_IO.Charger[6].voltageSP := REAL_TO_DINT (Setpoints.TDKLoad[6].RequiredChargedV * 1000);
+							END_IF;
+						IF Recipe.FormSupplyEN = TRUE THEN
+							MCP_IO.Charger[7].voltageSP := REAL_TO_DINT (Setpoints.TDKLoad[7].RequiredChargedV * 1000);
+							MCP_IO.Charger[8].voltageSP := REAL_TO_DINT (Setpoints.TDKLoad[8].RequiredChargedV * 1000);
+							END_IF;
+						IF Recipe.PFormSupplyEN = TRUE THEN
+							MCP_IO.GLS3_voltageSP := REAL_TO_DINT (Setpoints.GLSLoad.RequiredChargedV * 1000);
+							END_IF
 						MCP_IO.GLS1_voltageSP := REAL_TO_DINT (Setpoints.GLS1_VSP * 1000);
 						MCP_IO.GLS2_voltageSP := REAL_TO_DINT (Setpoints.GLS2_VSP * 1000);
-						MCP_IO.GLS3_voltageSP := REAL_TO_DINT (Setpoints.GLSLoad.RequiredChargedV * 1000);
-							
+						
 						// delay stagger starts here 
-						ChargeTime_DB.ChargerDelay_TON[1] (IN := TRUE, PT := ChargeTime_DB.ChargerDelay_PT[1], ET => ChargeTime_DB.ChargerDelay_ET[1]);
-						ChargeTime_DB.ChargerDelay_TON[2] (IN := TRUE, PT := ChargeTime_DB.ChargerDelay_PT[2], ET => ChargeTime_DB.ChargerDelay_ET[2]);
-						ChargeTime_DB.ChargerDelay_TON[3] (IN := TRUE, PT := ChargeTime_DB.ChargerDelay_PT[3], ET => ChargeTime_DB.ChargerDelay_ET[3]);
-						ChargeTime_DB.ChargerDelay_TON[4] (IN := TRUE, PT := ChargeTime_DB.ChargerDelay_PT[4], ET => ChargeTime_DB.ChargerDelay_ET[4]);
-						ChargeTime_DB.ChargerDelay_TON[5] (IN := TRUE, PT := ChargeTime_DB.ChargerDelay_PT[5], ET => ChargeTime_DB.ChargerDelay_ET[5]);
-						ChargeTime_DB.ChargerDelay_TON[6] (IN := TRUE, PT := ChargeTime_DB.ChargerDelay_PT[6], ET => ChargeTime_DB.ChargerDelay_ET[6]);
-						ChargeTime_DB.ChargerDelay_TON[7] (IN := TRUE, PT := ChargeTime_DB.ChargerDelay_PT[7], ET => ChargeTime_DB.ChargerDelay_ET[7]);
-						ChargeTime_DB.ChargerDelay_TON[8] (IN := TRUE, PT := ChargeTime_DB.ChargerDelay_PT[8], ET => ChargeTime_DB.ChargerDelay_ET[8]);
-						ChargeTime_DB.PreFormChargeTime_TON (IN := TRUE, PT := ChargeTime_DB.PreFormChargeTime_PT, ET => ChargeTime_DB.PreFormChargeTime_ET);
+						IF Recipe.PeakSupplyEN = TRUE THEN
+							ChargeTime_DB.ChargerDelay_TON[1] (IN := TRUE, PT := ChargeTime_DB.ChargerDelay_PT[1], ET => ChargeTime_DB.ChargerDelay_ET[1]);
+							ChargeTime_DB.ChargerDelay_TON[2] (IN := TRUE, PT := ChargeTime_DB.ChargerDelay_PT[2], ET => ChargeTime_DB.ChargerDelay_ET[2]);
+							ChargeTime_DB.ChargerDelay_TON[3] (IN := TRUE, PT := ChargeTime_DB.ChargerDelay_PT[3], ET => ChargeTime_DB.ChargerDelay_ET[3]);
+						END_IF
+						IF Recipe.SustSupplyEN = TRUE THEN
+							ChargeTime_DB.ChargerDelay_TON[4] (IN := TRUE, PT := ChargeTime_DB.ChargerDelay_PT[4], ET => ChargeTime_DB.ChargerDelay_ET[4]);
+							ChargeTime_DB.ChargerDelay_TON[5] (IN := TRUE, PT := ChargeTime_DB.ChargerDelay_PT[5], ET => ChargeTime_DB.ChargerDelay_ET[5]);
+							ChargeTime_DB.ChargerDelay_TON[6] (IN := TRUE, PT := ChargeTime_DB.ChargerDelay_PT[6], ET => ChargeTime_DB.ChargerDelay_ET[6]);
+						END_IF
+						IF Recipe.FormSupplyEN = TRUE THEN
+							ChargeTime_DB.ChargerDelay_TON[7] (IN := TRUE, PT := ChargeTime_DB.ChargerDelay_PT[7], ET => ChargeTime_DB.ChargerDelay_ET[7]);
+							ChargeTime_DB.ChargerDelay_TON[8] (IN := TRUE, PT := ChargeTime_DB.ChargerDelay_PT[8], ET => ChargeTime_DB.ChargerDelay_ET[8]);							
+						END_IF
+						IF Recipe.PFormSupplyEN = TRUE THEN
+							ChargeTime_DB.PreFormChargeTime_TON (IN := TRUE, PT := ChargeTime_DB.PreFormChargeTime_PT, ET => ChargeTime_DB.PreFormChargeTime_ET);
+						END_IF						
 						ChargeRlyDelayON_Timer (IN := FALSE);
 						SparkGapCharger_TON(IN := TRUE, PT := (ChargeTime_DB.LongestChargeTime_PT-SparkGapCharger_PT), ET => SparkGapCharger_ET);
 					ELSE
@@ -289,11 +346,38 @@ CASE ePulseState OF
 					END_IF;
 					
 					//turn on HV output to load	
+					IF Recipe.PeakSupplyEN = TRUE AND ChargeTime_DB.ChargerDelay_TON[1].Q = TRUE THEN
+						StartCharger[1] := TRUE;
+					END_IF
+					IF Recipe.PeakSupplyEN = TRUE AND ChargeTime_DB.ChargerDelay_TON[2].Q = TRUE THEN
+						StartCharger[2] := TRUE;
+					END_IF
+					IF Recipe.PeakSupplyEN = TRUE AND ChargeTime_DB.ChargerDelay_TON[3].Q = TRUE THEN
+						StartCharger[3] := TRUE;
+					END_IF
+					IF Recipe.SustSupplyEN = TRUE AND ChargeTime_DB.ChargerDelay_TON[4].Q = TRUE THEN
+						StartCharger[4] := TRUE;
+					END_IF
+					IF Recipe.SustSupplyEN = TRUE AND ChargeTime_DB.ChargerDelay_TON[5].Q = TRUE THEN
+						StartCharger[5] := TRUE;
+					END_IF
+					IF Recipe.SustSupplyEN = TRUE AND ChargeTime_DB.ChargerDelay_TON[6].Q = TRUE THEN
+						StartCharger[6] := TRUE;
+					END_IF
+					IF Recipe.FormSupplyEN = TRUE AND ChargeTime_DB.ChargerDelay_TON[7].Q = TRUE THEN
+						StartCharger[7] := TRUE;
+					END_IF
+					IF Recipe.FormSupplyEN = TRUE AND ChargeTime_DB.ChargerDelay_TON[8].Q = TRUE THEN
+						StartCharger[8] := TRUE;
+					END_IF
+
+					
 					FOR k := 1 TO 8 BY 1 DO
-						IF ChargeTime_DB.ChargerDelay_TON[k].Q = TRUE THEN
+
+						(*IF ChargeTime_DB.ChargerDelay_TON[k].Q = TRUE THEN
 							StartCharger[k] := TRUE;
 						END_IF;
-						
+						*)
 						IF StartCharger[k] = TRUE THEN
 							MCP_IO.Charger[k].HV_ON := TRUE; 
 							MCP_IO.Charger[k].inhibit := FALSE;
@@ -308,7 +392,7 @@ CASE ePulseState OF
 						END_IF;
 					END_FOR
 					//GLS 3
-					IF ChargeTime_DB.PreFormChargeTime_TON.Q = TRUE THEN
+					IF ChargeTime_DB.PreFormChargeTime_TON.Q = TRUE AND Recipe.PFormSupplyEN = TRUE THEN
 						StartGLS3Charger := TRUE;
 					END_IF;
 					IF StartGLS3Charger = TRUE THEN 
@@ -1268,6 +1352,16 @@ END_IF]]></ST>
       <LineId Id="15" Count="0" />
       <LineId Id="23" Count="0" />
       <LineId Id="455" Count="0" />
+      <LineId Id="2619" Count="2" />
+      <LineId Id="2623" Count="1" />
+      <LineId Id="2622" Count="0" />
+      <LineId Id="2626" Count="3" />
+      <LineId Id="2625" Count="0" />
+      <LineId Id="2631" Count="2" />
+      <LineId Id="2630" Count="0" />
+      <LineId Id="2637" Count="1" />
+      <LineId Id="2636" Count="0" />
+      <LineId Id="2640" Count="0" />
       <LineId Id="864" Count="0" />
       <LineId Id="866" Count="0" />
       <LineId Id="989" Count="0" />
@@ -1278,10 +1372,30 @@ END_IF]]></ST>
       <LineId Id="374" Count="0" />
       <LineId Id="351" Count="0" />
       <LineId Id="381" Count="2" />
-      <LineId Id="387" Count="2" />
-      <LineId Id="384" Count="1" />
+      <LineId Id="2589" Count="0" />
+      <LineId Id="387" Count="1" />
+      <LineId Id="2606" Count="2" />
+      <LineId Id="2592" Count="0" />
+      <LineId Id="389" Count="0" />
+      <LineId Id="2594" Count="0" />
+      <LineId Id="2596" Count="0" />
+      <LineId Id="2609" Count="2" />
+      <LineId Id="2595" Count="0" />
+      <LineId Id="385" Count="0" />
       <LineId Id="415" Count="0" />
-      <LineId Id="352" Count="4" />
+      <LineId Id="2597" Count="1" />
+      <LineId Id="2600" Count="0" />
+      <LineId Id="2603" Count="0" />
+      <LineId Id="2612" Count="0" />
+      <LineId Id="2614" Count="1" />
+      <LineId Id="2613" Count="0" />
+      <LineId Id="2599" Count="0" />
+      <LineId Id="2604" Count="0" />
+      <LineId Id="353" Count="0" />
+      <LineId Id="2601" Count="0" />
+      <LineId Id="2605" Count="0" />
+      <LineId Id="2616" Count="2" />
+      <LineId Id="2602" Count="0" />
       <LineId Id="390" Count="0" />
       <LineId Id="337" Count="0" />
       <LineId Id="391" Count="2" />
@@ -1296,14 +1410,30 @@ END_IF]]></ST>
       <LineId Id="785" Count="0" />
       <LineId Id="770" Count="0" />
       <LineId Id="780" Count="0" />
-      <LineId Id="1229" Count="1" />
-      <LineId Id="1233" Count="6" />
+      <LineId Id="1229" Count="0" />
+      <LineId Id="2674" Count="0" />
+      <LineId Id="1230" Count="0" />
+      <LineId Id="1233" Count="1" />
+      <LineId Id="2675" Count="1" />
+      <LineId Id="1235" Count="2" />
+      <LineId Id="2679" Count="1" />
+      <LineId Id="1238" Count="1" />
+      <LineId Id="2681" Count="3" />
       <LineId Id="1241" Count="0" />
       <LineId Id="1243" Count="0" />
       <LineId Id="1242" Count="0" />
-      <LineId Id="1231" Count="0" />
-      <LineId Id="894" Count="8" />
-      <LineId Id="781" Count="0" />
+      <LineId Id="894" Count="0" />
+      <LineId Id="2685" Count="0" />
+      <LineId Id="2688" Count="1" />
+      <LineId Id="2686" Count="1" />
+      <LineId Id="2690" Count="0" />
+      <LineId Id="2694" Count="1" />
+      <LineId Id="2692" Count="1" />
+      <LineId Id="2691" Count="0" />
+      <LineId Id="2698" Count="0" />
+      <LineId Id="2696" Count="1" />
+      <LineId Id="897" Count="0" />
+      <LineId Id="2699" Count="1" />
       <LineId Id="793" Count="0" />
       <LineId Id="1623" Count="0" />
       <LineId Id="794" Count="0" />
@@ -1313,7 +1443,19 @@ END_IF]]></ST>
       <LineId Id="406" Count="0" />
       <LineId Id="803" Count="0" />
       <LineId Id="439" Count="0" />
+      <LineId Id="2645" Count="1" />
+      <LineId Id="2644" Count="0" />
+      <LineId Id="2649" Count="1" />
+      <LineId Id="2648" Count="0" />
+      <LineId Id="2652" Count="1" />
+      <LineId Id="2651" Count="0" />
+      <LineId Id="2655" Count="7" />
+      <LineId Id="2654" Count="0" />
+      <LineId Id="2664" Count="5" />
+      <LineId Id="2663" Count="0" />
+      <LineId Id="2647" Count="0" />
       <LineId Id="888" Count="0" />
+      <LineId Id="2643" Count="0" />
       <LineId Id="891" Count="1" />
       <LineId Id="1008" Count="0" />
       <LineId Id="1007" Count="0" />

@@ -7,6 +7,10 @@ VAR_GLOBAL
 	GLSLoad : ST_Recipe;
 	GLS1_VSP : REAL := 50; //DINT;
 	GLS2_VSP : REAL := 50; //DINT;
+	PeakSupplyEN	: BOOL := TRUE;
+	SustSupplyEN	: BOOL := TRUE;
+	FormSupplyEN	: BOOL := TRUE;
+	PFormSupplyEN	: BOOL := TRUE;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

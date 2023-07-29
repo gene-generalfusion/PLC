@@ -240,14 +240,14 @@ IF LCP.Section[1].Peak.ShortContact1Engaged = TRUE AND
 END_IF;
 
 //All charger inhibited
-IF MCP_IO.Charger[1].inhibited = TRUE AND
-	MCP_IO.Charger[2].inhibited = TRUE AND
-	MCP_IO.Charger[3].inhibited = TRUE AND
-	MCP_IO.Charger[4].inhibited = TRUE AND
-	MCP_IO.Charger[5].inhibited = TRUE AND
-	MCP_IO.Charger[6].inhibited = TRUE AND
-	MCP_IO.Charger[7].inhibited = TRUE AND
-	MCP_IO.Charger[8].inhibited = TRUE 
+IF (MCP_IO.Charger[1].inhibited = TRUE OR Recipe.PeakSupplyEN = FALSE) AND
+	(MCP_IO.Charger[2].inhibited = TRUE OR Recipe.PeakSupplyEN = FALSE) AND
+	(MCP_IO.Charger[3].inhibited = TRUE OR Recipe.PeakSupplyEN = FALSE) AND
+	(MCP_IO.Charger[4].inhibited = TRUE OR Recipe.SustSupplyEN = FALSE) AND
+	(MCP_IO.Charger[5].inhibited = TRUE OR Recipe.SustSupplyEN = FALSE) AND
+	(MCP_IO.Charger[6].inhibited = TRUE OR Recipe.SustSupplyEN = FALSE) AND
+	(MCP_IO.Charger[7].inhibited = TRUE OR Recipe.FormSupplyEN = FALSE) AND
+	(MCP_IO.Charger[8].inhibited = TRUE OR Recipe.FormSupplyEN = FALSE) 
 	THEN
 		Permissives_DB.AllChargerInhibited := TRUE;
 		ELSE
@@ -255,15 +255,15 @@ IF MCP_IO.Charger[1].inhibited = TRUE AND
 END_IF;
 
 //All charger HV ON
-IF MCP_IO.Charger[1].HV_isON = TRUE AND
-	MCP_IO.Charger[2].HV_isON = TRUE AND
-	MCP_IO.Charger[3].HV_isON = TRUE AND
-	MCP_IO.Charger[4].HV_isON = TRUE AND
-	MCP_IO.Charger[5].HV_isON = TRUE AND
-	MCP_IO.Charger[6].HV_isON = TRUE AND
-	MCP_IO.Charger[7].HV_isON = TRUE AND
-	MCP_IO.Charger[8].HV_isON = TRUE AND 
-	MCP_IO.GLS3_hvON = TRUE
+IF (MCP_IO.Charger[1].HV_isON = TRUE OR Recipe.PeakSupplyEN = FALSE) AND
+	(MCP_IO.Charger[2].HV_isON = TRUE OR Recipe.PeakSupplyEN = FALSE) AND
+	(MCP_IO.Charger[3].HV_isON = TRUE OR Recipe.PeakSupplyEN = FALSE) AND
+	(MCP_IO.Charger[4].HV_isON = TRUE OR Recipe.SustSupplyEN = FALSE) AND
+	(MCP_IO.Charger[5].HV_isON = TRUE OR Recipe.SustSupplyEN = FALSE) AND
+	(MCP_IO.Charger[6].HV_isON = TRUE OR Recipe.SustSupplyEN = FALSE) AND
+	(MCP_IO.Charger[7].HV_isON = TRUE OR Recipe.FormSupplyEN = FALSE) AND
+	(MCP_IO.Charger[8].HV_isON = TRUE OR Recipe.FormSupplyEN = FALSE) AND
+	(MCP_IO.GLS3_hvON = TRUE OR Recipe.PFormSupplyEN = FALSE)
 	THEN
 		Permissives_DB.AllChargerHVisON := TRUE;
 		ELSE
@@ -323,15 +323,14 @@ IF MCP_IO.Charger[7].inhibited = TRUE AND
 			Permissives_DB.AllFormChargerInhibited := FALSE;
 END_IF
 
-IF MCP_IO.Charger[1].EndOfCharge = TRUE AND 
-	MCP_IO.Charger[1].EndOfCharge = TRUE AND
-	MCP_IO.Charger[2].EndOfCharge = TRUE AND
-	MCP_IO.Charger[3].EndOfCharge = TRUE AND
-	MCP_IO.Charger[4].EndOfCharge = TRUE AND
-	MCP_IO.Charger[5].EndOfCharge = TRUE AND
-	MCP_IO.Charger[6].EndOfCharge = TRUE AND
-	MCP_IO.Charger[7].EndOfCharge = TRUE AND
-	MCP_IO.Charger[8].EndOfCharge = TRUE 
+IF (MCP_IO.Charger[1].EndOfCharge = TRUE OR Recipe.PeakSupplyEN = FALSE) AND
+	(MCP_IO.Charger[2].EndOfCharge = TRUE OR Recipe.PeakSupplyEN = FALSE) AND
+	(MCP_IO.Charger[3].EndOfCharge = TRUE OR Recipe.PeakSupplyEN = FALSE) AND
+	(MCP_IO.Charger[4].EndOfCharge = TRUE OR Recipe.SustsupplyEN = FALSE) AND
+	(MCP_IO.Charger[5].EndOfCharge = TRUE OR Recipe.SustsupplyEN = FALSE) AND
+	(MCP_IO.Charger[6].EndOfCharge = TRUE OR Recipe.SustsupplyEN = FALSE) AND
+	(MCP_IO.Charger[7].EndOfCharge = TRUE OR Recipe.FormSupplyEN = FALSE) AND
+	(MCP_IO.Charger[8].EndOfCharge = TRUE OR Recipe.FormSupplyEN = FALSE) 
 	THEN 
 		Permissives_DB.AllChargerEOC := TRUE;
 		ELSE
@@ -449,24 +448,24 @@ IF	LCP.Section[4].Form.ChargeRelay1_close = TRUE AND
 END_IF
 	
 //All charge relay close
-IF (LCP.Section[1].Peak.ChargeRelay1_close = TRUE AND
-	LCP.Section[1].Peak.ChargeRelay2_close = TRUE AND
-	LCP.Section[1].Sust.ChargeRelay1_close = TRUE AND
-	LCP.Section[1].Sust.ChargeRelay2_close = TRUE AND
-	LCP.Section[2].Peak.ChargeRelay1_close = TRUE AND
-	LCP.Section[2].Peak.ChargeRelay2_close = TRUE AND
-	LCP.Section[2].Sust.ChargeRelay1_close = TRUE AND
-	LCP.Section[2].Sust.ChargeRelay2_close = TRUE AND
-	LCP.Section[3].Peak.ChargeRelay1_close = TRUE AND
-	LCP.Section[3].Peak.ChargeRelay2_close = TRUE AND
-	LCP.Section[3].Sust.ChargeRelay1_close = TRUE AND
-	LCP.Section[3].Sust.ChargeRelay2_close = TRUE AND
+IF ((LCP.Section[1].Peak.ChargeRelay1_close = TRUE OR Recipe.PeakSupplyEN = FALSE)AND
+	(LCP.Section[1].Peak.ChargeRelay2_close = TRUE OR Recipe.PeakSupplyEN = FALSE)AND
+	(LCP.Section[1].Sust.ChargeRelay1_close = TRUE OR Recipe.SustSupplyEN = FALSE)AND
+	(LCP.Section[1].Sust.ChargeRelay2_close = TRUE OR Recipe.SustSupplyEN = FALSE)AND
+	(LCP.Section[2].Peak.ChargeRelay1_close = TRUE OR Recipe.PeakSupplyEN = FALSE)AND
+	(LCP.Section[2].Peak.ChargeRelay2_close = TRUE OR Recipe.PeakSupplyEN = FALSE)AND
+	(LCP.Section[2].Sust.ChargeRelay1_close = TRUE OR Recipe.SustSupplyEN = FALSE)AND
+	(LCP.Section[2].Sust.ChargeRelay2_close = TRUE OR Recipe.SustSupplyEN = FALSE)AND
+	(LCP.Section[3].Peak.ChargeRelay1_close = TRUE OR Recipe.PeakSupplyEN = FALSE)AND
+	(LCP.Section[3].Peak.ChargeRelay2_close = TRUE OR Recipe.PeakSupplyEN = FALSE)AND
+	(LCP.Section[3].Sust.ChargeRelay1_close = TRUE OR Recipe.SustSupplyEN = FALSE)AND
+	(LCP.Section[3].Sust.ChargeRelay2_close = TRUE OR Recipe.SustSupplyEN = FALSE)AND
 	
-	LCP.Section[4].Form.ChargeRelay1_close = TRUE AND
-	LCP.Section[4].Form.ChargeRelay2_close = TRUE AND						
-	LCP.Section[4].Form.PreFormChargeRly_close = TRUE AND
-	LCP.Section[4].Form.FormTrigChargeRly_close = TRUE AND
-	LCP.Section[4].Form.PreFormTrigChargeRly_close = TRUE) OR HMI_DB.AllChargeRelayCloseBP = TRUE //admin bypass 
+	(LCP.Section[4].Form.ChargeRelay1_close = TRUE OR Recipe.FormSupplyEN = FALSE)AND
+	(LCP.Section[4].Form.ChargeRelay2_close = TRUE OR Recipe.FormSupplyEN = FALSE)AND						
+	(LCP.Section[4].Form.PreFormChargeRly_close = TRUE OR Recipe.PFormSupplyEN = FALSE)AND
+	(LCP.Section[4].Form.FormTrigChargeRly_close = TRUE  OR Recipe.FormSupplyEN = FALSE)AND
+	(LCP.Section[4].Form.PreFormTrigChargeRly_close = TRUE OR Recipe.PFormSupplyEN = FALSE)) OR HMI_DB.AllChargeRelayCloseBP = TRUE //admin bypass 
 	THEN
 		Permissives_DB.AllChargeRelaysClosed := TRUE;
 	ELSE
@@ -931,7 +930,7 @@ END_IF;]]></ST>
       <LineId Id="1008" Count="0" />
       <LineId Id="621" Count="0" />
       <LineId Id="101" Count="0" />
-      <LineId Id="624" Count="6" />
+      <LineId Id="625" Count="5" />
       <LineId Id="622" Count="0" />
       <LineId Id="632" Count="0" />
       <LineId Id="631" Count="0" />

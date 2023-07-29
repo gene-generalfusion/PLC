@@ -42,6 +42,36 @@ END_VAR
 	
 END_IF*)
 
+IF Recipe.PeakSupplyEN = FALSE THEN
+	Recipe.TDKLoad[1].RequiredChargedV :=0;
+	Setpoints.TDKLoad[1].RequiredChargedV := 0;
+	Recipe.TDKLoad[2].RequiredChargedV :=0;
+	Setpoints.TDKLoad[2].RequiredChargedV := 0;
+	Recipe.TDKLoad[3].RequiredChargedV :=0;
+	Setpoints.TDKLoad[3].RequiredChargedV := 0;
+END_IF
+
+IF Recipe.SustSupplyEN = FALSE THEN
+	Recipe.TDKLoad[4].RequiredChargedV :=0;
+	Setpoints.TDKLoad[4].RequiredChargedV := 0;
+	Recipe.TDKLoad[5].RequiredChargedV :=0;
+	Setpoints.TDKLoad[5].RequiredChargedV := 0;
+	Recipe.TDKLoad[6].RequiredChargedV :=0;
+	Setpoints.TDKLoad[6].RequiredChargedV := 0;
+END_IF
+
+IF Recipe.FormSupplyEN = FALSE THEN
+	Recipe.TDKLoad[7].RequiredChargedV := 0;
+	Setpoints.TDKLoad[7].RequiredChargedV := 0;
+	Recipe.TDKLoad[8].RequiredChargedV := 0;
+	Setpoints.TDKLoad[8].RequiredChargedV := 0;
+END_IF
+
+IF Recipe.PFormSupplyEN = FALSE THEN
+	Recipe.GLSLoad.RequiredChargedV := 0;
+	Setpoints.GLSLoad.RequiredChargedV := 0;
+END_IF
+
 //veto
 //this should not happen
 FOR m := 1 TO 6 BY 1 DO
@@ -212,6 +242,19 @@ END_IF;]]></ST>
       <LineId Id="251" Count="19" />
       <LineId Id="273" Count="0" />
       <LineId Id="189" Count="0" />
+      <LineId Id="744" Count="0" />
+      <LineId Id="743" Count="0" />
+      <LineId Id="748" Count="0" />
+      <LineId Id="745" Count="0" />
+      <LineId Id="747" Count="0" />
+      <LineId Id="749" Count="2" />
+      <LineId Id="746" Count="0" />
+      <LineId Id="753" Count="7" />
+      <LineId Id="752" Count="0" />
+      <LineId Id="762" Count="5" />
+      <LineId Id="761" Count="0" />
+      <LineId Id="771" Count="3" />
+      <LineId Id="770" Count="0" />
       <LineId Id="185" Count="0" />
       <LineId Id="279" Count="0" />
       <LineId Id="441" Count="9" />
