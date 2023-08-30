@@ -19,6 +19,15 @@
 				<Elements>6</Elements>
 			</ArrayInfo>
 		</DataType>
+		<DataType>
+			<Name GUID="{18071995-0000-0000-0000-00200000000E}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..13] OF BIT</Name>
+			<BitSize>14</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>14</Elements>
+			</ArrayInfo>
+		</DataType>
 	</DataTypes>
 	<ImageDatas>
 		<ImageData Id="1000">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000c40e0000c40e00000000000000000000ff00ffff00ffff00ff808080808080808080808080808080808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ff0000c00000c0ffffffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ff0000c00000c0ffffffc0c0c000ffffc0c0c000ffff808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ff0000c00000c0ffffffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ff0000c00000c0ffffffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ff0000c00000c0ffffffc0c0c0ff0000c0c0c0ff0000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ff0000c00000c0ffffffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ff0000c00000c0ffffffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ff0000c00000c0ffffffc0c0c00000ffc0c0c00000ff808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ff0000c00000c0ffffffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ff0000c00000c0ffffffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ff0000c00000c0ffffffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ff0000c00000c0ffffffc0c0c0008000c0c0c0008000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ff0000c00000c0ffffffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff</ImageData>
@@ -248,6 +257,19 @@
 						<Var>
 							<Name>GVL.PLC_EL4132_1</Name>
 							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.B170357_CapRaw</Name>
+							<Comment><![CDATA[customed board 170357]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.B170357_BatLevel</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.B170357_Heartbeat</Name>
+							<Type>BOOL</Type>
 						</Var>
 					</Vars>
 					<Vars VarGrpType="2" AreaNo="1">
@@ -1309,10 +1331,63 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 				</Image>
 				<DpRam/>
 			</Device>
+			<Device Id="6" DevType="111" DevFlags="#x0003" AmsPort="28678" AmsNetId="5.97.49.116.7.1" RemoteName="Device 6 (EtherCAT)" InfoImageId="6">
+				<Name>Device 6 (EtherCAT)</Name>
+				<AddressInfo>
+					<Pnp>
+						<DeviceDesc>FEC1</DeviceDesc>
+						<DeviceName>FEC1</DeviceName>
+						<DeviceData>000105613174</DeviceData>
+					</Pnp>
+				</AddressInfo>
+				<Image Id="5" AddrType="9" ImageType="3">
+					<Name>Image</Name>
+				</Image>
+				<Box Id="11" BoxType="9099">
+					<Name>Box 11 (170357)</Name>
+					<ImageId>114</ImageId>
+					<EtherCAT SlaveType="2" PdiType="#x0e82" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="35" FoeType="1" VendorId="#x00000e6d" ProductCode="#x00009255" RevisionNo="#x00000001" InfoDataAddr="true" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="170357" Desc="170357" PortABoxInfo="#x00ffffff">
+						<SyncMan>001080002600010001000000000000008000001026010000</SyncMan>
+						<SyncMan>801080002200010002000000000000008000801022010000</SyncMan>
+						<SyncMan>001104006400010003000000000000000400001164010000</SyncMan>
+						<SyncMan>001404002000010004000000000000000400001420010000</SyncMan>
+						<Fmmu>0000000000000000001100020100000001000000000000000000000000000000</Fmmu>
+						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
+						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
+						<BootStrapData>0010800080108000</BootStrapData>
+						<DcMode>53796e6368726f6e000000000000000053796e6368726f6e000000000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000</DcMode>
+						<DcMode>444300000000000000000000000000004443000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000030100000000000000000000000000000000000000000000000000000000000000</DcMode>
+						<Pdo Name="HV Cap 0 process data mapping" Index="#x1a00" Flags="#x0011" SyncMan="3">
+							<Entry Name="Cap Raw" Index="#x6000" Sub="#x01">
+								<Type>UINT</Type>
+							</Entry>
+							<Entry Name="Battery Level" Index="#x6000" Sub="#x02">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Heart Beat" Index="#x6000" Sub="#x03">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="E0000:00">
+								<Type GUID="{18071995-0000-0000-0000-00200000000E}">ARRAY [0..13] OF BIT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="Setpoint Values process data mapping" Index="#x1600" InOut="1" Flags="#x0011" SyncMan="2">
+							<Entry Name="Value 1" Index="#x7000" Sub="#x01">
+								<Type>UINT</Type>
+							</Entry>
+							<Entry Name="Value 2" Index="#x7000" Sub="#x02">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
+					</EtherCAT>
+				</Box>
+				<EtherCAT/>
+			</Device>
 		</Io>
 	</Project>
 	<Mappings>
 		<MappingInfo Identifier="{00000000-2001-0850-0020-500810000403}" Id="#x02030010"/>
+		<MappingInfo Identifier="{00000000-2001-0850-0020-500850000403}" Id="#x02030020"/>
 		<OwnerA Name="TIPC^CAP_TESTER^CAP_TESTER Instance">
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 2 (EL1008)">
 				<Link VarA="PlcTask Inputs^GVL.PLC_DI1" VarB="Channel 1^Input"/>
@@ -1387,6 +1462,11 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 9 (EL4132)">
 				<Link VarA="PlcTask Outputs^GVL.PLC_AO1" VarB="Channel 1^Output"/>
 				<Link VarA="PlcTask Outputs^GVL.PLC_AO2" VarB="Channel 2^Output"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 6 (EtherCAT)^Box 11 (170357)">
+				<Link VarA="PlcTask Inputs^GVL.B170357_BatLevel" VarB="HV Cap 0 process data mapping^Battery Level"/>
+				<Link VarA="PlcTask Inputs^GVL.B170357_CapRaw" VarB="HV Cap 0 process data mapping^Cap Raw"/>
+				<Link VarA="PlcTask Inputs^GVL.B170357_Heartbeat" VarB="HV Cap 0 process data mapping^Heart Beat"/>
 			</OwnerB>
 		</OwnerA>
 	</Mappings>

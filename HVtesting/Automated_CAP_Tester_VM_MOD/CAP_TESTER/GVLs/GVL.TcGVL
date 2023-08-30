@@ -173,6 +173,11 @@ VAR_GLOBAL
 	// EtherCAT Module
 	DevCtrl AT %Q* : UINT;
 	
+	//customed board 170357
+	B170357_CapRaw AT %I* : UINT;
+	B170357_BatLevel AT %I* : BOOL;
+	B170357_Heartbeat AT %I* : BOOL;
+	
 
 END_VAR
 

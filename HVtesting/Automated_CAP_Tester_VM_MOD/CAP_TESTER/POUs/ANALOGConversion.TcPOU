@@ -37,14 +37,21 @@ GVL.Vcap2 := REAL_TO_INT (GVL.Vcap2_REAL);
 
 
 //adding voltage monitor
+(*
 VoltMonitor_DB.VoltageReading_norm[0] := Norm_x ( raw_input := INT_TO_REAL(VoltMonitor_DB.VoltageReading_raw[0]),
 													x_max := 32767,
 													x_min := 2956);
 VoltMonitor_DB.VoltageReading[0] := (VoltMonitor_DB.LoadMaxRatedV - VoltMonitor_DB.LoadMinRatedV) * ADC_10V (normal_input := VoltMonitor_DB.VoltageReading_norm[0],
 															x_max := 9.8274,
 															x_min := 0.0080297);
-															
-]]></ST>
+	*)														
+//new voltage monitor board 170357
+VoltMonitor_DB.VoltageReading_norm[0] := Norm_x ( raw_input := INT_TO_REAL(VoltMonitor_DB.VoltageReading_raw[0]),
+													x_max := 1023,
+													x_min := 0);
+VoltMonitor_DB.VoltageReading[0] := (VoltMonitor_DB.LoadMaxRatedV - VoltMonitor_DB.LoadMinRatedV) * ADC_10V (normal_input := VoltMonitor_DB.VoltageReading_norm[0],
+															x_max := 12000,
+															x_min := -2000);]]></ST>
     </Implementation>
     <LineIds Name="ANALOGConversion">
       <LineId Id="15" Count="4" />
@@ -65,7 +72,11 @@ VoltMonitor_DB.VoltageReading[0] := (VoltMonitor_DB.LoadMaxRatedV - VoltMonitor_
       <LineId Id="77" Count="0" />
       <LineId Id="85" Count="1" />
       <LineId Id="84" Count="0" />
-      <LineId Id="87" Count="7" />
+      <LineId Id="87" Count="0" />
+      <LineId Id="99" Count="0" />
+      <LineId Id="88" Count="6" />
+      <LineId Id="101" Count="4" />
+      <LineId Id="100" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

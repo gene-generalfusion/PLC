@@ -11,6 +11,7 @@ VAR
 	b3 : BOOL;
 	pause : BOOL;
 	
+	
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -29,8 +30,44 @@ b[0] := 0; //VoltMonitor_DB.Channel.0;
 b[1] := 0; //VoltMonitor_DB.Channel.1;
 b[2] := 0; //VoltMonitor_DB.Channel.2;
 b[3] := 0; //VoltMonitor_DB.Channel.3;
-VoltMonitor_DB.VoltageReading_raw[0] := GVL.raw_VoltageMonitor;
+//VoltMonitor_DB.VoltageReading_raw[0] := GVL.raw_VoltageMonitor;
+
+
+//VoltMonitor_DB.CapRaw_Str :=  MID (UINT_TO_STRING (GVL.B170357_CapRaw), 10, 5);
+
+
+
+//VoltMonitor_DB.VoltageReading_raw[0] := VoltMonitor_DB.CapRaw; //STRING_TO_INT (VoltMonitor_DB.CapRaw_Str);
+
+IF GVL.B170357_Heartbeat = 1 THEN
+	VoltMonitor_DB.VoltageReading_raw[0].0 := VoltMonitor_DB.CapRaw.2;
+	VoltMonitor_DB.VoltageReading_raw[0].1 := VoltMonitor_DB.CapRaw.3;
+	VoltMonitor_DB.VoltageReading_raw[0].2 := VoltMonitor_DB.CapRaw.4;
+	VoltMonitor_DB.VoltageReading_raw[0].3 := VoltMonitor_DB.CapRaw.5;
 	
+	VoltMonitor_DB.VoltageReading_raw[0].4 := VoltMonitor_DB.CapRaw.6;
+	VoltMonitor_DB.VoltageReading_raw[0].5 := VoltMonitor_DB.CapRaw.7;
+	VoltMonitor_DB.VoltageReading_raw[0].6 := VoltMonitor_DB.CapRaw.8;
+	VoltMonitor_DB.VoltageReading_raw[0].7 := VoltMonitor_DB.CapRaw.9;
+	
+	VoltMonitor_DB.VoltageReading_raw[0].8 := VoltMonitor_DB.CapRaw.10;
+	VoltMonitor_DB.VoltageReading_raw[0].9 := VoltMonitor_DB.CapRaw.11;
+	
+	VoltMonitor_DB.VoltageReading_raw[0].10 := 0;//VoltMonitor_DB.CapRaw.14;
+	VoltMonitor_DB.VoltageReading_raw[0].11 := 0;//VoltMonitor_DB.CapRaw.15;
+	VoltMonitor_DB.VoltageReading_raw[0].12 := 0;//VoltMonitor_DB.CapRaw.12;
+	VoltMonitor_DB.VoltageReading_raw[0].13 := 0;//VoltMonitor_DB.CapRaw.13;
+	VoltMonitor_DB.VoltageReading_raw[0].14 := 0; //VoltMonitor_DB.CapRaw.14;
+	
+	VoltMonitor_DB.VoltageReading_raw[0].15 := 0;//VoltMonitor_DB.CapRaw.4;
+	VoltMonitor_DB.CapRaw_DummySnap := GVL.B170357_CapRaw;//VoltMonitor_DB.VoltageReading_raw[0];
+END_IF
+
+
+IF pause = TRUE THEN
+	VoltMonitor_DB.VoltageReading_raw[0] := 0;
+END_IF;
+
 IF i > 16 THEN 
 	i := 0;
 END_IF]]></ST>
@@ -48,7 +85,29 @@ END_IF]]></ST>
       <LineId Id="13" Count="0" />
       <LineId Id="63" Count="2" />
       <LineId Id="104" Count="0" />
+      <LineId Id="138" Count="0" />
+      <LineId Id="118" Count="0" />
+      <LineId Id="117" Count="0" />
+      <LineId Id="146" Count="0" />
+      <LineId Id="158" Count="0" />
+      <LineId Id="123" Count="0" />
+      <LineId Id="116" Count="0" />
+      <LineId Id="137" Count="0" />
       <LineId Id="18" Count="0" />
+      <LineId Id="160" Count="3" />
+      <LineId Id="183" Count="0" />
+      <LineId Id="164" Count="0" />
+      <LineId Id="166" Count="3" />
+      <LineId Id="184" Count="0" />
+      <LineId Id="170" Count="1" />
+      <LineId Id="185" Count="0" />
+      <LineId Id="172" Count="4" />
+      <LineId Id="159" Count="0" />
+      <LineId Id="120" Count="1" />
+      <LineId Id="177" Count="1" />
+      <LineId Id="122" Count="0" />
+      <LineId Id="179" Count="1" />
+      <LineId Id="182" Count="0" />
       <LineId Id="75" Count="1" />
       <LineId Id="21" Count="0" />
     </LineIds>
