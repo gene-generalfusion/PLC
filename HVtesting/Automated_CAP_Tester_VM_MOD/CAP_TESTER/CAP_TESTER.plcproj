@@ -53,6 +53,9 @@
     <Compile Include="POUs\Automated_Capacitor_Test_ST.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\CounterUP.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\Functions\AnalogIN-ScaleOffset\AI2temp.TcPOU">
       <SubType>Code</SubType>
     </Compile>

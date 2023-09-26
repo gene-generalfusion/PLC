@@ -4,6 +4,7 @@
     <Declaration><![CDATA[PROGRAM VoltMonitor
 VAR
 	i : USINT := 0;
+	k : USINT := 0;
 	counter : USINT := 0;
 	b : ARRAY[0..3] OF BOOL;
 	b1 : BOOL;
@@ -11,6 +12,7 @@ VAR
 	b3 : BOOL;
 	pause : BOOL;
 	
+
 	
 END_VAR
 ]]></Declaration>
@@ -38,31 +40,58 @@ b[3] := 0; //VoltMonitor_DB.Channel.3;
 
 
 //VoltMonitor_DB.VoltageReading_raw[0] := VoltMonitor_DB.CapRaw; //STRING_TO_INT (VoltMonitor_DB.CapRaw_Str);
+FOR k := 0 TO 24 BY 1 DO
+	
+	IF GVL.B170357_CapRaw[k] <> 0 THEN
+		VoltMonitor_DB.VoltageReading_raw[k].0 := VoltMonitor_DB.CapRaw[k].2;
+		VoltMonitor_DB.VoltageReading_raw[k].1 := VoltMonitor_DB.CapRaw[k].3;
+		VoltMonitor_DB.VoltageReading_raw[k].2 := VoltMonitor_DB.CapRaw[k].4;
+		VoltMonitor_DB.VoltageReading_raw[k].3 := VoltMonitor_DB.CapRaw[k].5;
+	
+		VoltMonitor_DB.VoltageReading_raw[k].4 := VoltMonitor_DB.CapRaw[k].6;
+		VoltMonitor_DB.VoltageReading_raw[k].5 := VoltMonitor_DB.CapRaw[k].7;
+		VoltMonitor_DB.VoltageReading_raw[k].6 := VoltMonitor_DB.CapRaw[k].8;
+		VoltMonitor_DB.VoltageReading_raw[k].7 := VoltMonitor_DB.CapRaw[k].9;
+	
+		VoltMonitor_DB.VoltageReading_raw[k].8 := VoltMonitor_DB.CapRaw[k].10;
+		VoltMonitor_DB.VoltageReading_raw[k].9 := VoltMonitor_DB.CapRaw[k].11;
+	
+		VoltMonitor_DB.VoltageReading_raw[k].10 := 0;//VoltMonitor_DB.CapRaw.14;
+		VoltMonitor_DB.VoltageReading_raw[k].11 := 0;//VoltMonitor_DB.CapRaw.15;
+		VoltMonitor_DB.VoltageReading_raw[k].12 := 0;//VoltMonitor_DB.CapRaw.12;
+		VoltMonitor_DB.VoltageReading_raw[k].13 := 0;//VoltMonitor_DB.CapRaw.13;
+		VoltMonitor_DB.VoltageReading_raw[k].14 := 0; //VoltMonitor_DB.CapRaw.14;
+	
+		VoltMonitor_DB.VoltageReading_raw[k].15 := 0;//VoltMonitor_DB.CapRaw.4;
+		VoltMonitor_DB.CapRaw_DummySnap[k] := GVL.B170357_CapRaw[k];//VoltMonitor_DB.VoltageReading_raw[0];
+		ELSE
+			//VoltMonitor_DB.VoltageReading_raw[k] := 0;
+			//VoltMonitor_DB.CapRaw_DummySnap[k] := 0;
+	END_IF
+	
+END_FOR
 
-IF GVL.B170357_Heartbeat = 1 THEN
-	VoltMonitor_DB.VoltageReading_raw[0].0 := VoltMonitor_DB.CapRaw.2;
-	VoltMonitor_DB.VoltageReading_raw[0].1 := VoltMonitor_DB.CapRaw.3;
-	VoltMonitor_DB.VoltageReading_raw[0].2 := VoltMonitor_DB.CapRaw.4;
-	VoltMonitor_DB.VoltageReading_raw[0].3 := VoltMonitor_DB.CapRaw.5;
-	
-	VoltMonitor_DB.VoltageReading_raw[0].4 := VoltMonitor_DB.CapRaw.6;
-	VoltMonitor_DB.VoltageReading_raw[0].5 := VoltMonitor_DB.CapRaw.7;
-	VoltMonitor_DB.VoltageReading_raw[0].6 := VoltMonitor_DB.CapRaw.8;
-	VoltMonitor_DB.VoltageReading_raw[0].7 := VoltMonitor_DB.CapRaw.9;
-	
-	VoltMonitor_DB.VoltageReading_raw[0].8 := VoltMonitor_DB.CapRaw.10;
-	VoltMonitor_DB.VoltageReading_raw[0].9 := VoltMonitor_DB.CapRaw.11;
-	
-	VoltMonitor_DB.VoltageReading_raw[0].10 := 0;//VoltMonitor_DB.CapRaw.14;
-	VoltMonitor_DB.VoltageReading_raw[0].11 := 0;//VoltMonitor_DB.CapRaw.15;
-	VoltMonitor_DB.VoltageReading_raw[0].12 := 0;//VoltMonitor_DB.CapRaw.12;
-	VoltMonitor_DB.VoltageReading_raw[0].13 := 0;//VoltMonitor_DB.CapRaw.13;
-	VoltMonitor_DB.VoltageReading_raw[0].14 := 0; //VoltMonitor_DB.CapRaw.14;
-	
-	VoltMonitor_DB.VoltageReading_raw[0].15 := 0;//VoltMonitor_DB.CapRaw.4;
-	VoltMonitor_DB.CapRaw_DummySnap := GVL.B170357_CapRaw;//VoltMonitor_DB.VoltageReading_raw[0];
+//missedCTU.PV := 10000;
+//missedCTU.RESET := FALSE;
+
+IF GVL.B170357_CapRaw[1] <> GVL.B170357_CapRaw[11] OR 
+	GVL.B170357_CapRaw[2] <> GVL.B170357_CapRaw[12] OR 
+	GVL.B170357_CapRaw[2] <> GVL.B170357_CapRaw[13] OR 
+	GVL.B170357_CapRaw[3] <> GVL.B170357_CapRaw[14] OR 
+	GVL.B170357_CapRaw[3] <> GVL.B170357_CapRaw[15] OR 
+	GVL.B170357_CapRaw[1] <> GVL.B170357_CapRaw[16] //OR 
+	(*GVL.B170357_CapRaw[1] <> GVL.B170357_CapRaw[13]*) THEN
+	VoltMonitor_DB.missedCTU.CU := TRUE;
+	//VoltMonitor_DB.ONS (CLK := TRUE);
+	ELSE
+		VoltMonitor_DB.missedCTU.CU := FALSE;
+		//VoltMonitor_DB.ONS.CLK := FALSE; 
 END_IF
 
+VoltMonitor_DB.missingCNT_REAL := WORD_TO_REAL(VoltMonitor_DB.missingCNT);
+CounterUP();
+
+//missingCNT := missedCTU.CV;
 
 IF pause = TRUE THEN
 	VoltMonitor_DB.VoltageReading_raw[0] := 0;
@@ -70,6 +99,10 @@ END_IF;
 
 IF i > 16 THEN 
 	i := 0;
+END_IF
+
+IF k > 24 THEN 
+	k := 0;
 END_IF]]></ST>
     </Implementation>
     <LineIds Name="VoltMonitor">
@@ -93,6 +126,7 @@ END_IF]]></ST>
       <LineId Id="123" Count="0" />
       <LineId Id="116" Count="0" />
       <LineId Id="137" Count="0" />
+      <LineId Id="199" Count="0" />
       <LineId Id="18" Count="0" />
       <LineId Id="160" Count="3" />
       <LineId Id="183" Count="0" />
@@ -103,13 +137,37 @@ END_IF]]></ST>
       <LineId Id="185" Count="0" />
       <LineId Id="172" Count="4" />
       <LineId Id="159" Count="0" />
-      <LineId Id="120" Count="1" />
-      <LineId Id="177" Count="1" />
+      <LineId Id="120" Count="0" />
+      <LineId Id="206" Count="1" />
+      <LineId Id="209" Count="0" />
+      <LineId Id="121" Count="0" />
+      <LineId Id="225" Count="0" />
+      <LineId Id="177" Count="0" />
+      <LineId Id="253" Count="0" />
+      <LineId Id="234" Count="0" />
+      <LineId Id="260" Count="0" />
+      <LineId Id="254" Count="0" />
+      <LineId Id="229" Count="0" />
+      <LineId Id="267" Count="5" />
+      <LineId Id="238" Count="0" />
+      <LineId Id="275" Count="0" />
+      <LineId Id="244" Count="0" />
+      <LineId Id="276" Count="0" />
+      <LineId Id="247" Count="0" />
+      <LineId Id="236" Count="0" />
+      <LineId Id="273" Count="0" />
+      <LineId Id="265" Count="0" />
+      <LineId Id="241" Count="0" />
+      <LineId Id="266" Count="0" />
+      <LineId Id="257" Count="0" />
+      <LineId Id="243" Count="0" />
       <LineId Id="122" Count="0" />
       <LineId Id="179" Count="1" />
       <LineId Id="182" Count="0" />
       <LineId Id="75" Count="1" />
       <LineId Id="21" Count="0" />
+      <LineId Id="202" Count="2" />
+      <LineId Id="201" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

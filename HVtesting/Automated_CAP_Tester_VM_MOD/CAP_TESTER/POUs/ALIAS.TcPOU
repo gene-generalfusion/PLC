@@ -26,7 +26,31 @@ Look at specifcations document for mapping.
 	GVL.FireDetected 			:= GVL.PLC_DI10 ;   // for Fire Detection
 	VoltMonitor_DB.Heartbeat 	:= GVL.B170357_Heartbeat;//:= GVL.PLC_DI11 ;   // Voltage Monitor Heartbeat
 	VoltMonitor_DB.BateryOn		:= GVL.B170357_BatLevel;//:= GVL.PLC_DI12 ;
-	VoltMonitor_DB.CapRaw	    := GVL.B170357_CapRaw;
+	VoltMonitor_DB.CapRaw[0]	:= GVL.B170357_CapRaw[0];
+	VoltMonitor_DB.CapRaw[1]	:= GVL.B170357_CapRaw[1];
+	VoltMonitor_DB.CapRaw[2]	:= GVL.B170357_CapRaw[2];
+	VoltMonitor_DB.CapRaw[3]	:= GVL.B170357_CapRaw[3];
+	VoltMonitor_DB.CapRaw[4]	:= GVL.B170357_CapRaw[4];
+	VoltMonitor_DB.CapRaw[5]	:= GVL.B170357_CapRaw[5];
+	VoltMonitor_DB.CapRaw[6]	:= GVL.B170357_CapRaw[6];
+	VoltMonitor_DB.CapRaw[7]	:= GVL.B170357_CapRaw[7];
+	VoltMonitor_DB.CapRaw[8]	:= GVL.B170357_CapRaw[8];
+	VoltMonitor_DB.CapRaw[9]	:= GVL.B170357_CapRaw[9];
+	VoltMonitor_DB.CapRaw[10]	:= GVL.B170357_CapRaw[10];
+	VoltMonitor_DB.CapRaw[11]	:= GVL.B170357_CapRaw[11];
+	VoltMonitor_DB.CapRaw[12]	:= GVL.B170357_CapRaw[12];
+	VoltMonitor_DB.CapRaw[13]	:= GVL.B170357_CapRaw[13];
+	VoltMonitor_DB.CapRaw[14]	:= GVL.B170357_CapRaw[14];
+	VoltMonitor_DB.CapRaw[15]	:= GVL.B170357_CapRaw[15];
+	VoltMonitor_DB.CapRaw[16]	:= GVL.B170357_CapRaw[16];
+	VoltMonitor_DB.CapRaw[17]	:= GVL.B170357_CapRaw[17];
+	VoltMonitor_DB.CapRaw[18]	:= GVL.B170357_CapRaw[18];
+	VoltMonitor_DB.CapRaw[19]	:= GVL.B170357_CapRaw[19];
+	VoltMonitor_DB.CapRaw[20]	:= GVL.B170357_CapRaw[20];
+	VoltMonitor_DB.CapRaw[21]	:= GVL.B170357_CapRaw[21];
+	VoltMonitor_DB.CapRaw[22]	:= GVL.B170357_CapRaw[22];
+	VoltMonitor_DB.CapRaw[23]	:= GVL.B170357_CapRaw[23];
+	VoltMonitor_DB.CapRaw[24]	:= GVL.B170357_CapRaw[24];
 	(*GVL. := GVL.PLC_DI13 ;
 	GVL. := GVL.PLC_DI14 ;
 	GVL. := GVL.PLC_DI15 ;
@@ -86,6 +110,8 @@ Look at specifcations document for mapping.
       <LineId Id="19" Count="3" />
       <LineId Id="24" Count="2" />
       <LineId Id="93" Count="0" />
+      <LineId Id="97" Count="8" />
+      <LineId Id="108" Count="14" />
       <LineId Id="27" Count="34" />
       <LineId Id="85" Count="0" />
       <LineId Id="63" Count="13" />
