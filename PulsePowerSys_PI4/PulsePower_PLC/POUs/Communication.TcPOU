@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="Communication" Id="{487abb17-e635-4906-89ca-41f2b7340b76}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Communication
+VAR
+	//ePulseState : E_PulseState;
+	i : INT := 1; //1-3
+	j : INT := 1; //1-10
+	k : INT := 1; //1-12
+	m : INT := 1;
+	n : INT := 1;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//echoing voltage feedback to main plc
+
+FOR m := 1 TO 8 BY 1 DO
+	TxMainPLC.Charger[m].VoltageFeedback := MCP_IO.Charger[m].voltageFeedback; 
+	TxMainPLC.Charger[m].CurrentFeedback := MCP_IO.Charger[m].currentFeedback;
+	
+	//recipe to setpoints
+	Setpoints.TDKLoad[m].RequiredChargedV := Recipe.TDKLoad[m].RequiredChargedV;
+
+	TxMainPLC.Charger[m].TDKLoad.timeToChargeLoad := MCP_IO.Charger[m].ChargeTime.timeToChargeLoad;
+	TxMainPLC.GLSLoad.timeToChargeLoad := MCP_IO.GLS3_Load.timeToChargeLoad;
+END_FOR
+
+Setpoints.GLS1_VSP := Recipe.GLS1_VSP;
+Setpoints.GLS2_VSP := Recipe.GLS2_VSP;
+Setpoints.GLSLoad.RequiredChargedV := Recipe.GLSLoad.RequiredChargedV;
+	
+FOR i := 1 TO 3 BY 1 DO
+//still needs work here.
+	FOR j := 1 TO 10 BY 1 DO
+		TxMainPLC.Section[i].PeakCap[j].voltageFeedback := LCP.Section[i].Peak.Cap[j].voltageFeedback;
+		TxMainPLC.Section[i].PeakCap[j].currentFeedback := LCP.Section[i].Peak.Cap[j].currentFeedback;
+	END_FOR;
+	
+	TxMainPLC.Section[i].SustCap[1].voltageFeedback := LCP.Section[i].Sust.Cap[1].voltageFeedback;
+	TxMainPLC.Section[i].SustCap[1].currentFeedback := LCP.Section[i].Sust.Cap[1].currentFeedback;
+	TxMainPLC.Section[i].SustCap[2].voltageFeedback := LCP.Section[i].Sust.Cap[2].voltageFeedback;
+	TxMainPLC.Section[i].SustCap[2].currentFeedback := LCP.Section[i].Sust.Cap[2].currentFeedback;
+	
+END_FOR;
+
+FOR k := 1 TO 12 BY 1 DO 
+	TxMainPLC.Section[4].FormCap[k].voltageFeedback := LCP.Section[4].Form.Cap[k].voltageFeedback;
+	TxMainPLC.Section[4].FormCap[k].currentFeedback := LCP.Section[4].Form.Cap[k].currentFeedback;
+END_FOR
+
+TxMainPLC.Section[4].FormTrigVoltage := LCP.Section[4].FormTriggerVoltageFeedback;
+TxMainPLC.Section[4].PreFormTrigVoltage := LCP.Section[4].PreFormTriggerVoltageFeedback;
+TxMainPLC.Section[4].PreFormCapVoltage := LCP.Section[4].PreFormCapVoltageFeedback;
+
+TxMainPLC.ChargingRunOutTime := TIME_TO_REAL ((ChargeTime_DB.LongestChargeTime_PT + HMI_DB.RunOutTMR_PT)/1000);
+TxMainPLC.ChargeRunOutTime := TIME_TO_REAL (HMI_DB.RunOutTMR_PT/1000);
+
+IF i > 3 THEN
+	i := 1;
+END_IF
+
+IF j > 10 THEN
+	j := 1;
+END_IF
+
+IF k > 12 THEN
+	k := 1;
+END_IF
+
+IF m > 8 THEN
+	m := 1;
+END_IF;
+
+
+(*
+FB_ReadAdsSymByName (
+			bRead		:= TRUE, // on or off
+			sNetID		:= 5.104.224.86.1.333, //AmsNetID
+			nPort		:= 852, // plc port
+			sVarName	:= E_Command,  //read from
+			nDestAddr	:= E_Command, //write to 
+			nLen		:= 2, //2 bytes	
+			);
+
+FB_WriteAdsSymByName (
+			bWrite		:= TRUE,
+			sNetID		:= 5.1.121.21.21.2,
+			nPort		:= 851,
+			sVarName	:= E_Status,
+			nSrcAddr	:= E_Status,
+			nLen		:= 2, //2byte
+			);
+
+*)
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="Communication">
+      <LineId Id="42" Count="0" />
+      <LineId Id="77" Count="3" />
+      <LineId Id="187" Count="0" />
+      <LineId Id="232" Count="0" />
+      <LineId Id="185" Count="0" />
+      <LineId Id="238" Count="0" />
+      <LineId Id="197" Count="1" />
+      <LineId Id="84" Count="0" />
+      <LineId Id="87" Count="0" />
+      <LineId Id="207" Count="1" />
+      <LineId Id="186" Count="0" />
+      <LineId Id="237" Count="0" />
+      <LineId Id="88" Count="0" />
+      <LineId Id="140" Count="0" />
+      <LineId Id="89" Count="3" />
+      <LineId Id="128" Count="0" />
+      <LineId Id="93" Count="0" />
+      <LineId Id="95" Count="4" />
+      <LineId Id="151" Count="0" />
+      <LineId Id="101" Count="7" />
+      <LineId Id="220" Count="0" />
+      <LineId Id="110" Count="0" />
+      <LineId Id="222" Count="1" />
+      <LineId Id="111" Count="14" />
+      <LineId Id="54" Count="0" />
+      <LineId Id="58" Count="0" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="6" Count="0" />
+      <LineId Id="16" Count="1" />
+      <LineId Id="20" Count="3" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="28" Count="7" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="41" Count="0" />
+      <LineId Id="40" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

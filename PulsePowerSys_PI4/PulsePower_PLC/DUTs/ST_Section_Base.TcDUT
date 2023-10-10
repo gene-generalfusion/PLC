@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="ST_Section_Base" Id="{9780b1d1-f5c5-4a00-9de3-1ff70eb9b55e}">
+    <Declaration><![CDATA[//Base coil type with all the Common functionality
+TYPE ST_Section_Base :
+STRUCT
+	
+	Peak : ST_FieldDevices_Base;
+	Sust : ST_FieldDevices_Base;
+	Form : ST_FieldDevices_Form;
+	
+	PreFormCapVoltage_raw			: INT;
+	PreFormCapVoltage_norm			: REAL;
+	PreFormCapVoltageFeedback		: REAL;
+	
+	FormTriggerVoltage_raw			: INT;
+	FormTriggerVoltage_norm			: REAL;
+	FormTriggerVoltageFeedback		: REAL;
+	
+	PreFormTriggerVoltage_raw		: INT;
+	PreFormTriggerVoltage_norm		: REAL;
+	PreFormTriggerVoltageFeedback	: REAL;
+	
+	PreFormCapDischarged			: BOOL;
+	PreFormCapFullyChaged			: BOOL;
+	
+	PSU1_DCOK						: BOOL := FALSE;
+	//Local_EstopPB_Pressed			: BOOL;  //NC
+	SystemReadyToCharge				: BOOL := FALSE;
+	LossPneumaticPressure			: BOOL;
+	AllCapsDischarged				: BOOL;
+	AllCapsFullyCharged				: BOOL;
+	//PreFormBank						: ST_ChargeTime;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

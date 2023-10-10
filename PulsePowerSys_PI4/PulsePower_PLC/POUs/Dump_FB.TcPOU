@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="Dump_FB" Id="{08cbfb29-78f2-4872-b96f-1e7e906905bf}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Dump_FB
+VAR_INPUT
+	EN : BOOL;
+	IN1 : BOOL; //AllCapsDischarged
+	IN2 : BOOL; //AllDumpRelaysOpen
+	//IN3 : BOOL; //DumpingRunOut	 
+	//Heartbeat		  : BOOL;
+END_VAR
+VAR_OUTPUT
+	DONE : BOOL;
+	DumpingRunOut_Elapse : REAL;
+END_VAR
+VAR
+	//AbortPSnRlyDelayDONE : BOOL;
+	//AbortPSnRlyDelay_Timer : TON;
+	//AbortPSnRlyDelay_PT : TIME;
+	DumpingRunOutTMR_TON : TON;
+	DumpingRunOutTMR_PT : TIME := T#190S;
+	DumpingRunOutTMR_ET : TIME;
+	
+	i : USINT := 1;
+	j : USINT := 1;
+	k : USINT := 0;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+IF EN = TRUE THEN
+	//start dump runout timer
+	DumpingRunOutTMR_TON (IN := TRUE, PT := DumpingRunOutTMR_PT, ET => DumpingRunOutTMR_ET);
+	DumpingRunOut_Elapse := TIME_TO_REAL((DumpingRunOutTMR_PT - DumpingRunOutTMR_ET)/1000);
+	//IF DumpingRunOut = TRUE AND AllCapsDischarged = TRUE AND AllDumpRelaysOpen = FALSE THEN 
+	//	DONE := TRUE;
+	//	ELSE 
+	//		DONE := FALSE;
+	//END_IF
+		//	DONE := TRUE;
+	//IF Heartbeat = TRUE THEN 
+	//	 k := k + 1;
+	//END_IF;			
+	IF DumpingRunOutTMR_TON.Q = TRUE AND Permissives_DB.AllSectCapsDischarged = TRUE AND IN2 = TRUE THEN //if timer run out, and in remoter mode go to trip
+		DONE := TRUE;
+		DumpingRunOutTMR_TON (IN := FALSE);
+		ELSE 
+			DONE := FALSE; 
+	END_IF
+					
+	//TURN OFF ALL CHARGERS
+	//FOR i := 1 TO 8 BY 1 DO 
+	FOR i := 1 TO 3 BY 1 DO
+		MCP_IO.Charger[i].inhibit := TRUE; 		
+		MCP_IO.Charger[i].HV_ON := FALSE; 
+		MCP_IO.Charger[i].voltageSP := 0;
+			
+		//ChargeTime_DB.ChargingTimeElapse_TON[i] (IN := FALSE); //reset charging time elapse
+	END_FOR;
+
+	MCP_IO.GLS1_hvON := FALSE;
+	MCP_IO.GLS2_hvON := FALSE;
+	MCP_IO.GLS3_hvON := FALSE;
+	MCP_IO.GLS1_voltageSP := 0;
+	MCP_IO.GLS2_voltageSP := 0;
+	MCP_IO.GLS3_voltageSP := 0;
+					
+	//ChargeTime_DB.PreFormChargingTimeElapse_TON (IN := FALSE);
+	//start delay
+	//AbortPSnRlyDelay_Timer (IN := TRUE, PT := AbortPSnRlyDelay_PT);					
+					
+	//IF AbortPSnRlyDelay_Timer.Q = TRUE THEN 
+	//	AbortPSnRlyDelayDONE := TRUE;
+	//	AbortPSnRlyDelay_Timer (IN := FALSE);
+	//END_IF;
+					
+//IF 	AbortPSnRlyDelayDONE = TRUE THEN
+	FOR j := 1 TO 3 BY 1 DO 
+		//Open all charge relays
+		LCP.Section[j].Peak.CloseChargeRelay1 := FALSE; 
+		LCP.Section[j].Peak.CloseChargeRelay2 := FALSE; 
+		LCP.Section[j].Sust.CloseChargeRelay1 := FALSE;
+		LCP.Section[j].Sust.CloseChargeRelay2 := FALSE;
+		//close all dump relays  - for SAFE STATE they can all go together
+		LCP.Section[j].Peak.OpenDumpRelay1 := FALSE;
+		LCP.Section[j].Peak.OpenDumpRelay2 := FALSE;
+		LCP.Section[j].Sust.OpenDumpRelay1 := FALSE;
+		LCP.Section[j].Sust.OpenDumpRelay2 := FALSE;	
+	END_FOR;
+	//open all charge rly on form
+	LCP.Section[4].Form.CloseChargeRelay1 := FALSE;
+	LCP.Section[4].Form.CloseChargeRelay2 := FALSE;
+	LCP.Section[4].Form.CloseFormTrigChargeRly := FALSE;
+	LCP.Section[4].Form.ClosePreFormChargeRly := FALSE;
+	LCP.Section[4].Form.ClosePreFormTrigChargeRly := FALSE;
+	//close all dump relay on form
+	LCP.Section[4].Form.OpenDumpRelay1 := FALSE;
+	LCP.Section[4].Form.OpenDumpRelay2 := FALSE;
+	LCP.Section[4].Form.OpenPreFormDumpRly := FALSE;
+	LCP.Section[4].Form.OpenFormTrigDumpRly1 := FALSE;
+	LCP.Section[4].Form.OpenPreFormTrigDumpRly1 := FALSE;
+						
+	//AbortPSnRlyDelay_Timer (IN := FALSE);
+	//AbortPSnRlyDelayDONE := FALSE;
+ELSE
+	DumpingRunOutTMR_TON (IN := FALSE);
+END_IF;
+					
+//IF i > 8 THEN
+IF i > 3 THEN
+	i := 1;
+END_IF
+					
+IF j > 3 THEN
+	j := 1;
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="Dump_FB">
+      <LineId Id="98" Count="1" />
+      <LineId Id="10" Count="1" />
+      <LineId Id="181" Count="0" />
+      <LineId Id="131" Count="0" />
+      <LineId Id="133" Count="0" />
+      <LineId Id="135" Count="1" />
+      <LineId Id="134" Count="0" />
+      <LineId Id="132" Count="0" />
+      <LineId Id="106" Count="0" />
+      <LineId Id="155" Count="1" />
+      <LineId Id="13" Count="2" />
+      <LineId Id="111" Count="1" />
+      <LineId Id="17" Count="3" />
+      <LineId Id="232" Count="0" />
+      <LineId Id="21" Count="5" />
+      <LineId Id="97" Count="0" />
+      <LineId Id="27" Count="43" />
+      <LineId Id="102" Count="0" />
+      <LineId Id="207" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="88" Count="1" />
+      <LineId Id="233" Count="0" />
+      <LineId Id="92" Count="0" />
+      <LineId Id="91" Count="0" />
+      <LineId Id="93" Count="3" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

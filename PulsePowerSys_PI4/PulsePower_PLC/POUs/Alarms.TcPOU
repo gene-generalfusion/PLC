@@ -1,0 +1,681 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="Alarms" Id="{aafde405-1e72-4db9-9a05-4be052802fc8}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Alarms
+VAR
+	bWarning : BOOL;
+	bConfirm : BOOL;
+	alarms : ARRAY[0..128] OF Alarms_FB;
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// Alarm Word 1 - MCP Alarms
+//MCP Alarms
+
+Alarms_DB.MCP.AlarmWord.0 := Trips_DB.MasterStopPBPressed;
+Alarms_DB.MCP.AlarmWord.1 := Trips_DB.CageEStopCircuitBroken;
+Alarms_DB.MCP.AlarmWord.2 := Trips_DB.LocalModeSelected;
+Alarms_DB.MCP.AlarmWord.3 := Trips_DB.MCPLossDCpower;
+Alarms_DB.MCP.AlarmWord.4 := MCP_IO.Charger[1].SummaryFaulted;
+Alarms_DB.MCP.AlarmWord.5 := MCP_IO.Charger[2].SummaryFaulted;
+Alarms_DB.MCP.AlarmWord.6 := MCP_IO.Charger[3].SummaryFaulted;
+Alarms_DB.MCP.AlarmWord.7 := MCP_IO.Charger[4].SummaryFaulted;
+Alarms_DB.MCP.AlarmWord.8 := MCP_IO.Charger[5].SummaryFaulted;
+Alarms_DB.MCP.AlarmWord.9 := MCP_IO.Charger[6].SummaryFaulted;
+Alarms_DB.MCP.AlarmWord.10 := MCP_IO.Charger[7].SummaryFaulted;
+Alarms_DB.MCP.AlarmWord.11 := MCP_IO.Charger[8].SummaryFaulted;
+Alarms_DB.MCP.AlarmWord.12 := Trips_DB.ChargedTimerRunout;
+Alarms_DB.MCP.AlarmWord.13 := Trips_DB.ChargingTimerRunout;
+Alarms_DB.MCP.AlarmWord.14 := Trips_DB.MCPsystemTripped;
+Alarms_DB.MCP.AlarmWord.15 := Trips_DB.AnyEstopPressed;
+
+//Alarm Word 1 msg
+//IE: alarms[299](evtEntry:= Tc_Events.AlarmWord11.b4, bEvt:= gvl.test, bConfirm:= bConfirm);
+alarms[0](evtEntry:= Tc_Events.AlarmWord1.b0, bEvt:= Alarms_DB.MCP.AlarmWord.0, bConfirm:= bConfirm);
+alarms[1](evtEntry:= Tc_Events.AlarmWord1.b1, bEvt:= Alarms_DB.MCP.AlarmWord.1, bConfirm:= bConfirm);
+alarms[2](evtEntry:= Tc_Events.AlarmWord1.b2, bEvt:= Alarms_DB.MCP.AlarmWord.2, bConfirm:= bConfirm);
+alarms[3](evtEntry:= Tc_Events.AlarmWord1.b3, bEvt:= Alarms_DB.MCP.AlarmWord.3, bConfirm:= bConfirm);
+alarms[4](evtEntry:= Tc_Events.AlarmWord1.b4, bEvt:= Alarms_DB.MCP.AlarmWord.4, bConfirm:= bConfirm);
+alarms[5](evtEntry:= Tc_Events.AlarmWord1.b5, bEvt:= Alarms_DB.MCP.AlarmWord.5, bConfirm:= bConfirm);
+alarms[6](evtEntry:= Tc_Events.AlarmWord1.b6, bEvt:= Alarms_DB.MCP.AlarmWord.6, bConfirm:= bConfirm);
+alarms[7](evtEntry:= Tc_Events.AlarmWord1.b7, bEvt:= Alarms_DB.MCP.AlarmWord.7, bConfirm:= bConfirm);
+alarms[8](evtEntry:= Tc_Events.AlarmWord1.b8, bEvt:= Alarms_DB.MCP.AlarmWord.8, bConfirm:= bConfirm);
+alarms[9](evtEntry:= Tc_Events.AlarmWord1.b9, bEvt:= Alarms_DB.MCP.AlarmWord.9, bConfirm:= bConfirm);
+alarms[0](evtEntry:= Tc_Events.AlarmWord1.b10, bEvt:= Alarms_DB.MCP.AlarmWord.10, bConfirm:= bConfirm);
+alarms[11](evtEntry:= Tc_Events.AlarmWord1.b11, bEvt:= Alarms_DB.MCP.AlarmWord.11, bConfirm:= bConfirm);
+alarms[12](evtEntry:= Tc_Events.AlarmWord1.b12, bEvt:= Alarms_DB.MCP.AlarmWord.12, bConfirm:= bConfirm);
+alarms[13](evtEntry:= Tc_Events.AlarmWord1.b13, bEvt:= Alarms_DB.MCP.AlarmWord.13, bConfirm:= bConfirm);
+alarms[14](evtEntry:= Tc_Events.AlarmWord1.b14, bEvt:= Alarms_DB.MCP.AlarmWord.14, bConfirm:= bConfirm);
+alarms[15](evtEntry:= Tc_Events.AlarmWord1.b15, bEvt:= Alarms_DB.MCP.AlarmWord.15, bConfirm:= bConfirm);
+
+// Alarm Word 2 - Section 1 Alarms
+Alarms_DB.Section1.AlarmWord.0 := Trips_DB.Section[1].SystemTripped;
+Alarms_DB.Section1.AlarmWord.1 := Trips_DB.Section[1].LossPneumaticPressure;
+Alarms_DB.Section1.AlarmWord.2 := Trips_DB.Section[1].Peak.ChargeRelay1_Failed;
+Alarms_DB.Section1.AlarmWord.3 := Trips_DB.Section[1].Peak.ChargeRelay2_Failed;
+Alarms_DB.Section1.AlarmWord.4 := Trips_DB.Section[1].Peak.DumpRelay1_Failed;
+Alarms_DB.Section1.AlarmWord.5 := Trips_DB.Section[1].Peak.DumpRelay2_Failed;
+Alarms_DB.Section1.AlarmWord.6 := Trips_DB.Section[1].Sust.ChargeRelay1_Failed;
+Alarms_DB.Section1.AlarmWord.7 := Trips_DB.Section[1].Sust.ChargeRelay2_Failed;
+Alarms_DB.Section1.AlarmWord.8 := Trips_DB.Section[1].Sust.DumpRelay1_Failed;
+Alarms_DB.Section1.AlarmWord.9 := Trips_DB.Section[1].Sust.DumpRelay2_Failed;
+Alarms_DB.Section1.AlarmWord.10 := Trips_DB.Section[1].LossDCPower;
+
+
+// Alarm Word 2 - Msg
+alarms[16](evtEntry:= Tc_Events.AlarmWord2.b0, bEvt:= Alarms_DB.Section1.AlarmWord.0, bConfirm:= bConfirm);
+alarms[17](evtEntry:= Tc_Events.AlarmWord2.b1, bEvt:= Alarms_DB.Section1.AlarmWord.1, bConfirm:= bConfirm);
+alarms[18](evtEntry:= Tc_Events.AlarmWord2.b2, bEvt:= Alarms_DB.Section1.AlarmWord.2, bConfirm:= bConfirm);
+alarms[19](evtEntry:= Tc_Events.AlarmWord2.b3, bEvt:= Alarms_DB.Section1.AlarmWord.3, bConfirm:= bConfirm);
+alarms[20](evtEntry:= Tc_Events.AlarmWord2.b4, bEvt:= Alarms_DB.Section1.AlarmWord.4, bConfirm:= bConfirm);
+alarms[21](evtEntry:= Tc_Events.AlarmWord2.b5, bEvt:= Alarms_DB.Section1.AlarmWord.5, bConfirm:= bConfirm);
+alarms[22](evtEntry:= Tc_Events.AlarmWord2.b6, bEvt:= Alarms_DB.Section1.AlarmWord.6, bConfirm:= bConfirm);
+alarms[23](evtEntry:= Tc_Events.AlarmWord2.b7, bEvt:= Alarms_DB.Section1.AlarmWord.7, bConfirm:= bConfirm);
+alarms[24](evtEntry:= Tc_Events.AlarmWord2.b8, bEvt:= Alarms_DB.Section1.AlarmWord.8, bConfirm:= bConfirm);
+alarms[25](evtEntry:= Tc_Events.AlarmWord2.b9, bEvt:= Alarms_DB.Section1.AlarmWord.9, bConfirm:= bConfirm);
+alarms[26](evtEntry:= Tc_Events.AlarmWord2.b10, bEvt:= Alarms_DB.Section1.AlarmWord.10, bConfirm:= bConfirm);
+//alarms[27] - spare
+//alarms[28] - spare
+//alarms[29] - spare
+//alarms[30] - spare
+//alarms[31] - spare
+
+
+// Alarm Word 3 - Section 2 Alarms
+Alarms_DB.Section2.AlarmWord.0 := Trips_DB.Section[2].SystemTripped;
+Alarms_DB.Section2.AlarmWord.1 := Trips_DB.Section[2].LossPneumaticPressure;
+Alarms_DB.Section2.AlarmWord.2 := Trips_DB.Section[2].Peak.ChargeRelay1_Failed;
+Alarms_DB.Section2.AlarmWord.3 := Trips_DB.Section[2].Peak.ChargeRelay2_Failed;
+Alarms_DB.Section2.AlarmWord.4 := Trips_DB.Section[2].Peak.DumpRelay1_Failed;
+Alarms_DB.Section2.AlarmWord.5 := Trips_DB.Section[2].Peak.DumpRelay2_Failed;
+Alarms_DB.Section2.AlarmWord.6 := Trips_DB.Section[2].Sust.ChargeRelay1_Failed;
+Alarms_DB.Section2.AlarmWord.7 := Trips_DB.Section[2].Sust.ChargeRelay2_Failed;
+Alarms_DB.Section2.AlarmWord.8 := Trips_DB.Section[2].Sust.DumpRelay1_Failed;
+Alarms_DB.Section2.AlarmWord.9 := Trips_DB.Section[2].Sust.DumpRelay2_Failed;
+Alarms_DB.Section2.AlarmWord.10 := Trips_DB.Section[2].LossDCPower;
+
+
+// Alarm Word 3 - Msg
+alarms[32](evtEntry:= Tc_Events.AlarmWord3.b0, bEvt:= Alarms_DB.Section2.AlarmWord.0, bConfirm:= bConfirm);
+alarms[33](evtEntry:= Tc_Events.AlarmWord3.b1, bEvt:= Alarms_DB.Section2.AlarmWord.1, bConfirm:= bConfirm);
+alarms[34](evtEntry:= Tc_Events.AlarmWord3.b2, bEvt:= Alarms_DB.Section2.AlarmWord.2, bConfirm:= bConfirm);
+alarms[35](evtEntry:= Tc_Events.AlarmWord3.b3, bEvt:= Alarms_DB.Section2.AlarmWord.3, bConfirm:= bConfirm);
+alarms[36](evtEntry:= Tc_Events.AlarmWord3.b4, bEvt:= Alarms_DB.Section2.AlarmWord.4, bConfirm:= bConfirm);
+alarms[37](evtEntry:= Tc_Events.AlarmWord3.b5, bEvt:= Alarms_DB.Section2.AlarmWord.5, bConfirm:= bConfirm);
+alarms[38](evtEntry:= Tc_Events.AlarmWord3.b6, bEvt:= Alarms_DB.Section2.AlarmWord.6, bConfirm:= bConfirm);
+alarms[39](evtEntry:= Tc_Events.AlarmWord3.b7, bEvt:= Alarms_DB.Section2.AlarmWord.7, bConfirm:= bConfirm);
+alarms[40](evtEntry:= Tc_Events.AlarmWord3.b8, bEvt:= Alarms_DB.Section2.AlarmWord.8, bConfirm:= bConfirm);
+alarms[41](evtEntry:= Tc_Events.AlarmWord3.b9, bEvt:= Alarms_DB.Section2.AlarmWord.9, bConfirm:= bConfirm);
+alarms[42](evtEntry:= Tc_Events.AlarmWord3.b10, bEvt:= Alarms_DB.Section2.AlarmWord.10, bConfirm:= bConfirm);
+//alarms[43] - spare
+//alarms[44] - spare
+//alarms[45] - spare
+//alarms[46] - spare
+//alarms[47] - spare
+
+// Alarm Word 4 - Section 3 Alarms
+Alarms_DB.Section3.AlarmWord.0 := Trips_DB.Section[3].SystemTripped;
+Alarms_DB.Section3.AlarmWord.1 := Trips_DB.Section[3].LossPneumaticPressure;
+Alarms_DB.Section3.AlarmWord.2 := Trips_DB.Section[3].Peak.ChargeRelay1_Failed;
+Alarms_DB.Section3.AlarmWord.3 := Trips_DB.Section[3].Peak.ChargeRelay2_Failed;
+Alarms_DB.Section3.AlarmWord.4 := Trips_DB.Section[3].Peak.DumpRelay1_Failed;
+Alarms_DB.Section3.AlarmWord.5 := Trips_DB.Section[3].Peak.DumpRelay2_Failed;
+Alarms_DB.Section3.AlarmWord.6 := Trips_DB.Section[3].Sust.ChargeRelay1_Failed;
+Alarms_DB.Section3.AlarmWord.7 := Trips_DB.Section[3].Sust.ChargeRelay2_Failed;
+Alarms_DB.Section3.AlarmWord.8 := Trips_DB.Section[3].Sust.DumpRelay1_Failed;
+Alarms_DB.Section3.AlarmWord.9 := Trips_DB.Section[3].Sust.DumpRelay2_Failed;
+Alarms_DB.Section3.AlarmWord.10 := Trips_DB.Section[3].LossDCPower;
+
+
+// Alarm Word 4 - Msg
+alarms[48](evtEntry:= Tc_Events.AlarmWord4.b0, bEvt:= Alarms_DB.Section3.AlarmWord.0, bConfirm:= bConfirm);
+alarms[49](evtEntry:= Tc_Events.AlarmWord4.b1, bEvt:= Alarms_DB.Section3.AlarmWord.1, bConfirm:= bConfirm);
+alarms[50](evtEntry:= Tc_Events.AlarmWord4.b2, bEvt:= Alarms_DB.Section3.AlarmWord.2, bConfirm:= bConfirm);
+alarms[51](evtEntry:= Tc_Events.AlarmWord4.b3, bEvt:= Alarms_DB.Section3.AlarmWord.3, bConfirm:= bConfirm);
+alarms[52](evtEntry:= Tc_Events.AlarmWord4.b4, bEvt:= Alarms_DB.Section3.AlarmWord.4, bConfirm:= bConfirm);
+alarms[53](evtEntry:= Tc_Events.AlarmWord4.b5, bEvt:= Alarms_DB.Section3.AlarmWord.5, bConfirm:= bConfirm);
+alarms[54](evtEntry:= Tc_Events.AlarmWord4.b6, bEvt:= Alarms_DB.Section3.AlarmWord.6, bConfirm:= bConfirm);
+alarms[55](evtEntry:= Tc_Events.AlarmWord4.b7, bEvt:= Alarms_DB.Section3.AlarmWord.7, bConfirm:= bConfirm);
+alarms[56](evtEntry:= Tc_Events.AlarmWord4.b8, bEvt:= Alarms_DB.Section3.AlarmWord.8, bConfirm:= bConfirm);
+alarms[57](evtEntry:= Tc_Events.AlarmWord4.b9, bEvt:= Alarms_DB.Section3.AlarmWord.9, bConfirm:= bConfirm);
+alarms[58](evtEntry:= Tc_Events.AlarmWord4.b10, bEvt:= Alarms_DB.Section3.AlarmWord.10, bConfirm:= bConfirm);
+//alarms[59] - spare
+//alarms[60] - spare
+//alarms[61] - spare
+//alarms[62] - spare
+//alarms[63] - spare
+
+// Alarm Word 5 - Section 4 Alarms
+Alarms_DB.Section4.AlarmWord.0 := Trips_DB.Section[4].SystemTripped;
+Alarms_DB.Section4.AlarmWord.1 := Trips_DB.Section[4].LossPneumaticPressure;
+Alarms_DB.Section4.AlarmWord.2 := Trips_DB.Section[4].Form.ChargeRelay1_Failed;
+Alarms_DB.Section4.AlarmWord.3 := Trips_DB.Section[4].Form.ChargeRelay2_Failed;
+Alarms_DB.Section4.AlarmWord.4 := Trips_DB.Section[4].Form.DumpRelay1_Failed;
+Alarms_DB.Section4.AlarmWord.5 := Trips_DB.Section[4].Form.DumpRelay2_Failed;
+Alarms_DB.Section4.AlarmWord.6 := Trips_DB.Section[4].Form.PreFormChrgRlyFailed;
+Alarms_DB.Section4.AlarmWord.7 := Trips_DB.Section[4].Form.FormTrigChrgRlyFailed;
+Alarms_DB.Section4.AlarmWord.8 := Trips_DB.Section[4].Form.PreFormTrigChrgRlyFailed;
+Alarms_DB.Section4.AlarmWord.9 := Trips_DB.Section[4].Form.PreFormDumpRlyFailed;
+Alarms_DB.Section4.AlarmWord.10 := Trips_DB.Section[4].Form.FormTrigDumpRly1Failed;
+Alarms_DB.Section4.AlarmWord.11 := Trips_DB.Section[4].Form.PreFormTrigDumpRly1Failed;
+Alarms_DB.Section4.AlarmWord.12 := Trips_DB.Section[4].LossDCPower;
+
+// Alarm Word 5 - Msg
+alarms[64](evtEntry:= Tc_Events.AlarmWord5.b0, bEvt:= Alarms_DB.Section4.AlarmWord.0, bConfirm:= bConfirm);
+alarms[65](evtEntry:= Tc_Events.AlarmWord5.b1, bEvt:= Alarms_DB.Section4.AlarmWord.1, bConfirm:= bConfirm);
+alarms[66](evtEntry:= Tc_Events.AlarmWord5.b2, bEvt:= Alarms_DB.Section4.AlarmWord.2, bConfirm:= bConfirm);
+alarms[67](evtEntry:= Tc_Events.AlarmWord5.b3, bEvt:= Alarms_DB.Section4.AlarmWord.3, bConfirm:= bConfirm);
+alarms[68](evtEntry:= Tc_Events.AlarmWord5.b4, bEvt:= Alarms_DB.Section4.AlarmWord.4, bConfirm:= bConfirm);
+alarms[69](evtEntry:= Tc_Events.AlarmWord5.b5, bEvt:= Alarms_DB.Section4.AlarmWord.5, bConfirm:= bConfirm);
+alarms[70](evtEntry:= Tc_Events.AlarmWord5.b6, bEvt:= Alarms_DB.Section4.AlarmWord.6, bConfirm:= bConfirm);
+alarms[71](evtEntry:= Tc_Events.AlarmWord5.b7, bEvt:= Alarms_DB.Section4.AlarmWord.7, bConfirm:= bConfirm);
+alarms[72](evtEntry:= Tc_Events.AlarmWord5.b8, bEvt:= Alarms_DB.Section4.AlarmWord.8, bConfirm:= bConfirm);
+alarms[73](evtEntry:= Tc_Events.AlarmWord5.b9, bEvt:= Alarms_DB.Section4.AlarmWord.9, bConfirm:= bConfirm);
+alarms[74](evtEntry:= Tc_Events.AlarmWord5.b10, bEvt:= Alarms_DB.Section4.AlarmWord.10, bConfirm:= bConfirm);
+alarms[75](evtEntry:= Tc_Events.AlarmWord5.b10, bEvt:= Alarms_DB.Section4.AlarmWord.11, bConfirm:= bConfirm);
+alarms[76](evtEntry:= Tc_Events.AlarmWord5.b10, bEvt:= Alarms_DB.Section4.AlarmWord.12, bConfirm:= bConfirm);
+//alarms[77] - spare
+//alarms[78] - spare
+//alarms[79] - spare
+
+// Alarm Word 6 - Alarms
+Alarms_DB.AlarmWord6.AlarmWord.0:= Trips_DB.Charger[1].OverTemp;
+Alarms_DB.AlarmWord6.AlarmWord.1 := Trips_DB.Charger[1].InterlockOpen;
+Alarms_DB.AlarmWord6.AlarmWord.2 := Trips_DB.Charger[1].LoadFaulted;
+Alarms_DB.AlarmWord6.AlarmWord.3 := Trips_DB.Charger[2].OverTemp;
+Alarms_DB.AlarmWord6.AlarmWord.4 := Trips_DB.Charger[2].InterlockOpen;
+Alarms_DB.AlarmWord6.AlarmWord.5 := Trips_DB.Charger[2].LoadFaulted;
+Alarms_DB.AlarmWord6.AlarmWord.6 := Trips_DB.Charger[3].OverTemp;
+Alarms_DB.AlarmWord6.AlarmWord.7 := Trips_DB.Charger[3].InterlockOpen;
+Alarms_DB.AlarmWord6.AlarmWord.8 := Trips_DB.Charger[3].LoadFaulted;
+Alarms_DB.AlarmWord6.AlarmWord.9 := Trips_DB.Charger[4].OverTemp;
+Alarms_DB.AlarmWord6.AlarmWord.10 := Trips_DB.Charger[4].InterlockOpen;
+Alarms_DB.AlarmWord6.AlarmWord.11 := Trips_DB.Charger[4].LoadFaulted;
+Alarms_DB.AlarmWord6.AlarmWord.12 := Trips_DB.Charger[5].OverTemp;
+Alarms_DB.AlarmWord6.AlarmWord.13 := Trips_DB.Charger[5].InterlockOpen;
+Alarms_DB.AlarmWord6.AlarmWord.14 := Trips_DB.Charger[5].LoadFaulted;
+
+// Alarm Word 6 - Msg
+alarms[80](evtEntry:= Tc_Events.AlarmWord6.b0, bEvt:= Alarms_DB.AlarmWord6.AlarmWord.0, bConfirm:= bConfirm);
+alarms[81](evtEntry:= Tc_Events.AlarmWord6.b1, bEvt:= Alarms_DB.AlarmWord6.AlarmWord.1, bConfirm:= bConfirm);
+alarms[82](evtEntry:= Tc_Events.AlarmWord6.b2, bEvt:= Alarms_DB.AlarmWord6.AlarmWord.2, bConfirm:= bConfirm);
+alarms[83](evtEntry:= Tc_Events.AlarmWord6.b3, bEvt:= Alarms_DB.AlarmWord6.AlarmWord.3, bConfirm:= bConfirm);
+alarms[84](evtEntry:= Tc_Events.AlarmWord6.b4, bEvt:= Alarms_DB.AlarmWord6.AlarmWord.4, bConfirm:= bConfirm);
+alarms[85](evtEntry:= Tc_Events.AlarmWord6.b5, bEvt:= Alarms_DB.AlarmWord6.AlarmWord.5, bConfirm:= bConfirm);
+alarms[86](evtEntry:= Tc_Events.AlarmWord6.b6, bEvt:= Alarms_DB.AlarmWord6.AlarmWord.6, bConfirm:= bConfirm);
+alarms[87](evtEntry:= Tc_Events.AlarmWord6.b7, bEvt:= Alarms_DB.AlarmWord6.AlarmWord.7, bConfirm:= bConfirm);
+alarms[88](evtEntry:= Tc_Events.AlarmWord6.b8, bEvt:= Alarms_DB.AlarmWord6.AlarmWord.8, bConfirm:= bConfirm);
+alarms[89](evtEntry:= Tc_Events.AlarmWord6.b9, bEvt:= Alarms_DB.AlarmWord6.AlarmWord.9, bConfirm:= bConfirm);
+alarms[90](evtEntry:= Tc_Events.AlarmWord6.b10, bEvt:= Alarms_DB.AlarmWord6.AlarmWord.10, bConfirm:= bConfirm);
+alarms[91](evtEntry:= Tc_Events.AlarmWord6.b11, bEvt:= Alarms_DB.AlarmWord6.AlarmWord.11, bConfirm:= bConfirm);
+alarms[92](evtEntry:= Tc_Events.AlarmWord6.b12, bEvt:= Alarms_DB.AlarmWord6.AlarmWord.12, bConfirm:= bConfirm);
+//alarms[93]
+//alarms[94]
+//alarms[95]
+
+// Alarm Word 7 - Charger Alarms
+Alarms_DB.AlarmWord7.AlarmWord.0 := Trips_DB.Charger[6].OverTemp;
+Alarms_DB.AlarmWord7.AlarmWord.1 := Trips_DB.Charger[6].InterlockOpen;
+Alarms_DB.AlarmWord7.AlarmWord.2 := Trips_DB.Charger[6].LoadFaulted;
+Alarms_DB.AlarmWord7.AlarmWord.3 := Trips_DB.Charger[7].OverTemp;
+Alarms_DB.AlarmWord7.AlarmWord.4 := Trips_DB.Charger[7].InterlockOpen;
+Alarms_DB.AlarmWord7.AlarmWord.5 := Trips_DB.Charger[7].LoadFaulted;
+Alarms_DB.AlarmWord7.AlarmWord.6 := Trips_DB.Charger[8].OverTemp;
+Alarms_DB.AlarmWord7.AlarmWord.7 := Trips_DB.Charger[8].InterlockOpen;
+Alarms_DB.AlarmWord7.AlarmWord.8 := Trips_DB.Charger[8].LoadFaulted;
+Alarms_DB.AlarmWord7.AlarmWord.9 := Trips_DB.AnyChargerOverTemp; 
+Alarms_DB.AlarmWord7.AlarmWord.10 := Trips_DB.AnyChargerLoadFault; 
+Alarms_DB.AlarmWord7.AlarmWord.11 := Trips_DB.AnySystemTripped; 
+Alarms_DB.AlarmWord7.AlarmWord.12 := Trips_DB.MachineGNDrlyFailed; 
+Alarms_DB.AlarmWord7.AlarmWord.13 := Trips_DB.AnyChargeRlyFail; 
+Alarms_DB.AlarmWord7.AlarmWord.14 := Trips_DB.AnyDumpRlyFail; 
+Alarms_DB.AlarmWord7.AlarmWord.15 := Trips_DB.AnyLossInhibitSignal; 
+
+// Alarm Word 7 - Msg
+alarms[96](evtEntry:= Tc_Events.AlarmWord7.b0, bEvt:= Alarms_DB.AlarmWord7.AlarmWord.0, bConfirm:= bConfirm);
+alarms[97](evtEntry:= Tc_Events.AlarmWord7.b1, bEvt:= Alarms_DB.AlarmWord7.AlarmWord.1, bConfirm:= bConfirm);
+alarms[98](evtEntry:= Tc_Events.AlarmWord7.b2, bEvt:= Alarms_DB.AlarmWord7.AlarmWord.2, bConfirm:= bConfirm);
+alarms[99](evtEntry:= Tc_Events.AlarmWord7.b3, bEvt:= Alarms_DB.AlarmWord7.AlarmWord.3, bConfirm:= bConfirm);
+alarms[100](evtEntry:= Tc_Events.AlarmWord7.b4, bEvt:= Alarms_DB.AlarmWord7.AlarmWord.4, bConfirm:= bConfirm);
+alarms[101](evtEntry:= Tc_Events.AlarmWord7.b5, bEvt:= Alarms_DB.AlarmWord7.AlarmWord.5, bConfirm:= bConfirm);
+alarms[102](evtEntry:= Tc_Events.AlarmWord7.b6, bEvt:= Alarms_DB.AlarmWord7.AlarmWord.6, bConfirm:= bConfirm);
+alarms[103](evtEntry:= Tc_Events.AlarmWord7.b7, bEvt:= Alarms_DB.AlarmWord7.AlarmWord.7, bConfirm:= bConfirm);
+alarms[104](evtEntry:= Tc_Events.AlarmWord7.b8, bEvt:= Alarms_DB.AlarmWord7.AlarmWord.8, bConfirm:= bConfirm);
+alarms[105](evtEntry:= Tc_Events.AlarmWord7.b9, bEvt:= Alarms_DB.AlarmWord7.AlarmWord.9, bConfirm:= bConfirm);
+alarms[106](evtEntry:= Tc_Events.AlarmWord7.b10, bEvt:= Alarms_DB.AlarmWord7.AlarmWord.10, bConfirm:= bConfirm);
+alarms[107](evtEntry:= Tc_Events.AlarmWord7.b11, bEvt:= Alarms_DB.AlarmWord7.AlarmWord.11, bConfirm:= bConfirm);
+alarms[108](evtEntry:= Tc_Events.AlarmWord7.b12, bEvt:= Alarms_DB.AlarmWord7.AlarmWord.12, bConfirm:= bConfirm);
+alarms[109](evtEntry:= Tc_Events.AlarmWord7.b13, bEvt:= Alarms_DB.AlarmWord7.AlarmWord.13, bConfirm:= bConfirm);
+alarms[110](evtEntry:= Tc_Events.AlarmWord7.b14, bEvt:= Alarms_DB.AlarmWord7.AlarmWord.14, bConfirm:= bConfirm);
+alarms[111] (evtEntry:= Tc_Events.AlarmWord7.b15, bEvt:= Alarms_DB.AlarmWord7.AlarmWord.15, bConfirm:= bConfirm);
+
+
+//Alarm Word 8 
+Alarms_DB.AlarmWord8.AlarmWord.0 := NOT Trips_DB.AllDCpsuOK;
+Alarms_DB.AlarmWord8.AlarmWord.1 := Trips_DB.AnyChargerFaulted;
+Alarms_DB.AlarmWord8.AlarmWord.2 := Trips_DB.AnyLossHVONsignal;
+Alarms_DB.AlarmWord8.AlarmWord.3 := NOT Trips_DB.NoFaultDetected;
+Alarms_DB.AlarmWord8.AlarmWord.4 := LCP.Section[1].Peak.ShortContact1unknown;
+Alarms_DB.AlarmWord8.AlarmWord.5 := LCP.Section[1].Peak.ShortContact2unknown;
+Alarms_DB.AlarmWord8.AlarmWord.6 := LCP.Section[2].Peak.ShortContact1unknown;
+Alarms_DB.AlarmWord8.AlarmWord.7 := LCP.Section[2].Peak.ShortContact2unknown;
+Alarms_DB.AlarmWord8.AlarmWord.8 := LCP.Section[3].Peak.ShortContact1unknown;
+Alarms_DB.AlarmWord8.AlarmWord.9 := LCP.Section[3].Peak.ShortContact2unknown;
+Alarms_DB.AlarmWord8.AlarmWord.10 := LCP.Section[1].Sust.ShortContact1unknown;
+Alarms_DB.AlarmWord8.AlarmWord.11 := LCP.Section[1].Sust.ShortContact2unknown;
+Alarms_DB.AlarmWord8.AlarmWord.12 := LCP.Section[2].Sust.ShortContact1unknown;
+Alarms_DB.AlarmWord8.AlarmWord.13 := LCP.Section[2].Sust.ShortContact2unknown;
+Alarms_DB.AlarmWord8.AlarmWord.14 := LCP.Section[3].Sust.ShortContact1unknown;
+Alarms_DB.AlarmWord8.AlarmWord.15 := LCP.Section[3].Sust.ShortContact2unknown;
+
+//Alarm Word 8 - msg
+alarms[112](evtEntry:= Tc_Events.AlarmWord8.b0, bEvt:= Alarms_DB.AlarmWord8.AlarmWord.0, bConfirm:= bConfirm);
+alarms[113](evtEntry:= Tc_Events.AlarmWord8.b1, bEvt:= Alarms_DB.AlarmWord8.AlarmWord.1, bConfirm:= bConfirm);
+alarms[114](evtEntry:= Tc_Events.AlarmWord8.b2, bEvt:= Alarms_DB.AlarmWord8.AlarmWord.2, bConfirm:= bConfirm);
+alarms[115](evtEntry:= Tc_Events.AlarmWord8.b3, bEvt:= Alarms_DB.AlarmWord8.AlarmWord.3, bConfirm:= bConfirm);
+alarms[116](evtEntry:= Tc_Events.AlarmWord8.b4, bEvt:= Alarms_DB.AlarmWord8.AlarmWord.4, bConfirm:= bConfirm);
+alarms[117](evtEntry:= Tc_Events.AlarmWord8.b5, bEvt:= Alarms_DB.AlarmWord8.AlarmWord.5, bConfirm:= bConfirm);
+alarms[118](evtEntry:= Tc_Events.AlarmWord8.b6, bEvt:= Alarms_DB.AlarmWord8.AlarmWord.6, bConfirm:= bConfirm);
+alarms[119](evtEntry:= Tc_Events.AlarmWord8.b7, bEvt:= Alarms_DB.AlarmWord8.AlarmWord.7, bConfirm:= bConfirm);
+alarms[120](evtEntry:= Tc_Events.AlarmWord8.b8, bEvt:= Alarms_DB.AlarmWord8.AlarmWord.8, bConfirm:= bConfirm);
+alarms[121](evtEntry:= Tc_Events.AlarmWord8.b9, bEvt:= Alarms_DB.AlarmWord8.AlarmWord.9, bConfirm:= bConfirm);
+alarms[122](evtEntry:= Tc_Events.AlarmWord8.b10, bEvt:= Alarms_DB.AlarmWord8.AlarmWord.10, bConfirm:= bConfirm);
+alarms[123](evtEntry:= Tc_Events.AlarmWord8.b11, bEvt:= Alarms_DB.AlarmWord8.AlarmWord.11, bConfirm:= bConfirm);
+alarms[124](evtEntry:= Tc_Events.AlarmWord8.b12, bEvt:= Alarms_DB.AlarmWord8.AlarmWord.12, bConfirm:= bConfirm);
+alarms[125](evtEntry:= Tc_Events.AlarmWord8.b13, bEvt:= Alarms_DB.AlarmWord8.AlarmWord.13, bConfirm:= bConfirm);
+alarms[126](evtEntry:= Tc_Events.AlarmWord8.b14, bEvt:= Alarms_DB.AlarmWord8.AlarmWord.14, bConfirm:= bConfirm);
+alarms[127] (evtEntry:= Tc_Events.AlarmWord8.b15, bEvt:= Alarms_DB.AlarmWord8.AlarmWord.15, bConfirm:= bConfirm);
+
+//Alarm Word 9 
+Alarms_DB.AlarmWord9.AlarmWord.0 := LCP.Section[4].Form.ShortContact1unknown;
+Alarms_DB.AlarmWord9.AlarmWord.1 := LCP.Section[4].Form.ShortContact2unknown;
+Alarms_DB.AlarmWord9.AlarmWord.2 := LCP.Section[4].Form.FormTrigShortContactUnknown;
+Alarms_DB.AlarmWord9.AlarmWord.3 := LCP.Section[4].Form.PreFormTrigShortContactUnknown;
+Alarms_DB.AlarmWord9.AlarmWord.4 := NOT Permissives_DB.NoShortingUnknowns;
+Alarms_DB.AlarmWord9.AlarmWord.5 := NOT Permissives_DB.NoInterlockPressureLoss;
+Alarms_DB.AlarmWord9.AlarmWord.6 := NOT Permissives_DB.SafetyOK;
+//Alarms_DB.AlarmWord9.AlarmWord.7 := 
+//Alarms_DB.AlarmWord9.AlarmWord.8 := 
+//Alarms_DB.AlarmWord9.AlarmWord.9 := 
+//Alarms_DB.AlarmWord9.AlarmWord.10 := 
+//Alarms_DB.AlarmWord9.AlarmWord.11 := 
+//Alarms_DB.AlarmWord9.AlarmWord.12 := 
+//Alarms_DB.AlarmWord9.AlarmWord.13 := 
+//Alarms_DB.AlarmWord9.AlarmWord.14 := 
+Alarms_DB.AlarmWord9.AlarmWord.15 := Trips_DB.DumpTimerRunout;
+
+//Alarm Word 9 - msg
+alarms[112](evtEntry:= Tc_Events.AlarmWord9.b0, bEvt:= Alarms_DB.AlarmWord9.AlarmWord.0, bConfirm:= bConfirm);
+alarms[113](evtEntry:= Tc_Events.AlarmWord9.b1, bEvt:= Alarms_DB.AlarmWord9.AlarmWord.1, bConfirm:= bConfirm);
+alarms[114](evtEntry:= Tc_Events.AlarmWord9.b2, bEvt:= Alarms_DB.AlarmWord9.AlarmWord.2, bConfirm:= bConfirm);
+alarms[115](evtEntry:= Tc_Events.AlarmWord9.b3, bEvt:= Alarms_DB.AlarmWord9.AlarmWord.3, bConfirm:= bConfirm);
+alarms[116](evtEntry:= Tc_Events.AlarmWord9.b4, bEvt:= Alarms_DB.AlarmWord9.AlarmWord.4, bConfirm:= bConfirm);
+alarms[117](evtEntry:= Tc_Events.AlarmWord9.b5, bEvt:= Alarms_DB.AlarmWord9.AlarmWord.5, bConfirm:= bConfirm);
+alarms[118](evtEntry:= Tc_Events.AlarmWord9.b6, bEvt:= Alarms_DB.AlarmWord9.AlarmWord.6, bConfirm:= bConfirm);
+//alarms[119](evtEntry:= Tc_Events.AlarmWord9.b7, bEvt:= Alarms_DB.AlarmWord9.AlarmWord.7, bConfirm:= bConfirm);
+//alarms[120](evtEntry:= Tc_Events.AlarmWord9.b8, bEvt:= Alarms_DB.AlarmWord9.AlarmWord.8, bConfirm:= bConfirm);
+//alarms[121](evtEntry:= Tc_Events.AlarmWord9.b9, bEvt:= Alarms_DB.AlarmWord9.AlarmWord.9, bConfirm:= bConfirm);
+//alarms[122](evtEntry:= Tc_Events.AlarmWord9.b10, bEvt:= Alarms_DB.AlarmWord9.AlarmWord.10, bConfirm:= bConfirm);
+//alarms[123](evtEntry:= Tc_Events.AlarmWord9.b11, bEvt:= Alarms_DB.AlarmWord9.AlarmWord.11, bConfirm:= bConfirm);
+//alarms[124](evtEntry:= Tc_Events.AlarmWord9.b12, bEvt:= Alarms_DB.AlarmWord9.AlarmWord.12, bConfirm:= bConfirm);
+//alarms[125](evtEntry:= Tc_Events.AlarmWord9.b13, bEvt:= Alarms_DB.AlarmWord9.AlarmWord.13, bConfirm:= bConfirm);
+//alarms[126](evtEntry:= Tc_Events.AlarmWord9.b14, bEvt:= Alarms_DB.AlarmWord9.AlarmWord.14, bConfirm:= bConfirm);
+alarms[127] (evtEntry:= Tc_Events.AlarmWord9.b15, bEvt:= Alarms_DB.AlarmWord9.AlarmWord.15, bConfirm:= bConfirm);
+
+//Alarm Word 11
+(* uncomment this when instrument is ready
+Alarms_DB.AlarmWord_11.AlarmWord.0 := Devices.Coil1.AC_Interlock_RlyOpen;
+Alarms_DB.AlarmWord_11.AlarmWord.1 := Devices.Coil2.AC_Interlock_RlyOpen;
+Alarms_DB.AlarmWord_11.AlarmWord.2 := Devices.Coil3.AC_Interlock_RlyOpen;
+Alarms_DB.AlarmWord_11.AlarmWord.3 := Devices.Coil4.AC_Interlock_RlyOpen;
+Alarms_DB.AlarmWord_11.AlarmWord.4 := Devices.Coil5.AC_Interlock_RlyOpen;
+Alarms_DB.AlarmWord_11.AlarmWord.5 := Devices.Coil6.AC_Interlock_RlyOpen;
+Alarms_DB.AlarmWord_11.AlarmWord.6 := Devices.Coil7.AC_Interlock_RlyOpen;
+Alarms_DB.AlarmWord_11.AlarmWord.7 := Devices.Coil8.AC_Interlock_RlyOpen;
+Alarms_DB.AlarmWord_11.AlarmWord.8 := Devices.Coil9.AC_Interlock_RlyOpen;
+Alarms_DB.AlarmWord_11.AlarmWord.9 := Devices.Coil10.AC_Interlock_RlyOpen;
+Alarms_DB.AlarmWord_11.AlarmWord.10 := NOT Permissives.AllInterlock_Closed;
+*)
+//Alarm Word 11 - msg
+(*alarms[160](evtEntry:= Tc_Events.AlarmWord11.b0, bEvt:= Alarms_DB.AlarmWord_11.AlarmWord.0, bConfirm:= bConfirm);
+alarms[161](evtEntry:= Tc_Events.AlarmWord11.b1, bEvt:= Alarms_DB.AlarmWord_11.AlarmWord.1, bConfirm:= bConfirm);
+alarms[162](evtEntry:= Tc_Events.AlarmWord11.b2, bEvt:= Alarms_DB.AlarmWord_11.AlarmWord.2, bConfirm:= bConfirm);
+alarms[163](evtEntry:= Tc_Events.AlarmWord11.b3, bEvt:= Alarms_DB.AlarmWord_11.AlarmWord.3, bConfirm:= bConfirm);
+alarms[164](evtEntry:= Tc_Events.AlarmWord11.b4, bEvt:= Alarms_DB.AlarmWord_11.AlarmWord.4, bConfirm:= bConfirm);
+alarms[165](evtEntry:= Tc_Events.AlarmWord11.b5, bEvt:= Alarms_DB.AlarmWord_11.AlarmWord.5, bConfirm:= bConfirm);
+alarms[166](evtEntry:= Tc_Events.AlarmWord11.b6, bEvt:= Alarms_DB.AlarmWord_11.AlarmWord.6, bConfirm:= bConfirm);
+alarms[167](evtEntry:= Tc_Events.AlarmWord11.b7, bEvt:= Alarms_DB.AlarmWord_11.AlarmWord.7, bConfirm:= bConfirm);
+alarms[168](evtEntry:= Tc_Events.AlarmWord11.b8, bEvt:= Alarms_DB.AlarmWord_11.AlarmWord.8, bConfirm:= bConfirm);
+alarms[169](evtEntry:= Tc_Events.AlarmWord11.b9, bEvt:= Alarms_DB.AlarmWord_11.AlarmWord.9, bConfirm:= bConfirm);
+alarms[170](evtEntry:= Tc_Events.AlarmWord11.b10, bEvt:= Alarms_DB.AlarmWord_11.AlarmWord.10, bConfirm:= bConfirm);
+
+//Alarm Word 12
+
+
+
+
+//Alarm Word 22
+//uncomment this when instrument is ready - commented out for testing only
+Alarms_DB.AlarmWord_22.AlarmWord.0 := MCP_IO.MasterStopPB_Pressed; //NC
+(*//Alarms_DB1.AlarmWord_22.AlarmWord.1 := Devices.Coil[1].Local_EstopPB_Pressed; //NC
+Alarms_DB1.AlarmWord_22.AlarmWord.2 := Devices.Coil2.Local_EstopPB_Pressed; //NC
+Alarms_DB1.AlarmWord_22.AlarmWord.3 := Devices.Coil3.Local_EstopPB_Pressed; //NC
+Alarms_DB1.AlarmWord_22.AlarmWord.4 := Devices.Coil4.Local_EstopPB_Pressed; //NC
+Alarms_DB1.AlarmWord_22.AlarmWord.5 := Devices.Coil5.Local_EstopPB_Pressed; //NC
+Alarms_DB1.AlarmWord_22.AlarmWord.6 := Devices.Coil6.Local_EstopPB_Pressed; //NC
+Alarms_DB1.AlarmWord_22.AlarmWord.7 := Devices.Coil7.Local_EstopPB_Pressed; //NC
+Alarms_DB1.AlarmWord_22.AlarmWord.8 := Devices.Coil8.Local_EstopPB_Pressed; //NC
+Alarms_DB1.AlarmWord_22.AlarmWord.9 := Devices.Coil9.Local_EstopPB_Pressed; //NC
+Alarms_DB1.AlarmWord_22.AlarmWord.10 := Devices.Coil10.Local_EstopPB_Pressed; //NC
+//Alarms_DB1.AlarmWord_22.AlarmWord.11 := NOT Input.R1_01_02; //0 = Manual Mode , 1 = Auto mode
+//Alarms_DB1.AlarmWord_22.AlarmWord.12 := NOT Input.R1_01_01; //0 = circuit broken , 1 = circuit ok
+//Alarms_DB1.AlarmWord_22.AlarmWord.13 := Spare
+//Alarms_DB1.AlarmWord_22.AlarmWord.14 := Spare
+//Alarms_DB1.AlarmWord_22.AlarmWord.15 := Spare
+*)
+
+//Alarm Word 22 msg
+alarms[336](evtEntry:= Tc_Events.AlarmWord22.b0, bEvt:= Alarms_DB.AlarmWord_22.AlarmWord.0, bConfirm:= bConfirm);
+alarms[337](evtEntry:= Tc_Events.AlarmWord22.b1, bEvt:= Alarms_DB.AlarmWord_22.AlarmWord.1, bConfirm:= bConfirm);
+alarms[338](evtEntry:= Tc_Events.AlarmWord22.b2, bEvt:= Alarms_DB.AlarmWord_22.AlarmWord.2, bConfirm:= bConfirm);
+alarms[339](evtEntry:= Tc_Events.AlarmWord22.b3, bEvt:= Alarms_DB.AlarmWord_22.AlarmWord.3, bConfirm:= bConfirm);
+alarms[340](evtEntry:= Tc_Events.AlarmWord22.b4, bEvt:= Alarms_DB.AlarmWord_22.AlarmWord.4, bConfirm:= bConfirm);
+alarms[341](evtEntry:= Tc_Events.AlarmWord22.b5, bEvt:= Alarms_DB.AlarmWord_22.AlarmWord.5, bConfirm:= bConfirm);
+alarms[342](evtEntry:= Tc_Events.AlarmWord22.b6, bEvt:= Alarms_DB.AlarmWord_22.AlarmWord.6, bConfirm:= bConfirm);
+alarms[343](evtEntry:= Tc_Events.AlarmWord22.b7, bEvt:= Alarms_DB.AlarmWord_22.AlarmWord.7, bConfirm:= bConfirm);
+alarms[344](evtEntry:= Tc_Events.AlarmWord22.b8, bEvt:= Alarms_DB.AlarmWord_22.AlarmWord.8, bConfirm:= bConfirm);
+alarms[345](evtEntry:= Tc_Events.AlarmWord22.b9, bEvt:= Alarms_DB.AlarmWord_22.AlarmWord.9, bConfirm:= bConfirm);
+alarms[346](evtEntry:= Tc_Events.AlarmWord22.b10, bEvt:= Alarms_DB.AlarmWord_22.AlarmWord.10, bConfirm:= bConfirm);
+alarms[347](evtEntry:= Tc_Events.AlarmWord22.b11, bEvt:= Alarms_DB.AlarmWord_22.AlarmWord.11, bConfirm:= bConfirm);
+alarms[348](evtEntry:= Tc_Events.AlarmWord22.b12, bEvt:= Alarms_DB.AlarmWord_22.AlarmWord.12, bConfirm:= bConfirm);
+
+//Alarm Word 23
+(* uncomment when instrument is ready
+Alarms_DB.AlarmWord_23.AlarmWord.0 := Trips_DB.Coil[1].ChargeRelay_FailtoClose; 
+Alarms_DB.AlarmWord_23.AlarmWord.1 := Trips_DB.Coil[1].ChargeRelay_FailtoOpen;
+Alarms_DB.AlarmWord_23.AlarmWord.2 := Trips_DB.Coil[2].ChargeRelay_FailtoClose;
+Alarms_DB.AlarmWord_23.AlarmWord.3 := Trips_DB.Coil[2].ChargeRelay_FailtoOpen;
+Alarms_DB.AlarmWord_23.AlarmWord.4 := Trips_DB.Coil[3].ChargeRelay_FailtoClose;
+Alarms_DB.AlarmWord_23.AlarmWord.5 := Trips_DB.Coil[3].ChargeRelay_FailtoOpen;
+Alarms_DB.AlarmWord_23.AlarmWord.6 := Trips_DB.Coil[4].ChargeRelay_FailtoClose;
+Alarms_DB.AlarmWord_23.AlarmWord.7 := Trips_DB.Coil[4].ChargeRelay_FailtoOpen;
+Alarms_DB.AlarmWord_23.AlarmWord.8 := Trips_DB.Coil[5].ChargeRelay_FailtoClose;
+Alarms_DB.AlarmWord_23.AlarmWord.9 := Trips_DB.Coil[5].ChargeRelay_FailtoOpen;
+Alarms_DB.AlarmWord_23.AlarmWord.10 := Trips_DB.Coil[6].ChargeRelay_FailtoClose;
+Alarms_DB.AlarmWord_23.AlarmWord.11 := Trips_DB.Coil[6].ChargeRelay_FailtoOpen;
+Alarms_DB.AlarmWord_23.AlarmWord.12 := Trips_DB.Coil[7].ChargeRelay_FailtoClose;
+Alarms_DB.AlarmWord_23.AlarmWord.13 := Trips_DB.Coil[7].ChargeRelay_FailtoOpen;
+Alarms_DB.AlarmWord_23.AlarmWord.14 := Trips_DB.Coil[8].ChargeRelay_FailtoClose;
+Alarms_DB.AlarmWord_23.AlarmWord.15 := Trips_DB.Coil[9].ChargeRelay_FailtoOpen;
+*)
+//Alarm Word 23 msg
+alarms[352](evtEntry:= Tc_Events.AlarmWord23.b0, bEvt:= Alarms_DB.AlarmWord_23.AlarmWord.0, bConfirm:= bConfirm);
+alarms[353](evtEntry:= Tc_Events.AlarmWord23.b1, bEvt:= Alarms_DB.AlarmWord_23.AlarmWord.1, bConfirm:= bConfirm);
+alarms[354](evtEntry:= Tc_Events.AlarmWord23.b2, bEvt:= Alarms_DB.AlarmWord_23.AlarmWord.2, bConfirm:= bConfirm);
+alarms[355](evtEntry:= Tc_Events.AlarmWord23.b3, bEvt:= Alarms_DB.AlarmWord_23.AlarmWord.3, bConfirm:= bConfirm);
+alarms[356](evtEntry:= Tc_Events.AlarmWord23.b4, bEvt:= Alarms_DB.AlarmWord_23.AlarmWord.4, bConfirm:= bConfirm);
+alarms[357](evtEntry:= Tc_Events.AlarmWord23.b5, bEvt:= Alarms_DB.AlarmWord_23.AlarmWord.5, bConfirm:= bConfirm);
+alarms[358](evtEntry:= Tc_Events.AlarmWord23.b6, bEvt:= Alarms_DB.AlarmWord_23.AlarmWord.6, bConfirm:= bConfirm);
+alarms[359](evtEntry:= Tc_Events.AlarmWord23.b7, bEvt:= Alarms_DB.AlarmWord_23.AlarmWord.7, bConfirm:= bConfirm);
+alarms[360](evtEntry:= Tc_Events.AlarmWord23.b8, bEvt:= Alarms_DB.AlarmWord_23.AlarmWord.8, bConfirm:= bConfirm);
+alarms[361](evtEntry:= Tc_Events.AlarmWord23.b9, bEvt:= Alarms_DB.AlarmWord_23.AlarmWord.9, bConfirm:= bConfirm);
+alarms[362](evtEntry:= Tc_Events.AlarmWord23.b10, bEvt:= Alarms_DB.AlarmWord_23.AlarmWord.10, bConfirm:= bConfirm);
+alarms[363](evtEntry:= Tc_Events.AlarmWord23.b11, bEvt:= Alarms_DB.AlarmWord_23.AlarmWord.11, bConfirm:= bConfirm);
+alarms[364](evtEntry:= Tc_Events.AlarmWord23.b12, bEvt:= Alarms_DB.AlarmWord_23.AlarmWord.12, bConfirm:= bConfirm);
+alarms[365](evtEntry:= Tc_Events.AlarmWord23.b13, bEvt:= Alarms_DB.AlarmWord_23.AlarmWord.13, bConfirm:= bConfirm);
+alarms[366](evtEntry:= Tc_Events.AlarmWord23.b14, bEvt:= Alarms_DB.AlarmWord_23.AlarmWord.14, bConfirm:= bConfirm);
+alarms[367](evtEntry:= Tc_Events.AlarmWord23.b15, bEvt:= Alarms_DB.AlarmWord_23.AlarmWord.15, bConfirm:= bConfirm);
+
+//Alarm Word 24
+(* uncomment when instrument is ready
+Alarms_DB.AlarmWord_24.AlarmWord.0 := Trips_DB.Coil[9].ChargeRelay_FailtoClose; 
+Alarms_DB.AlarmWord_24.AlarmWord.1 := Trips_DB.Coil[9].ChargeRelay_FailtoOpen;
+Alarms_DB.AlarmWord_24.AlarmWord.2 := Trips_DB.Coil[10].ChargeRelay_FailtoClose;
+Alarms_DB.AlarmWord_24.AlarmWord.3 := Trips_DB.Coil[10].ChargeRelay_FailtoOpen;
+Alarms_DB.AlarmWord_24.AlarmWord.4 := Trips_DB.Coil[1].ACInterlockRelayFailedtoClose;
+Alarms_DB.AlarmWord_24.AlarmWord.5 := Trips_DB.Coil[1].ACInterlockRelayFailedtoOpen;
+Alarms_DB.AlarmWord_24.AlarmWord.6 := Trips_DB.Coil[2].ACInterlockRelayFailedtoClose;
+Alarms_DB.AlarmWord_24.AlarmWord.7 := Trips_DB.Coil[2].ACInterlockRelayFailedtoOpen;
+Alarms_DB.AlarmWord_24.AlarmWord.8 := Trips_DB.Coil[3].ACInterlockRelayFailedtoClose;
+Alarms_DB.AlarmWord_24.AlarmWord.9 := Trips_DB.Coil[3].ACInterlockRelayFailedtoOpen;
+Alarms_DB.AlarmWord_24.AlarmWord.10 := Trips_DB.Coil[4].ACInterlockRelayFailedtoClose;
+Alarms_DB.AlarmWord_24.AlarmWord.11 := Trips_DB.Coil[4].ACInterlockRelayFailedtoOpen;
+Alarms_DB.AlarmWord_24.AlarmWord.12 := Trips_DB.Coil[5].ACInterlockRelayFailedtoClose;
+Alarms_DB.AlarmWord_24.AlarmWord.13 := Trips_DB.Coil[5].ACInterlockRelayFailedtoOpen;
+Alarms_DB.AlarmWord_24.AlarmWord.14 := Trips_DB.Coil[6].ACInterlockRelayFailedtoClose;
+Alarms_DB.AlarmWord_24.AlarmWord.15 := Trips_DB.Coil[6].ACInterlockRelayFailedtoOpen;
+*)
+//Alarm Word 24 msg
+alarms[368](evtEntry:= Tc_Events.AlarmWord24.b0, bEvt:= Alarms_DB.AlarmWord_24.AlarmWord.0, bConfirm:= bConfirm);
+alarms[369](evtEntry:= Tc_Events.AlarmWord24.b1, bEvt:= Alarms_DB.AlarmWord_24.AlarmWord.1, bConfirm:= bConfirm);
+alarms[370](evtEntry:= Tc_Events.AlarmWord24.b2, bEvt:= Alarms_DB.AlarmWord_24.AlarmWord.2, bConfirm:= bConfirm);
+alarms[371](evtEntry:= Tc_Events.AlarmWord24.b3, bEvt:= Alarms_DB.AlarmWord_24.AlarmWord.3, bConfirm:= bConfirm);
+alarms[372](evtEntry:= Tc_Events.AlarmWord24.b4, bEvt:= Alarms_DB.AlarmWord_24.AlarmWord.4, bConfirm:= bConfirm);
+alarms[373](evtEntry:= Tc_Events.AlarmWord24.b5, bEvt:= Alarms_DB.AlarmWord_24.AlarmWord.5, bConfirm:= bConfirm);
+alarms[374](evtEntry:= Tc_Events.AlarmWord24.b6, bEvt:= Alarms_DB.AlarmWord_24.AlarmWord.6, bConfirm:= bConfirm);
+alarms[375](evtEntry:= Tc_Events.AlarmWord24.b7, bEvt:= Alarms_DB.AlarmWord_24.AlarmWord.7, bConfirm:= bConfirm);
+alarms[376](evtEntry:= Tc_Events.AlarmWord24.b8, bEvt:= Alarms_DB.AlarmWord_24.AlarmWord.8, bConfirm:= bConfirm);
+alarms[377](evtEntry:= Tc_Events.AlarmWord24.b9, bEvt:= Alarms_DB.AlarmWord_24.AlarmWord.9, bConfirm:= bConfirm);
+alarms[378](evtEntry:= Tc_Events.AlarmWord24.b10, bEvt:= Alarms_DB.AlarmWord_24.AlarmWord.10, bConfirm:= bConfirm);
+alarms[379](evtEntry:= Tc_Events.AlarmWord24.b11, bEvt:= Alarms_DB.AlarmWord_24.AlarmWord.11, bConfirm:= bConfirm);
+alarms[380](evtEntry:= Tc_Events.AlarmWord24.b12, bEvt:= Alarms_DB.AlarmWord_24.AlarmWord.12, bConfirm:= bConfirm);
+alarms[381](evtEntry:= Tc_Events.AlarmWord24.b13, bEvt:= Alarms_DB.AlarmWord_24.AlarmWord.13, bConfirm:= bConfirm);
+alarms[382](evtEntry:= Tc_Events.AlarmWord24.b14, bEvt:= Alarms_DB.AlarmWord_24.AlarmWord.14, bConfirm:= bConfirm);
+alarms[383](evtEntry:= Tc_Events.AlarmWord24.b15, bEvt:= Alarms_DB.AlarmWord_24.AlarmWord.15, bConfirm:= bConfirm);
+
+//Alarm Word 25
+(* uncomment when instrument is ready
+Alarms_DB.AlarmWord_25.AlarmWord.0 := Trips_DB.Coil[7].ACInterlockRelayFailedtoClose;
+Alarms_DB.AlarmWord_25.AlarmWord.1 := Trips_DB.Coil[7].ACInterlockRelayFailedtoOpen;
+Alarms_DB.AlarmWord_25.AlarmWord.2 := Trips_DB.Coil[8].ACInterlockRelayFailedtoClose;
+Alarms_DB.AlarmWord_25.AlarmWord.3 := Trips_DB.Coil[8].ACInterlockRelayFailedtoOpen;
+Alarms_DB.AlarmWord_25.AlarmWord.4 := Trips_DB.Coil[9].ACInterlockRelayFailedtoClose;
+Alarms_DB.AlarmWord_25.AlarmWord.5 := Trips_DB.Coil[9].ACInterlockRelayFailedtoOpen;
+Alarms_DB.AlarmWord_25.AlarmWord.6 := Trips_DB.Coil[10].ACInterlockRelayFailedtoClose;
+Alarms_DB.AlarmWord_25.AlarmWord.7 := Trips_DB.Coil[10].ACInterlockRelayFailedtoOpen;
+Alarms_DB.AlarmWord_25.AlarmWord.8 := Trips_DB.Coil[1].DumpRelay1_FailtoClose;
+Alarms_DB.AlarmWord_25.AlarmWord.9 := Trips_DB.Coil[1].DumpRelay1_FailtoOpen;
+Alarms_DB.AlarmWord_25.AlarmWord.10 := Trips_DB.Coil[2].DumpRelay1_FailtoClose;
+Alarms_DB.AlarmWord_25.AlarmWord.11 := Trips_DB.Coil[2].DumpRelay1_FailtoOpen;
+Alarms_DB.AlarmWord_25.AlarmWord.12 := Trips_DB.Coil[3].DumpRelay1_FailtoClose;
+Alarms_DB.AlarmWord_25.AlarmWord.13 := Trips_DB.Coil[3].DumpRelay1_FailtoOpen;
+Alarms_DB.AlarmWord_25.AlarmWord.14 := Trips_DB.Coil[4].DumpRelay1_FailtoClose;
+Alarms_DB.AlarmWord_25.AlarmWord.15 := Trips_DB.Coil[4].DumpRelay1_FailtoOpen;
+*)
+//Alarm Word 25 msg
+alarms[384](evtEntry:= Tc_Events.AlarmWord25.b0, bEvt:= Alarms_DB.AlarmWord_25.AlarmWord.0, bConfirm:= bConfirm);
+alarms[385](evtEntry:= Tc_Events.AlarmWord25.b1, bEvt:= Alarms_DB.AlarmWord_25.AlarmWord.1, bConfirm:= bConfirm);
+alarms[386](evtEntry:= Tc_Events.AlarmWord25.b2, bEvt:= Alarms_DB.AlarmWord_25.AlarmWord.2, bConfirm:= bConfirm);
+alarms[387](evtEntry:= Tc_Events.AlarmWord25.b3, bEvt:= Alarms_DB.AlarmWord_25.AlarmWord.3, bConfirm:= bConfirm);
+alarms[388](evtEntry:= Tc_Events.AlarmWord25.b4, bEvt:= Alarms_DB.AlarmWord_25.AlarmWord.4, bConfirm:= bConfirm);
+alarms[389](evtEntry:= Tc_Events.AlarmWord25.b5, bEvt:= Alarms_DB.AlarmWord_25.AlarmWord.5, bConfirm:= bConfirm);
+alarms[390](evtEntry:= Tc_Events.AlarmWord25.b6, bEvt:= Alarms_DB.AlarmWord_25.AlarmWord.6, bConfirm:= bConfirm);
+alarms[391](evtEntry:= Tc_Events.AlarmWord25.b7, bEvt:= Alarms_DB.AlarmWord_25.AlarmWord.7, bConfirm:= bConfirm);
+alarms[392](evtEntry:= Tc_Events.AlarmWord25.b8, bEvt:= Alarms_DB.AlarmWord_25.AlarmWord.8, bConfirm:= bConfirm);
+alarms[393](evtEntry:= Tc_Events.AlarmWord25.b9, bEvt:= Alarms_DB.AlarmWord_25.AlarmWord.9, bConfirm:= bConfirm);
+alarms[394](evtEntry:= Tc_Events.AlarmWord25.b10, bEvt:= Alarms_DB.AlarmWord_25.AlarmWord.10, bConfirm:= bConfirm);
+alarms[395](evtEntry:= Tc_Events.AlarmWord25.b11, bEvt:= Alarms_DB.AlarmWord_25.AlarmWord.11, bConfirm:= bConfirm);
+alarms[396](evtEntry:= Tc_Events.AlarmWord25.b12, bEvt:= Alarms_DB.AlarmWord_25.AlarmWord.12, bConfirm:= bConfirm);
+alarms[397](evtEntry:= Tc_Events.AlarmWord25.b13, bEvt:= Alarms_DB.AlarmWord_25.AlarmWord.13, bConfirm:= bConfirm);
+alarms[398](evtEntry:= Tc_Events.AlarmWord25.b14, bEvt:= Alarms_DB.AlarmWord_25.AlarmWord.14, bConfirm:= bConfirm);
+alarms[399](evtEntry:= Tc_Events.AlarmWord25.b15, bEvt:= Alarms_DB.AlarmWord_25.AlarmWord.15, bConfirm:= bConfirm);
+
+//Alarm Word 26
+(* uncomment when instrument is ready
+Alarms_DB.AlarmWord_26.AlarmWord.0 := Trips_DB.Coil[5].DumpRelay1_FailtoClose;
+Alarms_DB.AlarmWord_26.AlarmWord.1 := Trips_DB.Coil[5].DumpRelay1_FailtoOpen;
+Alarms_DB.AlarmWord_26.AlarmWord.2 := Trips_DB.Coil[6].DumpRelay1_FailtoClose;
+Alarms_DB.AlarmWord_26.AlarmWord.3 := Trips_DB.Coil[6].DumpRelay1_FailtoOpen;
+Alarms_DB.AlarmWord_26.AlarmWord.4 := Trips_DB.Coil[7].DumpRelay1_FailtoClose;
+Alarms_DB.AlarmWord_26.AlarmWord.5 := Trips_DB.Coil[7].DumpRelay1_FailtoOpen;
+Alarms_DB.AlarmWord_26.AlarmWord.6 := Trips_DB.Coil[8].DumpRelay1_FailtoClose;
+Alarms_DB.AlarmWord_26.AlarmWord.7 := Trips_DB.Coil[8].DumpRelay1_FailtoOpen;
+Alarms_DB.AlarmWord_26.AlarmWord.8 := Trips_DB.Coil[9].DumpRelay1_FailtoClose;
+Alarms_DB.AlarmWord_26.AlarmWord.9 := Trips_DB.Coil[9].DumpRelay1_FailtoOpen;
+Alarms_DB.AlarmWord_26.AlarmWord.10 := Trips_DB.Coil[10].DumpRelay1_FailtoClose;
+Alarms_DB.AlarmWord_26.AlarmWord.11 := Trips_DB.Coil[10].DumpRelay1_FailtoOpen;
+Alarms_DB.AlarmWord_26.AlarmWord.12 := Trips_DB.Coil[1].DumpRelay2_FailtoClose;
+Alarms_DB.AlarmWord_26.AlarmWord.13 := Trips_DB.Coil[1].DumpRelay2_FailtoOpen;
+Alarms_DB.AlarmWord_26.AlarmWord.14 := Trips_DB.Coil[2].DumpRelay2_FailtoClose;
+Alarms_DB.AlarmWord_26.AlarmWord.15 := Trips_DB.Coil[2].DumpRelay2_FailtoOpen;
+*)
+//Alarm Word 26 msg
+alarms[400](evtEntry:= Tc_Events.AlarmWord26.b0, bEvt:= Alarms_DB.AlarmWord_26.AlarmWord.0, bConfirm:= bConfirm);
+alarms[401](evtEntry:= Tc_Events.AlarmWord26.b1, bEvt:= Alarms_DB.AlarmWord_26.AlarmWord.1, bConfirm:= bConfirm);
+alarms[402](evtEntry:= Tc_Events.AlarmWord26.b2, bEvt:= Alarms_DB.AlarmWord_26.AlarmWord.2, bConfirm:= bConfirm);
+alarms[403](evtEntry:= Tc_Events.AlarmWord26.b3, bEvt:= Alarms_DB.AlarmWord_26.AlarmWord.3, bConfirm:= bConfirm);
+alarms[404](evtEntry:= Tc_Events.AlarmWord26.b4, bEvt:= Alarms_DB.AlarmWord_26.AlarmWord.4, bConfirm:= bConfirm);
+alarms[405](evtEntry:= Tc_Events.AlarmWord26.b5, bEvt:= Alarms_DB.AlarmWord_26.AlarmWord.5, bConfirm:= bConfirm);
+alarms[406](evtEntry:= Tc_Events.AlarmWord26.b6, bEvt:= Alarms_DB.AlarmWord_26.AlarmWord.6, bConfirm:= bConfirm);
+alarms[407](evtEntry:= Tc_Events.AlarmWord26.b7, bEvt:= Alarms_DB.AlarmWord_26.AlarmWord.7, bConfirm:= bConfirm);
+alarms[408](evtEntry:= Tc_Events.AlarmWord26.b8, bEvt:= Alarms_DB.AlarmWord_26.AlarmWord.8, bConfirm:= bConfirm);
+alarms[409](evtEntry:= Tc_Events.AlarmWord26.b9, bEvt:= Alarms_DB.AlarmWord_26.AlarmWord.9, bConfirm:= bConfirm);
+alarms[410](evtEntry:= Tc_Events.AlarmWord26.b10, bEvt:= Alarms_DB.AlarmWord_26.AlarmWord.10, bConfirm:= bConfirm);
+alarms[411](evtEntry:= Tc_Events.AlarmWord26.b11, bEvt:= Alarms_DB.AlarmWord_26.AlarmWord.11, bConfirm:= bConfirm);
+alarms[412](evtEntry:= Tc_Events.AlarmWord26.b12, bEvt:= Alarms_DB.AlarmWord_26.AlarmWord.12, bConfirm:= bConfirm);
+alarms[413](evtEntry:= Tc_Events.AlarmWord26.b13, bEvt:= Alarms_DB.AlarmWord_26.AlarmWord.13, bConfirm:= bConfirm);
+alarms[414](evtEntry:= Tc_Events.AlarmWord26.b14, bEvt:= Alarms_DB.AlarmWord_26.AlarmWord.14, bConfirm:= bConfirm);
+alarms[415](evtEntry:= Tc_Events.AlarmWord26.b15, bEvt:= Alarms_DB.AlarmWord_26.AlarmWord.15, bConfirm:= bConfirm);
+
+//Alarm Word 27
+(* uncomment when instrument is ready
+Alarms_DB.AlarmWord_27.AlarmWord.0 := Trips_DB.Coil[3].DumpRelay2_FailtoClose;
+Alarms_DB.AlarmWord_27.AlarmWord.1 := Trips_DB.Coil[3].DumpRelay2_FailtoOpen;
+Alarms_DB.AlarmWord_27.AlarmWord.2 := Trips_DB.Coil[4].DumpRelay2_FailtoClose;
+Alarms_DB.AlarmWord_27.AlarmWord.3 := Trips_DB.Coil[4].DumpRelay2_FailtoOpen;
+Alarms_DB.AlarmWord_27.AlarmWord.4 := Trips_DB.Coil[5].DumpRelay2_FailtoClose;
+Alarms_DB.AlarmWord_27.AlarmWord.5 := Trips_DB.Coil[5].DumpRelay2_FailtoOpen;
+Alarms_DB.AlarmWord_27.AlarmWord.6 := Trips_DB.Coil[6].DumpRelay2_FailtoClose;
+Alarms_DB.AlarmWord_27.AlarmWord.7 := Trips_DB.Coil[6].DumpRelay2_FailtoOpen;
+Alarms_DB.AlarmWord_27.AlarmWord.8 := Trips_DB.Coil[7].DumpRelay2_FailtoClose;
+Alarms_DB.AlarmWord_27.AlarmWord.9 := Trips_DB.Coil[7].DumpRelay2_FailtoOpen;
+Alarms_DB.AlarmWord_27.AlarmWord.10 := Trips_DB.Coil[8].DumpRelay2_FailtoClose;
+Alarms_DB.AlarmWord_27.AlarmWord.11 := Trips_DB.Coil[8].DumpRelay2_FailtoOpen;
+Alarms_DB.AlarmWord_27.AlarmWord.12:= Trips_DB.Coil[9].DumpRelay2_FailtoClose;
+Alarms_DB.AlarmWord_27.AlarmWord.13 := Trips_DB.Coil[9].DumpRelay2_FailtoOpen;
+Alarms_DB.AlarmWord_27.AlarmWord.14 := Trips_DB.Coil[10].DumpRelay2_FailtoClose;
+Alarms_DB.AlarmWord_27.AlarmWord.15 := Trips_DB.Coil[10].DumpRelay2_FailtoOpen;
+*)
+//Alarm Word 27 msg
+alarms[416](evtEntry:= Tc_Events.AlarmWord27.b0, bEvt:= Alarms_DB.AlarmWord_27.AlarmWord.0, bConfirm:= bConfirm);
+alarms[417](evtEntry:= Tc_Events.AlarmWord27.b1, bEvt:= Alarms_DB.AlarmWord_27.AlarmWord.1, bConfirm:= bConfirm);
+alarms[418](evtEntry:= Tc_Events.AlarmWord27.b2, bEvt:= Alarms_DB.AlarmWord_27.AlarmWord.2, bConfirm:= bConfirm);
+alarms[419](evtEntry:= Tc_Events.AlarmWord27.b3, bEvt:= Alarms_DB.AlarmWord_27.AlarmWord.3, bConfirm:= bConfirm);
+alarms[420](evtEntry:= Tc_Events.AlarmWord27.b4, bEvt:= Alarms_DB.AlarmWord_27.AlarmWord.4, bConfirm:= bConfirm);
+alarms[421](evtEntry:= Tc_Events.AlarmWord27.b5, bEvt:= Alarms_DB.AlarmWord_27.AlarmWord.5, bConfirm:= bConfirm);
+alarms[422](evtEntry:= Tc_Events.AlarmWord27.b6, bEvt:= Alarms_DB.AlarmWord_27.AlarmWord.6, bConfirm:= bConfirm);
+alarms[423](evtEntry:= Tc_Events.AlarmWord27.b7, bEvt:= Alarms_DB.AlarmWord_27.AlarmWord.7, bConfirm:= bConfirm);
+alarms[424](evtEntry:= Tc_Events.AlarmWord27.b8, bEvt:= Alarms_DB.AlarmWord_27.AlarmWord.8, bConfirm:= bConfirm);
+alarms[425](evtEntry:= Tc_Events.AlarmWord27.b9, bEvt:= Alarms_DB.AlarmWord_27.AlarmWord.9, bConfirm:= bConfirm);
+alarms[426](evtEntry:= Tc_Events.AlarmWord27.b10, bEvt:= Alarms_DB.AlarmWord_27.AlarmWord.10, bConfirm:= bConfirm);
+alarms[427](evtEntry:= Tc_Events.AlarmWord27.b11, bEvt:= Alarms_DB.AlarmWord_27.AlarmWord.11, bConfirm:= bConfirm);
+alarms[428](evtEntry:= Tc_Events.AlarmWord27.b12, bEvt:= Alarms_DB.AlarmWord_27.AlarmWord.12, bConfirm:= bConfirm);
+alarms[429](evtEntry:= Tc_Events.AlarmWord27.b13, bEvt:= Alarms_DB.AlarmWord_27.AlarmWord.13, bConfirm:= bConfirm);
+alarms[430](evtEntry:= Tc_Events.AlarmWord27.b14, bEvt:= Alarms_DB.AlarmWord_27.AlarmWord.14, bConfirm:= bConfirm);
+alarms[431](evtEntry:= Tc_Events.AlarmWord27.b15, bEvt:= Alarms_DB.AlarmWord_27.AlarmWord.15, bConfirm:= bConfirm);
+*)
+
+//test
+IF GVL.alarm_test THEN
+	//i := i+1;
+	Alarms_DB.MCP.AlarmWord := 16#FFFF;
+	Alarms_DB.Section1.AlarmWord := 16#FFFF;
+	Alarms_DB.Section2.AlarmWord := 16#FFFF;
+	Alarms_DB.Section3.AlarmWord := 16#FFFF;
+	Alarms_DB.Section4.AlarmWord := 16#FFFF;
+	Alarms_DB.AlarmWord5.AlarmWord := 16#FFFF;
+	Alarms_DB.AlarmWord7.AlarmWord := 16#FFFF;
+	//Alarms_DB.Coil3.AlarmWord := 16#FFFF;
+	//Alarms_DB.Coil4.AlarmWord := 16#FFFF;
+	//Alarms_DB.Coil5.AlarmWord := 16#FFFF;
+	//Alarms_DB.Coil6.AlarmWord := 16#FFFF;
+	//Alarms_DB.Coil7.AlarmWord := 16#FFFF;
+	//Alarms_DB.Coil8.AlarmWord := 16#FFFF;
+	//Alarms_DB.Coil9.AlarmWord := 16#FFFF;
+	//Alarms_DB.Coil10.AlarmWord := 16#FFFF;
+	//Alarms_DB.AlarmWord_11.AlarmWord := 16#FFFF;
+	//Alarms_DB.AlarmWord_22.AlarmWord := 16#FFFF;
+	//Alarms_DB.AlarmWord_23.AlarmWord := 16#FFFF;
+	//Alarms_DB.AlarmWord_24.AlarmWord := 16#FFFF;
+	//Alarms_DB.AlarmWord_25.AlarmWord := 16#FFFF;
+	//Alarms_DB.AlarmWord_26.AlarmWord := 16#FFFF;
+	//Alarms_DB.AlarmWord_27.AlarmWord := 16#FFFF;
+END_IF
+
+
+//Clear Alarm Word
+IF bConfirm THEN
+	Alarms_DB.MCP.AlarmWord := 0;
+	Alarms_DB.Section1.AlarmWord := 0;
+	Alarms_DB.Section2.AlarmWord := 0;
+	Alarms_DB.Section3.AlarmWord := 0;
+	Alarms_DB.Section4.AlarmWord := 0;
+	Alarms_DB.AlarmWord5.AlarmWord := 0;
+	Alarms_DB.AlarmWord7.AlarmWord := 0;
+	(*Alarms_DB.Coil3.AlarmWord := 0;
+	Alarms_DB.Coil4.AlarmWord := 0;
+	Alarms_DB.Coil5.AlarmWord := 0;
+	Alarms_DB.Coil6.AlarmWord := 0;
+	Alarms_DB.Coil7.AlarmWord := 0;
+	Alarms_DB.Coil8.AlarmWord := 0;
+	Alarms_DB.Coil9.AlarmWord := 0;
+	Alarms_DB.Coil10.AlarmWord := 0;
+	Alarms_DB.AlarmWord_11.AlarmWord := 0;
+	Alarms_DB.AlarmWord_22.AlarmWord := 0;
+	Alarms_DB.AlarmWord_23.AlarmWord := 0;
+	Alarms_DB.AlarmWord_24.AlarmWord := 0;
+	Alarms_DB.AlarmWord_25.AlarmWord := 0;
+	Alarms_DB.AlarmWord_26.AlarmWord := 0;
+	Alarms_DB.AlarmWord_27.AlarmWord := 0;
+	*)
+END_IF;]]></ST>
+    </Implementation>
+    <LineIds Name="Alarms">
+      <LineId Id="549" Count="14" />
+      <LineId Id="1057" Count="0" />
+      <LineId Id="564" Count="0" />
+      <LineId Id="1078" Count="1" />
+      <LineId Id="565" Count="14" />
+      <LineId Id="1058" Count="0" />
+      <LineId Id="580" Count="0" />
+      <LineId Id="1080" Count="0" />
+      <LineId Id="583" Count="130" />
+      <LineId Id="1082" Count="7" />
+      <LineId Id="1111" Count="1" />
+      <LineId Id="1096" Count="0" />
+      <LineId Id="1114" Count="1" />
+      <LineId Id="1113" Count="0" />
+      <LineId Id="1117" Count="1" />
+      <LineId Id="1116" Count="0" />
+      <LineId Id="1097" Count="13" />
+      <LineId Id="1081" Count="0" />
+      <LineId Id="1119" Count="2" />
+      <LineId Id="1025" Count="11" />
+      <LineId Id="1125" Count="0" />
+      <LineId Id="1038" Count="1" />
+      <LineId Id="1122" Count="2" />
+      <LineId Id="1040" Count="16" />
+      <LineId Id="714" Count="0" />
+      <LineId Id="1126" Count="1" />
+      <LineId Id="715" Count="0" />
+      <LineId Id="1134" Count="9" />
+      <LineId Id="1150" Count="4" />
+      <LineId Id="1129" Count="0" />
+      <LineId Id="1149" Count="0" />
+      <LineId Id="1128" Count="0" />
+      <LineId Id="1155" Count="14" />
+      <LineId Id="1131" Count="1" />
+      <LineId Id="1170" Count="33" />
+      <LineId Id="1133" Count="0" />
+      <LineId Id="1130" Count="0" />
+      <LineId Id="716" Count="260" />
+      <LineId Id="1070" Count="0" />
+      <LineId Id="1069" Count="0" />
+      <LineId Id="977" Count="24" />
+      <LineId Id="1060" Count="1" />
+      <LineId Id="1002" Count="15" />
+      <LineId Id="38" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

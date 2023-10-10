@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <GVL Name="Trips_DB" Id="{b9292f11-9c83-43f6-9b30-6c69cf4aaa02}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	Section 					: ARRAY[1..4] OF ST_Trip_Base;
+	Charger						: ARRAY[1..8] OF ST_Charger_Base;
+	MasterStopPBPressed			: BOOL;
+	CageEStopCircuitBroken		: BOOL;
+	LocalModeSelected			: BOOL;
+	MCPLossDCpower				: BOOL;
+	MCPsystemTripped			: BOOL;
+	
+	AnyEstopPressed 			: BOOL;
+	AllDCpsuOK					: BOOL;
+	AnyChargerOverTemp			: BOOL;
+	AnyChargerLoadFault			: BOOL;
+	AnyChargerInterlockOpen		: BOOL;
+	AnyChargerFaulted			: BOOL; // same as summary fault
+	AnySystemTripped			: BOOL; //LCP 1-4
+	MachineGNDrlyFailed			: BOOL;
+	//SystemTripped 				: BOOL;
+	//InstrumentationFaulted		: BOOL;
+	AnyChargeRlyFail			: BOOL;
+	AnyDumpRlyFail				: BOOL;
+	//AnyACInterlockFail			: BOOL;
+	AnyLossInhibitSignal		: BOOL;
+	AnyLossHVONsignal			: BOOL;
+	
+	ChargingTimerRunout         : BOOL;
+	ChargedTimerRunout			: BOOL;
+	DumpTimerRunout				: BOOL;
+	//SystemTimeOut				: BOOL;
+	NoFaultDetected				: BOOL;
+	ClearAllFaults				: BOOL;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="ST_Alarm_Base" Id="{70490729-2f84-4ff4-9813-1a3c5400bdf0}">
+    <Declaration><![CDATA[TYPE ST_Alarm_Base :
+STRUCT
+	AlarmWord : WORD;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <GVL Name="Permissives_DB" Id="{c05a4b99-99cd-4605-96e2-a97127a00965}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	AllShortContactEngaged	: BOOL;
+	AllDumpRelaysOpen		: BOOL;
+	AllChargeRelaysClosed	: BOOL;
+	AllSystemsReadytoCharge	: BOOL;
+	NoShortingUnknowns		: BOOL;
+	AllChargerInhibited		: BOOL;
+	AllChargerHVisON		: BOOL;
+	AllSectCapsDischarged	: BOOL;
+	AllSectCapsFullyCharged : BOOL;
+	NoInterlockPressureLoss : BOOL;
+	SafetyOK				: BOOL;
+	AllChargerEOC			: BOOL;
+	
+	AllSection1ChargeRlyClose : BOOL;
+	AllSection2ChargeRlyClose : BOOL;
+	AllSection3ChargeRlyClose : BOOL;
+	AllSection4ChargeRlyClose : BOOL;
+	
+	AllSection1DumpRlyOpen : BOOL;
+	AllSection2DumpRlyOpen : BOOL;
+	AllSection3DumpRlyOpen : BOOL;
+	AllSection4DumpRlyOpen : BOOL;
+	
+	AllPeakChargeRlyClose	: BOOL;
+	AllSustChargeRlyClose	: BOOL;
+	AllFormChargeRlyClose	: BOOL;
+	
+	AllPeakDumpRlyOpen		: BOOL;
+	AllSustDumpRlyOpen		: BOOL;
+	AllFormDumpRlyOpen		: BOOL;
+	
+	AllPeakChargerHVisON	: BOOL;
+	AllSustChargerHVisOn	: BOOL;
+	AllFormChargerHVisOn	: BOOL;
+	
+	AllPeakChargerInhibited : BOOL;
+	AllSustChargerInhibited	: BOOL;
+	AllFormChargerInhibited : BOOL;
+	
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

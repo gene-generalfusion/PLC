@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="HMI" Id="{8a79c955-f3ed-4826-b061-613e8797521e}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM HMI
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF MCP_IO.RemoteModeSelected = TRUE OR HMI_DB.RemoteModeSelected = TRUE THEN 
+	GVL.RemoteModeSelected := TRUE;
+ELSIF MCP_IO.RemoteModeSelected = FALSE OR HMI_DB.RemoteModeSelected = FALSE THEN
+		GVL.RemoteModeSelected := FALSE;
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="HMI">
+      <LineId Id="5" Count="1" />
+      <LineId Id="8" Count="1" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

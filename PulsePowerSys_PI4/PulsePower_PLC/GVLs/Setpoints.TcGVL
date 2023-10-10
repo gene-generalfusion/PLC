@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <GVL Name="Setpoints" Id="{5ed1e99e-ec63-45e6-b291-ebd24a0848f8}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	TDKLoad : ARRAY [1..8] OF ST_Setpoints_Base;
+	GLSLoad : ST_Setpoints_Base;
+	GLS1_VSP : REAL := 50;
+	GLS2_VSP : REAL := 50;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

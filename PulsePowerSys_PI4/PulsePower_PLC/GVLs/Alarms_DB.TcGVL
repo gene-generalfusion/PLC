@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <GVL Name="Alarms_DB" Id="{da78a859-3b87-44ba-a904-b3ed09d5c557}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	MCP	: ST_Alarm_Base;
+	Section1 : ST_Alarm_Base;
+	Section2 : ST_Alarm_Base;
+	Section3 : ST_Alarm_Base;
+	Section4 : ST_Alarm_Base;
+	
+	AlarmWord5  : ST_Alarm_Base;
+	AlarmWord6  : ST_Alarm_Base;
+	AlarmWord7  : ST_Alarm_Base;
+	AlarmWord8  : ST_Alarm_Base;
+	AlarmWord9  : ST_Alarm_Base;
+	//AlarmWord11 : ST_Alarm_Base;
+	//AlarmWord12 : ST_Alarm_Base;
+	//AlarmWord13 : ST_Alarm_Base;
+	//AlarmWord14 : ST_Alarm_Base;
+	//AlarmWord15 : ST_Alarm_Base;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

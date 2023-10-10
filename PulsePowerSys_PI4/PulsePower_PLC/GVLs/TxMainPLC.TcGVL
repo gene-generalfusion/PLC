@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <GVL Name="TxMainPLC" Id="{af7db7f0-277a-4aaa-8bec-b684ccb4316c}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	Charger		: ARRAY[1..8] OF ST_Echo_MCP;
+	GLSLoad		: ST_ChargeTime;
+	Section 	: ARRAY[1..4] OF ST_Echo_Section;
+	ChargeRunOutTime	: REAL; //DINT;
+	ChargingRunOutTime	: REAL; //DINT;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

@@ -1,0 +1,367 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="AnalogConversion" Id="{3b8eecca-a8e5-4cfd-bb8d-8865397a6f0b}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM AnalogConversion
+VAR
+	i					: INT := 1; //charger 1-8
+	j					: INT := 1;  // section 1 - 4 
+	k					: INT := 1;  // cap 1-10
+	m					: INT := 1; //form cap 1-12
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//Converting raw data into Voltage Reading (0-10V), (0.5-4.5V)   
+//unfinish
+
+//MCP Charger 
+//Analog Input
+//FOR i := 1 TO 8 BY 1 DO
+FOR i := 1 TO 3 BY 1 DO
+	
+	MCP_IO.Charger[i].ChargerType_12kV := NOT MCP_IO.Charger[i].ChargerType_50kV;
+	//voltage
+	MCP_IO.Charger[i].voltageFeedback_norm := Norm_x (raw_input := INT_TO_REAL (MCP_IO.Charger[i].voltageFeedback_raw),
+														x_max := 32767,
+														x_min := 0);
+	//current																									
+	MCP_IO.Charger[i].currentFeedback_norm := Norm_x (raw_input := INT_TO_REAL (MCP_IO.Charger[i].currentFeedback_raw),
+														x_max := 32767,
+														x_min := 0);
+	//50kV chargers feedback
+	//if 50kV config selected
+	IF MCP_IO.Charger[i].ChargerType_50kV = TRUE THEN 
+		//50kv
+		MCP_IO.Charger[i].voltageFeedback := (EngVal.Max_50kVChargerVoltage - EngVal.Min_50kVChargerVoltage) * ADC_10V(
+																							normal_input := MCP_IO.Charger[i].voltageFeedback_norm,
+																							x_max := 10,
+																							x_min := 0);
+
+		MCP_IO.Charger[i].currentFeedback := (EngVal.Max_50kVChargerCurrent - EngVal.Min_50kVChargerCurrent) * ADC_10V(
+																							normal_input := MCP_IO.Charger[i].currentFeedback_norm,
+																							x_max := 10,
+																							x_min := 0);
+		//12kv
+	ELSIF MCP_IO.Charger[i].ChargerType_12kV = TRUE THEN
+		MCP_IO.Charger[i].voltageFeedback := (EngVal.Max_12kVChargerVoltage - EngVal.Min_12kVChargerVoltage) * ADC_10V(
+																							normal_input := MCP_IO.Charger[i].voltageFeedback_norm,
+																							x_max := 10,
+																							x_min := 0);
+		MCP_IO.Charger[i].currentFeedback := (EngVal.Max_12kVChargerCurrent - EngVal.Min_12kVChargerCurrent) * ADC_10V(
+																							normal_input := MCP_IO.Charger[i].currentFeedback_norm,
+																							x_max := 10,
+																							x_min := 0);										
+	END_IF;	
+END_FOR;
+
+//Analog Output
+//voltageSP = Required Charge Voltage******************
+//limit for charing the cap
+//FOR i := 1 TO 8 BY 1 DO
+FOR i := 1 TO 3 BY 1 DO	
+	//if 50kV config selected
+	IF MCP_IO.Charger[i].ChargerType_50kV = TRUE THEN 
+		//set limits of charger voltage input 
+		IF MCP_IO.Charger[i].voltageSP >= REAL_TO_DINT (EngVal.UpperLimit50kVCaps) THEN
+			MCP_IO.Charger[i].voltageSP := 35000; //limit at 35kV
+		ELSIF MCP_IO.Charger[i].voltageSP <= 0 THEN
+			MCP_IO.Charger[i].voltageSP := 0; //limit at 0V
+		END_IF; 
+		
+	//prepare output signal for 50kV chargers.
+		MCP_IO.Charger[i].voltageSP_norm := Norm_x (raw_input := DINT_TO_REAL (MCP_IO.Charger[i].voltageSP), 
+												x_max := EngVal.Max_50kVChargerVoltage,
+												x_min := EngVal.Min_50kVChargerVoltage);	
+												
+		MCP_IO.Charger[i].voltageSP_raw := AQ (norm_input := MCP_IO.Charger[i].voltageSP_norm, 
+												x_max := 10,
+												x_min := 0);
+	END_IF;
+		
+	//if 12kV config selected
+	IF MCP_IO.Charger[i].ChargerType_12kV = TRUE THEN
+		//set limits of charger voltage input 
+		IF MCP_IO.Charger[i].voltageSP <= 0 THEN
+			MCP_IO.Charger[i].voltageSP := ABS(MCP_IO.Charger[i].voltageSP);
+		END_IF
+		
+		IF MCP_IO.Charger[i].voltageSP >= REAL_TO_DINT (EngVal.UpperLimit12kVCaps) THEN
+			MCP_IO.Charger[i].voltageSP := 10000; //limit at 10kV
+		END_IF;
+
+		//prepare output signal for 12kV chargers.
+		MCP_IO.Charger[i].voltageSP_norm := Norm_x (raw_input := DINT_TO_REAL (MCP_IO.Charger[i].voltageSP), 
+												x_max := EngVal.Max_12kVChargerVoltage,
+												x_min := EngVal.Min_12kVChargerVoltage);
+		
+		MCP_IO.Charger[i].voltageSP_raw := AQ (norm_input := MCP_IO.Charger[i].voltageSP_norm, 
+												x_max := 10,
+												x_min := 0); 
+	END_IF;	
+												
+	//limite for output sigal (<= 10V)  this should not happen
+	IF MCP_IO.Charger[i].voltageSP_raw >= 32767 THEN 
+		MCP_IO.Charger[i].voltageSP_raw := 32767; 										
+	END_IF;
+	
+END_FOR;
+
+//limits for gls 
+IF MCP_IO.GLS1_voltageSP >= REAL_TO_DINT (EngVal.Max_GLS1_ChargerV) THEN 
+	MCP_IO.GLS1_voltageSP := REAL_TO_DINT (EngVal.Max_GLS1_ChargerV);
+	ELSIF MCP_IO.GLS1_voltageSP <= 0 THEN
+		MCP_IO.GLS1_voltageSP := 0;
+END_IF
+IF MCP_IO.GLS2_voltageSP >= REAL_TO_DINT (EngVal.Max_GLS2_ChargerV) THEN 
+	MCP_IO.GLS2_voltageSP := REAL_TO_DINT (EngVal.Max_GLS2_ChargerV);
+	ELSIF MCP_IO.GLS2_voltageSP <= 0 THEN
+		MCP_IO.GLS2_voltageSP := 0 ; 
+END_IF
+IF MCP_IO.GLS3_voltageSP >= REAL_TO_DINT (EngVal.ULimit_PreFormCapRequiredV) THEN 
+	MCP_IO.GLS3_voltageSP := REAL_TO_DINT (EngVal.ULimit_PreFormCapRequiredV);
+	ELSIF MCP_IO.GLS3_voltageSP <= 0 THEN
+		MCP_IO.GLS3_voltageSP := 0 ; 
+END_IF
+
+//prepare analog output for gls chargers.	
+MCP_IO.GLS1_voltageSP_norm := Norm_x (raw_input := DINT_TO_REAL (MCP_IO.GLS1_voltageSP),
+									x_max := EngVal.Max_GLS1_ChargerV,
+									x_min := 0);
+MCP_IO.GLS1_voltageSP_raw:= AQ (norm_input := MCP_IO.GLS1_voltageSP_norm,
+									x_max := 10,
+									x_min := 0);									
+									
+MCP_IO.GLS2_voltageSP_norm := Norm_x (raw_input := DINT_TO_REAL (MCP_IO.GLS2_voltageSP),
+									x_max := EngVal.Max_GLS2_ChargerV,
+									x_min := 0);
+MCP_IO.GLS2_voltageSP_raw:= AQ (norm_input := MCP_IO.GLS2_voltageSP_norm,
+									x_max := 10,
+									x_min := 0);	
+									
+MCP_IO.GLS3_voltageSP_norm := Norm_x (raw_input := DINT_TO_REAL (MCP_IO.GLS3_voltageSP),
+									x_max := EngVal.Max_GLS3_ChargerV,
+									x_min := 0);
+MCP_IO.GLS3_voltageSP_raw:= AQ (norm_input := MCP_IO.GLS3_voltageSP_norm,
+									x_max := 10,
+									x_min := 0);	
+
+//LCP 1 - 3 AI
+FOR j := 1 TO 3 BY 1 DO 
+	FOR k := 1 TO 10 BY 1 DO 
+		LCP.Section[j].Peak.Cap[k].voltageFeedback_Norm := Norm_x (raw_input := INT_TO_REAL (LCP.Section[j].Peak.Cap[k].voltageFeedback_raw),
+																x_max := 32767,
+																x_min := 0);
+																
+		LCP.Section[j].Peak.Cap[k].voltageFeedback := (EngVal.Max_CapVoltage - EngVal.Min_CapVoltage) * ADC_10V (
+																								normal_input := LCP.Section[j].Peak.Cap[k].voltageFeedback_Norm,
+																								x_max := 10,
+																								x_min := 0);
+		//sustain caps 1 - 2
+		LCP.Section[j].Sust.Cap[1].voltageFeedback_Norm := Norm_x (raw_input := INT_TO_REAL (LCP.Section[j].Sust.Cap[1].voltageFeedback_raw),
+																x_max := 32767,
+																x_min := 0);
+																
+		LCP.Section[j].Sust.Cap[1].voltageFeedback := (EngVal.Max_CapVoltage - EngVal.Min_CapVoltage) * ADC_10V (
+																								normal_input := LCP.Section[j].Sust.Cap[1].voltageFeedback_Norm,
+																								x_max := 10,
+																								x_min := 0);
+																
+		LCP.Section[j].Sust.Cap[2].voltageFeedback_Norm := Norm_x (raw_input := INT_TO_REAL (LCP.Section[j].Sust.Cap[2].voltageFeedback_raw),
+																x_max := 32767,
+																x_min := 0);
+																
+		LCP.Section[j].Sust.Cap[2].voltageFeedback := (EngVal.Max_CapVoltage - EngVal.Min_CapVoltage) * ADC_10V (
+																								normal_input := LCP.Section[j].Sust.Cap[2].voltageFeedback_Norm,
+																								x_max := 10,
+																								x_min := 0);
+	END_FOR;	
+END_FOR
+
+//LCP 4 AI
+FOR m := 1 TO 12 BY 1 DO
+	LCP.Section[4].Form.Cap[m].voltageFeedback_norm := Norm_x (raw_input := INT_TO_REAL (LCP.Section[4].Form.Cap[m].voltageFeedback_raw),
+																x_max := 32767,
+																x_min := 0);
+																
+	LCP.Section[4].Form.Cap[m].voltageFeedback := (EngVal.Max_CapVoltage - EngVal.Min_CapVoltage) * ADC_10V (
+																							normal_input := LCP.Section[4].Form.Cap[m].voltageFeedback_norm,
+																							x_max := 10,
+																							x_min := 0);
+END_FOR;
+
+//preform  cap AI
+LCP.Section[4].PreFormCapVoltage_norm := Norm_x (raw_input := INT_TO_REAL (LCP.Section[4].PreFormCapVoltage_raw),
+														x_max := 32767,
+														x_min := 0);
+															
+LCP.Section[4].PreFormCapVoltageFeedback := (EngVal.Max_CapVoltage - EngVal.Min_CapVoltage) * ADC_10V (
+																							normal_input := LCP.Section[4].PreFormCapVoltage_norm,
+																							x_max := 10,
+																							x_min := 0);															
+
+
+//reset counter
+//IF i > 8 THEN
+IF i > 3 THEN
+	i:=1;
+END_IF;
+
+IF j > 3 THEN 
+	j := 1;
+END_IF
+
+IF k > 10 THEN 
+	k := 1;
+END_IF
+
+IF m > 12 THEN 
+	m := 1;
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="AnalogConversion">
+      <LineId Id="61" Count="0" />
+      <LineId Id="535" Count="0" />
+      <LineId Id="86" Count="0" />
+      <LineId Id="80" Count="0" />
+      <LineId Id="254" Count="0" />
+      <LineId Id="229" Count="0" />
+      <LineId Id="646" Count="0" />
+      <LineId Id="537" Count="1" />
+      <LineId Id="616" Count="0" />
+      <LineId Id="610" Count="1" />
+      <LineId Id="609" Count="0" />
+      <LineId Id="613" Count="2" />
+      <LineId Id="612" Count="0" />
+      <LineId Id="478" Count="0" />
+      <LineId Id="593" Count="1" />
+      <LineId Id="617" Count="0" />
+      <LineId Id="261" Count="0" />
+      <LineId Id="263" Count="0" />
+      <LineId Id="262" Count="0" />
+      <LineId Id="255" Count="0" />
+      <LineId Id="269" Count="3" />
+      <LineId Id="265" Count="0" />
+      <LineId Id="618" Count="0" />
+      <LineId Id="479" Count="0" />
+      <LineId Id="602" Count="3" />
+      <LineId Id="619" Count="2" />
+      <LineId Id="606" Count="0" />
+      <LineId Id="597" Count="0" />
+      <LineId Id="256" Count="0" />
+      <LineId Id="233" Count="1" />
+      <LineId Id="548" Count="0" />
+      <LineId Id="573" Count="0" />
+      <LineId Id="292" Count="0" />
+      <LineId Id="357" Count="0" />
+      <LineId Id="507" Count="0" />
+      <LineId Id="293" Count="0" />
+      <LineId Id="580" Count="4" />
+      <LineId Id="566" Count="0" />
+      <LineId Id="509" Count="0" />
+      <LineId Id="523" Count="2" />
+      <LineId Id="513" Count="0" />
+      <LineId Id="526" Count="0" />
+      <LineId Id="528" Count="1" />
+      <LineId Id="527" Count="0" />
+      <LineId Id="510" Count="1" />
+      <LineId Id="296" Count="1" />
+      <LineId Id="516" Count="0" />
+      <LineId Id="562" Count="1" />
+      <LineId Id="561" Count="0" />
+      <LineId Id="564" Count="0" />
+      <LineId Id="515" Count="0" />
+      <LineId Id="311" Count="0" />
+      <LineId Id="559" Count="0" />
+      <LineId Id="519" Count="0" />
+      <LineId Id="530" Count="2" />
+      <LineId Id="520" Count="1" />
+      <LineId Id="533" Count="1" />
+      <LineId Id="522" Count="0" />
+      <LineId Id="517" Count="0" />
+      <LineId Id="334" Count="0" />
+      <LineId Id="327" Count="0" />
+      <LineId Id="329" Count="0" />
+      <LineId Id="332" Count="0" />
+      <LineId Id="328" Count="0" />
+      <LineId Id="355" Count="0" />
+      <LineId Id="300" Count="0" />
+      <LineId Id="623" Count="0" />
+      <LineId Id="301" Count="0" />
+      <LineId Id="625" Count="1" />
+      <LineId Id="631" Count="1" />
+      <LineId Id="627" Count="0" />
+      <LineId Id="629" Count="1" />
+      <LineId Id="633" Count="1" />
+      <LineId Id="628" Count="0" />
+      <LineId Id="636" Count="3" />
+      <LineId Id="635" Count="0" />
+      <LineId Id="624" Count="0" />
+      <LineId Id="308" Count="0" />
+      <LineId Id="289" Count="0" />
+      <LineId Id="359" Count="0" />
+      <LineId Id="363" Count="0" />
+      <LineId Id="366" Count="1" />
+      <LineId Id="365" Count="0" />
+      <LineId Id="364" Count="0" />
+      <LineId Id="368" Count="4" />
+      <LineId Id="235" Count="1" />
+      <LineId Id="373" Count="4" />
+      <LineId Id="237" Count="2" />
+      <LineId Id="381" Count="0" />
+      <LineId Id="383" Count="0" />
+      <LineId Id="392" Count="0" />
+      <LineId Id="385" Count="0" />
+      <LineId Id="389" Count="0" />
+      <LineId Id="396" Count="0" />
+      <LineId Id="394" Count="0" />
+      <LineId Id="469" Count="0" />
+      <LineId Id="395" Count="0" />
+      <LineId Id="391" Count="0" />
+      <LineId Id="418" Count="0" />
+      <LineId Id="428" Count="0" />
+      <LineId Id="419" Count="3" />
+      <LineId Id="470" Count="0" />
+      <LineId Id="423" Count="0" />
+      <LineId Id="416" Count="0" />
+      <LineId Id="439" Count="0" />
+      <LineId Id="441" Count="4" />
+      <LineId Id="471" Count="0" />
+      <LineId Id="446" Count="0" />
+      <LineId Id="440" Count="0" />
+      <LineId Id="434" Count="0" />
+      <LineId Id="384" Count="0" />
+      <LineId Id="425" Count="0" />
+      <LineId Id="451" Count="0" />
+      <LineId Id="454" Count="0" />
+      <LineId Id="452" Count="1" />
+      <LineId Id="426" Count="0" />
+      <LineId Id="457" Count="0" />
+      <LineId Id="459" Count="0" />
+      <LineId Id="472" Count="0" />
+      <LineId Id="460" Count="0" />
+      <LineId Id="458" Count="0" />
+      <LineId Id="456" Count="0" />
+      <LineId Id="461" Count="0" />
+      <LineId Id="432" Count="0" />
+      <LineId Id="462" Count="0" />
+      <LineId Id="464" Count="1" />
+      <LineId Id="468" Count="0" />
+      <LineId Id="466" Count="0" />
+      <LineId Id="473" Count="0" />
+      <LineId Id="467" Count="0" />
+      <LineId Id="429" Count="0" />
+      <LineId Id="188" Count="0" />
+      <LineId Id="151" Count="1" />
+      <LineId Id="150" Count="0" />
+      <LineId Id="647" Count="0" />
+      <LineId Id="153" Count="1" />
+      <LineId Id="400" Count="0" />
+      <LineId Id="399" Count="0" />
+      <LineId Id="401" Count="1" />
+      <LineId Id="404" Count="0" />
+      <LineId Id="403" Count="0" />
+      <LineId Id="405" Count="1" />
+      <LineId Id="475" Count="0" />
+      <LineId Id="474" Count="0" />
+      <LineId Id="476" Count="1" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
