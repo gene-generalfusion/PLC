@@ -59,7 +59,7 @@
     <ServerParameters />
     <HmiCommunicationServerPort>3007</HmiCommunicationServerPort>
     <HmiCommunicationServerAuthPort>13001</HmiCommunicationServerAuthPort>
-    <HmiCommunicationRouterPort>10103</HmiCommunicationRouterPort>
+    <HmiCommunicationRouterPort>10104</HmiCommunicationRouterPort>
     <HmiUseX64>True</HmiUseX64>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|TwinCAT HMI' ">
@@ -247,6 +247,8 @@
     <Content Include="Server\ADS\ADS.Config.default.json">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="Server\ADS\ADS.Config.default.json" />
+    <Content Include="Server\ADS\ADS.Config.default.json" />
     <Content Include="Server\ADS\ADS.Config.default.json" />
     <Content Include="Server\ADS\ADS.Config.default.json" />
     <Content Include="Server\ADS\ADS.Config.default.json" />

@@ -2,10 +2,13 @@
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
   <Task Name="PlcTask" Id="{fcb5aafd-0bdd-48f7-8160-1286b61d2d26}">
     <!--CycleTime in micro seconds.-->
-    <CycleTime>10000</CycleTime>
+    <CycleTime>2000</CycleTime>
     <Priority>20</Priority>
     <PouCall>
       <Name>MAIN</Name>
+    </PouCall>
+    <PouCall>
+      <Name>Heartbeat</Name>
     </PouCall>
     <TaskFBGuid>{e0a1afb7-c677-4ea3-b6dd-bb572dff63a0}</TaskFBGuid>
     <Fb_init>{c4aa83d6-379e-4d1c-a6d5-fc15b7e23c2a}</Fb_init>

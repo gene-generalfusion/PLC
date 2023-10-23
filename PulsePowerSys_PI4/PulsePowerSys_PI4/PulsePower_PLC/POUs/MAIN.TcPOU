@@ -7,7 +7,7 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[Alias();
-Heartbeat();
+//Heartbeat();
 Permissives();
 Trips();
 Alarms();

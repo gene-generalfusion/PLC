@@ -787,7 +787,8 @@
     "ENABLE_SERVER_UPDATE": true,
     "ENDPOINTS": [
         "http://127.0.0.1:13001",
-        "http://127.0.0.1:3007"
+        "http://127.0.0.1:3007",
+        "http://192.168.173.30:1020"
     ],
     "ETAGENABLED": true,
     "EXTENSIONS": {
@@ -1207,7 +1208,15 @@
     "PERMESSAGEDEFLATEENABLED": true,
     "PROJECTNAME": "PulsePowerHMI",
     "PROJECTVERSION": "1.0.0.0",
-    "REMOTESERVERS": {},
+    "REMOTESERVERS": {
+        "myremote": {
+            "REMOTE_CONNECT_TIMEOUT": "PT5S",
+            "REMOTE_ENABLED": true,
+            "REMOTE_PASSWORD": "1",
+            "REMOTE_URL": "http://192.168.173.30:1020",
+            "REMOTE_USERNAME": "_SystemAdministrator"
+        }
+    },
     "REMOTESERVERS_CERTIFICATES": [],
     "REQUIREAUTH": 0,
     "REVALIDATION": true,
@@ -11886,6 +11895,34 @@
                 "type": "number"
             },
             "SUBSYMBOL_MAPPING": "",
+            "USEMAPPING": true
+        },
+        "myremote.GetSchema": {
+            "ACCESS": 3,
+            "DOMAIN": "myremote",
+            "DYNAMIC": true,
+            "HIDDEN": true,
+            "MAPPING": "GetSchema",
+            "OPTIONS": {},
+            "SCHEMA": {
+                "function": true
+            },
+            "USEMAPPING": true
+        },
+        "myremote.ListSymbols": {
+            "ACCESS": 3,
+            "DOMAIN": "myremote",
+            "DYNAMIC": true,
+            "HIDDEN": true,
+            "MAPPING": "ListSymbols",
+            "OPTIONS": {},
+            "SCHEMA": {
+                "additionalProperties": {
+                    "$ref": "tchmi:server#/definitions/symbol"
+                },
+                "function": true,
+                "type": "object"
+            },
             "USEMAPPING": true
         }
     },

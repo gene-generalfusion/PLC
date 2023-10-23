@@ -7,12 +7,12 @@
         "UpperBorder",
         "TcRpcEnable"
     ],
-    "NEW_HANDLES_PER_SUM_REQUEST_LIMIT": 100,
+    "NEW_HANDLES_PER_SUM_REQUEST_LIMIT": 1000,
     "RESPONSE_SIZE_LIMIT": 2097152,
     "RUNTIMES": {
         "PLC1": {
             "ENABLED": true,
-            "NETID": "127.0.0.1.1.1",
+            "NETID": "5.104.224.86.1.1",
             "PORT": 851,
             "SYMBOLS": {},
             "USE_WHITELISTING": false
@@ -20,8 +20,8 @@
     },
     "RUNTIME_STATE_CHECK_INTERVAL": "PT2S",
     "RUNTIME_STATE_CHECK_TIMEOUT": "PT5S",
-    "SUM_REQUEST_LIMIT": 500,
-    "TIMEOUT": "PT1S",
+    "SUM_REQUEST_LIMIT": 1000,
+    "TIMEOUT": "PT1H",
     "VISIBLE_RUNTIME_PORTS": [
         301,
         302,

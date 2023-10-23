@@ -26,49 +26,49 @@ VAR_GLOBAL
 	
 	//EL4008 - AQ1
 	R2_05_00 AT %Q*: INT;	//Charger 1 - Voltage Setpoint
-	R2_05_00_Status AT %Q*: WORD; //need to double check
+	//R2_05_00_Status AT %Q*: WORD; //need to double check
 	R2_05_01 AT %Q*: INT;	//Charger 2 - Voltage Setpoint
-	R2_05_01_Status AT %Q*: WORD;
+	//R2_05_01_Status AT %Q*: WORD;
 	R2_05_02 AT %Q*: INT;	//Charger 3 - Voltage Setpoint
-	R2_05_02_Status AT %Q*: WORD;
+	//R2_05_02_Status AT %Q*: WORD;
 	R2_05_03 AT %Q*: INT;	//Charger 4 - Voltage Setpoint
-	R2_05_03_Status AT %Q*: WORD;
+	//R2_05_03_Status AT %Q*: WORD;
 	R2_05_04 AT %Q*: INT;	//Charger 5 - Voltage Setpoint
-	R2_05_04_Status AT %Q*: WORD;
+	//R2_05_04_Status AT %Q*: WORD;
 	R2_05_05 AT %Q*: INT;	//Charger 6 - Voltage Setpoint
-	R2_05_05_Status AT %Q*: WORD;
+	//R2_05_05_Status AT %Q*: WORD;
 	R2_05_06 AT %Q*: INT;	//Charger 7 - Voltage Setpoint
-	R2_05_06_Status AT %Q*: WORD;
+	//R2_05_06_Status AT %Q*: WORD;
 	R2_05_07 AT %Q*: INT;	//Charger 8 - Voltage Setpoint
-	R2_05_07_Status AT %Q*: WORD;
+	//R2_05_07_Status AT %Q*: WORD;
 
 	//EL2008 - DQ3
 	R2_06_00 AT %Q*: BOOL;
 	R2_06_01 AT %Q*: BOOL;
 	R2_06_02 AT %Q*: BOOL;
 	R2_06_03 AT %Q*: BOOL;  //Lift Machine Ground
-	R2_08_04 AT %Q*: BOOL;  //spare
-	R2_08_05 AT %Q*: BOOL;  //spare
-	R2_08_06 AT %Q*: BOOL;  //spare
-	R2_08_07 AT %Q*: BOOL;  //spare 
+	R2_06_04 AT %Q*: BOOL;  //spare
+	R2_06_05 AT %Q*: BOOL;  //spare
+	R2_06_06 AT %Q*: BOOL;  //spare
+	R2_06_07 AT %Q*: BOOL;  //spare 
 
 	//EL4008 - AQ2
 	R2_07_00 AT %Q*: INT;	//GLS 1 - Voltage Setpoint
-	R2_07_00_Status AT %Q*: WORD; //need to double check
+	//R2_07_00_Status AT %Q*: WORD; //need to double check
 	R2_07_01 AT %Q*: INT;	//GLS 2 - Voltage Setpoint
-	R2_07_01_Status AT %Q*: WORD;
+	//R2_07_01_Status AT %Q*: WORD;
 	R2_07_02 AT %Q*: INT;	//GLS 3 - Voltage Setpoint
-	R2_07_02_Status AT %Q*: WORD;
+	//R2_07_02_Status AT %Q*: WORD;
 	R2_07_03 AT %Q*: INT;	//spare
-	R2_07_03_Status AT %Q*: WORD;
+	//R2_07_03_Status AT %Q*: WORD;
 	R2_07_04 AT %Q*: INT;	//spare
-	R2_07_04_Status AT %Q*: WORD;
+	//R2_07_04_Status AT %Q*: WORD;
 	R2_07_05 AT %Q*: INT;	//spare
-	R2_07_05_Status AT %Q*: WORD;
+	//R2_07_05_Status AT %Q*: WORD;
 	R2_07_06 AT %Q*: INT;	//spare
-	R2_07_06_Status AT %Q*: WORD;
+	//R2_07_06_Status AT %Q*: WORD;
 	R2_07_07 AT %Q*: INT;	//spare
-	R2_07_07_Status AT %Q*: WORD;
+	//R2_07_07_Status AT %Q*: WORD;
 	
 	//***LCP1***BANK1 (Rack 3)********************************************************************
 	//EL2008 - DQ1

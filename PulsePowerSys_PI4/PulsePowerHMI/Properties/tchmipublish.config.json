@@ -7,6 +7,10 @@
       },
       {
         "publishServerExtension": true,
+        "name": "myremote"
+      },
+      {
+        "publishServerExtension": true,
         "name": "TcHmiEcDiagnostics"
       },
       {
@@ -52,7 +56,7 @@
     "userName": "",
     "encryptedPassword": "",
     "encryptedTcHmiServerPassword": "0V0eZDaoX3XtKhGkdxTjNQ==",
-    "tcHmiServerHost": "192.168.173.10",
+    "tcHmiServerHost": "192.168.173.30",
     "tcHmiServerPort": "1020",
     "socketTimeout": "60",
     "clientCertificateCN": "",
@@ -61,7 +65,7 @@
     "launchBrowserAfterPublish": true,
     "createVirtualDirectoriesOnTargetSystem": false,
     "tcHmiServerUserName": "__SystemAdministrator",
-    "tcHmiDestinationUrl": "https://192.168.173.10:1020",
+    "tcHmiDestinationUrl": "https://192.168.173.30:1020",
     "publishConfiguration": "remote",
     "tcHmiSavePassword": true,
     "tcHmiIgnoreCertificateErrors": true
