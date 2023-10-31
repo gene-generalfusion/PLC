@@ -92,14 +92,14 @@ FOR i := 1 TO 8 BY 1 DO
 
 END_FOR;
 
-IF ((MCP_IO.Charger[1].LossHVON = TRUE OR Recipe.PeakSupplyEN = TRUE) OR
-	(MCP_IO.Charger[2].LossHVON = TRUE OR Recipe.PeakSupplyEN = TRUE) OR
-	(MCP_IO.Charger[3].LossHVON = TRUE OR Recipe.PeakSupplyEN = TRUE) OR
-	(MCP_IO.Charger[4].LossHVON = TRUE OR Recipe.SustSupplyEN = TRUE) OR
-	(MCP_IO.Charger[5].LossHVON = TRUE OR Recipe.SustSupplyEN = TRUE) OR
-	(MCP_IO.Charger[6].LossHVON = TRUE OR Recipe.SustSupplyEN = TRUE) OR
-	(MCP_IO.Charger[7].LossHVON = TRUE OR Recipe.FormSupplyEN = TRUE) OR
-	(MCP_IO.Charger[8].LossHVON = TRUE OR Recipe.FormSupplyEN = TRUE)) AND HMI_DB.LossHVsignalBP = FALSE 
+IF ((MCP_IO.Charger[1].LossHVON = TRUE AND Recipe.PeakSupplyEN = TRUE) OR
+	(MCP_IO.Charger[2].LossHVON = TRUE AND Recipe.PeakSupplyEN = TRUE) OR
+	(MCP_IO.Charger[3].LossHVON = TRUE AND Recipe.PeakSupplyEN = TRUE) OR
+	(MCP_IO.Charger[4].LossHVON = TRUE AND Recipe.SustSupplyEN = TRUE) OR
+	(MCP_IO.Charger[5].LossHVON = TRUE AND Recipe.SustSupplyEN = TRUE) OR
+	(MCP_IO.Charger[6].LossHVON = TRUE AND Recipe.SustSupplyEN = TRUE) OR
+	(MCP_IO.Charger[7].LossHVON = TRUE AND Recipe.FormSupplyEN = TRUE) OR
+	(MCP_IO.Charger[8].LossHVON = TRUE AND Recipe.FormSupplyEN = TRUE)) AND HMI_DB.LossHVsignalBP = FALSE 
 THEN
 	Trips_DB.AnyLossHVONsignal := TRUE;
 END_IF
