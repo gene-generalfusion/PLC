@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="ST_Module" Id="{dc37cb22-2b59-4e70-80e4-3268cd948482}">
+    <Declaration><![CDATA[TYPE ST_Module :
+STRUCT
+	CloseChargeRly	: BOOL;
+	OpenDumpRly		: BOOL;
+	Fire			: BOOL;
+	
+	ChargeRly_close	: BOOL;
+	DumpRly_open	: BOOL;
+	ModuleCharged	: BOOL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

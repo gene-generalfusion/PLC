@@ -5,9 +5,9 @@
   "startupView": "Desktop.view",
   "loginPage": "",
   "tcHmiServer": {
-    "websocketIntervalTime": 10,
-    "websocketTimeout": 20000,
-    "websocketSystemTimeout": 60000,
+    "websocketIntervalTime": 1500,
+    "websocketTimeout": 2000,
+    "websocketSystemTimeout": 6000,
     "websocketSubscriptionMode": "Change"
   },
   "activeTheme": "Base",

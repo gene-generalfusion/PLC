@@ -939,11 +939,12 @@
 		<ImageData Id="1006">424de6000000000000007600000028000000100000000e000000010004000000000070000000120b0000120b0000100000001000000000000000000080000080000000808000800000008000800080800000c0c0c000808080000000ff0000ff000000ffff00ff000000ff00ff00ffff0000ffffff00dddddd88888888dddddddd77777778dddddddd77888778dddddddd77888778dddddddd77888778dddddddd77777778dddddddd77888778dd9b9b9b77888778ddb9b9b977888778dd9b9b9b77777778ddb9b9b9777a7778dd9b9b9b777a7778ddb9b9b9777a7778dd9b9b9b77777778dd</ImageData>
 		<ImageData Id="1007">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000120b0000120b00000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ff808080808080808080808080808080808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080808080808080c0c0c0c0c0c080808000bfffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c080808080808080808000bfff00bfff00bfff00bfff00bfff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080808080808080c0c0c0c0c0c080808000bfffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0bbc2bbc0c0c0c0c0c0c0c0c0808080ff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0bac2ba0bfc0bc0c0c0c0c0c0c0c0c0808080ff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ff</ImageData>
 	</ImageDatas>
-	<Project ProjectGUID="{5C3200E9-DDBA-458E-9CBF-7C94281CF3CD}" TargetNetId="5.104.224.86.1.1" Target64Bit="true" ShowHideConfigurations="#x106">
+	<Project ProjectGUID="{5C3200E9-DDBA-458E-9CBF-7C94281CF3CD}" TargetNetId="5.107.141.148.1.1" Target64Bit="true" ShowHideConfigurations="#x106">
 		<System>
 			<Licenses>
 				<Target>
 					<ManualSelect>{F1CFF3CF-B042-45EE-A380-4FB3270F0BA5}</ManualSelect>
+					<ManualSelect>{3FF18E97-7754-401B-93FB-70544DE28A13}</ManualSelect>
 				</Target>
 			</Licenses>
 			<Tasks>
@@ -2465,6 +2466,26 @@ EL2008 - DQ3]]></Comment>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
+							<Name>Output.R2_06_04</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_06_05</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_06_06</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_06_07</Name>
+							<Comment><![CDATA[spare ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
 							<Name>Output.R2_07_00</Name>
 							<Comment><![CDATA[GLS 1 - Voltage Setpoint]]></Comment>
 							<Type>INT</Type>
@@ -2799,34 +2820,9 @@ EL2008 - DQ1]]></Comment>
 							<Comment><![CDATA[spare]]></Comment>
 							<Type>BOOL</Type>
 						</Var>
-						<Var>
-							<Name>Output.R2_06_04</Name>
-							<Comment><![CDATA[spare]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>Output.R2_06_05</Name>
-							<Comment><![CDATA[spare]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>Output.R2_06_06</Name>
-							<Comment><![CDATA[spare]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>Output.R2_06_07</Name>
-							<Comment><![CDATA[spare ]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
 					</Vars>
 					<Vars VarGrpType="8" AreaNo="4">
 						<Name>PlcTask Retains</Name>
-						<Var>
-							<Name>ChargeTime_DB.PreFormChargeTime_PT</Name>
-							<Type>TIME</Type>
-							<InOut>7</InOut>
-						</Var>
 						<Var>
 							<Name>ChargeTime_DB.ChargerDelay_TON</Name>
 							<Type GUID="{D079E1ED-47E3-F617-5E84-485042BED8B1}">ARRAY [1..8] OF Tc2_Standard.TON</Type>
@@ -2854,18 +2850,23 @@ FormChargeTime_ET  : ARRAY[1..2] OF TIME;]]></Comment>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
-							<Name>ChargeTime_DB.PreFormChargeTime_ET</Name>
+							<Name>ChargeTime_DB.PreFormChargeTime_PT</Name>
 							<Type>TIME</Type>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
-							<Name>ChargeTime_DB.LongestChargeTime_PT</Name>
+							<Name>ChargeTime_DB.PreFormChargeTime_ET</Name>
 							<Type>TIME</Type>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
 							<Name>ChargeTime_DB.LongestChargeTime_TON</Name>
 							<Type GUID="{1337BBBA-9A3F-D9E7-4ED6-FA23E60881AB}" Namespace="Tc2_Standard">TON</Type>
+							<InOut>7</InOut>
+						</Var>
+						<Var>
+							<Name>ChargeTime_DB.LongestChargeTime_PT</Name>
+							<Type>TIME</Type>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
@@ -2884,6 +2885,11 @@ FormChargeTime_ET  : ARRAY[1..2] OF TIME;]]></Comment>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
+							<Name>ChargeTime_DB.ChargingTimeElapse_TON</Name>
+							<Type GUID="{D079E1ED-47E3-F617-5E84-485042BED8B1}">ARRAY [1..8] OF Tc2_Standard.TON</Type>
+							<InOut>7</InOut>
+						</Var>
+						<Var>
 							<Name>ChargeTime_DB.PreFormChargeTimeStartDelay</Name>
 							<Type>INT</Type>
 							<InOut>7</InOut>
@@ -2891,11 +2897,6 @@ FormChargeTime_ET  : ARRAY[1..2] OF TIME;]]></Comment>
 						<Var>
 							<Name>ChargeTime_DB.PreFormChargingTimeElapse</Name>
 							<Type>INT</Type>
-							<InOut>7</InOut>
-						</Var>
-						<Var>
-							<Name>ChargeTime_DB.ChargingTimeElapse_TON</Name>
-							<Type GUID="{D079E1ED-47E3-F617-5E84-485042BED8B1}">ARRAY [1..8] OF Tc2_Standard.TON</Type>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
@@ -2932,7 +2933,7 @@ FormChargeTime_ET  : ARRAY[1..2] OF TIME;]]></Comment>
 			</Project>
 		</Plc>
 		<Io>
-			<Device Id="3" DevType="111" DevFlags="#x0003" AmsPort="28675" AmsNetId="5.104.224.86.4.1" RemoteName="Device 3 (EtherCAT)" InfoImageId="3">
+			<Device Id="3" Disabled="true" DevType="111" DevFlags="#x0003" AmsPort="28675" AmsNetId="5.107.141.148.4.1" RemoteName="Device 3 (EtherCAT)" InfoImageId="3">
 				<Name>Device 3 (EtherCAT)</Name>
 				<AddressInfo>
 					<Pnp>
@@ -4028,7 +4029,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 				</Box>
 				<EtherCAT/>
 			</Device>
-			<Device Id="2" DevType="111" DevFlags="#x0003" AmsPort="28674" AmsNetId="5.104.224.86.3.1" RemoteName="Device 2 (EtherCAT)" InfoImageId="5">
+			<Device Id="2" Disabled="true" DevType="111" DevFlags="#x0003" AmsPort="28674" AmsNetId="5.107.141.148.3.1" RemoteName="Device 2 (EtherCAT)" InfoImageId="5">
 				<Name>Device 2 (EtherCAT)</Name>
 				<AddressInfo>
 					<Ccat>
@@ -4497,7 +4498,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 					<Box Id="14" BoxType="9099" BoxFlags="#x00000020">
 						<Name>Term 14 (EL6695)</Name>
 						<ImageId>1006</ImageId>
-						<EtherCAT SlaveType="3" AdsServerAddress="0568e056030ff203" PdiType="#x0008" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="63" EoeType="1" FoeType="1" VendorId="#x00000002" ProductCode="#x1a273052" RevisionNo="#x00060000" InfoDataAddr="true" InfoDataNetId="true" TimeoutMailbox2="2000" GenerateOwnNetId="true" CheckRevisionNoType="3" PortPhys="51" DcTimeLoopControlOnly="true" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL6695 EtherCAT Bridge terminal (Primary)" Desc="EL6695" PortABoxInfo="#x0100000d">
+						<EtherCAT SlaveType="3" AdsServerAddress="0568e056030ff203" FixedAdsServerNetId="true" PdiType="#x0008" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="63" EoeType="1" FoeType="1" VendorId="#x00000002" ProductCode="#x1a273052" RevisionNo="#x00060000" InfoDataAddr="true" InfoDataNetId="true" TimeoutMailbox2="2000" GenerateOwnNetId="true" CheckRevisionNoType="3" PortPhys="51" DcTimeLoopControlOnly="true" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL6695 EtherCAT Bridge terminal (Primary)" Desc="EL6695" PortABoxInfo="#x0100000d">
 							<SyncMan>0010000426000100010000008000da050004001026010000</SyncMan>
 							<SyncMan>0016000422000100020000008000da050004001622010000</SyncMan>
 							<SyncMan>001c00006400000003000000000000000000001c64010000</SyncMan>
@@ -4639,8 +4640,6 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 		</Io>
 	</Project>
 	<Mappings>
-		<MappingInfo Identifier="{00000000-2001-0850-0020-500820000403}" Id="#x02030020"/>
-		<MappingInfo Identifier="{00000000-2001-0850-0020-500840000403}" Id="#x02030010"/>
 		<OwnerA Name="TIPC^PulsePower_PLC^PulsePower_PLC Instance">
 			<OwnerB Name="TIID^Device 2 (EtherCAT)^Term 4 (EK1200)^Term 11 (EL1008)">
 				<Link VarA="PlcTask Inputs^Input.R1_07_00" VarB="Channel 1^Input"/>

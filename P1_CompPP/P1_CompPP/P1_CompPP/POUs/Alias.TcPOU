@@ -1,0 +1,509 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="Alias" Id="{ebc75665-f0df-4b03-b4d1-48515468f179}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Alias
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//R1 : MCP**  
+	//DI
+	(*
+	MCP_IO.MasterStopPB_Pressed					:= NOT Input.R1_01_00;  //NC - Master stop PB not pressed - black pb on mcp
+	MCP_IO.CageEstopCircuitOK					:= Input.R1_01_01;  //case Estop circuit okay (Rly1 (120vac)
+	MCP_IO.RemoteModeSelected					:= Input.R1_01_02; // 0 = manual, 1=auto
+	MCP_IO.PSU1_DCOK							:= Input.R1_01_03; //psu1 dc ok
+	MCP_IO.MachineGNDrlyOpen					:= Input.R1_01_04; // machine ground lifted (opto board)	
+	//MCP_IO.CloseAllChargeRlyCommand				:= Input.R1_01_05; // command from screen room (opto) - Slim only
+	//MCP_IO.OpenAllDumpRelayCommand				:= Input.R1_01_06; // command from screen room (opto) - slim only
+	*)
+	
+	//INPUT
+	//DI
+	MCP_IO.Charger[1].inhibited					:= Input.R1_02_00; //TDK802 1
+	MCP_IO.Charger[1].EndOfCharge				:= Input.R1_02_01; //TDK802 1
+	MCP_IO.Charger[1].HV_isON					:= Input.R1_02_02; //TDK802 1
+	MCP_IO.Charger[1].SummaryFaulted			:= Input.R1_02_03; //TDK802 1
+	//MCP_IO.Charger[1].OverTemp					:= Input.R1_02_03; //TDK802 1
+	//MCP_IO.Charger[1].InterlockOpen				:= Input.R1_02_04; //TDK802 1
+	//MCP_IO.Charger[1].LoadFaulted				:= Input.R1_02_05; //TDK802 1
+	
+	LCP1_IO.Segment[1].Module[1].ChargeRly_close := Input.R1_02_04;
+	LCP1_IO.Segment[1].Module[1].DumpRly_open	 := Input.R1_02_05;
+	
+	//EL3068 - AI
+	MCP_IO.Charger[1].voltageFeedback_raw		:= Input.R1_04_00;
+	
+	//OUTPUT
+	//DQ
+	Output.R1_03_00								:= MCP_IO.Charger[1].inhibit;
+	Output.R1_03_01								:= MCP_IO.Charger[1].HV_ON;
+	Output.R1_03_02								:= LCP1_IO.Segment[1].Module[1].CloseChargeRly;
+	Output.R1_03_03								:= LCP1_IO.Segment[1].Module[1].OpenDumpRly;
+	Output.R1_03_04								:= LCP1_IO.Segment[1].Module[1].Fire;
+	Output.R1_03_07								:= LCP1_IO.Segment[1].Module[1].ModuleCharged;
+	//AQ
+	Output.R1_05_00								:= MCP_IO.Charger[1].voltageSP_raw;
+	
+	
+//*************************************************************************************************************	
+	(*
+	MCP_IO.Charger[2].inhibited					:= Input.R1_03_00; //TDK802 2
+	MCP_IO.Charger[2].EndOfCharge				:= Input.R1_03_01; 
+	MCP_IO.Charger[2].HV_isON					:= Input.R1_03_02; 
+	MCP_IO.Charger[2].OverTemp					:= Input.R1_03_03; 
+	MCP_IO.Charger[2].InterlockOpen				:= Input.R1_03_04; 
+	MCP_IO.Charger[2].LoadFaulted				:= Input.R1_03_05; 
+	MCP_IO.Charger[2].SummaryFaulted			:= Input.R1_03_06; 
+	
+	MCP_IO.Charger[3].inhibited					:= Input.R1_04_00; //TDK802 3
+	MCP_IO.Charger[3].EndOfCharge				:= Input.R1_04_01; 
+	MCP_IO.Charger[3].HV_isON					:= Input.R1_04_02; 
+	MCP_IO.Charger[3].OverTemp					:= Input.R1_04_03; 
+	MCP_IO.Charger[3].InterlockOpen				:= Input.R1_04_04; 
+	MCP_IO.Charger[3].LoadFaulted				:= Input.R1_04_05; 
+	MCP_IO.Charger[3].SummaryFaulted			:= Input.R1_04_06; 
+	
+	MCP_IO.Charger[4].inhibited					:= Input.R1_05_00; //TDK802 4
+	MCP_IO.Charger[4].EndOfCharge				:= Input.R1_05_01; 
+	MCP_IO.Charger[4].HV_isON					:= Input.R1_05_02; 
+	MCP_IO.Charger[4].OverTemp					:= Input.R1_05_03; 
+	MCP_IO.Charger[4].InterlockOpen				:= Input.R1_05_04; 
+	MCP_IO.Charger[4].LoadFaulted				:= Input.R1_05_05; 
+	MCP_IO.Charger[4].SummaryFaulted			:= Input.R1_05_06; 
+
+	MCP_IO.Charger[5].inhibited					:= Input.R1_06_00; //TDK802 5
+	MCP_IO.Charger[5].EndOfCharge				:= Input.R1_06_01; 
+	MCP_IO.Charger[5].HV_isON					:= Input.R1_06_02; 
+	MCP_IO.Charger[5].OverTemp					:= Input.R1_06_03; 
+	MCP_IO.Charger[5].InterlockOpen				:= Input.R1_06_04; 
+	MCP_IO.Charger[5].LoadFaulted				:= Input.R1_06_05; 
+	MCP_IO.Charger[5].SummaryFaulted			:= Input.R1_06_06; 
+
+	MCP_IO.Charger[6].inhibited					:= Input.R1_07_00; //TDK802 6
+	MCP_IO.Charger[6].EndOfCharge				:= Input.R1_07_01; 
+	MCP_IO.Charger[6].HV_isON					:= Input.R1_07_02; 
+	MCP_IO.Charger[6].OverTemp					:= Input.R1_07_03; 
+	MCP_IO.Charger[6].InterlockOpen				:= Input.R1_07_04; 
+	MCP_IO.Charger[6].LoadFaulted				:= Input.R1_07_05; 
+	MCP_IO.Charger[6].SummaryFaulted			:= Input.R1_07_06; 
+
+	MCP_IO.Charger[7].inhibited					:= Input.R1_08_00; //TDK802 7
+	MCP_IO.Charger[7].EndOfCharge				:= Input.R1_08_01; 
+	MCP_IO.Charger[7].HV_isON					:= Input.R1_08_02; 
+	MCP_IO.Charger[7].OverTemp					:= Input.R1_08_03; 
+	MCP_IO.Charger[7].InterlockOpen				:= Input.R1_08_04; 
+	MCP_IO.Charger[7].LoadFaulted				:= Input.R1_08_05; 
+	MCP_IO.Charger[7].SummaryFaulted			:= Input.R1_08_06; 
+
+	MCP_IO.Charger[8].inhibited					:= Input.R1_09_00; //TDK802 8
+	MCP_IO.Charger[8].EndOfCharge				:= Input.R1_09_01; 
+	MCP_IO.Charger[8].HV_isON					:= Input.R1_09_02; 
+	MCP_IO.Charger[8].OverTemp					:= Input.R1_09_03; 
+	MCP_IO.Charger[8].InterlockOpen				:= Input.R1_09_04; 
+	MCP_IO.Charger[8].LoadFaulted				:= Input.R1_09_05; 
+	MCP_IO.Charger[8].SummaryFaulted			:= Input.R1_09_06; 
+
+	//AI
+	MCP_IO.Charger[1].voltageFeedback_raw		:= Input.R2_03_00;
+	MCP_IO.Charger[1].currentFeedback_raw		:= Input.R2_03_01;
+	MCP_IO.Charger[2].voltageFeedback_raw		:= Input.R2_03_02;
+	MCP_IO.Charger[2].currentFeedback_raw		:= Input.R2_03_03;
+	MCP_IO.Charger[3].voltageFeedback_raw		:= Input.R2_03_04;
+	MCP_IO.Charger[3].currentFeedback_raw		:= Input.R2_03_05;
+	MCP_IO.Charger[4].voltageFeedback_raw		:= Input.R2_03_06;
+	MCP_IO.Charger[4].currentFeedback_raw		:= Input.R2_03_07;
+	MCP_IO.Charger[5].voltageFeedback_raw		:= Input.R2_04_00;
+	MCP_IO.Charger[5].currentFeedback_raw		:= Input.R2_04_01;
+	MCP_IO.Charger[6].voltageFeedback_raw		:= Input.R2_04_02;
+	MCP_IO.Charger[6].currentFeedback_raw		:= Input.R2_04_03;
+	MCP_IO.Charger[7].voltageFeedback_raw		:= Input.R2_04_04;
+	MCP_IO.Charger[7].currentFeedback_raw		:= Input.R2_04_05;
+	MCP_IO.Charger[8].voltageFeedback_raw		:= Input.R2_04_06;
+	MCP_IO.Charger[8].currentFeedback_raw		:= Input.R2_04_07;
+	
+	//DQ
+	Output.R2_01_00	:= MCP_IO.Charger[1].inhibit;
+	Output.R2_01_01	:= MCP_IO.Charger[1].HV_ON;
+	Output.R2_01_02	:= MCP_IO.Charger[2].inhibit;
+	Output.R2_01_03	:= MCP_IO.Charger[2].HV_ON;
+	Output.R2_01_04	:= MCP_IO.Charger[3].inhibit;
+	Output.R2_01_05	:= MCP_IO.Charger[3].HV_ON;
+	Output.R2_01_06	:= MCP_IO.Charger[4].inhibit;
+	Output.R2_01_07	:= MCP_IO.Charger[4].HV_ON;
+	
+	Output.R2_02_00	:= MCP_IO.Charger[5].inhibit;
+	Output.R2_02_01	:= MCP_IO.Charger[5].HV_ON;
+	Output.R2_02_02	:= MCP_IO.Charger[6].inhibit;
+	Output.R2_02_03	:= MCP_IO.Charger[6].HV_ON;
+	Output.R2_02_04	:= MCP_IO.Charger[7].inhibit;
+	Output.R2_02_05	:= MCP_IO.Charger[7].HV_ON;
+	Output.R2_02_06	:= MCP_IO.Charger[8].inhibit;
+	Output.R2_02_07	:= MCP_IO.Charger[8].HV_ON;
+	
+	Output.R2_06_00	:= MCP_IO.GLS1_hvON;
+	Output.R2_06_01	:= MCP_IO.GLS2_hvON;
+	Output.R2_06_02	:= MCP_IO.GLS3_hvON;
+	Output.R2_06_03	:= MCP_IO.LiftMachineGND;
+	//Output.R2_06_04	:= MCP_IO.AllChargeRelaysClose; //only for slim
+	//Output.R2_06_05	:= MCP_IO.AllDumpRelaysOpen;  // only for slim
+	
+	//AQ
+	Output.R2_05_00	:= MCP_IO.Charger[1].voltageSP_raw;
+	Output.R2_05_01	:= MCP_IO.Charger[2].voltageSP_raw;
+	Output.R2_05_02	:= MCP_IO.Charger[3].voltageSP_raw;
+	Output.R2_05_03	:= MCP_IO.Charger[4].voltageSP_raw;	
+	Output.R2_05_04	:= MCP_IO.Charger[5].voltageSP_raw;
+	Output.R2_05_05	:= MCP_IO.Charger[6].voltageSP_raw;
+	Output.R2_05_06	:= MCP_IO.Charger[7].voltageSP_raw;
+	Output.R2_05_07	:= MCP_IO.Charger[8].voltageSP_raw;					
+	
+	Output.R2_07_00	:= MCP_IO.GLS1_voltageSP_raw; //Form Trigger
+	Output.R2_07_01	:= MCP_IO.GLS2_voltageSP_raw;  //Preform trigger
+	Output.R2_07_02	:= MCP_IO.GLS3_voltageSP_raw; //preform cap charger
+
+//R3 : Bank 1 (LCP1)***********************************************
+	//EL3068 - AI
+	LCP.Section[1].Peak.cap[1].voltageFeedback_raw := Input.R3_01_00;
+	LCP.Section[1].Peak.cap[2].voltageFeedback_raw := Input.R3_01_01;
+	LCP.Section[1].Peak.cap[3].voltageFeedback_raw := Input.R3_01_02;
+	LCP.Section[1].Peak.cap[4].voltageFeedback_raw := Input.R3_01_03;
+	LCP.Section[1].Peak.cap[5].voltageFeedback_raw := Input.R3_01_04;
+	LCP.Section[1].Peak.cap[6].voltageFeedback_raw := Input.R3_01_05;
+	LCP.Section[1].Peak.cap[7].voltageFeedback_raw := Input.R3_01_06;
+	LCP.Section[1].Peak.cap[8].voltageFeedback_raw := Input.R3_01_07;
+	LCP.Section[1].Peak.cap[9].voltageFeedback_raw := Input.R3_02_00;
+	LCP.Section[1].Peak.cap[10].voltageFeedback_raw := Input.R3_02_01;
+	
+	LCP.Section[1].Sust.cap[1].voltageFeedback_raw := Input.R3_02_02;
+	LCP.Section[1].Sust.cap[2].voltageFeedback_raw := Input.R3_02_03;
+	
+	//DI
+	LCP.Section[1].Peak.ChargeRelay1_close 	:= Input.R3_03_00; //RLY 1A
+	LCP.Section[1].Peak.ChargeRelay2_close 	:= Input.R3_03_01; //RLY 2A
+	LCP.Section[1].Peak.DumpRelay1_close 	:= Input.R3_03_02; //RLY 3A
+	LCP.Section[1].Peak.DumpRelay2_close	:= Input.R3_03_03; //RLY 4A
+	LCP.Section[1].Sust.ChargeRelay1_close	:= Input.R3_03_04; //RLY 5A
+	LCP.Section[1].Sust.ChargeRelay2_close	:= Input.R3_03_05; //RLY 6A
+	LCP.Section[1].Sust.DumpRelay1_close	:= Input.R3_03_06; //RLY 7A
+	LCP.Section[1].Sust.DumpRelay2_close	:= Input.R3_03_07; //RLY 8A
+	
+	LCP.Section[1].Peak.ShortContact1_close 	:= Input.R3_04_00; //psw1
+	LCP.Section[1].Peak.UnshortContact1_close 	:= Input.R3_04_01; //psw2
+	LCP.Section[1].Peak.ShortContact2_close 	:= Input.R3_04_02; //psw3
+	LCP.Section[1].Peak.UnshortContact2_close 	:= Input.R3_04_03; //psw4
+	LCP.Section[1].LossPneumaticPressure 		:= Input.R3_04_04; //psw5
+	LCP.Section[1].PSU1_DCOK					:= Input.R3_04_05; //psu1 contact
+
+	//DQ
+	Output.R3_05_00 := LCP.Section[1].Peak.CloseChargeRelay1; //RLY1
+	Output.R3_05_01 := LCP.Section[1].Peak.CloseChargeRelay2; //RLY2
+	Output.R3_05_02 := LCP.Section[1].Peak.OpenDumpRelay1; //RLY3
+	Output.R3_05_03 := LCP.Section[1].Peak.OpenDumpRelay2; //RLY4
+	Output.R3_05_04 := LCP.Section[1].Sust.CloseChargeRelay1; //RLY5
+	Output.R3_05_05 := LCP.Section[1].Sust.CloseChargeRelay2; //RLY6
+	Output.R3_05_06 := LCP.Section[1].Sust.OpenDumpRelay1; //RLY7
+	Output.R3_05_07 := LCP.Section[1].Sust.OpenDumpRelay2; //RLY8
+	Output.R3_06_00 := LCP.Section[1].SystemReadyToCharge; //LED1
+
+//R4 : Bank 2 (LCP2)***********************************************
+	//EL3068 - AI
+	LCP.Section[2].Peak.cap[1].voltageFeedback_raw := Input.R4_01_00;
+	LCP.Section[2].Peak.cap[2].voltageFeedback_raw := Input.R4_01_01;
+	LCP.Section[2].Peak.cap[3].voltageFeedback_raw := Input.R4_01_02;
+	LCP.Section[2].Peak.cap[4].voltageFeedback_raw := Input.R4_01_03;
+	LCP.Section[2].Peak.cap[5].voltageFeedback_raw := Input.R4_01_04;
+	LCP.Section[2].Peak.cap[6].voltageFeedback_raw := Input.R4_01_05;
+	LCP.Section[2].Peak.cap[7].voltageFeedback_raw := Input.R4_01_06;
+	LCP.Section[2].Peak.cap[8].voltageFeedback_raw := Input.R4_01_07;
+	LCP.Section[2].Peak.cap[9].voltageFeedback_raw := Input.R4_02_00;
+	LCP.Section[2].Peak.cap[10].voltageFeedback_raw := Input.R4_02_01;
+	
+	LCP.Section[2].Sust.cap[1].voltageFeedback_raw := Input.R4_02_02;
+	LCP.Section[2].Sust.cap[2].voltageFeedback_raw := Input.R4_02_03;
+	
+	//DI
+	LCP.Section[2].Peak.ChargeRelay1_close 	:= Input.R4_03_00; //RLY 1A
+	LCP.Section[2].Peak.ChargeRelay2_close 	:= Input.R4_03_01; //RLY 2A
+	LCP.Section[2].Peak.DumpRelay1_close 	:= Input.R4_03_02; //RLY 3A
+	LCP.Section[2].Peak.DumpRelay2_close	:= Input.R4_03_03; //RLY 4A
+	LCP.Section[2].Sust.ChargeRelay1_close	:= Input.R4_03_04; //RLY 5A
+	LCP.Section[2].Sust.ChargeRelay2_close	:= Input.R4_03_05; //RLY 6A
+	LCP.Section[2].Sust.DumpRelay1_close	:= Input.R4_03_06; //RLY 7A
+	LCP.Section[2].Sust.DumpRelay2_close	:= Input.R4_03_07; //RLY 8A
+	
+	LCP.Section[2].Peak.ShortContact1_close 	:= Input.R4_04_00; //psw1
+	LCP.Section[2].Peak.UnshortContact1_close 	:= Input.R4_04_01; //psw2
+	LCP.Section[2].Peak.ShortContact2_close 	:= Input.R4_04_02; //psw3
+	LCP.Section[2].Peak.UnshortContact2_close 	:= Input.R4_04_03; //psw4
+	LCP.Section[2].LossPneumaticPressure 		:= Input.R4_04_04; //psw5
+	LCP.Section[2].PSU1_DCOK					:= Input.R4_04_05; //psu1 contact
+
+	//DQ
+	Output.R4_05_00 := LCP.Section[2].Peak.CloseChargeRelay1; //RLY1
+	Output.R4_05_01 := LCP.Section[2].Peak.CloseChargeRelay2; //RLY2
+	Output.R4_05_02 := LCP.Section[2].Peak.OpenDumpRelay1; //RLY3
+	Output.R4_05_03 := LCP.Section[2].Peak.OpenDumpRelay2; //RLY4
+	Output.R4_05_04 := LCP.Section[2].Sust.CloseChargeRelay1; //RLY5
+	Output.R4_05_05 := LCP.Section[2].Sust.CloseChargeRelay2; //RLY6
+	Output.R4_05_06 := LCP.Section[2].Sust.OpenDumpRelay1; //RLY7
+	Output.R4_05_07 := LCP.Section[2].Sust.OpenDumpRelay2; //RLY8
+	Output.R4_06_00 := LCP.Section[2].SystemReadyToCharge; //LED1
+
+//R5 : Bank 3 (LCP3)***********************************************
+	//EL3068 - AI
+	LCP.Section[3].Peak.cap[1].voltageFeedback_raw := Input.R5_01_00;
+	LCP.Section[3].Peak.cap[2].voltageFeedback_raw := Input.R5_01_01;
+	LCP.Section[3].Peak.cap[3].voltageFeedback_raw := Input.R5_01_02;
+	LCP.Section[3].Peak.cap[4].voltageFeedback_raw := Input.R5_01_03;
+	LCP.Section[3].Peak.cap[5].voltageFeedback_raw := Input.R5_01_04;
+	LCP.Section[3].Peak.cap[6].voltageFeedback_raw := Input.R5_01_05;
+	LCP.Section[3].Peak.cap[7].voltageFeedback_raw := Input.R5_01_06;
+	LCP.Section[3].Peak.cap[8].voltageFeedback_raw := Input.R5_01_07;
+	LCP.Section[3].Peak.cap[9].voltageFeedback_raw := Input.R5_02_00;
+	LCP.Section[3].Peak.cap[10].voltageFeedback_raw := Input.R5_02_01;
+	
+	LCP.Section[3].Sust.cap[1].voltageFeedback_raw := Input.R5_02_02;
+	LCP.Section[3].Sust.cap[2].voltageFeedback_raw := Input.R5_02_03;
+	
+	//DI
+	LCP.Section[3].Peak.ChargeRelay1_close 	:= Input.R5_03_00; //RLY 1A
+	LCP.Section[3].Peak.ChargeRelay2_close 	:= Input.R5_03_01; //RLY 2A
+	LCP.Section[3].Peak.DumpRelay1_close 	:= Input.R5_03_02; //RLY 3A
+	LCP.Section[3].Peak.DumpRelay2_close	:= Input.R5_03_03; //RLY 4A
+	LCP.Section[3].Sust.ChargeRelay1_close	:= Input.R5_03_04; //RLY 5A
+	LCP.Section[3].Sust.ChargeRelay2_close	:= Input.R5_03_05; //RLY 6A
+	LCP.Section[3].Sust.DumpRelay1_close	:= Input.R5_03_06; //RLY 7A
+	LCP.Section[3].Sust.DumpRelay2_close	:= Input.R5_03_07; //RLY 8A
+	
+	LCP.Section[3].Peak.ShortContact1_close 	:= Input.R5_04_00; //psw1
+	LCP.Section[3].Peak.UnshortContact1_close 	:= Input.R5_04_01; //psw2
+	LCP.Section[3].Peak.ShortContact2_close 	:= Input.R5_04_02; //psw3
+	LCP.Section[3].Peak.UnshortContact2_close 	:= Input.R5_04_03; //psw4
+	LCP.Section[3].LossPneumaticPressure 		:= Input.R5_04_04; //psw5
+	LCP.Section[3].PSU1_DCOK					:= Input.R5_04_05; //psu1 contact
+
+	//DQ
+	Output.R5_05_00 := LCP.Section[3].Peak.CloseChargeRelay1; //RLY1
+	Output.R5_05_01 := LCP.Section[3].Peak.CloseChargeRelay2; //RLY2
+	Output.R5_05_02 := LCP.Section[3].Peak.OpenDumpRelay1; //RLY3
+	Output.R5_05_03 := LCP.Section[3].Peak.OpenDumpRelay2; //RLY4
+	Output.R5_05_04 := LCP.Section[3].Sust.CloseChargeRelay1; //RLY5
+	Output.R5_05_05 := LCP.Section[3].Sust.CloseChargeRelay2; //RLY6
+	Output.R5_05_06 := LCP.Section[3].Sust.OpenDumpRelay1; //RLY7
+	Output.R5_05_07 := LCP.Section[3].Sust.OpenDumpRelay2; //RLY8
+	Output.R5_06_00 := LCP.Section[3].SystemReadyToCharge; //LED1
+
+//R6 : Bank 4 (LCP4)*****Formation******************************************
+	//EL3068 - AI
+	LCP.Section[4].Form.cap[1].voltageFeedback_raw := Input.R6_01_00;
+	LCP.Section[4].Form.cap[2].voltageFeedback_raw := Input.R6_01_01;
+	LCP.Section[4].Form.cap[3].voltageFeedback_raw := Input.R6_01_02;
+	LCP.Section[4].Form.cap[4].voltageFeedback_raw := Input.R6_01_03;
+	LCP.Section[4].Form.cap[5].voltageFeedback_raw := Input.R6_01_04;
+	LCP.Section[4].Form.cap[6].voltageFeedback_raw := Input.R6_01_05;
+	LCP.Section[4].Form.cap[7].voltageFeedback_raw := Input.R6_01_06;
+	LCP.Section[4].Form.cap[8].voltageFeedback_raw := Input.R6_01_07;
+	
+	LCP.Section[4].Form.cap[9].voltageFeedback_raw	:= Input.R6_02_00;
+	LCP.Section[4].Form.cap[10].voltageFeedback_raw := Input.R6_02_01;
+	LCP.Section[4].Form.cap[11].voltageFeedback_raw := Input.R6_02_02;
+	LCP.Section[4].Form.cap[12].voltageFeedback_raw := Input.R6_02_03;
+	LCP.Section[4].FormTriggerVoltage_raw		 	:= Input.R6_02_04;
+	LCP.Section[4].PreFormTriggerVoltage_raw	 	:= Input.R6_02_05;
+	LCP.Section[4].PreFormCapVoltage_raw		 	:= Input.R6_02_06;
+	
+	
+	//DI
+	LCP.Section[4].Form.ChargeRelay1_close			:= Input.R6_03_00;	//RLY 1A
+	LCP.Section[4].Form.ChargeRelay2_close			:= Input.R6_03_01;	//RLY 2A
+	LCP.Section[4].Form.PreFormChargeRly_close		:= Input.R6_03_02;	//RLY 3A	
+	LCP.Section[4].Form.FormTrigChargeRly_close		:= Input.R6_03_03;	//RLY 4A
+	LCP.Section[4].Form.PreFormTrigChargeRly_close	:= Input.R6_03_04;	//RLY 5A
+	LCP.Section[4].Form.DumpRelay1_close			:= Input.R6_03_05;	//RLY 6A
+	LCP.Section[4].Form.DumpRelay2_close			:= Input.R6_03_06;	//RLY 7A
+	LCP.Section[4].Form.PreFormDumpRly_close		:= Input.R6_03_07;	//RLY 8A
+	LCP.Section[4].Form.FormTrigDumpRly1_close		:= Input.R6_04_00;	//RLY 9A
+	LCP.Section[4].Form.PreFormTrigDumpRly1_close	:= Input.R6_04_01;	//RLY 10A
+	
+	LCP.Section[4].Form.ShortContact1_close		:= Input.R6_04_02;  //psw1
+	LCP.Section[4].Form.UnshortContact1_close	:= Input.R6_04_03;  //psw2
+	LCP.Section[4].Form.ShortContact2_close		:= Input.R6_04_04;  //psw3
+	LCP.Section[4].Form.UnshortContact2_close	:= Input.R6_04_05;  //psw4
+	LCP.Section[4].Form.FormTrigShortContact_close		:= Input.R6_04_06;  //psw5
+	LCP.Section[4].Form.FormTrigUnshortContact_close	:= Input.R6_04_07;  //psw6
+	LCP.Section[4].Form.PreFormTrigShortContact_close	:= Input.R6_05_00;  //psw7
+	LCP.Section[4].Form.PreFormTrigUnShortContact_close	:= Input.R6_05_01;  //psw8
+	LCP.Section[4].LossPneumaticPressure				:= Input.R6_05_02;  //psw9
+	LCP.Section[4].PSU1_DCOK							:= Input.R6_05_03;  //psu1
+	
+	//DQ
+	Output.R6_06_00 := LCP.Section[4].Form.CloseChargeRelay1; //rly1
+	Output.R6_06_01 := LCP.Section[4].Form.CloseChargeRelay2; //rly2
+	Output.R6_06_02 := LCP.Section[4].Form.ClosePreFormChargeRly; //rly3
+	Output.R6_06_03 := LCP.Section[4].Form.CloseFormTrigChargeRly; //rly4
+	Output.R6_06_04 := LCP.Section[4].Form.ClosePreFormTrigChargeRly; //rly5
+	Output.R6_06_05 := LCP.Section[4].Form.OpenDumpRelay1; //rly6
+	Output.R6_06_06 := LCP.Section[4].Form.OpenDumpRelay2; //rly7
+	Output.R6_06_07 := LCP.Section[4].Form.OpenPreFormDumpRly; //rly8
+	
+	Output.R6_07_00 := LCP.Section[4].Form.OpenFormTrigDumpRly1; //rly9
+	Output.R6_07_01 := LCP.Section[4].Form.OpenPreFormTrigDumpRly1; //rly10
+	Output.R6_07_02 := LCP.Section[4].SystemReadyToCharge; //LED1
+	
+	//InstrumentReading.R2_01_CH00 := Input.R3_01_00;
+	//InstrumentReading.R2_01_CH01 := Input.R3_01_01;
+	(*
+	R2_01_02 		AT %I*: INT;
+	R2_01_02_Status AT %I*: WORD;
+	
+	R2_01_03 		AT %I*: INT;
+	R2_01_03_Status AT %I*: WORD;
+	
+	R2_01_04 		AT %I*: INT;
+	R2_01_04_Status AT %I*: WORD;
+	
+	R2_01_05 		AT %I*: INT;
+	R2_01_05_Status AT %I*: WORD;
+	
+	R2_01_06 		AT %I*: INT;
+	R2_01_06_Status AT %I*: WORD;
+	
+	R2_01_07 		AT %I*: INT;
+	R2_01_07_Status AT %I*: WORD;
+	*)
+	
+	*)]]></ST>
+    </Implementation>
+    <LineIds Name="Alias">
+      <LineId Id="14" Count="1" />
+      <LineId Id="391" Count="0" />
+      <LineId Id="17" Count="3" />
+      <LineId Id="51" Count="1" />
+      <LineId Id="378" Count="1" />
+      <LineId Id="410" Count="0" />
+      <LineId Id="412" Count="0" />
+      <LineId Id="411" Count="0" />
+      <LineId Id="60" Count="0" />
+      <LineId Id="59" Count="0" />
+      <LineId Id="61" Count="0" />
+      <LineId Id="398" Count="0" />
+      <LineId Id="62" Count="3" />
+      <LineId Id="399" Count="0" />
+      <LineId Id="401" Count="0" />
+      <LineId Id="400" Count="0" />
+      <LineId Id="402" Count="0" />
+      <LineId Id="58" Count="0" />
+      <LineId Id="406" Count="0" />
+      <LineId Id="408" Count="0" />
+      <LineId Id="415" Count="0" />
+      <LineId Id="409" Count="0" />
+      <LineId Id="407" Count="0" />
+      <LineId Id="413" Count="0" />
+      <LineId Id="420" Count="0" />
+      <LineId Id="423" Count="0" />
+      <LineId Id="421" Count="0" />
+      <LineId Id="414" Count="0" />
+      <LineId Id="418" Count="1" />
+      <LineId Id="417" Count="0" />
+      <LineId Id="403" Count="0" />
+      <LineId Id="397" Count="0" />
+      <LineId Id="67" Count="5" />
+      <LineId Id="66" Count="0" />
+      <LineId Id="57" Count="0" />
+      <LineId Id="73" Count="5" />
+      <LineId Id="53" Count="0" />
+      <LineId Id="79" Count="0" />
+      <LineId Id="81" Count="5" />
+      <LineId Id="80" Count="0" />
+      <LineId Id="54" Count="2" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="23" Count="6" />
+      <LineId Id="31" Count="16" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="103" Count="2" />
+      <LineId Id="147" Count="0" />
+      <LineId Id="131" Count="0" />
+      <LineId Id="149" Count="15" />
+      <LineId Id="148" Count="0" />
+      <LineId Id="106" Count="2" />
+      <LineId Id="123" Count="6" />
+      <LineId Id="132" Count="6" />
+      <LineId Id="130" Count="0" />
+      <LineId Id="139" Count="1" />
+      <LineId Id="142" Count="2" />
+      <LineId Id="380" Count="1" />
+      <LineId Id="122" Count="0" />
+      <LineId Id="145" Count="0" />
+      <LineId Id="165" Count="1" />
+      <LineId Id="168" Count="0" />
+      <LineId Id="167" Count="0" />
+      <LineId Id="171" Count="0" />
+      <LineId Id="170" Count="0" />
+      <LineId Id="173" Count="0" />
+      <LineId Id="172" Count="0" />
+      <LineId Id="174" Count="0" />
+      <LineId Id="177" Count="1" />
+      <LineId Id="176" Count="0" />
+      <LineId Id="109" Count="1" />
+      <LineId Id="112" Count="0" />
+      <LineId Id="183" Count="9" />
+      <LineId Id="194" Count="1" />
+      <LineId Id="198" Count="0" />
+      <LineId Id="197" Count="0" />
+      <LineId Id="193" Count="0" />
+      <LineId Id="199" Count="2" />
+      <LineId Id="180" Count="1" />
+      <LineId Id="202" Count="0" />
+      <LineId Id="182" Count="0" />
+      <LineId Id="203" Count="1" />
+      <LineId Id="206" Count="4" />
+      <LineId Id="205" Count="0" />
+      <LineId Id="211" Count="0" />
+      <LineId Id="179" Count="0" />
+      <LineId Id="213" Count="0" />
+      <LineId Id="215" Count="6" />
+      <LineId Id="214" Count="0" />
+      <LineId Id="222" Count="1" />
+      <LineId Id="225" Count="40" />
+      <LineId Id="212" Count="0" />
+      <LineId Id="267" Count="0" />
+      <LineId Id="266" Count="0" />
+      <LineId Id="114" Count="4" />
+      <LineId Id="87" Count="15" />
+      <LineId Id="2" Count="0" />
+      <LineId Id="289" Count="21" />
+      <LineId Id="319" Count="7" />
+      <LineId Id="318" Count="0" />
+      <LineId Id="327" Count="0" />
+      <LineId Id="329" Count="4" />
+      <LineId Id="385" Count="0" />
+      <LineId Id="387" Count="0" />
+      <LineId Id="386" Count="0" />
+      <LineId Id="328" Count="0" />
+      <LineId Id="317" Count="0" />
+      <LineId Id="336" Count="2" />
+      <LineId Id="316" Count="0" />
+      <LineId Id="341" Count="4" />
+      <LineId Id="339" Count="0" />
+      <LineId Id="346" Count="0" />
+      <LineId Id="348" Count="0" />
+      <LineId Id="353" Count="0" />
+      <LineId Id="352" Count="0" />
+      <LineId Id="354" Count="0" />
+      <LineId Id="357" Count="4" />
+      <LineId Id="363" Count="0" />
+      <LineId Id="362" Count="0" />
+      <LineId Id="340" Count="0" />
+      <LineId Id="364" Count="4" />
+      <LineId Id="355" Count="0" />
+      <LineId Id="369" Count="3" />
+      <LineId Id="356" Count="0" />
+      <LineId Id="373" Count="1" />
+      <LineId Id="311" Count="0" />
+      <LineId Id="270" Count="18" />
+      <LineId Id="312" Count="0" />
+      <LineId Id="392" Count="1" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

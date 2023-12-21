@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="Permissives" Id="{639d0291-603e-4994-93d7-3ec14345fa0c}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Permissives
+VAR
+	AllChargeRelayClosed 	: BOOL := 0;
+	AllDumpRelayOpen		: BOOL := 0;
+	ReadyToCharge			: BOOL := 0;
+	AllChargerEOC			: BOOL := 0;
+	
+	//AllCapsDischarged		: BOOL := 0;
+	SystemIsSafe			: BOOL := 0;
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF LCP1_IO.Segment[1].Module[1].ChargeRly_close = TRUE(*AND all the other modules *) OR HMI_DB.AllChargeRelayCloseBP = TRUE
+	THEN
+		AllChargeRelayClosed := TRUE;
+	ELSE
+		AllChargeRelayClosed := FALSE;
+END_IF;
+
+IF LCP1_IO.Segment[1].Module[1].DumpRly_open = TRUE(*AND all the other modules *) OR HMI_DB.AllDumpRelaysOpenBP = TRUE
+	THEN
+		AllDumpRelayOpen := TRUE;
+	ELSE
+		AllDumpRelayOpen := FALSE;
+END_IF;
+
+IF AllChargeRelayClosed = TRUE AND AllDumpRelayOpen = TRUE THEN
+	ReadyToCharge := TRUE;
+	ELSE 
+		ReadyToCharge := FALSE;
+END_IF
+
+IF MCP_IO.Charger[1].voltageFeedback <= 10 AND 
+	MCP_IO.Charger[1].HV_isON = FALSE AND 
+	MCP_IO.Charger[1].inhibited = TRUE AND 
+	LCP1_IO.Segment[1].Module[1].DumpRly_open = FALSE
+THEN
+	(*MCP_IO.Charger[2].voltageFeedback <= 10 AND *)
+	SystemIsSafe := TRUE;
+	ELSE
+		SystemIsSafe := FALSE;
+END_IF
+
+IF MCP_IO.Charger[1].EndOfCharge = TRUE AND
+	MCP_IO.Charger[2].EndOfCharge = TRUE AND
+	MCP_IO.Charger[3].EndOfCharge = TRUE AND
+	MCP_IO.Charger[4].EndOfCharge = TRUE AND
+	MCP_IO.Charger[5].EndOfCharge = TRUE AND
+	MCP_IO.Charger[6].EndOfCharge = TRUE 
+THEN
+	Permissives_DB.AllChargerEOC := TRUE;
+	ELSE
+		Permissives_DB.AllChargerEOC := FALSE;
+
+END_IF;
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="Permissives">
+      <LineId Id="5" Count="0" />
+      <LineId Id="11" Count="1" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="17" Count="7" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="27" Count="1" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="41" Count="0" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="53" Count="2" />
+      <LineId Id="51" Count="0" />
+      <LineId Id="38" Count="0" />
+      <LineId Id="40" Count="0" />
+      <LineId Id="56" Count="1" />
+      <LineId Id="39" Count="0" />
+      <LineId Id="70" Count="0" />
+      <LineId Id="69" Count="0" />
+      <LineId Id="78" Count="0" />
+      <LineId Id="82" Count="3" />
+      <LineId Id="79" Count="0" />
+      <LineId Id="71" Count="0" />
+      <LineId Id="86" Count="2" />
+      <LineId Id="72" Count="0" />
+      <LineId Id="75" Count="0" />
+      <LineId Id="77" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

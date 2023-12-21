@@ -6,14 +6,16 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[IF MCP_IO.RemoteModeSelected = TRUE OR HMI_DB.RemoteModeSelected = TRUE THEN 
+      <ST><![CDATA[IF MCP_IO.RemoteModeSelected = TRUE (*OR HMI_DB.RemoteModeSelected = TRUE *)THEN 
 	GVL.RemoteModeSelected := TRUE;
-ELSIF MCP_IO.RemoteModeSelected = FALSE OR HMI_DB.RemoteModeSelected = FALSE THEN
+	ELSE
+//ELSIF MCP_IO.RemoteModeSelected = FALSE OR HMI_DB.RemoteModeSelected = FALSE THEN
 		GVL.RemoteModeSelected := FALSE;
 END_IF]]></ST>
     </Implementation>
     <LineIds Name="HMI">
       <LineId Id="5" Count="1" />
+      <LineId Id="13" Count="0" />
       <LineId Id="8" Count="1" />
       <LineId Id="7" Count="0" />
     </LineIds>

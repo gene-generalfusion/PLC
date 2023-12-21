@@ -725,7 +725,7 @@
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
+    "event": "%s%PLC1.Heartbeat_1.screen_refresh_pulse%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -823,7 +823,7 @@
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
+    "event": "%s%PLC1.Heartbeat_1.screen_refresh_pulse%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -921,7 +921,7 @@
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
+    "event": "%s%PLC1.Heartbeat_1.screen_refresh_pulse%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -1019,7 +1019,7 @@
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
+    "event": "%s%PLC1.Heartbeat_1.screen_refresh_pulse%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -1117,7 +1117,7 @@
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
+    "event": "%s%PLC1.Heartbeat_1.screen_refresh_pulse%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -1215,7 +1215,7 @@
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
+    "event": "%s%PLC1.Heartbeat_1.screen_refresh_pulse%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -1313,7 +1313,7 @@
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
+    "event": "%s%PLC1.Heartbeat_1.screen_refresh_pulse%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -1411,7 +1411,7 @@
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
+    "event": "%s%PLC1.Heartbeat_1.screen_refresh_pulse%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -1561,7 +1561,7 @@
     ]
   },
   {
-    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
+    "event": "%s%PLC1.Heartbeat_1.screen_refresh_pulse%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -2074,7 +2074,7 @@ data-tchmi-value="%s%PLC1.MCP_IO.Charger.3.ChargeTime.Power|BindingMode=OneWay%/
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
+    "event": "%s%PLC1.Heartbeat_1.screen_refresh_pulse%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -2172,7 +2172,7 @@ data-tchmi-value="%s%PLC1.MCP_IO.Charger.3.ChargeTime.Power|BindingMode=OneWay%/
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
+    "event": "%s%PLC1.Heartbeat_1.screen_refresh_pulse%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -2270,7 +2270,7 @@ data-tchmi-value="%s%PLC1.MCP_IO.Charger.3.ChargeTime.Power|BindingMode=OneWay%/
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
+    "event": "%s%PLC1.Heartbeat_1.screen_refresh_pulse%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -2368,7 +2368,7 @@ data-tchmi-value="%s%PLC1.MCP_IO.Charger.3.ChargeTime.Power|BindingMode=OneWay%/
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
+    "event": "%s%PLC1.Heartbeat_1.screen_refresh_pulse%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -2466,7 +2466,7 @@ data-tchmi-value="%s%PLC1.MCP_IO.Charger.3.ChargeTime.Power|BindingMode=OneWay%/
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
+    "event": "%s%PLC1.Heartbeat_1.screen_refresh_pulse%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -2564,7 +2564,7 @@ data-tchmi-value="%s%PLC1.MCP_IO.Charger.3.ChargeTime.Power|BindingMode=OneWay%/
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
+    "event": "%s%PLC1.Heartbeat_1.screen_refresh_pulse%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -2662,7 +2662,7 @@ data-tchmi-value="%s%PLC1.MCP_IO.Charger.3.ChargeTime.Power|BindingMode=OneWay%/
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
+    "event": "%s%PLC1.Heartbeat_1.screen_refresh_pulse%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -2760,7 +2760,7 @@ data-tchmi-value="%s%PLC1.MCP_IO.Charger.3.ChargeTime.Power|BindingMode=OneWay%/
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
+    "event": "%s%PLC1.Heartbeat_1.screen_refresh_pulse%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -2943,7 +2943,7 @@ data-tchmi-value="%s%PLC1.MCP_IO.Charger.3.ChargeTime.Power|BindingMode=OneWay%/
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
+    "event": "%s%PLC1.Heartbeat_1.screen_refresh_pulse%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -3064,7 +3064,7 @@ data-tchmi-value="%s%PLC1.MCP_IO.Charger.3.ChargeTime.Power|BindingMode=OneWay%/
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
+    "event": "%s%PLC1.Heartbeat_1.screen_refresh_pulse%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -3215,7 +3215,7 @@ data-tchmi-value="%s%PLC1.MCP_IO.Charger.3.ChargeTime.Power|BindingMode=OneWay%/
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
+    "event": "%s%PLC1.Heartbeat_1.screen_refresh_pulse%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -3313,7 +3313,7 @@ data-tchmi-value="%s%PLC1.MCP_IO.Charger.3.ChargeTime.Power|BindingMode=OneWay%/
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
+    "event": "%s%PLC1.Heartbeat_1.screen_refresh_pulse%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -3411,7 +3411,7 @@ data-tchmi-value="%s%PLC1.MCP_IO.Charger.3.ChargeTime.Power|BindingMode=OneWay%/
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
+    "event": "%s%PLC1.Heartbeat_1.screen_refresh_pulse%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -3509,7 +3509,7 @@ data-tchmi-value="%s%PLC1.MCP_IO.Charger.3.ChargeTime.Power|BindingMode=OneWay%/
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
+    "event": "%s%PLC1.Heartbeat_1.screen_refresh_pulse%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -3607,7 +3607,7 @@ data-tchmi-value="%s%PLC1.MCP_IO.Charger.3.ChargeTime.Power|BindingMode=OneWay%/
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
+    "event": "%s%PLC1.Heartbeat_1.screen_refresh_pulse%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -3705,7 +3705,7 @@ data-tchmi-value="%s%PLC1.MCP_IO.Charger.3.ChargeTime.Power|BindingMode=OneWay%/
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
+    "event": "%s%PLC1.Heartbeat_1.screen_refresh_pulse%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -3803,7 +3803,7 @@ data-tchmi-value="%s%PLC1.MCP_IO.Charger.3.ChargeTime.Power|BindingMode=OneWay%/
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
+    "event": "%s%PLC1.Heartbeat_1.screen_refresh_pulse%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -3901,7 +3901,7 @@ data-tchmi-value="%s%PLC1.MCP_IO.Charger.3.ChargeTime.Power|BindingMode=OneWay%/
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
+    "event": "%s%PLC1.Heartbeat_1.screen_refresh_pulse%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -3999,7 +3999,7 @@ data-tchmi-value="%s%PLC1.MCP_IO.Charger.3.ChargeTime.Power|BindingMode=OneWay%/
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
+    "event": "%s%PLC1.Heartbeat_1.screen_refresh_pulse%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -4165,7 +4165,7 @@ data-tchmi-value="%s%PLC1.MCP_IO.Charger.3.ChargeTime.Power|BindingMode=OneWay%/
     ]
   },
   {
-    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
+    "event": "%s%PLC1.Heartbeat_1.screen_refresh_pulse%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -4333,7 +4333,7 @@ data-tchmi-value="%s%PLC1.MCP_IO.Charger.3.ChargeTime.Power|BindingMode=OneWay%/
     ]
   },
   {
-    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
+    "event": "%s%PLC1.Heartbeat_1.screen_refresh_pulse%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -4501,7 +4501,7 @@ data-tchmi-value="%s%PLC1.MCP_IO.Charger.3.ChargeTime.Power|BindingMode=OneWay%/
     ]
   },
   {
-    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
+    "event": "%s%PLC1.Heartbeat_1.screen_refresh_pulse%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -4669,7 +4669,7 @@ data-tchmi-value="%s%PLC1.MCP_IO.Charger.3.ChargeTime.Power|BindingMode=OneWay%/
     ]
   },
   {
-    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
+    "event": "%s%PLC1.Heartbeat_1.screen_refresh_pulse%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -4837,7 +4837,7 @@ data-tchmi-value="%s%PLC1.MCP_IO.Charger.3.ChargeTime.Power|BindingMode=OneWay%/
     ]
   },
   {
-    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
+    "event": "%s%PLC1.Heartbeat_1.screen_refresh_pulse%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -5005,7 +5005,7 @@ data-tchmi-value="%s%PLC1.MCP_IO.Charger.3.ChargeTime.Power|BindingMode=OneWay%/
     ]
   },
   {
-    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
+    "event": "%s%PLC1.Heartbeat_1.screen_refresh_pulse%/s%",
     "actions": [
       {
         "objectType": "Condition",
@@ -5173,7 +5173,7 @@ data-tchmi-value="%s%PLC1.MCP_IO.Charger.3.ChargeTime.Power|BindingMode=OneWay%/
     ]
   },
   {
-    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
+    "event": "%s%PLC1.Heartbeat_1.screen_refresh_pulse%/s%",
     "actions": [
       {
         "objectType": "Condition",

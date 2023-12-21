@@ -4437,6 +4437,16 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.Heartbeat_1.screen_refresh_pulse": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::Heartbeat_1::screen_refresh_pulse",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
         "PLC1.LCP.Section.0.AllCapsDischarged": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -12167,6 +12177,7 @@
                 "PLC1.HMI_DB.wLCA": 3,
                 "PLC1.Heartbeat.pulse_1Hz": 3,
                 "PLC1.Heartbeat.screen_refresh_pulse": 3,
+                "PLC1.Heartbeat_1.screen_refresh_pulse": 3,
                 "PLC1.LCP.Section": 3,
                 "PLC1.LCP.Section.0.AllCapsDischarged": 3,
                 "PLC1.LCP.Section.0.Form.Bank.0.Power": 3,

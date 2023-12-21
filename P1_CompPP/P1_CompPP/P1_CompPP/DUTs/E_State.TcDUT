@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="E_State" Id="{d8b04e17-a06a-475d-b7a6-e7e060a14014}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE E_State :
+(
+	SAFE			:= 0, //IDLE
+	CHARGING		:= 1, //Charge
+	CHARGECOMPLETE	:= 2, //EOC
+	//DISCONNECTING	:= 3, //Disconnect
+	DUMPING			:= 3, 
+	ABORT			:= 4,
+	TRIPPED			:= 5
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

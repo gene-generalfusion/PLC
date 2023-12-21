@@ -127,8 +127,9 @@
     <Folder Include="Imports\Videos" />
     <Folder Include="KeyboardLayouts\" />
     <Folder Include="Localization" />
-    <Folder Include="Server\TcHmiEcDiagnostics" />
+    <Folder Include="Server\TcHmiEcDiagnostics\" />
     <Folder Include="Server\TcHmiEventLogger" />
+    <Folder Include="Server\TcHmiLua" />
     <Folder Include="Server\TcHmiLua" />
     <Folder Include="Server\TcHmiLua" />
     <Folder Include="Server\TcHmiLua" />
@@ -347,6 +348,12 @@
     <Content Include="Server\ADS\ADS.Config.default.json">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="Server\ADS\ADS.Config.default.json" />
+    <Content Include="Server\ADS\ADS.Config.default.json" />
+    <Content Include="Server\ADS\ADS.Config.default.json" />
+    <Content Include="Server\ADS\ADS.Config.default.json" />
+    <Content Include="Server\ADS\ADS.Config.default.json" />
+    <Content Include="Server\ADS\ADS.Config.default.json" />
     <Content Include="Server\ADS\ADS.Config.remote.json">
       <SubType>Content</SubType>
     </Content>
@@ -383,7 +390,6 @@
     <Content Include="Server\TcHmiEcDiagnostics\TcHmiEcDiagnostics.Config.default.json">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Server\TcHmiEcDiagnostics\TcHmiEcDiagnostics.Config.default.json" />
     <Content Include="Server\TcHmiEcDiagnostics\TcHmiEcDiagnostics.Config.remote.json">
       <SubType>Content</SubType>
     </Content>
