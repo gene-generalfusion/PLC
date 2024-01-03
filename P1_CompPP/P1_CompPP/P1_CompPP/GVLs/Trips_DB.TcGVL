@@ -24,6 +24,7 @@ VAR_GLOBAL
 	DumpTimerRunout				: BOOL;
 	//SystemTimeOut				: BOOL;
 	NoFaultDetected				: BOOL;
+	TimerRunOutON				: BOOL;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

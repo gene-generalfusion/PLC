@@ -11,7 +11,16 @@ IF HMI_DB.ClearFaultPB = TRUE THEN
 	Trips_DB.ChargedTimerRunout := FALSE;
 	Trips_DB.ChargingTimerRunout := FALSE;
 	Trips_DB.DumpTimerRunout := FALSE;
-END_IF]]></ST>
+END_IF
+
+IF Trips_DB.ChargedTimerRunout = TRUE OR 
+	Trips_DB.ChargingTimerRunout = TRUE //OR 
+	//Trips_DB.DumpTimerRunout = TRUE 
+	THEN
+		Trips_DB.TimerRunOutON := TRUE; 
+		ELSE
+			Trips_DB.TimerRunOutON := FALSE;
+		END_IF]]></ST>
     </Implementation>
     <LineIds Name="HMI">
       <LineId Id="5" Count="0" />
@@ -19,6 +28,9 @@ END_IF]]></ST>
       <LineId Id="13" Count="0" />
       <LineId Id="15" Count="1" />
       <LineId Id="14" Count="0" />
+      <LineId Id="21" Count="2" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="24" Count="4" />
     </LineIds>
   </POU>
 </TcPlcObject>

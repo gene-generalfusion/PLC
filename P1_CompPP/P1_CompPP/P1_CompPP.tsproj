@@ -130,6 +130,11 @@
 	</ImageDatas>
 	<Project ProjectGUID="{ACF9125F-3860-4FE6-A24D-0667B9D4033A}" TargetNetId="5.107.141.148.1.1" Target64Bit="true" ShowHideConfigurations="#x106">
 		<System>
+			<Licenses>
+				<Target>
+					<ManualSelect>{796D380F-D49E-4C0C-A05F-500052FAC883}</ManualSelect>
+				</Target>
+			</Licenses>
 			<Tasks>
 				<Task Id="3" Priority="20" CycleTime="100000" AmsPort="350" AdtTasks="true">
 					<Name>PlcTask</Name>
@@ -367,11 +372,6 @@ EL2008 - DQ1]]></Comment>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
-							<Name>ChargeTime_DB.PreFormChargeTime_PT</Name>
-							<Type>TIME</Type>
-							<InOut>7</InOut>
-						</Var>
-						<Var>
 							<Name>ChargeTime_DB.ChargerDelay_TON</Name>
 							<Type GUID="{B67C53DE-6A92-5C5B-4076-1B25F1887AC3}">ARRAY [1..6] OF Tc2_Standard.TON</Type>
 							<InOut>7</InOut>
@@ -398,18 +398,23 @@ FormChargeTime_ET  : ARRAY[1..2] OF TIME;]]></Comment>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
-							<Name>ChargeTime_DB.PreFormChargeTime_ET</Name>
+							<Name>ChargeTime_DB.PreFormChargeTime_PT</Name>
 							<Type>TIME</Type>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
-							<Name>ChargeTime_DB.LongestChargeTime_PT</Name>
+							<Name>ChargeTime_DB.PreFormChargeTime_ET</Name>
 							<Type>TIME</Type>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
 							<Name>ChargeTime_DB.LongestChargeTime_TON</Name>
 							<Type GUID="{1337BBBA-9A3F-D9E7-4ED6-FA23E60881AB}" Namespace="Tc2_Standard">TON</Type>
+							<InOut>7</InOut>
+						</Var>
+						<Var>
+							<Name>ChargeTime_DB.LongestChargeTime_PT</Name>
+							<Type>TIME</Type>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
@@ -428,13 +433,13 @@ FormChargeTime_ET  : ARRAY[1..2] OF TIME;]]></Comment>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
-							<Name>ChargeTime_DB.PreFormChargingTimeElapse</Name>
-							<Type>INT</Type>
+							<Name>ChargeTime_DB.ChargingTimeElapse_TON</Name>
+							<Type GUID="{B67C53DE-6A92-5C5B-4076-1B25F1887AC3}">ARRAY [1..6] OF Tc2_Standard.TON</Type>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
-							<Name>ChargeTime_DB.ChargingTimeElapse_TON</Name>
-							<Type GUID="{B67C53DE-6A92-5C5B-4076-1B25F1887AC3}">ARRAY [1..6] OF Tc2_Standard.TON</Type>
+							<Name>ChargeTime_DB.PreFormChargingTimeElapse</Name>
+							<Type>INT</Type>
 							<InOut>7</InOut>
 						</Var>
 						<Var>

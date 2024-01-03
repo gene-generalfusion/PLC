@@ -37,12 +37,17 @@ END_IF
 IF MCP_IO.Charger[1].voltageFeedback <= 10 AND 
 	MCP_IO.Charger[1].HV_isON = FALSE AND 
 	MCP_IO.Charger[1].inhibited = TRUE AND 
-	LCP1_IO.Segment[1].Module[1].DumpRly_open = FALSE
+	LCP1_IO.Segment[1].Module[1].DumpRly_open = FALSE AND 
+	LCP1_IO.Segment[1].Module[1].VoltageFeedback = 0 (* AND all other module voltage feedback = 0 *)
 THEN
 	(*MCP_IO.Charger[2].voltageFeedback <= 10 AND *)
 	SystemIsSafe := TRUE;
 	ELSE
 		SystemIsSafe := FALSE;
+END_IF
+
+IF LCP1_IO.Segment[1].Module[1].VoltageFeedback = 0 THEN //repeat for all modules
+	LCP1_IO.Segment[1].Module[1].ModuleCharged := FALSE; //for status light only
 END_IF
 
 IF MCP_IO.Charger[1].EndOfCharge = TRUE AND
@@ -74,11 +79,15 @@ END_IF;
       <LineId Id="41" Count="0" />
       <LineId Id="15" Count="0" />
       <LineId Id="53" Count="2" />
+      <LineId Id="100" Count="0" />
       <LineId Id="51" Count="0" />
       <LineId Id="38" Count="0" />
       <LineId Id="40" Count="0" />
       <LineId Id="56" Count="1" />
       <LineId Id="39" Count="0" />
+      <LineId Id="102" Count="0" />
+      <LineId Id="101" Count="0" />
+      <LineId Id="103" Count="1" />
       <LineId Id="70" Count="0" />
       <LineId Id="69" Count="0" />
       <LineId Id="78" Count="0" />

@@ -17,6 +17,7 @@
         "remote"
     ],
     "COOKIEEXPIRATIONDATE": "P30D",
+    "CUSTOM_CSS": "",
     "DEFAULTAUTHEXTENSION": "TcHmiUserManagement",
     "DEFAULTDOCUMENT": [
         "Default.html"
@@ -107,6 +108,7 @@
             "ENABLED": true,
             "NAME": "TcHmiSqliteHistorize",
             "PATH": "..\\..\\Packages\\Beckhoff.TwinCAT.HMI.SqliteHistorize.19.0.0\\runtimes\\win-x64\\native\\",
+            "PROCESSID": -1,
             "REQUIRED": false,
             "STARTUPTYPE": 1
         },
@@ -127,7 +129,16 @@
             "STARTUPTYPE": 1
         }
     },
-    "FILES": {},
+    "FILES": {
+        "/Properties/tchmicertificates.config.json": {
+            "ACCESS": 0,
+            "HTTPSTATUSCODE": "404"
+        },
+        "/Properties/tchmipublish.config.json": {
+            "ACCESS": 0,
+            "HTTPSTATUSCODE": "404"
+        }
+    },
     "FILESREGEX": [
         {
             "FILESHTTPHEADERS": "Content-Security-Policy: frame-ancestors 'self'",
@@ -135,6 +146,7 @@
         }
     ],
     "FLOODPROTECTION": 500,
+    "FLOODPROTECTION_LOG_INTERVAL": "PT1M",
     "GLOBALHTTPHEADERS": "{LASTMODIFIED}\nStrict-Transport-Security: max-age=31536000; includeSubDomains\nX-Content-Type-Options: nosniff",
     "GZIPENABLED": true,
     "GZIPMINSIZE": 800,
@@ -492,17 +504,18 @@
     "REMOTESERVERS": {},
     "REMOTESERVERS_CERTIFICATES": [],
     "REQUIREAUTH": 0,
-    "REVALIDATION": true,
     "SAMESITE_ATTRIBUTE": 2,
     "SELFSIGNEDROOTCA": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURvRENDQW9pZ0F3SUJBZ0lKQUliNHlLdGc3eitjTUEwR0NTcUdTSWIzRFFFQkN3VUFNRUl4Q3pBSkJnTlYKQkFZVEFrUkZNUnN3R1FZRFZRUUtEQkpVZDJsdVEwRlVJRWhOU1NCVFpYSjJaWEl4RmpBVUJnTlZCQU1NRFVkRwpURUZRTXpRMVgzSnZiM1F3SUJjTk1qTXhNakV5TWpFeE16UTNXaGdQTWpBMk1qQTBNVEV5TVRFek5EZGFNRUl4CkN6QUpCZ05WQkFZVEFrUkZNUnN3R1FZRFZRUUtEQkpVZDJsdVEwRlVJRWhOU1NCVFpYSjJaWEl4RmpBVUJnTlYKQkFNTURVZEdURUZRTXpRMVgzSnZiM1F3Z2dFaU1BMEdDU3FHU0liM0RRRUJBUVVBQTRJQkR3QXdnZ0VLQW9JQgpBUUN0eEU3Tyt2SUtrN1pTR3dicTdNN0ltWG9YS3hONUV0cTY0bzY1Nm80aHV2NHBtZnBJbEhtbUhYcXVqc2lCCllHQnFHcjZhcm9WNmFXQ2ZKOTRrczMzVXFOaTltY09rOC8veHJibFBuQ1NGL0k3L2R2QTNiZXZjVVNTSmZBaUYKM1VNdjROSkQ1VFY0ZHlnME5wamVkQWh4aUpLaDlMcjR4QW1mZDBGNEZnb0diVHBDbzMxNklnNTJkZG5wcGpYYgp3TUVPNVd0K0ZuRlZ0SnZ3YjE2YWVabmcrYWVBdDQvSFNOOVhDL1lMaUxyQ2Vza1VxS3R3Y1NwZlYrbXB0a3pqCmtXdWVaNWVBQVBPaFVkdzR0dTFkL0xEbWFTSGk2bTZUR004cGxscG5DQzBwNVloN2xSdGpKRVVySnRRcnl6RWoKc2VDckhhNk9PK3NxQnA2c2ttZEE4eFAvQWdNQkFBR2pnWll3Z1pNd1lRWURWUjBSQkZvd1dJSUpiRzlqWVd4bwpiM04waHdSL0FBQUJoeEFBQUFBQUFBQUFBQUFBQUFBQUFBQUJnZ2hIUmt4QlVETTBOWUlSUjBaTVFWQXpORFV1CloyWXViRzlqWVd5SEJBb0tLRCtIRVA2QUFBQUFBQUFBT0pIUVRnblVQTEl3SFFZRFZSME9CQllFRkxHODVhUEQKczBvOHk5ZDBsZ2w5ay81akxDd3lNQThHQTFVZEV3RUIvd1FGTUFNQkFmOHdEUVlKS29aSWh2Y05BUUVMQlFBRApnZ0VCQUpiQmxZME9kUjdiSzhvcEp3OE41QlNsandxUXNmNUpkTXBzSll2d0tKSWZoelUyQkUxdjJ3Myt4dHVWCnFmamhFU0RVbHlsdVUrNjhTTW9rWHF0Mm51ZE5aSURleWlNWFBaVkF0Szc5TkFickxqN3lPR3JFVGZXN1UydjMKTEo3TGY3Nmt3QWo4b282dC8wWWVIaDl0RkEzRFBCQTAvT3QzQk4rK2VLT3ZvK21IaG1pUWhGRW05OEhXdWE5Tgp4K2Zuakp3NTltN3Y0TTJsUDlOOXJ1Y0FGTWx0d2c3ZEZKdkxTSStQYkNXU0RnZUlDbmpMQ3NPbDFwc3JETm5xCldyRDI5Ykp3aXltOEdqcVd0dEZNOUptRmpienpOQnQxdDNMZEZrelhvZDZmWHpCNFBJanljbW1uVHFiKyt3bnAKajlYNjdLdVFjd3lBeHlZeWJyZW9UZlNCS0lVPQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==",
     "SELFSIGNEDROOTCAKEY": "LS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0tCk1JSUV2UUlCQURBTkJna3Foa2lHOXcwQkFRRUZBQVNDQktjd2dnU2pBZ0VBQW9JQkFRRGN0OTN2N00raXpnSWwKQ0dheHdXcHVZQ2YxVVhjdldlMFpQdXhNa3BDQ0xiR2FWTGtSQ082SDN1a21oczY2YzhMMTRtUFA3dVRXYW4xcQp0MFNRWDV6dnhMUTBwejNrbU04bFVQcUp5Q0g3NitVa2tMTTQxdEl4VFhCSjJoSW5QQnVMdnRVYlUwWVNVdGMvCmkybnBMRWFxU0lmR2tpVE1INnVlY2l1WlVvUkIwSit1amtMcVZySXIzUVJ5aWJkdy8ybUc3OVh5Q0YrdzZPL0cKMEwvTzJHbnNPSUkrYkhOaHZNcGwvZU9RckUvTFZhTitnMlZCNkJvWUFyQVpzTDA2Y3R2VWhFNWhtVldiWkM2awppeW1kRGtwWGROeklGeEtCOCs5U05UWXRDWmZiaGVoSmthc2FpU1RPd2hZcFUxVFViaTQwMEVScktQejNTYW1KCmh2eDFoV0JqQWdNQkFBRUNnZ0VCQUtwa2Y3K1RVQkJkZmFaZFAvcUdXTVh4RWFmL1JrV1Y1TWFTbnhYV0tCMTMKYlI2NXZVMTdXYm9teWxObHl2NkNFOGFEQ1k4aTNDTHpmdkw5bkw3Z01XV2dzNFhhZnB1VnBJVW9hT0lwVUtNTgpUNDdVN3FjNG9IaFRVaGFSZFdZNHJ3TkpSWGVjNkFHSlZvYkY5L044ck9rVXFVMFEwYnVMejQrNGtCUURjZnJqCnhqenhwbmwyZVRPTDVXTVlpMXBWd2VOaVRXdC9TM0dJdWRpNWJ2QmtFZzNQcW56NzNIUmVnNUszbUhETTU4dVUKUlZTcVExaGNyczZqM1VxNzlEcWorWE5yMW9lS2dSaFh5cG9JMkpBSHdUdzJUTnppZmFiZVQzbFRmK09veEI3TwpLMld6VW9tMFBSRFBVUXllUlFGN1Y5MnFhTUswSEJsNVJWMWhLazZjVFlFQ2dZRUEvVzZqRWJvenU2aVR6M1VFClNyTktWWk44eGNLNkxMclg0ZjFPUitaS1lWQko2NXUrMHFhQisvaEJkZEpPdVNqTXpablZVYlU2Y2Q0cEdMZjEKdnpmWlk0Zk4xaTBSKzVDZG15VDJEaENKK0Y3S0I5RnR1blI5WFB2MnhCMGt2NmsyZkZyRFAyaEhUMmNscDJXdQpaM1VtYm9oZGhseE1MWTl3L2hzckRJeGxMRU1DZ1lFQTN2UmdDYnhLYXFXMU9JUmdzQTJvZDdJaXJZSUN3dkR4CjlYdHpCdjRxWWNacWpkNVNpdWJmRkx3UlBKY0F3YlpiMjg4Qlp3NEU0am5ROHdzdUIyc2xXRk1BTVQrYXllR3YKVmh6WXVaWER4bUViRXpSTFVZSWlYNVB6REF5Q3R0TGI2ZGdBdVpLclhtNXJkQ05lNCtHUGZicGh1cG9CVEV2Qgp6Z21WYmQ5bHlXRUNnWUJkbjhqSVhNU04yQm82OHR6U0IrZzNNeFJPTHNEK2swdjdwY3VNamt2K0pWNFpsMkRvCml6REwrQXVlemtIYzczQ3hwOW9CcEhUaDZoTyttUDlGVkFtUVZuUTVZazhaWTNTR0F5S1BVWmJXMVpYSFM1eEEKM0pZUGl0bS8yNUJlNmRGQ0lYbXQ3QVVrRlZQNHdueXFwY0c3NWM2L08wdTlMUmV1R0RWUUhuR2w1d0tCZ0FKZwp3dUYzczZkOWl2aEdXUzJuaDZOM0wrMS8xSDIxeWk3ZkdUUDY1QUxVOWUvN2JnL3pORy9wTFpuaTFtdzZnTEpRCmUraFlldTdheFFMQ25NUVJmWDE2clNiWlVkSlRhT1pYT215SVQyVS9SZVduaWlJZGJEWnV3b25mWEVtTTZER1AKVHpxcmVNNXlDUTFkRHpjSkFkbktjaDVtWkJzbk43TDE0VFVoeTlraEFvR0FKVEdUVDl0ZXIzNXNOT1pCOFV3YgowTXlzNGRaRzJjYWxlNDhSVFlGNXR3azJESDkyK2dRRElwRFlrREZJeXFlWjR5ck5rbUkzQzUwc1lBbXNLeHB3CmpENlRiWWpGWHA5N1Z5dEIxclVZSlRyc3VDSDBtNWJyQ0QrWlZNemI1Z1VWeTk1aEt6WTRUdEl2NHFEK2dGQlIKRGJ5QllITklMMDNEc1V6dVlQUUJRYVU9Ci0tLS0tRU5EIFBSSVZBVEUgS0VZLS0tLS0K",
     "SESSIONSTORAGE": {},
     "SHOW_CONFIGURATION_HINTS": true,
+    "SHOW_MAINTENANCE_MODE": true,
     "SHUTDOWNTIMEOUT": "PT10S",
     "SOCKET_TIMEOUT": "PT10S",
     "SYMBOLS": {
         "ADS.AdsSyncReadDeviceInfoReq": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -515,10 +528,12 @@
                     "type": "string"
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "ADS.AdsSyncReadReq": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -549,10 +564,12 @@
                     "type": "object"
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "ADS.AdsSyncReadStateReq": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -601,10 +618,12 @@
                     ]
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "ADS.AdsSyncReadWriteReq": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -641,10 +660,12 @@
                     "type": "object"
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "ADS.AdsSyncWriteControlReq": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -677,10 +698,12 @@
                     "type": "object"
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "ADS.AdsSyncWriteReq": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -713,10 +736,12 @@
                     "type": "object"
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "ADS.CheckLicense": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -741,20 +766,24 @@
                     "type": "string"
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "ADS.Config": {
             "ACCESS": 0,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": false,
             "HIDDEN": true,
             "MAPPING": "Config",
             "OPTIONS": {},
             "SCHEMA": {},
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "ADS.Diagnostics": {
             "ACCESS": 1,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -794,6 +823,13 @@
                                     "readOnly": true,
                                     "type": "string"
                                 },
+                                "adsVersionBuild": {
+                                    "hidden": true,
+                                    "minimum": 0.0,
+                                    "propertyOrder": 9,
+                                    "readOnly": true,
+                                    "type": "integer"
+                                },
                                 "connectionState": {
                                     "propertyOrder": 1,
                                     "readOnly": true,
@@ -806,7 +842,7 @@
                                 },
                                 "isUserModeRuntime": {
                                     "hidden": true,
-                                    "propertyOrder": 9,
+                                    "propertyOrder": 10,
                                     "readOnly": true,
                                     "type": "boolean"
                                 },
@@ -830,13 +866,14 @@
                     }
                 },
                 "readOnly": true,
-                "transient": true,
                 "type": "object"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "ADS.GetDefinitions": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -845,10 +882,12 @@
             "SCHEMA": {
                 "function": true
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "ADS.GetSchema": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -860,10 +899,25 @@
                     "type": "string"
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
+            "USEMAPPING": true
+        },
+        "ADS.GetSystemId": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": false,
+            "HIDDEN": true,
+            "MAPPING": "GetSystemId",
+            "OPTIONS": {},
+            "SCHEMA": {
+                "function": true,
+                "type": "string"
+            },
             "USEMAPPING": true
         },
         "ADS.ListCommonTypes": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -888,10 +942,12 @@
                 },
                 "type": "array"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "ADS.ListRoutes": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -921,10 +977,12 @@
                 },
                 "type": "array"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "ADS.ListSymbols": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -933,10 +991,12 @@
             "SCHEMA": {
                 "function": true
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "ADS.RuntimePorts": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -968,6 +1028,7 @@
                         {
                             "properties": {
                                 "NETID": {
+                                    "format": "amsnetid",
                                     "type": "string"
                                 },
                                 "all": {
@@ -983,10 +1044,12 @@
                     ]
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "AddOrChangeUser": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSrv",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -1069,10 +1132,12 @@
                     "type": "object"
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "AddSymbol": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSrv",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -1143,10 +1208,12 @@
                     "type": "object"
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "AddSymbols": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSrv",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -1197,10 +1264,12 @@
                     "type": "object"
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "AddToConfiguration": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSrv",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -1231,10 +1300,12 @@
                     "type": "object"
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "ChangeUserSettings": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSrv",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -1246,7 +1317,7 @@
                     "anyOf": [
                         {
                             "additionalProperties": false,
-                            "description": "Changes to the USERGROUPUSERS entry of the current user",
+                            "description": "Changes to the USERGROUPUSERS entry of the current user.",
                             "properties": {
                                 "changePassword": {
                                     "allOf": [
@@ -1283,10 +1354,12 @@
                     ]
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "ConfirmAlarm": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSrv",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -1298,10 +1371,12 @@
                     "$ref": "tchmi:server#/definitions/alarm"
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "Copy": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSrv",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -1336,10 +1411,12 @@
                     "type": "object"
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "CreateEvent": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSrv",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -1351,6 +1428,7 @@
                     "$ref": "tchmi:server#/definitions/event"
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "DefaultAuthExtension": {
@@ -1385,6 +1463,7 @@
         },
         "Delete": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSrv",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -1409,10 +1488,12 @@
                     "type": "object"
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "DeleteConfiguration": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSrv",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -1424,10 +1505,12 @@
                     "type": "string"
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "Diagnostics": {
             "ACCESS": 1,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSrv",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -1439,29 +1522,24 @@
                 "properties": {
                     "ACCEPTEDSOCKETS": {
                         "readOnly": true,
-                        "transient": true,
                         "type": "integer"
                     },
                     "ACTIVESESSIONS": {
                         "link": "Sessions",
                         "readOnly": true,
-                        "transient": true,
                         "type": "integer"
                     },
                     "ACTIVESOCKETS": {
                         "readOnly": true,
-                        "transient": true,
                         "type": "integer"
                     },
                     "ARCHITECTURE": {
                         "readOnly": true,
-                        "transient": true,
                         "type": "string"
                     },
                     "DISCOVERY_RUNNING": {
                         "hidden": true,
                         "readOnly": true,
-                        "transient": true,
                         "type": "boolean"
                     },
                     "DOTNETCLASSICVERSIONS": {
@@ -1470,7 +1548,6 @@
                             "type": "string"
                         },
                         "readOnly": true,
-                        "transient": true,
                         "type": "array"
                     },
                     "DOTNETCOREVERSIONS": {
@@ -1479,7 +1556,6 @@
                             "type": "string"
                         },
                         "readOnly": true,
-                        "transient": true,
                         "type": "array"
                     },
                     "DOTNETVERSIONS": {
@@ -1488,7 +1564,6 @@
                             "type": "string"
                         },
                         "readOnly": true,
-                        "transient": true,
                         "type": "array"
                     },
                     "LICENSE": {
@@ -1496,19 +1571,16 @@
                             "CLIENTS": {
                                 "propertyOrder": 2,
                                 "readOnly": true,
-                                "transient": true,
                                 "type": "integer"
                             },
                             "EXTENSIONS": {
                                 "propertyOrder": 6,
                                 "readOnly": true,
-                                "transient": true,
                                 "type": "boolean"
                             },
                             "SERVERS": {
                                 "propertyOrder": 1,
                                 "readOnly": true,
-                                "transient": true,
                                 "type": "integer"
                             },
                             "STATE": {
@@ -1528,30 +1600,25 @@
                             "TARGETS": {
                                 "propertyOrder": 4,
                                 "readOnly": true,
-                                "transient": true,
                                 "type": "integer"
                             },
                             "USEDCLIENTS": {
                                 "propertyOrder": 3,
                                 "readOnly": true,
-                                "transient": true,
                                 "type": "integer"
                             },
                             "USEDTARGETS": {
                                 "propertyOrder": 5,
                                 "readOnly": true,
-                                "transient": true,
                                 "type": "integer"
                             }
                         },
                         "readOnly": true,
-                        "transient": true,
                         "type": "object"
                     },
                     "MEMORYUSAGE": {
                         "displayClass": "megabyte",
                         "readOnly": true,
-                        "transient": true,
                         "type": "number"
                     },
                     "REMOTESERVERS": {
@@ -1576,7 +1643,6 @@
                                     ],
                                     "propertyOrder": 1,
                                     "readOnly": true,
-                                    "transient": true,
                                     "type": "string"
                                 }
                             },
@@ -1586,42 +1652,69 @@
                             "type": "object"
                         },
                         "readOnly": true,
-                        "transient": true,
                         "type": "object"
                     },
                     "SERVERTIME": {
                         "format": "date-time",
                         "readOnly": true,
-                        "transient": true,
                         "type": "string"
                     },
                     "TRAFFICIN": {
                         "displayClass": "byte",
                         "readOnly": true,
-                        "transient": true,
                         "type": "number"
                     },
                     "TRAFFICOUT": {
                         "displayClass": "byte",
                         "readOnly": true,
-                        "transient": true,
                         "type": "number"
                     },
                     "UPTIME": {
                         "format": "timespan",
                         "readOnly": true,
-                        "transient": true,
                         "type": "string"
                     }
                 },
                 "readOnly": true,
-                "transient": true,
                 "type": "object"
+            },
+            "SUBSYMBOL_MAPPING": "",
+            "USEMAPPING": true
+        },
+        "Export": {
+            "ACCESS": 3,
+            "DOMAIN": "TcHmiSrv",
+            "DYNAMIC": false,
+            "HIDDEN": true,
+            "MAPPING": "Export",
+            "OPTIONS": {},
+            "SCHEMA": {
+                "function": true,
+                "writeValue": {
+                    "properties": {
+                        "domain": {
+                            "type": "string"
+                        },
+                        "full": {
+                            "default": false,
+                            "type": "boolean"
+                        },
+                        "name": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "name",
+                        "domain"
+                    ],
+                    "type": "object"
+                }
             },
             "USEMAPPING": true
         },
         "ForceLogout": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSrv",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -1662,10 +1755,12 @@
                     ]
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "GetConfiguration": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSrv",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -1693,10 +1788,12 @@
                     "type": "object"
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "GetCurrentUser": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSrv",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -1754,10 +1851,12 @@
                 },
                 "type": "object"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "GetDefinitions": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSrv",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -1790,10 +1889,41 @@
                     "type": "object"
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
+            "USEMAPPING": true
+        },
+        "GetFileInformation": {
+            "ACCESS": 3,
+            "DOMAIN": "TcHmiSrv",
+            "DYNAMIC": false,
+            "HIDDEN": true,
+            "MAPPING": "GetFileInformation",
+            "OPTIONS": {},
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "function": true
+                    },
+                    {
+                        "$ref": "tchmi:server#/definitions/fileInfo"
+                    },
+                    {
+                        "required": [
+                            "modificationTime",
+                            "fileSize",
+                            "access"
+                        ]
+                    }
+                ],
+                "writeValue": {
+                    "type": "string"
+                }
+            },
             "USEMAPPING": true
         },
         "GetSchema": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSrv",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -1832,10 +1962,12 @@
                     "type": "object"
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "GetServerInformation": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSrv",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -1845,10 +1977,12 @@
                 "function": true,
                 "type": "object"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "GetSymbolAccess": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSrv",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -1867,10 +2001,12 @@
                     "type": "string"
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "Heartbeat": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSrv",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -1879,10 +2015,12 @@
             "SCHEMA": {
                 "function": true
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "Import": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSrv",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -1894,10 +2032,12 @@
                     "$ref": "tchmi:general#/definitions/Any"
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "IsAuthRequired": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSrv",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -1907,10 +2047,12 @@
                 "function": true,
                 "type": "boolean"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "ListActiveSessions": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSrv",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -1962,6 +2104,10 @@
                     "subscriptions": {
                         "additionalProperties": {
                             "properties": {
+                                "averageDuration": {
+                                    "format": "timespan",
+                                    "type": "string"
+                                },
                                 "clientCount": {
                                     "type": "integer"
                                 },
@@ -1971,6 +2117,11 @@
                                             "lastSent": {
                                                 "format": "date-time",
                                                 "type": "string"
+                                            },
+                                            "readValueJsonLength": {
+                                                "displayClass": "byte",
+                                                "minimum": 0.0,
+                                                "type": "integer"
                                             },
                                             "symbol": {
                                                 "type": "string"
@@ -1987,6 +2138,11 @@
                                     "type": "integer"
                                 },
                                 "intervalTime": {
+                                    "type": "integer"
+                                },
+                                "readValueJsonLength": {
+                                    "displayClass": "byte",
+                                    "minimum": 0.0,
                                     "type": "integer"
                                 },
                                 "type": {
@@ -2008,12 +2164,34 @@
                         "type": "object"
                     }
                 },
-                "type": "object"
+                "type": "object",
+                "writeValue": {
+                    "anyOf": [
+                        {
+                            "properties": {
+                                "averageDuration": {
+                                    "default": false,
+                                    "type": "boolean"
+                                },
+                                "readValueJsonLength": {
+                                    "default": false,
+                                    "type": "boolean"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        {
+                            "$ref": "tchmi:general#/definitions/VOID"
+                        }
+                    ]
+                }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "ListConfigurations": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSrv",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -2026,10 +2204,12 @@
                 },
                 "type": "array"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "ListDomains": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSrv",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -2118,10 +2298,12 @@
                 "function": true,
                 "type": "object"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "ListEvents": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSrv",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -2204,10 +2386,12 @@
                 },
                 "type": "array"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "ListFiles": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSrv",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -2215,34 +2399,21 @@
             "OPTIONS": {},
             "SCHEMA": {
                 "additionalProperties": {
-                    "properties": {
-                        "fileFlags": {
-                            "items": {
-                                "enum": [
-                                    "Directory",
-                                    "ReadOnly",
-                                    "UserAccessReadOnly",
-                                    "VirtualDirectory"
-                                ],
-                                "type": "string"
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:server#/definitions/fileInfo"
+                        },
+                        {
+                            "properties": {
+                                "link": {
+                                    "type": "string"
+                                }
                             },
-                            "type": "array"
-                        },
-                        "fileSize": {
-                            "displayClass": "kilobyte",
-                            "type": "number"
-                        },
-                        "link": {
-                            "type": "string"
-                        },
-                        "modificationTime": {
-                            "type": "string"
+                            "required": [
+                                "fileFlags"
+                            ]
                         }
-                    },
-                    "required": [
-                        "fileFlags"
-                    ],
-                    "type": "object"
+                    ]
                 },
                 "function": true,
                 "type": "object",
@@ -2257,10 +2428,12 @@
                     ]
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "ListInternalSymbols": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSrv",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -2270,10 +2443,12 @@
                 "function": true,
                 "type": "object"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "ListSymbolNames": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSrv",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -2302,10 +2477,12 @@
                     ]
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "ListSymbols": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSrv",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -2318,10 +2495,12 @@
                 "function": true,
                 "type": "object"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "ListUserNames": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSrv",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -2335,10 +2514,12 @@
                 },
                 "type": "array"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "ListUsers": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSrv",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -2366,10 +2547,12 @@
                 },
                 "type": "array"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "LocalizeText": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSrv",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -2410,10 +2593,12 @@
                     ]
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "Login": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSrv",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -2425,6 +2610,10 @@
                 "type": "string",
                 "writeValue": {
                     "properties": {
+                        "maintenanceMode": {
+                            "default": false,
+                            "type": "boolean"
+                        },
                         "password": {
                             "format": "encrypted",
                             "type": "string"
@@ -2440,10 +2629,12 @@
                     "type": "object"
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "Logout": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSrv",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -2452,283 +2643,395 @@
             "SCHEMA": {
                 "function": true
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.ChargeTime_DB.ChargeTimeStartDelay.0": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::ChargeTime_DB::ChargeTimeStartDelay[0]",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.ChargeTime_DB.ChargeTimeStartDelay.1": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::ChargeTime_DB::ChargeTimeStartDelay[1]",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.ChargeTime_DB.ChargeTimeStartDelay.2": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::ChargeTime_DB::ChargeTimeStartDelay[2]",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.ChargeTime_DB.ChargeTimeStartDelay.3": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::ChargeTime_DB::ChargeTimeStartDelay[3]",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.ChargeTime_DB.ChargeTimeStartDelay.4": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::ChargeTime_DB::ChargeTimeStartDelay[4]",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.ChargeTime_DB.ChargeTimeStartDelay.5": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::ChargeTime_DB::ChargeTimeStartDelay[5]",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.ChargeTime_DB.ChargingTimeElapse.0": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::ChargeTime_DB::ChargingTimeElapse[0]",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.ChargeTime_DB.ChargingTimeElapse.1": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::ChargeTime_DB::ChargingTimeElapse[1]",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.ChargeTime_DB.ChargingTimeElapse.2": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::ChargeTime_DB::ChargingTimeElapse[2]",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.ChargeTime_DB.ChargingTimeElapse.3": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::ChargeTime_DB::ChargingTimeElapse[3]",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.ChargeTime_DB.ChargingTimeElapse.4": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::ChargeTime_DB::ChargingTimeElapse[4]",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.ChargeTime_DB.ChargingTimeElapse.5": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::ChargeTime_DB::ChargingTimeElapse[5]",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.AbortPB": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::AbortPB",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.AllChargeRelayCloseBP": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::AllChargeRelayCloseBP",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.AllDumpRelaysOpenBP": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::AllDumpRelaysOpenBP",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.ChargePB": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::ChargePB",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.ChargerHVOFF_rlyDelayPT_INT": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::ChargerHVOFF_rlyDelayPT_INT",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.ChargingRunOutTMR_elapse": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::ChargingRunOutTMR_elapse",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.ClearFaultPB": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::ClearFaultPB",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.DumpPB": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::DumpPB",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.FirePB": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::FirePB",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.HVONdelayPT_INT": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::HVONdelayPT_INT",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.RunOutTMR_PT_INT": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::RunOutTMR_PT_INT",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.RunOutTMR_elapse": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::RunOutTMR_elapse",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.TDKLoad.0.NumOfCharger": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::TDKLoad[0]::NumOfCharger",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.TDKLoad.0.PSratedV": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::TDKLoad[0]::PSratedV",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.TDKLoad.0.RequiredChargedV": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::TDKLoad[0]::RequiredChargedV",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.TDKLoad.0.TotalCapacitance": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::TDKLoad[0]::TotalCapacitance",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -2739,53 +3042,73 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.TDKLoad.0.wLCA": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::TDKLoad[0]::wLCA",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.TDKLoad.1.NumOfCharger": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::TDKLoad[1]::NumOfCharger",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.TDKLoad.1.PSratedV": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::TDKLoad[1]::PSratedV",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.TDKLoad.1.RequiredChargedV": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::TDKLoad[1]::RequiredChargedV",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.TDKLoad.1.TotalCapacitance": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::TDKLoad[1]::TotalCapacitance",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -2796,53 +3119,73 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.TDKLoad.1.wLCA": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::TDKLoad[1]::wLCA",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.TDKLoad.2.NumOfCharger": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::TDKLoad[2]::NumOfCharger",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.TDKLoad.2.PSratedV": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::TDKLoad[2]::PSratedV",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.TDKLoad.2.RequiredChargedV": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::TDKLoad[2]::RequiredChargedV",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.TDKLoad.2.TotalCapacitance": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::TDKLoad[2]::TotalCapacitance",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -2853,53 +3196,73 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.TDKLoad.2.wLCA": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::TDKLoad[2]::wLCA",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.TDKLoad.3.NumOfCharger": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::TDKLoad[3]::NumOfCharger",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.TDKLoad.3.PSratedV": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::TDKLoad[3]::PSratedV",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.TDKLoad.3.RequiredChargedV": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::TDKLoad[3]::RequiredChargedV",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.TDKLoad.3.TotalCapacitance": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::TDKLoad[3]::TotalCapacitance",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -2910,53 +3273,73 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.TDKLoad.3.wLCA": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::TDKLoad[3]::wLCA",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.TDKLoad.4.NumOfCharger": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::TDKLoad[4]::NumOfCharger",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.TDKLoad.4.PSratedV": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::TDKLoad[4]::PSratedV",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.TDKLoad.4.RequiredChargedV": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::TDKLoad[4]::RequiredChargedV",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.TDKLoad.4.TotalCapacitance": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::TDKLoad[4]::TotalCapacitance",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -2967,53 +3350,73 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.TDKLoad.4.wLCA": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::TDKLoad[4]::wLCA",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.TDKLoad.5.NumOfCharger": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::TDKLoad[5]::NumOfCharger",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.TDKLoad.5.PSratedV": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::TDKLoad[5]::PSratedV",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.TDKLoad.5.RequiredChargedV": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::TDKLoad[5]::RequiredChargedV",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.TDKLoad.5.TotalCapacitance": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::TDKLoad[5]::TotalCapacitance",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -3024,73 +3427,101 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.TDKLoad.5.wLCA": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::TDKLoad[5]::wLCA",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Heartbeat.pulse_1Hz": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Heartbeat::pulse_1Hz",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Heartbeat.screen_refresh_pulse": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Heartbeat::screen_refresh_pulse",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.0.ChargeTime.Power": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[0]::ChargeTime::Power",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.0.ChargeTime.timeToChargeLoad": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[0]::ChargeTime::timeToChargeLoad",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.0.ChargerType_12kV": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[0]::ChargerType_12kV",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.0.ChargerType_50kV": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[0]::ChargerType_50kV",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -3101,103 +3532,143 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.0.EndOfCharge": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[0]::EndOfCharge",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.0.HV_ON": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[0]::HV_ON",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.0.HV_isON": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[0]::HV_isON",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.0.InterlockOpen": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[0]::InterlockOpen",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.0.LoadFaulted": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[0]::LoadFaulted",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.0.LossHVON": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[0]::LossHVON",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.0.LossInhibit": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[0]::LossInhibit",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.0.SummaryFaulted": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[0]::SummaryFaulted",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.0.currentFeedback": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[0]::currentFeedback",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.0.inhibit": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[0]::inhibit",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -3208,13 +3679,17 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.0.inhibited": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[0]::inhibited",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -3225,63 +3700,87 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.0.voltageFeedback": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[0]::voltageFeedback",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.0.voltageSP": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[0]::voltageSP",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/DINT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.1.ChargeTime.Power": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[1]::ChargeTime::Power",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.1.ChargeTime.timeToChargeLoad": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[1]::ChargeTime::timeToChargeLoad",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.1.ChargerType_12kV": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[1]::ChargerType_12kV",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.1.ChargerType_50kV": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[1]::ChargerType_50kV",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -3292,93 +3791,129 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.1.EndOfCharge": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[1]::EndOfCharge",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.1.HV_ON": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[1]::HV_ON",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.1.HV_isON": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[1]::HV_isON",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.1.LoadFaulted": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[1]::LoadFaulted",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.1.LossHVON": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[1]::LossHVON",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.1.LossInhibit": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[1]::LossInhibit",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.1.SummaryFaulted": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[1]::SummaryFaulted",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.1.currentFeedback": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[1]::currentFeedback",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.1.inhibit": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[1]::inhibit",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -3389,13 +3924,17 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.1.inhibited": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[1]::inhibited",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -3406,63 +3945,87 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.1.voltageFeedback": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[1]::voltageFeedback",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.1.voltageSP": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[1]::voltageSP",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/DINT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.2.ChargeTime.Power": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[2]::ChargeTime::Power",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.2.ChargeTime.timeToChargeLoad": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[2]::ChargeTime::timeToChargeLoad",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.2.ChargerType_12kV": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[2]::ChargerType_12kV",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.2.ChargerType_50kV": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[2]::ChargerType_50kV",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -3473,83 +4036,115 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.2.EndOfCharge": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[2]::EndOfCharge",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.2.HV_ON": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[2]::HV_ON",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.2.HV_isON": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[2]::HV_isON",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.2.LoadFaulted": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[2]::LoadFaulted",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.2.LossHVON": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[2]::LossHVON",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.2.SummaryFaulted": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[2]::SummaryFaulted",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.2.currentFeedback": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[2]::currentFeedback",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.2.inhibit": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[2]::inhibit",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -3560,13 +4155,17 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.2.inhibited": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[2]::inhibited",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -3577,63 +4176,87 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.2.voltageFeedback": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[2]::voltageFeedback",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.2.voltageSP": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[2]::voltageSP",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/DINT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.3.ChargeTime.Power": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[3]::ChargeTime::Power",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.3.ChargeTime.timeToChargeLoad": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[3]::ChargeTime::timeToChargeLoad",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.3.ChargerType_12kV": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[3]::ChargerType_12kV",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.3.ChargerType_50kV": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[3]::ChargerType_50kV",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -3644,73 +4267,101 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.3.EndOfCharge": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[3]::EndOfCharge",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.3.HV_ON": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[3]::HV_ON",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.3.HV_isON": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[3]::HV_isON",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.3.LoadFaulted": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[3]::LoadFaulted",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.3.SummaryFaulted": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[3]::SummaryFaulted",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.3.currentFeedback": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[3]::currentFeedback",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.3.inhibit": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[3]::inhibit",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -3721,13 +4372,17 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.3.inhibited": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[3]::inhibited",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -3738,63 +4393,87 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.3.voltageFeedback": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[3]::voltageFeedback",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.3.voltageSP": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[3]::voltageSP",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/DINT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.4.ChargeTime.Power": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[4]::ChargeTime::Power",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.4.ChargeTime.timeToChargeLoad": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[4]::ChargeTime::timeToChargeLoad",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.4.ChargerType_12kV": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[4]::ChargerType_12kV",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.4.ChargerType_50kV": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[4]::ChargerType_50kV",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -3805,73 +4484,101 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.4.EndOfCharge": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[4]::EndOfCharge",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.4.HV_ON": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[4]::HV_ON",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.4.HV_isON": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[4]::HV_isON",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.4.LoadFaulted": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[4]::LoadFaulted",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.4.SummaryFaulted": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[4]::SummaryFaulted",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.4.currentFeedback": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[4]::currentFeedback",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.4.inhibit": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[4]::inhibit",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -3882,13 +4589,17 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.4.inhibited": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[4]::inhibited",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -3899,63 +4610,87 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.4.voltageFeedback": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[4]::voltageFeedback",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.4.voltageSP": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[4]::voltageSP",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/DINT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.5.ChargeTime.Power": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[5]::ChargeTime::Power",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.5.ChargeTime.timeToChargeLoad": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[5]::ChargeTime::timeToChargeLoad",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.5.ChargerType_12kV": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[5]::ChargerType_12kV",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.5.ChargerType_50kV": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[5]::ChargerType_50kV",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -3966,63 +4701,87 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.5.EndOfCharge": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[5]::EndOfCharge",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.5.HV_ON": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[5]::HV_ON",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.5.HV_isON": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[5]::HV_isON",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.5.SummaryFaulted": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[5]::SummaryFaulted",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.5.currentFeedback": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[5]::currentFeedback",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.5.inhibit": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[5]::inhibit",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -4033,13 +4792,17 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.5.inhibited": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[5]::inhibited",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -4050,33 +4813,45 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.5.voltageFeedback": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[5]::voltageFeedback",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.5.voltageSP": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::Charger[5]::voltageSP",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/DINT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Permissives_DB.AllChargerEOC": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Permissives_DB::AllChargerEOC",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -4087,63 +4862,87 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Sequence.ChargeTimeFinished": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Sequence::ChargeTimeFinished",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Sequence.eState": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Sequence::eState",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:server#/definitions/PLC1.E_State"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.TDKLoad.0.NumOfCharger": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::TDKLoad[0]::NumOfCharger",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.TDKLoad.0.PSratedV": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::TDKLoad[0]::PSratedV",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.TDKLoad.0.RequiredChargedV": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::TDKLoad[0]::RequiredChargedV",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.TDKLoad.0.TotalCapacitance": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::TDKLoad[0]::TotalCapacitance",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -4154,53 +4953,73 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.TDKLoad.0.wLCA": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::TDKLoad[0]::wLCA",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.TDKLoad.1.NumOfCharger": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::TDKLoad[1]::NumOfCharger",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.TDKLoad.1.PSratedV": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::TDKLoad[1]::PSratedV",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.TDKLoad.1.RequiredChargedV": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::TDKLoad[1]::RequiredChargedV",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.TDKLoad.1.TotalCapacitance": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::TDKLoad[1]::TotalCapacitance",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -4211,53 +5030,73 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.TDKLoad.1.wLCA": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::TDKLoad[1]::wLCA",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.TDKLoad.2.NumOfCharger": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::TDKLoad[2]::NumOfCharger",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.TDKLoad.2.PSratedV": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::TDKLoad[2]::PSratedV",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.TDKLoad.2.RequiredChargedV": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::TDKLoad[2]::RequiredChargedV",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.TDKLoad.2.TotalCapacitance": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::TDKLoad[2]::TotalCapacitance",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -4268,53 +5107,73 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.TDKLoad.2.wLCA": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::TDKLoad[2]::wLCA",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.TDKLoad.3.NumOfCharger": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::TDKLoad[3]::NumOfCharger",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.TDKLoad.3.PSratedV": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::TDKLoad[3]::PSratedV",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.TDKLoad.3.RequiredChargedV": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::TDKLoad[3]::RequiredChargedV",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.TDKLoad.3.TotalCapacitance": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::TDKLoad[3]::TotalCapacitance",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -4325,53 +5184,73 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.TDKLoad.3.wLCA": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::TDKLoad[3]::wLCA",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.TDKLoad.4.NumOfCharger": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::TDKLoad[4]::NumOfCharger",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.TDKLoad.4.PSratedV": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::TDKLoad[4]::PSratedV",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.TDKLoad.4.RequiredChargedV": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::TDKLoad[4]::RequiredChargedV",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.TDKLoad.4.TotalCapacitance": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::TDKLoad[4]::TotalCapacitance",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -4382,53 +5261,73 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.TDKLoad.4.wLCA": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::TDKLoad[4]::wLCA",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.TDKLoad.5.NumOfCharger": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::TDKLoad[5]::NumOfCharger",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.TDKLoad.5.PSratedV": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::TDKLoad[5]::PSratedV",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.TDKLoad.5.RequiredChargedV": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::TDKLoad[5]::RequiredChargedV",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.TDKLoad.5.TotalCapacitance": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::TDKLoad[5]::TotalCapacitance",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -4439,20 +5338,40 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.TDKLoad.5.wLCA": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::TDKLoad[5]::wLCA",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
+            "USEMAPPING": true
+        },
+        "PLC1.Trips_DB.TimerRunOutON": {
+            "ACCESS": 3,
+            "CUSTOMERDATA": "",
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "HIDDEN": false,
+            "MAPPING": "PLC1::Trips_DB::TimerRunOutON",
+            "OPTIONS": {},
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "RefreshDefinitions": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSrv",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -4469,10 +5388,12 @@
                     "type": "string"
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "Remove": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSrv",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -4505,10 +5426,12 @@
                     "type": "object"
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "RemoveFromConfiguration": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSrv",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -4539,10 +5462,12 @@
                     "type": "object"
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "RemoveUnusedDefinitions": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSrv",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -4581,10 +5506,12 @@
                     ]
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "RemoveUser": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSrv",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -4610,10 +5537,12 @@
                     "type": "object"
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "Rename": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSrv",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -4648,10 +5577,12 @@
                     "type": "object"
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "RenameConfiguration": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSrv",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -4675,10 +5606,12 @@
                     "type": "object"
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "Restart": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSrv",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -4687,10 +5620,12 @@
             "SCHEMA": {
                 "function": true
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "SetConfiguration": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSrv",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -4720,10 +5655,12 @@
                     "type": "object"
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "SetLocale": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSrv",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -4736,10 +5673,12 @@
                     "type": "string"
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "Shutdown": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSrv",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -4748,10 +5687,12 @@
             "SCHEMA": {
                 "function": true
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "SubscribeEvents": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSrv",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -4764,30 +5705,36 @@
                     "type": "integer"
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "TcHmiLua.Config": {
             "ACCESS": 0,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiLua",
             "DYNAMIC": false,
             "HIDDEN": true,
             "MAPPING": "Config",
             "OPTIONS": {},
             "SCHEMA": {},
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "TcHmiSqliteHistorize.Config": {
             "ACCESS": 0,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSqliteHistorize",
             "DYNAMIC": false,
             "HIDDEN": true,
             "MAPPING": "Config",
             "OPTIONS": {},
             "SCHEMA": {},
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "TcHmiSqliteHistorize.DeleteDatabaseEntries": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSqliteHistorize",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -4806,10 +5753,12 @@
                     "type": "object"
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "TcHmiSqliteHistorize.Diagnostics": {
             "ACCESS": 1,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSqliteHistorize",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -4886,10 +5835,12 @@
                 "transient": true,
                 "type": "object"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "TcHmiSqliteHistorize.GetTrendLineData": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSqliteHistorize",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -4970,10 +5921,12 @@
                     "type": "object"
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "TcHmiSqliteHistorize.GetTrendLineWindow": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSqliteHistorize",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -5032,10 +5985,12 @@
                     "type": "object"
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "TcHmiSqliteHistorize.HistorizeData": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSqliteHistorize",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -5044,32 +5999,56 @@
             "SCHEMA": {
                 "function": true
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "TcHmiSqliteLogger.Clear": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSqliteLogger",
             "DYNAMIC": false,
             "HIDDEN": true,
             "MAPPING": "Clear",
             "OPTIONS": {},
             "SCHEMA": {
-                "function": true
+                "function": true,
+                "writeValue": {
+                    "anyOf": [
+                        {
+                            "properties": {
+                                "match": {
+                                    "$ref": "tchmi:server#/definitions/filter"
+                                }
+                            },
+                            "required": [
+                                "match"
+                            ],
+                            "type": "object"
+                        },
+                        {
+                            "$ref": "tchmi:general#/definitions/VOID"
+                        }
+                    ]
+                }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "TcHmiSqliteLogger.Config": {
             "ACCESS": 0,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSqliteLogger",
             "DYNAMIC": false,
             "HIDDEN": true,
             "MAPPING": "Config",
             "OPTIONS": {},
             "SCHEMA": {},
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "TcHmiSqliteLogger.Diagnostics": {
             "ACCESS": 1,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSqliteLogger",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -5207,13 +6186,14 @@
                     "allDomains",
                     "perDomain"
                 ],
-                "transient": true,
                 "type": "object"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "TcHmiSqliteLogger.ListEvents": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSqliteLogger",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -5222,20 +6202,24 @@
             "SCHEMA": {
                 "function": true
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "TcHmiSrv.Config": {
             "ACCESS": 0,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSrv",
             "DYNAMIC": false,
             "HIDDEN": true,
             "MAPPING": "Config",
             "OPTIONS": {},
             "SCHEMA": {},
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "TcHmiUserManagement.AddUser": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiUserManagement",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -5251,6 +6235,7 @@
                         },
                         "password": {
                             "description": "Password of the user. Only a hash will be stored.",
+                            "format": "encrypted",
                             "type": "string"
                         },
                         "userName": {
@@ -5265,10 +6250,12 @@
                     "type": "object"
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "TcHmiUserManagement.ChangePassword": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiUserManagement",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -5290,20 +6277,24 @@
                     "type": "object"
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "TcHmiUserManagement.Config": {
             "ACCESS": 0,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiUserManagement",
             "DYNAMIC": false,
             "HIDDEN": true,
             "MAPPING": "Config",
             "OPTIONS": {},
             "SCHEMA": {},
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "TcHmiUserManagement.DisableUser": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiUserManagement",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -5316,10 +6307,12 @@
                     "type": "string"
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "TcHmiUserManagement.EnableUser": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiUserManagement",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -5332,10 +6325,12 @@
                     "type": "string"
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "TcHmiUserManagement.ListDisabledUsers": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiUserManagement",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -5348,10 +6343,12 @@
                 },
                 "type": "array"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "TcHmiUserManagement.ListUsers": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiUserManagement",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -5364,10 +6361,12 @@
                 },
                 "type": "array"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "TcHmiUserManagement.RemoveUser": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiUserManagement",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -5380,10 +6379,12 @@
                     "type": "string"
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "TcHmiUserManagement.RenameUser": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiUserManagement",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -5409,10 +6410,12 @@
                     "type": "object"
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "Unsubscribe": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSrv",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -5425,10 +6428,12 @@
                     "type": "integer"
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "UnsubscribeEvents": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSrv",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -5441,10 +6446,12 @@
                     "type": "integer"
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "UpdateEventsSubscription": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSrv",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -5457,10 +6464,12 @@
                     "type": "integer"
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "Upload": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSrv",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -5509,6 +6518,7 @@
                     "type": "object"
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "UserSelectType": {
@@ -5530,6 +6540,7 @@
     "TEMPDH": "",
     "THREADPOOLSIZE": 32,
     "UPLOADTIMEOUT": "PT20S",
+    "USEINT64STRING": false,
     "USERGROUPS": {
         "__SystemAdministrators": {
             "ENABLED": true,
@@ -5562,6 +6573,13 @@
                 "UserSelectType": 1
             }
         },
+        "__SystemMaintenanceUsers": {
+            "ENABLED": true,
+            "FILEACCESS": 3,
+            "FILES": {},
+            "SYMBOLACCESS": 0,
+            "SYMBOLS": {}
+        },
         "__SystemUsers": {
             "ENABLED": true,
             "FILEACCESS": 3,
@@ -5583,7 +6601,9 @@
                 "GetConfiguration": 3,
                 "GetCurrentUser": 3,
                 "GetDefinitions": 3,
+                "GetFileInformation": 3,
                 "GetSchema": 3,
+                "GetServerInformation": 3,
                 "GetSymbolAccess": 3,
                 "Heartbeat": 3,
                 "IsAuthRequired": 3,
@@ -5772,6 +6792,7 @@
                 "PLC1.Setpoints.TDKLoad.5.RequiredChargedV": 3,
                 "PLC1.Setpoints.TDKLoad.5.TotalCapacitance": 3,
                 "PLC1.Setpoints.TDKLoad.5.wLCA": 3,
+                "PLC1.Trips_DB.TimerRunOutON": 3,
                 "SetLocale": 3,
                 "SubscribeEvents": 3,
                 "TcHmiSqliteHistorize.DeleteDatabaseEntries": 3,
@@ -5783,7 +6804,8 @@
                 "TcHmiUserManagement.ChangePassword": 3,
                 "Unsubscribe": 3,
                 "UnsubscribeEvents": 3,
-                "UpdateEventsSubscription": 3
+                "UpdateEventsSubscription": 3,
+                "UserSelectType": 1
             }
         }
     },
@@ -5802,6 +6824,15 @@
                 "USERGROUPUSERS_AUTO_LOGOFF": "PT0S",
                 "USERGROUPUSERS_GROUPS": [
                     "__SystemGuests"
+                ],
+                "USERGROUPUSERS_LOCALE": "project",
+                "USERGROUPUSERS_TIMEFORMATLOCALE": "project",
+                "USERGROUPUSERS_TIMEZONE": "project"
+            },
+            "__SystemUser": {
+                "USERGROUPUSERS_AUTO_LOGOFF": "PT0S",
+                "USERGROUPUSERS_GROUPS": [
+                    "__SystemUsers"
                 ],
                 "USERGROUPUSERS_LOCALE": "project",
                 "USERGROUPUSERS_TIMEFORMATLOCALE": "project",

@@ -3,12 +3,6 @@
   <GVL Name="HMI_DB" Id="{fadcefff-0de5-4c32-89a9-d04e4615e636}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL PERSISTENT
-	ChargePB	: BOOL := 0;
-	DumpPB		: BOOL := 0;
-	AbortPB		: BOOL := 0;
-	FirePB		: BOOL := 0;
-	ClearFaultPB	: BOOL := 0;	
-	
 	TDKLoad		: ARRAY [1..6] OF ST_Setpoints_Base; //or RETAIN
 	
 	ChargerHVOFF_rlyDelayPT		: TIME := T#25MS;
@@ -25,6 +19,11 @@ VAR_GLOBAL PERSISTENT
 END_VAR
 
 VAR_GLOBAL
+	ChargePB	: BOOL := 0;
+	DumpPB		: BOOL := 0;
+	AbortPB		: BOOL := 0;
+	FirePB		: BOOL := 0;
+	ClearFaultPB	: BOOL := 0;
 	AllDumpRelaysOpenBP	: BOOL := 0;
 	AllChargeRelayCloseBP	: BOOL := 0;
 END_VAR]]></Declaration>
