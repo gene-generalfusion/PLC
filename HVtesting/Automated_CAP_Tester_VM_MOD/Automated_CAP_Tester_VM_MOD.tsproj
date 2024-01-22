@@ -128,10 +128,6 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>GVL.B170357_BatLevel</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
 							<Name>GVL.PLC_AI1</Name>
 							<Comment><![CDATA[ Analog In]]></Comment>
 							<Type>INT</Type>
@@ -291,6 +287,10 @@ B170357_CapRaw0 AT %I* : UINT;
 	B170357_CapRaw23 AT %I* : UINT;
 	B170357_CapRaw24 AT %I* : UINT;]]></Comment>
 							<Type GUID="{9C25A1FB-3939-89A6-8494-36406BA90CC6}">ARRAY [0..24] OF UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.B170357_BatLevel</Name>
+							<Type>BOOL</Type>
 						</Var>
 						<Var>
 							<Name>GVL.B170357_Heartbeat</Name>

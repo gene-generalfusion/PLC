@@ -1,0 +1,30 @@
+﻿[
+  {
+    "id": "Beckhoff.TwinCAT.HMI.BaseTemplate",
+    "version": "12.760.48"
+  },
+  {
+    "id": "Beckhoff.TwinCAT.HMI.Controls",
+    "version": "12.760.48"
+  },
+  {
+    "id": "Beckhoff.TwinCAT.HMI.EventLogger",
+    "version": "19.0.109"
+  },
+  {
+    "id": "Beckhoff.TwinCAT.HMI.Framework",
+    "version": "12.760.48"
+  },
+  {
+    "id": "Beckhoff.TwinCAT.HMI.Functions",
+    "version": "12.760.48"
+  },
+  {
+    "id": "Beckhoff.TwinCAT.HMI.SqliteHistorize",
+    "version": "19.0.109"
+  },
+  {
+    "id": "Microsoft.TypeScript.MSBuild",
+    "version": "5.3.3"
+  }
+]
