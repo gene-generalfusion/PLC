@@ -40,6 +40,7 @@
 		<System>
 			<Settings>
 				<Cpu BaseTime="5000"/>
+				<IoIdleTask CycleTime="100000"/>
 			</Settings>
 			<Licenses>
 				<Target BkhfOrder="00674809" CustomOrder="00674809">
@@ -49,7 +50,7 @@
 				</Target>
 			</Licenses>
 			<Tasks>
-				<Task Id="3" Priority="20" CycleTime="10000" AmsPort="350" Affinity="#x00000001" AdtTasks="true">
+				<Task Id="3" Priority="20" CycleTime="100000" AmsPort="350" Affinity="#x00000001" AdtTasks="true">
 					<Name>PlcTask</Name>
 				</Task>
 			</Tasks>
@@ -125,6 +126,10 @@
 						</Var>
 						<Var>
 							<Name>GVL.PLC_DI16</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.B170357_BatLevel</Name>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
@@ -289,10 +294,6 @@ B170357_CapRaw0 AT %I* : UINT;
 							<Type GUID="{9C25A1FB-3939-89A6-8494-36406BA90CC6}">ARRAY [0..24] OF UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL.B170357_BatLevel</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
 							<Name>GVL.B170357_Heartbeat</Name>
 							<Type>BOOL</Type>
 						</Var>
@@ -399,7 +400,7 @@ B170357_CapRaw0 AT %I* : UINT;
 								<OTCID>#x02010030</OTCID>
 							</ManualConfig>
 							<Priority>20</Priority>
-							<CycleTime>1000000</CycleTime>
+							<CycleTime>10000000</CycleTime>
 						</Context>
 					</Contexts>
 					<TaskPouOids>

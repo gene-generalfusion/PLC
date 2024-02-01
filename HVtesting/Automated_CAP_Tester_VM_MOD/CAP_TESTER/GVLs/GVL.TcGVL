@@ -13,7 +13,7 @@ VAR_GLOBAL
 	buttonSTOP : BOOL;		// Unused
 	mechINTERLOCK : BOOL;
 	softdump : BOOL := FALSE; 
-	softdump_contact : BOOL;   // soft dump relay feedback. Normally Closed
+	softdump_contact : BOOL;   // soft dump relay feedback. Normally Closed - ctrl box dump feedback is the soft dump feedback, in here ctrlbox dump feedback is not used
 	chargeCOIL : BOOL := FALSE;
 	chargeCOIL_contact : BOOL; // charge coil relay feedback. Normally Open
 	shotCOIL : BOOL := FALSE;
@@ -25,6 +25,7 @@ VAR_GLOBAL
 	sparkdetect :BOOL;
 	FireDetected :BOOL;  //Newly added for Fire Detection Test
 	chrg_to_fire_trig :BOOL := FALSE; //debug signal for Firedetect system
+	FruitStandDumpingON : BOOL := FALSE;
 	
 	(* For HVPS Controller IO *)
 	psuVmonitor : INT;		// PLC in to V monitor, is psu V measurement. AI

@@ -1,14 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
   <POU Name="HMI" Id="{dc100eb0-1044-40f8-af7c-fa22d9cf173d}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM HMI
 VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[//HMI Refresh clock
-Heartbeat();
-
+      <ST><![CDATA[IF GVL.appRUN = FALSE AND GVL.noFaultDetected = TRUE THEN 
+	GVL.chargeCOIL := HMI_DB.ActivateChargePB;
+	GVL.softdump 	:= HMI_DB.ActivateDumpPB;
+	END_IF
+	
 //FAULTS - Underdevelopment
 
 HMI_DB.Fault.0 := GVL.sparkdetect;
@@ -36,9 +38,10 @@ END_IF;*)
 ]]></ST>
     </Implementation>
     <LineIds Name="HMI">
-      <LineId Id="43" Count="0" />
       <LineId Id="101" Count="0" />
-      <LineId Id="45" Count="0" />
+      <LineId Id="142" Count="0" />
+      <LineId Id="149" Count="0" />
+      <LineId Id="144" Count="1" />
       <LineId Id="5" Count="0" />
       <LineId Id="20" Count="0" />
       <LineId Id="8" Count="0" />

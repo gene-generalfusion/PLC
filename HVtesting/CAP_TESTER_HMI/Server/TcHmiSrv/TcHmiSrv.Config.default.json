@@ -46,13 +46,6 @@
             "REQUIRED": true,
             "STARTUPTYPE": 1
         },
-        "TcHmiEventLogger": {
-            "ENABLED": true,
-            "NAME": "TcHmiEventLogger",
-            "PATH": "..\\..\\Packages\\Beckhoff.TwinCAT.HMI.EventLogger.19.0.0\\runtimes\\win-x64\\native\\",
-            "REQUIRED": false,
-            "STARTUPTYPE": 1
-        },
         "TcHmiLua": {
             "ENABLED": true,
             "NAME": "TcHmiLua",
@@ -3010,6 +3003,16 @@
             },
             "USEMAPPING": true
         },
+        "PLC.GVL.FruitStandDumpingON": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC::GVL::FruitStandDumpingON",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
         "PLC.GVL.HMIcharge": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -4372,6 +4375,26 @@
             "DOMAIN": "ADS",
             "DYNAMIC": true,
             "MAPPING": "PLC::GVL::voltage_held_by_PSU",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC.HMI_DB.ActivateChargePB": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC::HMI_DB::ActivateChargePB",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC.HMI_DB.ActivateDumpPB": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC::HMI_DB::ActivateDumpPB",
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
@@ -5913,6 +5936,7 @@
                 "PLC.GVL.DevCtrl": 3,
                 "PLC.GVL.EOCstatus": 3,
                 "PLC.GVL.FireDetected": 3,
+                "PLC.GVL.FruitStandDumpingON": 3,
                 "PLC.GVL.HMIcharge": 3,
                 "PLC.GVL.HMIdump": 3,
                 "PLC.GVL.HMIhold": 3,
@@ -6014,6 +6038,8 @@
                 "PLC.GVL.test_interval_fault": 3,
                 "PLC.GVL.testintervalsecs": 3,
                 "PLC.GVL.voltage_held_by_PSU": 3,
+                "PLC.HMI_DB.ActivateChargePB": 3,
+                "PLC.HMI_DB.ActivateDumpPB": 3,
                 "PLC.HMI_DB.Charging": 3,
                 "PLC.HMI_DB.Dumping": 3,
                 "PLC.HMI_DB.Fault": 3,

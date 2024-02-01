@@ -14,16 +14,17 @@ Look at specifcations document for mapping.
 *)
 	// Digital Input
 	GVL.mechINTERLOCK 			:= GVL.PLC_DI1 ;	// Normally Low when not interlock
-	GVL.softdump_contact 		:= GVL.PLC_DI2 ;		// NL when no FB. Goes high when the relay is engaged and is not soft dumping.
+	GVL.softdump_contact 		:= GVL.PLC_DI2 ;		// NL when no FB. Goes high when the relay is engaged and is not soft dumping. NO 
 	GVL.psuONOFF 				:= GVL.PLC_DI3 ;	// To PSU High Voltage Monitor - Normally HIGH when HV OFF/ sig
 	GVL.psusumFAULT 			:= GVL.PLC_DI4 ;	// To PSU Sum Fault - NH when no fault/ sig
 	//GVL.psuINTERLOCK 			:= GVL.PLC_DI5 ;	// To PSU Interlock. Unknown if NH or NL
-	GVL.ctrl_box_dump_feedback 	:= GVL.PLC_DI5;
+	GVL.ctrl_box_dump_feedback 	:= GVL.PLC_DI5;		// this variable is not used, softdump_contact is used instead and it is coming from the ctrlbox dump fb
 	GVL.EOCStatus 				:= GVL.PLC_DI6 ;		// End of charge - NH when not EOC
 	GVL.sparkdetect 			:= GVL.PLC_DI7 ;		// DI Extra1 - Mech TEST STOP sw - Normally LOW. Not used.
 	GVL.chargeCOIL_contact 		:= GVL.PLC_DI8 ;	// NL
 	GVL.shotCOILrdy 			:= GVL.PLC_DI9 ;		// NL
 	GVL.FireDetected 			:= GVL.PLC_DI10 ;   // for Fire Detection
+	GVL.FruitStandDumpingON		:= GVL.PLC_DI13;
 	VoltMonitor_DB.Heartbeat 	:= GVL.B170357_Heartbeat;//:= GVL.PLC_DI11 ;   // Voltage Monitor Heartbeat
 	VoltMonitor_DB.BateryOn		:= GVL.B170357_BatLevel;//:= GVL.PLC_DI12 ;
 	VoltMonitor_DB.CapRaw[0]	:= GVL.B170357_CapRaw[0];
@@ -108,7 +109,9 @@ Look at specifcations document for mapping.
       <LineId Id="13" Count="5" />
       <LineId Id="89" Count="0" />
       <LineId Id="19" Count="3" />
-      <LineId Id="24" Count="2" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="126" Count="0" />
+      <LineId Id="25" Count="1" />
       <LineId Id="93" Count="0" />
       <LineId Id="97" Count="8" />
       <LineId Id="108" Count="14" />
