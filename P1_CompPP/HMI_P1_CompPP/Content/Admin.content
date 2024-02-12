@@ -1,4 +1,4 @@
-<div id="Diagnostic_2" data-tchmi-type="TcHmi.Controls.System.TcHmiContent" data-tchmi-top="0" data-tchmi-left="0" data-tchmi-width="1850" data-tchmi-height="637" data-tchmi-is-enabled="true" data-tchmi-zindex="3" data-tchmi-opacity="1" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-creator-locked="False">
+<div id="Admin" data-tchmi-type="TcHmi.Controls.System.TcHmiContent" data-tchmi-top="0" data-tchmi-left="0" data-tchmi-width="1850" data-tchmi-height="637" data-tchmi-is-enabled="true" data-tchmi-zindex="3" data-tchmi-opacity="1" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-creator-locked="False">
 
 
 
@@ -125,7 +125,7 @@
   "bottom": "Solid"
 }
 </script>
-<div id="TcHmiToggleSwitch_1" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleSwitch" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="39" data-tchmi-left-unit="px" data-tchmi-text="Safety OK" data-tchmi-top="144" data-tchmi-top-unit="px" data-tchmi-width="123" data-tchmi-width-unit="px" data-tchmi-zindex="3" data-tchmi-state-symbol="%s%PLC1.HMI_DB.SafetyOKBP%/s%" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-creator-locked="True">
+<div id="TcHmiToggleSwitch_1" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleSwitch" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="39" data-tchmi-left-unit="px" data-tchmi-text="Safety OK" data-tchmi-top="144" data-tchmi-top-unit="px" data-tchmi-width="123" data-tchmi-width-unit="px" data-tchmi-zindex="3" data-tchmi-state-symbol="%s%PLC1.HMI_DB.SafetyOKBP%/s%" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-creator-locked="True" data-tchmi-visibility="Hidden">
 
 
 
@@ -335,7 +335,7 @@
 }
 </script>
 </div>
-<div id="TcHmiToggleSwitch_17" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleSwitch" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="39" data-tchmi-left-unit="px" data-tchmi-text="No Interlock Pressure Loss" data-tchmi-top="234" data-tchmi-top-unit="px" data-tchmi-width="192" data-tchmi-width-unit="px" data-tchmi-zindex="3" data-tchmi-state-symbol="%s%PLC1.HMI_DB.InterlockPressureLossBP%/s%" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-creator-locked="True">
+<div id="TcHmiToggleSwitch_17" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleSwitch" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="39" data-tchmi-left-unit="px" data-tchmi-text="No Interlock Pressure Loss" data-tchmi-top="234" data-tchmi-top-unit="px" data-tchmi-width="192" data-tchmi-width-unit="px" data-tchmi-zindex="3" data-tchmi-state-symbol="%s%PLC1.HMI_DB.InterlockPressureLossBP%/s%" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-creator-locked="True" data-tchmi-visibility="Hidden">
 
 
 <script data-tchmi-target-attribute="data-tchmi-access-config" type="application/json">
@@ -348,7 +348,7 @@
 ]
 </script>
 </div>
-<div id="TcHmiToggleSwitch_18" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleSwitch" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="39" data-tchmi-left-unit="px" data-tchmi-text="All DC PSU OK" data-tchmi-top="264" data-tchmi-top-unit="px" data-tchmi-width="138" data-tchmi-width-unit="px" data-tchmi-zindex="3" data-tchmi-state-symbol="%s%PLC1.HMI_DB.AlldcPSUokBP%/s%" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-creator-locked="True">
+<div id="TcHmiToggleSwitch_18" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleSwitch" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="39" data-tchmi-left-unit="px" data-tchmi-text="All DC PSU OK" data-tchmi-top="264" data-tchmi-top-unit="px" data-tchmi-width="138" data-tchmi-width-unit="px" data-tchmi-zindex="3" data-tchmi-state-symbol="%s%PLC1.HMI_DB.AlldcPSUokBP%/s%" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-creator-locked="True" data-tchmi-visibility="Hidden">
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
@@ -422,7 +422,7 @@
 ]
 </script>
 </div>
-<div id="TcHmiToggleSwitch_19" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleSwitch" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="39" data-tchmi-left-unit="px" data-tchmi-text="No Fault Detected" data-tchmi-top="294" data-tchmi-top-unit="px" data-tchmi-width="150" data-tchmi-width-unit="px" data-tchmi-zindex="3" data-tchmi-state-symbol="%s%PLC1.HMI_DB.NoFaultDetectedBP%/s%" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-creator-locked="True">
+<div id="TcHmiToggleSwitch_19" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleSwitch" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="39" data-tchmi-left-unit="px" data-tchmi-text="No Fault Detected" data-tchmi-top="294" data-tchmi-top-unit="px" data-tchmi-width="150" data-tchmi-width-unit="px" data-tchmi-zindex="3" data-tchmi-state-symbol="%s%PLC1.HMI_DB.NoFaultDetectedBP%/s%" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-creator-locked="True" data-tchmi-visibility="Hidden">
 
 
 <script data-tchmi-target-attribute="data-tchmi-access-config" type="application/json">
@@ -534,7 +534,7 @@
 
 
 </div>
-<div id="TcHmiNumericInput_23" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiNumericInput" data-tchmi-auto-focus-out="true" data-tchmi-decimal-digits="3" data-tchmi-height="32" data-tchmi-height-unit="px" data-tchmi-left="892" data-tchmi-left-unit="px" data-tchmi-min-value="-2000" data-tchmi-reset-to-last-valid-value="true" data-tchmi-top="294" data-tchmi-top-unit="px" data-tchmi-width="73" data-tchmi-width-unit="px" data-tchmi-value-horizontal-alignment="Center" data-tchmi-value-font-size="18" data-tchmi-zindex="1" data-tchmi-creator-locked="True"%s%PLC1.Setpoints.TDKLoad.3.RequiredChargedV|BindingMode=OneWay%/s%" data-tchmi-is-enabled="false" data-tchmi-value="%s%PLC1.Setpoints.TDKLoad.3.RequiredChargedV|BindingMode=OneWay%/s%">
+<div id="TcHmiNumericInput_23" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiNumericInput" data-tchmi-auto-focus-out="true" data-tchmi-decimal-digits="3" data-tchmi-height="32" data-tchmi-height-unit="px" data-tchmi-left="892" data-tchmi-left-unit="px" data-tchmi-min-value="-2000" data-tchmi-reset-to-last-valid-value="true" data-tchmi-top="294" data-tchmi-top-unit="px" data-tchmi-width="73" data-tchmi-width-unit="px" data-tchmi-value-horizontal-alignment="Center" data-tchmi-value-font-size="18" data-tchmi-zindex="1" data-tchmi-creator-locked="True" data-tchmi-value="%s%PLC1.Setpoints.TDKLoad.3.RequiredChargedV|BindingMode=OneWay%/s%" data-tchmi-is-enabled="false">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {
   "top": 3,
@@ -3805,7 +3805,7 @@ data-tchmi-value="%s%PLC1.MCP_IO.Charger.3.ChargeTime.Power|BindingMode=OneWay%/
 ]
 </script>
 </div>
-<div id="TcHmiToggleSwitch_28" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleSwitch" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="219" data-tchmi-left-unit="px" data-tchmi-text="No Loss in HV ON " data-tchmi-top="144" data-tchmi-top-unit="px" data-tchmi-width="148" data-tchmi-width-unit="px" data-tchmi-zindex="3" data-tchmi-state-symbol="%s%PLC1.HMI_DB.LossHVsignalBP%/s%" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-creator-locked="True">
+<div id="TcHmiToggleSwitch_28" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleSwitch" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="219" data-tchmi-left-unit="px" data-tchmi-text="No Loss in HV ON " data-tchmi-top="144" data-tchmi-top-unit="px" data-tchmi-width="148" data-tchmi-width-unit="px" data-tchmi-zindex="3" data-tchmi-state-symbol="%s%PLC1.HMI_DB.LossHVsignalBP%/s%" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-creator-locked="True" data-tchmi-visibility="Hidden">
 
 
 <script data-tchmi-target-attribute="data-tchmi-access-config" type="application/json">

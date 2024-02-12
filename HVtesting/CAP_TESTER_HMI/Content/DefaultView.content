@@ -1,4 +1,4 @@
-﻿<div id="DefaultView" data-tchmi-type="TcHmi.Controls.System.TcHmiContent" data-tchmi-top="0" data-tchmi-left="0" data-tchmi-width="1881" data-tchmi-height="637" data-tchmi-is-enabled="true" data-tchmi-creator-viewport-width="1920" data-tchmi-creator-viewport-height="1080">
+<div id="DefaultView" data-tchmi-type="TcHmi.Controls.System.TcHmiContent" data-tchmi-top="0" data-tchmi-left="0" data-tchmi-width="1881" data-tchmi-height="637" data-tchmi-is-enabled="true" data-tchmi-creator-viewport-width="1920" data-tchmi-creator-viewport-height="1080">
 
 <div id="TcHmiButton_5" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height="50" data-tchmi-height-unit="px" data-tchmi-left="39" data-tchmi-left-unit="px" data-tchmi-text="Start" data-tchmi-top="82" data-tchmi-top-unit="px" data-tchmi-width="75" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="24" data-tchmi-ignore-escape-sequences="false" data-tchmi-is-enabled="true" data-tchmi-zindex="2" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">

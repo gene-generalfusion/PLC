@@ -10,6 +10,7 @@ END_VAR
 Permissives();
 ChargeTime();
 AnalogConversion();
+VoltageMon();
 Sequence();
 HMI();
 Heartbeat();]]></ST>
@@ -19,6 +20,7 @@ Heartbeat();]]></ST>
       <LineId Id="12" Count="0" />
       <LineId Id="10" Count="0" />
       <LineId Id="25" Count="0" />
+      <LineId Id="29" Count="0" />
       <LineId Id="6" Count="0" />
       <LineId Id="21" Count="0" />
       <LineId Id="17" Count="0" />

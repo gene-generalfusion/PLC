@@ -6,6 +6,7 @@ VAR_GLOBAL
 	//SafetyOK				: BOOL;
 	AllChargerEOC			: BOOL;
 	
+	
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

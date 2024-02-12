@@ -113,10 +113,16 @@
     <Compile Include="POUs\Norm_x.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\PermissivesS.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\Permissives.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\Sequence.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\VoltageMon.TcPOU">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

@@ -107,11 +107,7 @@ CASE eState OF
 		ChargingRunOutTMR_TON (IN := FALSE);
 		ChargedRunOutTMR_TON (IN := FALSE);
 		DumpingRunOutTMR_TON (IN := FALSE);
-		(*
-			FOR i := 1 TO 6 BY 1 DO
-				MCP_IO.Charger[i].voltageSP := 0;
-			END_FOR;
-		*)
+	
 		LCP1_IO.Segment[1].Module[1].CloseChargeRly := FALSE;
 		LCP1_IO.Segment[1].Module[2].CloseChargeRly := FALSE;
 		LCP1_IO.Segment[1].Module[3].CloseChargeRly := FALSE;
@@ -150,7 +146,7 @@ CASE eState OF
 		END_IF
 
 	E_State.CHARGING:
-		// turn on warning light
+		// turn on warning light  - do it for all i and j
 		LCP1_IO.Segment[1].Module[1].ModuleCharged := TRUE;
 		
 		FirePBpressed := FALSE;
@@ -397,9 +393,6 @@ END_IF;	]]></ST>
       <LineId Id="464" Count="0" />
       <LineId Id="534" Count="1" />
       <LineId Id="533" Count="0" />
-      <LineId Id="312" Count="0" />
-      <LineId Id="315" Count="0" />
-      <LineId Id="313" Count="1" />
       <LineId Id="61" Count="0" />
       <LineId Id="34" Count="0" />
       <LineId Id="36" Count="1" />

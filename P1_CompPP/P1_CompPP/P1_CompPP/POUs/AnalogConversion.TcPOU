@@ -64,6 +64,13 @@ FOR i := 1 TO 6 BY 1 DO
 			MCP_IO.Charger[i].voltageSP := 0; //limit at 0V
 		END_IF; 
 		
+		(*//set limites of charger voltage input from HMI input
+		IF 1000*(Setpoints.TDKLoad[i].RequiredChargedV) >= EngVal.UpperLimit50kVCaps THEN
+			Setpoints.TDKLoad[i].RequiredChargedV := (EngVal.UpperLimit50kVCaps/1000); //limit at 35kv
+		ELSIF Setpoints.TDKLoad[i].RequiredChargedV <= 0 THEN
+			Setpoints.TDKLoad[i].RequiredChargedV :=0 ;
+		END_IF*)
+		
 	//prepare output signal for 50kV chargers.
 		MCP_IO.Charger[i].voltageSP_norm := Norm_x (raw_input := DINT_TO_REAL (MCP_IO.Charger[i].voltageSP), 
 												x_max := EngVal.Max_50kVChargerVoltage,
@@ -84,7 +91,14 @@ FOR i := 1 TO 6 BY 1 DO
 		IF MCP_IO.Charger[i].voltageSP >= REAL_TO_DINT (EngVal.UpperLimit12kVCaps) THEN
 			MCP_IO.Charger[i].voltageSP := 10000; //limit at 10kV
 		END_IF;
-
+		
+		//set limites of charger voltage input from HMI input
+		(*IF 1000*(Setpoints.TDKLoad[i].RequiredChargedV) >= EngVal.UpperLimit12kVCaps THEN
+			Setpoints.TDKLoad[i].RequiredChargedV := EngVal.UpperLimit12kVCaps/1000; //limit at 10kv
+		ELSIF Setpoints.TDKLoad[i].RequiredChargedV <= 0 THEN
+			Setpoints.TDKLoad[i].RequiredChargedV := ABS(Setpoints.TDKLoad[i].RequiredChargedV);
+		END_IF
+		*)
 		//prepare output signal for 12kV chargers.  //**Setpoints.RequiredChargedV -> MCP_IO.Charger.voltageSP **
 		MCP_IO.Charger[i].voltageSP_norm := Norm_x (raw_input := DINT_TO_REAL (MCP_IO.Charger[i].voltageSP), 
 												x_max := EngVal.Max_12kVChargerVoltage,
@@ -158,6 +172,11 @@ END_IF]]></ST>
       <LineId Id="293" Count="0" />
       <LineId Id="580" Count="4" />
       <LineId Id="566" Count="0" />
+      <LineId Id="668" Count="0" />
+      <LineId Id="672" Count="0" />
+      <LineId Id="669" Count="1" />
+      <LineId Id="673" Count="1" />
+      <LineId Id="671" Count="0" />
       <LineId Id="509" Count="0" />
       <LineId Id="523" Count="2" />
       <LineId Id="513" Count="0" />
@@ -173,6 +192,9 @@ END_IF]]></ST>
       <LineId Id="515" Count="0" />
       <LineId Id="311" Count="0" />
       <LineId Id="559" Count="0" />
+      <LineId Id="675" Count="0" />
+      <LineId Id="677" Count="4" />
+      <LineId Id="676" Count="0" />
       <LineId Id="519" Count="0" />
       <LineId Id="530" Count="2" />
       <LineId Id="520" Count="1" />
