@@ -39,7 +39,6 @@
 	<Project ProjectGUID="{D6248266-C26A-4A5B-8EBF-6DE187D94E2A}" TargetNetId="5.97.49.116.1.1" TargetConnectionTimeout="3" ShowHideConfigurations="#x106">
 		<System>
 			<Settings>
-				<Cpu BaseTime="5000"/>
 				<IoIdleTask CycleTime="100000"/>
 			</Settings>
 			<Licenses>
