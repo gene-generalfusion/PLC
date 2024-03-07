@@ -20,6 +20,19 @@ VAR
 	FireToSafeDelayTMR_PT	: TIME := T#5S;
 	FireToSafeDelayTMR_ET	: TIME;
 	FirePBpressed			: BOOL := FALSE;
+	ShotFired				: BOOL := FALSE;
+	
+	ShotTrigDelayTMR_TON	: TON;
+	ShotTrigDelayTMR_PT		: TIME := T#1MS;
+	ShotTrigDelayTMR_ET		: TIME;
+	
+	ShotTrigPulseTMR_TON	: TON;
+	ShotTrigPulseTMR_PT		: TIME := T#1S + ShotTrigDelayTMR_PT;
+	ShotTrigPulseTMR_ET		: TIME;
+		
+	ScopeTrigPulseTMR_TON	: TON;
+	ScopeTrigPulseTMR_PT	: TIME := T#10MS;
+	ScopeTrigPulseTMR_ET	: TIME;
 	
 	DumpingRunOutTMR_TON 	: TON;
 	DumpingRunOutTMR_PT		: TIME := T#60S;
@@ -71,6 +84,18 @@ IF eState <> E_State.CHARGECOMPLETE THEN
 	ChargedRunOutTMR_TON (IN := FALSE); // only needed in charge complete
 END_IF
 
+IF HMI_DB.HMI_ManualModeSelected = TRUE AND eState = E_State.SAFE THEN
+	eState := E_State.ManualMode;
+END_IF
+
+IF eState = E_State.CHARGING OR eState = E_State.CHARGECOMPLETE THEN
+	HMI_DB.HMI_ManualModeSelected := FALSE;
+END_IF
+
+IF eState <> E_State.ManualMode THEN
+	HMI_DB.CloseChargeRlySW := FALSE;
+	HMI_DB.OpenDumpRlySW := FALSE;
+END_IF
 
 IF HMI_DB.DumpPB = TRUE THEN
 	eState := E_State.DUMPING;
@@ -92,6 +117,9 @@ CASE eState OF
 		ChargeTimeFinished := FALSE; //reset chargetime done bit
 		LCP1_IO.Segment[1].Module[1].Fire := FALSE; //turn off all firing triggers
 		
+		//HMI_DB.CloseChargeRlySW := FALSE;
+		//HMI_DB.OpenDumpRlySW := FALSE;
+		
 		//TURN OFF ALL CHARGERS
 		FOR i := 1 TO 6 BY 1 DO 
 			MCP_IO.Charger[i].inhibit := TRUE; // inhibit = high, no output | inhibit = low, allows output
@@ -107,7 +135,11 @@ CASE eState OF
 		ChargingRunOutTMR_TON (IN := FALSE);
 		ChargedRunOutTMR_TON (IN := FALSE);
 		DumpingRunOutTMR_TON (IN := FALSE);
-	
+		
+		ScopeTrigPulseTMR_TON (IN := FALSE);
+		ShotTrigDelayTMR_TON (IN := FALSE);
+		ShotTrigPulseTMR_TON (IN := FALSE);
+		
 		LCP1_IO.Segment[1].Module[1].CloseChargeRly := FALSE;
 		LCP1_IO.Segment[1].Module[2].CloseChargeRly := FALSE;
 		LCP1_IO.Segment[1].Module[3].CloseChargeRly := FALSE;
@@ -289,23 +321,51 @@ CASE eState OF
 		ChargedRunOutTMR_TON (IN := TRUE, PT := HMI_DB.RunOutTMR_PT);
 		
 		IF HMI_DB.FirePB = TRUE THEN 
-			LCP1_IO.Segment[1].Module[1].Fire := TRUE;
+			//LCP1_IO.Segment[1].Module[1].Fire := TRUE;
+			LCP1_IO.Segment[1].Module[1].TriggerScope := TRUE;
 			ChargedRunOutTMR_TON (IN := FALSE);
 			//and all other shot triggers.
 			FirePBpressed := TRUE;
-			ELSE
-				LCP1_IO.Segment[1].Module[1].Fire := FALSE;
-				
+			//ELSE
+				//LCP1_IO.Segment[1].Module[1].Fire := FALSE;
 		END_IF
 		
 		IF FirePBpressed = TRUE THEN 
+			//FireToSafeDelayTMR_TON (IN := TRUE, PT := FireToSafeDelayTMR_PT, ET => FireToSafeDelayTMR_ET);
+			ShotTrigDelayTMR_TON (IN := TRUE, PT := ShotTrigDelayTMR_PT, ET => ShotTrigDelayTMR_ET);
+			ScopeTrigPulseTMR_TON (IN := TRUE, PT := ScopeTrigPulseTMR_PT, ET => ScopeTrigPulseTMR_ET);
+			ShotTrigPulseTMR_TON (IN := TRUE, PT := ShotTrigPulseTMR_PT, ET => ShotTrigPulseTMR_ET);
+			//LCP1_IO.Segment[1].Module[1].Fire := TRUE;
+		END_IF
+		
+		IF ScopeTrigPulseTMR_TON.Q = TRUE THEN 
+			LCP1_IO.Segment[1].Module[1].TriggerScope := FALSE;
+			//ScopeTrigPulseTMR_TON (IN := FALSE);
+		END_IF
+		
+		IF ShotTrigDelayTMR_TON.Q = TRUE THEN
+			LCP1_IO.Segment[1].Module[1].Fire := TRUE;
+			ShotFired := TRUE;
+			//ShotTrigDelayTMR_TON (IN := FALSE);
+		END_IF
+		
+		IF ShotTrigPulseTMR_TON.Q = TRUE THEN
+			LCP1_IO.Segment[1].Module[1].Fire := FALSE;
+			//ShotTrigPulseTMR_TON (IN := FALSE);
+		END_IF
+		
+		IF ShotFired = TRUE THEN
 			FireToSafeDelayTMR_TON (IN := TRUE, PT := FireToSafeDelayTMR_PT, ET => FireToSafeDelayTMR_ET);
-			
 		END_IF
 		
 		IF FireToSafeDelayTMR_TON.Q = TRUE THEN
 			FirePBpressed := FALSE;
+			ShotFired := FALSE;
 			FireToSafeDelayTMR_TON (IN := FALSE);
+			ScopeTrigPulseTMR_TON (IN := FALSE);
+			ShotTrigDelayTMR_TON (IN := FALSE);
+			ShotTrigPulseTMR_TON (IN := FALSE);
+			//LCP1_IO.Segment[1].Module[1].TriggerScope := FALSE;
 			eState := E_State.SAFE;
 		END_IF;
 		
@@ -313,6 +373,9 @@ CASE eState OF
 			Trips_DB.ChargedTimerRunout := TRUE;
 			ChargeTimeFinished := FALSE; //reset chargetime done bit
 			ChargedRunOutTMR_TON (IN := FALSE);
+			ScopeTrigPulseTMR_TON (IN := FALSE);
+			ShotTrigDelayTMR_TON (IN := FALSE);
+			ShotTrigPulseTMR_TON (IN := FALSE);
 			eState := E_State.ABORT;
 		END_IF
 
@@ -333,6 +396,9 @@ CASE eState OF
 		END_FOR;
 		
 		DumpingRunOutTMR_TON (IN := TRUE, PT := DumpingRunOutTMR_PT);
+		
+		//HMI_DB.CloseChargeRlySW := FALSE;
+		//HMI_DB.OpenDumpRlySW := FALSE;
 		
 		IF DumpingRunOutTMR_TON.Q = TRUE THEN
 			eState := E_State.SAFE;
@@ -359,6 +425,20 @@ CASE eState OF
 			eState := E_State.SAFE;
 		END_IF
 		
+		HMI_DB.CloseChargeRlySW := FALSE;
+		HMI_DB.OpenDumpRlySW := FALSE;
+	
+		
+	E_State.ManualMode:
+		
+		DumpingRunOutTMR_TON (IN := FALSE);
+		LCP1_IO.Segment[1].Module[1].CloseChargeRly := HMI_DB.CloseChargeRlySW;
+		LCP1_IO.Segment[1].Module[1].OpenDumpRly := HMI_DB.OpenDumpRlySW;
+		
+		IF HMI_DB.HMI_ManualModeSelected = FALSE THEN
+			eState := E_State.SAFE;
+		END_IF
+		
 END_CASE;
 
 IF i > 6 THEN 
@@ -377,7 +457,17 @@ END_IF;	]]></ST>
       <LineId Id="588" Count="0" />
       <LineId Id="188" Count="0" />
       <LineId Id="99" Count="0" />
+      <LineId Id="778" Count="0" />
+      <LineId Id="777" Count="0" />
+      <LineId Id="779" Count="1" />
+      <LineId Id="795" Count="0" />
+      <LineId Id="794" Count="0" />
+      <LineId Id="796" Count="1" />
+      <LineId Id="804" Count="0" />
       <LineId Id="739" Count="0" />
+      <LineId Id="805" Count="0" />
+      <LineId Id="807" Count="0" />
+      <LineId Id="806" Count="0" />
       <LineId Id="103" Count="2" />
       <LineId Id="113" Count="4" />
       <LineId Id="11" Count="3" />
@@ -388,11 +478,16 @@ END_IF;	]]></ST>
       <LineId Id="463" Count="0" />
       <LineId Id="485" Count="0" />
       <LineId Id="648" Count="0" />
-      <LineId Id="646" Count="1" />
+      <LineId Id="646" Count="0" />
+      <LineId Id="791" Count="2" />
+      <LineId Id="647" Count="0" />
       <LineId Id="522" Count="10" />
       <LineId Id="464" Count="0" />
       <LineId Id="534" Count="1" />
       <LineId Id="533" Count="0" />
+      <LineId Id="895" Count="0" />
+      <LineId Id="897" Count="1" />
+      <LineId Id="896" Count="0" />
       <LineId Id="61" Count="0" />
       <LineId Id="34" Count="0" />
       <LineId Id="36" Count="1" />
@@ -495,18 +590,37 @@ END_IF;	]]></ST>
       <LineId Id="465" Count="0" />
       <LineId Id="623" Count="0" />
       <LineId Id="466" Count="1" />
+      <LineId Id="857" Count="0" />
       <LineId Id="683" Count="0" />
       <LineId Id="471" Count="0" />
       <LineId Id="634" Count="0" />
       <LineId Id="570" Count="0" />
       <LineId Id="470" Count="0" />
-      <LineId Id="635" Count="0" />
-      <LineId Id="468" Count="0" />
-      <LineId Id="636" Count="2" />
+      <LineId Id="635" Count="3" />
       <LineId Id="640" Count="0" />
+      <LineId Id="865" Count="0" />
+      <LineId Id="855" Count="0" />
+      <LineId Id="885" Count="0" />
       <LineId Id="639" Count="0" />
+      <LineId Id="866" Count="2" />
+      <LineId Id="873" Count="0" />
+      <LineId Id="869" Count="0" />
+      <LineId Id="845" Count="1" />
+      <LineId Id="856" Count="0" />
+      <LineId Id="880" Count="0" />
+      <LineId Id="872" Count="0" />
+      <LineId Id="848" Count="0" />
+      <LineId Id="881" Count="2" />
+      <LineId Id="886" Count="0" />
+      <LineId Id="884" Count="0" />
+      <LineId Id="889" Count="3" />
       <LineId Id="626" Count="2" />
+      <LineId Id="893" Count="0" />
       <LineId Id="641" Count="0" />
+      <LineId Id="851" Count="0" />
+      <LineId Id="870" Count="0" />
+      <LineId Id="887" Count="0" />
+      <LineId Id="852" Count="0" />
       <LineId Id="631" Count="0" />
       <LineId Id="571" Count="0" />
       <LineId Id="630" Count="0" />
@@ -514,6 +628,9 @@ END_IF;	]]></ST>
       <LineId Id="736" Count="0" />
       <LineId Id="738" Count="0" />
       <LineId Id="737" Count="0" />
+      <LineId Id="844" Count="0" />
+      <LineId Id="871" Count="0" />
+      <LineId Id="894" Count="0" />
       <LineId Id="573" Count="1" />
       <LineId Id="23" Count="0" />
       <LineId Id="22" Count="0" />
@@ -526,7 +643,11 @@ END_IF;	]]></ST>
       <LineId Id="191" Count="0" />
       <LineId Id="589" Count="0" />
       <LineId Id="650" Count="0" />
-      <LineId Id="590" Count="4" />
+      <LineId Id="590" Count="0" />
+      <LineId Id="801" Count="0" />
+      <LineId Id="803" Count="0" />
+      <LineId Id="802" Count="0" />
+      <LineId Id="591" Count="3" />
       <LineId Id="26" Count="0" />
       <LineId Id="25" Count="0" />
       <LineId Id="27" Count="0" />
@@ -537,7 +658,15 @@ END_IF;	]]></ST>
       <LineId Id="204" Count="0" />
       <LineId Id="215" Count="1" />
       <LineId Id="245" Count="1" />
+      <LineId Id="787" Count="1" />
+      <LineId Id="790" Count="0" />
+      <LineId Id="789" Count="0" />
+      <LineId Id="772" Count="2" />
+      <LineId Id="808" Count="0" />
+      <LineId Id="775" Count="1" />
       <LineId Id="29" Count="0" />
+      <LineId Id="781" Count="2" />
+      <LineId Id="786" Count="0" />
       <LineId Id="28" Count="0" />
       <LineId Id="277" Count="0" />
       <LineId Id="276" Count="0" />

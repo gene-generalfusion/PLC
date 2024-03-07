@@ -41,6 +41,8 @@ END_VAR
 	Output.R1_03_02								:= LCP1_IO.Segment[1].Module[1].CloseChargeRly;
 	Output.R1_03_03								:= LCP1_IO.Segment[1].Module[1].OpenDumpRly;
 	Output.R1_03_04								:= LCP1_IO.Segment[1].Module[1].Fire;
+	Output.R1_03_05								:= LCP1_IO.Segment[1].Module[1].TriggerScope;
+	//Output.R1_03_06								:= SPARE;
 	Output.R1_03_07								:= LCP1_IO.Segment[1].Module[1].ModuleCharged;
 	//AQ
 	Output.R1_05_00								:= MCP_IO.Charger[1].voltageSP_raw;
@@ -402,6 +404,7 @@ END_VAR
       <LineId Id="413" Count="0" />
       <LineId Id="420" Count="0" />
       <LineId Id="423" Count="0" />
+      <LineId Id="427" Count="1" />
       <LineId Id="421" Count="0" />
       <LineId Id="414" Count="0" />
       <LineId Id="418" Count="1" />

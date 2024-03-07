@@ -29,52 +29,51 @@
     "DEFAULTUSERGROUP": "__SystemUsers",
     "DEFINITIONS": {
         "PLC1.E_State": {
-            "allOf": [
+            "attributes": {
+                "generate_implicit_init_function": "",
+                "qualified_only": "",
+                "strict": ""
+            },
+            "enum": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+            ],
+            "options": [
                 {
-                    "attributes": {
-                        "generate_implicit_init_function": "",
-                        "qualified_only": "",
-                        "strict": ""
-                    },
-                    "enum": [
-                        0,
-                        1,
-                        2,
-                        3,
-                        4,
-                        5
-                    ],
-                    "options": [
-                        {
-                            "label": "SAFE",
-                            "value": 0
-                        },
-                        {
-                            "label": "CHARGING",
-                            "value": 1
-                        },
-                        {
-                            "label": "CHARGECOMPLETE",
-                            "value": 2
-                        },
-                        {
-                            "label": "DUMPING",
-                            "value": 3
-                        },
-                        {
-                            "label": "ABORT",
-                            "value": 4
-                        },
-                        {
-                            "label": "TRIPPED",
-                            "value": 5
-                        }
-                    ]
+                    "label": "SAFE",
+                    "value": 0
                 },
                 {
-                    "$ref": "tchmi:general#/definitions/INT16"
+                    "label": "CHARGING",
+                    "value": 1
+                },
+                {
+                    "label": "CHARGECOMPLETE",
+                    "value": 2
+                },
+                {
+                    "label": "DUMPING",
+                    "value": 3
+                },
+                {
+                    "label": "ABORT",
+                    "value": 4
+                },
+                {
+                    "label": "TRIPPED",
+                    "value": 5
+                },
+                {
+                    "label": "ManualMode",
+                    "value": 6
                 }
-            ]
+            ],
+            "type": "integer"
         }
     },
     "DEFLATECOMPRESSIONLEVEL": 5,
@@ -107,7 +106,7 @@
         "TcHmiSqliteHistorize": {
             "ENABLED": true,
             "NAME": "TcHmiSqliteHistorize",
-            "PATH": "..\\..\\Packages\\Beckhoff.TwinCAT.HMI.SqliteHistorize.19.0.0\\runtimes\\win-x64\\native\\",
+            "PATH": "..\\..\\Packages\\Beckhoff.TwinCAT.HMI.SqliteHistorize.19.0.120\\runtimes\\win-x64\\native\\",
             "REQUIRED": false,
             "STARTUPTYPE": 1
         },
@@ -2911,6 +2910,16 @@
             "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
+        "PLC1.HMI_DB.CloseChargeRlySW": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::CloseChargeRlySW",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
         "PLC1.HMI_DB.DumpPB": {
             "ACCESS": 3,
             "CUSTOMERDATA": "",
@@ -2939,6 +2948,16 @@
             "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
+        "PLC1.HMI_DB.HMI_ManualModeSelected": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::HMI_ManualModeSelected",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
         "PLC1.HMI_DB.HVONdelayPT_INT": {
             "ACCESS": 3,
             "CUSTOMERDATA": "",
@@ -2951,6 +2970,16 @@
                 "$ref": "tchmi:general#/definitions/INT"
             },
             "SUBSYMBOL_MAPPING": "",
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.OpenDumpRlySW": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::OpenDumpRlySW",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.RunOutTMR_PT_INT": {
@@ -2979,6 +3008,16 @@
                 "$ref": "tchmi:general#/definitions/INT"
             },
             "SUBSYMBOL_MAPPING": "",
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.SystemSafeBP": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::SystemSafeBP",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.TDKLoad.0.NumOfCharger": {
@@ -3469,6 +3508,40 @@
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
             "SUBSYMBOL_MAPPING": "",
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.0.Module.0.ChargeRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[0]::Module[0]::ChargeRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 4
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.0.Module.0.DumpRly_open": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[0]::Module[0]::DumpRly_open",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 5
+                    }
+                ]
+            },
             "USEMAPPING": true
         },
         "PLC1.MCP_IO.Charger.0.ChargeTime.Power": {
@@ -4937,16 +5010,12 @@
         },
         "PLC1.Sequence.eState": {
             "ACCESS": 3,
-            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
-            "HIDDEN": false,
             "MAPPING": "PLC1::Sequence::eState",
-            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:server#/definitions/PLC1.E_State"
             },
-            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.TDKLoad.0.NumOfCharger": {
@@ -5797,6 +5866,7 @@
             "MAPPING": "DeleteDatabaseEntries",
             "OPTIONS": {},
             "SCHEMA": {
+                "function": true,
                 "writeValue": {
                     "properties": {
                         "disableRecording": {
@@ -5844,8 +5914,7 @@
                             {
                                 "displayClass": "byte",
                                 "propertyOrder": 5,
-                                "readOnly": true,
-                                "transient": true
+                                "readOnly": true
                             }
                         ]
                     },
@@ -5862,33 +5931,28 @@
                             ]
                         },
                         "readOnly": true,
-                        "transient": true,
                         "type": "object"
                     },
                     "numEntries": {
                         "configDescription": "descNumEntries",
                         "propertyOrder": 2,
                         "readOnly": true,
-                        "transient": true,
                         "type": "integer"
                     },
                     "numEntriesLifetime": {
                         "configDescription": "descNumEntries",
                         "propertyOrder": 3,
                         "readOnly": true,
-                        "transient": true,
                         "type": "number"
                     },
                     "recordingTime": {
                         "format": "timespan",
                         "propertyOrder": 4,
                         "readOnly": true,
-                        "transient": true,
                         "type": "string"
                     }
                 },
                 "readOnly": true,
-                "transient": true,
                 "type": "object"
             },
             "SUBSYMBOL_MAPPING": "",
@@ -6689,11 +6753,15 @@
                 "PLC1.HMI_DB.ChargerHVOFF_rlyDelayPT_INT": 3,
                 "PLC1.HMI_DB.ChargingRunOutTMR_elapse": 3,
                 "PLC1.HMI_DB.ClearFaultPB": 3,
+                "PLC1.HMI_DB.CloseChargeRlySW": 3,
                 "PLC1.HMI_DB.DumpPB": 3,
                 "PLC1.HMI_DB.FirePB": 3,
+                "PLC1.HMI_DB.HMI_ManualModeSelected": 3,
                 "PLC1.HMI_DB.HVONdelayPT_INT": 3,
+                "PLC1.HMI_DB.OpenDumpRlySW": 3,
                 "PLC1.HMI_DB.RunOutTMR_PT_INT": 3,
                 "PLC1.HMI_DB.RunOutTMR_elapse": 3,
+                "PLC1.HMI_DB.SystemSafeBP": 3,
                 "PLC1.HMI_DB.TDKLoad.0.NumOfCharger": 3,
                 "PLC1.HMI_DB.TDKLoad.0.PSratedV": 3,
                 "PLC1.HMI_DB.TDKLoad.0.RequiredChargedV": 3,
@@ -6726,6 +6794,8 @@
                 "PLC1.HMI_DB.TDKLoad.5.wLCA": 3,
                 "PLC1.Heartbeat.pulse_1Hz": 3,
                 "PLC1.Heartbeat.screen_refresh_pulse": 3,
+                "PLC1.LCP1_IO.Segment.0.Module.0.ChargeRly_close": 3,
+                "PLC1.LCP1_IO.Segment.0.Module.0.DumpRly_open": 3,
                 "PLC1.MCP_IO.Charger.0.ChargeTime.Power": 3,
                 "PLC1.MCP_IO.Charger.0.ChargeTime.timeToChargeLoad": 3,
                 "PLC1.MCP_IO.Charger.0.ChargerType_12kV": 3,

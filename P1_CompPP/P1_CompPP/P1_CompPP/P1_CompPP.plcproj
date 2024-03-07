@@ -119,6 +119,12 @@
     <Compile Include="POUs\Permissives.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\POU.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Safe.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\Sequence.TcPOU">
       <SubType>Code</SubType>
     </Compile>

@@ -11,7 +11,8 @@ TYPE E_State :
 	//DISCONNECTING	:= 3, //Disconnect
 	DUMPING			:= 3, 
 	ABORT			:= 4,
-	TRIPPED			:= 5
+	TRIPPED			:= 5, 
+	ManualMode		:= 6
 );
 END_TYPE
 ]]></Declaration>

@@ -16,16 +16,22 @@ VAR_GLOBAL PERSISTENT
 	RunOutTMR_elapse			: DINT;
 	
 	ChargingRunOutTMR_elapse	: INT;
+
 END_VAR
 
 VAR_GLOBAL
-	ChargePB	: BOOL := 0;
-	DumpPB		: BOOL := 0;
-	AbortPB		: BOOL := 0;
-	FirePB		: BOOL := 0;
-	ClearFaultPB	: BOOL := 0;
-	AllDumpRelaysOpenBP	: BOOL := 0;
-	AllChargeRelayCloseBP	: BOOL := 0;
+	ChargePB					: BOOL := 0;
+	DumpPB						: BOOL := 0;
+	AbortPB						: BOOL := 0;
+	FirePB						: BOOL := 0;
+	ClearFaultPB				: BOOL := 0;
+	AllDumpRelaysOpenBP			: BOOL := 0;
+	AllChargeRelayCloseBP		: BOOL := 0;
+	SystemSafeBP				: BOOL := 0;
+	
+	HMI_ManualModeSelected		: BOOL := 0;  // 1 = manual mode selected
+	CloseChargeRlySW			: BOOL := 0;
+	OpenDumpRlySW				: BOOL := 0;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

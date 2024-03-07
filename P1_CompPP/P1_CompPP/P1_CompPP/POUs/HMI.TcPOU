@@ -20,7 +20,9 @@ IF Trips_DB.ChargedTimerRunout = TRUE OR
 		Trips_DB.TimerRunOutON := TRUE; 
 		ELSE
 			Trips_DB.TimerRunOutON := FALSE;
-		END_IF]]></ST>
+		END_IF
+		
+]]></ST>
     </Implementation>
     <LineIds Name="HMI">
       <LineId Id="5" Count="0" />
@@ -31,6 +33,7 @@ IF Trips_DB.ChargedTimerRunout = TRUE OR
       <LineId Id="21" Count="2" />
       <LineId Id="20" Count="0" />
       <LineId Id="24" Count="4" />
+      <LineId Id="32" Count="1" />
     </LineIds>
   </POU>
 </TcPlcObject>

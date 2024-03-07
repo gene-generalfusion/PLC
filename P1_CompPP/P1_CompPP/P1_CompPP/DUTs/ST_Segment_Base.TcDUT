@@ -3,7 +3,7 @@
   <DUT Name="ST_Segment_Base" Id="{29eeb09b-9f83-4f6a-b0b1-48c3aad8483a}">
     <Declaration><![CDATA[TYPE ST_Segment_Base :
 STRUCT
-	Module : ARRAY [1..3] OF ST_Module;	
+	Module : ARRAY [1..9] OF ST_Module;	
 END_STRUCT
 END_TYPE
 ]]></Declaration>

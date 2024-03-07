@@ -6,6 +6,7 @@ STRUCT
 	CloseChargeRly	: BOOL;
 	OpenDumpRly		: BOOL;
 	Fire			: BOOL;
+	TriggerScope	: BOOL;
 	
 	ChargeRly_close	: BOOL;
 	DumpRly_open	: BOOL;

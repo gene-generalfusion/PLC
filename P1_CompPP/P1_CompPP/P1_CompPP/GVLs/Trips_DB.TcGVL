@@ -25,6 +25,7 @@ VAR_GLOBAL
 	//SystemTimeOut				: BOOL;
 	NoFaultDetected				: BOOL;
 	TimerRunOutON				: BOOL;
+	
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>
