@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <GVL Name="LCP2_IO" Id="{3e3a4ec7-086e-46f4-8f09-1c81d482d72e}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	(*Segment	: ARRAY [4..6] OF ST_Segment_Base;
+	
+	Segment4to6_ShortContactClose	: BOOL;
+	Segment4to6_UnShortContactClose	: BOOL;
+	LossInterlockPressure			: BOOL;
+	PSU1OK							: BOOL;
+	
+	Fire			: BOOL;
+	SegmentCharged	: BOOL;
+	TriggerScope	: BOOL;*)
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

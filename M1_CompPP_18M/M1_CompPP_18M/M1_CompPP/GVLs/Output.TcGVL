@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <GVL Name="Output" Id="{43c44948-a042-4d4b-b02b-4b218e878c9f}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+//***MCP 
+	//EL2008 - DQ1
+	R1_06_00 AT %Q*: BOOL;
+	R1_06_01 AT %Q*: BOOL;
+	R1_06_02 AT %Q*: BOOL;
+	R1_06_03 AT %Q*: BOOL;
+	R1_06_04 AT %Q*: BOOL;
+	R1_06_05 AT %Q*: BOOL;
+	R1_06_06 AT %Q*: BOOL;
+	R1_06_07 AT %Q*: BOOL;
+
+	//EL2008 - DQ2
+	R1_07_00 AT %Q*: BOOL;
+	R1_07_01 AT %Q*: BOOL;
+	R1_07_02 AT %Q*: BOOL;
+	R1_07_03 AT %Q*: BOOL;
+	R1_07_04 AT %Q*: BOOL;
+	R1_07_05 AT %Q*: BOOL;
+	R1_07_06 AT %Q*: BOOL;
+	R1_07_07 AT %Q*: BOOL;
+	
+	//EL4008 - AQ1
+	R1_09_00 AT %Q*: INT;	//Charger 1 - Voltage Setpoint
+	R1_09_01 AT %Q*: INT;	//Charger 2 - Voltage Setpoint
+	R1_09_02 AT %Q*: INT;	//Charger 3 - Voltage Setpoint
+	R1_09_03 AT %Q*: INT;	//Charger 4 - Voltage Setpoint
+	R1_09_04 AT %Q*: INT;	//Charger 5 - Voltage Setpoint	
+	R1_09_05 AT %Q*: INT;	//Charger 6 - Voltage Setpoint	
+	R1_09_06 AT %Q*: INT;	//spare
+	R1_09_07 AT %Q*: INT;	//spare
+	
+//**LCP1
+	//EL2008 - DQ1
+	R2_06_00 AT %Q*: BOOL;
+	R2_06_01 AT %Q*: BOOL;
+	R2_06_02 AT %Q*: BOOL;
+	R2_06_03 AT %Q*: BOOL;
+	R2_06_04 AT %Q*: BOOL;
+	R2_06_05 AT %Q*: BOOL;
+	R2_06_06 AT %Q*: BOOL;
+	R2_06_07 AT %Q*: BOOL;
+	
+	//EL2008 - DQ2
+	R2_07_00 AT %Q*: BOOL;
+	R2_07_01 AT %Q*: BOOL;
+	R2_07_02 AT %Q*: BOOL;
+	R2_07_03 AT %Q*: BOOL;
+	R2_07_04 AT %Q*: BOOL;
+	R2_07_05 AT %Q*: BOOL;
+	R2_07_06 AT %Q*: BOOL;
+	R2_07_07 AT %Q*: BOOL;
+
+//**LCP2
+	//EL2008 - DQ1
+	R3_06_00 AT %Q*: BOOL;
+	R3_06_01 AT %Q*: BOOL;
+	R3_06_02 AT %Q*: BOOL;
+	R3_06_03 AT %Q*: BOOL;
+	R3_06_04 AT %Q*: BOOL;
+	R3_06_05 AT %Q*: BOOL;
+	R3_06_06 AT %Q*: BOOL;
+	R3_06_07 AT %Q*: BOOL;
+	
+	//EL2008 - DQ2
+	R3_07_00 AT %Q*: BOOL;
+	R3_07_01 AT %Q*: BOOL;
+	R3_07_02 AT %Q*: BOOL;
+	R3_07_03 AT %Q*: BOOL;
+	R3_07_04 AT %Q*: BOOL;
+	R3_07_05 AT %Q*: BOOL;
+	R3_07_06 AT %Q*: BOOL;
+	R3_07_07 AT %Q*: BOOL;
+	
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

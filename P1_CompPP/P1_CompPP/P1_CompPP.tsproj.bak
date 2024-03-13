@@ -367,6 +367,11 @@ EL2008 - DQ1]]></Comment>
 					<Vars VarGrpType="8" AreaNo="4">
 						<Name>PlcTask Retains</Name>
 						<Var>
+							<Name>ChargeTime_DB.PreFormChargeTime_PT</Name>
+							<Type>TIME</Type>
+							<InOut>7</InOut>
+						</Var>
+						<Var>
 							<Name>ChargeTime_DB.ChargerDelay_TON</Name>
 							<Type GUID="{B67C53DE-6A92-5C5B-4076-1B25F1887AC3}">ARRAY [1..6] OF Tc2_Standard.TON</Type>
 							<InOut>7</InOut>
@@ -393,23 +398,18 @@ FormChargeTime_ET  : ARRAY[1..2] OF TIME;]]></Comment>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
-							<Name>ChargeTime_DB.PreFormChargeTime_PT</Name>
+							<Name>ChargeTime_DB.PreFormChargeTime_ET</Name>
 							<Type>TIME</Type>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
-							<Name>ChargeTime_DB.PreFormChargeTime_ET</Name>
+							<Name>ChargeTime_DB.LongestChargeTime_PT</Name>
 							<Type>TIME</Type>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
 							<Name>ChargeTime_DB.LongestChargeTime_TON</Name>
 							<Type GUID="{1337BBBA-9A3F-D9E7-4ED6-FA23E60881AB}" Namespace="Tc2_Standard">TON</Type>
-							<InOut>7</InOut>
-						</Var>
-						<Var>
-							<Name>ChargeTime_DB.LongestChargeTime_PT</Name>
-							<Type>TIME</Type>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
@@ -428,11 +428,6 @@ FormChargeTime_ET  : ARRAY[1..2] OF TIME;]]></Comment>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
-							<Name>ChargeTime_DB.ChargingTimeElapse_TON</Name>
-							<Type GUID="{B67C53DE-6A92-5C5B-4076-1B25F1887AC3}">ARRAY [1..6] OF Tc2_Standard.TON</Type>
-							<InOut>7</InOut>
-						</Var>
-						<Var>
 							<Name>ChargeTime_DB.PreFormChargeTimeStartDelay</Name>
 							<Type>INT</Type>
 							<InOut>7</InOut>
@@ -440,6 +435,11 @@ FormChargeTime_ET  : ARRAY[1..2] OF TIME;]]></Comment>
 						<Var>
 							<Name>ChargeTime_DB.PreFormChargingTimeElapse</Name>
 							<Type>INT</Type>
+							<InOut>7</InOut>
+						</Var>
+						<Var>
+							<Name>ChargeTime_DB.ChargingTimeElapse_TON</Name>
+							<Type GUID="{B67C53DE-6A92-5C5B-4076-1B25F1887AC3}">ARRAY [1..6] OF Tc2_Standard.TON</Type>
 							<InOut>7</InOut>
 						</Var>
 						<Var>

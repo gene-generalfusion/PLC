@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <GVL Name="LCP_IO" Id="{3cac9d65-1e80-419a-9021-db7cad6298e9}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	Panel1 : ST_LCP1_Base;	
+	Panel2 : ST_LCP2_Base;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="AQ" Id="{7985d37d-e855-40ff-b933-b16c1b21c4a5}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION AQ : INT
+VAR_INPUT
+	Norm_input : REAL;
+	x_max : REAL := 10;
+	x_min : REAL := 0;
+END_VAR
+VAR
+	voltage_reading : REAL;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[voltage_reading := 10 * Norm_input;
+AQ := REAL_TO_INT (32767 * (voltage_reading - x_min) / (x_max - x_min));]]></ST>
+    </Implementation>
+    <LineIds Name="AQ">
+      <LineId Id="15" Count="0" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

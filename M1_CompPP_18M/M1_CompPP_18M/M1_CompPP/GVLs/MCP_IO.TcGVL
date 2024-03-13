@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <GVL Name="MCP_IO" Id="{2eccccd0-d6b2-453f-b49b-33f7d0364904}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	MasterStopPB_NotPressed		: BOOL;
+	CageEstopCircuitOK			: BOOL;
+	//RemoteModeSelected			: BOOL;
+	PSU1_DCOK					: BOOL;
+	//MachineGNDrlyOpen			: BOOL;
+	//CloseAllChargeRlyCommand	: BOOL; only for slim
+	//OpenAllDumpRelayCommand		: BOOL; only for slim
+	//Charger 					: ARRAY [1..8] OF ST_Charger_Base;
+	//GLS3_Load					: ST_ChargeTime;
+	//GLS1_hvON					: BOOL;
+	//GLS2_hvON					: BOOL;
+	//GLS3_hvON					: BOOL;
+	//LiftMachineGND				: BOOL;
+	//AllChargeRelaysClose		: BOOL; only for slim
+	//AllDumpRelaysOpen			: BOOL; only for slim
+	//GLS1_voltageSP				: DINT;
+	//GLS1_voltageSP_norm			: REAL;
+	//GLS1_voltageSP_raw			: INT;
+	
+	//GLS2_voltageSP				: DINT;
+	//GLS2_voltageSP_norm			: REAL;
+	//GLS2_voltageSP_raw			: INT;
+	
+	//GLS3_voltageSP				: DINT;
+	//GLS3_voltageSP_norm			: REAL;
+	//GLS3_voltageSP_raw			: INT;
+
+END_VAR
+
+VAR_GLOBAL PERSISTENT
+	Charger 					: ARRAY [1..6] OF ST_Charger_Base;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

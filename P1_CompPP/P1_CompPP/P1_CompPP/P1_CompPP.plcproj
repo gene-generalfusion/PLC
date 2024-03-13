@@ -128,9 +128,6 @@
     <Compile Include="POUs\Sequence.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\VoltageMon.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DUTs" />
