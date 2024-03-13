@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <GVL Name="LV" Id="{7e5a30b1-2538-4c4b-9d94-4db6d0a9a2f7}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+// variables to be used with LabVIEW
+VAR_GLOBAL
+	
+aBools : ARRAY[1..20] OF BOOL;
+aInts : ARRAY[1..10] OF INT;
+
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

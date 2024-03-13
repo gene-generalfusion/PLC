@@ -2,33 +2,13 @@
 <TcLicenseInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2011/11/TcLicenseInfo">
 	<LicenseInfo>
 		<SystemId>{9D491800-631A-2905-B948-235B6EE6770D}</SystemId>
-		<IssueTime>2024-03-04T22:44:00</IssueTime>
-		<ExpireTime>2024-03-12T00:00:00</ExpireTime>
-		<LicenseKey>4cf6c2d1649f2c3f075c1995dd057663ce7a51ae3573c5324edf332216d135a251174342d8495536d637cb2d6a90af91f31b179860d0337981598bd9ca9c37f131ac712b38c28b0e8bc989bacd3bbf81035db360889b4debd16400ec49d58f373430b696200bfc09ffb3cf63b7ea1ac669cbdbaab3dd86a583590e7dad7bcdfb1e1d70195a3a3ec7daf585f88cf3873ea2fabafb08089fa0f8f7f31e2be92de5050b3278ba565a9cc8a74868719d30c201609294ff5d099fc875b2f742feeedee095e43552dcff8216349e8cb11b62476a55ae479af65380fe5fd9d203d69ee6babd2adea15534a7ba03dfb24ea60c1691028fb624418f113dab5ffb93bda5da</LicenseKey>
-		<License>
-			<LicenseId>{4C256767-E6E6-4AF5-BD68-9F7ABAD0C200}</LicenseId>
-			<Name>TC3 ADS</Name>
-			<OrderNo>TC1000</OrderNo>
-		</License>
-		<License>
-			<LicenseId>{3FF18E97-7754-401B-93FB-70544DE28A13}</LicenseId>
-			<Name>TC3 IO</Name>
-			<OrderNo>TC1100</OrderNo>
-		</License>
-		<License>
-			<LicenseId>{66689887-CCBD-452C-AC9A-039D997C6E66}</LicenseId>
-			<Name>TC3 PLC</Name>
-			<OrderNo>TC1200</OrderNo>
-		</License>
+		<IssueTime>2024-03-12T18:44:00</IssueTime>
+		<ExpireTime>2024-03-20T00:00:00</ExpireTime>
+		<LicenseKey>db12822ca586070609a78857c222423625f6bb6be707842d0b12689458c045a551778f1da56138992f5f87d119d549e595a3fda9d3c0fd3bdf5ef70f746230945e3dc6c19fce82e5ff8c0eed961bef41095958bb62db5e1d6d5b29b58a6b037d0e5beeb051c745fa36ab06734d0e79fdef971f5fcbe1fdcc8fb3b0c134de717bafe2c9dd5dd4d9a98d61769a7a9dee3119e563016b1358a8dd9ec61048e3d186b94a0ce2872e1d47965433bde86d82e19297cdaaebf238e5a331ad5b8531f56ea06b7c87943c42f07807ad691e71554eaf55cd48d76bf0a858b3bb238681cee504cd7e55b413f421bc83ea76ae830acf18c95d736c0ccadc8baf908abe48eec5</LicenseKey>
 		<License>
 			<LicenseId>{777F1598-583B-4503-99BB-7C02E0ABD97E}</LicenseId>
 			<Name>TC3 Controller Toolbox</Name>
 			<OrderNo>TF4100</OrderNo>
-		</License>
-		<License>
-			<LicenseId>{6BCAF065-32F5-44AC-A233-31D91205AB5B}</LicenseId>
-			<Name>TC3 Interface for LabVIEW</Name>
-			<OrderNo>TF3710</OrderNo>
 		</License>
 		<License>
 			<LicenseId>{FB6D691D-478A-4C62-9D57-8A3A1727A76B}</LicenseId>

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="Automated_Capacitor_Test_ST" Id="{e128ca1e-1181-456e-82bf-f33d8d46ea95}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM Automated_Capacitor_Test_ST
 VAR
@@ -187,9 +187,9 @@ END_IF
 
 //calculate cycle time
 IF GVL.chargeTIMEmanual <0 THEN
-	GVL.testintervalsecs := GVL.overall_cycle_time - REAL_TO_DINT(chargeTIME + TIME_TO_REAL (extendedElapsed) + GVL.holdTIMEsec);
+	GVL.testintervalsecs := GVL.overall_cycle_time - REAL_TO_INT(chargeTIME + TIME_TO_REAL (extendedElapsed) + GVL.holdTIMEsec);
 ELSE
-	GVL.testintervalsecs := GVL.overall_cycle_time - REAL_TO_DINT(GVL.chargeTIMEmanual + GVL.holdTIMEsec);
+	GVL.testintervalsecs := GVL.overall_cycle_time - REAL_TO_INT(GVL.chargeTIMEmanual + GVL.holdTIMEsec);
 END_IF
 
 //added sparkgap charger OFF when DUMP Relay is close sept 21, 2022 GL
@@ -256,7 +256,7 @@ IF GVL.appRUN THEN
 			END_IF
 			
 			// If Labview charge time set to -1 then use automatic/ estimated full charge time to V setpoint. Value > 0 is a manual charge time.
-			estfullchrgTIME := estimatedchargeTIME_802L(uFcapacitance:= GVL.circuitcapcitanceuF, Vrated:= GVL.psuVOLTrating, Vcharge:= GVL.targetPSUVOLT, Powerpk802L:= GVL.psuPOWERpeak);	// In seconds
+			estfullchrgTIME := estimatedchargeTIME_802L(uFcapacitance:= GVL.circuitcapacitanceuF, Vrated:= GVL.psuVOLTrating, Vcharge:= GVL.targetPSUVOLT, Powerpk802L:= GVL.psuPOWERpeak);	// In seconds
 			IF GVL.chargeTIMEmanual >= 0 THEN
 				chargeTIME := GVL.chargeTIMEmanual;	// Manual charge time, seconds
 				fullCHRG := FALSE;
@@ -273,7 +273,7 @@ IF GVL.appRUN THEN
 			
 			expectcapVOLT := instantexpectedcapVOLT_802L(	// Expected cap voltage at instant time
 				timenow:= elapsedCharge, 
-				capacitanceF:= (GVL.circuitcapcitanceuF*0.001),
+				capacitanceF:= (GVL.circuitcapacitanceuF*0.001),
 				PSUratedVoltage:= GVL.psuVOLTrating,
 				targetVoltage:= GVL.targetPSUVOLT,  
 				previoustime:= lasttimesec, 
@@ -508,7 +508,7 @@ IF GVL.appRUN THEN
 			END_IF
 			
 			// Wait for safe temperatures
-			waitTIMEtime := DINT_TO_TIME(GVL.testintervalsecs*1000);		// LabVIEW input (s to ms for TIME)
+			waitTIMEtime := REAL_TO_TIME(INT_TO_REAL(GVL.testintervalsecs)*1000);		// LabVIEW input (s to ms for TIME)
 			sparkcharger_softdump_TON (IN:= FALSE, PT:= sparkcharger_softdump_PT);
 			testwaitTON(IN:= TRUE, PT:= waitTIMEtime, Q=> holdtimerQ, ET=> elapsedwait);
 			cap1_Temp := tempSAFE(TEMPcel:= GVL.TEMPcap1, thresholdTEMPcel:= GVL.cap1THRESHOLDcel);
@@ -546,7 +546,7 @@ IF GVL.appRUN THEN
 				GVL.testNUM := GVL.testNUM + 1;
 				internalBOOLcharge := TRUE;
 			END_IF
-			estfullchrgTIME := estimatedchargeTIME_802L(uFcapacitance:= GVL.circuitcapcitanceuF, Vrated:= GVL.psuVOLTrating, Vcharge:= GVL.targetPSUVOLT, Powerpk802L:= GVL.psuPOWERpeak);	// In seconds
+			estfullchrgTIME := estimatedchargeTIME_802L(uFcapacitance:= GVL.circuitcapacitanceuF, Vrated:= GVL.psuVOLTrating, Vcharge:= GVL.targetPSUVOLT, Powerpk802L:= GVL.psuPOWERpeak);	// In seconds
 						
 			IF GVL.chargeTIMEmanual >= 0 THEN
 				chargeTIME := GVL.chargeTIMEmanual;	// Manual charge time, seconds
@@ -564,7 +564,7 @@ IF GVL.appRUN THEN
 			
 			expectcapVOLT := instantexpectedcapVOLT_802L(	// Expected cap voltage at instant time
 				timenow:= elapsedCharge, 
-				capacitanceF:= (GVL.circuitcapcitanceuF*0.001),
+				capacitanceF:= (GVL.circuitcapacitanceuF*0.001),
 				PSUratedVoltage:= GVL.psuVOLTrating,
 				targetVoltage:= GVL.targetPSUVOLT,  
 				previoustime:= lasttimesec, 

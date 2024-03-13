@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <GVL Name="GVL" Id="{bb34f6bf-f00c-4215-8a35-eed073cdf29d}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL
@@ -224,9 +224,9 @@ VAR_GLOBAL PERSISTENT
 	
 	clearFAULT : BOOL;	// In
 	
-	testintervalsecs : DINT; 	// In
-	overall_cycle_time : DINT;
-	circuitcapcitanceuF : REAL;	// In
+	testintervalsecs : INT; 	// In
+	overall_cycle_time : INT;
+	circuitcapacitanceuF : REAL;	// In
 	cap1THRESHOLDcel : INT;	// In
 	softdumpTHRESHOLDcel : INT := 95; // IN, added oct 14, 2022 GL
 	loadTHRESHOLDcel : INT := 95;  // IN, added oct 14, 2022 GL
