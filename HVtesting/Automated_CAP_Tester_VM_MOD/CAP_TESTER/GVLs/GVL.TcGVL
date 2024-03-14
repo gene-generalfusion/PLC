@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <GVL Name="GVL" Id="{bb34f6bf-f00c-4215-8a35-eed073cdf29d}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL
@@ -13,7 +13,7 @@ VAR_GLOBAL
 	buttonSTOP : BOOL;		// Unused
 	mechINTERLOCK : BOOL;
 	softdump : BOOL := FALSE; 
-	softdump_contact : BOOL;   // soft dump relay feedback. Normally Closed
+	softdump_contact : BOOL;   // soft dump relay feedback. Normally Closed - ctrl box dump feedback is the soft dump feedback, in here ctrlbox dump feedback is not used
 	chargeCOIL : BOOL := FALSE;
 	chargeCOIL_contact : BOOL; // charge coil relay feedback. Normally Open
 	shotCOIL : BOOL := FALSE;
@@ -25,6 +25,7 @@ VAR_GLOBAL
 	sparkdetect :BOOL;
 	FireDetected :BOOL;  //Newly added for Fire Detection Test
 	chrg_to_fire_trig :BOOL := FALSE; //debug signal for Firedetect system
+	FruitStandDumpingON : BOOL := FALSE;
 	
 	(* For HVPS Controller IO *)
 	psuVmonitor : INT;		// PLC in to V monitor, is psu V measurement. AI
@@ -68,41 +69,7 @@ VAR_GLOBAL
 (* PLC Internal *)
 	appRUN : BOOL;
 	
-(* HMI IO *)
-	hmiSTOP : BOOL; // In (Into PLC from LabView)
-	hmiSTART : BOOL;	// In
-	HOA : BOOL;	// In
-	
-	voltage_held_by_PSU :BOOL;
-	isnotSCRhvswitch : BOOL;	// If HV switch has feedback. SCR has ready feedback signal.
-	psu50kV_OutputSelected : BOOL; 
-	Cap_ratedVoltage : UINT; // unit is in V
-	targetVolt_exceed_CapRating_FAULT : BOOL;
-	expectedvoltage : INT;
-	psuTargetinvolt_echo : DINT;
-	
-	clearFAULT : BOOL;	// In
-	
-	testintervalsecs : DINT; 	// In
-	overall_cycle_time : DINT;
-	circuitcapcitanceuF : REAL;	// In
-	cap1THRESHOLDcel : INT;	// In
-	softdumpTHRESHOLDcel : INT := 95; // IN, added oct 14, 2022 GL
-	loadTHRESHOLDcel : INT := 95;  // IN, added oct 14, 2022 GL
-	ambientTHRESHOLDcel : INT := 95;  // IN, added oct 14, 2022 GL
-	allTemperatureInRange : BOOL; //OUT, added oct 14, 2022 GL
-	
-	targetPSUVOLT : DINT;	// In 
-	psuVOLTrating : DINT;	// In
-	psuPOWERpeak : DINT;	// In
-	chargeTIME : REAL;	// Out. Is estimated charge time of cap
-	chargeTIMEmanual : REAL;	// In
-	holdTIMEsec : REAL; // IN 
-		holdTIMEtime : TIME;
-	testNUM: INT;
-	testNUMmax : INT;	// In
-	testNUMexceed: BOOL;  //CHANGED FROM INT TO BOOL - JUNE 20, 2022
-	resettestNUM : BOOL;	// In
+
 	(* Manual HMI Controls *)
 	HMIhold : BOOL;
 	HMIcharge : BOOL;
@@ -125,9 +92,7 @@ VAR_GLOBAL
 	softexceptionFAULT : BOOL := FALSE;
 	test_interval_fault : BOOL := FALSE;
 	PreFire_Fault : BOOL := FALSE;
-(* Current Control *)
-	control_current : BOOL;
-	duty_cycle : REAL;
+
 (*DEBUG*)
 	ctrl_box_charge_feedback : BOOL;  //relay contact ??
 	ctrl_box_dump_feedback : BOOL;	//relay contact ??
@@ -208,6 +173,81 @@ VAR_GLOBAL
 	
 	// EtherCAT Module
 	DevCtrl AT %Q* : UINT;
+	
+	//customed board 170357
+	(*B170357_CapRaw0 AT %I* : UINT;
+	B170357_CapRaw1 AT %I* : UINT;
+	B170357_CapRaw2 AT %I* : UINT;
+	B170357_CapRaw3 AT %I* : UINT;
+	B170357_CapRaw4 AT %I* : UINT;
+	B170357_CapRaw5 AT %I* : UINT;
+	B170357_CapRaw6 AT %I* : UINT;
+	B170357_CapRaw7 AT %I* : UINT;
+	B170357_CapRaw8 AT %I* : UINT;
+	B170357_CapRaw9 AT %I* : UINT;
+	B170357_CapRaw10 AT %I* : UINT;
+	B170357_CapRaw11 AT %I* : UINT;
+	B170357_CapRaw12 AT %I* : UINT;
+	B170357_CapRaw13 AT %I* : UINT;
+	B170357_CapRaw14 AT %I* : UINT;
+	B170357_CapRaw15 AT %I* : UINT;
+	B170357_CapRaw16 AT %I* : UINT;
+	B170357_CapRaw17 AT %I* : UINT;
+	B170357_CapRaw18 AT %I* : UINT;
+	B170357_CapRaw19 AT %I* : UINT;
+	B170357_CapRaw20 AT %I* : UINT;
+	B170357_CapRaw21 AT %I* : UINT;
+	B170357_CapRaw22 AT %I* : UINT;
+	B170357_CapRaw23 AT %I* : UINT;
+	B170357_CapRaw24 AT %I* : UINT;*)
+	
+	B170357_CapRaw AT %I* : ARRAY[0..24] OF UINT;
+	B170357_BatLevel AT %I* : BOOL;
+	B170357_Heartbeat AT %I* : BOOL;
+	
+
+END_VAR
+
+VAR_GLOBAL PERSISTENT
+	(* HMI IO *)
+	hmiSTOP : BOOL; // In (Into PLC from LabView)
+	hmiSTART : BOOL;	// In
+	HOA : BOOL;	// In
+	
+	voltage_held_by_PSU :BOOL;
+	isnotSCRhvswitch : BOOL;	// If HV switch has feedback. SCR has ready feedback signal.
+	psu50kV_OutputSelected : BOOL; 
+	Cap_ratedVoltage : UINT; // unit is in V
+	targetVolt_exceed_CapRating_FAULT : BOOL;
+	expectedvoltage : INT;
+	psuTargetinvolt_echo : DINT;
+	
+	clearFAULT : BOOL;	// In
+	
+	testintervalsecs : INT; 	// In
+	overall_cycle_time : INT;
+	circuitcapacitanceuF : REAL;	// In
+	cap1THRESHOLDcel : INT;	// In
+	softdumpTHRESHOLDcel : INT := 95; // IN, added oct 14, 2022 GL
+	loadTHRESHOLDcel : INT := 95;  // IN, added oct 14, 2022 GL
+	ambientTHRESHOLDcel : INT := 95;  // IN, added oct 14, 2022 GL
+	allTemperatureInRange : BOOL; //OUT, added oct 14, 2022 GL
+	
+	targetPSUVOLT : DINT;	// In 
+	psuVOLTrating : DINT;	// In
+	psuPOWERpeak : DINT;	// In
+	chargeTIME : REAL;	// Out. Is estimated charge time of cap
+	chargeTIMEmanual : REAL;	// In
+	holdTIMEsec : REAL; // IN 
+		holdTIMEtime : TIME;
+	testNUM: INT;
+	testNUMmax : INT;	// In
+	testNUMexceed: BOOL;  //CHANGED FROM INT TO BOOL - JUNE 20, 2022
+	resettestNUM : BOOL;	// In
+	
+	(* Current Control *)
+	control_current : BOOL;
+	duty_cycle : REAL;
 	
 	InstrumentationFault : BOOL := FALSE;
 	noFaultDetected: BOOL := TRUE;

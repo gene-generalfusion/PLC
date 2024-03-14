@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="LV_ALIAS" Id="{129d4215-fcdb-434d-852f-e3dcd278e388}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM LV_ALIAS
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// sole purpose of this PRG is to build arrays that LabVIEW can easily read
+LV.aBools[1] := GVL.chargeFAULT;
+LV.aBools[2] := GVL.dischargeFAULT;
+LV.aBools[3] := GVL.holdFAULT;
+LV.aBools[4] := GVL.cap1tempFAULT;
+LV.aBools[5] := GVL.ambienttempFAULT;
+LV.aBools[6] := GVL.psuFAULT;
+LV.aBools[7] := GVL.ctrlsysFAULT;
+LV.aBools[8] := GVL.appRUN;
+LV.aBools[9] := GVL.softdumpFB_FAULT;
+LV.aBools[10] := GVL.chargeFB_FAULT;
+LV.aBools[11] := GVL.HVpsuFB_FAULT;
+LV.aBools[12] := GVL.softexceptionFAULT;
+LV.aBools[13] := GVL.EOCstatus;
+LV.aBools[14] := GVL.shotCOILrdy;
+LV.aBools[15] := GVL.testNUMexceed;
+LV.aBools[16] := GVL.scopetrigger;
+LV.aBools[17] := GVL.test_interval_fault;
+LV.aBools[18] := GVL.targetVolt_exceed_CapRating_FAULT;
+LV.aBools[19] := GVL.allTemperatureInRange;
+LV.aBools[20] := GVL.loadtempFAULT;
+
+LV.aInts[1] := GVL.testNUM;
+LV.aInts[2] := GVL.Vcap1;
+LV.aInts[3] := GVL.TEMPcap1;
+LV.aInts[4] := GVL.psuVmonitor;
+LV.aInts[5] := GVL.TEMPload;
+LV.aInts[6] := GVL.TEMPdump;
+LV.aInts[7] := GVL.TEMPambient;
+LV.aInts[8] := GVL.expectedvoltage;
+LV.aInts[9] := GVL.testintervalsecs;
+LV.aInts[10] := GVL.Spark_gap_voltage;]]></ST>
+    </Implementation>
+    <LineIds Name="LV_ALIAS">
+      <LineId Id="5" Count="20" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="28" Count="8" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

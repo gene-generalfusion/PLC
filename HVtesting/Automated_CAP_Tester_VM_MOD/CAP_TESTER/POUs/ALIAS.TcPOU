@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
   <POU Name="ALIAS" Id="{ce187cc1-3358-4b09-8015-f8e6a5a5070e}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM ALIAS
 VAR
@@ -14,18 +14,44 @@ Look at specifcations document for mapping.
 *)
 	// Digital Input
 	GVL.mechINTERLOCK 			:= GVL.PLC_DI1 ;	// Normally Low when not interlock
-	GVL.softdump_contact 		:= GVL.PLC_DI2 ;		// NL when no FB. Goes high when the relay is engaged and is not soft dumping.
+	GVL.softdump_contact 		:= GVL.PLC_DI2 ;		// NL when no FB. Goes high when the relay is engaged and is not soft dumping. NO 
 	GVL.psuONOFF 				:= GVL.PLC_DI3 ;	// To PSU High Voltage Monitor - Normally HIGH when HV OFF/ sig
 	GVL.psusumFAULT 			:= GVL.PLC_DI4 ;	// To PSU Sum Fault - NH when no fault/ sig
 	//GVL.psuINTERLOCK 			:= GVL.PLC_DI5 ;	// To PSU Interlock. Unknown if NH or NL
-	GVL.ctrl_box_dump_feedback 	:= GVL.PLC_DI5;
+	GVL.ctrl_box_dump_feedback 	:= GVL.PLC_DI5;		// this variable is not used, softdump_contact is used instead and it is coming from the ctrlbox dump fb
 	GVL.EOCStatus 				:= GVL.PLC_DI6 ;		// End of charge - NH when not EOC
 	GVL.sparkdetect 			:= GVL.PLC_DI7 ;		// DI Extra1 - Mech TEST STOP sw - Normally LOW. Not used.
 	GVL.chargeCOIL_contact 		:= GVL.PLC_DI8 ;	// NL
 	GVL.shotCOILrdy 			:= GVL.PLC_DI9 ;		// NL
 	GVL.FireDetected 			:= GVL.PLC_DI10 ;   // for Fire Detection
-	VoltMonitor_DB.Heartbeat 	:= GVL.PLC_DI11 ;   // Voltage Monitor Heartbeat
-	VoltMonitor_DB.BateryOn		:= GVL.PLC_DI12 ;
+	GVL.FruitStandDumpingON		:= GVL.PLC_DI13;
+	VoltMonitor_DB.Heartbeat 	:= GVL.B170357_Heartbeat;//:= GVL.PLC_DI11 ;   // Voltage Monitor Heartbeat
+	VoltMonitor_DB.BateryOn		:= GVL.B170357_BatLevel;//:= GVL.PLC_DI12 ;
+	VoltMonitor_DB.CapRaw[0]	:= GVL.B170357_CapRaw[0];
+	VoltMonitor_DB.CapRaw[1]	:= GVL.B170357_CapRaw[1];
+	VoltMonitor_DB.CapRaw[2]	:= GVL.B170357_CapRaw[2];
+	VoltMonitor_DB.CapRaw[3]	:= GVL.B170357_CapRaw[3];
+	VoltMonitor_DB.CapRaw[4]	:= GVL.B170357_CapRaw[4];
+	VoltMonitor_DB.CapRaw[5]	:= GVL.B170357_CapRaw[5];
+	VoltMonitor_DB.CapRaw[6]	:= GVL.B170357_CapRaw[6];
+	VoltMonitor_DB.CapRaw[7]	:= GVL.B170357_CapRaw[7];
+	VoltMonitor_DB.CapRaw[8]	:= GVL.B170357_CapRaw[8];
+	VoltMonitor_DB.CapRaw[9]	:= GVL.B170357_CapRaw[9];
+	VoltMonitor_DB.CapRaw[10]	:= GVL.B170357_CapRaw[10];
+	VoltMonitor_DB.CapRaw[11]	:= GVL.B170357_CapRaw[11];
+	VoltMonitor_DB.CapRaw[12]	:= GVL.B170357_CapRaw[12];
+	VoltMonitor_DB.CapRaw[13]	:= GVL.B170357_CapRaw[13];
+	VoltMonitor_DB.CapRaw[14]	:= GVL.B170357_CapRaw[14];
+	VoltMonitor_DB.CapRaw[15]	:= GVL.B170357_CapRaw[15];
+	VoltMonitor_DB.CapRaw[16]	:= GVL.B170357_CapRaw[16];
+	VoltMonitor_DB.CapRaw[17]	:= GVL.B170357_CapRaw[17];
+	VoltMonitor_DB.CapRaw[18]	:= GVL.B170357_CapRaw[18];
+	VoltMonitor_DB.CapRaw[19]	:= GVL.B170357_CapRaw[19];
+	VoltMonitor_DB.CapRaw[20]	:= GVL.B170357_CapRaw[20];
+	VoltMonitor_DB.CapRaw[21]	:= GVL.B170357_CapRaw[21];
+	VoltMonitor_DB.CapRaw[22]	:= GVL.B170357_CapRaw[22];
+	VoltMonitor_DB.CapRaw[23]	:= GVL.B170357_CapRaw[23];
+	VoltMonitor_DB.CapRaw[24]	:= GVL.B170357_CapRaw[24];
 	(*GVL. := GVL.PLC_DI13 ;
 	GVL. := GVL.PLC_DI14 ;
 	GVL. := GVL.PLC_DI15 ;
@@ -83,7 +109,13 @@ Look at specifcations document for mapping.
       <LineId Id="13" Count="5" />
       <LineId Id="89" Count="0" />
       <LineId Id="19" Count="3" />
-      <LineId Id="24" Count="37" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="126" Count="0" />
+      <LineId Id="25" Count="1" />
+      <LineId Id="93" Count="0" />
+      <LineId Id="97" Count="8" />
+      <LineId Id="108" Count="14" />
+      <LineId Id="27" Count="34" />
       <LineId Id="85" Count="0" />
       <LineId Id="63" Count="13" />
       <LineId Id="5" Count="0" />
