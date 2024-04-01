@@ -176,15 +176,15 @@ END_IF;
 
 //IF i > 8 THEN 
 IF i > 6 THEN 
-	i := 0;
+	i := 1;
 END_IF
 
 IF j > 6 THEN
-	j := 0;
+	j := 1;
 END_IF
 
 IF m > 6 THEN
-	m := 0;
+	m := 1;
 END_IF
 
 //IF a > 8 THEN
@@ -236,7 +236,8 @@ END_IF;]]></ST>
       <LineId Id="51" Count="0" />
       <LineId Id="24" Count="0" />
       <LineId Id="89" Count="0" />
-      <LineId Id="891" Count="5" />
+      <LineId Id="960" Count="0" />
+      <LineId Id="892" Count="4" />
       <LineId Id="558" Count="1" />
       <LineId Id="452" Count="0" />
       <LineId Id="470" Count="6" />

@@ -99,7 +99,7 @@ END_IF
 
 IF HMI_DB.DumpPB = TRUE THEN
 	eState := E_State.DUMPING;
-	ELSIF HMI_DB.AbortPB = TRUE OR Trips_DB.TimerRunOutON = TRUE THEN 
+	ELSIF HMI_DB.AbortPB = TRUE OR Trips_DB.TimerRunOutON = TRUE OR Permissives_DB.CageInterlockOK = FALSE THEN 
 		eState := E_State.ABORT;
 	//	ELSE
 	//		eState := E_State.SAFE;
@@ -117,6 +117,9 @@ CASE eState OF
 		ChargeTimeFinished := FALSE; //reset chargetime done bit
 		LCP1_IO.Segment[1].Module[1].Fire := FALSE; //turn off all firing triggers
 		
+		IF Permissives_DB.CageInterlockOK AND HMI_DB.ArmTheCagePB = TRUE THEN 
+			MCP_IO.EnergizeACKontactor := TRUE;
+		END_IF;
 		//HMI_DB.CloseChargeRlySW := FALSE;
 		//HMI_DB.OpenDumpRlySW := FALSE;
 		
@@ -479,7 +482,12 @@ END_IF;	]]></ST>
       <LineId Id="485" Count="0" />
       <LineId Id="648" Count="0" />
       <LineId Id="646" Count="0" />
-      <LineId Id="791" Count="2" />
+      <LineId Id="791" Count="0" />
+      <LineId Id="945" Count="0" />
+      <LineId Id="944" Count="0" />
+      <LineId Id="792" Count="0" />
+      <LineId Id="946" Count="0" />
+      <LineId Id="793" Count="0" />
       <LineId Id="647" Count="0" />
       <LineId Id="522" Count="10" />
       <LineId Id="464" Count="0" />

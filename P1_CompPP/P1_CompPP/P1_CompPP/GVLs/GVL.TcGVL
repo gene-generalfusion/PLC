@@ -6,6 +6,7 @@ VAR_GLOBAL
 	alarm_test	: BOOL;
 	test		: BOOL;
 	RemoteModeSelected : BOOL;
+
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

@@ -12,14 +12,14 @@
       <To>Permissives</To>
     </RenamedType>
     <RenamedType>
-      <Type guid="3cac9d65-1e80-419a-9021-db7cad6298e9">LCP</Type>
-      <From>LCP1_IO</From>
-      <To>LCP_IO</To>
-    </RenamedType>
-    <RenamedType>
       <Type guid="e641e6bd-ab3f-4ffa-ae62-4ea237e1056c">ST_LCP1_BASE_1</Type>
       <From>ST_LCP1_Base_1</From>
       <To>ST_LCP2_Base</To>
+    </RenamedType>
+    <RenamedType>
+      <Type guid="3cac9d65-1e80-419a-9021-db7cad6298e9">LCP_IO</Type>
+      <From>LCP1_IO</From>
+      <To>LCP1_IO</To>
     </RenamedType>
   </Renames>
 </Refactors>

@@ -11,6 +11,8 @@ IF HMI_DB.ClearFaultPB = TRUE THEN
 	Trips_DB.ChargedTimerRunout := FALSE;
 	Trips_DB.ChargingTimerRunout := FALSE;
 	Trips_DB.DumpTimerRunout := FALSE;
+	Trips_DB.ChargerSummaryFault := FALSE;
+	Trips_DB.ShortingSystemUnknown := FALSE;
 END_IF
 
 IF Trips_DB.ChargedTimerRunout = TRUE OR 
@@ -29,6 +31,7 @@ IF Trips_DB.ChargedTimerRunout = TRUE OR
       <LineId Id="9" Count="0" />
       <LineId Id="13" Count="0" />
       <LineId Id="15" Count="1" />
+      <LineId Id="37" Count="1" />
       <LineId Id="14" Count="0" />
       <LineId Id="21" Count="2" />
       <LineId Id="20" Count="0" />

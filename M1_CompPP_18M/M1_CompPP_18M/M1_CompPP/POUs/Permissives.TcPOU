@@ -20,18 +20,18 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[IF (LCP_IO.Segment[1].ChargeRly_close = TRUE AND 
-	LCP_IO.Segment[2].ChargeRly_close = TRUE AND
-	LCP_IO.Segment[3].ChargeRly_close = TRUE AND 
+      <ST><![CDATA[IF (LCP1_IO.Segment[1].ChargeRly_close = TRUE AND 
+	LCP1_IO.Segment[2].ChargeRly_close = TRUE AND
+	LCP1_IO.Segment[3].ChargeRly_close = TRUE AND 
 	LCP2_IO.Segment[4].ChargeRly_close = TRUE AND 
 	LCP2_IO.Segment[5].ChargeRly_close = TRUE AND 
 	LCP2_IO.Segment[6].ChargeRly_close = TRUE) OR HMI_DB.AllChargeRelayCloseBP = TRUE
 	THEN 
 		AllChargeRelayClosed := TRUE;
 	ELSIF 
-		LCP_IO.Segment[1].ChargeRly_close = FALSE AND 
-		LCP_IO.Segment[2].ChargeRly_close = FALSE AND
-		LCP_IO.Segment[3].ChargeRly_close = FALSE AND 
+		LCP1_IO.Segment[1].ChargeRly_close = FALSE AND 
+		LCP1_IO.Segment[2].ChargeRly_close = FALSE AND
+		LCP1_IO.Segment[3].ChargeRly_close = FALSE AND 
 		LCP2_IO.Segment[4].ChargeRly_close = FALSE AND 
 		LCP2_IO.Segment[5].ChargeRly_close = FALSE AND 
 		LCP2_IO.Segment[6].ChargeRly_close = FALSE
@@ -39,15 +39,15 @@ END_VAR
 		AllChargeRelayClosed := FALSE;
 END_IF;
 
-IF (LCP_IO.Segment[1].Module[1].DumpRly_close = FALSE AND 
-	LCP_IO.Segment[1].Module[2].DumpRly_close = FALSE AND
-	LCP_IO.Segment[1].Module[3].DumpRly_close = FALSE AND
-	LCP_IO.Segment[2].Module[4].DumpRly_close = FALSE AND
-	LCP_IO.Segment[2].Module[5].DumpRly_close = FALSE AND
-	LCP_IO.Segment[2].Module[6].DumpRly_close = FALSE AND
-	LCP_IO.Segment[3].Module[7].DumpRly_close = FALSE AND
-	LCP_IO.Segment[3].Module[8].DumpRly_close = FALSE AND
-	LCP_IO.Segment[3].Module[9].DumpRly_close = FALSE AND
+IF (LCP1_IO.Segment[1].Module[1].DumpRly_close = FALSE AND 
+	LCP1_IO.Segment[1].Module[2].DumpRly_close = FALSE AND
+	LCP1_IO.Segment[1].Module[3].DumpRly_close = FALSE AND
+	LCP1_IO.Segment[2].Module[4].DumpRly_close = FALSE AND
+	LCP1_IO.Segment[2].Module[5].DumpRly_close = FALSE AND
+	LCP1_IO.Segment[2].Module[6].DumpRly_close = FALSE AND
+	LCP1_IO.Segment[3].Module[7].DumpRly_close = FALSE AND
+	LCP1_IO.Segment[3].Module[8].DumpRly_close = FALSE AND
+	LCP1_IO.Segment[3].Module[9].DumpRly_close = FALSE AND
 	LCP2_IO.Segment[4].Module[1].DumpRly_close = FALSE AND 
 	LCP2_IO.Segment[4].Module[2].DumpRly_close = FALSE AND
 	LCP2_IO.Segment[4].Module[3].DumpRly_close = FALSE AND
@@ -60,15 +60,15 @@ IF (LCP_IO.Segment[1].Module[1].DumpRly_close = FALSE AND
 	THEN
 		AllDumpRelayOpen := TRUE;
 		ELSIF
-			LCP_IO.Segment[1].Module[1].DumpRly_close = TRUE AND 
-			LCP_IO.Segment[1].Module[2].DumpRly_close = TRUE AND
-			LCP_IO.Segment[1].Module[3].DumpRly_close = TRUE AND
-			LCP_IO.Segment[2].Module[4].DumpRly_close = TRUE AND
-			LCP_IO.Segment[2].Module[5].DumpRly_close = TRUE AND
-			LCP_IO.Segment[2].Module[6].DumpRly_close = TRUE AND
-			LCP_IO.Segment[3].Module[7].DumpRly_close = TRUE AND
-			LCP_IO.Segment[3].Module[8].DumpRly_close = TRUE AND
-			LCP_IO.Segment[3].Module[9].DumpRly_close = TRUE AND
+			LCP1_IO.Segment[1].Module[1].DumpRly_close = TRUE AND 
+			LCP1_IO.Segment[1].Module[2].DumpRly_close = TRUE AND
+			LCP1_IO.Segment[1].Module[3].DumpRly_close = TRUE AND
+			LCP1_IO.Segment[2].Module[4].DumpRly_close = TRUE AND
+			LCP1_IO.Segment[2].Module[5].DumpRly_close = TRUE AND
+			LCP1_IO.Segment[2].Module[6].DumpRly_close = TRUE AND
+			LCP1_IO.Segment[3].Module[7].DumpRly_close = TRUE AND
+			LCP1_IO.Segment[3].Module[8].DumpRly_close = TRUE AND
+			LCP1_IO.Segment[3].Module[9].DumpRly_close = TRUE AND
 			LCP2_IO.Segment[4].Module[1].DumpRly_close = TRUE AND 
 			LCP2_IO.Segment[4].Module[2].DumpRly_close = TRUE AND
 			LCP2_IO.Segment[4].Module[3].DumpRly_close = TRUE AND
@@ -112,7 +112,7 @@ IF MCP_IO.Charger[1].inhibited = TRUE (*AND all other Chargers*) THEN
 		AllChargerInhibitON	:= FALSE;
 END_IF;
 
-IF LCP_IO.Segment[1].Module[1].VoltageFeedback <= 10 (*  AND all other module voltage feedback <= 10 *) THEN
+IF LCP1_IO.Segment[1].Module[1].VoltageFeedback <= 10 (*  AND all other module voltage feedback <= 10 *) THEN
 	AllCapsDischarged := TRUE;
 	ELSE 
 		AllCapsDischarged := FALSE;
@@ -131,8 +131,8 @@ THEN
 		SystemIsSafe := FALSE;
 END_IF
 
-IF LCP_IO.Segment[1].Module[1].VoltageFeedback <= 10 THEN //repeat for all modules
-	LCP_IO.Segment[1].Module[1].ModuleCharged := FALSE; //for status light only
+IF LCP1_IO.Segment[1].Module[1].VoltageFeedback <= 10 THEN //repeat for all modules
+	LCP1_IO.SegmentCharged := FALSE; //for status light only
 END_IF
 
 IF MCP_IO.Charger[1].EndOfCharge = TRUE AND

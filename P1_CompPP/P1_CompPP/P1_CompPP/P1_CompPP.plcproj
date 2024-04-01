@@ -20,6 +20,9 @@
     <Compile Include="DUTs\E_State.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\ST_Alarm_Base.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\ST_Charger_Base.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -33,6 +36,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\ST_Setpoints_Base.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GVLs\Alarms_DB.TcGVL">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GVLs\ChargeTime_DB.TcGVL">
@@ -77,6 +83,9 @@
     <Compile Include="GVLs\Trips_DB.TcGVL">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GVLs\VoltMonitor_DB.TcGVL">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>
@@ -84,6 +93,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\ADC_5V.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Alarms.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Alarms_FB.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\Alias.TcPOU">
@@ -96,6 +111,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\ChargeTime.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\CounterUP.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\Heartbeat.TcPOU">
@@ -113,19 +131,19 @@
     <Compile Include="POUs\Norm_x.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\PermissivesS.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="POUs\Permissives.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\POU.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="POUs\Safe.TcPOU">
+    <Compile Include="POUs\PermissivesS.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\Sequence.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Trips.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\VoltMonitor.TcPOU">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -143,6 +161,10 @@
     <PlaceholderReference Include="Tc2_System">
       <DefaultResolution>Tc2_System, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc2_System</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc3_EventLogger">
+      <DefaultResolution>Tc3_EventLogger, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc3_EventLogger</Namespace>
     </PlaceholderReference>
     <PlaceholderReference Include="Tc3_Module">
       <DefaultResolution>Tc3_Module, * (Beckhoff Automation GmbH)</DefaultResolution>

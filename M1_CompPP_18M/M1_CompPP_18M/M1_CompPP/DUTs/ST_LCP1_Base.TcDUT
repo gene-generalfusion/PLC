@@ -5,8 +5,6 @@
 STRUCT
 	Segment	: ARRAY [1..3] OF ST_Segment_Base;
 		
-	Segment1to3_ShortContactClose	: BOOL;
-	Segment1to3_UnShortContactClose	: BOOL;
 	Segment4to6_ShortContactClose	: BOOL;
 	Segment4to6_UnShortContactClose	: BOOL;
 	LossInterlockPressure			: BOOL;

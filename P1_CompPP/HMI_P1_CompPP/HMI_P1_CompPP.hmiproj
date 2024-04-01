@@ -120,6 +120,7 @@
     <Folder Include="KeyboardLayouts\" />
     <Folder Include="Localization" />
     <Folder Include="Content" />
+    <Folder Include="Server\TcHmiEventLogger" />
     <Folder Include="Server\TcHmiSqliteHistorize" />
     <Folder Include="Themes" />
     <Folder Include="Themes\Base-Dark\Images\" />
@@ -133,6 +134,9 @@
       <Visible>false</Visible>
     </Content>
     <Content Include="Content\Admin.content">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\Alarm.content">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Content\Control.content">
@@ -151,6 +155,15 @@
       <SubType>Content</SubType>
     </Content>
     <Content Include="packages.config">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Server\TcHmiEventLogger\TcHmiEventLogger.Config.default.json">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Server\TcHmiEventLogger\TcHmiEventLogger.Config.remote.json">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Server\TcHmiEventLogger\TcHmiEventLogger.Storage.json">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Server\TcHmiLua\TcHmiLua.Config.default.json">

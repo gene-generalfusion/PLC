@@ -11,6 +11,9 @@ END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[//MCP Charger 
 //Analog Input
+FOR i := 1 TO 6 BY 1 DO 
+	MCP_IO.Charger[i].voltageSP := (HMI_DB.TDKLoad[i].RequiredChargedV *1000);
+END_FOR
 
 FOR i := 1 TO 6 BY 1 DO
 	
@@ -72,7 +75,7 @@ FOR i := 1 TO 6 BY 1 DO
 		END_IF*)
 		
 	//prepare output signal for 50kV chargers.
-		MCP_IO.Charger[i].voltageSP_norm := Norm_x (raw_input := DINT_TO_REAL (MCP_IO.Charger[i].voltageSP), 
+		MCP_IO.Charger[i].voltageSP_norm := Norm_x (raw_input :=(MCP_IO.Charger[i].voltageSP), 
 												x_max := EngVal.Max_50kVChargerVoltage,
 												x_min := EngVal.Min_50kVChargerVoltage);	
 												
@@ -88,7 +91,7 @@ FOR i := 1 TO 6 BY 1 DO
 			MCP_IO.Charger[i].voltageSP := ABS(MCP_IO.Charger[i].voltageSP);
 		END_IF
 		
-		IF MCP_IO.Charger[i].voltageSP >= REAL_TO_DINT (EngVal.UpperLimit12kVCaps) THEN
+		IF MCP_IO.Charger[i].voltageSP >= (EngVal.UpperLimit12kVCaps) THEN
 			MCP_IO.Charger[i].voltageSP := 10000; //limit at 10kV
 		END_IF;
 		
@@ -100,7 +103,7 @@ FOR i := 1 TO 6 BY 1 DO
 		END_IF
 		*)
 		//prepare output signal for 12kV chargers.  //**Setpoints.RequiredChargedV -> MCP_IO.Charger.voltageSP **
-		MCP_IO.Charger[i].voltageSP_norm := Norm_x (raw_input := DINT_TO_REAL (MCP_IO.Charger[i].voltageSP), 
+		MCP_IO.Charger[i].voltageSP_norm := Norm_x (raw_input := (MCP_IO.Charger[i].voltageSP), 
 												x_max := EngVal.Max_12kVChargerVoltage,
 												x_min := EngVal.Min_12kVChargerVoltage);
 		
@@ -138,6 +141,9 @@ END_IF]]></ST>
     <LineIds Name="AnalogConversion">
       <LineId Id="80" Count="0" />
       <LineId Id="254" Count="0" />
+      <LineId Id="698" Count="0" />
+      <LineId Id="701" Count="0" />
+      <LineId Id="699" Count="0" />
       <LineId Id="654" Count="0" />
       <LineId Id="646" Count="0" />
       <LineId Id="537" Count="1" />

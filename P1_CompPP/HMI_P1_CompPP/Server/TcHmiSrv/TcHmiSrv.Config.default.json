@@ -95,6 +95,13 @@
             "REQUIRED": true,
             "STARTUPTYPE": 1
         },
+        "TcHmiEventLogger": {
+            "ENABLED": true,
+            "NAME": "TcHmiEventLogger",
+            "PATH": "..\\..\\Packages\\Beckhoff.TwinCAT.HMI.EventLogger.19.0.120\\runtimes\\win-x64\\native\\",
+            "REQUIRED": false,
+            "STARTUPTYPE": 1
+        },
         "TcHmiLua": {
             "ENABLED": true,
             "NAME": "TcHmiLua",
@@ -2644,6 +2651,26 @@
             "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
+        "PLC1.Alarms.bConfirm": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::Alarms::bConfirm",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.Alarms.bWarning": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::Alarms::bWarning",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
         "PLC1.ChargeTime_DB.ChargeTimeStartDelay.0": {
             "ACCESS": 3,
             "CUSTOMERDATA": "",
@@ -2852,6 +2879,16 @@
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
             "SUBSYMBOL_MAPPING": "",
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.ArmTheCagePB": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::ArmTheCagePB",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.ChargePB": {
@@ -4994,6 +5031,16 @@
             "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
+        "PLC1.Permissives_DB.CageInterlockOK": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::Permissives_DB::CageInterlockOK",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
         "PLC1.Sequence.ChargeTimeFinished": {
             "ACCESS": 3,
             "CUSTOMERDATA": "",
@@ -5831,6 +5878,138 @@
                 }
             },
             "SUBSYMBOL_MAPPING": "",
+            "USEMAPPING": true
+        },
+        "TcHmiEventLogger.ClearLoggedEvents": {
+            "ACCESS": 3,
+            "DOMAIN": "TcHmiEventLogger",
+            "DYNAMIC": false,
+            "HIDDEN": true,
+            "MAPPING": "ClearLoggedEvents",
+            "OPTIONS": {},
+            "SCHEMA": {
+                "function": true,
+                "writeValue": {
+                    "properties": {
+                        "targetName": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "targetName"
+                    ],
+                    "type": "object"
+                }
+            },
+            "USEMAPPING": true
+        },
+        "TcHmiEventLogger.Config": {
+            "ACCESS": 0,
+            "DOMAIN": "TcHmiEventLogger",
+            "DYNAMIC": false,
+            "HIDDEN": true,
+            "MAPPING": "Config",
+            "OPTIONS": {},
+            "SCHEMA": {},
+            "USEMAPPING": true
+        },
+        "TcHmiEventLogger.Diagnostics": {
+            "ACCESS": 1,
+            "DOMAIN": "TcHmiEventLogger",
+            "DYNAMIC": false,
+            "HIDDEN": true,
+            "MAPPING": "Diagnostics",
+            "OPTIONS": {},
+            "SCHEMA": {
+                "function": true,
+                "properties": {
+                    "TARGET_SYSTEMS": {
+                        "additionalProperties": {
+                            "properties": {
+                                "activeAlarmsCount": {
+                                    "propertyOrder": 10,
+                                    "readOnly": true,
+                                    "type": "integer"
+                                },
+                                "cachedAlarmsCount": {
+                                    "hidden": true,
+                                    "propertyOrder": 8,
+                                    "readOnly": true,
+                                    "type": "integer"
+                                },
+                                "cachedInvalidAlarmsCount": {
+                                    "hidden": true,
+                                    "propertyOrder": 9,
+                                    "readOnly": true,
+                                    "type": "integer"
+                                },
+                                "cachedMessagesCount": {
+                                    "hidden": true,
+                                    "propertyOrder": 7,
+                                    "readOnly": true,
+                                    "type": "integer"
+                                },
+                                "connectError": {
+                                    "propertyOrder": 2,
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "connectionState": {
+                                    "propertyOrder": 1,
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "importedAlarmsCount": {
+                                    "propertyOrder": 5,
+                                    "readOnly": true,
+                                    "type": "integer"
+                                },
+                                "importedEventsCount": {
+                                    "propertyOrder": 3,
+                                    "readOnly": true,
+                                    "type": "integer"
+                                },
+                                "importedInvalidAlarmsCount": {
+                                    "propertyOrder": 6,
+                                    "readOnly": true,
+                                    "type": "integer"
+                                },
+                                "importedMessagesCount": {
+                                    "propertyOrder": 4,
+                                    "readOnly": true,
+                                    "type": "integer"
+                                }
+                            },
+                            "readOnly": true,
+                            "required": [
+                                "connectionState"
+                            ],
+                            "type": "object"
+                        },
+                        "description": "DESC_TARGET_SYSTEM",
+                        "readOnly": true,
+                        "type": "object"
+                    }
+                },
+                "readOnly": true,
+                "type": "object"
+            },
+            "USEMAPPING": true
+        },
+        "TcHmiEventLogger.ListEnabledTargetSystems": {
+            "ACCESS": 3,
+            "DOMAIN": "TcHmiEventLogger",
+            "DYNAMIC": false,
+            "HIDDEN": true,
+            "MAPPING": "ListEnabledTargetSystems",
+            "OPTIONS": {},
+            "SCHEMA": {
+                "function": true,
+                "items": {
+                    "type": "string"
+                },
+                "type": "array"
+            },
             "USEMAPPING": true
         },
         "TcHmiLua.Config": {
@@ -6734,6 +6913,8 @@
                 "LocalizeText": 3,
                 "Login": 3,
                 "Logout": 3,
+                "PLC1.Alarms.bConfirm": 3,
+                "PLC1.Alarms.bWarning": 3,
                 "PLC1.ChargeTime_DB.ChargeTimeStartDelay.0": 3,
                 "PLC1.ChargeTime_DB.ChargeTimeStartDelay.1": 3,
                 "PLC1.ChargeTime_DB.ChargeTimeStartDelay.2": 3,
@@ -6749,6 +6930,7 @@
                 "PLC1.HMI_DB.AbortPB": 3,
                 "PLC1.HMI_DB.AllChargeRelayCloseBP": 3,
                 "PLC1.HMI_DB.AllDumpRelaysOpenBP": 3,
+                "PLC1.HMI_DB.ArmTheCagePB": 3,
                 "PLC1.HMI_DB.ChargePB": 3,
                 "PLC1.HMI_DB.ChargerHVOFF_rlyDelayPT_INT": 3,
                 "PLC1.HMI_DB.ChargingRunOutTMR_elapse": 3,
@@ -6891,6 +7073,7 @@
                 "PLC1.Permissives.ChargerVBelowThres": 3,
                 "PLC1.Permissives.SystemIsSafe": 3,
                 "PLC1.Permissives_DB.AllChargerEOC": 3,
+                "PLC1.Permissives_DB.CageInterlockOK": 3,
                 "PLC1.Sequence.ChargeTimeFinished": 3,
                 "PLC1.Sequence.eState": 3,
                 "PLC1.Setpoints.TDKLoad.0.NumOfCharger": 3,
@@ -6926,6 +7109,8 @@
                 "PLC1.Trips_DB.TimerRunOutON": 3,
                 "SetLocale": 3,
                 "SubscribeEvents": 3,
+                "TcHmiEventLogger.Diagnostics": 1,
+                "TcHmiEventLogger.ListEnabledTargetSystems": 3,
                 "TcHmiSqliteHistorize.DeleteDatabaseEntries": 3,
                 "TcHmiSqliteHistorize.Diagnostics": 1,
                 "TcHmiSqliteHistorize.GetTrendLineData": 3,

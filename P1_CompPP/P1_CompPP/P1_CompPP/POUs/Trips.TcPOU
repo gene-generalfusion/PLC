@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="Trips" Id="{8fb47083-e29f-481d-936d-668a5058e7c9}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Trips
+VAR
+	ContactDelay_TON : TON;
+	ContactDelay_PT	: TIME:= T#2S;
+	ContactDelay_ET	: TIME;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[Trips_DB.CageDoorNotClose 		:= NOT MCP_IO.DoorSWclose;
+Trips_DB.ChargerSummaryFault 	:= MCP_IO.Charger[1].SummaryFaulted;
+Trips_DB.EStopPBpressed 		:= NOT MCP_IO.EStopPB_NotPressed;
+
+IF (MCP_IO.ShortContactClose = TRUE AND MCP_IO.UnshortContactClose = TRUE) OR 
+	(MCP_IO.ShortContactClose = FALSE AND MCP_IO.UnshortContactClose = FALSE)
+	THEN
+		ContactDelay_TON(IN := TRUE, PT := ContactDelay_PT, ET => ContactDelay_ET);
+		ELSE
+			ContactDelay_TON(IN := FALSE);
+END_IF
+
+IF ContactDelay_TON.Q = TRUE THEN 
+	Trips_DB.ShortingSystemUnknown := TRUE;
+	ContactDelay_TON(IN := FALSE);
+END_IF
+]]></ST>
+    </Implementation>
+    <LineIds Name="Trips">
+      <LineId Id="5" Count="2" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="22" Count="1" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="20" Count="1" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="8" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

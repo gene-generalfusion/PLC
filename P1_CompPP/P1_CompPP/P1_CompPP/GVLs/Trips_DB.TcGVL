@@ -26,6 +26,11 @@ VAR_GLOBAL
 	NoFaultDetected				: BOOL;
 	TimerRunOutON				: BOOL;
 	
+	ChargerSummaryFault			: BOOL;
+	
+	EStopPBpressed				: BOOL;
+	CageDoorNotClose			: BOOL;
+	ShortingSystemUnknown		: BOOL;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

@@ -58,7 +58,7 @@
     <Compile Include="GVLs\Input.TcGVL">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GVLs\LCP_IO.TcGVL">
+    <Compile Include="GVLs\LCP1_IO.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
     </Compile>

@@ -3,11 +3,17 @@
   <GVL Name="LV" Id="{a1b8c407-04a5-4145-a7ff-e33fdc4ffda1}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL
+	TxWord1	: WORD;
+	TxWord2 : WORD;
+	RxInt : ARRAY [1..5] OF INT;
+	RxDint : ARRAY [1..3] OF DINT;
+	RxREAL : ARRAY [1..6] OF REAL;
+	
 	Charger : ARRAY[1..6] OF ST_Charger_Base;
 	
 	TDKLoad	: ARRAY [1..6] OF ST_Setpoints_Base; 
 	
-	ChargerHVOFF_rlyDelayPT		: TIME := T#25MS;
+	(*ChargerHVOFF_rlyDelayPT		: TIME := T#25MS;
 	ChargerHVOFF_rlyDelayPT_INT	: INT := 25;
 	
 	HVONdelayPT					: TIME := T#250MS;
@@ -30,7 +36,7 @@ VAR_GLOBAL
 	
 	HMI_ManualModeSelected		: BOOL := 0;  // 1 = manual mode selected
 	CloseChargeRlySW			: BOOL := 0;
-	OpenDumpRlySW				: BOOL := 0;
+	OpenDumpRlySW				: BOOL := 0;*)
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

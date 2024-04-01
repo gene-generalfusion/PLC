@@ -3,9 +3,9 @@
   <GVL Name="Permissives_DB" Id="{c05a4b99-99cd-4605-96e2-a97127a00965}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL
-	//SafetyOK				: BOOL;
+	CageInterlockOK			: BOOL;
+	ShortingSystemEngaged	: BOOL;
 	AllChargerEOC			: BOOL;
-	
 	
 END_VAR]]></Declaration>
   </GVL>

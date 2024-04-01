@@ -44,10 +44,10 @@ VAR
 
 	ChargeTimeFinished		: BOOL;
 	
-	i						: INT := 1;
-	j						: INT := 1;
-	k						: INT := 1;
-	m						: INT := 1;
+	i						: INT := 1; //1-6
+	j						: INT := 1; //1-3
+	k						: INT := 1; //1-9
+	m						: INT := 1; //4-6
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -119,19 +119,8 @@ CASE eState OF
 		ChargeTime_DB.LongestChargeTime_TON (IN := FALSE); //reset timer
 		ChargeTimeFinished := FALSE; //reset chargetime done bit
 		
-		FOR j := 1 TO 3 BY 1 DO
-			FOR k := 1 TO 9 BY 1 DO 
-				LCP_IO.Segment[j].Module[k].Fire := FALSE; //turn off all firing triggers
-				//HMI_DB.CloseChargeRlySW := FALSE;
-				//HMI_DB.OpenDumpRlySW := FALSE;
-			END_FOR;				
-		END_FOR;
-		
-		FOR m := 4 TO 6 BY 1 DO
-			FOR k := 1 TO 9 BY 1 DO 
-				LCP2_IO.Segment[m].Module[k].Fire := FALSE;
-			END_FOR
-		END_FOR
+		LCP1_IO.Fire := FALSE; //turn off all firing triggers
+		LCP2_IO.Fire := FALSE;
 		
 		//TURN OFF ALL CHARGERS
 		FOR i := 1 TO 6 BY 1 DO 
@@ -153,35 +142,20 @@ CASE eState OF
 		ShotTrigDelayTMR_TON (IN := FALSE);
 		ShotTrigPulseTMR_TON (IN := FALSE);
 		
-		LCP_IO.Segment[1].CloseChargeRly := FALSE;
-		LCP_IO.Segment[2].CloseChargeRly := FALSE;
-		LCP_IO.Segment[3].CloseChargeRly := FALSE;
+	
+		LCP1_IO.Segment[1].CloseChargeRly := FALSE;
+		LCP1_IO.Segment[2].CloseChargeRly := FALSE;
+		LCP1_IO.Segment[3].CloseChargeRly := FALSE;
 		
-		(*
-		LCP1_IO.Segment[2].Module[1].CloseChargeRly := FALSE;
-		LCP1_IO.Segment[2].Module[2].CloseChargeRly := FALSE;
-		LCP1_IO.Segment[2].Module[3].CloseChargeRly := FALSE;
+		LCP2_IO.Segment[4].CloseChargeRly := FALSE;
+		LCP2_IO.Segment[5].CloseChargeRly := FALSE;
+		LCP2_IO.Segment[6].CloseChargeRly := FALSE;
 		
-		LCP1_IO.Segment[3].Module[1].CloseChargeRly := FALSE;
-		LCP1_IO.Segment[3].Module[2].CloseChargeRly := FALSE;
-		LCP1_IO.Segment[3].Module[3].CloseChargeRly := FALSE;
-		
-		LCP2_IO.Segment[4].Module[1].CloseChargeRly := FALSE;
-		LCP2_IO.Segment[4].Module[2].CloseChargeRly := FALSE;
-		LCP2_IO.Segment[4].Module[3].CloseChargeRly := FALSE;
-		
-		LCP2_IO.Segment[5].Module[1].CloseChargeRly := FALSE;
-		LCP2_IO.Segment[5].Module[2].CloseChargeRly := FALSE;
-		LCP2_IO.Segment[5].Module[3].CloseChargeRly := FALSE;
-		
-		LCP2_IO.Segment[6].Module[1].CloseChargeRly := FALSE;
-		LCP2_IO.Segment[6].Module[2].CloseChargeRly := FALSE;
-		LCP2_IO.Segment[6].Module[3].CloseChargeRly := FALSE;
-		*)
-		
-		LCP_IO.Segment[1].Module[1].OpenDumpRly := FALSE;
-		LCP_IO.Segment[1].Module[2].OpenDumpRly := FALSE;
-		LCP_IO.Segment[1].Module[3].OpenDumpRly := FALSE;
+		FOR j := 1 TO 3 BY 1 DO 
+			LCP1_IO.Segment[1].OpenModule1To3DumpRly := FALSE;
+			LCP1_IO.Segment[2].OpenModule4To6DumpRly := FALSE;
+			LCP1_IO.Segment[3].OpenModule7To9DumpRly := FALSE;
+		END_FOR;
 		
 		//LCP2 SEGMENT 4-6
 		IF HMI_DB.ChargePB = TRUE THEN
@@ -192,20 +166,20 @@ CASE eState OF
 
 	E_State.CHARGING:
 		// turn on warning light  - do it for all i and j
-		LCP_IO.SegmentCharged := TRUE;
+		LCP1_IO.SegmentCharged := TRUE;
 		
 		FirePBpressed := FALSE;
 		//start charging runout timer
-		LCP_IO.Segment[1].CloseChargeRly := TRUE;
-		LCP_IO.Segment[2].CloseChargeRly := TRUE;
-		LCP_IO.Segment[3].CloseChargeRly := TRUE;
+		LCP1_IO.Segment[1].CloseChargeRly := TRUE;
+		LCP1_IO.Segment[2].CloseChargeRly := TRUE;
+		LCP1_IO.Segment[3].CloseChargeRly := TRUE;
 		LCP2_IO.Segment[4].CloseChargeRly := TRUE;
 		LCP2_IO.Segment[5].CloseChargeRly := TRUE;
 		LCP2_IO.Segment[6].CloseChargeRly := TRUE;
 		
-		LCP_IO.Segment[1].OpenModule1To3DumpRly := TRUE;
-		LCP_IO.Segment[2].OpenModule4To6DumpRly := TRUE;
-		LCP_IO.Segment[3].OpenModule7To9DumpRly := TRUE;
+		LCP1_IO.Segment[1].OpenModule1To3DumpRly := TRUE;
+		LCP1_IO.Segment[2].OpenModule4To6DumpRly := TRUE;
+		LCP1_IO.Segment[3].OpenModule7To9DumpRly := TRUE;
 		LCP2_IO.Segment[4].OpenModule1To3DumpRly := TRUE;
 		LCP2_IO.Segment[5].OpenModule4To6DumpRly := TRUE;
 		LCP2_IO.Segment[6].OpenModule7To9DumpRly := TRUE;
@@ -223,7 +197,7 @@ CASE eState OF
 			eState := E_State.ABORT; 
 		END_IF
 		
-		IF PermissivesS.AllChargeRelayClosed = TRUE THEN
+		IF Permissives.AllChargeRelayClosed = TRUE THEN
 			//start broadcasting on charger timer
 			StartChargingBroadcast := TRUE;
 		END_IF;
@@ -314,20 +288,20 @@ CASE eState OF
 				ChargeTime_DB.ChargingTimeElapse_TON[i] (IN := FALSE);	
 			END_FOR;	
 				//Open all relays
-				LCP_IO.Segment[1].CloseChargeRly := FALSE;
-				LCP_IO.Segment[2].CloseChargeRly := FALSE;
-				LCP_IO.Segment[3].CloseChargeRly := FALSE;
+				LCP1_IO.Segment[1].CloseChargeRly := FALSE;
+				LCP1_IO.Segment[2].CloseChargeRly := FALSE;
+				LCP1_IO.Segment[3].CloseChargeRly := FALSE;
 				
 				LCP2_IO.Segment[4].CloseChargeRly := FALSE;
 				LCP2_IO.Segment[5].CloseChargeRly := FALSE;
 				LCP2_IO.Segment[6].CloseChargeRly := FALSE;	
 	
-				LCP_IO.Segment[1].OpenModule1To3DumpRly := TRUE;
-				LCP_IO.Segment[2].OpenModule4To6DumpRly := TRUE;
-				LCP_IO.Segment[3].OpenModule7To9DumpRly := TRUE;
+				LCP1_IO.Segment[1].OpenModule1To3DumpRly := TRUE;
+				LCP1_IO.Segment[2].OpenModule4To6DumpRly := TRUE;
+				LCP1_IO.Segment[3].OpenModule7To9DumpRly := TRUE;
 				LCP2_IO.Segment[1].OpenModule1To3DumpRly := TRUE;
-				LCP_IO.Segment[2].OpenModule4To6DumpRly := TRUE;
-				LCP_IO.Segment[3].OpenModule7To9DumpRly := TRUE;
+				LCP1_IO.Segment[2].OpenModule4To6DumpRly := TRUE;
+				LCP1_IO.Segment[3].OpenModule7To9DumpRly := TRUE;
 										
 			StartChargingBroadcast := FALSE; // reset the broadcast bit whne all chargers 
 			
@@ -337,7 +311,8 @@ CASE eState OF
 	
 	E_State.CHARGECOMPLETE:
 		//turn on led light
-		LCP_IO.Segment[1].Module[1].ModuleCharged := TRUE;
+		LCP1_IO.SegmentCharged := TRUE;
+		LCP2_IO.SegmentCharged := TRUE;
 		
 		ChargeCompleted := FALSE;
 		StartChargingBroadcast := FALSE; // reset the broadcast bit whne all chargers 
@@ -345,7 +320,8 @@ CASE eState OF
 		
 		IF HMI_DB.FirePB = TRUE THEN 
 			//LCP1_IO.Segment[1].Module[1].Fire := TRUE;
-			LCP_IO.Segment[1].Module[1].TriggerScope := TRUE;
+			LCP1_IO.TriggerScope := TRUE;
+			LCP2_IO.TriggerScope := TRUE;
 			ChargedRunOutTMR_TON (IN := FALSE);
 			//and all other shot triggers.
 			FirePBpressed := TRUE;
@@ -362,18 +338,21 @@ CASE eState OF
 		END_IF
 		
 		IF ScopeTrigPulseTMR_TON.Q = TRUE THEN 
-			LCP_IO.Segment[1].Module[1].TriggerScope := FALSE;
+			LCP1_IO.TriggerScope := FALSE;
+			LCP2_IO.TriggerScope := FALSE;
 			//ScopeTrigPulseTMR_TON (IN := FALSE);
 		END_IF
 		
 		IF ShotTrigDelayTMR_TON.Q = TRUE THEN
-			LCP_IO.Segment[1].Module[1].Fire := TRUE;
+			LCP1_IO.Fire := TRUE;
+			LCP2_IO.Fire := TRUE;
 			ShotFired := TRUE;
 			//ShotTrigDelayTMR_TON (IN := FALSE);
 		END_IF
 		
 		IF ShotTrigPulseTMR_TON.Q = TRUE THEN
-			LCP_IO.Segment[1].Module[1].Fire := FALSE;
+			LCP1_IO.Fire := FALSE;
+			LCP2_IO.Fire := FALSE;
 			//ShotTrigPulseTMR_TON (IN := FALSE);
 		END_IF
 		
@@ -408,16 +387,16 @@ CASE eState OF
 			MCP_IO.Charger[i].voltageSP := 0;
 			MCP_IO.Charger[i].inhibit := TRUE;
 			MCP_IO.Charger[i].HV_ON := FALSE;
-				
-			LCP_IO.Segment[i].Module[1].CloseChargeRly := FALSE;
-			LCP_IO.Segment[i].Module[2].CloseChargeRly := FALSE;
-			LCP_IO.Segment[i].Module[3].CloseChargeRly := FALSE;
-		
-			LCP_IO.Segment[i].Module[1].OpenDumpRly := FALSE;
-			LCP_IO.Segment[i].Module[2].OpenDumpRly := FALSE;
-			LCP_IO.Segment[i].Module[3].OpenDumpRly := FALSE;
 		END_FOR;
 		
+		LCP1_IO.Segment[1].CloseChargeRly := FALSE;
+		LCP1_IO.Segment[2].CloseChargeRly := FALSE;
+		LCP1_IO.Segment[3].CloseChargeRly := FALSE;
+		
+		LCP2_IO.Segment[4].CloseChargeRly := FALSE;
+		LCP2_IO.Segment[5].CloseChargeRly := FALSE;
+		LCP2_IO.Segment[6].CloseChargeRly := FALSE;
+				
 		DumpingRunOutTMR_TON (IN := TRUE, PT := DumpingRunOutTMR_PT);
 		
 		//HMI_DB.CloseChargeRlySW := FALSE;
@@ -430,21 +409,24 @@ CASE eState OF
 	E_State.ABORT:
 		//dump all
 		FOR i := 1 TO 6 BY 1 DO
-			MCP_IO.Charger[i].voltageSP := 0;
 			MCP_IO.Charger[i].inhibit := TRUE;
 			MCP_IO.Charger[i].HV_ON := FALSE;
-			
+			MCP_IO.Charger[i].voltageSP := 0;
 		END_FOR
 				
-		LCP_IO.Segment[1].Module[1].CloseChargeRly := FALSE;
-		LCP_IO.Segment[1].Module[2].CloseChargeRly := FALSE;
-		LCP_IO.Segment[1].Module[3].CloseChargeRly := FALSE;
+		LCP1_IO.Segment[1].CloseChargeRly := FALSE;
+		LCP1_IO.Segment[2].CloseChargeRly := FALSE;
+		LCP1_IO.Segment[3].CloseChargeRly := FALSE;
 		
-		LCP_IO.Segment[1].Module[1].OpenDumpRly := FALSE;
-		LCP_IO.Segment[1].Module[2].OpenDumpRly := FALSE;
-		LCP_IO.Segment[1].Module[3].OpenDumpRly := FALSE;
+		LCP2_IO.Segment[4].CloseChargeRly := FALSE;
+		LCP2_IO.Segment[5].CloseChargeRly := FALSE;
+		LCP2_IO.Segment[6].CloseChargeRly := FALSE;
 		
-		IF PermissivesS.SystemIsSafe = TRUE AND Trips_DB.TimerRunOutON = FALSE THEN
+		LCP1_IO.Segment[1].OpenModule1To3DumpRly := FALSE;
+		LCP1_IO.Segment[2].OpenModule4To6DumpRly := FALSE;
+		LCP1_IO.Segment[3].OpenModule7To9DumpRly := FALSE;
+		
+		IF Permissives.SystemIsSafe = TRUE AND Trips_DB.TimerRunOutON = FALSE THEN
 			eState := E_State.SAFE;
 		END_IF
 		
@@ -455,9 +437,11 @@ CASE eState OF
 	E_State.ManualMode:
 		
 		DumpingRunOutTMR_TON (IN := FALSE);
-		LCP_IO.Segment[1].Module[1].CloseChargeRly := HMI_DB.CloseChargeRlySW;
-		LCP_IO.Segment[1].Module[1].OpenDumpRly := HMI_DB.OpenDumpRlySW;
 		
+		LCP1_IO.Segment[1].CloseChargeRly := LCP1_IO.Segment[2].CloseChargeRly := LCP1_IO.Segment[3].CloseChargeRly := HMI_DB.CloseChargeRlySW;
+		LCP2_IO.Segment[4].CloseChargeRly := LCP2_IO.Segment[5].CloseChargeRly := LCP2_IO.Segment[6].CloseChargeRly := HMI_DB.CloseChargeRlySW;
+		LCP1_IO.Segment[1].OpenModule1To3DumpRly := LCP1_IO.Segment[2].OpenModule4To6DumpRly := LCP1_IO.Segment[3].OpenModule7To9DumpRly := HMI_DB.OpenDumpRlySW;
+		LCP2_IO.Segment[4].OpenModule1To3DumpRly := LCP2_IO.Segment[5].OpenModule4To6DumpRly := LCP2_IO.Segment[6].OpenModule7To9DumpRly := HMI_DB.OpenDumpRlySW;
 		IF HMI_DB.HMI_ManualModeSelected = FALSE THEN
 			eState := E_State.SAFE;
 		END_IF
@@ -513,17 +497,9 @@ END_IF;	]]></ST>
       <LineId Id="463" Count="0" />
       <LineId Id="485" Count="0" />
       <LineId Id="648" Count="0" />
-      <LineId Id="946" Count="1" />
-      <LineId Id="950" Count="0" />
+      <LineId Id="947" Count="0" />
       <LineId Id="646" Count="0" />
-      <LineId Id="791" Count="0" />
-      <LineId Id="793" Count="0" />
-      <LineId Id="948" Count="0" />
-      <LineId Id="647" Count="0" />
-      <LineId Id="951" Count="1" />
-      <LineId Id="954" Count="0" />
-      <LineId Id="956" Count="1" />
-      <LineId Id="955" Count="0" />
+      <LineId Id="956" Count="0" />
       <LineId Id="949" Count="0" />
       <LineId Id="522" Count="10" />
       <LineId Id="464" Count="0" />
@@ -533,24 +509,20 @@ END_IF;	]]></ST>
       <LineId Id="897" Count="1" />
       <LineId Id="896" Count="0" />
       <LineId Id="61" Count="0" />
+      <LineId Id="1083" Count="0" />
       <LineId Id="34" Count="0" />
       <LineId Id="36" Count="1" />
-      <LineId Id="40" Count="0" />
-      <LineId Id="47" Count="0" />
-      <LineId Id="38" Count="1" />
-      <LineId Id="35" Count="0" />
-      <LineId Id="16" Count="0" />
-      <LineId Id="42" Count="1" />
-      <LineId Id="41" Count="0" />
-      <LineId Id="48" Count="0" />
-      <LineId Id="58" Count="1" />
+      <LineId Id="1084" Count="0" />
       <LineId Id="57" Count="0" />
-      <LineId Id="60" Count="0" />
-      <LineId Id="50" Count="6" />
-      <LineId Id="45" Count="1" />
+      <LineId Id="52" Count="0" />
+      <LineId Id="56" Count="0" />
+      <LineId Id="45" Count="0" />
+      <LineId Id="1085" Count="0" />
       <LineId Id="63" Count="1" />
       <LineId Id="62" Count="0" />
-      <LineId Id="65" Count="1" />
+      <LineId Id="65" Count="0" />
+      <LineId Id="1086" Count="0" />
+      <LineId Id="66" Count="0" />
       <LineId Id="108" Count="1" />
       <LineId Id="111" Count="1" />
       <LineId Id="44" Count="0" />
@@ -640,12 +612,14 @@ END_IF;	]]></ST>
       <LineId Id="644" Count="0" />
       <LineId Id="586" Count="0" />
       <LineId Id="692" Count="0" />
+      <LineId Id="1135" Count="0" />
       <LineId Id="21" Count="0" />
       <LineId Id="508" Count="0" />
       <LineId Id="465" Count="0" />
       <LineId Id="623" Count="0" />
       <LineId Id="466" Count="1" />
       <LineId Id="857" Count="0" />
+      <LineId Id="1136" Count="0" />
       <LineId Id="683" Count="0" />
       <LineId Id="471" Count="0" />
       <LineId Id="634" Count="0" />
@@ -658,14 +632,17 @@ END_IF;	]]></ST>
       <LineId Id="885" Count="0" />
       <LineId Id="639" Count="0" />
       <LineId Id="866" Count="2" />
+      <LineId Id="1137" Count="0" />
       <LineId Id="873" Count="0" />
       <LineId Id="869" Count="0" />
       <LineId Id="845" Count="1" />
       <LineId Id="856" Count="0" />
+      <LineId Id="1138" Count="0" />
       <LineId Id="880" Count="0" />
       <LineId Id="872" Count="0" />
       <LineId Id="848" Count="0" />
       <LineId Id="881" Count="2" />
+      <LineId Id="1139" Count="0" />
       <LineId Id="886" Count="0" />
       <LineId Id="884" Count="0" />
       <LineId Id="889" Count="3" />
@@ -694,11 +671,11 @@ END_IF;	]]></ST>
       <LineId Id="202" Count="0" />
       <LineId Id="200" Count="1" />
       <LineId Id="198" Count="0" />
-      <LineId Id="192" Count="5" />
+      <LineId Id="1140" Count="0" />
+      <LineId Id="192" Count="3" />
+      <LineId Id="1141" Count="1" />
       <LineId Id="191" Count="0" />
-      <LineId Id="589" Count="0" />
-      <LineId Id="650" Count="0" />
-      <LineId Id="590" Count="0" />
+      <LineId Id="589" Count="1" />
       <LineId Id="801" Count="0" />
       <LineId Id="803" Count="0" />
       <LineId Id="802" Count="0" />
@@ -707,9 +684,11 @@ END_IF;	]]></ST>
       <LineId Id="25" Count="0" />
       <LineId Id="27" Count="0" />
       <LineId Id="502" Count="0" />
-      <LineId Id="505" Count="2" />
+      <LineId Id="506" Count="1" />
       <LineId Id="503" Count="1" />
-      <LineId Id="208" Count="6" />
+      <LineId Id="208" Count="0" />
+      <LineId Id="1143" Count="5" />
+      <LineId Id="211" Count="3" />
       <LineId Id="204" Count="0" />
       <LineId Id="215" Count="1" />
       <LineId Id="245" Count="1" />
@@ -718,7 +697,10 @@ END_IF;	]]></ST>
       <LineId Id="789" Count="0" />
       <LineId Id="772" Count="2" />
       <LineId Id="808" Count="0" />
-      <LineId Id="775" Count="1" />
+      <LineId Id="1155" Count="0" />
+      <LineId Id="775" Count="0" />
+      <LineId Id="1149" Count="0" />
+      <LineId Id="776" Count="0" />
       <LineId Id="29" Count="0" />
       <LineId Id="781" Count="2" />
       <LineId Id="786" Count="0" />

@@ -20,6 +20,7 @@ VAR_GLOBAL PERSISTENT
 END_VAR
 
 VAR_GLOBAL
+	ArmTheCagePB				: BOOL := 0;
 	ChargePB					: BOOL := 0;
 	DumpPB						: BOOL := 0;
 	AbortPB						: BOOL := 0;

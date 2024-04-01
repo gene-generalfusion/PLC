@@ -8,7 +8,7 @@ STRUCT
 	CloseChargeRly	: BOOL;
 	ChargeRly_close : BOOL;
 
-	OpenModule1To3DumpRly : BOOL;
+	OpenModule1To3DumpRly : BOOL; //Open Module1To3DumpRly
 	OpenModule4To6DumpRly : BOOL;
 	OpenModule7To9DumpRly : BOOL;
 	

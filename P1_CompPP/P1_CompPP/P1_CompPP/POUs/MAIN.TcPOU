@@ -8,16 +8,21 @@ END_VAR
     <Implementation>
       <ST><![CDATA[Alias();
 Permissives();
+Trips();
 ChargeTime();
 AnalogConversion();
-VoltageMon();
+VoltMonitor();
 Sequence();
 HMI();
-Heartbeat();]]></ST>
+Heartbeat();
+Alarms();]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
-      <LineId Id="43" Count="6" />
+      <LineId Id="43" Count="1" />
+      <LineId Id="53" Count="0" />
+      <LineId Id="45" Count="4" />
       <LineId Id="17" Count="0" />
+      <LineId Id="54" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>
