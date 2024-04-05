@@ -82,7 +82,7 @@
     "DISCOVERY": 2,
     "ENABLE_SERVER_UPDATE": true,
     "ENDPOINTS": [
-        "http://127.0.0.1:13000",
+        "http://127.0.0.1:13001",
         "http://127.0.0.1:3001"
     ],
     "ETAGENABLED": true,
@@ -3581,6 +3581,23 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.LCP1_IO.Segment.0.Module.0.VoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[0]::Module[0]::VoltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 8
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
         "PLC1.MCP_IO.Charger.0.ChargeTime.Power": {
             "ACCESS": 3,
             "CUSTOMERDATA": "",
@@ -6978,6 +6995,7 @@
                 "PLC1.Heartbeat.screen_refresh_pulse": 3,
                 "PLC1.LCP1_IO.Segment.0.Module.0.ChargeRly_close": 3,
                 "PLC1.LCP1_IO.Segment.0.Module.0.DumpRly_open": 3,
+                "PLC1.LCP1_IO.Segment.0.Module.0.VoltageFeedback": 3,
                 "PLC1.MCP_IO.Charger.0.ChargeTime.Power": 3,
                 "PLC1.MCP_IO.Charger.0.ChargeTime.timeToChargeLoad": 3,
                 "PLC1.MCP_IO.Charger.0.ChargerType_12kV": 3,

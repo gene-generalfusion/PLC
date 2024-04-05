@@ -3,6 +3,7 @@
   <POU Name="Alias" Id="{ebc75665-f0df-4b03-b4d1-48515468f179}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM Alias
 VAR
+	i : INT := 0;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -20,16 +21,16 @@ END_VAR
 	
 	//INPUT
 	//DI
-	MCP_IO.Charger[1].inhibited					:= Input.R1_02_00; //TDK802 1
-	MCP_IO.Charger[1].EndOfCharge				:= Input.R1_02_01; //TDK802 1
-	MCP_IO.Charger[1].HV_isON					:= Input.R1_02_02; //TDK802 1
-	MCP_IO.Charger[1].SummaryFaulted			:= Input.R1_02_03; //TDK802 1
+	MCP_IO.Charger[1].inhibited					:= NOT Input.R1_02_00; //TDK802 1 NC for all feedback esaigeean
+	MCP_IO.Charger[1].EndOfCharge				:= NOT Input.R1_02_01; //TDK802 1
+	MCP_IO.Charger[1].HV_isON					:= NOT Input.R1_02_02; //TDK802 1
+	MCP_IO.Charger[1].SummaryFaulted			:= NOT Input.R1_02_03; //TDK802 1
 	//MCP_IO.Charger[1].OverTemp					:= Input.R1_02_03; //TDK802 1
 	//MCP_IO.Charger[1].InterlockOpen				:= Input.R1_02_04; //TDK802 1
 	//MCP_IO.Charger[1].LoadFaulted				:= Input.R1_02_05; //TDK802 1
 	
 	LCP1_IO.Segment[1].Module[1].ChargeRly_close := Input.R1_02_04;
-	LCP1_IO.Segment[1].Module[1].DumpRly_open	 := Input.R1_02_05;
+	LCP1_IO.Segment[1].Module[1].DumpRly_open	 := NOT Input.R1_02_05;
 	
 	//EL3068 - AI
 	MCP_IO.Charger[1].voltageFeedback_raw		:= Input.R1_04_00;
@@ -47,6 +48,14 @@ END_VAR
 	//AQ
 	Output.R1_05_00								:= MCP_IO.Charger[1].voltageSP_raw;
 	
+	//Cap voltage monitor feedback is at VoltMonitor
+	FOR i := 0 TO 24 BY 1 DO 
+		VoltMonitor_DB.CapRaw[i] 					:= Input.B170357_CapRaw[i]; 
+	END_FOR
+	
+IF i > 24 THEN
+	i := 0;
+END_IF
 	
 //*************************************************************************************************************	
 	]]></ST>
@@ -82,7 +91,12 @@ END_VAR
       <LineId Id="421" Count="0" />
       <LineId Id="414" Count="0" />
       <LineId Id="418" Count="1" />
+      <LineId Id="432" Count="0" />
+      <LineId Id="434" Count="2" />
       <LineId Id="417" Count="0" />
+      <LineId Id="437" Count="0" />
+      <LineId Id="439" Count="1" />
+      <LineId Id="438" Count="0" />
       <LineId Id="403" Count="0" />
       <LineId Id="393" Count="0" />
     </LineIds>

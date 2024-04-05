@@ -31,11 +31,11 @@ VAR
 	ShotTrigPulseTMR_ET		: TIME;
 		
 	ScopeTrigPulseTMR_TON	: TON;
-	ScopeTrigPulseTMR_PT	: TIME := T#10MS;
+	ScopeTrigPulseTMR_PT	: TIME := T#20MS;
 	ScopeTrigPulseTMR_ET	: TIME;
 	
 	DumpingRunOutTMR_TON 	: TON;
-	DumpingRunOutTMR_PT		: TIME := T#60S;
+	DumpingRunOutTMR_PT		: TIME := T#30S;
 	DumpingRunOutTMR_ET		: TIME;
 	LocalDumpActive			: BOOL := FALSE;
 
@@ -117,7 +117,7 @@ CASE eState OF
 		ChargeTimeFinished := FALSE; //reset chargetime done bit
 		LCP1_IO.Segment[1].Module[1].Fire := FALSE; //turn off all firing triggers
 		
-		IF Permissives_DB.CageInterlockOK AND HMI_DB.ArmTheCagePB = TRUE THEN 
+		IF Permissives_DB.CageInterlockOK = TRUE AND HMI_DB.ArmTheCagePB = TRUE THEN 
 			MCP_IO.EnergizeACKontactor := TRUE;
 		END_IF;
 		//HMI_DB.CloseChargeRlySW := FALSE;
@@ -127,7 +127,7 @@ CASE eState OF
 		FOR i := 1 TO 6 BY 1 DO 
 			MCP_IO.Charger[i].inhibit := TRUE; // inhibit = high, no output | inhibit = low, allows output
 			MCP_IO.Charger[i].HV_ON := FALSE; 
-			MCP_IO.Charger[i].voltageSP := 0;
+			MCP_IO.Charger[i].voltageSP := 0.001;
 			StartCharger[i] := FALSE; // reset bit
 			ChargeTimeFinished := FALSE;
 			StartChargingBroadcast := FALSE;
@@ -193,7 +193,13 @@ CASE eState OF
 		LCP1_IO.Segment[1].Module[1].OpenDumpRly := TRUE;
 		LCP1_IO.Segment[1].Module[2].OpenDumpRly := TRUE;
 		LCP1_IO.Segment[1].Module[3].OpenDumpRly := TRUE;
-
+		
+		IF Permissives_DB.ReadyToCharge = TRUE THEN 
+			FOR i := 1 TO 6 BY 1 DO 
+				//MCP_IO.Charger[i].voltageSP := (HMI_DB.TDKLoad[i].RequiredChargedV *1000);
+				MCP_IO.Charger[i].voltageSP := (1000*Setpoints.TDKLoad[i].RequiredChargedV);
+			END_FOR
+		END_IF;
 		//start charging runout timer
 		ChargingRunOutTMR_TON (IN := TRUE, PT := (ChargeTime_DB.LongestChargeTime_PT + HMI_DB.RunOutTMR_PT), ET => ChargingRunOutTMR_ET);
 		
@@ -208,7 +214,7 @@ CASE eState OF
 			eState := E_State.ABORT; 
 		END_IF
 		
-		IF Permissives.AllChargeRelayClosed = TRUE THEN
+		IF Permissives_DB.AllChargeRelayClosed = TRUE THEN
 			//start broadcasting on charger timer
 			StartChargingBroadcast := TRUE;
 		END_IF;
@@ -219,7 +225,7 @@ CASE eState OF
 			
 			//mapping HMI Charger Voltage SP to MCP IO 
 			FOR i := 1 TO 6 BY 1 DO
-				MCP_IO.Charger[i].voltageSP := REAL_TO_DINT (HMI_DB.TDKLoad[i].RequiredChargedV * 1000);
+				MCP_IO.Charger[i].voltageSP :=(HMI_DB.TDKLoad[i].RequiredChargedV * 1000);
 				//MCP_IO.Charger[1].voltageSP := REAL_TO_DINT (Setpoints.TDKLoad[1].RequiredChargedV);
 			END_FOR;
 			
@@ -383,9 +389,10 @@ CASE eState OF
 		END_IF
 
 	E_State.DUMPING:
+		FirePBpressed := FALSE;
 		// dump all 
 		FOR i := 1 TO 6 BY 1 DO 
-			MCP_IO.Charger[i].voltageSP := 0;
+			MCP_IO.Charger[i].voltageSP := 0.001;
 			MCP_IO.Charger[i].inhibit := TRUE;
 			MCP_IO.Charger[i].HV_ON := FALSE;
 				
@@ -408,9 +415,10 @@ CASE eState OF
 		END_IF
 
 	E_State.ABORT:
+		FirePBpressed := FALSE;
 		//dump all
 		FOR i := 1 TO 6 BY 1 DO
-			MCP_IO.Charger[i].voltageSP := 0;
+			MCP_IO.Charger[i].voltageSP := 0.001;
 			MCP_IO.Charger[i].inhibit := TRUE;
 			MCP_IO.Charger[i].HV_ON := FALSE;
 			
@@ -530,6 +538,10 @@ END_IF;	]]></ST>
       <LineId Id="74" Count="0" />
       <LineId Id="72" Count="1" />
       <LineId Id="70" Count="0" />
+      <LineId Id="992" Count="0" />
+      <LineId Id="997" Count="0" />
+      <LineId Id="994" Count="2" />
+      <LineId Id="993" Count="0" />
       <LineId Id="310" Count="0" />
       <LineId Id="317" Count="1" />
       <LineId Id="491" Count="9" />
@@ -642,6 +654,7 @@ END_IF;	]]></ST>
       <LineId Id="573" Count="1" />
       <LineId Id="23" Count="0" />
       <LineId Id="22" Count="0" />
+      <LineId Id="1047" Count="0" />
       <LineId Id="24" Count="0" />
       <LineId Id="649" Count="0" />
       <LineId Id="202" Count="0" />
@@ -658,6 +671,7 @@ END_IF;	]]></ST>
       <LineId Id="591" Count="3" />
       <LineId Id="26" Count="0" />
       <LineId Id="25" Count="0" />
+      <LineId Id="1048" Count="0" />
       <LineId Id="27" Count="0" />
       <LineId Id="502" Count="0" />
       <LineId Id="505" Count="2" />

@@ -76,7 +76,7 @@
 			</Properties>
 		</DataType>
 		<DataType>
-			<Name IecBaseType="true">ARRAY [1..6] OF Tc2_Standard.TON</Name>
+			<Name GUID="{B67C53DE-6A92-5C5B-4076-1B25F1887AC3}" IecBaseType="true" AutoDeleteType="true">ARRAY [1..6] OF Tc2_Standard.TON</Name>
 			<BitSize>1536</BitSize>
 			<BaseType GUID="{1337BBBA-9A3F-D9E7-4ED6-FA23E60881AB}" Namespace="Tc2_Standard">TON</BaseType>
 			<ArrayInfo>
@@ -113,7 +113,7 @@
 		</System>
 		<Plc>
 			<Project GUID="{A319C1E8-8F6D-4156-9E15-85CB720BDC45}" Name="M1_CompPP" PrjFilePath="M1_CompPP\M1_CompPP.plcproj" TmcFilePath="M1_CompPP\M1_CompPP.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="P1_CompPP\P1_CompPP.tmc">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="M1_CompPP\M1_CompPP.tmc">
 					<Name>M1_CompPP Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">

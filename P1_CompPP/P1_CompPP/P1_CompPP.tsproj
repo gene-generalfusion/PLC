@@ -226,7 +226,7 @@
 		<ImageData Id="1003">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000c40e0000c40e00000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ff808080808080808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000ffffc0c0c000ffff808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0ff0000c0c0c0ff0000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff0000ff0000ff0000ff0000ff0000ff0000c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff0000ff0000ff0000ff0000ff0000ff0000c0c0c00000ffc0c0c00000ff808080ff00ffff00ffff00ffff00ffff00ffff0000ff0000ff0000ff0000ff0000ff0000c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff0000ff0000ff0000ff0000ff0000ff0000c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff0000ff0000ff0000ff0000ff0000ff0000c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff0000ff0000ff0000ff0000ff0000ff0000c0c0c0008000c0c0c0008000808080ff00ffff00ffff00ffff00ffff00ffff0000ff0000ff0000ff0000ff0000ff0000c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff</ImageData>
 		<ImageData Id="1004">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000c40e0000c40e00000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ff808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff</ImageData>
 	</ImageDatas>
-	<Project ProjectGUID="{ACF9125F-3860-4FE6-A24D-0667B9D4033A}" Target64Bit="true" ShowHideConfigurations="#x106">
+	<Project ProjectGUID="{ACF9125F-3860-4FE6-A24D-0667B9D4033A}" TargetNetId="5.107.141.148.1.1" Target64Bit="true" ShowHideConfigurations="#x106">
 		<System>
 			<Licenses>
 				<Target>
@@ -320,6 +320,10 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
+							<Name>Input.B170357_BatLevel</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
 							<Name>Input.R1_04_00</Name>
 							<Comment><![CDATA[EL3068 - AI1]]></Comment>
 							<Type>INT</Type>
@@ -388,10 +392,6 @@
 							<Name>Input.B170357_CapRaw</Name>
 							<Comment><![CDATA[Ethercat Device Voltage]]></Comment>
 							<Type GUID="{5044CB06-7724-5056-95AD-1E09DECF3A45}">ARRAY [0..24] OF UINT</Type>
-						</Var>
-						<Var>
-							<Name>Input.B170357_BatLevel</Name>
-							<Type>BOOL</Type>
 						</Var>
 						<Var>
 							<Name>Input.B170357_Heartbeat</Name>
@@ -478,16 +478,6 @@ EL2008 - DQ1]]></Comment>
 					<Vars VarGrpType="8" AreaNo="4">
 						<Name>PlcTask Retains</Name>
 						<Var>
-							<Name>ChargeTime_DB.PreFormChargeTimeStartDelay</Name>
-							<Type>INT</Type>
-							<InOut>7</InOut>
-						</Var>
-						<Var>
-							<Name>ChargeTime_DB.PreFormChargeTime_PT</Name>
-							<Type>TIME</Type>
-							<InOut>7</InOut>
-						</Var>
-						<Var>
 							<Name>ChargeTime_DB.ChargerDelay_TON</Name>
 							<Type GUID="{B67C53DE-6A92-5C5B-4076-1B25F1887AC3}">ARRAY [1..6] OF Tc2_Standard.TON</Type>
 							<InOut>7</InOut>
@@ -514,18 +504,23 @@ FormChargeTime_ET  : ARRAY[1..2] OF TIME;]]></Comment>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
-							<Name>ChargeTime_DB.PreFormChargeTime_ET</Name>
+							<Name>ChargeTime_DB.PreFormChargeTime_PT</Name>
 							<Type>TIME</Type>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
-							<Name>ChargeTime_DB.LongestChargeTime_PT</Name>
+							<Name>ChargeTime_DB.PreFormChargeTime_ET</Name>
 							<Type>TIME</Type>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
 							<Name>ChargeTime_DB.LongestChargeTime_TON</Name>
 							<Type GUID="{1337BBBA-9A3F-D9E7-4ED6-FA23E60881AB}" Namespace="Tc2_Standard">TON</Type>
+							<InOut>7</InOut>
+						</Var>
+						<Var>
+							<Name>ChargeTime_DB.LongestChargeTime_PT</Name>
+							<Type>TIME</Type>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
@@ -544,13 +539,18 @@ FormChargeTime_ET  : ARRAY[1..2] OF TIME;]]></Comment>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
-							<Name>ChargeTime_DB.PreFormChargingTimeElapse</Name>
+							<Name>ChargeTime_DB.ChargingTimeElapse_TON</Name>
+							<Type GUID="{B67C53DE-6A92-5C5B-4076-1B25F1887AC3}">ARRAY [1..6] OF Tc2_Standard.TON</Type>
+							<InOut>7</InOut>
+						</Var>
+						<Var>
+							<Name>ChargeTime_DB.PreFormChargeTimeStartDelay</Name>
 							<Type>INT</Type>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
-							<Name>ChargeTime_DB.ChargingTimeElapse_TON</Name>
-							<Type GUID="{B67C53DE-6A92-5C5B-4076-1B25F1887AC3}">ARRAY [1..6] OF Tc2_Standard.TON</Type>
+							<Name>ChargeTime_DB.PreFormChargingTimeElapse</Name>
+							<Type>INT</Type>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
@@ -611,7 +611,7 @@ FormChargeTime_ET  : ARRAY[1..2] OF TIME;]]></Comment>
 			</Project>
 		</Plc>
 		<Io>
-			<Device Id="1" Disabled="true" DevType="111" DevFlags="#x0003" AmsPort="28673" AmsNetId="172.25.226.104.2.1" RemoteName="Device 1 (EtherCAT)" InfoImageId="2">
+			<Device Id="1" DevType="111" DevFlags="#x0003" AmsPort="28673" AmsNetId="5.107.141.148.2.1" RemoteName="Device 1 (EtherCAT)" InfoImageId="2">
 				<Name>Device 1 (EtherCAT)</Name>
 				<AddressInfo>
 					<Ccat>
@@ -1265,9 +1265,141 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 				</Box>
 				<EtherCAT/>
 			</Device>
+			<Device Id="3" DevType="112" AmsPort="28675" AmsNetId="5.107.141.148.4.1" RemoteName="Device 3 (EtherCAT Automation Protocol)">
+				<Name>Device 3 (EtherCAT Automation Protocol)</Name>
+				<AddressInfo>
+					<Pnp>
+						<DeviceDesc>X000 (X000)</DeviceDesc>
+						<DeviceName>\DEVICE\{4967C201-2DF3-4A76-B381-8E154F7D20B0}</DeviceName>
+						<DeviceData>0001056b8d95</DeviceData>
+					</Pnp>
+				</AddressInfo>
+				<Image Id="3" AddrType="1" ImageType="3">
+					<Name>Image</Name>
+				</Image>
+				<Ethernet DeviceDesc="X000 (X000)"/>
+				<Eap EapDeviceGuid="{68C444FC-8559-48EC-8BAD-B6399F260768}"/>
+			</Device>
+			<Device Id="5" DevType="111" DevFlags="#x0003" AmsPort="28677" AmsNetId="5.107.141.148.6.1" RemoteName="Device 5 (EtherCAT)" InfoImageId="5">
+				<Name>Device 5 (EtherCAT)</Name>
+				<AddressInfo>
+					<Pnp>
+						<DeviceDesc>X001 (X001)</DeviceDesc>
+						<DeviceName>\DEVICE\{0528CAB7-0A00-4128-B8E3-6969507083EA}</DeviceName>
+						<DeviceData>0001056b8d94</DeviceData>
+					</Pnp>
+				</AddressInfo>
+				<Image Id="4" AddrType="9" ImageType="3">
+					<Name>Image</Name>
+				</Image>
+				<Box Id="1" BoxType="9099">
+					<Name>Box 1 (170357)</Name>
+					<ImageId>114</ImageId>
+					<EtherCAT SlaveType="2" PdiType="#x0e82" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="35" FoeType="1" VendorId="#x00000e6d" ProductCode="#x00009255" RevisionNo="#x00000001" InfoDataAddr="true" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="170357" Desc="170357" PortABoxInfo="#x00ffffff">
+						<SyncMan>001080002600010001000000000000008000001026010000</SyncMan>
+						<SyncMan>801080002200010002000000000000008000801022010000</SyncMan>
+						<SyncMan>001104006400010003000000000000000400001164010000</SyncMan>
+						<SyncMan>001432002000010004000000000000003200001420010000</SyncMan>
+						<Fmmu>0000000000000000001100020100000001000000000000000000000000000000</Fmmu>
+						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
+						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
+						<BootStrapData>0010800080108000</BootStrapData>
+						<DcMode>53796e6368726f6e000000000000000053796e6368726f6e000000000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000</DcMode>
+						<DcMode>444300000000000000000000000000004443000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000030100000000000000000000000000000000000000000000000000000000000000</DcMode>
+						<Pdo Name="HV Cap process data mapping" Index="#x1a00" Flags="#x0011" SyncMan="3">
+							<Entry Name="Cap 0 Raw" Index="#x6000" Sub="#x01">
+								<Type>UINT</Type>
+							</Entry>
+							<Entry Name="Cap 1 Raw" Index="#x6000" Sub="#x02">
+								<Type>UINT</Type>
+							</Entry>
+							<Entry Name="Cap 2 Raw" Index="#x6000" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+							<Entry Name="Cap 3 Raw" Index="#x6000" Sub="#x04">
+								<Type>UINT</Type>
+							</Entry>
+							<Entry Name="Cap 4 Raw" Index="#x6000" Sub="#x05">
+								<Type>UINT</Type>
+							</Entry>
+							<Entry Name="Cap 5 Raw" Index="#x6000" Sub="#x06">
+								<Type>UINT</Type>
+							</Entry>
+							<Entry Name="Cap 6 Raw" Index="#x6000" Sub="#x07">
+								<Type>UINT</Type>
+							</Entry>
+							<Entry Name="Cap 7 Raw" Index="#x6000" Sub="#x08">
+								<Type>UINT</Type>
+							</Entry>
+							<Entry Name="Cap 8 Raw" Index="#x6000" Sub="#x09">
+								<Type>UINT</Type>
+							</Entry>
+							<Entry Name="Cap 9 Raw" Index="#x6000" Sub="#x0a">
+								<Type>UINT</Type>
+							</Entry>
+							<Entry Name="Cap 10 Raw" Index="#x6000" Sub="#x0b">
+								<Type>UINT</Type>
+							</Entry>
+							<Entry Name="Cap 11 Raw" Index="#x6000" Sub="#x0c">
+								<Type>UINT</Type>
+							</Entry>
+							<Entry Name="Cap 12 Raw" Index="#x6000" Sub="#x0d">
+								<Type>UINT</Type>
+							</Entry>
+							<Entry Name="Cap 13 Raw" Index="#x6000" Sub="#x0e">
+								<Type>UINT</Type>
+							</Entry>
+							<Entry Name="Cap 14 Raw" Index="#x6000" Sub="#x0f">
+								<Type>UINT</Type>
+							</Entry>
+							<Entry Name="Cap 15 Raw" Index="#x6000" Sub="#x10">
+								<Type>UINT</Type>
+							</Entry>
+							<Entry Name="Cap 16 Raw" Index="#x6000" Sub="#x11">
+								<Type>UINT</Type>
+							</Entry>
+							<Entry Name="Cap 17 Raw" Index="#x6000" Sub="#x12">
+								<Type>UINT</Type>
+							</Entry>
+							<Entry Name="Cap 18 Raw" Index="#x6000" Sub="#x13">
+								<Type>UINT</Type>
+							</Entry>
+							<Entry Name="Cap 19 Raw" Index="#x6000" Sub="#x14">
+								<Type>UINT</Type>
+							</Entry>
+							<Entry Name="Cap 20 Raw" Index="#x6000" Sub="#x15">
+								<Type>UINT</Type>
+							</Entry>
+							<Entry Name="Cap 21 Raw" Index="#x6000" Sub="#x16">
+								<Type>UINT</Type>
+							</Entry>
+							<Entry Name="Cap 22 Raw" Index="#x6000" Sub="#x17">
+								<Type>UINT</Type>
+							</Entry>
+							<Entry Name="Cap 23 Raw" Index="#x6000" Sub="#x18">
+								<Type>UINT</Type>
+							</Entry>
+							<Entry Name="Cap 24 Raw" Index="#x6000" Sub="#x19">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="Setpoint Values process data mapping" Index="#x1600" InOut="1" Flags="#x0011" SyncMan="2">
+							<Entry Name="Value 1" Index="#x7000" Sub="#x01">
+								<Type>UINT</Type>
+							</Entry>
+							<Entry Name="Value 2" Index="#x7000" Sub="#x02">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
+					</EtherCAT>
+				</Box>
+				<EtherCAT/>
+			</Device>
 		</Io>
 	</Project>
 	<Mappings>
+		<MappingInfo Identifier="{00000000-2001-0850-0020-500810000403}" Id="#x02030010"/>
+		<MappingInfo Identifier="{00000000-2001-0850-0020-500840000403}" Id="#x02030020"/>
 		<OwnerA Name="TIPC^P1_CompPP^P1_CompPP Instance">
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 7 (EK1200)^Term 10 (EL2008)">
 				<Link VarA="PlcTask Outputs^Output.R1_03_00" VarB="Channel 1^Output"/>
@@ -1326,6 +1458,33 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 				<Link VarA="PlcTask Inputs^Input.R1_02_05" VarB="Channel 6^Input"/>
 				<Link VarA="PlcTask Inputs^Input.R1_02_06" VarB="Channel 7^Input"/>
 				<Link VarA="PlcTask Inputs^Input.R1_02_07" VarB="Channel 8^Input"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 5 (EtherCAT)^Box 1 (170357)">
+				<Link VarA="PlcTask Inputs^Input.B170357_CapRaw[0]" VarB="HV Cap process data mapping^Cap 0 Raw"/>
+				<Link VarA="PlcTask Inputs^Input.B170357_CapRaw[10]" VarB="HV Cap process data mapping^Cap 10 Raw"/>
+				<Link VarA="PlcTask Inputs^Input.B170357_CapRaw[11]" VarB="HV Cap process data mapping^Cap 11 Raw"/>
+				<Link VarA="PlcTask Inputs^Input.B170357_CapRaw[12]" VarB="HV Cap process data mapping^Cap 12 Raw"/>
+				<Link VarA="PlcTask Inputs^Input.B170357_CapRaw[13]" VarB="HV Cap process data mapping^Cap 13 Raw"/>
+				<Link VarA="PlcTask Inputs^Input.B170357_CapRaw[14]" VarB="HV Cap process data mapping^Cap 14 Raw"/>
+				<Link VarA="PlcTask Inputs^Input.B170357_CapRaw[15]" VarB="HV Cap process data mapping^Cap 15 Raw"/>
+				<Link VarA="PlcTask Inputs^Input.B170357_CapRaw[16]" VarB="HV Cap process data mapping^Cap 16 Raw"/>
+				<Link VarA="PlcTask Inputs^Input.B170357_CapRaw[17]" VarB="HV Cap process data mapping^Cap 17 Raw"/>
+				<Link VarA="PlcTask Inputs^Input.B170357_CapRaw[18]" VarB="HV Cap process data mapping^Cap 18 Raw"/>
+				<Link VarA="PlcTask Inputs^Input.B170357_CapRaw[19]" VarB="HV Cap process data mapping^Cap 19 Raw"/>
+				<Link VarA="PlcTask Inputs^Input.B170357_CapRaw[1]" VarB="HV Cap process data mapping^Cap 1 Raw"/>
+				<Link VarA="PlcTask Inputs^Input.B170357_CapRaw[20]" VarB="HV Cap process data mapping^Cap 20 Raw"/>
+				<Link VarA="PlcTask Inputs^Input.B170357_CapRaw[21]" VarB="HV Cap process data mapping^Cap 21 Raw"/>
+				<Link VarA="PlcTask Inputs^Input.B170357_CapRaw[22]" VarB="HV Cap process data mapping^Cap 22 Raw"/>
+				<Link VarA="PlcTask Inputs^Input.B170357_CapRaw[23]" VarB="HV Cap process data mapping^Cap 23 Raw"/>
+				<Link VarA="PlcTask Inputs^Input.B170357_CapRaw[24]" VarB="HV Cap process data mapping^Cap 24 Raw"/>
+				<Link VarA="PlcTask Inputs^Input.B170357_CapRaw[2]" VarB="HV Cap process data mapping^Cap 2 Raw"/>
+				<Link VarA="PlcTask Inputs^Input.B170357_CapRaw[3]" VarB="HV Cap process data mapping^Cap 3 Raw"/>
+				<Link VarA="PlcTask Inputs^Input.B170357_CapRaw[4]" VarB="HV Cap process data mapping^Cap 4 Raw"/>
+				<Link VarA="PlcTask Inputs^Input.B170357_CapRaw[5]" VarB="HV Cap process data mapping^Cap 5 Raw"/>
+				<Link VarA="PlcTask Inputs^Input.B170357_CapRaw[6]" VarB="HV Cap process data mapping^Cap 6 Raw"/>
+				<Link VarA="PlcTask Inputs^Input.B170357_CapRaw[7]" VarB="HV Cap process data mapping^Cap 7 Raw"/>
+				<Link VarA="PlcTask Inputs^Input.B170357_CapRaw[8]" VarB="HV Cap process data mapping^Cap 8 Raw"/>
+				<Link VarA="PlcTask Inputs^Input.B170357_CapRaw[9]" VarB="HV Cap process data mapping^Cap 9 Raw"/>
 			</OwnerB>
 		</OwnerA>
 	</Mappings>

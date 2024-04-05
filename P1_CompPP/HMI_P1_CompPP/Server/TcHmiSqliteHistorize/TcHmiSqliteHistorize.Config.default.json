@@ -2,6 +2,12 @@
     "commitInterval": "PT10S",
     "enableBackup": false,
     "historizedSymbolList": {
+        "PLC1.LCP1_IO.Segment.0.Module.0.VoltageFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 100000
+        },
         "PLC1.MCP_IO.Charger.0.voltageFeedback": {
             "interval": "PT1S",
             "maxEntries": 1000,

@@ -27,7 +27,7 @@ STRUCT
 	
 	//AQ
 	voltageSP_norm	: REAL;
-	voltageSP		: DINT;
+	voltageSP		: REAL;
 	voltageSP_raw	: INT; // setpoint output to field device.
 	
 	//Internal

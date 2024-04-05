@@ -11,7 +11,7 @@ STRUCT
 	ChargeRly_close	: BOOL;
 	DumpRly_open	: BOOL;
 	ModuleCharged	: BOOL;
-	VoltageFeedback : DINT;
+	VoltageFeedback : REAL;
 END_STRUCT
 END_TYPE
 ]]></Declaration>

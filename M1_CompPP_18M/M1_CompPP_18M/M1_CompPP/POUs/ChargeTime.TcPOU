@@ -122,6 +122,11 @@ FOR i := 1 TO 6 BY 1 DO
 
 	MCP_IO.Charger[i].ChargeTime.timeToChargeLoad := lca_charge_cal[i].TimeToChargeLoad;
 	MCP_IO.Charger[i].ChargeTime.Power := lca_charge_cal[i].RespectedPower;
+	
+	IF Setpoints.TDKLoad[i].RequiredChargedV = 0 THEN
+		MCP_IO.Charger[i].ChargeTime.timeToChargeLoad := 0;
+		MCP_IO.Charger[i].ChargeTime.Power := 0;
+	END_IF
 END_FOR
 
 
@@ -234,6 +239,9 @@ END_IF;]]></ST>
       <LineId Id="793" Count="0" />
       <LineId Id="53" Count="7" />
       <LineId Id="51" Count="0" />
+      <LineId Id="959" Count="0" />
+      <LineId Id="961" Count="2" />
+      <LineId Id="960" Count="0" />
       <LineId Id="24" Count="0" />
       <LineId Id="89" Count="0" />
       <LineId Id="891" Count="5" />

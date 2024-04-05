@@ -126,7 +126,7 @@ CASE eState OF
 		FOR i := 1 TO 6 BY 1 DO 
 			MCP_IO.Charger[i].inhibit := TRUE; // inhibit = high, no output | inhibit = low, allows output
 			MCP_IO.Charger[i].HV_ON := FALSE; 
-			MCP_IO.Charger[i].voltageSP := 0;
+			MCP_IO.Charger[i].voltageSP := 0.001;
 			StartCharger[i] := FALSE; // reset bit
 			ChargeTimeFinished := FALSE;
 			StartChargingBroadcast := FALSE;
@@ -208,7 +208,7 @@ CASE eState OF
 			
 			//mapping HMI Charger Voltage SP to MCP IO 
 			FOR i := 1 TO 6 BY 1 DO
-				MCP_IO.Charger[i].voltageSP := REAL_TO_DINT (HMI_DB.TDKLoad[i].RequiredChargedV * 1000);
+				MCP_IO.Charger[i].voltageSP := (HMI_DB.TDKLoad[i].RequiredChargedV * 1000);
 				//MCP_IO.Charger[1].voltageSP := REAL_TO_DINT (Setpoints.TDKLoad[1].RequiredChargedV);
 			END_FOR;
 			
@@ -272,7 +272,7 @@ CASE eState OF
 		END_IF
 		
 		//condition for charge complete
-		IF (*Permissives_DB.AllChargerEOC = TRUE AND *)ChargeTimeFinished = TRUE (*all voltage reached*) THEN 
+		IF Permissives_DB.AllChargerEOC = TRUE AND ChargeTimeFinished = TRUE (*all voltage reached*) THEN 
 			ChargeCompleted := TRUE;
 		ELSE
 			ChargeCompleted := FALSE;
@@ -299,9 +299,9 @@ CASE eState OF
 				LCP1_IO.Segment[1].OpenModule1To3DumpRly := TRUE;
 				LCP1_IO.Segment[2].OpenModule4To6DumpRly := TRUE;
 				LCP1_IO.Segment[3].OpenModule7To9DumpRly := TRUE;
-				LCP2_IO.Segment[1].OpenModule1To3DumpRly := TRUE;
-				LCP1_IO.Segment[2].OpenModule4To6DumpRly := TRUE;
-				LCP1_IO.Segment[3].OpenModule7To9DumpRly := TRUE;
+				LCP2_IO.Segment[4].OpenModule1To3DumpRly := TRUE;
+				LCP2_IO.Segment[5].OpenModule4To6DumpRly := TRUE;
+				LCP2_IO.Segment[6].OpenModule7To9DumpRly := TRUE;
 										
 			StartChargingBroadcast := FALSE; // reset the broadcast bit whne all chargers 
 			

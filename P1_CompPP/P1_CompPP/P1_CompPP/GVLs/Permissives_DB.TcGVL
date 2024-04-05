@@ -3,10 +3,12 @@
   <GVL Name="Permissives_DB" Id="{c05a4b99-99cd-4605-96e2-a97127a00965}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL
-	CageInterlockOK			: BOOL;
-	ShortingSystemEngaged	: BOOL;
-	AllChargerEOC			: BOOL;
-	
+	CageInterlockOK			: BOOL := 0;
+	ShortingSystemEngaged	: BOOL := 0;
+	AllChargerEOC			: BOOL := 0;
+	AllChargeRelayClosed	: BOOL := 0;
+	AllDumpRelayOpen		: BOOL := 0;
+	ReadyToCharge			: BOOL := 0;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

@@ -58,7 +58,7 @@ FOR i := 1 TO 6 BY 1 DO
 	//if 50kV config selected
 	IF MCP_IO.Charger[i].ChargerType_50kV = TRUE THEN 
 		//set limits of charger voltage input 
-		IF MCP_IO.Charger[i].voltageSP >= REAL_TO_DINT (EngVal.UpperLimit50kVCaps) THEN
+		IF MCP_IO.Charger[i].voltageSP >= (EngVal.UpperLimit50kVCaps) THEN
 			MCP_IO.Charger[i].voltageSP := 35000; //limit at 35kV
 		ELSIF MCP_IO.Charger[i].voltageSP <= 0 THEN
 			MCP_IO.Charger[i].voltageSP := 0; //limit at 0V
@@ -72,7 +72,7 @@ FOR i := 1 TO 6 BY 1 DO
 		END_IF*)
 		
 	//prepare output signal for 50kV chargers.
-		MCP_IO.Charger[i].voltageSP_norm := Norm_x (raw_input := DINT_TO_REAL (MCP_IO.Charger[i].voltageSP), 
+		MCP_IO.Charger[i].voltageSP_norm := Norm_x (raw_input := (MCP_IO.Charger[i].voltageSP), 
 												x_max := EngVal.Max_50kVChargerVoltage,
 												x_min := EngVal.Min_50kVChargerVoltage);	
 												
@@ -88,7 +88,7 @@ FOR i := 1 TO 6 BY 1 DO
 			MCP_IO.Charger[i].voltageSP := ABS(MCP_IO.Charger[i].voltageSP);
 		END_IF
 		
-		IF MCP_IO.Charger[i].voltageSP >= REAL_TO_DINT (EngVal.UpperLimit12kVCaps) THEN
+		IF MCP_IO.Charger[i].voltageSP >= (EngVal.UpperLimit12kVCaps) THEN
 			MCP_IO.Charger[i].voltageSP := 10000; //limit at 10kV
 		END_IF;
 		
@@ -100,7 +100,7 @@ FOR i := 1 TO 6 BY 1 DO
 		END_IF
 		*)
 		//prepare output signal for 12kV chargers.  //**Setpoints.RequiredChargedV -> MCP_IO.Charger.voltageSP **
-		MCP_IO.Charger[i].voltageSP_norm := Norm_x (raw_input := DINT_TO_REAL (MCP_IO.Charger[i].voltageSP), 
+		MCP_IO.Charger[i].voltageSP_norm := Norm_x (raw_input := (MCP_IO.Charger[i].voltageSP), 
 												x_max := EngVal.Max_12kVChargerVoltage,
 												x_min := EngVal.Min_12kVChargerVoltage);
 		
