@@ -16,7 +16,7 @@ VAR_GLOBAL PERSISTENT
 	RunOutTMR_elapse			: DINT;
 	
 	ChargingRunOutTMR_elapse	: INT;
-
+	
 END_VAR
 
 VAR_GLOBAL

@@ -35,7 +35,7 @@ VAR
 	ScopeTrigPulseTMR_ET	: TIME;
 	
 	DumpingRunOutTMR_TON 	: TON;
-	DumpingRunOutTMR_PT		: TIME := T#30S;
+	DumpingRunOutTMR_PT		: TIME := T#20S;
 	DumpingRunOutTMR_ET		: TIME;
 	LocalDumpActive			: BOOL := FALSE;
 
@@ -127,7 +127,7 @@ CASE eState OF
 		FOR i := 1 TO 6 BY 1 DO 
 			MCP_IO.Charger[i].inhibit := TRUE; // inhibit = high, no output | inhibit = low, allows output
 			MCP_IO.Charger[i].HV_ON := FALSE; 
-			MCP_IO.Charger[i].voltageSP := 0.001;
+			//MCP_IO.Charger[i].voltageSP := 0.001;
 			StartCharger[i] := FALSE; // reset bit
 			ChargeTimeFinished := FALSE;
 			StartChargingBroadcast := FALSE;
@@ -197,7 +197,7 @@ CASE eState OF
 		IF Permissives_DB.ReadyToCharge = TRUE THEN 
 			FOR i := 1 TO 6 BY 1 DO 
 				//MCP_IO.Charger[i].voltageSP := (HMI_DB.TDKLoad[i].RequiredChargedV *1000);
-				MCP_IO.Charger[i].voltageSP := (1000*Setpoints.TDKLoad[i].RequiredChargedV);
+				MCP_IO.Charger[i].voltageSP := (1000*HMI_DB.TDKLoad[i].RequiredChargedV);
 			END_FOR
 		END_IF;
 		//start charging runout timer
@@ -224,10 +224,10 @@ CASE eState OF
 			ChargeTime_DB.LongestChargeTime_TON (IN := TRUE, PT := ChargeTime_DB.LongestChargeTime_PT, ET => ChargeTime_DB.LongestChargeTime_ET);
 			
 			//mapping HMI Charger Voltage SP to MCP IO 
-			FOR i := 1 TO 6 BY 1 DO
+			(*FOR i := 1 TO 6 BY 1 DO
 				MCP_IO.Charger[i].voltageSP :=(HMI_DB.TDKLoad[i].RequiredChargedV * 1000);
 				//MCP_IO.Charger[1].voltageSP := REAL_TO_DINT (Setpoints.TDKLoad[1].RequiredChargedV);
-			END_FOR;
+			END_FOR;*)
 			
 			// delay stagger starts here
 			ChargeTime_DB.ChargerDelay_TON[1] (IN := TRUE, PT := ChargeTime_DB.ChargerDelay_PT[1], ET => ChargeTime_DB.ChargerDelay_ET[1]);
@@ -289,7 +289,7 @@ CASE eState OF
 		END_IF
 		
 		//condition for charge complete
-		IF (*Permissives_DB.AllChargerEOC = TRUE AND *)ChargeTimeFinished = TRUE (*all voltage reached*) THEN 
+		IF Permissives_DB.AllChargerEOC = TRUE AND ChargeTimeFinished = TRUE (*all voltage reached*) THEN 
 			ChargeCompleted := TRUE;
 		ELSE
 			ChargeCompleted := FALSE;
@@ -410,7 +410,7 @@ CASE eState OF
 		//HMI_DB.CloseChargeRlySW := FALSE;
 		//HMI_DB.OpenDumpRlySW := FALSE;
 		
-		IF DumpingRunOutTMR_TON.Q = TRUE THEN
+		IF DumpingRunOutTMR_TON.Q = TRUE AND Permissives.AllCapsDischarged = TRUE THEN
 			eState := E_State.SAFE;
 		END_IF
 

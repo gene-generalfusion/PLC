@@ -10,11 +10,12 @@ VAR
 	AllChargerEOC			: BOOL := 0;
 	
 	ChargerVBelowThres		: BOOL := 0;
-	ChargerVThres			: DINT := 10;
+	ChargerVThres			: REAL := 20;
 	AllChargerHVisOFF		: BOOL := 0;
 	AllChargerInhibitON		: BOOL := 0;
 
 	AllCapsDischarged		: BOOL := 0;
+	CapVoltageThres			: REAL := 50;
 	SystemIsSafe			: BOOL := 0;
 	
 END_VAR
@@ -124,26 +125,26 @@ IF MCP_IO.Charger[1].inhibited = TRUE AND
 		AllChargerInhibitON	:= FALSE;
 END_IF;
 
-IF LCP1_IO.Segment[1].Module[1].VoltageFeedback <= ChargerVThres AND
-	LCP1_IO.Segment[1].Module[2].VoltageFeedback <= ChargerVThres AND
-	LCP1_IO.Segment[1].Module[3].VoltageFeedback <= ChargerVThres AND
-	LCP1_IO.Segment[2].Module[4].VoltageFeedback <= ChargerVThres AND
-	LCP1_IO.Segment[2].Module[5].VoltageFeedback <= ChargerVThres AND
-	LCP1_IO.Segment[2].Module[6].VoltageFeedback <= ChargerVThres AND
-	LCP1_IO.Segment[3].Module[7].VoltageFeedback <= ChargerVThres AND
-	LCP1_IO.Segment[3].Module[8].VoltageFeedback <= ChargerVThres AND 
-	LCP1_IO.Segment[3].Module[9].VoltageFeedback <= ChargerVThres AND
+IF LCP1_IO.Segment[1].Module[1].VoltageFeedback <= CapVoltageThres AND
+	LCP1_IO.Segment[1].Module[2].VoltageFeedback <= CapVoltageThres AND
+	LCP1_IO.Segment[1].Module[3].VoltageFeedback <= CapVoltageThres AND
+	LCP1_IO.Segment[2].Module[4].VoltageFeedback <= CapVoltageThres AND
+	LCP1_IO.Segment[2].Module[5].VoltageFeedback <= CapVoltageThres AND
+	LCP1_IO.Segment[2].Module[6].VoltageFeedback <= CapVoltageThres AND
+	LCP1_IO.Segment[3].Module[7].VoltageFeedback <= CapVoltageThres AND
+	LCP1_IO.Segment[3].Module[8].VoltageFeedback <= CapVoltageThres AND 
+	LCP1_IO.Segment[3].Module[9].VoltageFeedback <= CapVoltageThres AND
 	
-	LCP2_IO.Segment[4].Module[1].VoltageFeedback <= ChargerVThres AND
-	LCP2_IO.Segment[4].Module[2].VoltageFeedback <= ChargerVThres AND
-	LCP2_IO.Segment[4].Module[3].VoltageFeedback <= ChargerVThres AND
-	LCP2_IO.Segment[5].Module[4].VoltageFeedback <= ChargerVThres AND
-	LCP2_IO.Segment[5].Module[5].VoltageFeedback <= ChargerVThres AND
-	LCP2_IO.Segment[5].Module[6].VoltageFeedback <= ChargerVThres AND
-	LCP2_IO.Segment[6].Module[7].VoltageFeedback <= ChargerVThres AND
-	LCP2_IO.Segment[6].Module[8].VoltageFeedback <= ChargerVThres AND 
-	LCP2_IO.Segment[6].Module[9].VoltageFeedback <= ChargerVThres 
-(*  AND all other module voltage feedback <= 10 *) 
+	LCP2_IO.Segment[4].Module[1].VoltageFeedback <= CapVoltageThres AND
+	LCP2_IO.Segment[4].Module[2].VoltageFeedback <= CapVoltageThres AND
+	LCP2_IO.Segment[4].Module[3].VoltageFeedback <= CapVoltageThres AND
+	LCP2_IO.Segment[5].Module[4].VoltageFeedback <= CapVoltageThres AND
+	LCP2_IO.Segment[5].Module[5].VoltageFeedback <= CapVoltageThres AND
+	LCP2_IO.Segment[5].Module[6].VoltageFeedback <= CapVoltageThres AND
+	LCP2_IO.Segment[6].Module[7].VoltageFeedback <= CapVoltageThres AND
+	LCP2_IO.Segment[6].Module[8].VoltageFeedback <= CapVoltageThres AND 
+	LCP2_IO.Segment[6].Module[9].VoltageFeedback <= CapVoltageThres 
+(*  AND all other module voltage feedback <= 50 *) 
 	THEN
 		AllCapsDischarged := TRUE;
 	ELSE 
@@ -163,8 +164,11 @@ THEN
 		SystemIsSafe := FALSE;
 END_IF
 
-IF LCP1_IO.Segment[1].Module[1].VoltageFeedback <= 10 THEN //repeat for all modules
+
+		
+IF AllCapsDischarged = TRUE THEN 
 	LCP1_IO.SegmentCharged := FALSE; //for status light only
+	LCP2_IO.SegmentCharged := FALSE; //for status light only
 END_IF
 
 IF MCP_IO.Charger[1].EndOfCharge = TRUE AND
@@ -248,8 +252,12 @@ END_IF;
       <LineId Id="56" Count="1" />
       <LineId Id="39" Count="0" />
       <LineId Id="102" Count="0" />
-      <LineId Id="101" Count="0" />
-      <LineId Id="103" Count="1" />
+      <LineId Id="366" Count="0" />
+      <LineId Id="407" Count="0" />
+      <LineId Id="468" Count="0" />
+      <LineId Id="103" Count="0" />
+      <LineId Id="476" Count="0" />
+      <LineId Id="104" Count="0" />
       <LineId Id="70" Count="0" />
       <LineId Id="69" Count="0" />
       <LineId Id="78" Count="0" />

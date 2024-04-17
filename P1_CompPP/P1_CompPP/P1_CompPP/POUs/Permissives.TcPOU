@@ -56,7 +56,7 @@ IF Permissives_DB.AllChargeRelayClosed = TRUE AND Permissives_DB.AllDumpRelayOpe
 		Permissives_DB.ReadyToCharge := FALSE;
 END_IF
 
-IF MCP_IO.Charger[1].voltageFeedback <= 10 (*AND all other Chargers*) THEN
+IF MCP_IO.Charger[1].voltageFeedback <= 20 (*AND all other Chargers*) THEN
 	ChargerVBelowThres := TRUE;
 	ELSE
 		ChargerVBelowThres := FALSE;
@@ -75,7 +75,7 @@ IF MCP_IO.Charger[1].inhibited = TRUE (*AND all other Chargers*) THEN
 END_IF;
 
 //Cap voltage feedback
-IF LCP1_IO.Segment[1].Module[1].VoltageFeedback <= ChargedVThres (*  AND all other module voltage feedback <= 10 *) THEN
+IF LCP1_IO.Segment[1].Module[1].VoltageFeedback <= ChargedVThres (*  AND all other module voltage feedback <= 50 *) THEN
 	AllCapsDischarged := TRUE;
 	LCP1_IO.Segment[1].Module[1].ModuleCharged := FALSE; //for status light only
 	ELSE 

@@ -11,12 +11,29 @@ END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[//MCP Charger 
 //Analog Input
-(*FOR i := 1 TO 6 BY 1 DO 
+FOR i := 1 TO 6 BY 1 DO 
 	//MCP_IO.Charger[i].voltageSP := (HMI_DB.TDKLoad[i].RequiredChargedV *1000);
 	MCP_IO.Charger[i].voltageSP := (1000*Setpoints.TDKLoad[i].RequiredChargedV);
 END_FOR
-*)
-FOR i := 1 TO 6 BY 1 DO
+
+//charger 1 is 30kV *************************************************************************************
+MCP_IO.Charger[1].voltageFeedback_norm := Norm_x (raw_input := INT_TO_REAL (MCP_IO.Charger[1].voltageFeedback_raw),
+														x_max := 32767,
+														x_min := 0);
+MCP_IO.Charger[1].voltageFeedback := (30000 - 0) * ADC_10V(normal_input := MCP_IO.Charger[1].voltageFeedback_norm,
+															x_max := 10,
+															x_min := 0);
+															
+	MCP_IO.Charger[1].currentFeedback_norm := Norm_x (raw_input := INT_TO_REAL (MCP_IO.Charger[1].currentFeedback_raw),
+														x_max := 32767,
+														x_min := 0);
+	// 30kV charger max current output is 0.6A													
+	MCP_IO.Charger[1].currentFeedback := (0.6 - 0) * ADC_10V(normal_input := MCP_IO.Charger[1].currentFeedback_norm,
+															x_max := 10,
+															x_min := 0);																							
+//*************************************************************************************
+
+FOR i := 2 TO 6 BY 1 DO
 	
 	MCP_IO.Charger[i].ChargerType_12kV := NOT MCP_IO.Charger[i].ChargerType_50kV;
 	//voltage
@@ -42,9 +59,9 @@ FOR i := 1 TO 6 BY 1 DO
 																							x_min := 0);
 		//12kv
 	ELSIF MCP_IO.Charger[i].ChargerType_12kV = TRUE THEN
-		MCP_IO.Charger[i].voltageFeedback := (30000 - 0) * ADC_10V(normal_input := MCP_IO.Charger[i].voltageFeedback_norm,
-																	x_max := 10,
-																	x_min := 0);
+		MCP_IO.Charger[i].voltageFeedback := (EngVal.Max_12kVChargerVoltage - EngVal.Min_12kVChargerVoltage) * ADC_10V(normal_input := MCP_IO.Charger[i].voltageFeedback_norm,
+																														x_max := 10,
+																														x_min := 0);
 		MCP_IO.Charger[i].currentFeedback := (EngVal.Max_12kVChargerCurrent - EngVal.Min_12kVChargerCurrent) * ADC_10V(
 																							normal_input := MCP_IO.Charger[i].currentFeedback_norm,
 																							x_max := 10,
@@ -53,10 +70,34 @@ FOR i := 1 TO 6 BY 1 DO
 END_FOR;
 
 //Analog Output
-//voltageSP = Required Charge Voltage******************
+//voltageSP = Required Charge Voltage**
 //limit for charing the cap
+
+//Charger 1 is 30kV *************************************
+IF MCP_IO.Charger[1].voltageSP >= (12000) THEN
+			MCP_IO.Charger[1].voltageSP := 10000; //limit at 35kV
+		ELSIF MCP_IO.Charger[1].voltageSP <= 0 THEN
+			MCP_IO.Charger[1].voltageSP := 0; //limit at 0V
+		END_IF; 
+
+//prepare output signal for 30kV chargers.  //**Setpoints.RequiredChargedV -> MCP_IO.Charger.voltageSP **
+MCP_IO.Charger[1].voltageSP_norm := Norm_x (raw_input := (MCP_IO.Charger[1].voltageSP), 
+												x_max := 30000,
+												x_min := 0);
+		
+MCP_IO.Charger[1].voltageSP_raw := AQ (norm_input := MCP_IO.Charger[1].voltageSP_norm, 
+												x_max := 10,
+												x_min := 0); 
+	
+												
+//limite for output sigal (<= 10V)  this should not happen
+IF MCP_IO.Charger[1].voltageSP_raw >= 32767 THEN 
+	MCP_IO.Charger[1].voltageSP_raw := 32767; 										
+END_IF;
+//*******************************************************
+
 //FOR i := 1 TO 8 BY 1 DO
-FOR i := 1 TO 6 BY 1 DO	
+FOR i := 2 TO 6 BY 1 DO	
 	
 	//if 50kV config selected
 	IF MCP_IO.Charger[i].ChargerType_50kV = TRUE THEN 
@@ -123,7 +164,7 @@ END_FOR;
 
 VoltMonitor_DB.VoltageReading_norm[0] := Norm_x (raw_input := INT_TO_REAL (VoltMonitor_DB.VoltageReading_raw[0]),
 														x_max := 904, //10bit value - 1110001000 = 904deci
-														x_min := 98);
+														x_min := 100);
 LCP1_IO.Segment[1].Module[1].VoltageFeedback := (12000 - 0) * ADC_10V(normal_input := VoltMonitor_DB.VoltageReading_norm[0],
 																		x_max := 10,
 																		x_min := 0);														
@@ -132,7 +173,7 @@ LCP1_IO.Segment[1].Module[1].VoltageFeedback := (12000 - 0) * ADC_10V(normal_inp
 //reset counter
 //IF i > 8 THEN
 IF i > 6 THEN
-	i:=1;
+	i := 1;
 END_IF;
 
 IF j > 3 THEN 
@@ -154,7 +195,21 @@ END_IF]]></ST>
       <LineId Id="701" Count="0" />
       <LineId Id="708" Count="0" />
       <LineId Id="699" Count="0" />
+      <LineId Id="731" Count="1" />
+      <LineId Id="735" Count="1" />
+      <LineId Id="734" Count="0" />
+      <LineId Id="737" Count="0" />
+      <LineId Id="739" Count="0" />
+      <LineId Id="733" Count="0" />
+      <LineId Id="774" Count="0" />
+      <LineId Id="772" Count="1" />
+      <LineId Id="740" Count="0" />
+      <LineId Id="779" Count="0" />
+      <LineId Id="776" Count="0" />
+      <LineId Id="778" Count="0" />
+      <LineId Id="775" Count="0" />
       <LineId Id="654" Count="0" />
+      <LineId Id="741" Count="0" />
       <LineId Id="646" Count="0" />
       <LineId Id="537" Count="1" />
       <LineId Id="616" Count="0" />
@@ -182,6 +237,13 @@ END_IF]]></ST>
       <LineId Id="233" Count="1" />
       <LineId Id="548" Count="0" />
       <LineId Id="573" Count="0" />
+      <LineId Id="743" Count="1" />
+      <LineId Id="749" Count="3" />
+      <LineId Id="747" Count="1" />
+      <LineId Id="753" Count="12" />
+      <LineId Id="746" Count="0" />
+      <LineId Id="745" Count="0" />
+      <LineId Id="742" Count="0" />
       <LineId Id="292" Count="0" />
       <LineId Id="357" Count="0" />
       <LineId Id="661" Count="0" />

@@ -8,6 +8,12 @@
             "recordingEnabled": true,
             "rowLimit": 100000
         },
+        "PLC1.MCP_IO.Charger.0.currentFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 100000
+        },
         "PLC1.MCP_IO.Charger.0.voltageFeedback": {
             "interval": "PT1S",
             "maxEntries": 1000,

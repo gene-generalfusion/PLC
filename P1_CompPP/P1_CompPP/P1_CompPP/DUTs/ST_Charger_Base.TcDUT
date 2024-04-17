@@ -32,13 +32,16 @@ STRUCT
 	
 	//Internal
 	ChargerType_50kV : BOOL;
+	ChargerType_30kV : BOOL;
 	ChargerType_12kV : BOOL;
+	ChargerType		 : INT;
 	LossInhibit		 : BOOL;
 	LossHVON		 : BOOL;
 	LossInhibitTON	 : TON;
 	LossHVON_TON	 : TON;
 	
 	ChargeTime		: ST_ChargeTime;
+	
 END_STRUCT
 END_TYPE
 ]]></Declaration>

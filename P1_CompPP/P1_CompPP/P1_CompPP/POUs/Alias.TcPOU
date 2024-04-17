@@ -34,7 +34,7 @@ END_VAR
 	
 	//EL3068 - AI
 	MCP_IO.Charger[1].voltageFeedback_raw		:= Input.R1_04_00;
-	
+	MCP_IO.Charger[1].currentFeedback_raw		:= Input.R1_04_01;
 	//OUTPUT
 	//DQ
 	Output.R1_03_00								:= MCP_IO.Charger[1].inhibit;

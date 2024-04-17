@@ -17,6 +17,9 @@
     <LibraryReferences>{7b9efd66-dac4-4df1-bc01-4baa6ec01674}</LibraryReferences>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="DUTs\E_ChargerType.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\E_State.TcDUT">
       <SubType>Code</SubType>
     </Compile>

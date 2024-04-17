@@ -1061,11 +1061,6 @@ EL2008 - DQ1]]></Comment>
 					<Vars VarGrpType="8" AreaNo="4">
 						<Name>PlcTask Retains</Name>
 						<Var>
-							<Name>ChargeTime_DB.PreFormChargeTimeStartDelay</Name>
-							<Type>INT</Type>
-							<InOut>7</InOut>
-						</Var>
-						<Var>
 							<Name>ChargeTime_DB.PreFormChargeTime_PT</Name>
 							<Type>TIME</Type>
 							<InOut>7</InOut>
@@ -1124,6 +1119,11 @@ FormChargeTime_ET  : ARRAY[1..2] OF TIME;]]></Comment>
 						<Var>
 							<Name>ChargeTime_DB.ChargingTimeElapse</Name>
 							<Type GUID="{DC21412B-5C97-6FC0-600D-070C26DE7CEC}">ARRAY [1..6] OF INT</Type>
+							<InOut>7</InOut>
+						</Var>
+						<Var>
+							<Name>ChargeTime_DB.PreFormChargeTimeStartDelay</Name>
+							<Type>INT</Type>
 							<InOut>7</InOut>
 						</Var>
 						<Var>

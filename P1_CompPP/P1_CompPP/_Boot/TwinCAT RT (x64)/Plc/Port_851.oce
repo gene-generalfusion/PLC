@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<TcEventSources Version="2">
+	<Source>
+		<GUID>{876C5242-8FC0-49D7-AB31-F55890CBD4FD}</GUID>
+		<Name LcId="1033">AlarmWord1</Name>
+		<Event>
+			<Id>1</Id>
+			<Message LcId="1033">E-Stop is Pressed</Message>
+		</Event>
+		<Event>
+			<Id>2</Id>
+			<Message LcId="1033">Cage Door Not Close</Message>
+		</Event>
+		<Event>
+			<Id>3</Id>
+			<Message LcId="1033">Shorting System Unknown</Message>
+		</Event>
+		<Event>
+			<Id>4</Id>
+			<Message LcId="1033">Event_DisplayText</Message>
+		</Event>
+		<Event>
+			<Id>5</Id>
+			<Message LcId="1033">Chager 1 Summary Faulted</Message>
+		</Event>
+		<Event>
+			<Id>6</Id>
+			<Message LcId="1033">Event_DisplayText</Message>
+		</Event>
+		<Event>
+			<Id>7</Id>
+			<Message LcId="1033">Event_DisplayText</Message>
+		</Event>
+		<Event>
+			<Id>8</Id>
+			<Message LcId="1033">Event_DisplayText</Message>
+		</Event>
+		<Event>
+			<Id>9</Id>
+			<Message LcId="1033">Event_DisplayText</Message>
+		</Event>
+		<Event>
+			<Id>10</Id>
+			<Message LcId="1033">Event_DisplayText</Message>
+		</Event>
+		<Event>
+			<Id>11</Id>
+			<Message LcId="1033">Event_DisplayText</Message>
+		</Event>
+		<Event>
+			<Id>12</Id>
+			<Message LcId="1033">Event_DisplayText</Message>
+		</Event>
+		<Event>
+			<Id>13</Id>
+			<Message LcId="1033">Charged Timer Runout</Message>
+		</Event>
+		<Event>
+			<Id>14</Id>
+			<Message LcId="1033">Charging Timer Run Out</Message>
+		</Event>
+		<Event>
+			<Id>15</Id>
+			<Message LcId="1033">Event_DisplayText</Message>
+		</Event>
+		<Event>
+			<Id>16</Id>
+			<Message LcId="1033">Event_DisplayText</Message>
+		</Event>
+	</Source>
+</TcEventSources>

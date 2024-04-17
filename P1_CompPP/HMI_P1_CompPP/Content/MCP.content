@@ -423,6 +423,9 @@
       "color": "rgba(71, 148, 218, 1)"
     },
     "pointDotInStopMode": true,
+    "fillMode": "None",
+    "fillColor": null,
+    "fillTransparency": 50.0,
     "symbol": "PLC1.MCP_IO.Charger.0.currentFeedback"
   },
   {
@@ -444,6 +447,9 @@
       "color": "rgba(71, 148, 218, 1)"
     },
     "pointDotInStopMode": true,
+    "fillMode": "None",
+    "fillColor": null,
+    "fillTransparency": 50.0,
     "symbol": "PLC1.MCP_IO.Charger.1.currentFeedback"
   },
   {
@@ -465,6 +471,9 @@
       "color": "rgba(71, 148, 218, 1)"
     },
     "pointDotInStopMode": true,
+    "fillMode": "None",
+    "fillColor": null,
+    "fillTransparency": 50.0,
     "symbol": "PLC1.MCP_IO.Charger.2.currentFeedback"
   },
   {
@@ -486,6 +495,9 @@
       "color": "rgba(71, 148, 218, 1)"
     },
     "pointDotInStopMode": true,
+    "fillMode": "None",
+    "fillColor": null,
+    "fillTransparency": 50.0,
     "symbol": "PLC1.MCP_IO.Charger.3.currentFeedback"
   },
   {
@@ -507,6 +519,9 @@
       "color": "rgba(71, 148, 218, 1)"
     },
     "pointDotInStopMode": true,
+    "fillMode": "None",
+    "fillColor": null,
+    "fillTransparency": 50.0,
     "symbol": "PLC1.MCP_IO.Charger.4.currentFeedback"
   },
   {
@@ -528,6 +543,9 @@
       "color": "rgba(71, 148, 218, 1)"
     },
     "pointDotInStopMode": true,
+    "fillMode": "None",
+    "fillColor": null,
+    "fillTransparency": 50.0,
     "symbol": "PLC1.MCP_IO.Charger.5.currentFeedback"
   }
 ]
@@ -929,71 +947,6 @@
 
 
 </div>
-<div id="TcHmiToggleSwitch_8" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleSwitch" data-tchmi-height="20" data-tchmi-height-unit="px" data-tchmi-left="240" data-tchmi-left-unit="px" data-tchmi-text="50kV" data-tchmi-top="43" data-tchmi-top-unit="px" data-tchmi-width="69" data-tchmi-width-unit="px" data-tchmi-text-vertical-alignment="Center" data-tchmi-state-symbol="%s%PLC1.MCP_IO.Charger.0.ChargerType_50kV%/s%" data-tchmi-toggle-state="Active" data-tchmi-text-horizontal-alignment="Left" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-position="Right" data-tchmi-creator-locked="True">
-
-<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
-[
-  {
-    "event": "%s%PLC1.Heartbeat.screen_refresh_pulse%/s%",
-    "actions": [
-      {
-        "objectType": "Condition",
-        "active": true,
-        "parts": [
-          {
-            "if": [
-              {
-                "compare1": {
-                  "objectType": "Symbol",
-                  "valueType": "tchmi:general#/definitions/String",
-                  "symbolExpression": "%s%PLC1.MCP_IO.Charger.0.ChargerType_50kV%/s%"
-                },
-                "compare2": {
-                  "objectType": "StaticValue",
-                  "valueType": "tchmi:general#/definitions/BOOL",
-                  "value": true
-                },
-                "compareOperator": "==",
-                "logic": null
-              }
-            ],
-            "then": [
-              {
-                "objectType": "WriteToSymbol",
-                "active": true,
-                "symbolExpression": "%ctrl%TcHmiToggleSwitch_8::Text%/ctrl%",
-                "value": {
-                  "objectType": "StaticValue",
-                  "valueType": "tchmi:general#/definitions/String",
-                  "value": "50kV"
-                },
-                "asyncWait": true
-              }
-            ]
-          },
-          {
-            "else": [
-              {
-                "objectType": "WriteToSymbol",
-                "active": true,
-                "symbolExpression": "%ctrl%TcHmiToggleSwitch_8::Text%/ctrl%",
-                "value": {
-                  "objectType": "StaticValue",
-                  "valueType": "tchmi:general#/definitions/String",
-                  "value": "12kV"
-                },
-                "asyncWait": true
-              }
-            ]
-          }
-        ],
-        "asyncWait": true
-      }
-    ]
-  }
-]
-</script>
-</div>
 <div id="TcHmiToggleSwitch_9" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleSwitch" data-tchmi-height="20" data-tchmi-height-unit="px" data-tchmi-left="240" data-tchmi-left-unit="px" data-tchmi-text="50kV" data-tchmi-top="73" data-tchmi-top-unit="px" data-tchmi-width="69" data-tchmi-width-unit="px" data-tchmi-text-vertical-alignment="Center" data-tchmi-state-symbol="%s%PLC1.MCP_IO.Charger.1.ChargerType_50kV%/s%" data-tchmi-toggle-state="Active" data-tchmi-text-horizontal-alignment="Left" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-position="Right" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
@@ -1320,6 +1273,30 @@
   "color": "rgba(25, 0, 0, 1)"
 }
 </script>
+
+
+</div>
+<div id="TcHmiTextblock_294" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="240" data-tchmi-left-unit="px" data-tchmi-text="30kV" data-tchmi-top="43" data-tchmi-top-unit="px" data-tchmi-width="69" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="12" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center">
+<script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
+{
+  "color": "rgba(25, 0, 0, 1)"
+}
+</script>
+
+
+</div>
+<div id="TcHmiCombobox_2" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiCombobox" data-tchmi-combobox-text="Select" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="100" data-tchmi-left-unit="px" data-tchmi-top="420" data-tchmi-top-unit="px" data-tchmi-width="169" data-tchmi-width-unit="px" data-tchmi-zindex="5" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center">
+<script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
+{
+  "top": 3,
+  "right": 3,
+  "bottom": 3,
+  "left": 3
+}
+</script>
+
+
+
 
 
 </div>
