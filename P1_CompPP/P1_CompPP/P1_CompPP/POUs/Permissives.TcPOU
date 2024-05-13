@@ -32,7 +32,7 @@ IF MCP_IO.DoorSWclose = TRUE AND MCP_IO.EStopPB_NotPressed = TRUE THEN
 		Permissives_DB.CageInterlockOK := FALSE;
 	END_IF
 
-IF Permissives_DB.CageInterlockOK = FALSE THEN 
+IF Permissives_DB.CageInterlockOK = FALSE OR HMI_DB.UnArmTheCagePB = TRUE THEN 
 	MCP_IO.EnergizeACKontactor := FALSE;
 END_IF
 
@@ -85,7 +85,7 @@ END_IF
 
 IF (ChargerVBelowThres = TRUE AND 
 	//AllChargerHVisOFF = TRUE AND 
-	AllChargerInhibitON	= TRUE AND 
+	//AllChargerInhibitON	= TRUE AND 
 	Permissives_DB.AllDumpRelayOpen = FALSE AND 
 	AllCapsDischarged = TRUE AND 
 	Permissives_DB.CageInterlockOK = TRUE) OR HMI_DB.SystemSafeBP = TRUE

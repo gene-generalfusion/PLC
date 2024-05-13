@@ -17,6 +17,7 @@
         "remote"
     ],
     "COOKIEEXPIRATIONDATE": "P30D",
+    "CUSTOM_CSS": "",
     "DEFAULTAUTHEXTENSION": "TcHmiUserManagement",
     "DEFAULTDOCUMENT": [
         "Default.html"
@@ -633,6 +634,7 @@
             "ENABLED": true,
             "NAME": "TcHmiAlarm",
             "PATH": "..\\..\\Packages\\Beckhoff.TwinCAT.HMI.Alarm.19.0.0\\runtimes\\win-x64\\native\\",
+            "PROCESSID": -1,
             "REQUIRED": false,
             "STARTUPTYPE": 1
         },
@@ -640,6 +642,7 @@
             "ENABLED": true,
             "NAME": "TcHmiEventLogger",
             "PATH": "..\\..\\Packages\\Beckhoff.TwinCAT.HMI.EventLogger.19.0.0\\runtimes\\win-x64\\native\\",
+            "PROCESSID": -1,
             "REQUIRED": false,
             "STARTUPTYPE": 1
         },
@@ -655,6 +658,7 @@
             "ENABLED": true,
             "NAME": "TcHmiSqliteHistorize",
             "PATH": "..\\..\\Packages\\Beckhoff.TwinCAT.HMI.SqliteHistorize.19.0.0\\runtimes\\win-x64\\native\\",
+            "PROCESSID": -1,
             "REQUIRED": false,
             "STARTUPTYPE": 1
         },
@@ -675,7 +679,16 @@
             "STARTUPTYPE": 1
         }
     },
-    "FILES": {},
+    "FILES": {
+        "/Properties/tchmicertificates.config.json": {
+            "ACCESS": 0,
+            "HTTPSTATUSCODE": "404"
+        },
+        "/Properties/tchmipublish.config.json": {
+            "ACCESS": 0,
+            "HTTPSTATUSCODE": "404"
+        }
+    },
     "FILESREGEX": [
         {
             "FILESHTTPHEADERS": "Content-Security-Policy: frame-ancestors 'self'",
@@ -683,6 +696,7 @@
         }
     ],
     "FLOODPROTECTION": 500,
+    "FLOODPROTECTION_LOG_INTERVAL": "PT1M",
     "GLOBALHTTPHEADERS": "{LASTMODIFIED}\r\nStrict-Transport-Security: max-age=31536000; includeSubDomains\r\nX-Content-Type-Options: nosniff\r\nContent-Security-Policy: frame-ancestors 'self'",
     "GZIPENABLED": true,
     "GZIPMINSIZE": 800,
@@ -1040,12 +1054,12 @@
     "REMOTESERVERS": {},
     "REMOTESERVERS_CERTIFICATES": [],
     "REQUIREAUTH": 0,
-    "REVALIDATION": true,
     "SAMESITE_ATTRIBUTE": 2,
     "SELFSIGNEDROOTCA": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUR1RENDQXFDZ0F3SUJBZ0lKQU5WRFNKU002VUFmTUEwR0NTcUdTSWIzRFFFQkN3VUFNRUl4Q3pBSkJnTlYKQkFZVEFrUkZNUnN3R1FZRFZRUUtEQkpVZDJsdVEwRlVJRWhOU1NCVFpYSjJaWEl4RmpBVUJnTlZCQU1NRFVkRwpURUZRTXpRMVgzSnZiM1F3SUJjTk1qSXdOekkzTURFeU5qVXpXaGdQTWpBMk1ERXhNalF3TVRJMk5UTmFNRUl4CkN6QUpCZ05WQkFZVEFrUkZNUnN3R1FZRFZRUUtEQkpVZDJsdVEwRlVJRWhOU1NCVFpYSjJaWEl4RmpBVUJnTlYKQkFNTURVZEdURUZRTXpRMVgzSnZiM1F3Z2dFaU1BMEdDU3FHU0liM0RRRUJBUVVBQTRJQkR3QXdnZ0VLQW9JQgpBUURQeWx2YlByV0Fua1NnQmhueGd1QSttUjdpOFpkWVU0c3hZV1BwOXRzWlh4bjIrUFhZN0piTjBXMnZWaEZDCkNEMWlaYTd6eHk1NGE5SFBmNFluNDU4SmpvRUk3SVl3Q1paS0VRWkY0N3d6UTYzYW5XeTQvNi9tc2lxaXNDUDcKWmh3VVA4WDYwaU53UkM1ZS9XcEptWnhLTHFSWjljZmp1Z3hudHNDR1hTeXMzN2hpdEpRYWx3ek5ybVlla1hQSgpocVdLTnYvWlE5VTExVURNSmlqTG8vNGxVZ2k1SlZ2YWhSZTVjTk9PQUtUaW9mbnBMbTBhdytEVkU1aUV2U3MzClp1cVlmS0FqdkUzZEN2RjVXczVkL1ZQaXdTcWFxNG9XdWdrejNicXBNc1pxK0ZkZHUvb1hSd0NIenk3UHBvZlgKTHNpV3dFaHR2eXN1YlI1c212d2dzS0NsQWdNQkFBR2pnYTR3Z2Fzd2VRWURWUjBSQkhJd2NJSUpiRzlqWVd4bwpiM04waHdSL0FBQUJoeEFBQUFBQUFBQUFBQUFBQUFBQUFBQUJnZ2hIUmt4QlVETTBOWUlSUjBaTVFWQXpORFV1CloyWXViRzlqWVd5SEJLbit5UldIQkt3WlpGeUhFUDZBQUFBQUFBQUFMRFl0MEpqZEJGT0hFUDZBQUFBQUFBQUEKclJOK2pIS3B5UlV3SFFZRFZSME9CQllFRk90OVZzVWFTdTBJWUF6Tm84ZmllTXU3RGVNV01BOEdBMVVkRXdFQgovd1FGTUFNQkFmOHdEUVlKS29aSWh2Y05BUUVMQlFBRGdnRUJBRU1rVXp5ZlZjb0JySUpBV2hoZHpCTmJwbVNpCnAxSjY3SjdPUzYyVnNWN1dZQzZLT2FTejhOZDFJQmg0WEFZNnpRYlJxNDgxNmpza1YxUW56NWRQbm9STWZlU1IKYjZXN092TXFTVFBYM05WWUVzR3F1RUdWR3VoK2d0VVZhK3BoWVREbU1ndnVCYVUwdjlLcDRDM3BWczQ0Y1phSApwRGo5YS96TWgvb0pyUjQxZCtBQ3Ixdy93MlZkMGNEbi9XTURKTW1RcUs1czUyMjhyMzVENzhoK0xLaWM3ZDhTCnZIYXZqVU8vVkVubTdJckNKSVg4YVBSQWt4U0hnOFJIZzhXM0RyYTdmL2YzSUx1VWMrOHRDRldGb3kxT29LZUQKZitZUUtqM25MTmRXRmtCdy9ud1pzTG05SS9ZVDJhU21ROXlud29HTzFiVG0zbjAyUzJuQjUwNHk5Z1E9Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K",
     "SELFSIGNEDROOTCAKEY": "LS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0tCk1JSUV2QUlCQURBTkJna3Foa2lHOXcwQkFRRUZBQVNDQktZd2dnU2lBZ0VBQW9JQkFRQ2pqbWRraDVqM20rTEQKSFo4YWludzNZMTNGNml0MzgwSkl5dFhSNzlwc2xKTXdTOHVpUmRGTEtWR3ROSU4zMG14QVZweWc0Y1FhQXl3Kwp5d0pEbGJKNWJ2bEMxNzYzeVIzcUV4RjVtcVhwRFhpQ2NiTmxjMHJMRTVZR1pTRHhnYWtzT0dyVUpHcjNJVFJTCmprOTBrUXZkUFVOODFrQTJGb1ZqLzhRMS8rNVljMXQ2TXV2SWRzMHFTdGNwejBQZmZxWGRhRnc2NHdyYzU4RnMKUWVDSGRTSDZLZXBtZ3Q0cFZrK2xKMzVaRWFIYm9XZXNlb1B2bVoyWW1uT2QxNmxLcUtzVWxmeFVINjFuZXVMagpVMmhoWmZaRWdGOXVtbmorblJIaHV6UnR5V205UllSTlV3bERybDJnWWphU2w5blgrR0UyNFVrMFVsYUxtMTJzCnZsVS9IbFloQWdNQkFBRUNnZ0VBZUpnTlFDQ0M5ejhuYWZvelQ5eUFUazZqMjhRWG5PL3VGY0lJK2l4Qi93RmwKclp5Vlh1YmZ0TzJZWFg5MDJDcDh5c3VSM1VYWjA5dzNDVzJpRTdjU3kxcTV5MEZNVERLc0xlVTFZMVpWc29yTwpLbEF2bUVQMEI5dy9LQ1Awc0YyTUlTRFFFKzl1TngxeWVOU1pYVGQ5YWZrOEE1WHQ3bk9Za3UwSS9VL2hxN0RrCjIzc2NFV3pxOEdlMURhTjg2N092Smk4MXlCa2N6bzRycnFWM2JvRnhKQlVpcFZXeDM3UlNPR3VUU2ZReUhMS1cKWHhIbEI1dFk2WVpRd0thQXNTVi91aWpkRnVWWmp6NW90cEdhbEVEQTRpWGQwbk95WUtaYk1QR0N0aWpnRXBaQQp4VkNvZ3RFSlhGbjY3eklZM0V1Y0V4MEZGMnlya0pUOU5Qd2IvVzFGS1FLQmdRRFY3b2YwdnpybmpteWF2WUYrCnFFMno5Z2dGVkFESGUrdVRGWGRaWXljTVZhZis3a0tMNHFIeTM1ZG53eWlWTFVJeCtlcC9LUkw3V1Zsb1liZi8KZitkcGJldDRvaFJ2Wnk5cU4zOVh3ZEZnSW9QK2FWVldjVGwrWmZENThFbHY2TzJ6YVpNellBaUVaSU45WXFIYQpGc09jRStWL0xGb09uQWFreCtkZGplMzI2d0tCZ1FERHQrKzJLQTBpKzJwckpIa3kzNld4ZGs4VVZWNnhaN3F5Cjh2YkpCbndCK0JnNWxxaW1WWXhFNHFZWXlBZTc1LzlqWUh6Y2ZtT2ZpbVE0UXRBK0FVU29ob0ZkZW4wcDNjdTEKd3B0eVZpMSs5MDJIMzNleFZpdmxxcWsvQ1pqU1FmNjdUd2hmc3NCcEtDL1kxSVA2eUlaekVlczZLWEZNYnE3RQpic0ZwTklPOEl3S0JnRTdWSlRobE4zbVluQ0N4Y0lTUjFJQmFTejViWkNZZVhnTEhTRUdpTGdOM2xQNTJJZ09XCk1nTmpyVkZKTXkwMWprMElRUWMyeFkzbHNQS3IvN2VoRkU5ZmVBUHVCZ1cvU2xPanU4TkU0cmpBUDArQzFUV1QKWjVKU1VtaG55VWY1MTQzamU2RFU1STZVMDNkaTN5MlVjZVNUMkYveW9nVDhMZDZPNDQwdi9kNmRBb0dBWXVvNQpTbFNmbndoMTFrU094SGxub25McXNKb2N5NGhqUVVHdUhCY2M0Vm5qMUdjaVFUNkhMK0ZrbEsyenl2SUxqc3diCkRzMEp5SDRHL0xBMzByNk5WcWIwQnF4N1NZZUJCeEdkd29GdmFQWFB4MVhYaGxiSXhNQWwzV2dhUmxsNFJtNUIKQ3l5cU5mdExnMGlVazFCNU12cmhhWG04ZXlhTlNWVzRobFUySndVQ2dZQktGSENKMnAvUXdBT3BKaEY2djIxZQpwUWVNL3RlcFdpNlJRdFA3cGxVZ2hiTGJjVHBtbUJaVE8zWVJPakc4M3VxeEQvM0hEcG9wLzZtVEYwTE95eWZvCjlRV29mUTd0TEs1bDhFTWtSSDBpNHRLRnVNcmVIWEJtRmU0TEVjQWl0OTc4ajN6V3VJUUUra21NMUhwWUlxWkUKZldaUTg4azNPT2dyV1hhMU8waDhtUT09Ci0tLS0tRU5EIFBSSVZBVEUgS0VZLS0tLS0K",
     "SESSIONSTORAGE": {},
     "SHOW_CONFIGURATION_HINTS": true,
+    "SHOW_MAINTENANCE_MODE": true,
     "SHUTDOWNTIMEOUT": "PT10S",
     "SOCKET_TIMEOUT": "PT10S",
     "SYMBOLS": {
@@ -1359,6 +1373,13 @@
                                     "readOnly": true,
                                     "type": "string"
                                 },
+                                "adsVersionBuild": {
+                                    "hidden": true,
+                                    "minimum": 0.0,
+                                    "propertyOrder": 9,
+                                    "readOnly": true,
+                                    "type": "integer"
+                                },
                                 "connectionState": {
                                     "propertyOrder": 1,
                                     "readOnly": true,
@@ -1371,7 +1392,7 @@
                                 },
                                 "isUserModeRuntime": {
                                     "hidden": true,
-                                    "propertyOrder": 9,
+                                    "propertyOrder": 10,
                                     "readOnly": true,
                                     "type": "boolean"
                                 },
@@ -1395,7 +1416,6 @@
                     }
                 },
                 "readOnly": true,
-                "transient": true,
                 "type": "object"
             },
             "SUBSYMBOL_MAPPING": "",
@@ -1430,6 +1450,19 @@
                 }
             },
             "SUBSYMBOL_MAPPING": "",
+            "USEMAPPING": true
+        },
+        "ADS.GetSystemId": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": false,
+            "HIDDEN": true,
+            "MAPPING": "GetSystemId",
+            "OPTIONS": {},
+            "SCHEMA": {
+                "function": true,
+                "type": "string"
+            },
             "USEMAPPING": true
         },
         "ADS.ListCommonTypes": {
@@ -1545,6 +1578,7 @@
                         {
                             "properties": {
                                 "NETID": {
+                                    "format": "amsnetid",
                                     "type": "string"
                                 },
                                 "all": {
@@ -1729,6 +1763,7 @@
         },
         "AddSymbols": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiSrv",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -1779,6 +1814,7 @@
                     "type": "object"
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "AddToConfiguration": {
@@ -1831,7 +1867,7 @@
                     "anyOf": [
                         {
                             "additionalProperties": false,
-                            "description": "Changes to the USERGROUPUSERS entry of the current user",
+                            "description": "Changes to the USERGROUPUSERS entry of the current user.",
                             "properties": {
                                 "changePassword": {
                                     "allOf": [
@@ -2036,29 +2072,24 @@
                 "properties": {
                     "ACCEPTEDSOCKETS": {
                         "readOnly": true,
-                        "transient": true,
                         "type": "integer"
                     },
                     "ACTIVESESSIONS": {
                         "link": "Sessions",
                         "readOnly": true,
-                        "transient": true,
                         "type": "integer"
                     },
                     "ACTIVESOCKETS": {
                         "readOnly": true,
-                        "transient": true,
                         "type": "integer"
                     },
                     "ARCHITECTURE": {
                         "readOnly": true,
-                        "transient": true,
                         "type": "string"
                     },
                     "DISCOVERY_RUNNING": {
                         "hidden": true,
                         "readOnly": true,
-                        "transient": true,
                         "type": "boolean"
                     },
                     "DOTNETCLASSICVERSIONS": {
@@ -2067,7 +2098,6 @@
                             "type": "string"
                         },
                         "readOnly": true,
-                        "transient": true,
                         "type": "array"
                     },
                     "DOTNETCOREVERSIONS": {
@@ -2076,7 +2106,6 @@
                             "type": "string"
                         },
                         "readOnly": true,
-                        "transient": true,
                         "type": "array"
                     },
                     "DOTNETVERSIONS": {
@@ -2085,7 +2114,6 @@
                             "type": "string"
                         },
                         "readOnly": true,
-                        "transient": true,
                         "type": "array"
                     },
                     "LICENSE": {
@@ -2093,19 +2121,16 @@
                             "CLIENTS": {
                                 "propertyOrder": 2,
                                 "readOnly": true,
-                                "transient": true,
                                 "type": "integer"
                             },
                             "EXTENSIONS": {
                                 "propertyOrder": 6,
                                 "readOnly": true,
-                                "transient": true,
                                 "type": "boolean"
                             },
                             "SERVERS": {
                                 "propertyOrder": 1,
                                 "readOnly": true,
-                                "transient": true,
                                 "type": "integer"
                             },
                             "STATE": {
@@ -2125,30 +2150,25 @@
                             "TARGETS": {
                                 "propertyOrder": 4,
                                 "readOnly": true,
-                                "transient": true,
                                 "type": "integer"
                             },
                             "USEDCLIENTS": {
                                 "propertyOrder": 3,
                                 "readOnly": true,
-                                "transient": true,
                                 "type": "integer"
                             },
                             "USEDTARGETS": {
                                 "propertyOrder": 5,
                                 "readOnly": true,
-                                "transient": true,
                                 "type": "integer"
                             }
                         },
                         "readOnly": true,
-                        "transient": true,
                         "type": "object"
                     },
                     "MEMORYUSAGE": {
                         "displayClass": "megabyte",
                         "readOnly": true,
-                        "transient": true,
                         "type": "number"
                     },
                     "REMOTESERVERS": {
@@ -2173,7 +2193,6 @@
                                     ],
                                     "propertyOrder": 1,
                                     "readOnly": true,
-                                    "transient": true,
                                     "type": "string"
                                 }
                             },
@@ -2183,39 +2202,64 @@
                             "type": "object"
                         },
                         "readOnly": true,
-                        "transient": true,
                         "type": "object"
                     },
                     "SERVERTIME": {
                         "format": "date-time",
                         "readOnly": true,
-                        "transient": true,
                         "type": "string"
                     },
                     "TRAFFICIN": {
                         "displayClass": "byte",
                         "readOnly": true,
-                        "transient": true,
                         "type": "number"
                     },
                     "TRAFFICOUT": {
                         "displayClass": "byte",
                         "readOnly": true,
-                        "transient": true,
                         "type": "number"
                     },
                     "UPTIME": {
                         "format": "timespan",
                         "readOnly": true,
-                        "transient": true,
                         "type": "string"
                     }
                 },
                 "readOnly": true,
-                "transient": true,
                 "type": "object"
             },
             "SUBSYMBOL_MAPPING": "",
+            "USEMAPPING": true
+        },
+        "Export": {
+            "ACCESS": 3,
+            "DOMAIN": "TcHmiSrv",
+            "DYNAMIC": false,
+            "HIDDEN": true,
+            "MAPPING": "Export",
+            "OPTIONS": {},
+            "SCHEMA": {
+                "function": true,
+                "writeValue": {
+                    "properties": {
+                        "domain": {
+                            "type": "string"
+                        },
+                        "full": {
+                            "default": false,
+                            "type": "boolean"
+                        },
+                        "name": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "name",
+                        "domain"
+                    ],
+                    "type": "object"
+                }
+            },
             "USEMAPPING": true
         },
         "ForceLogout": {
@@ -2396,6 +2440,35 @@
                 }
             },
             "SUBSYMBOL_MAPPING": "",
+            "USEMAPPING": true
+        },
+        "GetFileInformation": {
+            "ACCESS": 3,
+            "DOMAIN": "TcHmiSrv",
+            "DYNAMIC": false,
+            "HIDDEN": true,
+            "MAPPING": "GetFileInformation",
+            "OPTIONS": {},
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "function": true
+                    },
+                    {
+                        "$ref": "tchmi:server#/definitions/fileInfo"
+                    },
+                    {
+                        "required": [
+                            "modificationTime",
+                            "fileSize",
+                            "access"
+                        ]
+                    }
+                ],
+                "writeValue": {
+                    "type": "string"
+                }
+            },
             "USEMAPPING": true
         },
         "GetSchema": {
@@ -2581,6 +2654,10 @@
                     "subscriptions": {
                         "additionalProperties": {
                             "properties": {
+                                "averageDuration": {
+                                    "format": "timespan",
+                                    "type": "string"
+                                },
                                 "clientCount": {
                                     "type": "integer"
                                 },
@@ -2590,6 +2667,11 @@
                                             "lastSent": {
                                                 "format": "date-time",
                                                 "type": "string"
+                                            },
+                                            "readValueJsonLength": {
+                                                "displayClass": "byte",
+                                                "minimum": 0.0,
+                                                "type": "integer"
                                             },
                                             "symbol": {
                                                 "type": "string"
@@ -2606,6 +2688,11 @@
                                     "type": "integer"
                                 },
                                 "intervalTime": {
+                                    "type": "integer"
+                                },
+                                "readValueJsonLength": {
+                                    "displayClass": "byte",
+                                    "minimum": 0.0,
                                     "type": "integer"
                                 },
                                 "type": {
@@ -2627,7 +2714,27 @@
                         "type": "object"
                     }
                 },
-                "type": "object"
+                "type": "object",
+                "writeValue": {
+                    "anyOf": [
+                        {
+                            "properties": {
+                                "averageDuration": {
+                                    "default": false,
+                                    "type": "boolean"
+                                },
+                                "readValueJsonLength": {
+                                    "default": false,
+                                    "type": "boolean"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        {
+                            "$ref": "tchmi:general#/definitions/VOID"
+                        }
+                    ]
+                }
             },
             "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
@@ -2842,34 +2949,21 @@
             "OPTIONS": {},
             "SCHEMA": {
                 "additionalProperties": {
-                    "properties": {
-                        "fileFlags": {
-                            "items": {
-                                "enum": [
-                                    "Directory",
-                                    "ReadOnly",
-                                    "UserAccessReadOnly",
-                                    "VirtualDirectory"
-                                ],
-                                "type": "string"
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:server#/definitions/fileInfo"
+                        },
+                        {
+                            "properties": {
+                                "link": {
+                                    "type": "string"
+                                }
                             },
-                            "type": "array"
-                        },
-                        "fileSize": {
-                            "displayClass": "kilobyte",
-                            "type": "number"
-                        },
-                        "link": {
-                            "type": "string"
-                        },
-                        "modificationTime": {
-                            "type": "string"
+                            "required": [
+                                "fileFlags"
+                            ]
                         }
-                    },
-                    "required": [
-                        "fileFlags"
-                    ],
-                    "type": "object"
+                    ]
                 },
                 "function": true,
                 "type": "object",
@@ -3066,6 +3160,10 @@
                 "type": "string",
                 "writeValue": {
                     "properties": {
+                        "maintenanceMode": {
+                            "default": false,
+                            "type": "boolean"
+                        },
                         "password": {
                             "format": "encrypted",
                             "type": "string"
@@ -3128,9 +3226,12 @@
         },
         "PLC1.Alarms_DB.Coil1.AlarmWord": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Alarms_DB::Coil1::AlarmWord",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -3141,13 +3242,17 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Alarms_DB.Coil2.AlarmWord": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Alarms_DB::Coil2::AlarmWord",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -3158,23 +3263,31 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.CAN_comm.hmi_CanTx_ID_str": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::CAN_comm::hmi_CanTx_ID_str",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/STRING%2880%29"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.CAN_comm.hmi_CanTx_desiredID": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::CAN_comm::hmi_CanTx_desiredID",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -3185,393 +3298,549 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.CAN_comm.hmi_sendRequest": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::CAN_comm::hmi_sendRequest",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.CAN_comm.hmi_step1": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::CAN_comm::hmi_step1",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.CAN_comm.hmi_step2": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::CAN_comm::hmi_step2",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.CAN_comm.hmi_step3": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::CAN_comm::hmi_step3",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.CAN_comm.hmi_step4": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::CAN_comm::hmi_step4",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.CAN_comm.hmi_step5": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::CAN_comm::hmi_step5",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Cal_ChargeTime.Tuntilfullycharged.0": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Cal_ChargeTime::Tuntilfullycharged[0]",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Cal_ChargeTime.Tuntilfullycharged.1": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Cal_ChargeTime::Tuntilfullycharged[1]",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Cal_ChargeTime.Tuntilfullycharged.2": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Cal_ChargeTime::Tuntilfullycharged[2]",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Cal_ChargeTime.Tuntilfullycharged.3": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Cal_ChargeTime::Tuntilfullycharged[3]",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Cal_ChargeTime.Tuntilfullycharged.4": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Cal_ChargeTime::Tuntilfullycharged[4]",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Cal_ChargeTime.Tuntilfullycharged.5": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Cal_ChargeTime::Tuntilfullycharged[5]",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Cal_ChargeTime.Tuntilfullycharged.6": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Cal_ChargeTime::Tuntilfullycharged[6]",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Cal_ChargeTime.Tuntilfullycharged.7": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Cal_ChargeTime::Tuntilfullycharged[7]",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Cal_ChargeTime.Tuntilfullycharged.8": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Cal_ChargeTime::Tuntilfullycharged[8]",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Cal_ChargeTime.Tuntilfullycharged.9": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Cal_ChargeTime::Tuntilfullycharged[9]",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Devices.Coil.0.AC_Interlock_RlyClose": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Devices::Coil[0]::AC_Interlock_RlyClose",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Devices.Coil.0.CapCellTemp.0": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Devices::Coil[0]::CapCellTemp[0]",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Devices.Coil.0.CapCellTemp.1": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Devices::Coil[0]::CapCellTemp[1]",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Devices.Coil.0.CapCellTemp.2": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Devices::Coil[0]::CapCellTemp[2]",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Devices.Coil.0.CapCellTemp.3": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Devices::Coil[0]::CapCellTemp[3]",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Devices.Coil.0.CapCellTemp.4": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Devices::Coil[0]::CapCellTemp[4]",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Devices.Coil.0.CapCellTemp.5": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Devices::Coil[0]::CapCellTemp[5]",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Devices.Coil.0.CapCellTemp.6": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Devices::Coil[0]::CapCellTemp[6]",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Devices.Coil.0.CapCellTemp.7": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Devices::Coil[0]::CapCellTemp[7]",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Devices.Coil.0.CapCellTemp.8": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Devices::Coil[0]::CapCellTemp[8]",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Devices.Coil.0.CapCellTemp.9": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Devices::Coil[0]::CapCellTemp[9]",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Devices.Coil.0.CapVoltage.0": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Devices::Coil[0]::CapVoltage[0]",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Devices.Coil.0.CapVoltage.1": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Devices::Coil[0]::CapVoltage[1]",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Devices.Coil.0.CapVoltage.2": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Devices::Coil[0]::CapVoltage[2]",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Devices.Coil.0.CapVoltage.3": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Devices::Coil[0]::CapVoltage[3]",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Devices.Coil.0.CapVoltage.4": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Devices::Coil[0]::CapVoltage[4]",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Devices.Coil.0.CapVoltage.5": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Devices::Coil[0]::CapVoltage[5]",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Devices.Coil.0.CapVoltage.6": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Devices::Coil[0]::CapVoltage[6]",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Devices.Coil.0.CapVoltage.7": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Devices::Coil[0]::CapVoltage[7]",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Devices.Coil.0.CapVoltage.8": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Devices::Coil[0]::CapVoltage[8]",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Devices.Coil.0.CapVoltage.9": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Devices::Coil[0]::CapVoltage[9]",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Devices.Coil.0.ChargeRelay_closed": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Devices::Coil[0]::ChargeRelay_closed",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Devices.Coil.0.ChargerIsEnabled": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Devices::Coil[0]::ChargerIsEnabled",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -3582,113 +3851,157 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Devices.Coil.0.CoilEnabled": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Devices::Coil[0]::CoilEnabled",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Devices.Coil.0.DumpRelay1_closed": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Devices::Coil[0]::DumpRelay1_closed",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Devices.Coil.0.DumpRelay2_closed": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Devices::Coil[0]::DumpRelay2_closed",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Devices.Coil.0.HVisolationRelayClosed": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Devices::Coil[0]::HVisolationRelayClosed",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Devices.Coil.0.NumOfCap": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Devices::Coil[0]::NumOfCap",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Devices.Coil.0.OutputRelayOpen": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Devices::Coil[0]::OutputRelayOpen",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Devices.Coil.0.UC_Dummy_ID_hexstr": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Devices::Coil[0]::UC_Dummy_ID_hexstr",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/STRING%2880%29"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Devices.Coil.0.UltraCap_Dummy.R2_06_UC_Rx_cobID": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Devices::Coil[0]::UltraCap_Dummy::R2_06_UC_Rx_cobID",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/UDINT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Devices.Coil.1.ChargeRelay_closed": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Devices::Coil[1]::ChargeRelay_closed",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Devices.Coil.1.ChargeVoltageFeedback": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Devices::Coil[0]::ChargeVoltageFeedback",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Devices.Coil.1.ChargerIsEnabled": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Devices::Coil[1]::ChargerIsEnabled",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -3699,186 +4012,259 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Devices.Coil.1.CoilEnabled": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Devices::Coil[1]::CoilEnabled",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Devices.Coil.1.CurrentFeedback": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Devices::Coil[0]::CurrentFeedback",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Devices.Coil.1.DumpRelay1_closed": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Devices::Coil[1]::DumpRelay1_closed",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Devices.Coil.1.DumpRelay2_closed": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Devices::Coil[1]::DumpRelay2_closed",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Devices.Coil.1.Measured_Bfield": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Devices::Coil[1]::Measured_Bfield",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Devices.Coil.1.SystemCharging": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Devices::Coil[0]::SystemCharging",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Devices.Coil.2.ChargeVoltageFeedback": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Devices::Coil[1]::ChargeVoltageFeedback",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Devices.Coil.2.CoilEnabled": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Devices::Coil[2]::CoilEnabled",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Devices.Coil.2.CurrentFeedback": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Devices::Coil[1]::CurrentFeedback",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Devices.Coil.2.SystemCharging": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Devices::Coil[1]::SystemCharging",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Devices.Coil.3.CoilEnabled": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Devices::Coil[3]::CoilEnabled",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Devices.Coil.4.CoilEnabled": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Devices::Coil[4]::CoilEnabled",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Devices.Coil.5.CoilEnabled": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Devices::Coil[5]::CoilEnabled",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Devices.Coil.6.CoilEnabled": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Devices::Coil[6]::CoilEnabled",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Devices.Coil.7.CoilEnabled": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Devices::Coil[7]::CoilEnabled",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Devices.Coil.8.CoilEnabled": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Devices::Coil[8]::CoilEnabled",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Devices.Coil.9.CoilEnabled": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Devices::Coil[9]::CoilEnabled",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.GVL.AlwaysTrue": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::GVL::AlwaysTrue",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.GVL.ClearAllFaults": {
@@ -3897,12 +4283,16 @@
         },
         "PLC1.GVL.alarm_test": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::GVL::alarm_test",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.GVL.test": {
@@ -3921,272 +4311,380 @@
         },
         "PLC1.HMI_DB.AllACInterlocksClosed": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::AllACInterlocksClosed",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.AllChargesAreActive": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::AllChargesAreActive",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.AllDumpRelaysOpen": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::AllDumpRelaysOpen",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.AllFlybackDiodesActive": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::AllFlybackDiodesActive",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.ChargePausedRunOutTime": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::ChargePausedRunOutTime",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/DINT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.ChargingRunOutTime": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::ChargingRunOutTime",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.CoilEnable.0": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::CoilEnable[0]",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.CoilEnable.1": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::CoilEnable[1]",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.CoilEnable.2": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::CoilEnable[2]",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.CoilEnable.3": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::CoilEnable[3]",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.CoilEnable.4": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::CoilEnable[4]",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.CoilEnable.5": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::CoilEnable[5]",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.CoilEnable.6": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::CoilEnable[6]",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.CoilEnable.7": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::CoilEnable[7]",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.CoilEnable.8": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::CoilEnable[8]",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.CoilEnable.9": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::CoilEnable[9]",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.DumpingRunOutTime": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::DumpingRunOutTime",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/DINT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.IntrumentationFaulted": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::IntrumentationFaulted",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.PausePB": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::PausePB",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.PostShotRunOutTime": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::PostShotRunOutTime",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/DINT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.ReadyToChargeRunOutTime": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::ReadyToChargeRunOutTime",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/DINT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.ReadyToShootRunOutTime": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::ReadyToShootRunOutTime",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/DINT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.RemoteModeSelected": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::RemoteModeSelected",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.SafetyOK": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::SafetyOK",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.ShootingRunOutTime": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::ShootingRunOutTime",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/DINT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.StartPB": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::StartPB",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.StopPB": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::StopPB",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.chargePB": {
@@ -4205,102 +4703,142 @@
         },
         "PLC1.HMI_DB.coil10_enable": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::coil10_enable",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.coil1_enable": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::coil1_enable",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.coil2_enable": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::coil2_enable",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.coil3_enable": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::coil3_enable",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.coil4_enable": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::coil4_enable",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.coil5_enable": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::coil5_enable",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.coil6_enable": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::coil6_enable",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.coil7_enable": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::coil7_enable",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.coil8_enable": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::coil8_enable",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.coil9_enable": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::HMI_DB::coil9_enable",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.dumpPB": {
@@ -4333,12 +4871,16 @@
         },
         "PLC1.Heartbeat.pulse_1Hz": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Heartbeat::pulse_1Hz",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Heartbeat.screen_refresh_pulse": {
@@ -4429,19 +4971,26 @@
         },
         "PLC1.MCP_IO.RemoteModeSelected": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MCP_IO::RemoteModeSelected",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MODE_SELECTION_1.eCommand": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MODE_SELECTION_1::eCommand",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -4452,13 +5001,17 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MODE_SELECTION_1.eMagState": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MODE_SELECTION_1::eMagState",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -4469,23 +5022,31 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.MODE_SELECTION_1.i": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::MODE_SELECTION_1::i",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Permissives_DB.AllChargerEnabled": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Permissives_DB::AllChargerEnabled",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -4496,13 +5057,17 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Permissives_DB.AllChargerRelay_Closed": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Permissives_DB::AllChargerRelay_Closed",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -4513,63 +5078,87 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Permissives_DB.AllCoilCapsCharged": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Permissives_DB::AllCoilCapsCharged",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Permissives_DB.AllDumpRelayOpen": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Permissives_DB::AllDumpRelayOpen",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Permissives_DB.AllDumpResistorTempOK": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Permissives_DB::AllDumpResistorTempOK",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Permissives_DB.All_Coil_TemperatureOK": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Permissives_DB::All_Coil_TemperatureOK",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Permissives_DB.AllacInterlock_Closed": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Permissives_DB::AllacInterlock_Closed",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Permissives_DB.AlldcPSUok": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Permissives_DB::AlldcPSUok",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -4580,73 +5169,101 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Permissives_DB.ChargePermOK": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Permissives_DB::ChargePermOK",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Permissives_DB.NoGroundLoopCurrentDetected": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Permissives_DB::NoGroundLoopCurrentDetected",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Permissives_DB.NoPneumaticPressureLoss": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Permissives_DB::NoPneumaticPressureLoss",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Permissives_DB.SafetyOK": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Permissives_DB::SafetyOK",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Permissives_DB.ShootPermOK": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Permissives_DB::ShootPermOK",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Recipe.Coil.0.CoilEnable": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Recipe::Coil[0]::CoilEnable",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.0.EngVal.Max_Tesla": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[0]::EngVal::Max_Tesla",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -4657,13 +5274,17 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.0.EngVal.Max_chargerVoltage": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[0]::EngVal::Max_chargerVoltage",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -4674,13 +5295,17 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.0.EngVal.Max_current_perCap": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[0]::EngVal::Max_current_perCap",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -4691,53 +5316,73 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.0.EngVal.Min_Tesla": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[0]::EngVal::Min_Tesla",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.0.EngVal.Min_chargerVoltage": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[0]::EngVal::Min_chargerVoltage",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.0.EngVal.Min_current_perCap": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[0]::EngVal::Min_current_perCap",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.0.SysParameters.CapacitancePerCap": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[0]::SysParameters::CapacitancePerCap",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.0.SysParameters.Direction": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[0]::SysParameters::Direction",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -4748,13 +5393,17 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.0.SysParameters.DriverMapping": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[0]::SysParameters::DriverMapping",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -4765,73 +5414,101 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.0.SysParameters.MaxVoltagePerCap": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[0]::SysParameters::MaxVoltagePerCap",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.0.SysParameters.MaxVoltageTotal": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[0]::SysParameters::MaxVoltageTotal",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.0.SysParameters.NumOfCaps": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[0]::SysParameters::NumOfCaps",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.0.SysParameters.NumOfTurns": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[0]::SysParameters::NumOfTurns",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.0.SysParameters.TotalCapacitance": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[0]::SysParameters::TotalCapacitance",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.0.SysParameters.TotalCircuitResistance": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[0]::SysParameters::TotalCircuitResistance",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.1.EngVal.Max_Tesla": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[1]::EngVal::Max_Tesla",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -4842,13 +5519,17 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.1.EngVal.Max_chargerVoltage": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[1]::EngVal::Max_chargerVoltage",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -4859,13 +5540,17 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.1.EngVal.Max_current_perCap": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[1]::EngVal::Max_current_perCap",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -4876,53 +5561,73 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.1.EngVal.Min_Tesla": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[1]::EngVal::Min_Tesla",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.1.EngVal.Min_chargerVoltage": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[1]::EngVal::Min_chargerVoltage",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.1.EngVal.Min_current_perCap": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[1]::EngVal::Min_current_perCap",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.1.SysParameters.CapacitancePerCap": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[1]::SysParameters::CapacitancePerCap",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.1.SysParameters.Direction": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[1]::SysParameters::Direction",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -4933,13 +5638,17 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.1.SysParameters.DriverMapping": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[1]::SysParameters::DriverMapping",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -4950,73 +5659,101 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.1.SysParameters.MaxVoltagePerCap": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[1]::SysParameters::MaxVoltagePerCap",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.1.SysParameters.MaxVoltageTotal": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[1]::SysParameters::MaxVoltageTotal",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.1.SysParameters.NumOfCaps": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[1]::SysParameters::NumOfCaps",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.1.SysParameters.NumOfTurns": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[1]::SysParameters::NumOfTurns",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.1.SysParameters.TotalCapacitance": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[1]::SysParameters::TotalCapacitance",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.1.SysParameters.TotalCircuitResistance": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[1]::SysParameters::TotalCircuitResistance",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.2.EngVal.Max_Tesla": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[2]::EngVal::Max_Tesla",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -5027,13 +5764,17 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.2.EngVal.Max_chargerVoltage": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[2]::EngVal::Max_chargerVoltage",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -5044,13 +5785,17 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.2.EngVal.Max_current_perCap": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[2]::EngVal::Max_current_perCap",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -5061,53 +5806,73 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.2.EngVal.Min_Tesla": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[2]::EngVal::Min_Tesla",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.2.EngVal.Min_chargerVoltage": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[2]::EngVal::Min_chargerVoltage",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.2.EngVal.Min_current_perCap": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[2]::EngVal::Min_current_perCap",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.2.SysParameters.CapacitancePerCap": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[2]::SysParameters::CapacitancePerCap",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.2.SysParameters.Direction": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[2]::SysParameters::Direction",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -5118,13 +5883,17 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.2.SysParameters.DriverMapping": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[2]::SysParameters::DriverMapping",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -5135,73 +5904,101 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.2.SysParameters.MaxVoltagePerCap": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[2]::SysParameters::MaxVoltagePerCap",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.2.SysParameters.MaxVoltageTotal": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[2]::SysParameters::MaxVoltageTotal",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.2.SysParameters.NumOfCaps": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[2]::SysParameters::NumOfCaps",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.2.SysParameters.NumOfTurns": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[2]::SysParameters::NumOfTurns",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.2.SysParameters.TotalCapacitance": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[2]::SysParameters::TotalCapacitance",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.2.SysParameters.TotalCircuitResistance": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[2]::SysParameters::TotalCircuitResistance",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.3.EngVal.Max_Tesla": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[3]::EngVal::Max_Tesla",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -5212,13 +6009,17 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.3.EngVal.Max_chargerVoltage": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[3]::EngVal::Max_chargerVoltage",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -5229,13 +6030,17 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.3.EngVal.Max_current_perCap": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[3]::EngVal::Max_current_perCap",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -5246,53 +6051,73 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.3.EngVal.Min_Tesla": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[3]::EngVal::Min_Tesla",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.3.EngVal.Min_chargerVoltage": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[3]::EngVal::Min_chargerVoltage",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.3.EngVal.Min_current_perCap": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[3]::EngVal::Min_current_perCap",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.3.SysParameters.CapacitancePerCap": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[3]::SysParameters::CapacitancePerCap",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.3.SysParameters.Direction": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[3]::SysParameters::Direction",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -5303,13 +6128,17 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.3.SysParameters.DriverMapping": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[3]::SysParameters::DriverMapping",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -5320,73 +6149,101 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.3.SysParameters.MaxVoltagePerCap": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[3]::SysParameters::MaxVoltagePerCap",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.3.SysParameters.MaxVoltageTotal": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[3]::SysParameters::MaxVoltageTotal",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.3.SysParameters.NumOfCaps": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[3]::SysParameters::NumOfCaps",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.3.SysParameters.NumOfTurns": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[3]::SysParameters::NumOfTurns",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.3.SysParameters.TotalCapacitance": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[3]::SysParameters::TotalCapacitance",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.3.SysParameters.TotalCircuitResistance": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[3]::SysParameters::TotalCircuitResistance",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.4.EngVal.Max_Tesla": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[4]::EngVal::Max_Tesla",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -5397,13 +6254,17 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.4.EngVal.Max_chargerVoltage": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[4]::EngVal::Max_chargerVoltage",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -5414,13 +6275,17 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.4.EngVal.Max_current_perCap": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[4]::EngVal::Max_current_perCap",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -5431,53 +6296,73 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.4.EngVal.Min_Tesla": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[4]::EngVal::Min_Tesla",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.4.EngVal.Min_chargerVoltage": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[4]::EngVal::Min_chargerVoltage",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.4.EngVal.Min_current_perCap": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[4]::EngVal::Min_current_perCap",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.4.SysParameters.CapacitancePerCap": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[4]::SysParameters::CapacitancePerCap",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.4.SysParameters.Direction": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[4]::SysParameters::Direction",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -5488,13 +6373,17 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.4.SysParameters.DriverMapping": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[4]::SysParameters::DriverMapping",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -5505,73 +6394,101 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.4.SysParameters.MaxVoltagePerCap": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[4]::SysParameters::MaxVoltagePerCap",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.4.SysParameters.MaxVoltageTotal": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[4]::SysParameters::MaxVoltageTotal",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.4.SysParameters.NumOfCaps": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[4]::SysParameters::NumOfCaps",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.4.SysParameters.NumOfTurns": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[4]::SysParameters::NumOfTurns",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.4.SysParameters.TotalCapacitance": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[4]::SysParameters::TotalCapacitance",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.4.SysParameters.TotalCircuitResistance": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[4]::SysParameters::TotalCircuitResistance",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.5.EngVal.Max_Tesla": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[5]::EngVal::Max_Tesla",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -5582,13 +6499,17 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.5.EngVal.Max_chargerVoltage": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[5]::EngVal::Max_chargerVoltage",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -5599,13 +6520,17 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.5.EngVal.Max_current_perCap": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[5]::EngVal::Max_current_perCap",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -5616,53 +6541,73 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.5.EngVal.Min_Tesla": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[5]::EngVal::Min_Tesla",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.5.EngVal.Min_chargerVoltage": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[5]::EngVal::Min_chargerVoltage",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.5.EngVal.Min_current_perCap": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[5]::EngVal::Min_current_perCap",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.5.SysParameters.CapacitancePerCap": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[5]::SysParameters::CapacitancePerCap",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.5.SysParameters.Direction": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[5]::SysParameters::Direction",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -5673,13 +6618,17 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.5.SysParameters.DriverMapping": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[5]::SysParameters::DriverMapping",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -5690,73 +6639,101 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.5.SysParameters.MaxVoltagePerCap": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[5]::SysParameters::MaxVoltagePerCap",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.5.SysParameters.MaxVoltageTotal": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[5]::SysParameters::MaxVoltageTotal",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.5.SysParameters.NumOfCaps": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[5]::SysParameters::NumOfCaps",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.5.SysParameters.NumOfTurns": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[5]::SysParameters::NumOfTurns",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.5.SysParameters.TotalCapacitance": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[5]::SysParameters::TotalCapacitance",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.5.SysParameters.TotalCircuitResistance": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[5]::SysParameters::TotalCircuitResistance",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.6.EngVal.Max_Tesla": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[6]::EngVal::Max_Tesla",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -5767,13 +6744,17 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.6.EngVal.Max_chargerVoltage": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[6]::EngVal::Max_chargerVoltage",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -5784,13 +6765,17 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.6.EngVal.Max_current_perCap": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[6]::EngVal::Max_current_perCap",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -5801,53 +6786,73 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.6.EngVal.Min_Tesla": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[6]::EngVal::Min_Tesla",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.6.EngVal.Min_chargerVoltage": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[6]::EngVal::Min_chargerVoltage",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.6.EngVal.Min_current_perCap": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[6]::EngVal::Min_current_perCap",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.6.SysParameters.CapacitancePerCap": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[6]::SysParameters::CapacitancePerCap",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.6.SysParameters.Direction": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[6]::SysParameters::Direction",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -5858,13 +6863,17 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.6.SysParameters.DriverMapping": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[6]::SysParameters::DriverMapping",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -5875,73 +6884,101 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.6.SysParameters.MaxVoltagePerCap": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[6]::SysParameters::MaxVoltagePerCap",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.6.SysParameters.MaxVoltageTotal": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[6]::SysParameters::MaxVoltageTotal",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.6.SysParameters.NumOfCaps": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[6]::SysParameters::NumOfCaps",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.6.SysParameters.NumOfTurns": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[6]::SysParameters::NumOfTurns",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.6.SysParameters.TotalCapacitance": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[6]::SysParameters::TotalCapacitance",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.6.SysParameters.TotalCircuitResistance": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[6]::SysParameters::TotalCircuitResistance",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.7.EngVal.Max_Tesla": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[7]::EngVal::Max_Tesla",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -5952,13 +6989,17 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.7.EngVal.Max_chargerVoltage": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[7]::EngVal::Max_chargerVoltage",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -5969,13 +7010,17 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.7.EngVal.Max_current_perCap": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[7]::EngVal::Max_current_perCap",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -5986,53 +7031,73 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.7.EngVal.Min_Tesla": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[7]::EngVal::Min_Tesla",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.7.EngVal.Min_chargerVoltage": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[7]::EngVal::Min_chargerVoltage",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.7.EngVal.Min_current_perCap": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[7]::EngVal::Min_current_perCap",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.7.SysParameters.CapacitancePerCap": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[7]::SysParameters::CapacitancePerCap",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.7.SysParameters.Direction": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[7]::SysParameters::Direction",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -6043,13 +7108,17 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.7.SysParameters.DriverMapping": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[7]::SysParameters::DriverMapping",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -6060,73 +7129,101 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.7.SysParameters.MaxVoltagePerCap": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[7]::SysParameters::MaxVoltagePerCap",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.7.SysParameters.MaxVoltageTotal": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[7]::SysParameters::MaxVoltageTotal",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.7.SysParameters.NumOfCaps": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[7]::SysParameters::NumOfCaps",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.7.SysParameters.NumOfTurns": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[7]::SysParameters::NumOfTurns",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.7.SysParameters.TotalCapacitance": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[7]::SysParameters::TotalCapacitance",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.7.SysParameters.TotalCircuitResistance": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[7]::SysParameters::TotalCircuitResistance",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.8.EngVal.Max_Tesla": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[8]::EngVal::Max_Tesla",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -6137,13 +7234,17 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.8.EngVal.Max_chargerVoltage": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[8]::EngVal::Max_chargerVoltage",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -6154,13 +7255,17 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.8.EngVal.Max_current_perCap": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[8]::EngVal::Max_current_perCap",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -6171,53 +7276,73 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.8.EngVal.Min_Tesla": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[8]::EngVal::Min_Tesla",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.8.EngVal.Min_chargerVoltage": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[8]::EngVal::Min_chargerVoltage",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.8.EngVal.Min_current_perCap": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[8]::EngVal::Min_current_perCap",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.8.SysParameters.CapacitancePerCap": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[8]::SysParameters::CapacitancePerCap",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.8.SysParameters.Direction": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[8]::SysParameters::Direction",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -6228,13 +7353,17 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.8.SysParameters.DriverMapping": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[8]::SysParameters::DriverMapping",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -6245,73 +7374,101 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.8.SysParameters.MaxVoltagePerCap": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[8]::SysParameters::MaxVoltagePerCap",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.8.SysParameters.MaxVoltageTotal": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[8]::SysParameters::MaxVoltageTotal",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.8.SysParameters.NumOfCaps": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[8]::SysParameters::NumOfCaps",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.8.SysParameters.NumOfTurns": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[8]::SysParameters::NumOfTurns",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.8.SysParameters.TotalCapacitance": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[8]::SysParameters::TotalCapacitance",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.8.SysParameters.TotalCircuitResistance": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[8]::SysParameters::TotalCircuitResistance",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.9.EngVal.Max_Tesla": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[9]::EngVal::Max_Tesla",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -6322,13 +7479,17 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.9.EngVal.Max_chargerVoltage": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[9]::EngVal::Max_chargerVoltage",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -6339,13 +7500,17 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.9.EngVal.Max_current_perCap": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[9]::EngVal::Max_current_perCap",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -6356,53 +7521,73 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.9.EngVal.Min_Tesla": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[9]::EngVal::Min_Tesla",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.9.EngVal.Min_chargerVoltage": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[9]::EngVal::Min_chargerVoltage",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.9.EngVal.Min_current_perCap": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[9]::EngVal::Min_current_perCap",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.9.SysParameters.CapacitancePerCap": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[9]::SysParameters::CapacitancePerCap",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.9.SysParameters.Direction": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[9]::SysParameters::Direction",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -6413,13 +7598,17 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.9.SysParameters.DriverMapping": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[9]::SysParameters::DriverMapping",
+            "OPTIONS": {},
             "SCHEMA": {
                 "allOf": [
                     {
@@ -6430,186 +7619,259 @@
                     }
                 ]
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.9.SysParameters.MaxVoltagePerCap": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[9]::SysParameters::MaxVoltagePerCap",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.9.SysParameters.MaxVoltageTotal": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[9]::SysParameters::MaxVoltageTotal",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.9.SysParameters.NumOfCaps": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[9]::SysParameters::NumOfCaps",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.9.SysParameters.NumOfTurns": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[9]::SysParameters::NumOfTurns",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.9.SysParameters.TotalCapacitance": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[9]::SysParameters::TotalCapacitance",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Setpoints.Coil.9.SysParameters.TotalCircuitResistance": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Setpoints::Coil[9]::SysParameters::TotalCircuitResistance",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Trips_DB.AnyDumpRlyFail": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Trips_DB::AnyDumpRlyFail",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Trips_DB.Coil.0.ACInterlockRelayFailedtoClose": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Trips_DB::Coil[0]::ACInterlockRelayFailedtoClose",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Trips_DB.Coil.0.ACInterlockRelayFailedtoOpen": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Trips_DB::Coil[0]::ACInterlockRelayFailedtoOpen",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Trips_DB.Coil.0.ChargeRelay_FailtoClose": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Trips_DB::Coil[0]::ChargeRelay_FailtoClose",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Trips_DB.Coil.0.ChargeRelay_FailtoOpen": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Trips_DB::Coil[0]::ChargeRelay_FailtoOpen",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Trips_DB.Coil.0.DumpRelay1_FailtoClose": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Trips_DB::Coil[0]::DumpRelay1_FailtoClose",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Trips_DB.Coil.0.DumpRelay1_FailtoOpen": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Trips_DB::Coil[0]::DumpRelay1_FailtoOpen",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Trips_DB.Coil.0.DumpRelay2_FailtoClose": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Trips_DB::Coil[0]::DumpRelay2_FailtoClose",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Trips_DB.Coil.0.DumpRelay2_FailtoOpen": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Trips_DB::Coil[0]::DumpRelay2_FailtoOpen",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Trips_DB.Coil.0.HVisoRelayFailedToClose": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Trips_DB::Coil[0]::HVisoRelayFailedToClose",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Trips_DB.Coil.0.HVisoRelayFailedToOpen": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Trips_DB::Coil[0]::HVisoRelayFailedToOpen",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "PLC1.Trips_DB.InstrumentationFaulted": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
             "DYNAMIC": true,
+            "HIDDEN": false,
             "MAPPING": "PLC1::Trips_DB::InstrumentationFaulted",
+            "OPTIONS": {},
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "RefreshDefinitions": {
@@ -8215,16 +9477,19 @@
         },
         "TcHmiLdap.Config": {
             "ACCESS": 0,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiLdap",
             "DYNAMIC": false,
             "HIDDEN": true,
             "MAPPING": "Config",
             "OPTIONS": {},
             "SCHEMA": {},
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "TcHmiLdap.Diagnostics": {
             "ACCESS": 1,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiLdap",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -8279,10 +9544,12 @@
                 "transient": true,
                 "type": "object"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "TcHmiLdap.ListNamingContexts": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiLdap",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -8295,10 +9562,12 @@
                 },
                 "type": "array"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "TcHmiLdap.ListUsers": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiLdap",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -8311,6 +9580,7 @@
                 },
                 "type": "array"
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "TcHmiLua.Config": {
@@ -8327,6 +9597,7 @@
         },
         "TcHmiRecipeManagement.ActivateRecipe": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiRecipeManagement",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -8346,20 +9617,24 @@
                     "type": "object"
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "TcHmiRecipeManagement.Config": {
             "ACCESS": 0,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiRecipeManagement",
             "DYNAMIC": false,
             "HIDDEN": true,
             "MAPPING": "Config",
             "OPTIONS": {},
             "SCHEMA": {},
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "TcHmiRecipeManagement.GetActiveRecipes": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiRecipeManagement",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -8388,10 +9663,12 @@
                     ]
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "TcHmiRecipeManagement.GetRecipes": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiRecipeManagement",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -8417,10 +9694,12 @@
                     "type": "object"
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "TcHmiRecipeManagement.ReadFromTarget": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiRecipeManagement",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -8450,10 +9729,12 @@
                     "type": "object"
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "TcHmiRecipeManagement.UpdateRecipe": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiRecipeManagement",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -8483,6 +9764,7 @@
                     "type": "object"
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "TcHmiScope.ChangeChannelState": {
@@ -8612,6 +9894,7 @@
         },
         "TcHmiScope.ClickOverviewElement": {
             "ACCESS": 3,
+            "CUSTOMERDATA": "",
             "DOMAIN": "TcHmiScope",
             "DYNAMIC": false,
             "HIDDEN": true,
@@ -8664,6 +9947,7 @@
                     "type": "object"
                 }
             },
+            "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
         "TcHmiScope.CloseConnection": {
@@ -12455,7 +13739,25 @@
             "MAPPING": "Clear",
             "OPTIONS": {},
             "SCHEMA": {
-                "function": true
+                "function": true,
+                "writeValue": {
+                    "anyOf": [
+                        {
+                            "properties": {
+                                "match": {
+                                    "$ref": "tchmi:server#/definitions/filter"
+                                }
+                            },
+                            "required": [
+                                "match"
+                            ],
+                            "type": "object"
+                        },
+                        {
+                            "$ref": "tchmi:general#/definitions/VOID"
+                        }
+                    ]
+                }
             },
             "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
@@ -12612,7 +13914,6 @@
                     "allDomains",
                     "perDomain"
                 ],
-                "transient": true,
                 "type": "object"
             },
             "SUBSYMBOL_MAPPING": "",
@@ -12662,6 +13963,7 @@
                         },
                         "password": {
                             "description": "Password of the user. Only a hash will be stored.",
+                            "format": "encrypted",
                             "type": "string"
                         },
                         "userName": {
@@ -12692,9 +13994,11 @@
                 "writeValue": {
                     "properties": {
                         "currentPassword": {
+                            "format": "encrypted",
                             "type": "string"
                         },
                         "newPassword": {
+                            "format": "encrypted",
                             "type": "string"
                         }
                     },
@@ -13005,6 +14309,7 @@
     "TEMPDH": "",
     "THREADPOOLSIZE": 32,
     "UPLOADTIMEOUT": "PT20S",
+    "USEINT64STRING": false,
     "USERGROUPS": {
         "Admin": {
             "ENABLED": true,
@@ -13069,6 +14374,13 @@
                 "UserSelectType": 1
             }
         },
+        "__SystemMaintenanceUsers": {
+            "ENABLED": true,
+            "FILEACCESS": 3,
+            "FILES": {},
+            "SYMBOLACCESS": 0,
+            "SYMBOLS": {}
+        },
         "__SystemUsers": {
             "ENABLED": true,
             "FILEACCESS": 3,
@@ -13091,7 +14403,9 @@
                 "GetConfiguration": 3,
                 "GetCurrentUser": 3,
                 "GetDefinitions": 3,
+                "GetFileInformation": 3,
                 "GetSchema": 3,
+                "GetServerInformation": 3,
                 "GetSymbolAccess": 3,
                 "Heartbeat": 3,
                 "IsAuthRequired": 3,
@@ -13653,7 +14967,8 @@
                 "TcHmiUserManagement.ChangePassword": 3,
                 "Unsubscribe": 3,
                 "UnsubscribeEvents": 3,
-                "UpdateEventsSubscription": 3
+                "UpdateEventsSubscription": 3,
+                "UserSelectType": 1
             }
         }
     },
@@ -13691,6 +15006,15 @@
                 "USERGROUPUSERS_AUTO_LOGOFF": "PT0S",
                 "USERGROUPUSERS_GROUPS": [
                     "__SystemGuests",
+                    "__SystemUsers"
+                ],
+                "USERGROUPUSERS_LOCALE": "project",
+                "USERGROUPUSERS_TIMEFORMATLOCALE": "project",
+                "USERGROUPUSERS_TIMEZONE": "project"
+            },
+            "__SystemUser": {
+                "USERGROUPUSERS_AUTO_LOGOFF": "PT0S",
+                "USERGROUPUSERS_GROUPS": [
                     "__SystemUsers"
                 ],
                 "USERGROUPUSERS_LOCALE": "project",

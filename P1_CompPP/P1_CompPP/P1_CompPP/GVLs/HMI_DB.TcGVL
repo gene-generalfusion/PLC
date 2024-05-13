@@ -21,6 +21,7 @@ END_VAR
 
 VAR_GLOBAL
 	ArmTheCagePB				: BOOL := 0;
+	UnArmTheCagePB				: BOOL := 0;
 	ChargePB					: BOOL := 0;
 	DumpPB						: BOOL := 0;
 	AbortPB						: BOOL := 0;
@@ -33,6 +34,7 @@ VAR_GLOBAL
 	HMI_ManualModeSelected		: BOOL := 0;  // 1 = manual mode selected
 	CloseChargeRlySW			: BOOL := 0;
 	OpenDumpRlySW				: BOOL := 0;
+	LastTimeShotLog				: BOOL := 0;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

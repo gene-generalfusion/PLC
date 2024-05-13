@@ -49,7 +49,8 @@ END_VAR
 	Output.R1_05_00								:= MCP_IO.Charger[1].voltageSP_raw;
 	
 	//Cap voltage monitor feedback is at VoltMonitor
-	FOR i := 0 TO 24 BY 1 DO 
+	VoltMonitor_DB.CapRaw[0] 					:= Input.B170357_CapRaw[0]; 
+	FOR i := 1 TO 24 BY 1 DO 
 		VoltMonitor_DB.CapRaw[i] 					:= Input.B170357_CapRaw[i]; 
 	END_FOR
 	
@@ -92,6 +93,7 @@ END_IF
       <LineId Id="414" Count="0" />
       <LineId Id="418" Count="1" />
       <LineId Id="432" Count="0" />
+      <LineId Id="445" Count="0" />
       <LineId Id="434" Count="2" />
       <LineId Id="417" Count="0" />
       <LineId Id="437" Count="0" />

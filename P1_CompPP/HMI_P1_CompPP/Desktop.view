@@ -106,7 +106,7 @@
 
 
 </div>
-<div id="TcHmiButton_27" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height="50" data-tchmi-height-unit="px" data-tchmi-left="139" data-tchmi-left-unit="px" data-tchmi-text="Clear All" data-tchmi-top="903" data-tchmi-top-unit="px" data-tchmi-width="100" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-is-enabled="true" data-tchmi-state-symbol="%s%PLC1.HMI_DB.ClearFaultPB%/s%" data-tchmi-ignore-escape-sequences="false" data-tchmi-creator-locked="True" data-tchmi-text-font-size="18">
+<div id="TcHmiButton_27" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height="50" data-tchmi-height-unit="px" data-tchmi-left="29" data-tchmi-left-unit="px" data-tchmi-text="Clear All" data-tchmi-top="903" data-tchmi-top-unit="px" data-tchmi-width="100" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-is-enabled="true" data-tchmi-state-symbol="%s%PLC1.HMI_DB.ClearFaultPB%/s%" data-tchmi-ignore-escape-sequences="false" data-tchmi-text-font-size="18" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
 {
   "color": "rgba(0, 0, 0, 1)"
@@ -701,7 +701,7 @@
 
 
 </div>
-<div id="TcHmiTextblock_231" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="40" data-tchmi-height-unit="px" data-tchmi-left="1003" data-tchmi-left-unit="px" data-tchmi-text="Charged RunOut Timer" data-tchmi-top="848" data-tchmi-top-unit="px" data-tchmi-width="101" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="18" data-tchmi-zindex="13" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-ignore-escape-sequences="false" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-creator-locked="True">
+<div id="TcHmiTextblock_231" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="40" data-tchmi-height-unit="px" data-tchmi-left="1482" data-tchmi-left-unit="px" data-tchmi-text="Charged RunOut Timer" data-tchmi-top="843" data-tchmi-top-unit="px" data-tchmi-width="101" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="18" data-tchmi-zindex="13" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-ignore-escape-sequences="false" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
 {
   "color": "rgba(25, 0, 0, 1)"
@@ -710,7 +710,7 @@
 
 
 </div>
-<div id="TcHmiNumericInput_3" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiNumericInput" data-tchmi-auto-focus-out="true" data-tchmi-height="32" data-tchmi-height-unit="px" data-tchmi-left="1013" data-tchmi-left-unit="px" data-tchmi-reset-to-last-valid-value="true" data-tchmi-top="890" data-tchmi-top-unit="px" data-tchmi-value="%s%PLC1.HMI_DB.RunOutTMR_elapse|BindingMode=OneWay%/s%" data-tchmi-width="41" data-tchmi-width-unit="px" data-tchmi-value-horizontal-alignment="Center" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-zindex="14" data-tchmi-decimal-digits="0" data-tchmi-value-font-size="24" data-tchmi-creator-locked="True" data-tchmi-is-enabled="false">
+<div id="TcHmiNumericInput_3" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiNumericInput" data-tchmi-auto-focus-out="true" data-tchmi-height="32" data-tchmi-height-unit="px" data-tchmi-left="1492" data-tchmi-left-unit="px" data-tchmi-reset-to-last-valid-value="true" data-tchmi-top="885" data-tchmi-top-unit="px" data-tchmi-value="%s%PLC1.HMI_DB.RunOutTMR_elapse|BindingMode=OneWay%/s%" data-tchmi-width="41" data-tchmi-width-unit="px" data-tchmi-value-horizontal-alignment="Center" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-zindex="14" data-tchmi-decimal-digits="0" data-tchmi-value-font-size="24" data-tchmi-is-enabled="false" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {
   "top": 3,
@@ -733,7 +733,7 @@
 
 
 </div>
-<div id="TcHmiTextblock_232" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="32" data-tchmi-height-unit="px" data-tchmi-left="1055" data-tchmi-left-unit="px" data-tchmi-text="s" data-tchmi-top="890" data-tchmi-top-unit="px" data-tchmi-width="20" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="24" data-tchmi-zindex="15" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-ignore-escape-sequences="false" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-horizontal-alignment="Left" data-tchmi-text-vertical-alignment="Center" data-tchmi-creator-locked="True">
+<div id="TcHmiTextblock_232" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="32" data-tchmi-height-unit="px" data-tchmi-left="1534" data-tchmi-left-unit="px" data-tchmi-text="s" data-tchmi-top="885" data-tchmi-top-unit="px" data-tchmi-width="20" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="24" data-tchmi-zindex="15" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-ignore-escape-sequences="false" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-horizontal-alignment="Left" data-tchmi-text-vertical-alignment="Center" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
 {
   "color": "rgba(25, 0, 0, 1)"
@@ -742,7 +742,7 @@
 
 
 </div>
-<div id="TcHmiTextblock_281" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="40" data-tchmi-height-unit="px" data-tchmi-left="1133" data-tchmi-left-unit="px" data-tchmi-text="Charging RunOut Timer" data-tchmi-top="848" data-tchmi-top-unit="px" data-tchmi-width="101" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="18" data-tchmi-zindex="13" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-ignore-escape-sequences="false" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-creator-locked="True">
+<div id="TcHmiTextblock_281" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="40" data-tchmi-height-unit="px" data-tchmi-left="1592" data-tchmi-left-unit="px" data-tchmi-text="Charging RunOut Timer" data-tchmi-top="843" data-tchmi-top-unit="px" data-tchmi-width="101" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="18" data-tchmi-zindex="13" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-ignore-escape-sequences="false" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
 {
   "color": "rgba(25, 0, 0, 1)"
@@ -751,7 +751,7 @@
 
 
 </div>
-<div id="TcHmiNumericInput_109" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiNumericInput" data-tchmi-auto-focus-out="true" data-tchmi-height="32" data-tchmi-height-unit="px" data-tchmi-left="1143" data-tchmi-left-unit="px" data-tchmi-reset-to-last-valid-value="true" data-tchmi-top="890" data-tchmi-top-unit="px" data-tchmi-value="%s%PLC1.HMI_DB.ChargingRunOutTMR_elapse|BindingMode=OneWay%/s%" data-tchmi-width="52" data-tchmi-width-unit="px" data-tchmi-value-horizontal-alignment="Center" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-zindex="14" data-tchmi-decimal-digits="0" data-tchmi-value-font-size="24" data-tchmi-creator-locked="True" data-tchmi-is-enabled="false">
+<div id="TcHmiNumericInput_109" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiNumericInput" data-tchmi-auto-focus-out="true" data-tchmi-height="32" data-tchmi-height-unit="px" data-tchmi-left="1602" data-tchmi-left-unit="px" data-tchmi-reset-to-last-valid-value="true" data-tchmi-top="885" data-tchmi-top-unit="px" data-tchmi-value="%s%PLC1.HMI_DB.ChargingRunOutTMR_elapse|BindingMode=OneWay%/s%" data-tchmi-width="52" data-tchmi-width-unit="px" data-tchmi-value-horizontal-alignment="Center" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-zindex="14" data-tchmi-decimal-digits="0" data-tchmi-value-font-size="24" data-tchmi-is-enabled="false" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {
   "top": 3,
@@ -774,7 +774,7 @@
 
 
 </div>
-<div id="TcHmiTextblock_282" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="32" data-tchmi-height-unit="px" data-tchmi-left="1195" data-tchmi-left-unit="px" data-tchmi-text="s" data-tchmi-top="890" data-tchmi-top-unit="px" data-tchmi-width="20" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="24" data-tchmi-zindex="15" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-ignore-escape-sequences="false" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-horizontal-alignment="Left" data-tchmi-text-vertical-alignment="Center" data-tchmi-creator-locked="True">
+<div id="TcHmiTextblock_282" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="32" data-tchmi-height-unit="px" data-tchmi-left="1654" data-tchmi-left-unit="px" data-tchmi-text="s" data-tchmi-top="885" data-tchmi-top-unit="px" data-tchmi-width="20" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="24" data-tchmi-zindex="15" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-ignore-escape-sequences="false" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-horizontal-alignment="Left" data-tchmi-text-vertical-alignment="Center" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
 {
   "color": "rgba(25, 0, 0, 1)"
@@ -1080,7 +1080,7 @@
 
 
 </div>
-<div id="TcHmiButton_34" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height="100" data-tchmi-height-unit="px" data-tchmi-left="728" data-tchmi-left-unit="px" data-tchmi-text="SHOOT" data-tchmi-top="823" data-tchmi-top-unit="px" data-tchmi-width="100" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-is-enabled="true" data-tchmi-state-symbol="%s%PLC1.HMI_DB.FirePB%/s%" data-tchmi-ignore-escape-sequences="false" data-tchmi-icon-horizontal-alignment="Center" data-tchmi-icon-vertical-alignment="Center" data-tchmi-text-font-size="18" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-creator-locked="True">
+<div id="TcHmiButton_34" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height="100" data-tchmi-height-unit="px" data-tchmi-left="728" data-tchmi-left-unit="px" data-tchmi-text="SHOOT" data-tchmi-top="823" data-tchmi-top-unit="px" data-tchmi-width="100" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-state-symbol="%s%PLC1.HMI_DB.FirePB%/s%" data-tchmi-ignore-escape-sequences="false" data-tchmi-icon-horizontal-alignment="Center" data-tchmi-icon-vertical-alignment="Center" data-tchmi-text-font-size="18" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
 {
   "color": "rgba(253, 0, 0, 1)"
@@ -1159,8 +1159,71 @@
 </script>
 
 
+
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
+[
+  {
+    "event": "%s%PLC1.Heartbeat.screen_refresh_pulse%/s%",
+    "actions": [
+      {
+        "objectType": "Condition",
+        "active": true,
+        "parts": [
+          {
+            "if": [
+              {
+                "compare1": {
+                  "objectType": "Symbol",
+                  "valueType": "tchmi:general#/definitions/String",
+                  "symbolExpression": "%s%PLC1.Sequence.eState%/s%"
+                },
+                "compare2": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:server#/definitions/PLC1.E_State",
+                  "value": 2
+                },
+                "compareOperator": "==",
+                "logic": null
+              }
+            ],
+            "then": [
+              {
+                "objectType": "WriteToSymbol",
+                "active": true,
+                "symbolExpression": "%ctrl%TcHmiButton_34::IsEnabled%/ctrl%",
+                "value": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:general#/definitions/Boolean",
+                  "value": true
+                },
+                "asyncWait": true
+              }
+            ]
+          },
+          {
+            "else": [
+              {
+                "objectType": "WriteToSymbol",
+                "active": true,
+                "symbolExpression": "%ctrl%TcHmiButton_34::IsEnabled%/ctrl%",
+                "value": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:general#/definitions/Boolean",
+                  "value": false
+                },
+                "asyncWait": true
+              }
+            ]
+          }
+        ],
+        "asyncWait": true
+      }
+    ]
+  }
+]
+</script>
 </div>
-<div id="TcHmiTextblock_283" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="74" data-tchmi-height-unit="px" data-tchmi-left="1263" data-tchmi-left-unit="px" data-tchmi-text="Timer Run Out Activated" data-tchmi-top="848" data-tchmi-top-unit="px" data-tchmi-width="114" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="18" data-tchmi-zindex="13" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-ignore-escape-sequences="false" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-creator-locked="True" data-tchmi-opacity="1">
+<div id="TcHmiTextblock_283" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="74" data-tchmi-height-unit="px" data-tchmi-left="1722" data-tchmi-left-unit="px" data-tchmi-text="Timer Run Out Activated" data-tchmi-top="843" data-tchmi-top-unit="px" data-tchmi-width="114" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="18" data-tchmi-zindex="13" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-ignore-escape-sequences="false" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-opacity="1" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
 {
   "color": "rgba(25, 0, 0, 1)"
@@ -1256,7 +1319,7 @@
 ]
 </script>
 </div>
-<div id="TcHmiButton_35" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height="50" data-tchmi-height-unit="px" data-tchmi-left="259" data-tchmi-left-unit="px" data-tchmi-text="Arm The Cage" data-tchmi-top="903" data-tchmi-top-unit="px" data-tchmi-width="210" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-is-enabled="true" data-tchmi-state-symbol="%s%PLC1.HMI_DB.ArmTheCagePB%/s%" data-tchmi-ignore-escape-sequences="false" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-text-font-size="18" data-tchmi-creator-locked="True">
+<div id="TcHmiButton_35" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height="50" data-tchmi-height-unit="px" data-tchmi-left="149" data-tchmi-left-unit="px" data-tchmi-text="Arm The Cage" data-tchmi-top="903" data-tchmi-top-unit="px" data-tchmi-width="210" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-is-enabled="true" data-tchmi-state-symbol="%s%PLC1.HMI_DB.ArmTheCagePB%/s%" data-tchmi-ignore-escape-sequences="false" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-text-font-size="18" data-tchmi-creator-locked="True">
 
 
 <script data-tchmi-target-attribute="data-tchmi-border-radius" type="application/json">
@@ -1344,5 +1407,172 @@
 [{"name":"timeRaised","order":"Descending"}]
 </script>
 
+</div>
+<div id="TcHmiTextbox_101" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="33" data-tchmi-height-unit="px" data-tchmi-left="1012" data-tchmi-left-unit="px" data-tchmi-top="883" data-tchmi-top-unit="px" data-tchmi-width="74" data-tchmi-width-unit="px" data-tchmi-zindex="2" data-tchmi-is-enabled="false" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false" data-tchmi-text="%s%PLC1.HMI_DB.TDKLoad.0.RequiredChargedV|BindingMode=OneWay%/s%" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-font-size="18" data-tchmi-creator-locked="True">
+<script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
+{"top":3,"right":3,"bottom":3,"left":3}
+</script>
+
+
+
+</div>
+<div id="TcHmiTextblock_296" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="40" data-tchmi-height-unit="px" data-tchmi-left="996" data-tchmi-left-unit="px" data-tchmi-text="Charger Setpoint (kV)" data-tchmi-top="833" data-tchmi-top-unit="px" data-tchmi-width="101" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="18" data-tchmi-zindex="13" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-ignore-escape-sequences="false" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-creator-locked="True">
+<script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
+{
+  "color": "rgba(25, 0, 0, 1)"
+}
+</script>
+
+
+</div>
+<div id="TcHmiTextbox_102" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="33" data-tchmi-height-unit="px" data-tchmi-left="1336" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.LCP1_IO.Segment.0.Module.0.VoltageFeedback|BindingMode=OneWay%/s%" data-tchmi-top="882" data-tchmi-top-unit="px" data-tchmi-width="97" data-tchmi-width-unit="px" data-tchmi-zindex="2" data-tchmi-is-enabled="false" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-auto-focus-out="true" data-tchmi-text-font-size="18" data-tchmi-text-horizontal-alignment="Center">
+<script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
+{"top":3,"right":3,"bottom":3,"left":3}
+</script>
+
+
+
+
+<script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
+{
+  "color": "rgba(0, 0, 0, 1)"
+}
+</script>
+</div>
+<div id="TcHmiTextblock_297" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="49" data-tchmi-height-unit="px" data-tchmi-left="1336" data-tchmi-left-unit="px" data-tchmi-text="Cap Voltage Reading" data-tchmi-top="823" data-tchmi-top-unit="px" data-tchmi-width="97" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="18" data-tchmi-zindex="6" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-font-style="Normal" data-tchmi-text-font-weight="Normal" data-tchmi-creator-locked="True">
+<script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
+{
+  "color": "rgba(25, 0, 0, 1)"
+}
+</script>
+
+
+</div>
+<div id="TcHmiTextblock_298" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="49" data-tchmi-height-unit="px" data-tchmi-left="1107" data-tchmi-left-unit="px" data-tchmi-text="Charger 1 - Volt Reading (V)" data-tchmi-top="823" data-tchmi-top-unit="px" data-tchmi-width="102" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="14" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-creator-locked="True">
+<script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
+{
+  "color": "rgba(25, 0, 0, 1)"
+}
+</script>
+
+
+</div>
+<div id="TcHmiTextbox_103" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="34" data-tchmi-height-unit="px" data-tchmi-left="1107" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MCP_IO.Charger.0.voltageFeedback|BindingMode=OneWay%/s%" data-tchmi-top="882" data-tchmi-top-unit="px" data-tchmi-width="82" data-tchmi-width-unit="px" data-tchmi-zindex="2" data-tchmi-is-enabled="false" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-font-size="18" data-tchmi-creator-locked="True">
+<script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
+{"top":3,"right":3,"bottom":3,"left":3}
+</script>
+
+
+
+</div>
+<div id="TcHmiTextbox_104" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="33" data-tchmi-height-unit="px" data-tchmi-left="1224" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.MCP_IO.Charger.0.currentFeedback|BindingMode=OneWay%/s%" data-tchmi-top="882" data-tchmi-top-unit="px" data-tchmi-width="97" data-tchmi-width-unit="px" data-tchmi-auto-focus-out="false" data-tchmi-auto-select-text="false" data-tchmi-zindex="2" data-tchmi-is-enabled="false" data-tchmi-creator-visibility="Visible" data-tchmi-word-wrap="false" data-tchmi-multiline="false" data-tchmi-ignore-escape-sequences="false" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-font-size="18" data-tchmi-creator-locked="True">
+<script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
+{"top":3,"right":3,"bottom":3,"left":3}
+</script>
+
+
+
+</div>
+<div id="TcHmiTextblock_299" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="49" data-tchmi-height-unit="px" data-tchmi-left="1219" data-tchmi-left-unit="px" data-tchmi-text="Charger 1 - Current Reading (A)" data-tchmi-top="823" data-tchmi-top-unit="px" data-tchmi-width="107" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="14" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-creator-locked="True">
+<script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
+{
+  "color": "rgba(25, 0, 0, 1)"
+}
+</script>
+
+
+</div>
+<div id="TcHmiButton_36" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height="50" data-tchmi-height-unit="px" data-tchmi-left="377" data-tchmi-left-unit="px" data-tchmi-text="UnArm The Cage" data-tchmi-top="903" data-tchmi-top-unit="px" data-tchmi-width="182" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-is-enabled="true" data-tchmi-state-symbol="%s%PLC1.HMI_DB.UnArmTheCagePB%/s%" data-tchmi-ignore-escape-sequences="false" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-text-font-size="18" data-tchmi-creator-locked="True">
+<script data-tchmi-target-attribute="data-tchmi-border-radius" type="application/json">
+{
+  "topLeft": 50.0,
+  "topRight": 50.0,
+  "bottomLeft": 50.0,
+  "bottomRight": 50.0,
+  "topLeftUnit": "px",
+  "topRightUnit": "px",
+  "bottomLeftUnit": "px",
+  "bottomRightUnit": "px"
+}
+</script>
+
+<script data-tchmi-target-attribute="data-tchmi-border-width" type="application/json">
+{
+  "left": 5,
+  "right": 5,
+  "top": 5,
+  "bottom": 5,
+  "leftUnit": "px",
+  "rightUnit": "px",
+  "topUnit": "px",
+  "bottomUnit": "px"
+}
+</script>
+
+<script data-tchmi-target-attribute="data-tchmi-box-shadow" type="application/json">
+[
+  {
+    "offsetX": 3.0,
+    "offsetXUnit": "px",
+    "offsetY": 3.0,
+    "offsetYUnit": "px",
+    "inset": false,
+    "blur": 3.0,
+    "blurUnit": "px",
+    "spread": 3.0,
+    "spreadUnit": "px"
+  }
+]
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script data-tchmi-target-attribute="data-tchmi-border-style" type="application/json">
+{
+  "left": "Solid",
+  "right": "Solid",
+  "top": "Solid",
+  "bottom": "Solid"
+}
+</script>
+
+
+
+<script data-tchmi-target-attribute="data-tchmi-border-color" type="application/json">
+{
+  "color": "rgba(40, 253, 0, 1)"
+}
+</script>
+
+<script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
+{
+  "color": "rgba(0, 0, 0, 1)"
+}
+</script>
+</div>
+<div id="TcHmiTextbox_107" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="48" data-tchmi-height-unit="px" data-tchmi-left="1583" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC1.HMI.LastTimeShotTMR_REAL|BindingMode=OneWay%/s%" data-tchmi-top="106" data-tchmi-top-unit="px" data-tchmi-width="138" data-tchmi-width-unit="px" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-font-size="16" data-tchmi-creator-locked="True">
+<script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
+{
+  "top": 3,
+  "right": 3,
+  "bottom": 3,
+  "left": 3
+}
+</script>
+
+</div>
+<div id="TcHmiTextblock_301" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="48" data-tchmi-height-unit="px" data-tchmi-left="1424" data-tchmi-left-unit="px" data-tchmi-text="Time Since Last Shot" data-tchmi-top="106" data-tchmi-top-unit="px" data-tchmi-width="139" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-text-font-size="18">
+</div>
+<div id="TcHmiTextblock_302" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="48" data-tchmi-height-unit="px" data-tchmi-left="1721" data-tchmi-left-unit="px" data-tchmi-text="S" data-tchmi-top="106" data-tchmi-top-unit="px" data-tchmi-width="22" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-text-font-size="18" data-tchmi-creator-locked="True">
 </div>
 </div>

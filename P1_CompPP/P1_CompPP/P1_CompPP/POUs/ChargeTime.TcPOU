@@ -53,6 +53,7 @@ FOR m := 1 TO 6 BY 1 DO
 	END_IF	
 END_FOR
 
+(*
 //charger 1 is 30kV*********************************************
 IF 1000*(Setpoints.TDKLoad[1].RequiredChargedV) >= 12000 THEN
 			Setpoints.TDKLoad[1].RequiredChargedV := (10000/1000); //limit at 10kv
@@ -62,10 +63,10 @@ IF 1000*(Setpoints.TDKLoad[1].RequiredChargedV) >= 12000 THEN
 			HMI_DB.TDKLoad[1].RequiredChargedV := 0;
 END_IF
 //charger 1 is 30kV*********************************************
-
+*)
 //from 2 to 6
-FOR i := 2 TO 6 BY 1 DO
-	IF MCP_IO.Charger[i].ChargerType_50kV = TRUE THEN 
+FOR i := 1 TO 6 BY 1 DO
+	IF MCP_IO.Charger[i].ChargerType = E_ChargerType.TDK50kV THEN 
 		//set limites of charger voltage input from HMI input
 		IF 1000*(Setpoints.TDKLoad[i].RequiredChargedV) >= EngVal.UpperLimit50kVCaps THEN
 			Setpoints.TDKLoad[i].RequiredChargedV := (EngVal.UpperLimit50kVCaps/1000); //limit at 35kv
@@ -74,9 +75,7 @@ FOR i := 2 TO 6 BY 1 DO
 			Setpoints.TDKLoad[i].RequiredChargedV := 0;
 			HMI_DB.TDKLoad[i].RequiredChargedV := 0;
 		END_IF
-	END_IF
-
-	IF MCP_IO.Charger[i].ChargerType_12kV = TRUE THEN
+	ELSIF MCP_IO.Charger[i].ChargerType = E_ChargerType.TDK12kV OR MCP_IO.Charger[i].ChargerType = E_ChargerType.TDK30kV THEN
 		//set limites of charger voltage input from HMI input
 		IF 1000*(Setpoints.TDKLoad[i].RequiredChargedV) >= EngVal.UpperLimit12kVCaps THEN
 			Setpoints.TDKLoad[i].RequiredChargedV := (EngVal.UpperLimit12kVCaps/1000); //limit at 10kv
@@ -215,6 +214,7 @@ END_IF;]]></ST>
       <LineId Id="185" Count="0" />
       <LineId Id="279" Count="0" />
       <LineId Id="441" Count="5" />
+      <LineId Id="1025" Count="0" />
       <LineId Id="999" Count="0" />
       <LineId Id="998" Count="0" />
       <LineId Id="1002" Count="5" />
@@ -229,8 +229,6 @@ END_IF;]]></ST>
       <LineId Id="928" Count="1" />
       <LineId Id="940" Count="0" />
       <LineId Id="921" Count="0" />
-      <LineId Id="924" Count="0" />
-      <LineId Id="936" Count="0" />
       <LineId Id="931" Count="1" />
       <LineId Id="937" Count="0" />
       <LineId Id="933" Count="0" />

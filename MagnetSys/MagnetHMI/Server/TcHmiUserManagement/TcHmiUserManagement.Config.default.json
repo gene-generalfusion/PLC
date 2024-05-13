@@ -23,6 +23,12 @@
             "ENABLED": true,
             "PASSWORD": "ed53e84f58c303c437fff3a94cbaceb1d728dd0afa3e562aa71e6edbbef1d1ade48c2cb15a3c40928389b336c3783c272169ce94f4bc2b4f186a6f92bb5b62e4",
             "SALT": "GKhZjy8ndK5Hl1rMd0peInulQpr35sVyBKfb55PWRZ801aIxnjhzKjcU7xUzsz+64dRYFwDN6zAObAhm6Tz7Hg=="
+        },
+        "__SystemUser": {
+            "ALGORITHM": 1,
+            "ENABLED": true,
+            "PASSWORD": "ed53e84f58c303c437fff3a94cbaceb1d728dd0afa3e562aa71e6edbbef1d1ade48c2cb15a3c40928389b336c3783c272169ce94f4bc2b4f186a6f92bb5b62e4",
+            "SALT": "GKhZjy8ndK5Hl1rMd0peInulQpr35sVyBKfb55PWRZ801aIxnjhzKjcU7xUzsz+64dRYFwDN6zAObAhm6Tz7Hg=="
         }
     }
 }

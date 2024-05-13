@@ -1,5 +1,5 @@
 <div id="Coil1_2" data-tchmi-type="TcHmi.Controls.System.TcHmiContent" data-tchmi-top="0" data-tchmi-left="0" data-tchmi-height="637" data-tchmi-creator-viewport-height="1080" data-tchmi-creator-viewport-width="1920" data-tchmi-is-enabled="true" data-tchmi-creator-locked="False" data-tchmi-width="1881" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center">
-<div id="TcHmiRectangle_45" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiRectangle" data-tchmi-height="520" data-tchmi-height-unit="px" data-tchmi-left="324" data-tchmi-left-unit="px" data-tchmi-top="10" data-tchmi-top-unit="px" data-tchmi-width="297" data-tchmi-width-unit="px" data-tchmi-opacity="3" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-creator-locked="True">
+<div id="TcHmiRectangle_45" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiRectangle" data-tchmi-height="398" data-tchmi-height-unit="px" data-tchmi-left="324" data-tchmi-left-unit="px" data-tchmi-top="10" data-tchmi-top-unit="px" data-tchmi-width="297" data-tchmi-width-unit="px" data-tchmi-opacity="3" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-border-radius" type="application/json">
 {
   "topLeft": 10.0,
@@ -173,7 +173,7 @@
 
 
 </div>
-<div id="TcHmiTrendLineChart_4" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTrendLineChart" data-tchmi-height="600" data-tchmi-height-unit="px" data-tchmi-left="629" data-tchmi-left-unit="px" data-tchmi-top="10" data-tchmi-top-unit="px" data-tchmi-width="620" data-tchmi-width-unit="px" data-tchmi-x-axis-name="Time" data-tchmi-x-sub-tick-steps="1" data-tchmi-show-legend="true" data-tchmi-show-x-axis="true" data-tchmi-x-show-labels="true" data-tchmi-show-x-sub-ticks="true" data-tchmi-show-x-axis-name="true" data-tchmi-show-y-sub-ticks="true" data-tchmi-show-grid="true" data-tchmi-grid-show-horizontal-lines="true" data-tchmi-grid-show-vertical-lines="true" data-tchmi-subgrid-show-horizontal-lines="false" data-tchmi-subgrid-show-vertical-lines="false" data-tchmi-show-menu-bar="true" data-tchmi-show-tooltip="true" data-tchmi-is-enabled="true" data-tchmi-x-main-tick-steps="4" data-tchmi-grid-line-style="Dashed" data-tchmi-mouse-mode="ZoomXY" data-tchmi-y-main-tick-steps="5" data-tchmi-y-sub-tick-steps="4" data-tchmi-interval="1000" data-tchmi-x-axis-name-font-size="12" data-tchmi-x-axis-width="1" data-tchmi-end="Latest" data-tchmi-menu-bar-label-font-size="10" data-tchmi-menu-bar-position="Bottom" data-tchmi-start="First" data-tchmi-creator-locked="True">
+<div id="TcHmiTrendLineChart_4" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTrendLineChart" data-tchmi-height="600" data-tchmi-height-unit="px" data-tchmi-left="629" data-tchmi-left-unit="px" data-tchmi-top="10" data-tchmi-top-unit="px" data-tchmi-width="620" data-tchmi-width-unit="px" data-tchmi-x-axis-name="Time" data-tchmi-x-sub-tick-steps="1" data-tchmi-show-legend="true" data-tchmi-show-x-axis="true" data-tchmi-x-show-labels="true" data-tchmi-show-x-sub-ticks="true" data-tchmi-show-x-axis-name="true" data-tchmi-show-y-sub-ticks="true" data-tchmi-show-grid="true" data-tchmi-grid-show-horizontal-lines="true" data-tchmi-grid-show-vertical-lines="true" data-tchmi-subgrid-show-horizontal-lines="false" data-tchmi-subgrid-show-vertical-lines="false" data-tchmi-show-menu-bar="true" data-tchmi-show-tooltip="true" data-tchmi-is-enabled="true" data-tchmi-x-main-tick-steps="2" data-tchmi-grid-line-style="Dashed" data-tchmi-mouse-mode="ZoomXY" data-tchmi-y-main-tick-steps="5" data-tchmi-y-sub-tick-steps="4" data-tchmi-interval="1000" data-tchmi-x-axis-name-font-size="12" data-tchmi-x-axis-width="1" data-tchmi-end="Latest" data-tchmi-menu-bar-label-font-size="10" data-tchmi-menu-bar-position="Bottom" data-tchmi-start="First" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-y-axis" type="application/json">
 [
   {
@@ -181,7 +181,7 @@
     "showAxis": true,
     "position": "Left",
     "mainTickMinValue": 0.0,
-    "mainTickMaxValue": 120.0,
+    "mainTickMaxValue": 0.0,
     "showLabels": true,
     "showAxisName": true,
     "axisName": "Voltage",
@@ -189,9 +189,11 @@
     "axisNameFontSize": 12,
     "axisNameFontSizeUnit": "px",
     "axisNameFontWeight": "Bold",
-    "decimalPlaces": 2,
+    "decimalPlaces": 4,
     "unit": "V",
     "autoScaling": true,
+    "logarithmicScale": false,
+    "axisLabeling": "Number",
     "labelFontColor": {
       "color": "rgba(71, 148, 218, 1)"
     },
@@ -373,7 +375,7 @@
 ]
 </script>
 </div>
-<div id="TcHmiTrendLineChart_5" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTrendLineChart" data-tchmi-height="600" data-tchmi-height-unit="px" data-tchmi-left="1253" data-tchmi-left-unit="px" data-tchmi-top="10" data-tchmi-top-unit="px" data-tchmi-width="620" data-tchmi-width-unit="px" data-tchmi-x-axis-name="Time" data-tchmi-x-sub-tick-steps="1" data-tchmi-show-legend="true" data-tchmi-show-x-axis="true" data-tchmi-x-show-labels="true" data-tchmi-show-x-sub-ticks="true" data-tchmi-show-x-axis-name="true" data-tchmi-show-y-sub-ticks="true" data-tchmi-show-grid="true" data-tchmi-grid-show-horizontal-lines="true" data-tchmi-grid-show-vertical-lines="true" data-tchmi-subgrid-show-horizontal-lines="false" data-tchmi-subgrid-show-vertical-lines="false" data-tchmi-show-menu-bar="true" data-tchmi-show-tooltip="true" data-tchmi-is-enabled="true" data-tchmi-x-main-tick-steps="4" data-tchmi-grid-line-style="Dashed" data-tchmi-mouse-mode="ZoomXY" data-tchmi-y-main-tick-steps="5" data-tchmi-y-sub-tick-steps="4" data-tchmi-interval="1000" data-tchmi-x-axis-name-font-size="12" data-tchmi-x-axis-width="1" data-tchmi-end="Latest" data-tchmi-menu-bar-label-font-size="10" data-tchmi-menu-bar-position="Bottom" data-tchmi-start="First" data-tchmi-creator-locked="True">
+<div id="TcHmiTrendLineChart_5" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTrendLineChart" data-tchmi-height="600" data-tchmi-height-unit="px" data-tchmi-left="1253" data-tchmi-left-unit="px" data-tchmi-top="10" data-tchmi-top-unit="px" data-tchmi-width="620" data-tchmi-width-unit="px" data-tchmi-x-axis-name="Time" data-tchmi-x-sub-tick-steps="2" data-tchmi-show-legend="true" data-tchmi-show-x-axis="true" data-tchmi-x-show-labels="true" data-tchmi-show-x-sub-ticks="true" data-tchmi-show-x-axis-name="true" data-tchmi-show-y-sub-ticks="true" data-tchmi-show-grid="true" data-tchmi-grid-show-horizontal-lines="true" data-tchmi-grid-show-vertical-lines="true" data-tchmi-subgrid-show-horizontal-lines="false" data-tchmi-subgrid-show-vertical-lines="false" data-tchmi-show-menu-bar="true" data-tchmi-show-tooltip="true" data-tchmi-is-enabled="true" data-tchmi-x-main-tick-steps="5" data-tchmi-grid-line-style="Dashed" data-tchmi-mouse-mode="ZoomXY" data-tchmi-y-main-tick-steps="5" data-tchmi-y-sub-tick-steps="2" data-tchmi-interval="1000" data-tchmi-x-axis-name-font-size="12" data-tchmi-x-axis-width="1" data-tchmi-end="Latest" data-tchmi-menu-bar-label-font-size="10" data-tchmi-menu-bar-position="Bottom" data-tchmi-start="First" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-y-axis" type="application/json">
 [
   {
@@ -381,7 +383,7 @@
     "showAxis": true,
     "position": "Left",
     "mainTickMinValue": 0.0,
-    "mainTickMaxValue": 120.0,
+    "mainTickMaxValue": 0.0,
     "showLabels": true,
     "showAxisName": true,
     "axisName": "Current",
@@ -389,11 +391,11 @@
     "axisNameFontSize": 12,
     "axisNameFontSizeUnit": "px",
     "axisNameFontWeight": "Bold",
-    "decimalPlaces": 2,
+    "decimalPlaces": 4,
     "unit": "A",
     "autoScaling": true,
     "logarithmicScale": false,
-    "axisLabeling": "Number",
+    "axisLabeling": "Auto",
     "labelFontColor": null,
     "axisColor": null,
     "axisNameFontColor": null
@@ -410,11 +412,11 @@
     "scaleFactor": 1.0,
     "showAxis": true,
     "lineWidth": 1,
-    "pointDot": false,
+    "pointDot": true,
     "pointDotRadius": 3,
     "pointDotStrokeWidth": 1,
     "lineColor": {
-      "color": "rgba(241, 5, 241, 1)"
+      "color": "rgba(237, 5, 237, 1)"
     },
     "pointDotFillColor": {
       "color": "rgba(71, 148, 218, 1)"
@@ -427,126 +429,6 @@
     "fillColor": null,
     "fillTransparency": 50.0,
     "symbol": "PLC1.MCP_IO.Charger.0.currentFeedback"
-  },
-  {
-    "yAxisId": 2,
-    "legendName": "Charger 2 - Current",
-    "scaleFactor": 1.0,
-    "showAxis": true,
-    "lineWidth": 1,
-    "pointDot": false,
-    "pointDotRadius": 3,
-    "pointDotStrokeWidth": 1,
-    "lineColor": {
-      "color": "rgba(6, 197, 246, 1)"
-    },
-    "pointDotFillColor": {
-      "color": "rgba(71, 148, 218, 1)"
-    },
-    "pointDotStrokeColor": {
-      "color": "rgba(71, 148, 218, 1)"
-    },
-    "pointDotInStopMode": true,
-    "fillMode": "None",
-    "fillColor": null,
-    "fillTransparency": 50.0,
-    "symbol": "PLC1.MCP_IO.Charger.1.currentFeedback"
-  },
-  {
-    "yAxisId": 2,
-    "legendName": "Charger 3 - Current",
-    "scaleFactor": 1.0,
-    "showAxis": true,
-    "lineWidth": 1,
-    "pointDot": false,
-    "pointDotRadius": 3,
-    "pointDotStrokeWidth": 1,
-    "lineColor": {
-      "color": "rgba(140, 246, 6, 1)"
-    },
-    "pointDotFillColor": {
-      "color": "rgba(71, 148, 218, 1)"
-    },
-    "pointDotStrokeColor": {
-      "color": "rgba(71, 148, 218, 1)"
-    },
-    "pointDotInStopMode": true,
-    "fillMode": "None",
-    "fillColor": null,
-    "fillTransparency": 50.0,
-    "symbol": "PLC1.MCP_IO.Charger.2.currentFeedback"
-  },
-  {
-    "yAxisId": 2,
-    "legendName": "Charger 4 - Current",
-    "scaleFactor": 1.0,
-    "showAxis": true,
-    "lineWidth": 1,
-    "pointDot": false,
-    "pointDotRadius": 3,
-    "pointDotStrokeWidth": 1,
-    "lineColor": {
-      "color": "rgba(246, 236, 6, 1)"
-    },
-    "pointDotFillColor": {
-      "color": "rgba(71, 148, 218, 1)"
-    },
-    "pointDotStrokeColor": {
-      "color": "rgba(71, 148, 218, 1)"
-    },
-    "pointDotInStopMode": true,
-    "fillMode": "None",
-    "fillColor": null,
-    "fillTransparency": 50.0,
-    "symbol": "PLC1.MCP_IO.Charger.3.currentFeedback"
-  },
-  {
-    "yAxisId": 2,
-    "legendName": "Charger 5 - Current",
-    "scaleFactor": 1.0,
-    "showAxis": true,
-    "lineWidth": 1,
-    "pointDot": false,
-    "pointDotRadius": 3,
-    "pointDotStrokeWidth": 1,
-    "lineColor": {
-      "color": "rgba(37, 95, 11, 1)"
-    },
-    "pointDotFillColor": {
-      "color": "rgba(71, 148, 218, 1)"
-    },
-    "pointDotStrokeColor": {
-      "color": "rgba(71, 148, 218, 1)"
-    },
-    "pointDotInStopMode": true,
-    "fillMode": "None",
-    "fillColor": null,
-    "fillTransparency": 50.0,
-    "symbol": "PLC1.MCP_IO.Charger.4.currentFeedback"
-  },
-  {
-    "yAxisId": 2,
-    "legendName": "Charger 6 - Current",
-    "scaleFactor": 1.0,
-    "showAxis": true,
-    "lineWidth": 1,
-    "pointDot": false,
-    "pointDotRadius": 3,
-    "pointDotStrokeWidth": 1,
-    "lineColor": {
-      "color": "rgba(80, 253, 0, 1)"
-    },
-    "pointDotFillColor": {
-      "color": "rgba(71, 148, 218, 1)"
-    },
-    "pointDotStrokeColor": {
-      "color": "rgba(71, 148, 218, 1)"
-    },
-    "pointDotInStopMode": true,
-    "fillMode": "None",
-    "fillColor": null,
-    "fillTransparency": 50.0,
-    "symbol": "PLC1.MCP_IO.Charger.5.currentFeedback"
   }
 ]
 </script>
@@ -713,7 +595,7 @@
 
 
 </div>
-<div id="TcHmiRectangle_62" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiRectangle" data-tchmi-height="369" data-tchmi-height-unit="px" data-tchmi-left="10" data-tchmi-left-unit="px" data-tchmi-top="10" data-tchmi-top-unit="px" data-tchmi-width="304" data-tchmi-width-unit="px" data-tchmi-opacity="3" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-creator-locked="True">
+<div id="TcHmiRectangle_62" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiRectangle" data-tchmi-height="220" data-tchmi-height-unit="px" data-tchmi-left="10" data-tchmi-left-unit="px" data-tchmi-top="10" data-tchmi-top-unit="px" data-tchmi-width="304" data-tchmi-width-unit="px" data-tchmi-opacity="3" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-border-radius" type="application/json">
 {
   "topLeft": 10.0,
@@ -947,326 +829,6 @@
 
 
 </div>
-<div id="TcHmiToggleSwitch_9" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleSwitch" data-tchmi-height="20" data-tchmi-height-unit="px" data-tchmi-left="240" data-tchmi-left-unit="px" data-tchmi-text="50kV" data-tchmi-top="73" data-tchmi-top-unit="px" data-tchmi-width="69" data-tchmi-width-unit="px" data-tchmi-text-vertical-alignment="Center" data-tchmi-state-symbol="%s%PLC1.MCP_IO.Charger.1.ChargerType_50kV%/s%" data-tchmi-toggle-state="Active" data-tchmi-text-horizontal-alignment="Left" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-position="Right" data-tchmi-creator-locked="True">
-<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
-[
-  {
-    "event": "%s%PLC1.Heartbeat.screen_refresh_pulse%/s%",
-    "actions": [
-      {
-        "objectType": "Condition",
-        "active": true,
-        "parts": [
-          {
-            "if": [
-              {
-                "compare1": {
-                  "objectType": "Symbol",
-                  "valueType": "tchmi:general#/definitions/BOOL",
-                  "symbolExpression": "%s%PLC1.MCP_IO.Charger.1.ChargerType_50kV%/s%"
-                },
-                "compare2": {
-                  "objectType": "StaticValue",
-                  "valueType": "tchmi:general#/definitions/BOOL",
-                  "value": true
-                },
-                "compareOperator": "==",
-                "logic": null
-              }
-            ],
-            "then": [
-              {
-                "objectType": "WriteToSymbol",
-                "active": true,
-                "symbolExpression": "%ctrl%TcHmiToggleSwitch_9::Text%/ctrl%",
-                "value": {
-                  "objectType": "StaticValue",
-                  "valueType": "tchmi:general#/definitions/String",
-                  "value": "50kV"
-                },
-                "asyncWait": true
-              }
-            ]
-          },
-          {
-            "else": [
-              {
-                "objectType": "WriteToSymbol",
-                "active": true,
-                "symbolExpression": "%ctrl%TcHmiToggleSwitch_9::Text%/ctrl%",
-                "value": {
-                  "objectType": "StaticValue",
-                  "valueType": "tchmi:general#/definitions/String",
-                  "value": "12kV"
-                },
-                "asyncWait": true
-              }
-            ]
-          }
-        ],
-        "asyncWait": true
-      }
-    ]
-  }
-]
-</script>
-</div>
-<div id="TcHmiToggleSwitch_10" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleSwitch" data-tchmi-height="20" data-tchmi-height-unit="px" data-tchmi-left="240" data-tchmi-left-unit="px" data-tchmi-text="50kV" data-tchmi-top="103" data-tchmi-top-unit="px" data-tchmi-width="69" data-tchmi-width-unit="px" data-tchmi-text-vertical-alignment="Center" data-tchmi-state-symbol="%s%PLC1.MCP_IO.Charger.2.ChargerType_50kV%/s%" data-tchmi-toggle-state="Active" data-tchmi-text-horizontal-alignment="Left" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-position="Right" data-tchmi-creator-locked="True">
-<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
-[
-  {
-    "event": "%s%PLC1.Heartbeat.screen_refresh_pulse%/s%",
-    "actions": [
-      {
-        "objectType": "Condition",
-        "active": true,
-        "parts": [
-          {
-            "if": [
-              {
-                "compare1": {
-                  "objectType": "Symbol",
-                  "valueType": "tchmi:general#/definitions/BOOL",
-                  "symbolExpression": "%s%PLC1.MCP_IO.Charger.2.ChargerType_50kV%/s%"
-                },
-                "compare2": {
-                  "objectType": "StaticValue",
-                  "valueType": "tchmi:general#/definitions/BOOL",
-                  "value": true
-                },
-                "compareOperator": "==",
-                "logic": null
-              }
-            ],
-            "then": [
-              {
-                "objectType": "WriteToSymbol",
-                "active": true,
-                "symbolExpression": "%ctrl%TcHmiToggleSwitch_10::Text%/ctrl%",
-                "value": {
-                  "objectType": "StaticValue",
-                  "valueType": "tchmi:general#/definitions/String",
-                  "value": "50kV"
-                },
-                "asyncWait": true
-              }
-            ]
-          },
-          {
-            "else": [
-              {
-                "objectType": "WriteToSymbol",
-                "active": true,
-                "symbolExpression": "%ctrl%TcHmiToggleSwitch_10::Text%/ctrl%",
-                "value": {
-                  "objectType": "StaticValue",
-                  "valueType": "tchmi:general#/definitions/String",
-                  "value": "12kV"
-                },
-                "asyncWait": true
-              }
-            ]
-          }
-        ],
-        "asyncWait": true
-      }
-    ]
-  }
-]
-</script>
-</div>
-<div id="TcHmiToggleSwitch_11" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleSwitch" data-tchmi-height="20" data-tchmi-height-unit="px" data-tchmi-left="240" data-tchmi-left-unit="px" data-tchmi-text="50kV" data-tchmi-top="133" data-tchmi-top-unit="px" data-tchmi-width="69" data-tchmi-width-unit="px" data-tchmi-text-vertical-alignment="Center" data-tchmi-state-symbol="%s%PLC1.MCP_IO.Charger.3.ChargerType_50kV%/s%" data-tchmi-toggle-state="Active" data-tchmi-text-horizontal-alignment="Left" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-position="Right" data-tchmi-creator-locked="True">
-<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
-[
-  {
-    "event": "%s%PLC1.Heartbeat.screen_refresh_pulse%/s%",
-    "actions": [
-      {
-        "objectType": "Condition",
-        "active": true,
-        "parts": [
-          {
-            "if": [
-              {
-                "compare1": {
-                  "objectType": "Symbol",
-                  "valueType": "tchmi:general#/definitions/BOOL",
-                  "symbolExpression": "%s%PLC1.MCP_IO.Charger.3.ChargerType_50kV%/s%"
-                },
-                "compare2": {
-                  "objectType": "StaticValue",
-                  "valueType": "tchmi:general#/definitions/BOOL",
-                  "value": true
-                },
-                "compareOperator": "==",
-                "logic": null
-              }
-            ],
-            "then": [
-              {
-                "objectType": "WriteToSymbol",
-                "active": true,
-                "symbolExpression": "%ctrl%TcHmiToggleSwitch_11::Text%/ctrl%",
-                "value": {
-                  "objectType": "StaticValue",
-                  "valueType": "tchmi:general#/definitions/String",
-                  "value": "50kV"
-                },
-                "asyncWait": true
-              }
-            ]
-          },
-          {
-            "else": [
-              {
-                "objectType": "WriteToSymbol",
-                "active": true,
-                "symbolExpression": "%ctrl%TcHmiToggleSwitch_11::Text%/ctrl%",
-                "value": {
-                  "objectType": "StaticValue",
-                  "valueType": "tchmi:general#/definitions/String",
-                  "value": "12kV"
-                },
-                "asyncWait": true
-              }
-            ]
-          }
-        ],
-        "asyncWait": true
-      }
-    ]
-  }
-]
-</script>
-</div>
-<div id="TcHmiToggleSwitch_12" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleSwitch" data-tchmi-height="20" data-tchmi-height-unit="px" data-tchmi-left="240" data-tchmi-left-unit="px" data-tchmi-text="50kV" data-tchmi-top="163" data-tchmi-top-unit="px" data-tchmi-width="69" data-tchmi-width-unit="px" data-tchmi-text-vertical-alignment="Center" data-tchmi-state-symbol="%s%PLC1.MCP_IO.Charger.4.ChargerType_50kV%/s%" data-tchmi-toggle-state="Active" data-tchmi-text-horizontal-alignment="Left" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-position="Right" data-tchmi-creator-locked="True">
-<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
-[
-  {
-    "event": "%s%PLC1.Heartbeat.screen_refresh_pulse%/s%",
-    "actions": [
-      {
-        "objectType": "Condition",
-        "active": true,
-        "parts": [
-          {
-            "if": [
-              {
-                "compare1": {
-                  "objectType": "Symbol",
-                  "valueType": "tchmi:general#/definitions/BOOL",
-                  "symbolExpression": "%s%PLC1.MCP_IO.Charger.4.ChargerType_50kV%/s%"
-                },
-                "compare2": {
-                  "objectType": "StaticValue",
-                  "valueType": "tchmi:general#/definitions/BOOL",
-                  "value": true
-                },
-                "compareOperator": "==",
-                "logic": null
-              }
-            ],
-            "then": [
-              {
-                "objectType": "WriteToSymbol",
-                "active": true,
-                "symbolExpression": "%ctrl%TcHmiToggleSwitch_12::Text%/ctrl%",
-                "value": {
-                  "objectType": "StaticValue",
-                  "valueType": "tchmi:general#/definitions/String",
-                  "value": "50kV"
-                },
-                "asyncWait": true
-              }
-            ]
-          },
-          {
-            "else": [
-              {
-                "objectType": "WriteToSymbol",
-                "active": true,
-                "symbolExpression": "%ctrl%TcHmiToggleSwitch_12::Text%/ctrl%",
-                "value": {
-                  "objectType": "StaticValue",
-                  "valueType": "tchmi:general#/definitions/String",
-                  "value": "12kV"
-                },
-                "asyncWait": true
-              }
-            ]
-          }
-        ],
-        "asyncWait": true
-      }
-    ]
-  }
-]
-</script>
-</div>
-<div id="TcHmiToggleSwitch_13" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleSwitch" data-tchmi-height="20" data-tchmi-height-unit="px" data-tchmi-left="240" data-tchmi-left-unit="px" data-tchmi-text="50kV" data-tchmi-top="193" data-tchmi-top-unit="px" data-tchmi-width="69" data-tchmi-width-unit="px" data-tchmi-text-vertical-alignment="Center" data-tchmi-state-symbol="%s%PLC1.MCP_IO.Charger.5.ChargerType_50kV%/s%" data-tchmi-toggle-state="Active" data-tchmi-text-horizontal-alignment="Left" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-position="Right" data-tchmi-creator-locked="True">
-<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
-[
-  {
-    "event": "%s%PLC1.Heartbeat.screen_refresh_pulse%/s%",
-    "actions": [
-      {
-        "objectType": "Condition",
-        "active": true,
-        "parts": [
-          {
-            "if": [
-              {
-                "compare1": {
-                  "objectType": "Symbol",
-                  "valueType": "tchmi:general#/definitions/BOOL",
-                  "symbolExpression": "%s%PLC1.MCP_IO.Charger.5.ChargerType_50kV%/s%"
-                },
-                "compare2": {
-                  "objectType": "StaticValue",
-                  "valueType": "tchmi:general#/definitions/BOOL",
-                  "value": true
-                },
-                "compareOperator": "==",
-                "logic": null
-              }
-            ],
-            "then": [
-              {
-                "objectType": "WriteToSymbol",
-                "active": true,
-                "symbolExpression": "%ctrl%TcHmiToggleSwitch_13::Text%/ctrl%",
-                "value": {
-                  "objectType": "StaticValue",
-                  "valueType": "tchmi:general#/definitions/String",
-                  "value": "50kV"
-                },
-                "asyncWait": true
-              }
-            ]
-          },
-          {
-            "else": [
-              {
-                "objectType": "WriteToSymbol",
-                "active": true,
-                "symbolExpression": "%ctrl%TcHmiToggleSwitch_13::Text%/ctrl%",
-                "value": {
-                  "objectType": "StaticValue",
-                  "valueType": "tchmi:general#/definitions/String",
-                  "value": "12kV"
-                },
-                "asyncWait": true
-              }
-            ]
-          }
-        ],
-        "asyncWait": true
-      }
-    ]
-  }
-]
-</script>
-</div>
 <div id="TcHmiTextblock_236" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="17" data-tchmi-height-unit="px" data-tchmi-left="230" data-tchmi-left-unit="px" data-tchmi-text="(12kV/50kV)" data-tchmi-top="19" data-tchmi-top-unit="px" data-tchmi-width="69" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="12" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
 {
@@ -1276,16 +838,7 @@
 
 
 </div>
-<div id="TcHmiTextblock_294" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="23" data-tchmi-height-unit="px" data-tchmi-left="240" data-tchmi-left-unit="px" data-tchmi-text="30kV" data-tchmi-top="43" data-tchmi-top-unit="px" data-tchmi-width="69" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="12" data-tchmi-zindex="2" data-tchmi-is-enabled="true" data-tchmi-creator-visibility="Visible" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center">
-<script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
-{
-  "color": "rgba(25, 0, 0, 1)"
-}
-</script>
-
-
-</div>
-<div id="TcHmiCombobox_2" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiCombobox" data-tchmi-combobox-text="Select" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="100" data-tchmi-left-unit="px" data-tchmi-top="420" data-tchmi-top-unit="px" data-tchmi-width="169" data-tchmi-width-unit="px" data-tchmi-zindex="5" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center">
+<div id="TcHmiCombobox_2" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiCombobox" data-tchmi-combobox-text="Select" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="230" data-tchmi-left-unit="px" data-tchmi-top="43" data-tchmi-top-unit="px" data-tchmi-width="82" data-tchmi-width-unit="px" data-tchmi-zindex="5" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-enum-data-symbol="%s%PLC1.HMI_DB.TDKLoad.0.eChargerType%/s%" data-tchmi-drop-down-style="Classic" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {
   "top": 3,
@@ -1299,5 +852,692 @@
 
 
 
+
+
+
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
+[
+  {
+    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
+    "actions": [
+      {
+        "objectType": "Condition",
+        "active": true,
+        "parts": [
+          {
+            "if": [
+              {
+                "compare1": {
+                  "objectType": "Symbol",
+                  "valueType": "tchmi:general#/definitions/String",
+                  "symbolExpression": "%s%PLC1.Sequence.eState%/s%"
+                },
+                "compare2": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:server#/definitions/PLC1.E_State",
+                  "value": 1
+                },
+                "compareOperator": "==",
+                "logic": null
+              },
+              {
+                "compare1": {
+                  "objectType": "Symbol",
+                  "valueType": "tchmi:general#/definitions/String",
+                  "symbolExpression": "%s%PLC1.Sequence.eState%/s%"
+                },
+                "compare2": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:server#/definitions/PLC1.E_State",
+                  "value": 2
+                },
+                "compareOperator": "==",
+                "logic": "OR"
+              },
+              {
+                "compare1": {
+                  "objectType": "Symbol",
+                  "valueType": "tchmi:general#/definitions/String",
+                  "symbolExpression": "%s%PLC1.Sequence.eState%/s%"
+                },
+                "compare2": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:server#/definitions/PLC1.E_State",
+                  "value": 3
+                },
+                "compareOperator": "==",
+                "logic": "AND"
+              }
+            ],
+            "then": [
+              {
+                "objectType": "WriteToSymbol",
+                "active": true,
+                "symbolExpression": "%ctrl%TcHmiCombobox_2::IsEnabled%/ctrl%",
+                "value": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:general#/definitions/Boolean",
+                  "value": false
+                },
+                "asyncWait": true
+              }
+            ]
+          },
+          {
+            "else": [
+              {
+                "objectType": "WriteToSymbol",
+                "active": true,
+                "symbolExpression": "%ctrl%TcHmiCombobox_2::IsEnabled%/ctrl%",
+                "value": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:general#/definitions/Boolean",
+                  "value": true
+                },
+                "asyncWait": true
+              }
+            ]
+          }
+        ],
+        "asyncWait": true
+      }
+    ]
+  }
+]
+</script>
+</div>
+<div id="TcHmiCombobox_3" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiCombobox" data-tchmi-combobox-text="Select" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="230" data-tchmi-left-unit="px" data-tchmi-top="73" data-tchmi-top-unit="px" data-tchmi-width="82" data-tchmi-width-unit="px" data-tchmi-zindex="5" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-enum-data-symbol="%s%PLC1.HMI_DB.TDKLoad.1.eChargerType%/s%" data-tchmi-drop-down-style="Classic" data-tchmi-creator-locked="True">
+<script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
+{
+  "top": 3,
+  "right": 3,
+  "bottom": 3,
+  "left": 3
+}
+</script>
+
+
+
+
+
+
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
+[
+  {
+    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
+    "actions": [
+      {
+        "objectType": "Condition",
+        "active": true,
+        "parts": [
+          {
+            "if": [
+              {
+                "compare1": {
+                  "objectType": "Symbol",
+                  "valueType": "tchmi:server#/definitions/PLC1.E_State",
+                  "symbolExpression": "%s%PLC1.Sequence.eState%/s%"
+                },
+                "compare2": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:server#/definitions/PLC1.E_State",
+                  "value": 1
+                },
+                "compareOperator": "==",
+                "logic": null
+              },
+              {
+                "compare1": {
+                  "objectType": "Symbol",
+                  "valueType": "tchmi:server#/definitions/PLC1.E_State",
+                  "symbolExpression": "%s%PLC1.Sequence.eState%/s%"
+                },
+                "compare2": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:server#/definitions/PLC1.E_State",
+                  "value": 2
+                },
+                "compareOperator": "==",
+                "logic": "OR"
+              },
+              {
+                "compare1": {
+                  "objectType": "Symbol",
+                  "valueType": "tchmi:server#/definitions/PLC1.E_State",
+                  "symbolExpression": "%s%PLC1.Sequence.eState%/s%"
+                },
+                "compare2": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:server#/definitions/PLC1.E_State",
+                  "value": 3
+                },
+                "compareOperator": "==",
+                "logic": "AND"
+              }
+            ],
+            "then": [
+              {
+                "objectType": "WriteToSymbol",
+                "active": true,
+                "symbolExpression": "%ctrl%TcHmiCombobox_3::IsEnabled%/ctrl%",
+                "value": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:general#/definitions/Boolean",
+                  "value": false
+                },
+                "asyncWait": true
+              }
+            ]
+          },
+          {
+            "else": [
+              {
+                "objectType": "WriteToSymbol",
+                "active": true,
+                "symbolExpression": "%ctrl%TcHmiCombobox_3::IsEnabled%/ctrl%",
+                "value": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:general#/definitions/Boolean",
+                  "value": true
+                },
+                "asyncWait": true
+              }
+            ]
+          }
+        ],
+        "asyncWait": true
+      }
+    ]
+  }
+]
+</script>
+</div>
+<div id="TcHmiCombobox_4" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiCombobox" data-tchmi-combobox-text="Select" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="230" data-tchmi-left-unit="px" data-tchmi-top="103" data-tchmi-top-unit="px" data-tchmi-width="82" data-tchmi-width-unit="px" data-tchmi-zindex="5" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-enum-data-symbol="%s%PLC1.HMI_DB.TDKLoad.2.eChargerType%/s%" data-tchmi-drop-down-style="Classic" data-tchmi-creator-locked="True">
+<script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
+{
+  "top": 3,
+  "right": 3,
+  "bottom": 3,
+  "left": 3
+}
+</script>
+
+
+
+
+
+
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
+[
+  {
+    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
+    "actions": [
+      {
+        "objectType": "Condition",
+        "active": true,
+        "parts": [
+          {
+            "if": [
+              {
+                "compare1": {
+                  "objectType": "Symbol",
+                  "valueType": "tchmi:server#/definitions/PLC1.E_State",
+                  "symbolExpression": "%s%PLC1.Sequence.eState%/s%"
+                },
+                "compare2": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:server#/definitions/PLC1.E_State",
+                  "value": 1
+                },
+                "compareOperator": "==",
+                "logic": null
+              },
+              {
+                "compare1": {
+                  "objectType": "Symbol",
+                  "valueType": "tchmi:server#/definitions/PLC1.E_State",
+                  "symbolExpression": "%s%PLC1.Sequence.eState%/s%"
+                },
+                "compare2": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:server#/definitions/PLC1.E_State",
+                  "value": 2
+                },
+                "compareOperator": "==",
+                "logic": "OR"
+              },
+              {
+                "compare1": {
+                  "objectType": "Symbol",
+                  "valueType": "tchmi:server#/definitions/PLC1.E_State",
+                  "symbolExpression": "%s%PLC1.Sequence.eState%/s%"
+                },
+                "compare2": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:server#/definitions/PLC1.E_State",
+                  "value": 3
+                },
+                "compareOperator": "==",
+                "logic": "AND"
+              }
+            ],
+            "then": [
+              {
+                "objectType": "WriteToSymbol",
+                "active": true,
+                "symbolExpression": "%ctrl%TcHmiCombobox_4::IsEnabled%/ctrl%",
+                "value": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:general#/definitions/Boolean",
+                  "value": false
+                },
+                "asyncWait": true
+              }
+            ]
+          },
+          {
+            "else": [
+              {
+                "objectType": "WriteToSymbol",
+                "active": true,
+                "symbolExpression": "%ctrl%TcHmiCombobox_4::IsEnabled%/ctrl%",
+                "value": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:general#/definitions/Boolean",
+                  "value": true
+                },
+                "asyncWait": true
+              }
+            ]
+          }
+        ],
+        "asyncWait": true
+      }
+    ]
+  }
+]
+</script>
+</div>
+<div id="TcHmiCombobox_5" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiCombobox" data-tchmi-combobox-text="Select" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="230" data-tchmi-left-unit="px" data-tchmi-top="133" data-tchmi-top-unit="px" data-tchmi-width="82" data-tchmi-width-unit="px" data-tchmi-zindex="5" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-enum-data-symbol="%s%PLC1.HMI_DB.TDKLoad.3.eChargerType%/s%" data-tchmi-drop-down-style="Classic" data-tchmi-creator-locked="True">
+<script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
+{
+  "top": 3,
+  "right": 3,
+  "bottom": 3,
+  "left": 3
+}
+</script>
+
+
+
+
+
+
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
+[
+  {
+    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
+    "actions": [
+      {
+        "objectType": "Condition",
+        "active": true,
+        "parts": [
+          {
+            "if": [
+              {
+                "compare1": {
+                  "objectType": "Symbol",
+                  "valueType": "tchmi:server#/definitions/PLC1.E_State",
+                  "symbolExpression": "%s%PLC1.Sequence.eState%/s%"
+                },
+                "compare2": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:server#/definitions/PLC1.E_State",
+                  "value": 1
+                },
+                "compareOperator": "==",
+                "logic": null
+              },
+              {
+                "compare1": {
+                  "objectType": "Symbol",
+                  "valueType": "tchmi:server#/definitions/PLC1.E_State",
+                  "symbolExpression": "%s%PLC1.Sequence.eState%/s%"
+                },
+                "compare2": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:server#/definitions/PLC1.E_State",
+                  "value": 2
+                },
+                "compareOperator": "==",
+                "logic": "OR"
+              },
+              {
+                "compare1": {
+                  "objectType": "Symbol",
+                  "valueType": "tchmi:server#/definitions/PLC1.E_State",
+                  "symbolExpression": "%s%PLC1.Sequence.eState%/s%"
+                },
+                "compare2": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:server#/definitions/PLC1.E_State",
+                  "value": 3
+                },
+                "compareOperator": "==",
+                "logic": "AND"
+              }
+            ],
+            "then": [
+              {
+                "objectType": "WriteToSymbol",
+                "active": true,
+                "symbolExpression": "%ctrl%TcHmiCombobox_5::IsEnabled%/ctrl%",
+                "value": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:general#/definitions/Boolean",
+                  "value": false
+                },
+                "asyncWait": true
+              }
+            ]
+          },
+          {
+            "else": [
+              {
+                "objectType": "WriteToSymbol",
+                "active": true,
+                "symbolExpression": "%ctrl%TcHmiCombobox_5::IsEnabled%/ctrl%",
+                "value": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:general#/definitions/Boolean",
+                  "value": true
+                },
+                "asyncWait": true
+              }
+            ]
+          }
+        ],
+        "asyncWait": true
+      }
+    ]
+  }
+]
+</script>
+</div>
+<div id="TcHmiCombobox_6" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiCombobox" data-tchmi-combobox-text="Select" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="230" data-tchmi-left-unit="px" data-tchmi-top="163" data-tchmi-top-unit="px" data-tchmi-width="82" data-tchmi-width-unit="px" data-tchmi-zindex="5" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-enum-data-symbol="%s%PLC1.HMI_DB.TDKLoad.4.eChargerType%/s%" data-tchmi-drop-down-style="Classic" data-tchmi-creator-locked="True">
+<script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
+{
+  "top": 3,
+  "right": 3,
+  "bottom": 3,
+  "left": 3
+}
+</script>
+
+
+
+
+
+
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
+[
+  {
+    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
+    "actions": [
+      {
+        "objectType": "Condition",
+        "active": true,
+        "parts": [
+          {
+            "if": [
+              {
+                "compare1": {
+                  "objectType": "Symbol",
+                  "valueType": "tchmi:server#/definitions/PLC1.E_State",
+                  "symbolExpression": "%s%PLC1.Sequence.eState%/s%"
+                },
+                "compare2": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:server#/definitions/PLC1.E_State",
+                  "value": 1
+                },
+                "compareOperator": "==",
+                "logic": null
+              },
+              {
+                "compare1": {
+                  "objectType": "Symbol",
+                  "valueType": "tchmi:server#/definitions/PLC1.E_State",
+                  "symbolExpression": "%s%PLC1.Sequence.eState%/s%"
+                },
+                "compare2": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:server#/definitions/PLC1.E_State",
+                  "value": 2
+                },
+                "compareOperator": "==",
+                "logic": "OR"
+              },
+              {
+                "compare1": {
+                  "objectType": "Symbol",
+                  "valueType": "tchmi:server#/definitions/PLC1.E_State",
+                  "symbolExpression": "%s%PLC1.Sequence.eState%/s%"
+                },
+                "compare2": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:server#/definitions/PLC1.E_State",
+                  "value": 3
+                },
+                "compareOperator": "==",
+                "logic": "AND"
+              }
+            ],
+            "then": [
+              {
+                "objectType": "WriteToSymbol",
+                "active": true,
+                "symbolExpression": "%ctrl%TcHmiCombobox_6::IsEnabled%/ctrl%",
+                "value": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:general#/definitions/Boolean",
+                  "value": false
+                },
+                "asyncWait": true
+              }
+            ]
+          },
+          {
+            "else": [
+              {
+                "objectType": "WriteToSymbol",
+                "active": true,
+                "symbolExpression": "%ctrl%TcHmiCombobox_6::IsEnabled%/ctrl%",
+                "value": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:general#/definitions/Boolean",
+                  "value": true
+                },
+                "asyncWait": true
+              }
+            ]
+          }
+        ],
+        "asyncWait": true
+      }
+    ]
+  }
+]
+</script>
+</div>
+<div id="TcHmiCombobox_7" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiCombobox" data-tchmi-combobox-text="Select" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="230" data-tchmi-left-unit="px" data-tchmi-top="193" data-tchmi-top-unit="px" data-tchmi-width="82" data-tchmi-width-unit="px" data-tchmi-zindex="5" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-enum-data-symbol="%s%PLC1.HMI_DB.TDKLoad.5.eChargerType%/s%" data-tchmi-drop-down-style="Classic" data-tchmi-creator-locked="True">
+<script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
+{
+  "top": 3,
+  "right": 3,
+  "bottom": 3,
+  "left": 3
+}
+</script>
+
+
+
+
+
+
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
+[
+  {
+    "event": "%s%PLC1.Heartbeat.pulse_1Hz%/s%",
+    "actions": [
+      {
+        "objectType": "Condition",
+        "active": true,
+        "parts": [
+          {
+            "if": [
+              {
+                "compare1": {
+                  "objectType": "Symbol",
+                  "valueType": "tchmi:server#/definitions/PLC1.E_State",
+                  "symbolExpression": "%s%PLC1.Sequence.eState%/s%"
+                },
+                "compare2": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:server#/definitions/PLC1.E_State",
+                  "value": 1
+                },
+                "compareOperator": "==",
+                "logic": null
+              },
+              {
+                "compare1": {
+                  "objectType": "Symbol",
+                  "valueType": "tchmi:server#/definitions/PLC1.E_State",
+                  "symbolExpression": "%s%PLC1.Sequence.eState%/s%"
+                },
+                "compare2": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:server#/definitions/PLC1.E_State",
+                  "value": 2
+                },
+                "compareOperator": "==",
+                "logic": "OR"
+              },
+              {
+                "compare1": {
+                  "objectType": "Symbol",
+                  "valueType": "tchmi:server#/definitions/PLC1.E_State",
+                  "symbolExpression": "%s%PLC1.Sequence.eState%/s%"
+                },
+                "compare2": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:server#/definitions/PLC1.E_State",
+                  "value": 3
+                },
+                "compareOperator": "==",
+                "logic": "AND"
+              }
+            ],
+            "then": [
+              {
+                "objectType": "WriteToSymbol",
+                "active": true,
+                "symbolExpression": "%ctrl%TcHmiCombobox_7::IsEnabled%/ctrl%",
+                "value": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:general#/definitions/Boolean",
+                  "value": false
+                },
+                "asyncWait": true
+              }
+            ]
+          },
+          {
+            "else": [
+              {
+                "objectType": "WriteToSymbol",
+                "active": true,
+                "symbolExpression": "%ctrl%TcHmiCombobox_7::IsEnabled%/ctrl%",
+                "value": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:general#/definitions/Boolean",
+                  "value": true
+                },
+                "asyncWait": true
+              }
+            ]
+          }
+        ],
+        "asyncWait": true
+      }
+    ]
+  }
+]
+</script>
+</div>
+<div id="TcHmiLineChart" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiLineChart" data-tchmi-height="212" data-tchmi-height-unit="px" data-tchmi-left="10" data-tchmi-left-unit="px" data-tchmi-top="418" data-tchmi-top-unit="px" data-tchmi-width="595" data-tchmi-width-unit="px" data-tchmi-x-axis-name="time" data-tchmi-x-axis-unit="s" data-tchmi-x-sub-tick-steps="4" data-tchmi-y-sub-tick-steps="4" data-tchmi-show-legend="true" data-tchmi-x-axis-labeling="Auto" data-tchmi-x-axis-decimal-places="4" data-tchmi-x-axis-auto-scaling="true">
+<script data-tchmi-target-attribute="data-tchmi-y-axis" type="application/json">
+[
+  {
+    "id": 1,
+    "showAxis": true,
+    "position": "Left",
+    "mainTickMinValue": 0.0,
+    "mainTickMaxValue": 0.0,
+    "showLabels": true,
+    "showAxisName": true,
+    "axisName": "",
+    "axisNameFontFamily": "",
+    "axisNameFontSize": 15,
+    "axisNameFontSizeUnit": "px",
+    "axisNameFontWeight": "Bold",
+    "decimalPlaces": 2,
+    "unit": "A",
+    "autoScaling": true,
+    "logarithmicScale": false,
+    "axisLabeling": "Number",
+    "labelFontColor": "%tr%Control::TcHmi.Controls.Beckhoff.TcHmiLineChart::YAxisLabelFontColor%/tr%",
+    "axisColor": "%tr%Control::TcHmi.Controls.Beckhoff.TcHmiLineChart::YAxisAxisColor%/tr%",
+    "axisNameFontColor": "%tr%Control::TcHmi.Controls.Beckhoff.TcHmiLineChart::YAxisAxisNameFontColor%/tr%"
+  }
+]
+</script>
+
+
+<script data-tchmi-target-attribute="data-tchmi-line-graph-descriptions" type="application/json">
+[
+  {
+    "yAxisId": 1,
+    "legendName": "current",
+    "xScaleFactor": 1.0,
+    "yScaleFactor": 1.0,
+    "showAxis": true,
+    "lineWidth": 1,
+    "pointDot": false,
+    "pointDotRadius": 3,
+    "pointDotStrokeWidth": 1,
+    "lineColor": {
+      "color": "rgba(237, 5, 237, 1)"
+    },
+    "pointDotFillColor": "%tr%Control::TcHmi.Controls.Beckhoff.TcHmiLineChart::LineGraphDescriptionPointDotFillColor%/tr%",
+    "pointDotStrokeColor": "%tr%Control::TcHmi.Controls.Beckhoff.TcHmiLineChart::LineGraphDescriptionPointDotStrokeColor%/tr%",
+    "fillMode": "None",
+    "fillColor": "%tr%Control::TcHmi.Controls.Beckhoff.TcHmiLineChart::LineGraphDescriptionFillColor%/tr%",
+    "fillTransparency": 50.0
+  }
+]
+</script>
+
+<script data-tchmi-target-attribute="data-tchmi-line-graph-data" type="application/json">
+[
+  [
+    {
+      "x": "%s%PLC1.HMI.LongestChargeTIME%/s%",
+      "y": "%s%PLC1.MCP_IO.Charger.0.currentFeedback%/s%"
+    }
+  ]
+]
+</script>
 </div>
 </div>

@@ -28,6 +28,33 @@
     "DEFAULTTIMEZONE": "client",
     "DEFAULTUSERGROUP": "__SystemUsers",
     "DEFINITIONS": {
+        "PLC1.E_ChargerType": {
+            "attributes": {
+                "generate_implicit_init_function": "",
+                "qualified_only": "",
+                "strict": ""
+            },
+            "enum": [
+                0,
+                1,
+                2
+            ],
+            "options": [
+                {
+                    "label": "TDK12kV",
+                    "value": 0
+                },
+                {
+                    "label": "TDK30kV",
+                    "value": 1
+                },
+                {
+                    "label": "TDK50kV",
+                    "value": 2
+                }
+            ],
+            "type": "integer"
+        },
         "PLC1.E_State": {
             "attributes": {
                 "generate_implicit_init_function": "",
@@ -2755,6 +2782,16 @@
             "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
+        "PLC1.ChargeTime_DB.ChargerDelay_ET.0": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::ChargeTime_DB::ChargerDelay_ET[0]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/TIME"
+            },
+            "USEMAPPING": true
+        },
         "PLC1.ChargeTime_DB.ChargingTimeElapse.0": {
             "ACCESS": 3,
             "CUSTOMERDATA": "",
@@ -2837,6 +2874,94 @@
                 "$ref": "tchmi:general#/definitions/INT"
             },
             "SUBSYMBOL_MAPPING": "",
+            "USEMAPPING": true
+        },
+        "PLC1.ChargeTime_DB.LongestChargeTime_ET": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::ChargeTime_DB::LongestChargeTime_ET",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/TIME"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI.ChargeGraphTMR_ET": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI::ChargeGraphTMR_ET",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/TIME"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI.ChargeGraphTMR_PT": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI::ChargeGraphTMR_PT",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/TIME"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI.LastTimeShot": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI::LastTimeShot",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/ULINT"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI.LastTimeShotTMR_ET": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI::LastTimeShotTMR_ET",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/TIME"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI.LastTimeShotTMR_REAL": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI::LastTimeShotTMR_REAL",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI.LongestChargeTIME": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI::LongestChargeTIME",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI.SysCLK.CDT": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI::SysCLK::CDT",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/DATE_AND_TIME"
+                    },
+                    {
+                        "comment": "Current DATE_AND_TIME value",
+                        "propertyOrder": 4
+                    }
+                ]
+            },
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.AbortPB": {
@@ -3120,6 +3245,23 @@
             "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
+        "PLC1.HMI_DB.TDKLoad.0.eChargerType": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::TDKLoad[0]::eChargerType",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:server#/definitions/PLC1.E_ChargerType"
+                    },
+                    {
+                        "propertyOrder": 6
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
         "PLC1.HMI_DB.TDKLoad.0.wLCA": {
             "ACCESS": 3,
             "CUSTOMERDATA": "",
@@ -3195,6 +3337,23 @@
                 ]
             },
             "SUBSYMBOL_MAPPING": "",
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.TDKLoad.1.eChargerType": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::TDKLoad[1]::eChargerType",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:server#/definitions/PLC1.E_ChargerType"
+                    },
+                    {
+                        "propertyOrder": 6
+                    }
+                ]
+            },
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.TDKLoad.1.wLCA": {
@@ -3274,6 +3433,23 @@
             "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
+        "PLC1.HMI_DB.TDKLoad.2.eChargerType": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::TDKLoad[2]::eChargerType",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:server#/definitions/PLC1.E_ChargerType"
+                    },
+                    {
+                        "propertyOrder": 6
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
         "PLC1.HMI_DB.TDKLoad.2.wLCA": {
             "ACCESS": 3,
             "CUSTOMERDATA": "",
@@ -3349,6 +3525,23 @@
                 ]
             },
             "SUBSYMBOL_MAPPING": "",
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.TDKLoad.3.eChargerType": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::TDKLoad[3]::eChargerType",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:server#/definitions/PLC1.E_ChargerType"
+                    },
+                    {
+                        "propertyOrder": 6
+                    }
+                ]
+            },
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.TDKLoad.3.wLCA": {
@@ -3428,6 +3621,23 @@
             "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
+        "PLC1.HMI_DB.TDKLoad.4.eChargerType": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::TDKLoad[4]::eChargerType",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:server#/definitions/PLC1.E_ChargerType"
+                    },
+                    {
+                        "propertyOrder": 6
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
         "PLC1.HMI_DB.TDKLoad.4.wLCA": {
             "ACCESS": 3,
             "CUSTOMERDATA": "",
@@ -3505,6 +3715,23 @@
             "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
+        "PLC1.HMI_DB.TDKLoad.5.eChargerType": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::TDKLoad[5]::eChargerType",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:server#/definitions/PLC1.E_ChargerType"
+                    },
+                    {
+                        "propertyOrder": 6
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
         "PLC1.HMI_DB.TDKLoad.5.wLCA": {
             "ACCESS": 3,
             "CUSTOMERDATA": "",
@@ -3517,6 +3744,16 @@
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
             "SUBSYMBOL_MAPPING": "",
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.UnArmTheCagePB": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::UnArmTheCagePB",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
             "USEMAPPING": true
         },
         "PLC1.Heartbeat.pulse_1Hz": {
@@ -5048,6 +5285,16 @@
             "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
+        "PLC1.Permissives_DB.AllDumpRelayOpen": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::Permissives_DB::AllDumpRelayOpen",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
         "PLC1.Permissives_DB.CageInterlockOK": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -5556,6 +5803,26 @@
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
             "SUBSYMBOL_MAPPING": "",
+            "USEMAPPING": true
+        },
+        "PLC1.VoltMonitor_DB.CapRaw.0": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::VoltMonitor_DB::CapRaw[0]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/UINT"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.VoltMonitor_DB.CapRawBIT": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::VoltMonitor_DB::CapRawBIT",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/STRING%2880%29"
+            },
             "USEMAPPING": true
         },
         "RefreshDefinitions": {
@@ -6938,12 +7205,21 @@
                 "PLC1.ChargeTime_DB.ChargeTimeStartDelay.3": 3,
                 "PLC1.ChargeTime_DB.ChargeTimeStartDelay.4": 3,
                 "PLC1.ChargeTime_DB.ChargeTimeStartDelay.5": 3,
+                "PLC1.ChargeTime_DB.ChargerDelay_ET.0": 3,
                 "PLC1.ChargeTime_DB.ChargingTimeElapse.0": 3,
                 "PLC1.ChargeTime_DB.ChargingTimeElapse.1": 3,
                 "PLC1.ChargeTime_DB.ChargingTimeElapse.2": 3,
                 "PLC1.ChargeTime_DB.ChargingTimeElapse.3": 3,
                 "PLC1.ChargeTime_DB.ChargingTimeElapse.4": 3,
                 "PLC1.ChargeTime_DB.ChargingTimeElapse.5": 3,
+                "PLC1.ChargeTime_DB.LongestChargeTime_ET": 3,
+                "PLC1.HMI.ChargeGraphTMR_ET": 3,
+                "PLC1.HMI.ChargeGraphTMR_PT": 3,
+                "PLC1.HMI.LastTimeShot": 3,
+                "PLC1.HMI.LastTimeShotTMR_ET": 3,
+                "PLC1.HMI.LastTimeShotTMR_REAL": 3,
+                "PLC1.HMI.LongestChargeTIME": 3,
+                "PLC1.HMI.SysCLK.CDT": 3,
                 "PLC1.HMI_DB.AbortPB": 3,
                 "PLC1.HMI_DB.AllChargeRelayCloseBP": 3,
                 "PLC1.HMI_DB.AllDumpRelaysOpenBP": 3,
@@ -6965,32 +7241,39 @@
                 "PLC1.HMI_DB.TDKLoad.0.PSratedV": 3,
                 "PLC1.HMI_DB.TDKLoad.0.RequiredChargedV": 3,
                 "PLC1.HMI_DB.TDKLoad.0.TotalCapacitance": 3,
+                "PLC1.HMI_DB.TDKLoad.0.eChargerType": 3,
                 "PLC1.HMI_DB.TDKLoad.0.wLCA": 3,
                 "PLC1.HMI_DB.TDKLoad.1.NumOfCharger": 3,
                 "PLC1.HMI_DB.TDKLoad.1.PSratedV": 3,
                 "PLC1.HMI_DB.TDKLoad.1.RequiredChargedV": 3,
                 "PLC1.HMI_DB.TDKLoad.1.TotalCapacitance": 3,
+                "PLC1.HMI_DB.TDKLoad.1.eChargerType": 3,
                 "PLC1.HMI_DB.TDKLoad.1.wLCA": 3,
                 "PLC1.HMI_DB.TDKLoad.2.NumOfCharger": 3,
                 "PLC1.HMI_DB.TDKLoad.2.PSratedV": 3,
                 "PLC1.HMI_DB.TDKLoad.2.RequiredChargedV": 3,
                 "PLC1.HMI_DB.TDKLoad.2.TotalCapacitance": 3,
+                "PLC1.HMI_DB.TDKLoad.2.eChargerType": 3,
                 "PLC1.HMI_DB.TDKLoad.2.wLCA": 3,
                 "PLC1.HMI_DB.TDKLoad.3.NumOfCharger": 3,
                 "PLC1.HMI_DB.TDKLoad.3.PSratedV": 3,
                 "PLC1.HMI_DB.TDKLoad.3.RequiredChargedV": 3,
                 "PLC1.HMI_DB.TDKLoad.3.TotalCapacitance": 3,
+                "PLC1.HMI_DB.TDKLoad.3.eChargerType": 3,
                 "PLC1.HMI_DB.TDKLoad.3.wLCA": 3,
                 "PLC1.HMI_DB.TDKLoad.4.NumOfCharger": 3,
                 "PLC1.HMI_DB.TDKLoad.4.PSratedV": 3,
                 "PLC1.HMI_DB.TDKLoad.4.RequiredChargedV": 3,
                 "PLC1.HMI_DB.TDKLoad.4.TotalCapacitance": 3,
+                "PLC1.HMI_DB.TDKLoad.4.eChargerType": 3,
                 "PLC1.HMI_DB.TDKLoad.4.wLCA": 3,
                 "PLC1.HMI_DB.TDKLoad.5.NumOfCharger": 3,
                 "PLC1.HMI_DB.TDKLoad.5.PSratedV": 3,
                 "PLC1.HMI_DB.TDKLoad.5.RequiredChargedV": 3,
                 "PLC1.HMI_DB.TDKLoad.5.TotalCapacitance": 3,
+                "PLC1.HMI_DB.TDKLoad.5.eChargerType": 3,
                 "PLC1.HMI_DB.TDKLoad.5.wLCA": 3,
+                "PLC1.HMI_DB.UnArmTheCagePB": 3,
                 "PLC1.Heartbeat.pulse_1Hz": 3,
                 "PLC1.Heartbeat.screen_refresh_pulse": 3,
                 "PLC1.LCP1_IO.Segment.0.Module.0.ChargeRly_close": 3,
@@ -7091,6 +7374,7 @@
                 "PLC1.Permissives.ChargerVBelowThres": 3,
                 "PLC1.Permissives.SystemIsSafe": 3,
                 "PLC1.Permissives_DB.AllChargerEOC": 3,
+                "PLC1.Permissives_DB.AllDumpRelayOpen": 3,
                 "PLC1.Permissives_DB.CageInterlockOK": 3,
                 "PLC1.Sequence.ChargeTimeFinished": 3,
                 "PLC1.Sequence.eState": 3,
@@ -7125,6 +7409,8 @@
                 "PLC1.Setpoints.TDKLoad.5.TotalCapacitance": 3,
                 "PLC1.Setpoints.TDKLoad.5.wLCA": 3,
                 "PLC1.Trips_DB.TimerRunOutON": 3,
+                "PLC1.VoltMonitor_DB.CapRaw.0": 3,
+                "PLC1.VoltMonitor_DB.CapRawBIT": 3,
                 "SetLocale": 3,
                 "SubscribeEvents": 3,
                 "TcHmiEventLogger.Diagnostics": 1,

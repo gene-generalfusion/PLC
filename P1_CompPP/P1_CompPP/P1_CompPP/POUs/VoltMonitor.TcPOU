@@ -11,8 +11,9 @@ VAR
 	b2 : BOOL;
 	b3 : BOOL;
 	pause : BOOL;
-	
-
+	VMBoardWDT_TON : TON;
+	VMBoardWDT_PT	: TIME := T#5S;
+	VMBoardWDT_ET	: TIME;
 	
 END_VAR
 ]]></Declaration>
@@ -42,7 +43,7 @@ b[3] := 0; //VoltMonitor_DB.Channel.3;
 //VoltMonitor_DB.VoltageReading_raw[0] := VoltMonitor_DB.CapRaw; //STRING_TO_INT (VoltMonitor_DB.CapRaw_Str);
 FOR k := 0 TO 24 BY 1 DO
 	
-	IF Input.B170357_CapRaw[k] <> 0 THEN
+	//IF Input.B170357_CapRaw[k] <> 0 THEN
 		VoltMonitor_DB.VoltageReading_raw[k].0 := VoltMonitor_DB.CapRaw[k].2;
 		VoltMonitor_DB.VoltageReading_raw[k].1 := VoltMonitor_DB.CapRaw[k].3;
 		VoltMonitor_DB.VoltageReading_raw[k].2 := VoltMonitor_DB.CapRaw[k].4;
@@ -64,13 +65,25 @@ FOR k := 0 TO 24 BY 1 DO
 	
 		VoltMonitor_DB.VoltageReading_raw[k].15 := 0;//VoltMonitor_DB.CapRaw.4;
 		VoltMonitor_DB.CapRaw_DummySnap[k] := Input.B170357_CapRaw[k];//VoltMonitor_DB.VoltageReading_raw[0];
-		ELSE
+		//ELSE
 			//VoltMonitor_DB.VoltageReading_raw[k] := 0;
 			//VoltMonitor_DB.CapRaw_DummySnap[k] := 0;
-	END_IF
+	//END_IF
 	
 END_FOR
 
+IF VoltMonitor_DB.CapRaw[0] = 0 THEN 
+	VMBoardWDT_TON (IN := TRUE, PT := VMBoardWDT_PT, ET => VMBoardWDT_ET);
+	ELSE 
+		VMBoardWDT_TON (IN := FALSE);
+END_IF
+
+IF VMBoardWDT_TON.Q THEN 
+	VoltMonitor_DB.LossVoltMonitorBoard := TRUE;
+END_IF
+
+//VoltMonitor_DB.CapRawBIT := WORD_TO_HEXSTR ( UINT_TO_WORD( VoltMonitor_DB.CapRaw[0] ), iPrecision := 16, bLoCase := FALSE);
+VoltMonitor_DB.CapRawBIT := BYTE_TO_BINSTR( UINT_TO_BYTE( VoltMonitor_DB.CapRaw[0] ), iPrecision := 16);
 //missedCTU.PV := 10000;
 //missedCTU.RESET := FALSE;
 
@@ -93,9 +106,9 @@ CounterUP();
 
 //missingCNT := missedCTU.CV;
 
-IF pause = TRUE THEN
-	VoltMonitor_DB.VoltageReading_raw[0] := 0;
-END_IF;
+//IF pause = TRUE THEN
+//	VoltMonitor_DB.VoltageReading_raw[0] := 0;
+//END_IF;
 
 IF i > 16 THEN 
 	i := 0;
@@ -143,7 +156,17 @@ END_IF]]></ST>
       <LineId Id="121" Count="0" />
       <LineId Id="225" Count="0" />
       <LineId Id="177" Count="0" />
+      <LineId Id="292" Count="0" />
+      <LineId Id="291" Count="0" />
+      <LineId Id="297" Count="0" />
+      <LineId Id="299" Count="1" />
+      <LineId Id="298" Count="0" />
+      <LineId Id="302" Count="0" />
       <LineId Id="253" Count="0" />
+      <LineId Id="303" Count="1" />
+      <LineId Id="306" Count="0" />
+      <LineId Id="305" Count="0" />
+      <LineId Id="322" Count="0" />
       <LineId Id="234" Count="0" />
       <LineId Id="260" Count="0" />
       <LineId Id="254" Count="0" />

@@ -11,9 +11,9 @@ VAR_GLOBAL
 	VoltageReading	: ARRAY[0..15] OF REAL;
 	LoadMaxRatedV	: REAL := 13800; //-2k TO 35kV
 	LoadMinRatedV	: REAL := -1450; //Jake's lab result
-	
+//***************************************
 	CapRaw : ARRAY[0..24] OF UINT;
-	CapRawBIT : UINT;
+	CapRawBIT : STRING;
 	CapRaw_DummySnap : ARRAY[0..24] OF UINT;
 	CapRaw_Str: STRING;
 	BatteryLevel : BOOL;
@@ -22,7 +22,8 @@ VAR_GLOBAL
 	missedCTU : CTU;
 	//ONS	: R_TRIG;
 	missingCNT : WORD :=0;
-	
+	LossVoltMonitorBoard : BOOL := 0;
+//**********************************	
 	Time1		: TON;
 	Time1_ET	: TIME;
 	packetsPerMin : REAL;

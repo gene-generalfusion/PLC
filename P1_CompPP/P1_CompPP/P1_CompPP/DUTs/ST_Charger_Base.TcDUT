@@ -31,9 +31,9 @@ STRUCT
 	voltageSP_raw	: INT; // setpoint output to field device.
 	
 	//Internal
-	ChargerType_50kV : BOOL;
-	ChargerType_30kV : BOOL;
-	ChargerType_12kV : BOOL;
+	//ChargerType_50kV : BOOL;
+	//ChargerType_30kV : BOOL;
+	//ChargerType_12kV : BOOL;
 	ChargerType		 : INT;
 	LossInhibit		 : BOOL;
 	LossHVON		 : BOOL;
