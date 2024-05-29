@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <GVL Name="VoltMonitor_DB" Id="{860f77a6-4bc2-402b-92d3-cf7c77cd35cf}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	Heartbeat : BOOL;
+	BateryOn  : BOOL;
+	//Channel	: USINT; //ST_AnalogCHSelection;
+	VoltageReading_raw : ARRAY[0..24] OF INT; //custom board
+	VoltageReading_norm : ARRAY[0..24] OF REAL;
+	//VoltageReading	: ARRAY[0..15] OF REAL;
+	//LoadMaxRatedV	: REAL := 13800; //-2k TO 35kV
+	//LoadMinRatedV	: REAL := -1450; //Jake's lab result
+//***************************************
+	CapRaw : ARRAY[0..24] OF UINT;
+	CapRawBIT : STRING;
+	CapRaw_DummySnap : ARRAY[0..24] OF UINT;
+	CapRaw_Str: STRING;
+	BatteryLevel : BOOL;
+	
+	//cunter for missing packets
+	missedCTU : CTU;
+	//ONS	: R_TRIG;
+	missingCNT : WORD :=0;
+	LossVoltMonitorBoard : BOOL := 0;
+//**********************************	
+	Time1		: TON;
+	Time1_ET	: TIME;
+	packetsPerMin : REAL;
+	//missedCTU : CTU;
+	ONS	: R_TRIG;
+	//missingCNT : WORD;
+	missingCNT_REAL : REAL;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

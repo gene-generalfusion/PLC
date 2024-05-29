@@ -11,10 +11,13 @@ END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[//MCP Charger 
 //Analog Input
+FOR i := 1 TO 6 BY 1 DO 
+	//MCP_IO.Charger[i].voltageSP := (HMI_DB.TDKLoad[i].RequiredChargedV *1000);
+	MCP_IO.Charger[i].voltageSP := (1000*Setpoints.TDKLoad[i].RequiredChargedV);
+END_FOR
 
+//AI
 FOR i := 1 TO 6 BY 1 DO
-	
-	MCP_IO.Charger[i].ChargerType_12kV := NOT MCP_IO.Charger[i].ChargerType_50kV;
 	//voltage
 	MCP_IO.Charger[i].voltageFeedback_norm := Norm_x (raw_input := INT_TO_REAL (MCP_IO.Charger[i].voltageFeedback_raw),
 														x_max := 32767,
@@ -25,7 +28,7 @@ FOR i := 1 TO 6 BY 1 DO
 														x_min := 0);
 	//50kV chargers feedback
 	//if 50kV config selected
-	IF MCP_IO.Charger[i].ChargerType_50kV = TRUE THEN 
+	IF MCP_IO.Charger[i].ChargerType = E_ChargerType.TDK50kV THEN 
 		//50kv
 		MCP_IO.Charger[i].voltageFeedback := (EngVal.Max_50kVChargerVoltage - EngVal.Min_50kVChargerVoltage) * ADC_10V(
 																							normal_input := MCP_IO.Charger[i].voltageFeedback_norm,
@@ -37,7 +40,7 @@ FOR i := 1 TO 6 BY 1 DO
 																							x_max := 10,
 																							x_min := 0);
 		//12kv
-	ELSIF MCP_IO.Charger[i].ChargerType_12kV = TRUE THEN
+	ELSIF MCP_IO.Charger[i].ChargerType = E_ChargerType.TDK12kV THEN
 		MCP_IO.Charger[i].voltageFeedback := (EngVal.Max_12kVChargerVoltage - EngVal.Min_12kVChargerVoltage) * ADC_10V(
 																							normal_input := MCP_IO.Charger[i].voltageFeedback_norm,
 																							x_max := 10,
@@ -45,7 +48,17 @@ FOR i := 1 TO 6 BY 1 DO
 		MCP_IO.Charger[i].currentFeedback := (EngVal.Max_12kVChargerCurrent - EngVal.Min_12kVChargerCurrent) * ADC_10V(
 																							normal_input := MCP_IO.Charger[i].currentFeedback_norm,
 																							x_max := 10,
-																							x_min := 0);										
+																							x_min := 0);	
+	ELSIF MCP_IO.Charger[i].ChargerType = E_ChargerType.TDK30kV THEN
+		MCP_IO.Charger[i].voltageFeedback := (EngVal.Max_30kVChargerVoltage - EngVal.Min_30kVChargerVoltage) * ADC_10V(
+																							normal_input := MCP_IO.Charger[i].voltageFeedback_norm,
+																							x_max := 10,
+																							x_min := 0);														
+		// 30kV charger max current output is 0.6A													
+		MCP_IO.Charger[i].currentFeedback := (EngVal.Max_30kVChargerCurrent - EngVal.Min_30kVChargerCurrent) * ADC_10V(
+																							normal_input := MCP_IO.Charger[i].currentFeedback_norm,
+																							x_max := 10,
+																							x_min := 0);							
 	END_IF;	
 END_FOR;
 
@@ -56,7 +69,7 @@ END_FOR;
 FOR i := 1 TO 6 BY 1 DO	
 	
 	//if 50kV config selected
-	IF MCP_IO.Charger[i].ChargerType_50kV = TRUE THEN 
+	IF MCP_IO.Charger[i].ChargerType = E_ChargerType.TDK50kV THEN 
 		//set limits of charger voltage input 
 		IF MCP_IO.Charger[i].voltageSP >= (EngVal.UpperLimit50kVCaps) THEN
 			MCP_IO.Charger[i].voltageSP := 35000; //limit at 35kV
@@ -64,49 +77,47 @@ FOR i := 1 TO 6 BY 1 DO
 			MCP_IO.Charger[i].voltageSP := 0; //limit at 0V
 		END_IF; 
 		
-		(*//set limites of charger voltage input from HMI input
-		IF 1000*(Setpoints.TDKLoad[i].RequiredChargedV) >= EngVal.UpperLimit50kVCaps THEN
-			Setpoints.TDKLoad[i].RequiredChargedV := (EngVal.UpperLimit50kVCaps/1000); //limit at 35kv
-		ELSIF Setpoints.TDKLoad[i].RequiredChargedV <= 0 THEN
-			Setpoints.TDKLoad[i].RequiredChargedV :=0 ;
-		END_IF*)
-		
-	//prepare output signal for 50kV chargers.
-		MCP_IO.Charger[i].voltageSP_norm := Norm_x (raw_input := (MCP_IO.Charger[i].voltageSP), 
+		//prepare output signal for 50kV chargers.
+		MCP_IO.Charger[i].voltageSP_norm := Norm_x (raw_input :=(MCP_IO.Charger[i].voltageSP), 
 												x_max := EngVal.Max_50kVChargerVoltage,
 												x_min := EngVal.Min_50kVChargerVoltage);	
 												
 		MCP_IO.Charger[i].voltageSP_raw := AQ (norm_input := MCP_IO.Charger[i].voltageSP_norm, 
 												x_max := 10,
 												x_min := 0);
-	END_IF;
-		
-	//if 12kV config selected
-	IF MCP_IO.Charger[i].ChargerType_12kV = TRUE THEN
+												
+	ELSIF MCP_IO.Charger[i].ChargerType = E_ChargerType.TDK12kV THEN 
 		//set limits of charger voltage input 
-		IF MCP_IO.Charger[i].voltageSP <= 0 THEN
-			MCP_IO.Charger[i].voltageSP := ABS(MCP_IO.Charger[i].voltageSP);
-		END_IF
-		
 		IF MCP_IO.Charger[i].voltageSP >= (EngVal.UpperLimit12kVCaps) THEN
-			MCP_IO.Charger[i].voltageSP := 10000; //limit at 10kV
-		END_IF;
+			MCP_IO.Charger[i].voltageSP := 10500; //limit at 35kV
+		ELSIF MCP_IO.Charger[i].voltageSP <= 0 THEN
+			MCP_IO.Charger[i].voltageSP := ABS(MCP_IO.Charger[i].voltageSP); //limit at 0V
+		END_IF; 
 		
-		//set limites of charger voltage input from HMI input
-		(*IF 1000*(Setpoints.TDKLoad[i].RequiredChargedV) >= EngVal.UpperLimit12kVCaps THEN
-			Setpoints.TDKLoad[i].RequiredChargedV := EngVal.UpperLimit12kVCaps/1000; //limit at 10kv
-		ELSIF Setpoints.TDKLoad[i].RequiredChargedV <= 0 THEN
-			Setpoints.TDKLoad[i].RequiredChargedV := ABS(Setpoints.TDKLoad[i].RequiredChargedV);
-		END_IF
-		*)
-		//prepare output signal for 12kV chargers.  //**Setpoints.RequiredChargedV -> MCP_IO.Charger.voltageSP **
-		MCP_IO.Charger[i].voltageSP_norm := Norm_x (raw_input := (MCP_IO.Charger[i].voltageSP), 
+		//prepare output signal for 50kV chargers.
+		MCP_IO.Charger[i].voltageSP_norm := Norm_x (raw_input :=(MCP_IO.Charger[i].voltageSP), 
 												x_max := EngVal.Max_12kVChargerVoltage,
-												x_min := EngVal.Min_12kVChargerVoltage);
-		
+												x_min := EngVal.Min_12kVChargerVoltage);	
+												
 		MCP_IO.Charger[i].voltageSP_raw := AQ (norm_input := MCP_IO.Charger[i].voltageSP_norm, 
 												x_max := 10,
-												x_min := 0); 
+												x_min := 0);
+	
+	ELSIF MCP_IO.Charger[i].ChargerType = E_ChargerType.TDK30kV THEN 		
+		//set limits of charger voltage input 
+		IF MCP_IO.Charger[i].voltageSP >= (EngVal.UpperLimit12kVCaps) THEN
+			MCP_IO.Charger[i].voltageSP := 10500; //limit at 35kV
+		ELSIF MCP_IO.Charger[i].voltageSP <= 0 THEN
+			MCP_IO.Charger[i].voltageSP := ABS(MCP_IO.Charger[i].voltageSP); //limit at 0V
+		END_IF;
+		//prepare output signal for 30kV chargers.
+		MCP_IO.Charger[i].voltageSP_norm := Norm_x (raw_input :=(MCP_IO.Charger[i].voltageSP), 
+												x_max := EngVal.Max_30kVChargerVoltage,
+												x_min := EngVal.Min_30kVChargerVoltage);	
+												
+		MCP_IO.Charger[i].voltageSP_raw := AQ (norm_input := MCP_IO.Charger[i].voltageSP_norm, 
+												x_max := 10,
+												x_min := 0);
 	END_IF;	
 												
 	//limite for output sigal (<= 10V)  this should not happen
@@ -116,6 +127,19 @@ FOR i := 1 TO 6 BY 1 DO
 	
 END_FOR;
 
+//Cap voltage feedback
+
+//can also add a range of x samples for self calibrating **note: normalized range needs to be calibrated for each board
+VoltMonitor_DB.VoltageReading_norm[0] := Norm_x (raw_input := INT_TO_REAL (VoltMonitor_DB.VoltageReading_raw[0]),
+													x_max := 904, //10bit value - 1110001000 = 904deci
+													x_min := 100); //100deci is the zero of range -1.61 to 12.01
+LCP1_IO.Segment[1].Module[1].VoltageFeedback := (12010 - 0) * ADC_10V(normal_input := VoltMonitor_DB.VoltageReading_norm[0],
+																		x_max := 12.01,
+																		x_min := 0); //use zero, it will cal for the -ve	
+
+IF VoltageMonitor.DataNull = TRUE THEN
+	LCP1_IO.Segment[1].Module[1].VoltageFeedback := NULL;	//change from int to string												
+END_IF;
 
 //reset counter
 //IF i > 8 THEN
@@ -138,76 +162,19 @@ END_IF]]></ST>
     <LineIds Name="AnalogConversion">
       <LineId Id="80" Count="0" />
       <LineId Id="254" Count="0" />
+      <LineId Id="688" Count="2" />
       <LineId Id="654" Count="0" />
-      <LineId Id="646" Count="0" />
-      <LineId Id="537" Count="1" />
-      <LineId Id="616" Count="0" />
-      <LineId Id="610" Count="1" />
-      <LineId Id="609" Count="0" />
-      <LineId Id="613" Count="2" />
-      <LineId Id="612" Count="0" />
-      <LineId Id="478" Count="0" />
-      <LineId Id="593" Count="1" />
-      <LineId Id="617" Count="0" />
-      <LineId Id="261" Count="0" />
-      <LineId Id="263" Count="0" />
-      <LineId Id="262" Count="0" />
-      <LineId Id="255" Count="0" />
-      <LineId Id="269" Count="3" />
-      <LineId Id="265" Count="0" />
-      <LineId Id="618" Count="0" />
-      <LineId Id="479" Count="0" />
-      <LineId Id="602" Count="3" />
-      <LineId Id="619" Count="2" />
-      <LineId Id="606" Count="0" />
-      <LineId Id="597" Count="0" />
+      <LineId Id="691" Count="44" />
       <LineId Id="256" Count="0" />
       <LineId Id="233" Count="1" />
       <LineId Id="548" Count="0" />
       <LineId Id="573" Count="0" />
       <LineId Id="292" Count="0" />
-      <LineId Id="357" Count="0" />
-      <LineId Id="661" Count="0" />
-      <LineId Id="507" Count="0" />
-      <LineId Id="293" Count="0" />
-      <LineId Id="580" Count="4" />
-      <LineId Id="566" Count="0" />
-      <LineId Id="668" Count="0" />
-      <LineId Id="672" Count="0" />
-      <LineId Id="669" Count="1" />
-      <LineId Id="673" Count="1" />
-      <LineId Id="671" Count="0" />
-      <LineId Id="509" Count="0" />
-      <LineId Id="523" Count="2" />
-      <LineId Id="513" Count="0" />
-      <LineId Id="526" Count="0" />
-      <LineId Id="528" Count="1" />
-      <LineId Id="527" Count="0" />
-      <LineId Id="510" Count="1" />
-      <LineId Id="296" Count="1" />
-      <LineId Id="516" Count="0" />
-      <LineId Id="562" Count="1" />
-      <LineId Id="561" Count="0" />
-      <LineId Id="564" Count="0" />
-      <LineId Id="515" Count="0" />
-      <LineId Id="311" Count="0" />
-      <LineId Id="559" Count="0" />
-      <LineId Id="675" Count="0" />
-      <LineId Id="677" Count="4" />
-      <LineId Id="676" Count="0" />
-      <LineId Id="519" Count="0" />
-      <LineId Id="530" Count="2" />
-      <LineId Id="520" Count="1" />
-      <LineId Id="533" Count="1" />
-      <LineId Id="522" Count="0" />
-      <LineId Id="517" Count="0" />
-      <LineId Id="334" Count="0" />
-      <LineId Id="327" Count="0" />
-      <LineId Id="329" Count="0" />
-      <LineId Id="332" Count="0" />
-      <LineId Id="328" Count="0" />
-      <LineId Id="355" Count="0" />
+      <LineId Id="736" Count="59" />
       <LineId Id="300" Count="0" />
+      <LineId Id="802" Count="8" />
+      <LineId Id="819" Count="0" />
+      <LineId Id="811" Count="1" />
       <LineId Id="624" Count="0" />
       <LineId Id="151" Count="1" />
       <LineId Id="150" Count="0" />

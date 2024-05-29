@@ -240,6 +240,11 @@ VAR_GLOBAL
 	R3_05_05 AT %I*: BOOL; 
 	R3_05_06 AT %I*: BOOL; 
 	R3_05_07 AT %I*: BOOL; 
+	
+	//Ethercat Device Voltage - subject to change because the VM board is still under development
+	B170357_CapRaw AT %I* : ARRAY[0..24] OF UINT;
+	B170357_BatLevel AT %I* : BOOL;
+	B170357_Heartbeat AT %I* : BOOL;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

@@ -8,8 +8,9 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[//R1 : MCP**  
-	//DI
 	
+//INPUT
+	//DI	
 	MCP_IO.EStopPB_NotPressed					:= Input.R1_01_00;  //NC - 
 	MCP_IO.DoorSWclose							:= Input.R1_01_01;  
 	MCP_IO.ShortContactClose					:= Input.R1_01_02; 
@@ -17,9 +18,7 @@ END_VAR
 	//MCP_IO.MachineGNDrlyOpen					:= Input.R1_01_04; // machine ground lifted (opto board)	
 	//MCP_IO.CloseAllChargeRlyCommand				:= Input.R1_01_05; // command from screen room (opto) - Slim only
 	//MCP_IO.OpenAllDumpRelayCommand				:= Input.R1_01_06; // command from screen room (opto) - slim only
-	
-	
-	//INPUT
+
 	//DI
 	MCP_IO.Charger[1].inhibited					:= NOT Input.R1_02_00; //TDK802 1 NC for all feedback esaigeean
 	MCP_IO.Charger[1].EndOfCharge				:= NOT Input.R1_02_01; //TDK802 1
@@ -33,20 +32,21 @@ END_VAR
 	LCP1_IO.Segment[1].Module[1].DumpRly_open	 := NOT Input.R1_02_05;
 	
 	//EL3068 - AI
-	MCP_IO.Charger[1].voltageFeedback_raw		:= Input.R1_04_00;
-	MCP_IO.Charger[1].currentFeedback_raw		:= Input.R1_04_01;
+	MCP_IO.Charger[1].voltageFeedback_raw		:= Input.R1_08_00;
+	MCP_IO.Charger[1].currentFeedback_raw		:= Input.R1_08_01;
+	
 	//OUTPUT
 	//DQ
-	Output.R1_03_00								:= MCP_IO.Charger[1].inhibit;
-	Output.R1_03_01								:= MCP_IO.Charger[1].HV_ON;
-	Output.R1_03_02								:= LCP1_IO.Segment[1].Module[1].CloseChargeRly;
-	Output.R1_03_03								:= LCP1_IO.Segment[1].Module[1].OpenDumpRly;
-	Output.R1_03_04								:= LCP1_IO.Segment[1].Module[1].Fire;
-	Output.R1_03_05								:= LCP1_IO.Segment[1].Module[1].TriggerScope;
-	Output.R1_03_06								:= MCP_IO.EnergizeACKontactor;
-	Output.R1_03_07								:= LCP1_IO.Segment[1].Module[1].ModuleCharged;
+	Output.R1_06_00								:= MCP_IO.Charger[1].inhibit;
+	Output.R1_06_01								:= MCP_IO.Charger[1].HV_ON;
+	Output.R1_06_02								:= LCP1_IO.Segment[1].Module[1].CloseChargeRly;
+	Output.R1_06_03								:= LCP1_IO.Segment[1].Module[1].OpenDumpRly;
+	Output.R1_06_04								:= LCP1_IO.Segment[1].Module[1].Fire;
+	Output.R1_06_05								:= LCP1_IO.Segment[1].Module[1].TriggerScope;
+	Output.R1_06_06								:= MCP_IO.EnergizeACKontactor;
+	Output.R1_06_07								:= LCP1_IO.Segment[1].Module[1].ModuleCharged;
 	//AQ
-	Output.R1_05_00								:= MCP_IO.Charger[1].voltageSP_raw;
+	Output.R1_09_00								:= MCP_IO.Charger[1].voltageSP_raw;
 	
 	//Cap voltage monitor feedback is at VoltMonitor
 	VoltMonitor_DB.CapRaw[0] 					:= Input.B170357_CapRaw[0]; 
@@ -55,7 +55,7 @@ END_VAR
 	END_FOR
 	
 IF i > 24 THEN
-	i := 0;
+	i := 1; // make it to 0
 END_IF
 	
 //*************************************************************************************************************	
@@ -63,11 +63,10 @@ END_IF
     </Implementation>
     <LineIds Name="Alias">
       <LineId Id="14" Count="1" />
-      <LineId Id="391" Count="0" />
+      <LineId Id="450" Count="1" />
       <LineId Id="17" Count="3" />
       <LineId Id="51" Count="1" />
-      <LineId Id="378" Count="1" />
-      <LineId Id="410" Count="0" />
+      <LineId Id="378" Count="0" />
       <LineId Id="412" Count="0" />
       <LineId Id="411" Count="0" />
       <LineId Id="60" Count="0" />
@@ -81,6 +80,7 @@ END_IF
       <LineId Id="402" Count="0" />
       <LineId Id="58" Count="0" />
       <LineId Id="406" Count="0" />
+      <LineId Id="452" Count="0" />
       <LineId Id="408" Count="0" />
       <LineId Id="415" Count="0" />
       <LineId Id="409" Count="0" />

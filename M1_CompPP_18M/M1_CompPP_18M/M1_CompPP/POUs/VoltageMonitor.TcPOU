@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="VoltageMonitor" Id="{b1c07060-731f-40a5-b605-19acb84a399f}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM VoltageMonitor
+VAR
+	i : USINT := 0;
+	k : USINT := 0;
+	counter : USINT := 0;
+	b : ARRAY[0..3] OF BOOL;
+	b1 : BOOL;
+	b2 : BOOL;
+	b3 : BOOL;
+	pause : BOOL;
+	VMBoardWDT_TON : TON;
+	VMBoardWDT_PT	: TIME := T#2S;
+	VMBoardWDT_ET	: TIME;
+	DataNull	: BOOL := 0;
+	DataNullRebunceTMR_TON : TON;
+	DataNullRebounce_PT	: TIME := T#800MS;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[FOR k := 0 TO 24 BY 1 DO //0 - 1 two channels only
+	
+	//IF Input.B170357_CapRaw[k] <> 0 THEN
+		VoltMonitor_DB.VoltageReading_raw[k].0 := VoltMonitor_DB.CapRaw[k].2;
+		VoltMonitor_DB.VoltageReading_raw[k].1 := VoltMonitor_DB.CapRaw[k].3;
+		VoltMonitor_DB.VoltageReading_raw[k].2 := VoltMonitor_DB.CapRaw[k].4;
+		VoltMonitor_DB.VoltageReading_raw[k].3 := VoltMonitor_DB.CapRaw[k].5;
+	
+		VoltMonitor_DB.VoltageReading_raw[k].4 := VoltMonitor_DB.CapRaw[k].6;
+		VoltMonitor_DB.VoltageReading_raw[k].5 := VoltMonitor_DB.CapRaw[k].7;
+		VoltMonitor_DB.VoltageReading_raw[k].6 := VoltMonitor_DB.CapRaw[k].8;
+		VoltMonitor_DB.VoltageReading_raw[k].7 := VoltMonitor_DB.CapRaw[k].9;
+	
+		VoltMonitor_DB.VoltageReading_raw[k].8 := VoltMonitor_DB.CapRaw[k].10;
+		VoltMonitor_DB.VoltageReading_raw[k].9 := VoltMonitor_DB.CapRaw[k].11;
+	
+		VoltMonitor_DB.VoltageReading_raw[k].10 := 0;//VoltMonitor_DB.CapRaw.14;
+		VoltMonitor_DB.VoltageReading_raw[k].11 := 0;//VoltMonitor_DB.CapRaw.15;
+		VoltMonitor_DB.VoltageReading_raw[k].12 := 0;//VoltMonitor_DB.CapRaw.12;
+		VoltMonitor_DB.VoltageReading_raw[k].13 := 0;//VoltMonitor_DB.CapRaw.13;
+		VoltMonitor_DB.VoltageReading_raw[k].14 := 0; //VoltMonitor_DB.CapRaw.14;
+	
+		VoltMonitor_DB.VoltageReading_raw[k].15 := 0;//VoltMonitor_DB.CapRaw.4;
+		//VoltMonitor_DB.CapRaw_DummySnap[k] := Input.B170357_CapRaw[k];//VoltMonitor_DB.VoltageReading_raw[0];
+		//ELSE
+		//	VoltMonitor_DB.VoltageReading_raw[k] := ULINT_TO_INT(NULL);
+			//VoltMonitor_DB.CapRaw_DummySnap[k] := 0;
+	//END_IF
+	
+END_FOR
+
+IF VoltMonitor_DB.CapRaw[0] = 0 THEN 
+	VMBoardWDT_TON (IN := TRUE, PT := VMBoardWDT_PT, ET => VMBoardWDT_ET);
+	ELSE 
+		VMBoardWDT_TON (IN := FALSE);
+END_IF
+
+IF VMBoardWDT_TON.Q THEN 
+	VoltMonitor_DB.LossVoltMonitorBoard := TRUE;
+END_IF
+
+IF DataNull = TRUE THEN
+	VoltMonitor_DB.VoltageReading_raw[0] := ULINT_TO_INT(NULL);
+END_IF
+
+IF VoltMonitor_DB.LossVoltMonitorBoard = TRUE THEN
+	DataNullRebunceTMR_TON( IN := TRUE, PT := DataNullRebounce_PT);
+END_IF
+
+IF DataNullRebunceTMR_TON.Q = TRUE THEN
+	DataNull := FALSE;
+	DataNullRebunceTMR_TON( IN := FALSE);
+END_IF
+
+//VoltMonitor_DB.CapRawBIT := WORD_TO_HEXSTR ( UINT_TO_WORD( VoltMonitor_DB.CapRaw[0] ), iPrecision := 16, bLoCase := FALSE);
+//VoltMonitor_DB.CapRawBIT := BYTE_TO_BINSTR( UINT_TO_BYTE( VoltMonitor_DB.CapRaw[0] ), iPrecision := 16);
+
+IF i > 16 THEN 
+	i := 0;
+END_IF
+
+IF k > 24 THEN 
+	k := 0;
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="VoltageMonitor">
+      <LineId Id="20" Count="39" />
+      <LineId Id="87" Count="11" />
+      <LineId Id="60" Count="0" />
+      <LineId Id="99" Count="0" />
+      <LineId Id="61" Count="0" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="63" Count="6" />
+      <LineId Id="62" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

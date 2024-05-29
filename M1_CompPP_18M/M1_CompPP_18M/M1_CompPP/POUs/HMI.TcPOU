@@ -3,6 +3,13 @@
   <POU Name="HMI" Id="{dcabf1a6-3ca3-40de-943d-43b2e4fd41d0}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM HMI
 VAR
+	eChargerType : E_ChargerType;
+	
+
+	LongestChargeTIME		: REAL;
+	LastTimeShotLog			: BOOL;
+	
+	i : INT := 1;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -11,6 +18,8 @@ IF HMI_DB.ClearFaultPB = TRUE THEN
 	Trips_DB.ChargedTimerRunout := FALSE;
 	Trips_DB.ChargingTimerRunout := FALSE;
 	Trips_DB.DumpTimerRunout := FALSE;
+	Trips_DB.ChargerSummaryFault := FALSE;
+	Trips_DB.ShortingSystemUnknown := FALSE;
 END_IF
 
 IF Trips_DB.ChargedTimerRunout = TRUE OR 
@@ -22,18 +31,38 @@ IF Trips_DB.ChargedTimerRunout = TRUE OR
 			Trips_DB.TimerRunOutON := FALSE;
 		END_IF
 		
-]]></ST>
+FOR i := 1 TO 6 BY 1 DO 
+	MCP_IO.Charger[i].ChargerType := Setpoints.TDKLoad[i].eChargerType := HMI_DB.TDKLoad[i].eChargerType;
+		
+	IF MCP_IO.Charger[i].ChargerType = E_ChargerType.TDK12kV THEN 
+		HMI_DB.TDKLoad[i].PSratedV := 12;
+		ELSIF MCP_IO.Charger[i].ChargerType = E_ChargerType.TDK30kV THEN
+			HMI_DB.TDKLoad[i].PSratedV := 30;
+		ELSIF MCP_IO.Charger[i].ChargerType = E_ChargerType.TDK50kV THEN
+			HMI_DB.TDKLoad[i].PSratedV := 50;
+	END_IF
+END_FOR;
+
+IF i > 6 THEN 
+	i := 1;
+END_IF]]></ST>
     </Implementation>
     <LineIds Name="HMI">
       <LineId Id="5" Count="0" />
       <LineId Id="9" Count="0" />
-      <LineId Id="13" Count="0" />
-      <LineId Id="15" Count="1" />
+      <LineId Id="37" Count="3" />
+      <LineId Id="16" Count="0" />
       <LineId Id="14" Count="0" />
       <LineId Id="21" Count="2" />
       <LineId Id="20" Count="0" />
       <LineId Id="24" Count="4" />
-      <LineId Id="32" Count="1" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="41" Count="0" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="55" Count="0" />
+      <LineId Id="66" Count="0" />
+      <LineId Id="56" Count="9" />
+      <LineId Id="54" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

@@ -2,6 +2,15 @@
 <TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.29">
 	<DataTypes>
 		<DataType>
+			<Name GUID="{5044CB06-7724-5056-95AD-1E09DECF3A45}" IecBaseType="true" AutoDeleteType="true">ARRAY [0..24] OF UINT</Name>
+			<BitSize>400</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000005}">UINT</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>25</Elements>
+			</ArrayInfo>
+		</DataType>
+		<DataType>
 			<Name GUID="{1337BBBA-9A3F-D9E7-4ED6-FA23E60881AB}" Namespace="Tc2_Standard" AutoDeleteType="true">TON</Name>
 			<BitSize>256</BitSize>
 			<SubItem>
@@ -813,6 +822,19 @@ EL3068 - AI1]]></Comment>
 							<Name>Input.R3_05_07</Name>
 							<Type>BOOL</Type>
 						</Var>
+						<Var>
+							<Name>Input.B170357_CapRaw</Name>
+							<Comment><![CDATA[Ethercat Device Voltage - subject to change because the VM board is still under development]]></Comment>
+							<Type GUID="{5044CB06-7724-5056-95AD-1E09DECF3A45}">ARRAY [0..24] OF UINT</Type>
+						</Var>
+						<Var>
+							<Name>Input.B170357_BatLevel</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.B170357_Heartbeat</Name>
+							<Type>BOOL</Type>
+						</Var>
 					</Vars>
 					<Vars VarGrpType="2" AreaNo="1">
 						<Name>PlcTask Outputs</Name>
@@ -1061,16 +1083,6 @@ EL2008 - DQ1]]></Comment>
 					<Vars VarGrpType="8" AreaNo="4">
 						<Name>PlcTask Retains</Name>
 						<Var>
-							<Name>ChargeTime_DB.PreFormChargeTimeStartDelay</Name>
-							<Type>INT</Type>
-							<InOut>7</InOut>
-						</Var>
-						<Var>
-							<Name>ChargeTime_DB.PreFormChargeTime_PT</Name>
-							<Type>TIME</Type>
-							<InOut>7</InOut>
-						</Var>
-						<Var>
 							<Name>ChargeTime_DB.ChargerDelay_TON</Name>
 							<Type GUID="{B67C53DE-6A92-5C5B-4076-1B25F1887AC3}">ARRAY [1..6] OF Tc2_Standard.TON</Type>
 							<InOut>7</InOut>
@@ -1097,18 +1109,23 @@ FormChargeTime_ET  : ARRAY[1..2] OF TIME;]]></Comment>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
-							<Name>ChargeTime_DB.PreFormChargeTime_ET</Name>
+							<Name>ChargeTime_DB.PreFormChargeTime_PT</Name>
 							<Type>TIME</Type>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
-							<Name>ChargeTime_DB.LongestChargeTime_PT</Name>
+							<Name>ChargeTime_DB.PreFormChargeTime_ET</Name>
 							<Type>TIME</Type>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
 							<Name>ChargeTime_DB.LongestChargeTime_TON</Name>
 							<Type GUID="{1337BBBA-9A3F-D9E7-4ED6-FA23E60881AB}" Namespace="Tc2_Standard">TON</Type>
+							<InOut>7</InOut>
+						</Var>
+						<Var>
+							<Name>ChargeTime_DB.LongestChargeTime_PT</Name>
+							<Type>TIME</Type>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
@@ -1127,13 +1144,18 @@ FormChargeTime_ET  : ARRAY[1..2] OF TIME;]]></Comment>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
-							<Name>ChargeTime_DB.PreFormChargingTimeElapse</Name>
+							<Name>ChargeTime_DB.ChargingTimeElapse_TON</Name>
+							<Type GUID="{B67C53DE-6A92-5C5B-4076-1B25F1887AC3}">ARRAY [1..6] OF Tc2_Standard.TON</Type>
+							<InOut>7</InOut>
+						</Var>
+						<Var>
+							<Name>ChargeTime_DB.PreFormChargeTimeStartDelay</Name>
 							<Type>INT</Type>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
-							<Name>ChargeTime_DB.ChargingTimeElapse_TON</Name>
-							<Type GUID="{B67C53DE-6A92-5C5B-4076-1B25F1887AC3}">ARRAY [1..6] OF Tc2_Standard.TON</Type>
+							<Name>ChargeTime_DB.PreFormChargingTimeElapse</Name>
+							<Type>INT</Type>
 							<InOut>7</InOut>
 						</Var>
 						<Var>

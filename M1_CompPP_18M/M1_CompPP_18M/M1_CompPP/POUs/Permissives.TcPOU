@@ -3,20 +3,7 @@
   <POU Name="Permissives" Id="{639d0291-603e-4994-93d7-3ec14345fa0c}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM Permissives
 VAR
-	AllChargeRelayClosed 	: BOOL := 0;
-	AllDumpRelayOpen		: BOOL := 0;
-	AllDumpRelayClose		: BOOL := 0;
-	ReadyToCharge			: BOOL := 0;
-	AllChargerEOC			: BOOL := 0;
 	
-	ChargerVBelowThres		: BOOL := 0;
-	ChargerVThres			: REAL := 20;
-	AllChargerHVisOFF		: BOOL := 0;
-	AllChargerInhibitON		: BOOL := 0;
-
-	AllCapsDischarged		: BOOL := 0;
-	CapVoltageThres			: REAL := 50;
-	SystemIsSafe			: BOOL := 0;
 	
 END_VAR
 ]]></Declaration>
@@ -28,7 +15,7 @@ END_VAR
 	LCP2_IO.Segment[5].ChargeRly_close = TRUE AND 
 	LCP2_IO.Segment[6].ChargeRly_close = TRUE) OR HMI_DB.AllChargeRelayCloseBP = TRUE
 	THEN 
-		AllChargeRelayClosed := TRUE;
+		Permissives_DB.AllChargeRelayClosed := TRUE;
 	ELSIF 
 		LCP1_IO.Segment[1].ChargeRly_close = FALSE AND 
 		LCP1_IO.Segment[2].ChargeRly_close = FALSE AND
@@ -37,7 +24,7 @@ END_VAR
 		LCP2_IO.Segment[5].ChargeRly_close = FALSE AND 
 		LCP2_IO.Segment[6].ChargeRly_close = FALSE
 	THEN
-		AllChargeRelayClosed := FALSE;
+		Permissives_DB.AllChargeRelayClosed := FALSE;
 END_IF;
 
 IF (LCP1_IO.Segment[1].Module[1].DumpRly_close = FALSE AND 
@@ -59,7 +46,7 @@ IF (LCP1_IO.Segment[1].Module[1].DumpRly_close = FALSE AND
 	LCP2_IO.Segment[6].Module[8].DumpRly_close = FALSE AND
 	LCP2_IO.Segment[6].Module[9].DumpRly_close = FALSE) OR HMI_DB.AllDumpRelaysOpenBP = TRUE
 	THEN
-		AllDumpRelayOpen := TRUE;
+		Permissives_DB.AllDumpRelayOpen := TRUE;
 		ELSIF
 			LCP1_IO.Segment[1].Module[1].DumpRly_close = TRUE AND 
 			LCP1_IO.Segment[1].Module[2].DumpRly_close = TRUE AND
@@ -80,25 +67,25 @@ IF (LCP1_IO.Segment[1].Module[1].DumpRly_close = FALSE AND
 			LCP2_IO.Segment[6].Module[8].DumpRly_close = TRUE AND
 			LCP2_IO.Segment[6].Module[9].DumpRly_close = TRUE 
 		THEN
-			AllDumpRelayOpen := FALSE;
+			Permissives_DB.AllDumpRelayOpen := FALSE;
 END_IF;
 
-IF AllChargeRelayClosed = TRUE AND AllDumpRelayOpen = TRUE THEN
-	ReadyToCharge := TRUE;
+IF Permissives_DB.AllChargeRelayClosed = TRUE AND Permissives_DB.AllDumpRelayOpen = TRUE THEN
+	Permissives_DB.ReadyToCharge := TRUE;
 	ELSE 
-		ReadyToCharge := FALSE;
+		Permissives_DB.ReadyToCharge := FALSE;
 END_IF
 
-IF MCP_IO.Charger[1].voltageFeedback <= ChargerVThres AND 
-	MCP_IO.Charger[2].voltageFeedback <= ChargerVThres AND 
-	MCP_IO.Charger[3].voltageFeedback <= ChargerVThres AND
-	MCP_IO.Charger[4].voltageFeedback <= ChargerVThres AND
-	MCP_IO.Charger[5].voltageFeedback <= ChargerVThres AND
-	MCP_IO.Charger[6].voltageFeedback <= ChargerVThres
+IF MCP_IO.Charger[1].voltageFeedback <= Permissives_DB.ChargerVThres AND 
+	MCP_IO.Charger[2].voltageFeedback <= Permissives_DB.ChargerVThres AND 
+	MCP_IO.Charger[3].voltageFeedback <= Permissives_DB.ChargerVThres AND
+	MCP_IO.Charger[4].voltageFeedback <= Permissives_DB.ChargerVThres AND
+	MCP_IO.Charger[5].voltageFeedback <= Permissives_DB.ChargerVThres AND
+	MCP_IO.Charger[6].voltageFeedback <= Permissives_DB.ChargerVThres
 	THEN
-		ChargerVBelowThres := TRUE;
+		Permissives_DB.ChargerVBelowThres := TRUE;
 	ELSE
-		ChargerVBelowThres := FALSE;
+		Permissives_DB.ChargerVBelowThres := FALSE;
 END_IF;
 
 IF MCP_IO.Charger[1].HV_isON = FALSE AND 
@@ -108,9 +95,9 @@ IF MCP_IO.Charger[1].HV_isON = FALSE AND
 	MCP_IO.Charger[5].HV_isON = FALSE AND
 	MCP_IO.Charger[6].HV_isON = FALSE 
 	THEN
-		AllChargerHVisOFF := TRUE;
+		Permissives_DB.AllChargerHVisOFF := TRUE;
 	ELSE 
-		AllChargerHVisOFF := FALSE;
+		Permissives_DB.AllChargerHVisOFF := FALSE;
 END_IF
 
 IF MCP_IO.Charger[1].inhibited = TRUE AND
@@ -120,53 +107,53 @@ IF MCP_IO.Charger[1].inhibited = TRUE AND
 	MCP_IO.Charger[5].inhibited = TRUE AND
 	MCP_IO.Charger[6].inhibited = TRUE
 	THEN
-		AllChargerInhibitON	:= TRUE;
+		Permissives_DB.AllChargerInhibitON	:= TRUE;
 	ELSE
-		AllChargerInhibitON	:= FALSE;
+		Permissives_DB.AllChargerInhibitON	:= FALSE;
 END_IF;
 
-IF LCP1_IO.Segment[1].Module[1].VoltageFeedback <= CapVoltageThres AND
-	LCP1_IO.Segment[1].Module[2].VoltageFeedback <= CapVoltageThres AND
-	LCP1_IO.Segment[1].Module[3].VoltageFeedback <= CapVoltageThres AND
-	LCP1_IO.Segment[2].Module[4].VoltageFeedback <= CapVoltageThres AND
-	LCP1_IO.Segment[2].Module[5].VoltageFeedback <= CapVoltageThres AND
-	LCP1_IO.Segment[2].Module[6].VoltageFeedback <= CapVoltageThres AND
-	LCP1_IO.Segment[3].Module[7].VoltageFeedback <= CapVoltageThres AND
-	LCP1_IO.Segment[3].Module[8].VoltageFeedback <= CapVoltageThres AND 
-	LCP1_IO.Segment[3].Module[9].VoltageFeedback <= CapVoltageThres AND
+IF LCP1_IO.Segment[1].Module[1].VoltageFeedback <= Permissives_DB.CapVoltageThres AND
+	LCP1_IO.Segment[1].Module[2].VoltageFeedback <= Permissives_DB.CapVoltageThres AND
+	LCP1_IO.Segment[1].Module[3].VoltageFeedback <= Permissives_DB.CapVoltageThres AND
+	LCP1_IO.Segment[2].Module[4].VoltageFeedback <= Permissives_DB.CapVoltageThres AND
+	LCP1_IO.Segment[2].Module[5].VoltageFeedback <= Permissives_DB.CapVoltageThres AND
+	LCP1_IO.Segment[2].Module[6].VoltageFeedback <= Permissives_DB.CapVoltageThres AND
+	LCP1_IO.Segment[3].Module[7].VoltageFeedback <= Permissives_DB.CapVoltageThres AND
+	LCP1_IO.Segment[3].Module[8].VoltageFeedback <= Permissives_DB.CapVoltageThres AND 
+	LCP1_IO.Segment[3].Module[9].VoltageFeedback <= Permissives_DB.CapVoltageThres AND
 	
-	LCP2_IO.Segment[4].Module[1].VoltageFeedback <= CapVoltageThres AND
-	LCP2_IO.Segment[4].Module[2].VoltageFeedback <= CapVoltageThres AND
-	LCP2_IO.Segment[4].Module[3].VoltageFeedback <= CapVoltageThres AND
-	LCP2_IO.Segment[5].Module[4].VoltageFeedback <= CapVoltageThres AND
-	LCP2_IO.Segment[5].Module[5].VoltageFeedback <= CapVoltageThres AND
-	LCP2_IO.Segment[5].Module[6].VoltageFeedback <= CapVoltageThres AND
-	LCP2_IO.Segment[6].Module[7].VoltageFeedback <= CapVoltageThres AND
-	LCP2_IO.Segment[6].Module[8].VoltageFeedback <= CapVoltageThres AND 
-	LCP2_IO.Segment[6].Module[9].VoltageFeedback <= CapVoltageThres 
-(*  AND all other module voltage feedback <= 50 *) 
+	LCP2_IO.Segment[4].Module[1].VoltageFeedback <= Permissives_DB.CapVoltageThres AND
+	LCP2_IO.Segment[4].Module[2].VoltageFeedback <= Permissives_DB.CapVoltageThres AND
+	LCP2_IO.Segment[4].Module[3].VoltageFeedback <= Permissives_DB.CapVoltageThres AND
+	LCP2_IO.Segment[5].Module[4].VoltageFeedback <= Permissives_DB.CapVoltageThres AND
+	LCP2_IO.Segment[5].Module[5].VoltageFeedback <= Permissives_DB.CapVoltageThres AND
+	LCP2_IO.Segment[5].Module[6].VoltageFeedback <= Permissives_DB.CapVoltageThres AND
+	LCP2_IO.Segment[6].Module[7].VoltageFeedback <= Permissives_DB.CapVoltageThres AND
+	LCP2_IO.Segment[6].Module[8].VoltageFeedback <= Permissives_DB.CapVoltageThres AND 
+	LCP2_IO.Segment[6].Module[9].VoltageFeedback <= Permissives_DB.CapVoltageThres 
+(*  AND all other module voltage feedback <= 40, might need the -ve end & check for valid data*) 
 	THEN
-		AllCapsDischarged := TRUE;
+		Permissives_DB.AllCapsDischarged := TRUE;
 	ELSE 
-		AllCapsDischarged := FALSE;
+		Permissives_DB.AllCapsDischarged := FALSE;
 END_IF
 
 
-IF ChargerVBelowThres = TRUE AND 
-	AllChargerHVisOFF = TRUE AND 
-	AllChargerInhibitON	= TRUE AND 
-	AllDumpRelayOpen = FALSE AND 
-	AllCapsDischarged = TRUE 
+IF Permissives_DB.ChargerVBelowThres = TRUE AND 
+	Permissives_DB.AllChargerHVisOFF = TRUE AND 
+	Permissives_DB.AllChargerInhibitON	= TRUE AND 
+	Permissives_DB.AllDumpRelayOpen = FALSE AND 
+	Permissives_DB.AllCapsDischarged = TRUE 
 THEN
 	(*MCP_IO.Charger[2].voltageFeedback <= 10 AND *)
-	SystemIsSafe := TRUE;
+	Permissives_DB.SystemIsSafe := TRUE;
 	ELSE
-		SystemIsSafe := FALSE;
+		Permissives_DB.SystemIsSafe := FALSE;
 END_IF
 
 
 		
-IF AllCapsDischarged = TRUE THEN 
+IF Permissives_DB.AllCapsDischarged = TRUE THEN 
 	LCP1_IO.SegmentCharged := FALSE; //for status light only
 	LCP2_IO.SegmentCharged := FALSE; //for status light only
 END_IF

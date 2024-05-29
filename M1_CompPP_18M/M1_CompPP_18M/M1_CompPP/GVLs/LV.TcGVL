@@ -5,7 +5,16 @@
 VAR_GLOBAL
 	TxWord1	: WORD;
 	TxWord2 : WORD;
-	RxInt : ARRAY [1..5] OF INT;
+	TxWord3 : WORD;
+	
+	RxWord1 : WORD;
+	RxWord2 : WORD;
+	
+	TxInt : ARRAY [1..5] OF INT;
+	TxDint : ARRAY [1..3] OF DINT;
+	TxREAL : ARRAY [1..6] OF REAL;
+
+	RxInt : ARRAY [1..2] OF INT;
 	RxDint : ARRAY [1..3] OF DINT;
 	RxREAL : ARRAY [1..6] OF REAL;
 	

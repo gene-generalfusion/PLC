@@ -10,9 +10,9 @@ VAR
 	screen_refresh_pulse 	: BOOL;
 	
 	pulse_1Hz_Start_TON		: TON;
-	pulse_1Hz_Start_PT		: TIME := T#500MS;
+	pulse_1Hz_Start_PT		: TIME := T#125MS;
 	pulse_1Hz_Reset_TON		: TON;
-	pulse_1Hz_Reset_PT		: TIME := T#500MS;
+	pulse_1Hz_Reset_PT		: TIME := T#125MS;
 	pulse_1Hz				: BOOL;
 END_VAR
 ]]></Declaration>

@@ -5,8 +5,8 @@
 VAR
 	//AllChargeRelayClosed 	: BOOL := 0;
 	//AllDumpRelayOpen		: BOOL := 0;
-	ReadyToCharge			: BOOL := 0;
-	AllChargerEOC			: BOOL := 0;
+	//ReadyToCharge			: BOOL := 0;
+	//AllChargerEOC			: BOOL := 0;
 	
 	ChargerVBelowThres		: BOOL := 0;
 	ChargedVThres			: REAL := 50;
@@ -46,7 +46,7 @@ END_IF;
 IF LCP1_IO.Segment[1].Module[1].DumpRly_open = TRUE(*AND all the other modules *) OR HMI_DB.AllDumpRelaysOpenBP = TRUE
 	THEN
 		Permissives_DB.AllDumpRelayOpen := TRUE;
-	ELSE
+	ELSIF LCP1_IO.Segment[1].Module[1].DumpRly_open = FALSE THEN
 		Permissives_DB.AllDumpRelayOpen := FALSE;
 END_IF;
 
@@ -75,7 +75,9 @@ IF MCP_IO.Charger[1].inhibited = TRUE (*AND all other Chargers*) THEN
 END_IF;
 
 //Cap voltage feedback
-IF LCP1_IO.Segment[1].Module[1].VoltageFeedback <= ChargedVThres (*  AND all other module voltage feedback <= 50 *) THEN
+IF (LCP1_IO.Segment[1].Module[1].VoltageFeedback <= ChargedVThres) AND 
+	(LCP1_IO.Segment[1].Module[1].VoltageFeedback >= -ChargedVThres) AND 
+	(VoltMonitor_DB.CapRaw[0] <> 0)(*  AND all other module voltage feedback <= 50 *) THEN
 	AllCapsDischarged := TRUE;
 	LCP1_IO.Segment[1].Module[1].ModuleCharged := FALSE; //for status light only
 	ELSE 
@@ -151,6 +153,7 @@ END_IF;
       <LineId Id="215" Count="0" />
       <LineId Id="144" Count="0" />
       <LineId Id="143" Count="0" />
+      <LineId Id="233" Count="1" />
       <LineId Id="145" Count="0" />
       <LineId Id="216" Count="0" />
       <LineId Id="147" Count="1" />

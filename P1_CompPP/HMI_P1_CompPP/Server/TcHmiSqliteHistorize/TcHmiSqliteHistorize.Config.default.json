@@ -4,19 +4,19 @@
     "historizedSymbolList": {
         "PLC1.HMI.LongestChargeTIME": {
             "interval": "PT0.25S",
-            "maxEntries": 100,
+            "maxEntries": 1000,
             "recordingEnabled": true,
             "rowLimit": 100000
         },
         "PLC1.LCP1_IO.Segment.0.Module.0.VoltageFeedback": {
             "interval": "PT0.25S",
-            "maxEntries": 100,
+            "maxEntries": 1000,
             "recordingEnabled": true,
             "rowLimit": 100000
         },
         "PLC1.MCP_IO.Charger.0.currentFeedback": {
             "interval": "PT0.25S",
-            "maxEntries": 100,
+            "maxEntries": 1000,
             "recordingEnabled": true,
             "rowLimit": 100000
         },

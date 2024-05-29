@@ -4,8 +4,20 @@
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL
 	//SafetyOK				: BOOL;
-	AllChargerEOC			: BOOL;
+	AllChargeRelayClosed 	: BOOL := 0;
+	AllDumpRelayOpen		: BOOL := 0;
+	//AllDumpRelayClose		: BOOL := 0;
+	ReadyToCharge			: BOOL := 0;
+	AllChargerEOC			: BOOL := 0;
 	
+	ChargerVBelowThres		: BOOL := 0;
+	ChargerVThres			: REAL := 40;
+	AllChargerHVisOFF		: BOOL := 0;
+	AllChargerInhibitON		: BOOL := 0;
+
+	AllCapsDischarged		: BOOL := 0;
+	CapVoltageThres			: REAL := 40;
+	SystemIsSafe			: BOOL := 0;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

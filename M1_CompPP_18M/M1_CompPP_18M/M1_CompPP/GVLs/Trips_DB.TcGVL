@@ -25,7 +25,8 @@ VAR_GLOBAL
 	//SystemTimeOut				: BOOL;
 	NoFaultDetected				: BOOL;
 	TimerRunOutON				: BOOL;
-	
+	ChargerSummaryFault			: BOOL;
+	ShortingSystemUnknown		: BOOL;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

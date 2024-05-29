@@ -10,13 +10,13 @@ END_VAR
 Permissives();
 ChargeTime();
 AnalogConversion();
-VoltageMon();
+VoltageMonitor();
 Sequence();
 HMI();
 Heartbeat();]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
-      <LineId Id="53" Count="6" />
+      <LineId Id="63" Count="6" />
       <LineId Id="17" Count="0" />
     </LineIds>
   </POU>

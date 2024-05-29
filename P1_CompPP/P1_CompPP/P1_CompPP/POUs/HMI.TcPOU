@@ -5,11 +5,6 @@
 VAR
 	eChargerType : E_ChargerType;
 	
-	LastTimeShotTMR_TON		: TON;
-	LastTimeShotTMR_PT		: TIME := T#48H;
-	LastTimeShotTMR_ET		: TIME;
-	LastTimeShotTMR_REAL	: DWORD;
-	
 	SysCLK					: GETSYSTEMTIME;
 	fileTime				: T_FILETIME;
 	LastTimeShot			: STRING;
@@ -20,6 +15,11 @@ VAR
 	LastTimeShotLog			: BOOL;
 	
 	i : INT := 1;
+
+	LastTimeShotTMR_TON		: TON;
+	LastTimeShotTMR_PT		: TIME := T#120H;
+	LastTimeShotTMR_ET		: TIME;
+	LastTimeShotTMR_REAL	: DWORD;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -43,8 +43,6 @@ IF Trips_DB.ChargedTimerRunout = TRUE OR
 		END_IF
 FOR i := 1 TO 6 BY 1 DO 
 	MCP_IO.Charger[i].ChargerType := Setpoints.TDKLoad[i].eChargerType := HMI_DB.TDKLoad[i].eChargerType;
-
-
 	IF MCP_IO.Charger[i].ChargerType = E_ChargerType.TDK12kV THEN 
 		HMI_DB.TDKLoad[i].PSratedV := 12;
 		ELSIF MCP_IO.Charger[i].ChargerType = E_ChargerType.TDK30kV THEN
@@ -93,8 +91,6 @@ END_IF]]></ST>
       <LineId Id="20" Count="0" />
       <LineId Id="24" Count="4" />
       <LineId Id="32" Count="1" />
-      <LineId Id="44" Count="0" />
-      <LineId Id="57" Count="0" />
       <LineId Id="43" Count="0" />
       <LineId Id="45" Count="0" />
       <LineId Id="47" Count="3" />

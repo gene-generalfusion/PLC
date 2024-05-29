@@ -173,7 +173,7 @@
 
 
 </div>
-<div id="TcHmiTrendLineChart_4" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTrendLineChart" data-tchmi-height="600" data-tchmi-height-unit="px" data-tchmi-left="629" data-tchmi-left-unit="px" data-tchmi-top="10" data-tchmi-top-unit="px" data-tchmi-width="620" data-tchmi-width-unit="px" data-tchmi-x-axis-name="Time" data-tchmi-x-sub-tick-steps="1" data-tchmi-show-legend="true" data-tchmi-show-x-axis="true" data-tchmi-x-show-labels="true" data-tchmi-show-x-sub-ticks="true" data-tchmi-show-x-axis-name="true" data-tchmi-show-y-sub-ticks="true" data-tchmi-show-grid="true" data-tchmi-grid-show-horizontal-lines="true" data-tchmi-grid-show-vertical-lines="true" data-tchmi-subgrid-show-horizontal-lines="false" data-tchmi-subgrid-show-vertical-lines="false" data-tchmi-show-menu-bar="true" data-tchmi-show-tooltip="true" data-tchmi-is-enabled="true" data-tchmi-x-main-tick-steps="2" data-tchmi-grid-line-style="Dashed" data-tchmi-mouse-mode="ZoomXY" data-tchmi-y-main-tick-steps="5" data-tchmi-y-sub-tick-steps="4" data-tchmi-interval="1000" data-tchmi-x-axis-name-font-size="12" data-tchmi-x-axis-width="1" data-tchmi-end="Latest" data-tchmi-menu-bar-label-font-size="10" data-tchmi-menu-bar-position="Bottom" data-tchmi-start="First" data-tchmi-creator-locked="True">
+<div id="TcHmiTrendLineChart_4" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTrendLineChart" data-tchmi-height="600" data-tchmi-height-unit="px" data-tchmi-left="629" data-tchmi-left-unit="px" data-tchmi-top="10" data-tchmi-top-unit="px" data-tchmi-width="620" data-tchmi-width-unit="px" data-tchmi-x-axis-name="Time" data-tchmi-x-sub-tick-steps="3" data-tchmi-show-legend="true" data-tchmi-show-x-axis="true" data-tchmi-x-show-labels="true" data-tchmi-show-x-sub-ticks="true" data-tchmi-show-x-axis-name="true" data-tchmi-show-y-sub-ticks="true" data-tchmi-show-grid="true" data-tchmi-grid-show-horizontal-lines="true" data-tchmi-grid-show-vertical-lines="true" data-tchmi-subgrid-show-horizontal-lines="false" data-tchmi-subgrid-show-vertical-lines="false" data-tchmi-show-menu-bar="true" data-tchmi-show-tooltip="true" data-tchmi-is-enabled="true" data-tchmi-x-main-tick-steps="4" data-tchmi-grid-line-style="Dashed" data-tchmi-mouse-mode="ZoomXY" data-tchmi-y-main-tick-steps="10" data-tchmi-y-sub-tick-steps="5" data-tchmi-interval="1000" data-tchmi-x-axis-name-font-size="12" data-tchmi-x-axis-width="1" data-tchmi-end="Latest" data-tchmi-menu-bar-label-font-size="10" data-tchmi-menu-bar-position="Bottom" data-tchmi-start="First" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-y-axis" type="application/json">
 [
   {
@@ -243,7 +243,9 @@
     "pointDot": false,
     "pointDotRadius": 3,
     "pointDotStrokeWidth": 1,
-    "lineColor": "%tr%Control::TcHmi.Controls.Beckhoff.TcHmiLineChart::LineGraphDescriptionLineColor%/tr%",
+    "lineColor": {
+      "color": "rgba(237, 5, 237, 1)"
+    },
     "pointDotFillColor": "%tr%Control::TcHmi.Controls.Beckhoff.TcHmiLineChart::LineGraphDescriptionPointDotFillColor%/tr%",
     "pointDotStrokeColor": "%tr%Control::TcHmi.Controls.Beckhoff.TcHmiLineChart::LineGraphDescriptionPointDotStrokeColor%/tr%",
     "pointDotInStopMode": true,
@@ -375,7 +377,7 @@
 ]
 </script>
 </div>
-<div id="TcHmiTrendLineChart_5" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTrendLineChart" data-tchmi-height="600" data-tchmi-height-unit="px" data-tchmi-left="1253" data-tchmi-left-unit="px" data-tchmi-top="10" data-tchmi-top-unit="px" data-tchmi-width="620" data-tchmi-width-unit="px" data-tchmi-x-axis-name="Time" data-tchmi-x-sub-tick-steps="2" data-tchmi-show-legend="true" data-tchmi-show-x-axis="true" data-tchmi-x-show-labels="true" data-tchmi-show-x-sub-ticks="true" data-tchmi-show-x-axis-name="true" data-tchmi-show-y-sub-ticks="true" data-tchmi-show-grid="true" data-tchmi-grid-show-horizontal-lines="true" data-tchmi-grid-show-vertical-lines="true" data-tchmi-subgrid-show-horizontal-lines="false" data-tchmi-subgrid-show-vertical-lines="false" data-tchmi-show-menu-bar="true" data-tchmi-show-tooltip="true" data-tchmi-is-enabled="true" data-tchmi-x-main-tick-steps="5" data-tchmi-grid-line-style="Dashed" data-tchmi-mouse-mode="ZoomXY" data-tchmi-y-main-tick-steps="5" data-tchmi-y-sub-tick-steps="2" data-tchmi-interval="1000" data-tchmi-x-axis-name-font-size="12" data-tchmi-x-axis-width="1" data-tchmi-end="Latest" data-tchmi-menu-bar-label-font-size="10" data-tchmi-menu-bar-position="Bottom" data-tchmi-start="First" data-tchmi-creator-locked="True">
+<div id="TcHmiTrendLineChart_5" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTrendLineChart" data-tchmi-height="600" data-tchmi-height-unit="px" data-tchmi-left="1253" data-tchmi-left-unit="px" data-tchmi-top="10" data-tchmi-top-unit="px" data-tchmi-width="620" data-tchmi-width-unit="px" data-tchmi-x-axis-name="Time" data-tchmi-x-sub-tick-steps="3" data-tchmi-show-legend="true" data-tchmi-show-x-axis="true" data-tchmi-x-show-labels="true" data-tchmi-show-x-sub-ticks="true" data-tchmi-show-x-axis-name="true" data-tchmi-show-y-sub-ticks="true" data-tchmi-show-grid="true" data-tchmi-grid-show-horizontal-lines="true" data-tchmi-grid-show-vertical-lines="true" data-tchmi-subgrid-show-horizontal-lines="false" data-tchmi-subgrid-show-vertical-lines="false" data-tchmi-show-menu-bar="true" data-tchmi-show-tooltip="true" data-tchmi-is-enabled="true" data-tchmi-x-main-tick-steps="4" data-tchmi-grid-line-style="Dashed" data-tchmi-mouse-mode="ZoomXY" data-tchmi-y-main-tick-steps="10" data-tchmi-y-sub-tick-steps="5" data-tchmi-interval="1000" data-tchmi-x-axis-name-font-size="12" data-tchmi-x-axis-width="1" data-tchmi-end="Latest" data-tchmi-menu-bar-label-font-size="10" data-tchmi-menu-bar-position="Bottom" data-tchmi-start="First" data-tchmi-creator-locked="True">
 <script data-tchmi-target-attribute="data-tchmi-y-axis" type="application/json">
 [
   {
@@ -1476,7 +1478,7 @@
 ]
 </script>
 </div>
-<div id="TcHmiLineChart" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiLineChart" data-tchmi-height="212" data-tchmi-height-unit="px" data-tchmi-left="10" data-tchmi-left-unit="px" data-tchmi-top="418" data-tchmi-top-unit="px" data-tchmi-width="595" data-tchmi-width-unit="px" data-tchmi-x-axis-name="time" data-tchmi-x-axis-unit="s" data-tchmi-x-sub-tick-steps="4" data-tchmi-y-sub-tick-steps="4" data-tchmi-show-legend="true" data-tchmi-x-axis-labeling="Auto" data-tchmi-x-axis-decimal-places="4" data-tchmi-x-axis-auto-scaling="true">
+<div id="TcHmiLineChart" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiLineChart" data-tchmi-height="212" data-tchmi-height-unit="px" data-tchmi-left="10" data-tchmi-left-unit="px" data-tchmi-top="418" data-tchmi-top-unit="px" data-tchmi-width="595" data-tchmi-width-unit="px" data-tchmi-x-axis-name="time" data-tchmi-x-axis-unit="s" data-tchmi-x-sub-tick-steps="4" data-tchmi-y-sub-tick-steps="5" data-tchmi-show-legend="true" data-tchmi-x-axis-labeling="Auto" data-tchmi-x-axis-decimal-places="4" data-tchmi-x-axis-auto-scaling="true" data-tchmi-y-main-tick-steps="10">
 <script data-tchmi-target-attribute="data-tchmi-y-axis" type="application/json">
 [
   {
@@ -1487,13 +1489,13 @@
     "mainTickMaxValue": 0.0,
     "showLabels": true,
     "showAxisName": true,
-    "axisName": "",
+    "axisName": "Voltage",
     "axisNameFontFamily": "",
     "axisNameFontSize": 15,
     "axisNameFontSizeUnit": "px",
     "axisNameFontWeight": "Bold",
     "decimalPlaces": 2,
-    "unit": "A",
+    "unit": "V",
     "autoScaling": true,
     "logarithmicScale": false,
     "axisLabeling": "Number",
@@ -1509,18 +1511,20 @@
 [
   {
     "yAxisId": 1,
-    "legendName": "current",
+    "legendName": "V",
     "xScaleFactor": 1.0,
     "yScaleFactor": 1.0,
     "showAxis": true,
-    "lineWidth": 1,
+    "lineWidth": 2,
     "pointDot": false,
     "pointDotRadius": 3,
     "pointDotStrokeWidth": 1,
     "lineColor": {
-      "color": "rgba(237, 5, 237, 1)"
+      "color": "rgba(253, 0, 0, 1)"
     },
-    "pointDotFillColor": "%tr%Control::TcHmi.Controls.Beckhoff.TcHmiLineChart::LineGraphDescriptionPointDotFillColor%/tr%",
+    "pointDotFillColor": {
+      "color": "rgba(253, 0, 0, 1)"
+    },
     "pointDotStrokeColor": "%tr%Control::TcHmi.Controls.Beckhoff.TcHmiLineChart::LineGraphDescriptionPointDotStrokeColor%/tr%",
     "fillMode": "None",
     "fillColor": "%tr%Control::TcHmi.Controls.Beckhoff.TcHmiLineChart::LineGraphDescriptionFillColor%/tr%",
@@ -1529,12 +1533,16 @@
 ]
 </script>
 
+
+
+
+
 <script data-tchmi-target-attribute="data-tchmi-line-graph-data" type="application/json">
 [
   [
     {
       "x": "%s%PLC1.HMI.LongestChargeTIME%/s%",
-      "y": "%s%PLC1.MCP_IO.Charger.0.currentFeedback%/s%"
+      "y": "%s%PLC1.MCP_IO.Charger.0.voltageFeedback%/s%"
     }
   ]
 ]

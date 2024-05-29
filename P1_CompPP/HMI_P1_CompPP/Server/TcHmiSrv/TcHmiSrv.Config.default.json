@@ -3746,6 +3746,46 @@
             "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
+        "PLC1.HMI_DB.TurnChrgHVonSW": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::TurnChrgHVonSW",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.TurnChrgInhibitOffSW": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::TurnChrgInhibitOffSW",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.TurnOnChargeAlarm": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::TurnOnChargeAlarm",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.TurnOnShotTrigSW": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::TurnOnShotTrigSW",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
         "PLC1.HMI_DB.UnArmTheCagePB": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -5207,6 +5247,16 @@
             "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
+        "PLC1.MCP_IO.EnergizeACKontactor": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::EnergizeACKontactor",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
         "PLC1.Permissives.AllChargerHVisOFF": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -5805,6 +5855,34 @@
             "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
+        "PLC1.VoltMonitor.DataNull": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::VoltMonitor::DataNull",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.VoltMonitor.VMBoardWDT_TON.Q": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::VoltMonitor::VMBoardWDT_TON::Q",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "comment": "gets TRUE, delay time (PT) after a rising edge at IN",
+                        "propertyOrder": 3
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
         "PLC1.VoltMonitor_DB.CapRaw.0": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -5822,6 +5900,16 @@
             "MAPPING": "PLC1::VoltMonitor_DB::CapRawBIT",
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/STRING%2880%29"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.VoltMonitor_DB.VoltageReading_raw.0": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::VoltMonitor_DB::VoltageReading_raw[0]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/INT"
             },
             "USEMAPPING": true
         },
@@ -7273,6 +7361,10 @@
                 "PLC1.HMI_DB.TDKLoad.5.TotalCapacitance": 3,
                 "PLC1.HMI_DB.TDKLoad.5.eChargerType": 3,
                 "PLC1.HMI_DB.TDKLoad.5.wLCA": 3,
+                "PLC1.HMI_DB.TurnChrgHVonSW": 3,
+                "PLC1.HMI_DB.TurnChrgInhibitOffSW": 3,
+                "PLC1.HMI_DB.TurnOnChargeAlarm": 3,
+                "PLC1.HMI_DB.TurnOnShotTrigSW": 3,
                 "PLC1.HMI_DB.UnArmTheCagePB": 3,
                 "PLC1.Heartbeat.pulse_1Hz": 3,
                 "PLC1.Heartbeat.screen_refresh_pulse": 3,
@@ -7368,6 +7460,7 @@
                 "PLC1.MCP_IO.Charger.5.inhibited": 3,
                 "PLC1.MCP_IO.Charger.5.voltageFeedback": 3,
                 "PLC1.MCP_IO.Charger.5.voltageSP": 3,
+                "PLC1.MCP_IO.EnergizeACKontactor": 3,
                 "PLC1.Permissives.AllChargerHVisOFF": 3,
                 "PLC1.Permissives.AllChargerInhibitON": 3,
                 "PLC1.Permissives.AllDumpRelayOpen": 3,
@@ -7409,8 +7502,11 @@
                 "PLC1.Setpoints.TDKLoad.5.TotalCapacitance": 3,
                 "PLC1.Setpoints.TDKLoad.5.wLCA": 3,
                 "PLC1.Trips_DB.TimerRunOutON": 3,
+                "PLC1.VoltMonitor.DataNull": 3,
+                "PLC1.VoltMonitor.VMBoardWDT_TON.Q": 3,
                 "PLC1.VoltMonitor_DB.CapRaw.0": 3,
                 "PLC1.VoltMonitor_DB.CapRawBIT": 3,
+                "PLC1.VoltMonitor_DB.VoltageReading_raw.0": 3,
                 "SetLocale": 3,
                 "SubscribeEvents": 3,
                 "TcHmiEventLogger.Diagnostics": 1,

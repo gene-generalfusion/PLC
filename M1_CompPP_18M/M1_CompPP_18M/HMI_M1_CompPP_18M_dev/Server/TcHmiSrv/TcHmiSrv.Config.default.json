@@ -27,7 +27,82 @@
     "DEFAULTTIMEFORMATLOCALE": "client",
     "DEFAULTTIMEZONE": "client",
     "DEFAULTUSERGROUP": "__SystemUsers",
-    "DEFINITIONS": {},
+    "DEFINITIONS": {
+        "PLC1.E_ChargerType": {
+            "attributes": {
+                "generate_implicit_init_function": "",
+                "qualified_only": "",
+                "strict": ""
+            },
+            "enum": [
+                0,
+                1,
+                2
+            ],
+            "options": [
+                {
+                    "label": "TDK12kV",
+                    "value": 0
+                },
+                {
+                    "label": "TDK30kV",
+                    "value": 1
+                },
+                {
+                    "label": "TDK50kV",
+                    "value": 2
+                }
+            ],
+            "type": "integer"
+        },
+        "PLC1.E_State": {
+            "attributes": {
+                "generate_implicit_init_function": "",
+                "qualified_only": "",
+                "strict": ""
+            },
+            "enum": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+            ],
+            "options": [
+                {
+                    "label": "SAFE",
+                    "value": 0
+                },
+                {
+                    "label": "CHARGING",
+                    "value": 1
+                },
+                {
+                    "label": "CHARGECOMPLETE",
+                    "value": 2
+                },
+                {
+                    "label": "DUMPING",
+                    "value": 3
+                },
+                {
+                    "label": "ABORT",
+                    "value": 4
+                },
+                {
+                    "label": "TRIPPED",
+                    "value": 5
+                },
+                {
+                    "label": "ManualMode",
+                    "value": 6
+                }
+            ],
+            "type": "integer"
+        }
+    },
     "DEFLATECOMPRESSIONLEVEL": 5,
     "DIAGNOSTICS_DOMAINS": [],
     "DISABLED_CONFIGURATION_HINTS": [],
@@ -2508,6 +2583,4305 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.ChargeTime.longestChargeTime": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::ChargeTime::longestChargeTime",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.ChargeTime_DB.ChargeTimeStartDelay.0": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::ChargeTime_DB::ChargeTimeStartDelay[0]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/INT"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.ChargeTime_DB.ChargeTimeStartDelay.1": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::ChargeTime_DB::ChargeTimeStartDelay[1]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/INT"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.ChargeTime_DB.ChargeTimeStartDelay.2": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::ChargeTime_DB::ChargeTimeStartDelay[2]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/INT"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.ChargeTime_DB.ChargeTimeStartDelay.3": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::ChargeTime_DB::ChargeTimeStartDelay[3]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/INT"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.ChargeTime_DB.ChargeTimeStartDelay.4": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::ChargeTime_DB::ChargeTimeStartDelay[4]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/INT"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.ChargeTime_DB.ChargeTimeStartDelay.5": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::ChargeTime_DB::ChargeTimeStartDelay[5]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/INT"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.ChargeTime_DB.ChargingTimeElapse.0": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::ChargeTime_DB::ChargingTimeElapse[0]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/INT"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.ChargeTime_DB.ChargingTimeElapse.1": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::ChargeTime_DB::ChargingTimeElapse[1]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/INT"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.ChargeTime_DB.ChargingTimeElapse.2": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::ChargeTime_DB::ChargingTimeElapse[2]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/INT"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.ChargeTime_DB.ChargingTimeElapse.3": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::ChargeTime_DB::ChargingTimeElapse[3]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/INT"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.ChargeTime_DB.ChargingTimeElapse.4": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::ChargeTime_DB::ChargingTimeElapse[4]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/INT"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.ChargeTime_DB.ChargingTimeElapse.5": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::ChargeTime_DB::ChargingTimeElapse[5]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/INT"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.GVL.RemoteModeSelected": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL::RemoteModeSelected",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.GVL.alarm_test": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL::alarm_test",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI.LongestChargeTIME": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI::LongestChargeTIME",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.AbortPB": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::AbortPB",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.AllChargeRelayCloseBP": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::AllChargeRelayCloseBP",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.AllDumpRelaysOpenBP": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::AllDumpRelaysOpenBP",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.ChargePB": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::ChargePB",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.ChargingRunOutTMR_elapse": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::ChargingRunOutTMR_elapse",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/INT"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.ClearFaultPB": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::ClearFaultPB",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.CloseChargeRlySW": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::CloseChargeRlySW",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.DumpPB": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::DumpPB",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.FirePB": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::FirePB",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.HMI_ManualModeSelected": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::HMI_ManualModeSelected",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "comment": "1 = manual mode selected"
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.OpenDumpRlySW": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::OpenDumpRlySW",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.RunOutTMR_elapse": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::RunOutTMR_elapse",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/DINT"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.SystemSafeBP": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::SystemSafeBP",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.TDKLoad.0.NumOfCharger": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::TDKLoad[0]::NumOfCharger",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/INT"
+                    },
+                    {
+                        "propertyOrder": 5
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.TDKLoad.0.PSratedV": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::TDKLoad[0]::PSratedV",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 3
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.TDKLoad.0.RequiredChargedV": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::TDKLoad[0]::RequiredChargedV",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.TDKLoad.0.TotalCapacitance": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::TDKLoad[0]::TotalCapacitance",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "comment": "uF - LOCAL ONLY, NOT FROM MAIN PLC - LoadCapacitance",
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.TDKLoad.0.eChargerType": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::TDKLoad[0]::eChargerType",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:server#/definitions/PLC1.E_ChargerType"
+                    },
+                    {
+                        "propertyOrder": 6
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.TDKLoad.0.wLCA": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::TDKLoad[0]::wLCA",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 4
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.TDKLoad.1.NumOfCharger": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::TDKLoad[1]::NumOfCharger",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/INT"
+                    },
+                    {
+                        "propertyOrder": 5
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.TDKLoad.1.PSratedV": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::TDKLoad[1]::PSratedV",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 3
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.TDKLoad.1.RequiredChargedV": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::TDKLoad[1]::RequiredChargedV",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.TDKLoad.1.TotalCapacitance": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::TDKLoad[1]::TotalCapacitance",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "comment": "uF - LOCAL ONLY, NOT FROM MAIN PLC - LoadCapacitance",
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.TDKLoad.1.eChargerType": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::TDKLoad[1]::eChargerType",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:server#/definitions/PLC1.E_ChargerType"
+                    },
+                    {
+                        "propertyOrder": 6
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.TDKLoad.1.wLCA": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::TDKLoad[1]::wLCA",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 4
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.TDKLoad.2.NumOfCharger": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::TDKLoad[2]::NumOfCharger",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/INT"
+                    },
+                    {
+                        "propertyOrder": 5
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.TDKLoad.2.PSratedV": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::TDKLoad[2]::PSratedV",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 3
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.TDKLoad.2.RequiredChargedV": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::TDKLoad[2]::RequiredChargedV",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.TDKLoad.2.TotalCapacitance": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::TDKLoad[2]::TotalCapacitance",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "comment": "uF - LOCAL ONLY, NOT FROM MAIN PLC - LoadCapacitance",
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.TDKLoad.2.eChargerType": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::TDKLoad[2]::eChargerType",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:server#/definitions/PLC1.E_ChargerType"
+                    },
+                    {
+                        "propertyOrder": 6
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.TDKLoad.2.wLCA": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::TDKLoad[2]::wLCA",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 4
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.TDKLoad.3.NumOfCharger": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::TDKLoad[3]::NumOfCharger",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/INT"
+                    },
+                    {
+                        "propertyOrder": 5
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.TDKLoad.3.PSratedV": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::TDKLoad[3]::PSratedV",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 3
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.TDKLoad.3.RequiredChargedV": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::TDKLoad[3]::RequiredChargedV",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.TDKLoad.3.TotalCapacitance": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::TDKLoad[3]::TotalCapacitance",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "comment": "uF - LOCAL ONLY, NOT FROM MAIN PLC - LoadCapacitance",
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.TDKLoad.3.eChargerType": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::TDKLoad[3]::eChargerType",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:server#/definitions/PLC1.E_ChargerType"
+                    },
+                    {
+                        "propertyOrder": 6
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.TDKLoad.3.wLCA": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::TDKLoad[3]::wLCA",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 4
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.TDKLoad.4.NumOfCharger": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::TDKLoad[4]::NumOfCharger",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/INT"
+                    },
+                    {
+                        "propertyOrder": 5
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.TDKLoad.4.PSratedV": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::TDKLoad[4]::PSratedV",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 3
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.TDKLoad.4.RequiredChargedV": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::TDKLoad[4]::RequiredChargedV",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.TDKLoad.4.TotalCapacitance": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::TDKLoad[4]::TotalCapacitance",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "comment": "uF - LOCAL ONLY, NOT FROM MAIN PLC - LoadCapacitance",
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.TDKLoad.4.eChargerType": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::TDKLoad[4]::eChargerType",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:server#/definitions/PLC1.E_ChargerType"
+                    },
+                    {
+                        "propertyOrder": 6
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.TDKLoad.4.wLCA": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::TDKLoad[4]::wLCA",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 4
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.TDKLoad.5.NumOfCharger": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::TDKLoad[5]::NumOfCharger",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/INT"
+                    },
+                    {
+                        "propertyOrder": 5
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.TDKLoad.5.PSratedV": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::TDKLoad[5]::PSratedV",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 3
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.TDKLoad.5.RequiredChargedV": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::TDKLoad[5]::RequiredChargedV",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.TDKLoad.5.TotalCapacitance": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::TDKLoad[5]::TotalCapacitance",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "comment": "uF - LOCAL ONLY, NOT FROM MAIN PLC - LoadCapacitance",
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.TDKLoad.5.eChargerType": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::TDKLoad[5]::eChargerType",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:server#/definitions/PLC1.E_ChargerType"
+                    },
+                    {
+                        "propertyOrder": 6
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.TDKLoad.5.wLCA": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::TDKLoad[5]::wLCA",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 4
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.Heartbeat.pulse_1Hz": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::Heartbeat::pulse_1Hz",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.Heartbeat.screen_refresh_pulse": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::Heartbeat::screen_refresh_pulse",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Fire": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Fire",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.LossInterlockPressure": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::LossInterlockPressure",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.0.ChargeRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[0]::ChargeRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 3
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.0.CloseChargeRly": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[0]::CloseChargeRly",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.0.Module.0.DumpRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[0]::Module[0]::DumpRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.0.Module.0.VoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[0]::Module[0]::VoltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.0.Module.1.DumpRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[0]::Module[1]::DumpRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.0.Module.1.VoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[0]::Module[1]::VoltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.0.Module.2.DumpRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[0]::Module[2]::DumpRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.0.Module.2.VoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[0]::Module[2]::VoltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.0.Module.3.DumpRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[0]::Module[3]::DumpRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.0.Module.3.VoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[0]::Module[3]::VoltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.0.Module.4.DumpRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[0]::Module[4]::DumpRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.0.Module.4.VoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[0]::Module[4]::VoltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.0.Module.5.DumpRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[0]::Module[5]::DumpRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.0.Module.5.VoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[0]::Module[5]::VoltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.0.Module.6.DumpRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[0]::Module[6]::DumpRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.0.Module.6.VoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[0]::Module[6]::VoltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.0.Module.7.DumpRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[0]::Module[7]::DumpRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.0.Module.7.VoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[0]::Module[7]::VoltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.0.Module.8.DumpRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[0]::Module[8]::DumpRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.0.Module.8.VoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[0]::Module[8]::VoltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.0.OpenModule1To3DumpRly": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[0]::OpenModule1To3DumpRly",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "comment": "Open Module1To3DumpRly",
+                        "propertyOrder": 4
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.0.OpenModule4To6DumpRly": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[0]::OpenModule4To6DumpRly",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 5
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.0.OpenModule7To9DumpRly": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[0]::OpenModule7To9DumpRly",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 6
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.1.ChargeRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[1]::ChargeRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 3
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.1.CloseChargeRly": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[1]::CloseChargeRly",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.1.Module.0.DumpRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[1]::Module[0]::DumpRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.1.Module.0.VoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[1]::Module[0]::VoltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.1.Module.1.DumpRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[1]::Module[1]::DumpRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.1.Module.1.VoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[1]::Module[1]::VoltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.1.Module.2.DumpRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[1]::Module[2]::DumpRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.1.Module.2.VoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[1]::Module[2]::VoltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.1.Module.3.DumpRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[1]::Module[3]::DumpRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.1.Module.3.VoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[1]::Module[3]::VoltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.1.Module.4.DumpRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[1]::Module[4]::DumpRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.1.Module.4.VoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[1]::Module[4]::VoltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.1.Module.5.DumpRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[1]::Module[5]::DumpRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.1.Module.5.VoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[1]::Module[5]::VoltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.1.Module.6.DumpRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[1]::Module[6]::DumpRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.1.Module.6.VoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[1]::Module[6]::VoltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.1.Module.7.DumpRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[1]::Module[7]::DumpRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.1.Module.7.VoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[1]::Module[7]::VoltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.1.Module.8.DumpRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[1]::Module[8]::DumpRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.1.Module.8.VoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[1]::Module[8]::VoltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.1.OpenModule1To3DumpRly": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[1]::OpenModule1To3DumpRly",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "comment": "Open Module1To3DumpRly",
+                        "propertyOrder": 4
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.1.OpenModule4To6DumpRly": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[1]::OpenModule4To6DumpRly",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 5
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.1.OpenModule7To9DumpRly": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[1]::OpenModule7To9DumpRly",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 6
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.2.ChargeRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[2]::ChargeRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 3
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.2.Module.0.DumpRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[2]::Module[0]::DumpRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.2.Module.0.VoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[2]::Module[0]::VoltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.2.Module.1.DumpRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[2]::Module[1]::DumpRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.2.Module.1.VoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[2]::Module[1]::VoltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.2.Module.2.DumpRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[2]::Module[2]::DumpRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.2.Module.2.VoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[2]::Module[2]::VoltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.2.Module.3.DumpRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[2]::Module[3]::DumpRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.2.Module.3.VoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[2]::Module[3]::VoltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.2.Module.4.DumpRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[2]::Module[4]::DumpRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.2.Module.4.VoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[2]::Module[4]::VoltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.2.Module.5.DumpRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[2]::Module[5]::DumpRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.2.Module.5.VoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[2]::Module[5]::VoltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.2.Module.6.DumpRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[2]::Module[6]::DumpRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.2.Module.6.VoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[2]::Module[6]::VoltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.2.Module.7.DumpRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[2]::Module[7]::DumpRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.2.Module.7.VoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[2]::Module[7]::VoltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.2.Module.8.DumpRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[2]::Module[8]::DumpRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment.2.Module.8.VoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment[2]::Module[8]::VoltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment1to3_ShortContactClose": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment1to3_ShortContactClose",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.Segment1to3_UnShortContactClose": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::Segment1to3_UnShortContactClose",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.SegmentCharged": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::SegmentCharged",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP1_IO.TriggerScope": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP1_IO::TriggerScope",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Fire": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Fire",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.LossInterlockPressure": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::LossInterlockPressure",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.0.ChargeRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[0]::ChargeRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 3
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.0.Module.0.DumpRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[0]::Module[0]::DumpRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.0.Module.0.VoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[0]::Module[0]::VoltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.0.Module.1.DumpRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[0]::Module[1]::DumpRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.0.Module.1.VoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[0]::Module[1]::VoltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.0.Module.2.DumpRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[0]::Module[2]::DumpRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.0.Module.2.VoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[0]::Module[2]::VoltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.0.Module.3.DumpRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[0]::Module[3]::DumpRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.0.Module.3.VoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[0]::Module[3]::VoltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.0.Module.4.DumpRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[0]::Module[4]::DumpRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.0.Module.4.VoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[0]::Module[4]::VoltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.0.Module.5.DumpRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[0]::Module[5]::DumpRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.0.Module.5.VoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[0]::Module[5]::VoltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.0.Module.6.DumpRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[0]::Module[6]::DumpRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.0.Module.6.VoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[0]::Module[6]::VoltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.0.Module.7.DumpRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[0]::Module[7]::DumpRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.0.Module.7.VoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[0]::Module[7]::VoltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.0.Module.8.DumpRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[0]::Module[8]::DumpRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.0.Module.8.VoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[0]::Module[8]::VoltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.1.ChargeRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[1]::ChargeRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 3
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.1.Module.0.DumpRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[1]::Module[0]::DumpRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.1.Module.0.VoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[1]::Module[0]::VoltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.1.Module.1.DumpRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[1]::Module[1]::DumpRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.1.Module.1.VoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[1]::Module[1]::VoltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.1.Module.2.DumpRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[1]::Module[2]::DumpRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.1.Module.2.VoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[1]::Module[2]::VoltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.1.Module.3.DumpRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[1]::Module[3]::DumpRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.1.Module.3.VoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[1]::Module[3]::VoltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.1.Module.4.DumpRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[1]::Module[4]::DumpRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.1.Module.4.VoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[1]::Module[4]::VoltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.1.Module.5.DumpRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[1]::Module[5]::DumpRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.1.Module.5.VoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[1]::Module[5]::VoltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.1.Module.6.DumpRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[1]::Module[6]::DumpRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.1.Module.6.VoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[1]::Module[6]::VoltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.1.Module.7.DumpRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[1]::Module[7]::DumpRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.1.Module.7.VoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[1]::Module[7]::VoltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.1.Module.8.DumpRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[1]::Module[8]::DumpRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.1.Module.8.VoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[1]::Module[8]::VoltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.2.ChargeRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[2]::ChargeRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 3
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.2.Module.0.DumpRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[2]::Module[0]::DumpRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.2.Module.0.VoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[2]::Module[0]::VoltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.2.Module.1.DumpRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[2]::Module[1]::DumpRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.2.Module.1.VoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[2]::Module[1]::VoltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.2.Module.2.DumpRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[2]::Module[2]::DumpRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.2.Module.2.VoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[2]::Module[2]::VoltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.2.Module.3.DumpRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[2]::Module[3]::DumpRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.2.Module.3.VoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[2]::Module[3]::VoltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.2.Module.4.DumpRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[2]::Module[4]::DumpRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.2.Module.4.VoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[2]::Module[4]::VoltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.2.Module.5.DumpRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[2]::Module[5]::DumpRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.2.Module.5.VoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[2]::Module[5]::VoltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.2.Module.6.DumpRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[2]::Module[6]::DumpRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.2.Module.6.VoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[2]::Module[6]::VoltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.2.Module.7.DumpRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[2]::Module[7]::DumpRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.2.Module.7.VoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[2]::Module[7]::VoltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.2.Module.8.DumpRly_close": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[2]::Module[8]::DumpRly_close",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment.2.Module.8.VoltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment[2]::Module[8]::VoltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment4to6_ShortContactClose": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment4to6_ShortContactClose",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.Segment4to6_UnShortContactClose": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::Segment4to6_UnShortContactClose",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.LCP2_IO.SegmentCharged": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::LCP2_IO::SegmentCharged",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.0.ChargeTime.timeToChargeLoad": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[0]::ChargeTime::timeToChargeLoad",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.0.ChargerType": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[0]::ChargerType",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/INT"
+                    },
+                    {
+                        "comment": "Internal\r\nChargerType_50kV : BOOL;\r\nChargerType_12kV : BOOL;",
+                        "propertyOrder": 19
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.0.EndOfCharge": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[0]::EndOfCharge",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.0.HV_isON": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[0]::HV_isON",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 3
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.0.SummaryFaulted": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[0]::SummaryFaulted",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 7
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.0.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[0]::currentFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 15
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.0.inhibited": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[0]::inhibited",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "comment": "DI",
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.0.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[0]::voltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 12
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.0.voltageSP": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[0]::voltageSP",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 17
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.1.ChargeTime.timeToChargeLoad": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[1]::ChargeTime::timeToChargeLoad",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.1.ChargerType": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[1]::ChargerType",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/INT"
+                    },
+                    {
+                        "comment": "Internal\r\nChargerType_50kV : BOOL;\r\nChargerType_12kV : BOOL;",
+                        "propertyOrder": 19
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.1.EndOfCharge": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[1]::EndOfCharge",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.1.HV_isON": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[1]::HV_isON",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 3
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.1.SummaryFaulted": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[1]::SummaryFaulted",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 7
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.1.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[1]::currentFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 15
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.1.inhibited": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[1]::inhibited",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "comment": "DI",
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.1.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[1]::voltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 12
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.1.voltageSP": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[1]::voltageSP",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 17
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.2.ChargeTime.timeToChargeLoad": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[2]::ChargeTime::timeToChargeLoad",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.2.ChargerType": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[2]::ChargerType",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/INT"
+                    },
+                    {
+                        "comment": "Internal\r\nChargerType_50kV : BOOL;\r\nChargerType_12kV : BOOL;",
+                        "propertyOrder": 19
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.2.EndOfCharge": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[2]::EndOfCharge",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.2.HV_isON": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[2]::HV_isON",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 3
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.2.SummaryFaulted": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[2]::SummaryFaulted",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 7
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.2.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[2]::currentFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 15
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.2.inhibited": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[2]::inhibited",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "comment": "DI",
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.2.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[2]::voltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 12
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.2.voltageSP": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[2]::voltageSP",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 17
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.3.ChargeTime.timeToChargeLoad": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[3]::ChargeTime::timeToChargeLoad",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.3.ChargerType": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[3]::ChargerType",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/INT"
+                    },
+                    {
+                        "comment": "Internal\r\nChargerType_50kV : BOOL;\r\nChargerType_12kV : BOOL;",
+                        "propertyOrder": 19
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.3.EndOfCharge": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[3]::EndOfCharge",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.3.HV_isON": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[3]::HV_isON",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 3
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.3.SummaryFaulted": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[3]::SummaryFaulted",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 7
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.3.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[3]::currentFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 15
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.3.inhibited": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[3]::inhibited",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "comment": "DI",
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.3.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[3]::voltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 12
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.3.voltageSP": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[3]::voltageSP",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 17
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.4.ChargeTime.timeToChargeLoad": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[4]::ChargeTime::timeToChargeLoad",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.4.ChargerType": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[4]::ChargerType",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/INT"
+                    },
+                    {
+                        "comment": "Internal\r\nChargerType_50kV : BOOL;\r\nChargerType_12kV : BOOL;",
+                        "propertyOrder": 19
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.4.EndOfCharge": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[4]::EndOfCharge",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.4.HV_isON": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[4]::HV_isON",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 3
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.4.SummaryFaulted": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[4]::SummaryFaulted",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 7
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.4.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[4]::currentFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 15
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.4.inhibited": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[4]::inhibited",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "comment": "DI",
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.4.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[4]::voltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 12
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.4.voltageSP": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[4]::voltageSP",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 17
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.5.ChargeTime.timeToChargeLoad": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[5]::ChargeTime::timeToChargeLoad",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.5.ChargerType": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[5]::ChargerType",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/INT"
+                    },
+                    {
+                        "comment": "Internal\r\nChargerType_50kV : BOOL;\r\nChargerType_12kV : BOOL;",
+                        "propertyOrder": 19
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.5.EndOfCharge": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[5]::EndOfCharge",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.5.HV_isON": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[5]::HV_isON",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 3
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.5.SummaryFaulted": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[5]::SummaryFaulted",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 7
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.5.currentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[5]::currentFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 15
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.5.inhibited": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[5]::inhibited",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "comment": "DI",
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.5.voltageFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[5]::voltageFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 12
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.Charger.5.voltageSP": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::Charger[5]::voltageSP",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 17
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.Permissives_DB.AllCapsDischarged": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::Permissives_DB::AllCapsDischarged",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.Permissives_DB.AllChargeRelayClosed": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::Permissives_DB::AllChargeRelayClosed",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "comment": "SafetyOK\t\t\t\t: BOOL;"
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.Permissives_DB.AllChargerEOC": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::Permissives_DB::AllChargerEOC",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.Permissives_DB.AllChargerHVisOFF": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::Permissives_DB::AllChargerHVisOFF",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.Permissives_DB.AllChargerInhibitON": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::Permissives_DB::AllChargerInhibitON",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.Permissives_DB.AllDumpRelayOpen": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::Permissives_DB::AllDumpRelayOpen",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.Permissives_DB.CapVoltageThres": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::Permissives_DB::CapVoltageThres",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.Permissives_DB.ChargerVBelowThres": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::Permissives_DB::ChargerVBelowThres",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.Permissives_DB.ChargerVThres": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::Permissives_DB::ChargerVThres",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.Permissives_DB.ReadyToCharge": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::Permissives_DB::ReadyToCharge",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "comment": "AllDumpRelayClose\t\t: BOOL := 0;"
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.Permissives_DB.SystemIsSafe": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::Permissives_DB::SystemIsSafe",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.Sequence.ChargeCompleted": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::Sequence::ChargeCompleted",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.Sequence.ChargeTimeFinished": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::Sequence::ChargeTimeFinished",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.Sequence.eState": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::Sequence::eState",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/PLC1.E_State"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.Trips_DB.ChargedTimerRunout": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::Trips_DB::ChargedTimerRunout",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.Trips_DB.ChargerSummaryFault": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::Trips_DB::ChargerSummaryFault",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.Trips_DB.ChargingTimerRunout": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::Trips_DB::ChargingTimerRunout",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "comment": "AnyEstopPressed \t\t\t: BOOL;\r\nAllDCpsuOK\t\t\t\t\t: BOOL;\r\nAnyChargerOverTemp\t\t\t: BOOL;\r\nAnyChargerLoadFault\t\t\t: BOOL;\r\nAnyChargerInterlockOpen\t\t: BOOL;\r\nAnyChargerFaulted\t\t\t: BOOL; // same as summary fault\r\nSystemTripped \t\t\t\t: BOOL;\r\nInstrumentationFaulted\t\t: BOOL;\r\nAnyChargeRlyFail\t\t\t: BOOL;\r\nAnyDumpRlyFail\t\t\t\t: BOOL;\r\nAnyACInterlockFail\t\t\t: BOOL;\r\nAnyLossInhibitSignal\t\t: BOOL;\r\nAnyLossHVONsignal\t\t\t: BOOL;"
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.Trips_DB.DumpTimerRunout": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::Trips_DB::DumpTimerRunout",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.Trips_DB.NoFaultDetected": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::Trips_DB::NoFaultDetected",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "comment": "SystemTimeOut\t\t\t\t: BOOL;"
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.Trips_DB.ShortingSystemUnknown": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::Trips_DB::ShortingSystemUnknown",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.Trips_DB.TimerRunOutON": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::Trips_DB::TimerRunOutON",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.VoltageMonitor.DataNull": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::VoltageMonitor::DataNull",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
         "RefreshDefinitions": {
             "ACCESS": 3,
             "DOMAIN": "TcHmiSrv",
@@ -3427,6 +7801,287 @@
                 "LocalizeText": 3,
                 "Login": 3,
                 "Logout": 3,
+                "PLC1.ChargeTime.lca_charge_cal.0.TimeToChargeLoad": 3,
+                "PLC1.ChargeTime.longestChargeTime": 3,
+                "PLC1.ChargeTime_DB.ChargeTimeStartDelay.0": 3,
+                "PLC1.ChargeTime_DB.ChargeTimeStartDelay.1": 3,
+                "PLC1.ChargeTime_DB.ChargeTimeStartDelay.2": 3,
+                "PLC1.ChargeTime_DB.ChargeTimeStartDelay.3": 3,
+                "PLC1.ChargeTime_DB.ChargeTimeStartDelay.4": 3,
+                "PLC1.ChargeTime_DB.ChargeTimeStartDelay.5": 3,
+                "PLC1.ChargeTime_DB.ChargingTimeElapse.0": 3,
+                "PLC1.ChargeTime_DB.ChargingTimeElapse.1": 3,
+                "PLC1.ChargeTime_DB.ChargingTimeElapse.2": 3,
+                "PLC1.ChargeTime_DB.ChargingTimeElapse.3": 3,
+                "PLC1.ChargeTime_DB.ChargingTimeElapse.4": 3,
+                "PLC1.ChargeTime_DB.ChargingTimeElapse.5": 3,
+                "PLC1.GVL.RemoteModeSelected": 3,
+                "PLC1.GVL.alarm_test": 3,
+                "PLC1.HMI.LongestChargeTIME": 3,
+                "PLC1.HMI_DB.AbortPB": 3,
+                "PLC1.HMI_DB.AllChargeRelayCloseBP": 3,
+                "PLC1.HMI_DB.AllDumpRelaysOpenBP": 3,
+                "PLC1.HMI_DB.ChargePB": 3,
+                "PLC1.HMI_DB.ChargingRunOutTMR_elapse": 3,
+                "PLC1.HMI_DB.ClearFaultPB": 3,
+                "PLC1.HMI_DB.CloseChargeRlySW": 3,
+                "PLC1.HMI_DB.DumpPB": 3,
+                "PLC1.HMI_DB.FirePB": 3,
+                "PLC1.HMI_DB.HMI_ManualModeSelected": 3,
+                "PLC1.HMI_DB.OpenDumpRlySW": 3,
+                "PLC1.HMI_DB.RunOutTMR_elapse": 3,
+                "PLC1.HMI_DB.SystemSafeBP": 3,
+                "PLC1.HMI_DB.TDKLoad.0.NumOfCharger": 3,
+                "PLC1.HMI_DB.TDKLoad.0.PSratedV": 3,
+                "PLC1.HMI_DB.TDKLoad.0.RequiredChargedV": 3,
+                "PLC1.HMI_DB.TDKLoad.0.TotalCapacitance": 3,
+                "PLC1.HMI_DB.TDKLoad.0.eChargerType": 3,
+                "PLC1.HMI_DB.TDKLoad.0.wLCA": 3,
+                "PLC1.HMI_DB.TDKLoad.1.NumOfCharger": 3,
+                "PLC1.HMI_DB.TDKLoad.1.PSratedV": 3,
+                "PLC1.HMI_DB.TDKLoad.1.RequiredChargedV": 3,
+                "PLC1.HMI_DB.TDKLoad.1.TotalCapacitance": 3,
+                "PLC1.HMI_DB.TDKLoad.1.eChargerType": 3,
+                "PLC1.HMI_DB.TDKLoad.1.wLCA": 3,
+                "PLC1.HMI_DB.TDKLoad.2.NumOfCharger": 3,
+                "PLC1.HMI_DB.TDKLoad.2.PSratedV": 3,
+                "PLC1.HMI_DB.TDKLoad.2.RequiredChargedV": 3,
+                "PLC1.HMI_DB.TDKLoad.2.TotalCapacitance": 3,
+                "PLC1.HMI_DB.TDKLoad.2.eChargerType": 3,
+                "PLC1.HMI_DB.TDKLoad.2.wLCA": 3,
+                "PLC1.HMI_DB.TDKLoad.3.NumOfCharger": 3,
+                "PLC1.HMI_DB.TDKLoad.3.PSratedV": 3,
+                "PLC1.HMI_DB.TDKLoad.3.RequiredChargedV": 3,
+                "PLC1.HMI_DB.TDKLoad.3.TotalCapacitance": 3,
+                "PLC1.HMI_DB.TDKLoad.3.eChargerType": 3,
+                "PLC1.HMI_DB.TDKLoad.3.wLCA": 3,
+                "PLC1.HMI_DB.TDKLoad.4.NumOfCharger": 3,
+                "PLC1.HMI_DB.TDKLoad.4.PSratedV": 3,
+                "PLC1.HMI_DB.TDKLoad.4.RequiredChargedV": 3,
+                "PLC1.HMI_DB.TDKLoad.4.TotalCapacitance": 3,
+                "PLC1.HMI_DB.TDKLoad.4.eChargerType": 3,
+                "PLC1.HMI_DB.TDKLoad.4.wLCA": 3,
+                "PLC1.HMI_DB.TDKLoad.5.NumOfCharger": 3,
+                "PLC1.HMI_DB.TDKLoad.5.PSratedV": 3,
+                "PLC1.HMI_DB.TDKLoad.5.RequiredChargedV": 3,
+                "PLC1.HMI_DB.TDKLoad.5.TotalCapacitance": 3,
+                "PLC1.HMI_DB.TDKLoad.5.eChargerType": 3,
+                "PLC1.HMI_DB.TDKLoad.5.wLCA": 3,
+                "PLC1.Heartbeat.pulse_1Hz": 3,
+                "PLC1.Heartbeat.screen_refresh_pulse": 3,
+                "PLC1.LCP1_IO.Fire": 3,
+                "PLC1.LCP1_IO.LossInterlockPressure": 3,
+                "PLC1.LCP1_IO.Segment.0.ChargeRly_close": 3,
+                "PLC1.LCP1_IO.Segment.0.CloseChargeRly": 3,
+                "PLC1.LCP1_IO.Segment.0.Module.0.DumpRly_close": 3,
+                "PLC1.LCP1_IO.Segment.0.Module.0.VoltageFeedback": 3,
+                "PLC1.LCP1_IO.Segment.0.Module.1.DumpRly_close": 3,
+                "PLC1.LCP1_IO.Segment.0.Module.1.VoltageFeedback": 3,
+                "PLC1.LCP1_IO.Segment.0.Module.2.DumpRly_close": 3,
+                "PLC1.LCP1_IO.Segment.0.Module.2.VoltageFeedback": 3,
+                "PLC1.LCP1_IO.Segment.0.Module.3.DumpRly_close": 3,
+                "PLC1.LCP1_IO.Segment.0.Module.3.VoltageFeedback": 3,
+                "PLC1.LCP1_IO.Segment.0.Module.4.DumpRly_close": 3,
+                "PLC1.LCP1_IO.Segment.0.Module.4.VoltageFeedback": 3,
+                "PLC1.LCP1_IO.Segment.0.Module.5.DumpRly_close": 3,
+                "PLC1.LCP1_IO.Segment.0.Module.5.VoltageFeedback": 3,
+                "PLC1.LCP1_IO.Segment.0.Module.6.DumpRly_close": 3,
+                "PLC1.LCP1_IO.Segment.0.Module.6.VoltageFeedback": 3,
+                "PLC1.LCP1_IO.Segment.0.Module.7.DumpRly_close": 3,
+                "PLC1.LCP1_IO.Segment.0.Module.7.VoltageFeedback": 3,
+                "PLC1.LCP1_IO.Segment.0.Module.8.DumpRly_close": 3,
+                "PLC1.LCP1_IO.Segment.0.Module.8.VoltageFeedback": 3,
+                "PLC1.LCP1_IO.Segment.0.OpenModule1To3DumpRly": 3,
+                "PLC1.LCP1_IO.Segment.0.OpenModule4To6DumpRly": 3,
+                "PLC1.LCP1_IO.Segment.0.OpenModule7To9DumpRly": 3,
+                "PLC1.LCP1_IO.Segment.1.ChargeRly_close": 3,
+                "PLC1.LCP1_IO.Segment.1.CloseChargeRly": 3,
+                "PLC1.LCP1_IO.Segment.1.Module.0.DumpRly_close": 3,
+                "PLC1.LCP1_IO.Segment.1.Module.0.VoltageFeedback": 3,
+                "PLC1.LCP1_IO.Segment.1.Module.1.DumpRly_close": 3,
+                "PLC1.LCP1_IO.Segment.1.Module.1.VoltageFeedback": 3,
+                "PLC1.LCP1_IO.Segment.1.Module.2.DumpRly_close": 3,
+                "PLC1.LCP1_IO.Segment.1.Module.2.VoltageFeedback": 3,
+                "PLC1.LCP1_IO.Segment.1.Module.3.DumpRly_close": 3,
+                "PLC1.LCP1_IO.Segment.1.Module.3.VoltageFeedback": 3,
+                "PLC1.LCP1_IO.Segment.1.Module.4.DumpRly_close": 3,
+                "PLC1.LCP1_IO.Segment.1.Module.4.VoltageFeedback": 3,
+                "PLC1.LCP1_IO.Segment.1.Module.5.DumpRly_close": 3,
+                "PLC1.LCP1_IO.Segment.1.Module.5.VoltageFeedback": 3,
+                "PLC1.LCP1_IO.Segment.1.Module.6.DumpRly_close": 3,
+                "PLC1.LCP1_IO.Segment.1.Module.6.VoltageFeedback": 3,
+                "PLC1.LCP1_IO.Segment.1.Module.7.DumpRly_close": 3,
+                "PLC1.LCP1_IO.Segment.1.Module.7.VoltageFeedback": 3,
+                "PLC1.LCP1_IO.Segment.1.Module.8.DumpRly_close": 3,
+                "PLC1.LCP1_IO.Segment.1.Module.8.VoltageFeedback": 3,
+                "PLC1.LCP1_IO.Segment.1.OpenModule1To3DumpRly": 3,
+                "PLC1.LCP1_IO.Segment.1.OpenModule4To6DumpRly": 3,
+                "PLC1.LCP1_IO.Segment.1.OpenModule7To9DumpRly": 3,
+                "PLC1.LCP1_IO.Segment.2.ChargeRly_close": 3,
+                "PLC1.LCP1_IO.Segment.2.CloseChargeRly": 3,
+                "PLC1.LCP1_IO.Segment.2.Module.0.DumpRly_close": 3,
+                "PLC1.LCP1_IO.Segment.2.Module.0.VoltageFeedback": 3,
+                "PLC1.LCP1_IO.Segment.2.Module.1.DumpRly_close": 3,
+                "PLC1.LCP1_IO.Segment.2.Module.1.VoltageFeedback": 3,
+                "PLC1.LCP1_IO.Segment.2.Module.2.DumpRly_close": 3,
+                "PLC1.LCP1_IO.Segment.2.Module.2.VoltageFeedback": 3,
+                "PLC1.LCP1_IO.Segment.2.Module.3.DumpRly_close": 3,
+                "PLC1.LCP1_IO.Segment.2.Module.3.VoltageFeedback": 3,
+                "PLC1.LCP1_IO.Segment.2.Module.4.DumpRly_close": 3,
+                "PLC1.LCP1_IO.Segment.2.Module.4.VoltageFeedback": 3,
+                "PLC1.LCP1_IO.Segment.2.Module.5.DumpRly_close": 3,
+                "PLC1.LCP1_IO.Segment.2.Module.5.VoltageFeedback": 3,
+                "PLC1.LCP1_IO.Segment.2.Module.6.DumpRly_close": 3,
+                "PLC1.LCP1_IO.Segment.2.Module.6.VoltageFeedback": 3,
+                "PLC1.LCP1_IO.Segment.2.Module.7.DumpRly_close": 3,
+                "PLC1.LCP1_IO.Segment.2.Module.7.VoltageFeedback": 3,
+                "PLC1.LCP1_IO.Segment.2.Module.8.DumpRly_close": 3,
+                "PLC1.LCP1_IO.Segment.2.Module.8.VoltageFeedback": 3,
+                "PLC1.LCP1_IO.Segment.2.OpenModule1To3DumpRly": 3,
+                "PLC1.LCP1_IO.Segment.2.OpenModule4To6DumpRly": 3,
+                "PLC1.LCP1_IO.Segment.2.OpenModule7To9DumpRly": 3,
+                "PLC1.LCP1_IO.Segment1to3_ShortContactClose": 3,
+                "PLC1.LCP1_IO.Segment1to3_UnShortContactClose": 3,
+                "PLC1.LCP1_IO.SegmentCharged": 3,
+                "PLC1.LCP1_IO.TriggerScope": 3,
+                "PLC1.LCP2_IO.Fire": 3,
+                "PLC1.LCP2_IO.LossInterlockPressure": 3,
+                "PLC1.LCP2_IO.Segment.0.ChargeRly_close": 3,
+                "PLC1.LCP2_IO.Segment.0.Module.0.DumpRly_close": 3,
+                "PLC1.LCP2_IO.Segment.0.Module.0.VoltageFeedback": 3,
+                "PLC1.LCP2_IO.Segment.0.Module.1.DumpRly_close": 3,
+                "PLC1.LCP2_IO.Segment.0.Module.1.VoltageFeedback": 3,
+                "PLC1.LCP2_IO.Segment.0.Module.2.DumpRly_close": 3,
+                "PLC1.LCP2_IO.Segment.0.Module.2.VoltageFeedback": 3,
+                "PLC1.LCP2_IO.Segment.0.Module.3.DumpRly_close": 3,
+                "PLC1.LCP2_IO.Segment.0.Module.3.VoltageFeedback": 3,
+                "PLC1.LCP2_IO.Segment.0.Module.4.DumpRly_close": 3,
+                "PLC1.LCP2_IO.Segment.0.Module.4.VoltageFeedback": 3,
+                "PLC1.LCP2_IO.Segment.0.Module.5.DumpRly_close": 3,
+                "PLC1.LCP2_IO.Segment.0.Module.5.VoltageFeedback": 3,
+                "PLC1.LCP2_IO.Segment.0.Module.6.DumpRly_close": 3,
+                "PLC1.LCP2_IO.Segment.0.Module.6.VoltageFeedback": 3,
+                "PLC1.LCP2_IO.Segment.0.Module.7.DumpRly_close": 3,
+                "PLC1.LCP2_IO.Segment.0.Module.7.VoltageFeedback": 3,
+                "PLC1.LCP2_IO.Segment.0.Module.8.DumpRly_close": 3,
+                "PLC1.LCP2_IO.Segment.0.Module.8.VoltageFeedback": 3,
+                "PLC1.LCP2_IO.Segment.1.ChargeRly_close": 3,
+                "PLC1.LCP2_IO.Segment.1.Module.0.DumpRly_close": 3,
+                "PLC1.LCP2_IO.Segment.1.Module.0.VoltageFeedback": 3,
+                "PLC1.LCP2_IO.Segment.1.Module.1.DumpRly_close": 3,
+                "PLC1.LCP2_IO.Segment.1.Module.1.VoltageFeedback": 3,
+                "PLC1.LCP2_IO.Segment.1.Module.2.DumpRly_close": 3,
+                "PLC1.LCP2_IO.Segment.1.Module.2.VoltageFeedback": 3,
+                "PLC1.LCP2_IO.Segment.1.Module.3.DumpRly_close": 3,
+                "PLC1.LCP2_IO.Segment.1.Module.3.VoltageFeedback": 3,
+                "PLC1.LCP2_IO.Segment.1.Module.4.DumpRly_close": 3,
+                "PLC1.LCP2_IO.Segment.1.Module.4.VoltageFeedback": 3,
+                "PLC1.LCP2_IO.Segment.1.Module.5.DumpRly_close": 3,
+                "PLC1.LCP2_IO.Segment.1.Module.5.VoltageFeedback": 3,
+                "PLC1.LCP2_IO.Segment.1.Module.6.DumpRly_close": 3,
+                "PLC1.LCP2_IO.Segment.1.Module.6.VoltageFeedback": 3,
+                "PLC1.LCP2_IO.Segment.1.Module.7.DumpRly_close": 3,
+                "PLC1.LCP2_IO.Segment.1.Module.7.VoltageFeedback": 3,
+                "PLC1.LCP2_IO.Segment.1.Module.8.DumpRly_close": 3,
+                "PLC1.LCP2_IO.Segment.1.Module.8.VoltageFeedback": 3,
+                "PLC1.LCP2_IO.Segment.2.ChargeRly_close": 3,
+                "PLC1.LCP2_IO.Segment.2.Module.0.DumpRly_close": 3,
+                "PLC1.LCP2_IO.Segment.2.Module.0.VoltageFeedback": 3,
+                "PLC1.LCP2_IO.Segment.2.Module.1.DumpRly_close": 3,
+                "PLC1.LCP2_IO.Segment.2.Module.1.VoltageFeedback": 3,
+                "PLC1.LCP2_IO.Segment.2.Module.2.DumpRly_close": 3,
+                "PLC1.LCP2_IO.Segment.2.Module.2.VoltageFeedback": 3,
+                "PLC1.LCP2_IO.Segment.2.Module.3.DumpRly_close": 3,
+                "PLC1.LCP2_IO.Segment.2.Module.3.VoltageFeedback": 3,
+                "PLC1.LCP2_IO.Segment.2.Module.4.DumpRly_close": 3,
+                "PLC1.LCP2_IO.Segment.2.Module.4.VoltageFeedback": 3,
+                "PLC1.LCP2_IO.Segment.2.Module.5.DumpRly_close": 3,
+                "PLC1.LCP2_IO.Segment.2.Module.5.VoltageFeedback": 3,
+                "PLC1.LCP2_IO.Segment.2.Module.6.DumpRly_close": 3,
+                "PLC1.LCP2_IO.Segment.2.Module.6.VoltageFeedback": 3,
+                "PLC1.LCP2_IO.Segment.2.Module.7.DumpRly_close": 3,
+                "PLC1.LCP2_IO.Segment.2.Module.7.VoltageFeedback": 3,
+                "PLC1.LCP2_IO.Segment.2.Module.8.DumpRly_close": 3,
+                "PLC1.LCP2_IO.Segment.2.Module.8.VoltageFeedback": 3,
+                "PLC1.LCP2_IO.Segment4to6_ShortContactClose": 3,
+                "PLC1.LCP2_IO.Segment4to6_UnShortContactClose": 3,
+                "PLC1.LCP2_IO.SegmentCharged": 3,
+                "PLC1.MCP_IO.Charger.0.ChargeTime.timeToChargeLoad": 3,
+                "PLC1.MCP_IO.Charger.0.ChargerType": 3,
+                "PLC1.MCP_IO.Charger.0.EndOfCharge": 3,
+                "PLC1.MCP_IO.Charger.0.HV_isON": 3,
+                "PLC1.MCP_IO.Charger.0.SummaryFaulted": 3,
+                "PLC1.MCP_IO.Charger.0.currentFeedback": 3,
+                "PLC1.MCP_IO.Charger.0.inhibited": 3,
+                "PLC1.MCP_IO.Charger.0.voltageFeedback": 3,
+                "PLC1.MCP_IO.Charger.0.voltageSP": 3,
+                "PLC1.MCP_IO.Charger.1.ChargeTime.timeToChargeLoad": 3,
+                "PLC1.MCP_IO.Charger.1.ChargerType": 3,
+                "PLC1.MCP_IO.Charger.1.EndOfCharge": 3,
+                "PLC1.MCP_IO.Charger.1.HV_isON": 3,
+                "PLC1.MCP_IO.Charger.1.SummaryFaulted": 3,
+                "PLC1.MCP_IO.Charger.1.currentFeedback": 3,
+                "PLC1.MCP_IO.Charger.1.inhibited": 3,
+                "PLC1.MCP_IO.Charger.1.voltageFeedback": 3,
+                "PLC1.MCP_IO.Charger.1.voltageSP": 3,
+                "PLC1.MCP_IO.Charger.2.ChargeTime.timeToChargeLoad": 3,
+                "PLC1.MCP_IO.Charger.2.ChargerType": 3,
+                "PLC1.MCP_IO.Charger.2.EndOfCharge": 3,
+                "PLC1.MCP_IO.Charger.2.HV_isON": 3,
+                "PLC1.MCP_IO.Charger.2.SummaryFaulted": 3,
+                "PLC1.MCP_IO.Charger.2.currentFeedback": 3,
+                "PLC1.MCP_IO.Charger.2.inhibited": 3,
+                "PLC1.MCP_IO.Charger.2.voltageFeedback": 3,
+                "PLC1.MCP_IO.Charger.2.voltageSP": 3,
+                "PLC1.MCP_IO.Charger.3.ChargeTime.timeToChargeLoad": 3,
+                "PLC1.MCP_IO.Charger.3.ChargerType": 3,
+                "PLC1.MCP_IO.Charger.3.EndOfCharge": 3,
+                "PLC1.MCP_IO.Charger.3.HV_isON": 3,
+                "PLC1.MCP_IO.Charger.3.SummaryFaulted": 3,
+                "PLC1.MCP_IO.Charger.3.currentFeedback": 3,
+                "PLC1.MCP_IO.Charger.3.inhibited": 3,
+                "PLC1.MCP_IO.Charger.3.voltageFeedback": 3,
+                "PLC1.MCP_IO.Charger.3.voltageSP": 3,
+                "PLC1.MCP_IO.Charger.4.ChargeTime.timeToChargeLoad": 3,
+                "PLC1.MCP_IO.Charger.4.ChargerType": 3,
+                "PLC1.MCP_IO.Charger.4.EndOfCharge": 3,
+                "PLC1.MCP_IO.Charger.4.HV_isON": 3,
+                "PLC1.MCP_IO.Charger.4.SummaryFaulted": 3,
+                "PLC1.MCP_IO.Charger.4.currentFeedback": 3,
+                "PLC1.MCP_IO.Charger.4.inhibited": 3,
+                "PLC1.MCP_IO.Charger.4.voltageFeedback": 3,
+                "PLC1.MCP_IO.Charger.4.voltageSP": 3,
+                "PLC1.MCP_IO.Charger.5.ChargeTime.timeToChargeLoad": 3,
+                "PLC1.MCP_IO.Charger.5.ChargerType": 3,
+                "PLC1.MCP_IO.Charger.5.EndOfCharge": 3,
+                "PLC1.MCP_IO.Charger.5.HV_isON": 3,
+                "PLC1.MCP_IO.Charger.5.SummaryFaulted": 3,
+                "PLC1.MCP_IO.Charger.5.currentFeedback": 3,
+                "PLC1.MCP_IO.Charger.5.inhibited": 3,
+                "PLC1.MCP_IO.Charger.5.voltageFeedback": 3,
+                "PLC1.MCP_IO.Charger.5.voltageSP": 3,
+                "PLC1.Permissives_DB.AllCapsDischarged": 3,
+                "PLC1.Permissives_DB.AllChargeRelayClosed": 3,
+                "PLC1.Permissives_DB.AllChargerEOC": 3,
+                "PLC1.Permissives_DB.AllChargerHVisOFF": 3,
+                "PLC1.Permissives_DB.AllChargerInhibitON": 3,
+                "PLC1.Permissives_DB.AllDumpRelayOpen": 3,
+                "PLC1.Permissives_DB.CapVoltageThres": 3,
+                "PLC1.Permissives_DB.ChargerVBelowThres": 3,
+                "PLC1.Permissives_DB.ChargerVThres": 3,
+                "PLC1.Permissives_DB.ReadyToCharge": 3,
+                "PLC1.Permissives_DB.SystemIsSafe": 3,
+                "PLC1.Sequence.ChargeCompleted": 3,
+                "PLC1.Sequence.ChargeTimeFinished": 3,
+                "PLC1.Sequence.eState": 3,
+                "PLC1.Trips_DB.ChargedTimerRunout": 3,
+                "PLC1.Trips_DB.ChargerSummaryFault": 3,
+                "PLC1.Trips_DB.ChargingTimerRunout": 3,
+                "PLC1.Trips_DB.DumpTimerRunout": 3,
+                "PLC1.Trips_DB.NoFaultDetected": 3,
+                "PLC1.Trips_DB.ShortingSystemUnknown": 3,
+                "PLC1.Trips_DB.TimerRunOutON": 3,
+                "PLC1.VoltageMonitor.DataNull": 3,
                 "SetLocale": 3,
                 "SubscribeEvents": 3,
                 "TcHmiSqliteLogger.Diagnostics": 1,

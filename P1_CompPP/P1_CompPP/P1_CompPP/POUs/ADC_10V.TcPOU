@@ -14,12 +14,17 @@ END_VAR
     <Implementation>
       <ST><![CDATA[// 0 - 10V AI INPUT | normal_input 0-100%
 voltage_reading := x_max * normal_input;
-ADC_10V := (voltage_reading - x_min) / (x_max - x_min);]]></ST>
+ADC_10V := (voltage_reading - x_min) / (x_max - x_min);
+
+//voltage_reading := normal_input * (x_max - x_min);
+//ADC_10V := voltage_reading / (x_max - x_min);]]></ST>
     </Implementation>
     <LineIds Name="ADC_10V">
       <LineId Id="11" Count="0" />
       <LineId Id="15" Count="0" />
       <LineId Id="7" Count="0" />
+      <LineId Id="29" Count="1" />
+      <LineId Id="28" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

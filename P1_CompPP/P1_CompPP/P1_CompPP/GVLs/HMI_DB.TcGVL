@@ -16,7 +16,7 @@ VAR_GLOBAL PERSISTENT
 	RunOutTMR_elapse			: DINT;
 	
 	ChargingRunOutTMR_elapse	: INT;
-	
+		
 END_VAR
 
 VAR_GLOBAL
@@ -34,7 +34,13 @@ VAR_GLOBAL
 	HMI_ManualModeSelected		: BOOL := 0;  // 1 = manual mode selected
 	CloseChargeRlySW			: BOOL := 0;
 	OpenDumpRlySW				: BOOL := 0;
+	TurnChrgHVonSW				: BOOL := 0;
+	TurnChrgInhibitOffSW		: BOOL := 0;
+	TurnOnShotTrigSW			: BOOL := 0;
+	TurnOnChargeAlarm			: BOOL := 0;
+	
 	LastTimeShotLog				: BOOL := 0;
+
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

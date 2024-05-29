@@ -6,6 +6,7 @@ VAR
 	i : INT := 1;
 	n : INT := 6;
 	a : INT := 0; //0-15
+	
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -13,7 +14,7 @@ END_VAR
 	//INPUT
 	//DI
 	MCP_IO.MasterStopPB_NotPressed				:= Input.R1_01_00;  //NC - Master stop PB not pressed - black pb on mcp
-	MCP_IO.CageEstopCircuitOK					:= Input.R1_01_01;  //case Estop circuit okay (Rly1 (120vac)
+	MCP_IO.CageEstopCircuitOK					:= Input.R1_01_01;  //case Estop circuit okay (Rly1 (120vac)  
 	MCP_IO.PSU1_DCOK							:= Input.R1_01_02; // psu1 dc ok
 	//Spare										:= Input.R1_01_03; //
 	//Spare										:= Input.R1_01_04; // 
@@ -64,6 +65,10 @@ END_VAR
 	Output.R1_07_01	:= MCP_IO.Charger[5].HV_ON;
 	Output.R1_07_02	:= MCP_IO.Charger[6].inhibit;
 	Output.R1_07_03	:= MCP_IO.Charger[6].HV_ON;
+	//Output.R1_07_04 := spare
+	//Output.R1_07_05 spare
+	//Output.R1_07_06 spare
+	//Output.R1_07_07 spare
 	
 	//EL3068 - AI
 	MCP_IO.Charger[1].voltageFeedback_raw		:= Input.R1_08_00;
@@ -72,8 +77,9 @@ END_VAR
 	MCP_IO.Charger[4].voltageFeedback_raw		:= Input.R1_08_03;
 	MCP_IO.Charger[5].voltageFeedback_raw		:= Input.R1_08_04;
 	MCP_IO.Charger[6].voltageFeedback_raw		:= Input.R1_08_05;
+	//Input.R1_08_06;
+	//Input.R1_08_07;
 		
-	//OUTPUT
 	//EL4008 AQ
 	Output.R1_09_00	:= MCP_IO.Charger[1].voltageSP_raw;
 	Output.R1_09_01	:= MCP_IO.Charger[2].voltageSP_raw;
@@ -182,28 +188,67 @@ END_VAR
 	HMI_DB.CloseChargeRlySW			:= LV.TxWord1.8;
 	HMI_DB.OpenDumpRlySW 			:= LV.TxWord1.9;
 	HMI_DB.HMI_ManualModeSelected	:= LV.TxWord1.10;  // 1 = manual mode selected
+	//not sure if you want to control these via LV
+	(*
 	MCP_IO.Charger[1].HV_ON			:= LV.TxWord1.11;
 	MCP_IO.Charger[1].inhibit		:= LV.TxWord1.12;
-
-	LV.TxWord2.0 := LV.Charger[1].EndOfCharge			:= MCP_IO.Charger[1].EndOfCharge;
-	LV.TxWord2.1 := LV.Charger[1].HV_isON				:= MCP_IO.Charger[1].HV_isON;
-	LV.TxWord2.2 := LV.Charger[1].inhibited				:= MCP_IO.Charger[1].inhibited;
-	LV.TxWord2.3 := LV.Charger[1].SummaryFaulted		:= MCP_IO.Charger[1].SummaryFaulted;
+	MCP_IO.Charger[2].HV_ON			:= LV.TxWord1.13;
+	MCP_IO.Charger[2].inhibit		:= LV.TxWord1.14;
 	
-	HMI_DB.ChargerHVOFF_rlyDelayPT_INT	:= LV.RxInt[1];
-	HMI_DB.HVONdelayPT_INT 				:= LV.RxInt[2];
-	LV.RxInt[3]							:= HMI_DB.ChargingRunOutTMR_elapse;
+	MCP_IO.Charger[3].HV_ON			:= LV.TxWord2.0;
+	MCP_IO.Charger[3].inhibit		:= LV.TxWord2.1;
+	MCP_IO.Charger[4].HV_ON			:= LV.TxWord2.2;
+	MCP_IO.Charger[4].inhibit		:= LV.TxWord2.3;
+	MCP_IO.Charger[5].HV_ON			:= LV.TxWord2.4;
+	MCP_IO.Charger[5].inhibit		:= LV.TxWord2.5;
+	MCP_IO.Charger[6].HV_ON			:= LV.TxWord2.6;
+	MCP_IO.Charger[6].inhibit		:= LV.TxWord2.7;
+	*)
 	
-	HMI_DB.RunOutTMR_PT_INT				:= LV.RxDint[1];
-	LV.RxDint[2]						:= HMI_DB.RunOutTMR_elapse;	
+	LV.RxWord1.0 := LV.Charger[1].EndOfCharge			:= MCP_IO.Charger[1].EndOfCharge;
+	LV.RxWord1.1 := LV.Charger[1].HV_isON				:= MCP_IO.Charger[1].HV_isON;
+	LV.RxWord1.2 := LV.Charger[1].inhibited				:= MCP_IO.Charger[1].inhibited;
+	LV.RxWord1.3 := LV.Charger[1].SummaryFaulted		:= MCP_IO.Charger[1].SummaryFaulted;
+	LV.RxWord1.4 := LV.Charger[2].EndOfCharge			:= MCP_IO.Charger[2].EndOfCharge;
+	LV.RxWord1.5 := LV.Charger[2].HV_isON				:= MCP_IO.Charger[2].HV_isON;
+	LV.RxWord1.6 := LV.Charger[2].inhibited				:= MCP_IO.Charger[2].inhibited;
+	LV.RxWord1.7 := LV.Charger[2].SummaryFaulted		:= MCP_IO.Charger[2].SummaryFaulted;
+	LV.RxWord1.8 := LV.Charger[3].EndOfCharge			:= MCP_IO.Charger[3].EndOfCharge;
+	LV.RxWord1.9 := LV.Charger[3].HV_isON				:= MCP_IO.Charger[3].HV_isON;
+	LV.RxWord1.10 := LV.Charger[3].inhibited			:= MCP_IO.Charger[3].inhibited;
+	LV.RxWord1.11 := LV.Charger[3].SummaryFaulted		:= MCP_IO.Charger[3].SummaryFaulted;
+	LV.RxWord1.12 := LV.Charger[4].EndOfCharge			:= MCP_IO.Charger[4].EndOfCharge;
+	LV.RxWord1.13 := LV.Charger[4].HV_isON				:= MCP_IO.Charger[4].HV_isON;
+	LV.RxWord1.14 := LV.Charger[4].inhibited			:= MCP_IO.Charger[4].inhibited;
+	LV.RxWord1.15 := LV.Charger[4].SummaryFaulted		:= MCP_IO.Charger[4].SummaryFaulted;
+	
+	LV.RxWord1.0 := LV.Charger[5].EndOfCharge			:= MCP_IO.Charger[5].EndOfCharge;
+	LV.RxWord1.1 := LV.Charger[5].HV_isON				:= MCP_IO.Charger[5].HV_isON;
+	LV.RxWord1.2 := LV.Charger[5].inhibited				:= MCP_IO.Charger[5].inhibited;
+	LV.RxWord1.3 := LV.Charger[5].SummaryFaulted		:= MCP_IO.Charger[5].SummaryFaulted;
+	LV.RxWord1.4 := LV.Charger[6].EndOfCharge			:= MCP_IO.Charger[6].EndOfCharge;
+	LV.RxWord1.5 := LV.Charger[6].HV_isON				:= MCP_IO.Charger[6].HV_isON;
+	LV.RxWord1.6 := LV.Charger[6].inhibited				:= MCP_IO.Charger[6].inhibited;
+	LV.RxWord1.7 := LV.Charger[6].SummaryFaulted		:= MCP_IO.Charger[6].SummaryFaulted;
+	
+	HMI_DB.ChargerHVOFF_rlyDelayPT_INT	:= LV.TxInt[1];
+	HMI_DB.HVONdelayPT_INT 				:= LV.TxInt[2];
+	LV.RxInt[1]							:= HMI_DB.ChargingRunOutTMR_elapse;
+	
+	HMI_DB.RunOutTMR_PT_INT				:= LV.TxDint[1];
+	LV.RxDint[1]						:= HMI_DB.RunOutTMR_elapse;	
 	
 	
 	FOR i := 1 TO n BY 1 DO
-		MCP_IO.Charger[i].ChargerType_12kV  			:= LV.Charger[i].ChargerType_12kV;
-		MCP_IO.Charger[i].ChargerType_50kV  			:= LV.Charger[i].ChargerType_50kV;
+		HMI_DB.TDKLoad[i].eChargerType 					:= LV.TDKLoad[i].eChargerType;
+		HMI_DB.TDKLoad[i].PSratedV						:= LV.TDKLoad[i].PSratedV;
+		HMI_DB.TDKLoad[i].RequiredChargedV 				:= LV.TDKLoad[i].RequiredChargedV;
+		HMI_DB.TDKLoad[i].wLCA							:= LV.TDKLoad[i].wLCA;;
+		HMI_DB.TDKLoad[i].NumOfCharger					:= LV.TDKLoad[i].NumOfCharger;	
+		
 		LV.Charger[i].ChargeTime 						:= MCP_IO.Charger[i].ChargeTime;
-		LV.RxREAL[1] := LV.Charger[1].voltageFeedback	:= MCP_IO.Charger[1].voltageFeedback;
-		MCP_IO.Charger[1].voltageSP (*make this real*)	:= LV.RxREAL[2] := LV.Charger[1].voltageSP;
+		LV.RxREAL[i] := LV.Charger[i].voltageFeedback	:= MCP_IO.Charger[i].voltageFeedback;
+		MCP_IO.Charger[i].voltageSP (*make this real*)	:= LV.TxREAL[i] := LV.Charger[i].voltageSP;
 	
 	END_FOR]]></ST>
     </Implementation>
@@ -236,10 +281,12 @@ END_VAR
       <LineId Id="461" Count="9" />
       <LineId Id="486" Count="0" />
       <LineId Id="471" Count="3" />
+      <LineId Id="753" Count="3" />
       <LineId Id="487" Count="3" />
       <LineId Id="460" Count="0" />
       <LineId Id="491" Count="3" />
-      <LineId Id="408" Count="0" />
+      <LineId Id="759" Count="0" />
+      <LineId Id="757" Count="0" />
       <LineId Id="415" Count="0" />
       <LineId Id="496" Count="5" />
       <LineId Id="418" Count="1" />
@@ -274,13 +321,34 @@ END_VAR
       <LineId Id="642" Count="8" />
       <LineId Id="653" Count="0" />
       <LineId Id="675" Count="0" />
-      <LineId Id="689" Count="1" />
+      <LineId Id="716" Count="0" />
+      <LineId Id="689" Count="0" />
+      <LineId Id="745" Count="0" />
+      <LineId Id="690" Count="0" />
+      <LineId Id="705" Count="0" />
+      <LineId Id="704" Count="0" />
+      <LineId Id="709" Count="0" />
+      <LineId Id="706" Count="0" />
+      <LineId Id="708" Count="0" />
+      <LineId Id="707" Count="0" />
+      <LineId Id="710" Count="5" />
       <LineId Id="677" Count="0" />
       <LineId Id="676" Count="0" />
       <LineId Id="678" Count="0" />
       <LineId Id="656" Count="0" />
       <LineId Id="680" Count="0" />
+      <LineId Id="717" Count="2" />
       <LineId Id="682" Count="0" />
+      <LineId Id="722" Count="2" />
+      <LineId Id="721" Count="0" />
+      <LineId Id="726" Count="2" />
+      <LineId Id="720" Count="0" />
+      <LineId Id="733" Count="0" />
+      <LineId Id="729" Count="2" />
+      <LineId Id="725" Count="0" />
+      <LineId Id="734" Count="2" />
+      <LineId Id="732" Count="0" />
+      <LineId Id="737" Count="0" />
       <LineId Id="640" Count="0" />
       <LineId Id="657" Count="0" />
       <LineId Id="655" Count="0" />
@@ -288,7 +356,8 @@ END_VAR
       <LineId Id="659" Count="1" />
       <LineId Id="662" Count="0" />
       <LineId Id="666" Count="2" />
-      <LineId Id="671" Count="1" />
+      <LineId Id="699" Count="4" />
+      <LineId Id="672" Count="0" />
       <LineId Id="674" Count="0" />
       <LineId Id="684" Count="1" />
       <LineId Id="669" Count="0" />

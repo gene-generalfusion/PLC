@@ -323,68 +323,167 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
+							<Name>Input.R1_03_00</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_03_01</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_03_02</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_03_03</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_03_04</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_03_05</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_03_06</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_03_07</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
 							<Name>Input.R1_04_00</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_04_01</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_04_02</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_04_03</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_04_04</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_04_05</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_04_06</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_04_07</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_05_00</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_05_01</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_05_02</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_05_03</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_05_04</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_05_05</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_05_06</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_05_07</Name>
+							<Comment><![CDATA[spare]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_08_00</Name>
 							<Comment><![CDATA[EL3068 - AI1]]></Comment>
 							<Type>INT</Type>
 						</Var>
 						<Var>
-							<Name>Input.R1_04_00_Status</Name>
+							<Name>Input.R1_08_00_Status</Name>
 							<Type>WORD</Type>
 						</Var>
 						<Var>
-							<Name>Input.R1_04_01</Name>
+							<Name>Input.R1_08_01</Name>
 							<Type>INT</Type>
 						</Var>
 						<Var>
-							<Name>Input.R1_04_01_Status</Name>
+							<Name>Input.R1_08_01_Status</Name>
 							<Type>WORD</Type>
 						</Var>
 						<Var>
-							<Name>Input.R1_04_02</Name>
+							<Name>Input.R1_08_02</Name>
 							<Type>INT</Type>
 						</Var>
 						<Var>
-							<Name>Input.R1_04_02_Status</Name>
+							<Name>Input.R1_08_02_Status</Name>
 							<Type>WORD</Type>
 						</Var>
 						<Var>
-							<Name>Input.R1_04_03</Name>
+							<Name>Input.R1_08_03</Name>
 							<Type>INT</Type>
 						</Var>
 						<Var>
-							<Name>Input.R1_04_03_Status</Name>
+							<Name>Input.R1_08_03_Status</Name>
 							<Type>WORD</Type>
 						</Var>
 						<Var>
-							<Name>Input.R2_04_04</Name>
+							<Name>Input.R2_08_04</Name>
 							<Type>INT</Type>
 						</Var>
 						<Var>
-							<Name>Input.R2_04_04_Status</Name>
+							<Name>Input.R2_08_04_Status</Name>
 							<Type>WORD</Type>
 						</Var>
 						<Var>
-							<Name>Input.R1_04_05</Name>
+							<Name>Input.R1_08_05</Name>
 							<Type>INT</Type>
 						</Var>
 						<Var>
-							<Name>Input.R1_04_05_Status</Name>
+							<Name>Input.R1_08_05_Status</Name>
 							<Type>WORD</Type>
 						</Var>
 						<Var>
-							<Name>Input.R1_04_06</Name>
+							<Name>Input.R1_08_06</Name>
 							<Type>INT</Type>
 						</Var>
 						<Var>
-							<Name>Input.R1_04_06_Status</Name>
+							<Name>Input.R1_08_06_Status</Name>
 							<Type>WORD</Type>
 						</Var>
 						<Var>
-							<Name>Input.R1_04_07</Name>
+							<Name>Input.R1_08_07</Name>
 							<Type>INT</Type>
 						</Var>
 						<Var>
-							<Name>Input.R1_04_07_Status</Name>
+							<Name>Input.R1_08_07_Status</Name>
 							<Type>WORD</Type>
 						</Var>
 						<Var>
@@ -404,76 +503,109 @@
 					<Vars VarGrpType="2" AreaNo="1">
 						<Name>PlcTask Outputs</Name>
 						<Var>
-							<Name>Output.R1_03_00</Name>
+							<Name>Output.R1_06_00</Name>
 							<Comment><![CDATA[***MCP 
 EL2008 - DQ1]]></Comment>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>Output.R1_03_01</Name>
+							<Name>Output.R1_06_01</Name>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>Output.R1_03_02</Name>
+							<Name>Output.R1_06_02</Name>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>Output.R1_03_03</Name>
+							<Name>Output.R1_06_03</Name>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>Output.R1_03_04</Name>
+							<Name>Output.R1_06_04</Name>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>Output.R1_03_05</Name>
+							<Name>Output.R1_06_05</Name>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>Output.R1_03_06</Name>
+							<Name>Output.R1_06_06</Name>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>Output.R1_03_07</Name>
+							<Name>Output.R1_06_07</Name>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>Output.R1_05_00</Name>
+							<Name>Output.R1_07_00</Name>
+							<Comment><![CDATA[EL2008 - DQ1]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R1_07_01</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R1_07_02</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R1_07_03</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R1_07_04</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R1_07_05</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R1_07_06</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R1_07_07</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R1_09_00</Name>
 							<Comment><![CDATA[Charger 1 - Voltage Setpoint]]></Comment>
 							<Type>INT</Type>
 						</Var>
 						<Var>
-							<Name>Output.R1_05_01</Name>
+							<Name>Output.R1_09_01</Name>
 							<Comment><![CDATA[Charger 2 - Voltage Setpoint]]></Comment>
 							<Type>INT</Type>
 						</Var>
 						<Var>
-							<Name>Output.R1_05_02</Name>
+							<Name>Output.R1_09_02</Name>
 							<Comment><![CDATA[Charger 3 - Voltage Setpoint]]></Comment>
 							<Type>INT</Type>
 						</Var>
 						<Var>
-							<Name>Output.R1_05_03</Name>
+							<Name>Output.R1_09_03</Name>
 							<Comment><![CDATA[Charger 4 - Voltage Setpoint]]></Comment>
 							<Type>INT</Type>
 						</Var>
 						<Var>
-							<Name>Output.R1_05_04</Name>
+							<Name>Output.R1_09_04</Name>
 							<Comment><![CDATA[Charger 5 - Voltage Setpoint	]]></Comment>
 							<Type>INT</Type>
 						</Var>
 						<Var>
-							<Name>Output.R1_05_05</Name>
+							<Name>Output.R1_09_05</Name>
 							<Comment><![CDATA[Charger 6 - Voltage Setpoint	]]></Comment>
 							<Type>INT</Type>
 						</Var>
 						<Var>
-							<Name>Output.R1_05_06</Name>
+							<Name>Output.R1_09_06</Name>
 							<Comment><![CDATA[spare]]></Comment>
 							<Type>INT</Type>
 						</Var>
 						<Var>
-							<Name>Output.R1_05_07</Name>
+							<Name>Output.R1_09_07</Name>
 							<Comment><![CDATA[spare]]></Comment>
 							<Type>INT</Type>
 						</Var>
@@ -644,14 +776,14 @@ FormChargeTime_ET  : ARRAY[1..2] OF TIME;]]></Comment>
 				<Image Id="1" AddrType="9" ImageType="3">
 					<Name>Image</Name>
 				</Image>
-				<Box Id="7" BoxType="9099">
-					<Name>Term 7 (EK1200)</Name>
+				<Box Id="2" BoxType="9099">
+					<Name>Term 8 (EK1200)</Name>
 					<ImageId>1000</ImageId>
 					<EtherCAT PdiType="#x0100" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x04b02c52" RevisionNo="#x00001388" InfoDataState="false" PortPhys="49" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EK1200-5000 EtherCAT Power supply (2A E-Bus)" Desc="EK1200" PortABoxInfo="#x00ffffff"/>
-					<Box Id="8" BoxType="9099">
-						<Name>Term 8 (EL1008)</Name>
+					<Box Id="3" BoxType="9099">
+						<Name>Term 3 (EL1008)</Name>
 						<ImageId>7</ImageId>
-						<EtherCAT SlaveType="1" PdiType="#x0104" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x03f03052" RevisionNo="#x00120000" RepeatSupport="true" PortPhys="51" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL1008 8Ch. Dig. Input 24V, 3ms" Desc="EL1008" PortABoxInfo="#x01000007">
+						<EtherCAT SlaveType="1" PdiType="#x0104" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x03f03052" RevisionNo="#x00120000" RepeatSupport="true" PortPhys="51" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL1008 8Ch. Dig. Input 24V, 3ms" Desc="EL1008" PortABoxInfo="#x01000002">
 							<SyncMan>001001000000010004000000000000000100001000010000</SyncMan>
 							<Fmmu>0000000000000000001000010100000002000000000000000000000000000000</Fmmu>
 							<Pdo Name="Channel 1" Index="#x1a00" Flags="#x0011" SyncMan="0">
@@ -696,10 +828,10 @@ FormChargeTime_ET  : ARRAY[1..2] OF TIME;]]></Comment>
 							</Pdo>
 						</EtherCAT>
 					</Box>
-					<Box Id="9" BoxType="9099">
-						<Name>Term 9 (EL1008)</Name>
+					<Box Id="4" BoxType="9099">
+						<Name>Term 4 (EL1008)</Name>
 						<ImageId>7</ImageId>
-						<EtherCAT SlaveType="1" PdiType="#x0104" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x03f03052" RevisionNo="#x00120000" RepeatSupport="true" PortPhys="51" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL1008 8Ch. Dig. Input 24V, 3ms" Desc="EL1008" PortABoxInfo="#x01000008">
+						<EtherCAT SlaveType="1" PdiType="#x0104" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x03f03052" RevisionNo="#x00120000" RepeatSupport="true" PortPhys="51" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL1008 8Ch. Dig. Input 24V, 3ms" Desc="EL1008" PortABoxInfo="#x01000003">
 							<SyncMan>001001000000010004000000000000000100001000010000</SyncMan>
 							<Fmmu>0000000000000000001000010100000002000000000000000000000000000000</Fmmu>
 							<Pdo Name="Channel 1" Index="#x1a00" Flags="#x0011" SyncMan="0">
@@ -744,10 +876,154 @@ FormChargeTime_ET  : ARRAY[1..2] OF TIME;]]></Comment>
 							</Pdo>
 						</EtherCAT>
 					</Box>
-					<Box Id="10" BoxType="9099">
-						<Name>Term 10 (EL2008)</Name>
+					<Box Id="5" BoxType="9099">
+						<Name>Term 5 (EL1008)</Name>
+						<ImageId>7</ImageId>
+						<EtherCAT SlaveType="1" PdiType="#x0104" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x03f03052" RevisionNo="#x00120000" RepeatSupport="true" PortPhys="51" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL1008 8Ch. Dig. Input 24V, 3ms" Desc="EL1008" PortABoxInfo="#x01000004">
+							<SyncMan>001001000000010004000000000000000100001000010000</SyncMan>
+							<Fmmu>0000000000000000001000010100000002000000000000000000000000000000</Fmmu>
+							<Pdo Name="Channel 1" Index="#x1a00" Flags="#x0011" SyncMan="0">
+								<Entry Name="Input" Index="#x6000" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 2" Index="#x1a01" Flags="#x0011" SyncMan="0">
+								<Entry Name="Input" Index="#x6010" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 3" Index="#x1a02" Flags="#x0011" SyncMan="0">
+								<Entry Name="Input" Index="#x6020" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 4" Index="#x1a03" Flags="#x0011" SyncMan="0">
+								<Entry Name="Input" Index="#x6030" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 5" Index="#x1a04" Flags="#x0011" SyncMan="0">
+								<Entry Name="Input" Index="#x6040" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 6" Index="#x1a05" Flags="#x0011" SyncMan="0">
+								<Entry Name="Input" Index="#x6050" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 7" Index="#x1a06" Flags="#x0011" SyncMan="0">
+								<Entry Name="Input" Index="#x6060" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 8" Index="#x1a07" Flags="#x0011" SyncMan="0">
+								<Entry Name="Input" Index="#x6070" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+						</EtherCAT>
+					</Box>
+					<Box Id="6" BoxType="9099">
+						<Name>Term 6 (EL1008)</Name>
+						<ImageId>7</ImageId>
+						<EtherCAT SlaveType="1" PdiType="#x0104" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x03f03052" RevisionNo="#x00120000" RepeatSupport="true" PortPhys="51" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL1008 8Ch. Dig. Input 24V, 3ms" Desc="EL1008" PortABoxInfo="#x01000005">
+							<SyncMan>001001000000010004000000000000000100001000010000</SyncMan>
+							<Fmmu>0000000000000000001000010100000002000000000000000000000000000000</Fmmu>
+							<Pdo Name="Channel 1" Index="#x1a00" Flags="#x0011" SyncMan="0">
+								<Entry Name="Input" Index="#x6000" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 2" Index="#x1a01" Flags="#x0011" SyncMan="0">
+								<Entry Name="Input" Index="#x6010" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 3" Index="#x1a02" Flags="#x0011" SyncMan="0">
+								<Entry Name="Input" Index="#x6020" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 4" Index="#x1a03" Flags="#x0011" SyncMan="0">
+								<Entry Name="Input" Index="#x6030" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 5" Index="#x1a04" Flags="#x0011" SyncMan="0">
+								<Entry Name="Input" Index="#x6040" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 6" Index="#x1a05" Flags="#x0011" SyncMan="0">
+								<Entry Name="Input" Index="#x6050" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 7" Index="#x1a06" Flags="#x0011" SyncMan="0">
+								<Entry Name="Input" Index="#x6060" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 8" Index="#x1a07" Flags="#x0011" SyncMan="0">
+								<Entry Name="Input" Index="#x6070" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+						</EtherCAT>
+					</Box>
+					<Box Id="14" BoxType="9099">
+						<Name>Term 14 (EL1008)</Name>
+						<ImageId>7</ImageId>
+						<EtherCAT SlaveType="1" PdiType="#x0104" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x03f03052" RevisionNo="#x00120000" RepeatSupport="true" PortPhys="51" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL1008 8Ch. Dig. Input 24V, 3ms" Desc="EL1008" PortABoxInfo="#x01000006">
+							<SyncMan>001001000000010004000000000000000100001000010000</SyncMan>
+							<Fmmu>0000000000000000001000010100000002000000000000000000000000000000</Fmmu>
+							<Pdo Name="Channel 1" Index="#x1a00" Flags="#x0011" SyncMan="0">
+								<Entry Name="Input" Index="#x6000" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 2" Index="#x1a01" Flags="#x0011" SyncMan="0">
+								<Entry Name="Input" Index="#x6010" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 3" Index="#x1a02" Flags="#x0011" SyncMan="0">
+								<Entry Name="Input" Index="#x6020" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 4" Index="#x1a03" Flags="#x0011" SyncMan="0">
+								<Entry Name="Input" Index="#x6030" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 5" Index="#x1a04" Flags="#x0011" SyncMan="0">
+								<Entry Name="Input" Index="#x6040" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 6" Index="#x1a05" Flags="#x0011" SyncMan="0">
+								<Entry Name="Input" Index="#x6050" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 7" Index="#x1a06" Flags="#x0011" SyncMan="0">
+								<Entry Name="Input" Index="#x6060" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 8" Index="#x1a07" Flags="#x0011" SyncMan="0">
+								<Entry Name="Input" Index="#x6070" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+						</EtherCAT>
+					</Box>
+					<Box Id="15" BoxType="9099">
+						<Name>Term 15 (EL2008)</Name>
 						<ImageId>1001</ImageId>
-						<EtherCAT SlaveType="1" PdiType="#x0104" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x07d83052" RevisionNo="#x00120000" RepeatSupport="true" PortPhys="51" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL2008 8Ch. Dig. Output 24V, 0.5A" Desc="EL2008" PortABoxInfo="#x01000009">
+						<EtherCAT SlaveType="1" PdiType="#x0104" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x07d83052" RevisionNo="#x00120000" RepeatSupport="true" PortPhys="51" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL2008 8Ch. Dig. Output 24V, 0.5A" Desc="EL2008" PortABoxInfo="#x0100000e">
 							<SyncMan>000f01004400010003000000000000000000000f44090000</SyncMan>
 							<Fmmu>0000000000000000000f00020100000001000000000000000000000000000000</Fmmu>
 							<Pdo Name="Channel 1" Index="#x1600" InOut="1" Flags="#x0011" SyncMan="0">
@@ -792,10 +1068,58 @@ FormChargeTime_ET  : ARRAY[1..2] OF TIME;]]></Comment>
 							</Pdo>
 						</EtherCAT>
 					</Box>
-					<Box Id="11" BoxType="9099" BoxFlags="#x00000020">
-						<Name>Term 11 (EL3068)</Name>
+					<Box Id="16" BoxType="9099">
+						<Name>Term 16 (EL2008)</Name>
+						<ImageId>1001</ImageId>
+						<EtherCAT SlaveType="1" PdiType="#x0104" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x07d83052" RevisionNo="#x00120000" RepeatSupport="true" PortPhys="51" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL2008 8Ch. Dig. Output 24V, 0.5A" Desc="EL2008" PortABoxInfo="#x0100000f">
+							<SyncMan>000f01004400010003000000000000000000000f44090000</SyncMan>
+							<Fmmu>0000000000000000000f00020100000001000000000000000000000000000000</Fmmu>
+							<Pdo Name="Channel 1" Index="#x1600" InOut="1" Flags="#x0011" SyncMan="0">
+								<Entry Name="Output" Index="#x7000" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 2" Index="#x1601" InOut="1" Flags="#x0011" SyncMan="0">
+								<Entry Name="Output" Index="#x7010" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 3" Index="#x1602" InOut="1" Flags="#x0011" SyncMan="0">
+								<Entry Name="Output" Index="#x7020" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 4" Index="#x1603" InOut="1" Flags="#x0011" SyncMan="0">
+								<Entry Name="Output" Index="#x7030" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 5" Index="#x1604" InOut="1" Flags="#x0011" SyncMan="0">
+								<Entry Name="Output" Index="#x7040" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 6" Index="#x1605" InOut="1" Flags="#x0011" SyncMan="0">
+								<Entry Name="Output" Index="#x7050" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 7" Index="#x1606" InOut="1" Flags="#x0011" SyncMan="0">
+								<Entry Name="Output" Index="#x7060" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 8" Index="#x1607" InOut="1" Flags="#x0011" SyncMan="0">
+								<Entry Name="Output" Index="#x7070" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+						</EtherCAT>
+					</Box>
+					<Box Id="17" BoxType="9099" BoxFlags="#x00000020">
+						<Name>Term 17 (EL3068)</Name>
 						<ImageId>1002</ImageId>
-						<EtherCAT SlaveType="2" PdiType="#x0405" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="7" FoeType="1" VendorId="#x00000002" ProductCode="#x0bfc3052" RevisionNo="#x00150000" InfoDataAddr="true" TimeoutMailbox2="2000" CheckRevisionNoType="3" PortPhys="51" SdoUploadWithMaxLength="true" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL3068 8Ch. Ana. Input 0-10V" Desc="EL3068" PortABoxInfo="#x0100000a">
+						<EtherCAT SlaveType="2" PdiType="#x0405" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="7" FoeType="1" VendorId="#x00000002" ProductCode="#x0bfc3052" RevisionNo="#x00150000" InfoDataAddr="true" TimeoutMailbox2="2000" CheckRevisionNoType="3" PortPhys="51" SdoUploadWithMaxLength="true" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL3068 8Ch. Ana. Input 0-10V" Desc="EL3068" PortABoxInfo="#x01000010">
 							<SyncMan>001080002600010001000000800080008000001026010000</SyncMan>
 							<SyncMan>801080002200010002000000800080008000801022010000</SyncMan>
 							<SyncMan>001100000400000003000000000000000000001104000000</SyncMan>
@@ -1197,10 +1521,10 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 							<CoeProfile ProfileNo="19665801"/>
 						</EtherCAT>
 					</Box>
-					<Box Id="12" BoxType="9099" BoxFlags="#x00000020">
-						<Name>Term 12 (EL4008)</Name>
+					<Box Id="18" BoxType="9099" BoxFlags="#x00000020">
+						<Name>Term 18 (EL4008)</Name>
 						<ImageId>1003</ImageId>
-						<EtherCAT SlaveType="2" PdiType="#x0405" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="3" FoeType="1" VendorId="#x00000002" ProductCode="#x0fa83052" RevisionNo="#x00140000" InfoDataAddr="true" TimeoutMailbox2="2000" CheckRevisionNoType="3" PortPhys="51" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL4008 8Ch. Ana. Output 0-10V, 12bit" Desc="EL4008" PortABoxInfo="#x0100000b">
+						<EtherCAT SlaveType="2" PdiType="#x0405" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="3" FoeType="1" VendorId="#x00000002" ProductCode="#x0fa83052" RevisionNo="#x00140000" InfoDataAddr="true" TimeoutMailbox2="2000" CheckRevisionNoType="3" PortPhys="51" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL4008 8Ch. Ana. Output 0-10V, 12bit" Desc="EL4008" PortABoxInfo="#x01000011">
 							<SyncMan>001080002600010001000000800080008000001026010000</SyncMan>
 							<SyncMan>801080002200010002000000800080008000801022010000</SyncMan>
 							<SyncMan>001110002400010003000000000000001000001124010000</SyncMan>
@@ -1260,10 +1584,10 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 							<CoeProfile ProfileNo="26219401"/>
 						</EtherCAT>
 					</Box>
-					<Box Id="13" BoxType="9099">
-						<Name>Term 13 (EL9011)</Name>
+					<Box Id="19" BoxType="9099">
+						<Name>Term 18 (EL9011)</Name>
 						<ImageId>1004</ImageId>
-						<EtherCAT CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x23333050" InfoDataState="false" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL9011 End Terminal" Desc="EL9011" PortABoxInfo="#x0100000c"/>
+						<EtherCAT CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x23333050" InfoDataState="false" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL9011 End Terminal" Desc="EL9011" PortABoxInfo="#x01000012"/>
 					</Box>
 				</Box>
 				<EtherCAT/>
@@ -1386,46 +1710,60 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 		</Io>
 	</Project>
 	<Mappings>
+		<MappingInfo Identifier="{00000000-2001-0850-0020-500810000403}" Id="#x02030020"/>
+		<MappingInfo Identifier="{00000000-2001-0850-0020-500840000403}" Id="#x02030010"/>
 		<OwnerA Name="TIPC^P1_CompPP^P1_CompPP Instance">
-			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 7 (EK1200)^Term 10 (EL2008)">
-				<Link VarA="PlcTask Outputs^Output.R1_03_00" VarB="Channel 1^Output"/>
-				<Link VarA="PlcTask Outputs^Output.R1_03_01" VarB="Channel 2^Output"/>
-				<Link VarA="PlcTask Outputs^Output.R1_03_02" VarB="Channel 3^Output"/>
-				<Link VarA="PlcTask Outputs^Output.R1_03_03" VarB="Channel 4^Output"/>
-				<Link VarA="PlcTask Outputs^Output.R1_03_04" VarB="Channel 5^Output"/>
-				<Link VarA="PlcTask Outputs^Output.R1_03_05" VarB="Channel 6^Output"/>
-				<Link VarA="PlcTask Outputs^Output.R1_03_06" VarB="Channel 7^Output"/>
-				<Link VarA="PlcTask Outputs^Output.R1_03_07" VarB="Channel 8^Output"/>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 8 (EK1200)^Term 14 (EL1008)">
+				<Link VarA="PlcTask Inputs^Input.R1_05_00" VarB="Channel 1^Input"/>
+				<Link VarA="PlcTask Inputs^Input.R1_05_01" VarB="Channel 2^Input"/>
+				<Link VarA="PlcTask Inputs^Input.R1_05_02" VarB="Channel 3^Input"/>
+				<Link VarA="PlcTask Inputs^Input.R1_05_03" VarB="Channel 4^Input"/>
+				<Link VarA="PlcTask Inputs^Input.R1_05_04" VarB="Channel 5^Input"/>
+				<Link VarA="PlcTask Inputs^Input.R1_05_05" VarB="Channel 6^Input"/>
+				<Link VarA="PlcTask Inputs^Input.R1_05_06" VarB="Channel 7^Input"/>
+				<Link VarA="PlcTask Inputs^Input.R1_05_07" VarB="Channel 8^Input"/>
 			</OwnerB>
-			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 7 (EK1200)^Term 11 (EL3068)">
-				<Link VarA="PlcTask Inputs^Input.R1_04_00" VarB="AI Standard Channel 1^Value"/>
-				<Link VarA="PlcTask Inputs^Input.R1_04_00_Status" VarB="AI Standard Channel 1^Status"/>
-				<Link VarA="PlcTask Inputs^Input.R1_04_01" VarB="AI Standard Channel 2^Value"/>
-				<Link VarA="PlcTask Inputs^Input.R1_04_01_Status" VarB="AI Standard Channel 2^Status"/>
-				<Link VarA="PlcTask Inputs^Input.R1_04_02" VarB="AI Standard Channel 3^Value"/>
-				<Link VarA="PlcTask Inputs^Input.R1_04_02_Status" VarB="AI Standard Channel 3^Status"/>
-				<Link VarA="PlcTask Inputs^Input.R1_04_03" VarB="AI Standard Channel 4^Value"/>
-				<Link VarA="PlcTask Inputs^Input.R1_04_03_Status" VarB="AI Standard Channel 4^Status"/>
-				<Link VarA="PlcTask Inputs^Input.R1_04_05" VarB="AI Standard Channel 6^Value"/>
-				<Link VarA="PlcTask Inputs^Input.R1_04_05_Status" VarB="AI Standard Channel 6^Status"/>
-				<Link VarA="PlcTask Inputs^Input.R1_04_06" VarB="AI Standard Channel 7^Value"/>
-				<Link VarA="PlcTask Inputs^Input.R1_04_06_Status" VarB="AI Standard Channel 7^Status"/>
-				<Link VarA="PlcTask Inputs^Input.R1_04_07" VarB="AI Standard Channel 8^Value"/>
-				<Link VarA="PlcTask Inputs^Input.R1_04_07_Status" VarB="AI Standard Channel 8^Status"/>
-				<Link VarA="PlcTask Inputs^Input.R2_04_04" VarB="AI Standard Channel 5^Value"/>
-				<Link VarA="PlcTask Inputs^Input.R2_04_04_Status" VarB="AI Standard Channel 5^Status"/>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 8 (EK1200)^Term 15 (EL2008)">
+				<Link VarA="PlcTask Outputs^Output.R1_06_00" VarB="Channel 1^Output"/>
+				<Link VarA="PlcTask Outputs^Output.R1_06_01" VarB="Channel 2^Output"/>
+				<Link VarA="PlcTask Outputs^Output.R1_06_02" VarB="Channel 3^Output"/>
+				<Link VarA="PlcTask Outputs^Output.R1_06_03" VarB="Channel 4^Output"/>
+				<Link VarA="PlcTask Outputs^Output.R1_06_04" VarB="Channel 5^Output"/>
+				<Link VarA="PlcTask Outputs^Output.R1_06_05" VarB="Channel 6^Output"/>
+				<Link VarA="PlcTask Outputs^Output.R1_06_06" VarB="Channel 7^Output"/>
+				<Link VarA="PlcTask Outputs^Output.R1_06_07" VarB="Channel 8^Output"/>
 			</OwnerB>
-			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 7 (EK1200)^Term 12 (EL4008)">
-				<Link VarA="PlcTask Outputs^Output.R1_05_00" VarB="AO Outputs Channel 1^Analog output"/>
-				<Link VarA="PlcTask Outputs^Output.R1_05_01" VarB="AO Outputs Channel 2^Analog output"/>
-				<Link VarA="PlcTask Outputs^Output.R1_05_02" VarB="AO Outputs Channel 3^Analog output"/>
-				<Link VarA="PlcTask Outputs^Output.R1_05_03" VarB="AO Outputs Channel 4^Analog output"/>
-				<Link VarA="PlcTask Outputs^Output.R1_05_04" VarB="AO Outputs Channel 5^Analog output"/>
-				<Link VarA="PlcTask Outputs^Output.R1_05_05" VarB="AO Outputs Channel 6^Analog output"/>
-				<Link VarA="PlcTask Outputs^Output.R1_05_06" VarB="AO Outputs Channel 7^Analog output"/>
-				<Link VarA="PlcTask Outputs^Output.R1_05_07" VarB="AO Outputs Channel 8^Analog output"/>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 8 (EK1200)^Term 16 (EL2008)">
+				<Link VarA="PlcTask Outputs^Output.R1_07_00" VarB="Channel 1^Output"/>
+				<Link VarA="PlcTask Outputs^Output.R1_07_01" VarB="Channel 2^Output"/>
+				<Link VarA="PlcTask Outputs^Output.R1_07_02" VarB="Channel 3^Output"/>
+				<Link VarA="PlcTask Outputs^Output.R1_07_03" VarB="Channel 4^Output"/>
+				<Link VarA="PlcTask Outputs^Output.R1_07_04" VarB="Channel 5^Output"/>
+				<Link VarA="PlcTask Outputs^Output.R1_07_05" VarB="Channel 6^Output"/>
+				<Link VarA="PlcTask Outputs^Output.R1_07_06" VarB="Channel 7^Output"/>
+				<Link VarA="PlcTask Outputs^Output.R1_07_07" VarB="Channel 8^Output"/>
 			</OwnerB>
-			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 7 (EK1200)^Term 8 (EL1008)">
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 8 (EK1200)^Term 17 (EL3068)">
+				<Link VarA="PlcTask Inputs^Input.R1_08_00" VarB="AI Standard Channel 1^Value"/>
+				<Link VarA="PlcTask Inputs^Input.R1_08_01" VarB="AI Standard Channel 2^Value"/>
+				<Link VarA="PlcTask Inputs^Input.R1_08_02" VarB="AI Standard Channel 3^Value"/>
+				<Link VarA="PlcTask Inputs^Input.R1_08_03" VarB="AI Standard Channel 4^Value"/>
+				<Link VarA="PlcTask Inputs^Input.R1_08_05" VarB="AI Standard Channel 6^Value"/>
+				<Link VarA="PlcTask Inputs^Input.R1_08_06" VarB="AI Standard Channel 7^Value"/>
+				<Link VarA="PlcTask Inputs^Input.R1_08_07" VarB="AI Standard Channel 8^Value"/>
+				<Link VarA="PlcTask Inputs^Input.R2_08_04" VarB="AI Standard Channel 5^Value"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 8 (EK1200)^Term 18 (EL4008)">
+				<Link VarA="PlcTask Outputs^Output.R1_09_00" VarB="AO Outputs Channel 1^Analog output"/>
+				<Link VarA="PlcTask Outputs^Output.R1_09_01" VarB="AO Outputs Channel 2^Analog output"/>
+				<Link VarA="PlcTask Outputs^Output.R1_09_02" VarB="AO Outputs Channel 3^Analog output"/>
+				<Link VarA="PlcTask Outputs^Output.R1_09_03" VarB="AO Outputs Channel 4^Analog output"/>
+				<Link VarA="PlcTask Outputs^Output.R1_09_04" VarB="AO Outputs Channel 5^Analog output"/>
+				<Link VarA="PlcTask Outputs^Output.R1_09_05" VarB="AO Outputs Channel 6^Analog output"/>
+				<Link VarA="PlcTask Outputs^Output.R1_09_06" VarB="AO Outputs Channel 7^Analog output"/>
+				<Link VarA="PlcTask Outputs^Output.R1_09_07" VarB="AO Outputs Channel 8^Analog output"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 8 (EK1200)^Term 3 (EL1008)">
 				<Link VarA="PlcTask Inputs^Input.R1_01_00" VarB="Channel 1^Input"/>
 				<Link VarA="PlcTask Inputs^Input.R1_01_01" VarB="Channel 2^Input"/>
 				<Link VarA="PlcTask Inputs^Input.R1_01_02" VarB="Channel 3^Input"/>
@@ -1435,7 +1773,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 				<Link VarA="PlcTask Inputs^Input.R1_01_06" VarB="Channel 7^Input"/>
 				<Link VarA="PlcTask Inputs^Input.R1_01_07" VarB="Channel 8^Input"/>
 			</OwnerB>
-			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 7 (EK1200)^Term 9 (EL1008)">
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 8 (EK1200)^Term 4 (EL1008)">
 				<Link VarA="PlcTask Inputs^Input.R1_02_00" VarB="Channel 1^Input"/>
 				<Link VarA="PlcTask Inputs^Input.R1_02_01" VarB="Channel 2^Input"/>
 				<Link VarA="PlcTask Inputs^Input.R1_02_02" VarB="Channel 3^Input"/>
@@ -1444,6 +1782,26 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 				<Link VarA="PlcTask Inputs^Input.R1_02_05" VarB="Channel 6^Input"/>
 				<Link VarA="PlcTask Inputs^Input.R1_02_06" VarB="Channel 7^Input"/>
 				<Link VarA="PlcTask Inputs^Input.R1_02_07" VarB="Channel 8^Input"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 8 (EK1200)^Term 5 (EL1008)">
+				<Link VarA="PlcTask Inputs^Input.R1_03_00" VarB="Channel 1^Input"/>
+				<Link VarA="PlcTask Inputs^Input.R1_03_01" VarB="Channel 2^Input"/>
+				<Link VarA="PlcTask Inputs^Input.R1_03_02" VarB="Channel 3^Input"/>
+				<Link VarA="PlcTask Inputs^Input.R1_03_03" VarB="Channel 4^Input"/>
+				<Link VarA="PlcTask Inputs^Input.R1_03_04" VarB="Channel 5^Input"/>
+				<Link VarA="PlcTask Inputs^Input.R1_03_05" VarB="Channel 6^Input"/>
+				<Link VarA="PlcTask Inputs^Input.R1_03_06" VarB="Channel 7^Input"/>
+				<Link VarA="PlcTask Inputs^Input.R1_03_07" VarB="Channel 8^Input"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 8 (EK1200)^Term 6 (EL1008)">
+				<Link VarA="PlcTask Inputs^Input.R1_04_00" VarB="Channel 1^Input"/>
+				<Link VarA="PlcTask Inputs^Input.R1_04_01" VarB="Channel 2^Input"/>
+				<Link VarA="PlcTask Inputs^Input.R1_04_02" VarB="Channel 3^Input"/>
+				<Link VarA="PlcTask Inputs^Input.R1_04_03" VarB="Channel 4^Input"/>
+				<Link VarA="PlcTask Inputs^Input.R1_04_04" VarB="Channel 5^Input"/>
+				<Link VarA="PlcTask Inputs^Input.R1_04_05" VarB="Channel 6^Input"/>
+				<Link VarA="PlcTask Inputs^Input.R1_04_06" VarB="Channel 7^Input"/>
+				<Link VarA="PlcTask Inputs^Input.R1_04_07" VarB="Channel 8^Input"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 5 (EtherCAT)^Box 1 (170357)">
 				<Link VarA="PlcTask Inputs^Input.B170357_CapRaw[0]" VarB="HV Cap process data mapping^Cap 0 Raw"/>

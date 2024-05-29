@@ -29,7 +29,7 @@ VAR_GLOBAL
 	
 	UpperLimit12kVCaps		: REAL := 10500; //peak and sust
 	//LowerLimit12kVCaps	: REAL := -2000;
-	UpperLimit50kVCaps		: REAL := 35000; //formation
+	UpperLimit50kVCaps		: REAL := 35000; 
 	
 	(*ULimit_PeakCapRequiredV	: REAL := 10000; //10kV veto
 	LLimit_PeakCapRequiredV	: REAL := -2000; //-2kV

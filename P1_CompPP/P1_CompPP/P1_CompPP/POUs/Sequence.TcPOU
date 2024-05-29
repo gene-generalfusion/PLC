@@ -30,9 +30,9 @@ VAR
 	ShotTrigPulseTMR_PT		: LTIME := LTIME#1S + ShotTrigDelayTMR_PT;
 	ShotTrigPulseTMR_ET		: LTIME;
 		
-	ScopeTrigPulseTMR_TON	: TON;
-	ScopeTrigPulseTMR_PT	: TIME := T#20MS;
-	ScopeTrigPulseTMR_ET	: TIME;
+	ScopeTrigPulseTMR_TON	: LTON;
+	ScopeTrigPulseTMR_PT	: LTIME := LTIME#10US;
+	ScopeTrigPulseTMR_ET	: LTIME;
 	
 	DumpingRunOutTMR_TON 	: TON;
 	DumpingRunOutTMR_PT		: TIME := T#20S;
@@ -47,8 +47,10 @@ VAR
 	StartCharWarningTMR_PT	: TIME := T#5S;
 	StartCharWarningTMR_ET	: TIME;
 	ChargeDelayStart		: BOOL;
+
 	
 	i						: INT := 1;
+	m						: INT := 1;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -96,9 +98,14 @@ IF eState = E_State.CHARGING OR eState = E_State.CHARGECOMPLETE THEN
 	HMI_DB.HMI_ManualModeSelected := FALSE;
 END_IF
 
+//if not in manual mode turn off the switches
 IF eState <> E_State.ManualMode THEN
 	HMI_DB.CloseChargeRlySW := FALSE;
 	HMI_DB.OpenDumpRlySW := FALSE;
+	HMI_DB.TurnChrgHVonSW := FALSE;
+	HMI_DB.TurnChrgInhibitOffSW := FALSE;
+	HMI_DB.TurnOnShotTrigSW := FALSE;
+	HMI_DB.TurnOnChargeAlarm := FALSE;
 END_IF
 
 IF HMI_DB.DumpPB = TRUE THEN
@@ -113,11 +120,12 @@ CASE eState OF
 	
 	//Safe OR IDLE
 	E_State.SAFE:
-	
+		ChargeCompleted := FALSE;
 		FirePBpressed := FALSE;
 		FireToSafeDelayTMR_TON (IN := FALSE);
-		ChargeRlyDelayON_Timer(IN:= FALSE);
+		
 		ChargeTime_DB.LongestChargeTime_TON (IN := FALSE); //reset timer
+		ChargeRlyDelayON_Timer ( IN := FALSE, PT := ChargeRlyDelayON_PT);
 		ChargeTimeFinished := FALSE; //reset chargetime done bit
 		LCP1_IO.Segment[1].Module[1].Fire := FALSE; //turn off all firing triggers
 		
@@ -178,7 +186,7 @@ CASE eState OF
 		LCP1_IO.Segment[1].Module[3].OpenDumpRly := FALSE;
 		
 		//LCP2 SEGMENT 4-6
-		IF HMI_DB.ChargePB = TRUE THEN
+		IF HMI_DB.ChargePB = TRUE AND MCP_IO.EnergizeACKontactor = TRUE THEN
 			ChargeDelayStart := TRUE;
 		ELSIF HMI_DB.DumpPB = TRUE THEN
 				eState := E_State.DUMPING; 
@@ -308,8 +316,8 @@ CASE eState OF
 		//condition for charge complete
 		IF Permissives_DB.AllChargerEOC = TRUE AND ChargeTimeFinished = TRUE (*all voltage reached*) THEN 
 			ChargeCompleted := TRUE;
-		ELSE
-			ChargeCompleted := FALSE;
+		//ELSE
+			//ChargeCompleted := FALSE;
 		END_IF
 		
 //if cap voltage feedback >= charger setpoints && EOC && all timer runout then chargecomplete
@@ -317,34 +325,47 @@ CASE eState OF
 			FOR i := 1 TO 6 BY 1 DO 
 				MCP_IO.Charger[i].HV_ON := FALSE; 
 				MCP_IO.Charger[i].inhibit := TRUE;
-				
-				//Open all relays
-				LCP1_IO.Segment[i].Module[1].CloseChargeRly := FALSE;
-				LCP1_IO.Segment[i].Module[2].CloseChargeRly := FALSE;
-				LCP1_IO.Segment[i].Module[3].CloseChargeRly := FALSE;
-		
-				LCP1_IO.Segment[i].Module[1].OpenDumpRly := TRUE;
-				LCP1_IO.Segment[i].Module[2].OpenDumpRly := TRUE;
-				LCP1_IO.Segment[i].Module[3].OpenDumpRly := TRUE;
-				
+								
 				StartCharger[i] := FALSE;
 				ChargeTime_DB.ChargingTimeElapse_TON[i] (IN := FALSE);	
-			
 			END_FOR;
+			ChargeRlyDelayON_Timer ( IN := TRUE, PT := ChargeRlyDelayON_PT);
+		END_IF;
+	
+		IF ChargeRlyDelayON_Timer.Q = TRUE THEN
+			ChargeRlyDelayDONE := TRUE;
+		END_IF;
+		
+		IF ChargeRlyDelayDONE = TRUE THEN
+			FOR m := 1 TO 6 BY 1 DO
+				//Open all relays
+				LCP1_IO.Segment[m].Module[1].CloseChargeRly := FALSE;
+				LCP1_IO.Segment[m].Module[2].CloseChargeRly := FALSE;
+				LCP1_IO.Segment[m].Module[3].CloseChargeRly := FALSE;
+		
+				LCP1_IO.Segment[m].Module[1].OpenDumpRly := TRUE;
+				LCP1_IO.Segment[m].Module[2].OpenDumpRly := TRUE;
+				LCP1_IO.Segment[m].Module[3].OpenDumpRly := TRUE;
+
+			END_FOR;
+			ChargeRlyDelayON_Timer ( IN := FALSE, PT := ChargeRlyDelayON_PT);
 						
 			StartChargingBroadcast := FALSE; // reset the broadcast bit whne all chargers 
 			
 			eState := E_State.CHARGECOMPLETE;
 		END_IF
 		
+		
+		
 	
 	E_State.CHARGECOMPLETE:
 		//turn on led light
 		LCP1_IO.Segment[1].Module[1].ModuleCharged := TRUE;
-		
+		ChargeRlyDelayDONE := FALSE;
 		ChargeCompleted := FALSE;
 		StartChargingBroadcast := FALSE; // reset the broadcast bit whne all chargers 
 		ChargedRunOutTMR_TON (IN := TRUE, PT := HMI_DB.RunOutTMR_PT);
+		ChargeRlyDelayON_Timer ( IN := FALSE, PT := ChargeRlyDelayON_PT);
 		
 		IF HMI_DB.FirePB = TRUE THEN 
 			//LCP1_IO.Segment[1].Module[1].Fire := TRUE;
@@ -459,7 +480,10 @@ CASE eState OF
 		
 		HMI_DB.CloseChargeRlySW := FALSE;
 		HMI_DB.OpenDumpRlySW := FALSE;
-	
+		HMI_DB.TurnChrgHVonSW := FALSE;
+		HMI_DB.TurnChrgInhibitOffSW := FALSE;
+		HMI_DB.TurnOnShotTrigSW := FALSE;
+		HMI_DB.TurnOnChargeAlarm := FALSE;
 		
 	E_State.ManualMode:
 		
@@ -467,6 +491,17 @@ CASE eState OF
 		LCP1_IO.Segment[1].Module[1].CloseChargeRly := HMI_DB.CloseChargeRlySW;
 		LCP1_IO.Segment[1].Module[1].OpenDumpRly := HMI_DB.OpenDumpRlySW;
 		
+		MCP_IO.Charger[1].HV_ON := HMI_DB.TurnChrgHVonSW;
+		
+		IF HMI_DB.TurnChrgInhibitOffSW = TRUE THEN 
+				MCP_IO.Charger[1].inhibit := FALSE;
+			ELSE
+				MCP_IO.Charger[1].inhibit := TRUE;
+		END_IF
+		
+		LCP1_IO.Segment[1].Module[1].Fire := HMI_DB.TurnOnShotTrigSW;
+		LCP1_IO.Segment[1].Module[1].ModuleCharged := HMI_DB.TurnOnChargeAlarm;
+			
 		IF HMI_DB.HMI_ManualModeSelected = FALSE THEN
 			eState := E_State.SAFE;
 		END_IF
@@ -475,6 +510,10 @@ END_CASE;
 
 IF i > 6 THEN 
 	i := 1;
+END_IF;	
+
+IF m > 6 THEN 
+	m := 1;
 END_IF;	]]></ST>
     </Implementation>
     <LineIds Name="Sequence">
@@ -495,11 +534,13 @@ END_IF;	]]></ST>
       <LineId Id="795" Count="0" />
       <LineId Id="794" Count="0" />
       <LineId Id="796" Count="1" />
+      <LineId Id="1189" Count="0" />
       <LineId Id="804" Count="0" />
       <LineId Id="739" Count="0" />
-      <LineId Id="805" Count="0" />
-      <LineId Id="807" Count="0" />
-      <LineId Id="806" Count="0" />
+      <LineId Id="1183" Count="2" />
+      <LineId Id="1188" Count="0" />
+      <LineId Id="1187" Count="0" />
+      <LineId Id="805" Count="1" />
       <LineId Id="103" Count="2" />
       <LineId Id="113" Count="4" />
       <LineId Id="11" Count="3" />
@@ -509,6 +550,7 @@ END_IF;	]]></ST>
       <LineId Id="15" Count="0" />
       <LineId Id="463" Count="0" />
       <LineId Id="485" Count="0" />
+      <LineId Id="1260" Count="0" />
       <LineId Id="648" Count="0" />
       <LineId Id="646" Count="0" />
       <LineId Id="791" Count="0" />
@@ -624,14 +666,22 @@ END_IF;	]]></ST>
       <LineId Id="83" Count="0" />
       <LineId Id="434" Count="0" />
       <LineId Id="420" Count="4" />
+      <LineId Id="1255" Count="1" />
+      <LineId Id="1254" Count="0" />
       <LineId Id="694" Count="0" />
-      <LineId Id="696" Count="6" />
+      <LineId Id="1246" Count="0" />
+      <LineId Id="1245" Count="0" />
+      <LineId Id="1247" Count="0" />
+      <LineId Id="696" Count="0" />
+      <LineId Id="1249" Count="3" />
+      <LineId Id="1248" Count="0" />
+      <LineId Id="1253" Count="0" />
+      <LineId Id="697" Count="5" />
       <LineId Id="695" Count="0" />
-      <LineId Id="425" Count="0" />
-      <LineId Id="703" Count="0" />
       <LineId Id="426" Count="4" />
       <LineId Id="432" Count="1" />
       <LineId Id="316" Count="0" />
+      <LineId Id="1239" Count="1" />
       <LineId Id="71" Count="0" />
       <LineId Id="19" Count="1" />
       <LineId Id="644" Count="0" />
@@ -641,6 +691,7 @@ END_IF;	]]></ST>
       <LineId Id="508" Count="0" />
       <LineId Id="465" Count="0" />
       <LineId Id="623" Count="0" />
+      <LineId Id="1259" Count="0" />
       <LineId Id="466" Count="1" />
       <LineId Id="857" Count="0" />
       <LineId Id="683" Count="0" />
@@ -719,16 +770,27 @@ END_IF;	]]></ST>
       <LineId Id="787" Count="1" />
       <LineId Id="790" Count="0" />
       <LineId Id="789" Count="0" />
-      <LineId Id="772" Count="2" />
+      <LineId Id="772" Count="0" />
+      <LineId Id="1180" Count="2" />
+      <LineId Id="773" Count="1" />
       <LineId Id="808" Count="0" />
       <LineId Id="775" Count="1" />
+      <LineId Id="1168" Count="0" />
       <LineId Id="29" Count="0" />
+      <LineId Id="1169" Count="0" />
+      <LineId Id="1172" Count="1" />
+      <LineId Id="1175" Count="1" />
+      <LineId Id="1174" Count="0" />
+      <LineId Id="1177" Count="2" />
+      <LineId Id="1171" Count="0" />
       <LineId Id="781" Count="2" />
       <LineId Id="786" Count="0" />
       <LineId Id="28" Count="0" />
       <LineId Id="277" Count="0" />
       <LineId Id="276" Count="0" />
       <LineId Id="278" Count="1" />
+      <LineId Id="1263" Count="2" />
+      <LineId Id="1262" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>
