@@ -787,7 +787,7 @@
     "DISCOVERY": 2,
     "ENABLE_SERVER_UPDATE": true,
     "ENDPOINTS": [
-        "http://127.0.0.1:13002",
+        "http://127.0.0.1:13001",
         "http://127.0.0.1:3007"
     ],
     "ETAGENABLED": true,

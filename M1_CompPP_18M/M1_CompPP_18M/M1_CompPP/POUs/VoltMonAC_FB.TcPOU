@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="VoltMonAC_FB" Id="{68a019dd-23cc-4516-928a-62aa075f0c27}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK VoltMonAC_FB
+VAR_INPUT
+	raw_input : REAL;
+	norm_x_max : REAL := 10;
+	norm_x_min : REAL := 0;
+	RangUpp : REAL := 12.1;
+	RangLow : REAL := 0;
+	ADC_max : REAL := 12100;
+	ADC_min	: REAL := 0;
+END_VAR
+VAR_OUTPUT
+	voltage_reading : REAL;
+END_VAR
+VAR
+	normal_input : REAL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[normal_input := Norm_x (raw_input := raw_input,
+						x_max := norm_x_max, //10bit value - 1110001000 = 904deci
+						x_min := norm_x_min); //100deci is the zero of range -1.61 to 12.01
+voltage_reading := (ADC_max - ADC_min) * ADC_10V(normal_input := normal_input,
+													x_max := RangUpp,
+													x_min := RangLow); //use zero, it will cal for the -ve
+													
+													]]></ST>
+    </Implementation>
+    <LineIds Name="VoltMonAC_FB">
+      <LineId Id="19" Count="4" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="25" Count="1" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

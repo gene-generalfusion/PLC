@@ -101,6 +101,10 @@ END_IF
 IF eState <> E_State.ManualMode THEN
 	HMI_DB.CloseChargeRlySW := FALSE;
 	HMI_DB.OpenDumpRlySW := FALSE;
+	HMI_DB.TurnChrgHVonSW := FALSE;
+	HMI_DB.TurnChrgInhibitOffSW := FALSE;
+	HMI_DB.TurnOnShotTrigSW := FALSE;
+	HMI_DB.TurnOnChargeAlarm := FALSE;
 END_IF
 
 IF HMI_DB.DumpPB = TRUE THEN
@@ -472,7 +476,10 @@ CASE eState OF
 		
 		HMI_DB.CloseChargeRlySW := FALSE;
 		HMI_DB.OpenDumpRlySW := FALSE;
-	
+		HMI_DB.TurnChrgHVonSW := FALSE;
+		HMI_DB.TurnChrgInhibitOffSW := FALSE;
+		HMI_DB.TurnOnShotTrigSW := FALSE;
+		HMI_DB.TurnOnChargeAlarm := FALSE;
 		
 	E_State.ManualMode:
 		
@@ -482,6 +489,30 @@ CASE eState OF
 		LCP2_IO.Segment[4].CloseChargeRly := LCP2_IO.Segment[5].CloseChargeRly := LCP2_IO.Segment[6].CloseChargeRly := HMI_DB.CloseChargeRlySW;
 		LCP1_IO.Segment[1].OpenModule1To3DumpRly := LCP1_IO.Segment[2].OpenModule4To6DumpRly := LCP1_IO.Segment[3].OpenModule7To9DumpRly := HMI_DB.OpenDumpRlySW;
 		LCP2_IO.Segment[4].OpenModule1To3DumpRly := LCP2_IO.Segment[5].OpenModule4To6DumpRly := LCP2_IO.Segment[6].OpenModule7To9DumpRly := HMI_DB.OpenDumpRlySW;
+		
+		IF HMI_DB.TurnChrgHVonSW = TRUE THEN
+			FOR i := 1 TO 6 BY 1 DO 
+				MCP_IO.Charger[i].HV_ON := TRUE;
+			END_FOR
+			ELSE
+				FOR i := 1 TO 6 BY 1 DO 
+					MCP_IO.Charger[i].HV_ON := TRUE;
+				END_FOR
+		END_IF
+		
+		IF HMI_DB.TurnChrgInhibitOffSW = TRUE THEN 
+			FOR i := 1 TO 6 BY 1 DO 
+				MCP_IO.Charger[i].inhibit := FALSE;
+			END_FOR
+			ELSE
+				FOR i := 1 TO 6 BY 1 DO 
+					MCP_IO.Charger[i].inhibit := TRUE;
+				END_FOR				
+		END_IF
+		
+		LCP1_IO.Fire := LCP2_IO.Fire := HMI_DB.TurnOnShotTrigSW;
+		LCP1_IO.SegmentCharged := LCP2_IO.SegmentCharged := HMI_DB.TurnOnChargeAlarm;
+		
 		IF HMI_DB.HMI_ManualModeSelected = FALSE THEN
 			eState := E_State.SAFE;
 		END_IF
@@ -525,6 +556,8 @@ END_IF;	]]></ST>
       <LineId Id="739" Count="0" />
       <LineId Id="805" Count="0" />
       <LineId Id="807" Count="0" />
+      <LineId Id="1357" Count="2" />
+      <LineId Id="1356" Count="0" />
       <LineId Id="806" Count="0" />
       <LineId Id="103" Count="2" />
       <LineId Id="113" Count="4" />
@@ -751,6 +784,7 @@ END_IF;	]]></ST>
       <LineId Id="245" Count="1" />
       <LineId Id="787" Count="1" />
       <LineId Id="790" Count="0" />
+      <LineId Id="1360" Count="2" />
       <LineId Id="789" Count="0" />
       <LineId Id="772" Count="2" />
       <LineId Id="808" Count="0" />
@@ -759,6 +793,23 @@ END_IF;	]]></ST>
       <LineId Id="1149" Count="0" />
       <LineId Id="776" Count="0" />
       <LineId Id="29" Count="0" />
+      <LineId Id="1363" Count="0" />
+      <LineId Id="1365" Count="1" />
+      <LineId Id="1369" Count="2" />
+      <LineId Id="1373" Count="1" />
+      <LineId Id="1372" Count="0" />
+      <LineId Id="1367" Count="0" />
+      <LineId Id="1375" Count="0" />
+      <LineId Id="1379" Count="0" />
+      <LineId Id="1376" Count="0" />
+      <LineId Id="1381" Count="1" />
+      <LineId Id="1377" Count="0" />
+      <LineId Id="1383" Count="1" />
+      <LineId Id="1378" Count="0" />
+      <LineId Id="1364" Count="0" />
+      <LineId Id="1385" Count="0" />
+      <LineId Id="1387" Count="1" />
+      <LineId Id="1386" Count="0" />
       <LineId Id="781" Count="2" />
       <LineId Id="786" Count="0" />
       <LineId Id="28" Count="0" />

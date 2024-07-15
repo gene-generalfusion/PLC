@@ -5883,6 +5883,16 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.VoltMonitor_DB.BatteryLow": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::VoltMonitor_DB::BatteryLow",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
         "PLC1.VoltMonitor_DB.CapRaw.0": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -7504,6 +7514,7 @@
                 "PLC1.Trips_DB.TimerRunOutON": 3,
                 "PLC1.VoltMonitor.DataNull": 3,
                 "PLC1.VoltMonitor.VMBoardWDT_TON.Q": 3,
+                "PLC1.VoltMonitor_DB.BatteryLow": 3,
                 "PLC1.VoltMonitor_DB.CapRaw.0": 3,
                 "PLC1.VoltMonitor_DB.CapRawBIT": 3,
                 "PLC1.VoltMonitor_DB.VoltageReading_raw.0": 3,

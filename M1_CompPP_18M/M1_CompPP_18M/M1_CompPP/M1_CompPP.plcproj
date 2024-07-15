@@ -23,16 +23,13 @@
     <Compile Include="DUTs\E_State.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\E_VoltFB.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\ST_Charger_Base.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\ST_ChargeTime.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DUTs\ST_LCP1_Base.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DUTs\ST_LCP2_Base.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\ST_Module.TcDUT">
@@ -42,6 +39,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\ST_Setpoints_Base.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\ST_VoltMon_Base.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\ST_VoltTran_Base.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GVLs\ChargeTime_DB.TcGVL">
@@ -139,6 +142,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\VoltageMonitor.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\VoltMonAC_FB.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\VoltTranBd.TcPOU">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

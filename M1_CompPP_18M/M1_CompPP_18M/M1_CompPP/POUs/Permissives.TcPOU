@@ -70,8 +70,11 @@ IF (LCP1_IO.Segment[1].Module[1].DumpRly_close = FALSE AND
 			Permissives_DB.AllDumpRelayOpen := FALSE;
 END_IF;
 
-IF Permissives_DB.AllChargeRelayClosed = TRUE AND Permissives_DB.AllDumpRelayOpen = TRUE THEN
-	Permissives_DB.ReadyToCharge := TRUE;
+IF Permissives_DB.AllChargeRelayClosed = TRUE AND 
+	Permissives_DB.AllDumpRelayOpen = TRUE AND
+	(Permissives_DB.AllVoltMonBoardStatusOK= TRUE OR HMI_DB.AllVoltMonBoardStatusOKBP = TRUE)  //voltmonitor board has missing packets, so this might be sensitive and might need to bypass
+	THEN
+		Permissives_DB.ReadyToCharge := TRUE;
 	ELSE 
 		Permissives_DB.ReadyToCharge := FALSE;
 END_IF
@@ -112,25 +115,44 @@ IF MCP_IO.Charger[1].inhibited = TRUE AND
 		Permissives_DB.AllChargerInhibitON	:= FALSE;
 END_IF;
 
-IF LCP1_IO.Segment[1].Module[1].VoltageFeedback <= Permissives_DB.CapVoltageThres AND
-	LCP1_IO.Segment[1].Module[2].VoltageFeedback <= Permissives_DB.CapVoltageThres AND
-	LCP1_IO.Segment[1].Module[3].VoltageFeedback <= Permissives_DB.CapVoltageThres AND
-	LCP1_IO.Segment[2].Module[4].VoltageFeedback <= Permissives_DB.CapVoltageThres AND
-	LCP1_IO.Segment[2].Module[5].VoltageFeedback <= Permissives_DB.CapVoltageThres AND
-	LCP1_IO.Segment[2].Module[6].VoltageFeedback <= Permissives_DB.CapVoltageThres AND
-	LCP1_IO.Segment[3].Module[7].VoltageFeedback <= Permissives_DB.CapVoltageThres AND
-	LCP1_IO.Segment[3].Module[8].VoltageFeedback <= Permissives_DB.CapVoltageThres AND 
-	LCP1_IO.Segment[3].Module[9].VoltageFeedback <= Permissives_DB.CapVoltageThres AND
+//add volt fb 1 and 2
+IF LCP1_IO.Segment[1].Module[1].VoltageFeedback[1] <= Permissives_DB.CapVoltageThres AND
+	LCP1_IO.Segment[1].Module[1].VoltageFeedback[2] <= Permissives_DB.CapVoltageThres AND
+	LCP1_IO.Segment[1].Module[2].VoltageFeedback[1] <= Permissives_DB.CapVoltageThres AND
+	LCP1_IO.Segment[1].Module[2].VoltageFeedback[2] <= Permissives_DB.CapVoltageThres AND
+	LCP1_IO.Segment[1].Module[3].VoltageFeedback[1] <= Permissives_DB.CapVoltageThres AND
+	LCP1_IO.Segment[1].Module[3].VoltageFeedback[2] <= Permissives_DB.CapVoltageThres AND
+	LCP1_IO.Segment[2].Module[4].VoltageFeedback[1] <= Permissives_DB.CapVoltageThres AND
+	LCP1_IO.Segment[2].Module[4].VoltageFeedback[2] <= Permissives_DB.CapVoltageThres AND
+	LCP1_IO.Segment[2].Module[5].VoltageFeedback[1] <= Permissives_DB.CapVoltageThres AND
+	LCP1_IO.Segment[2].Module[5].VoltageFeedback[2] <= Permissives_DB.CapVoltageThres AND
+	LCP1_IO.Segment[2].Module[6].VoltageFeedback[1] <= Permissives_DB.CapVoltageThres AND
+	LCP1_IO.Segment[2].Module[6].VoltageFeedback[2] <= Permissives_DB.CapVoltageThres AND
+	LCP1_IO.Segment[3].Module[7].VoltageFeedback[1] <= Permissives_DB.CapVoltageThres AND
+	LCP1_IO.Segment[3].Module[7].VoltageFeedback[2] <= Permissives_DB.CapVoltageThres AND
+	LCP1_IO.Segment[3].Module[8].VoltageFeedback[1] <= Permissives_DB.CapVoltageThres AND 
+	LCP1_IO.Segment[3].Module[8].VoltageFeedback[2] <= Permissives_DB.CapVoltageThres AND
+	LCP1_IO.Segment[3].Module[9].VoltageFeedback[1] <= Permissives_DB.CapVoltageThres AND
+	LCP1_IO.Segment[3].Module[9].VoltageFeedback[2] <= Permissives_DB.CapVoltageThres AND
 	
-	LCP2_IO.Segment[4].Module[1].VoltageFeedback <= Permissives_DB.CapVoltageThres AND
-	LCP2_IO.Segment[4].Module[2].VoltageFeedback <= Permissives_DB.CapVoltageThres AND
-	LCP2_IO.Segment[4].Module[3].VoltageFeedback <= Permissives_DB.CapVoltageThres AND
-	LCP2_IO.Segment[5].Module[4].VoltageFeedback <= Permissives_DB.CapVoltageThres AND
-	LCP2_IO.Segment[5].Module[5].VoltageFeedback <= Permissives_DB.CapVoltageThres AND
-	LCP2_IO.Segment[5].Module[6].VoltageFeedback <= Permissives_DB.CapVoltageThres AND
-	LCP2_IO.Segment[6].Module[7].VoltageFeedback <= Permissives_DB.CapVoltageThres AND
-	LCP2_IO.Segment[6].Module[8].VoltageFeedback <= Permissives_DB.CapVoltageThres AND 
-	LCP2_IO.Segment[6].Module[9].VoltageFeedback <= Permissives_DB.CapVoltageThres 
+	LCP2_IO.Segment[4].Module[1].VoltageFeedback[1] <= Permissives_DB.CapVoltageThres AND
+	LCP2_IO.Segment[4].Module[1].VoltageFeedback[2] <= Permissives_DB.CapVoltageThres AND
+	LCP2_IO.Segment[4].Module[2].VoltageFeedback[1] <= Permissives_DB.CapVoltageThres AND
+	LCP2_IO.Segment[4].Module[2].VoltageFeedback[2] <= Permissives_DB.CapVoltageThres AND
+	LCP2_IO.Segment[4].Module[3].VoltageFeedback[1] <= Permissives_DB.CapVoltageThres AND
+	LCP2_IO.Segment[4].Module[3].VoltageFeedback[2] <= Permissives_DB.CapVoltageThres AND
+	LCP2_IO.Segment[5].Module[4].VoltageFeedback[1] <= Permissives_DB.CapVoltageThres AND
+	LCP2_IO.Segment[5].Module[4].VoltageFeedback[2] <= Permissives_DB.CapVoltageThres AND
+	LCP2_IO.Segment[5].Module[5].VoltageFeedback[1] <= Permissives_DB.CapVoltageThres AND
+	LCP2_IO.Segment[5].Module[5].VoltageFeedback[2] <= Permissives_DB.CapVoltageThres AND
+	LCP2_IO.Segment[5].Module[6].VoltageFeedback[1] <= Permissives_DB.CapVoltageThres AND
+	LCP2_IO.Segment[5].Module[6].VoltageFeedback[2] <= Permissives_DB.CapVoltageThres AND
+	LCP2_IO.Segment[6].Module[7].VoltageFeedback[1] <= Permissives_DB.CapVoltageThres AND
+	LCP2_IO.Segment[6].Module[7].VoltageFeedback[2] <= Permissives_DB.CapVoltageThres AND
+	LCP2_IO.Segment[6].Module[8].VoltageFeedback[1] <= Permissives_DB.CapVoltageThres AND 
+	LCP2_IO.Segment[6].Module[8].VoltageFeedback[2] <= Permissives_DB.CapVoltageThres AND
+	LCP2_IO.Segment[6].Module[9].VoltageFeedback[1] <= Permissives_DB.CapVoltageThres AND
+	LCP2_IO.Segment[6].Module[9].VoltageFeedback[2] <= Permissives_DB.CapVoltageThres 
 (*  AND all other module voltage feedback <= 40, might need the -ve end & check for valid data*) 
 	THEN
 		Permissives_DB.AllCapsDischarged := TRUE;
@@ -138,6 +160,201 @@ IF LCP1_IO.Segment[1].Module[1].VoltageFeedback <= Permissives_DB.CapVoltageThre
 		Permissives_DB.AllCapsDischarged := FALSE;
 END_IF
 
+//VTB status
+//LCP1 Voltage Monitor Board bat lo
+IF LCP1_IO.VMB.VTB[0].BateryLow = TRUE OR 
+	LCP1_IO.VMB.VTB[1].BateryLow = TRUE OR 
+	LCP1_IO.VMB.VTB[2].BateryLow = TRUE OR 
+	LCP1_IO.VMB.VTB[3].BateryLow = TRUE OR 
+	LCP1_IO.VMB.VTB[4].BateryLow = TRUE OR 
+	LCP1_IO.VMB.VTB[5].BateryLow = TRUE OR 
+	LCP1_IO.VMB.VTB[6].BateryLow = TRUE OR 
+	LCP1_IO.VMB.VTB[7].BateryLow = TRUE OR 
+	LCP1_IO.VMB.VTB[8].BateryLow = TRUE OR 
+	LCP1_IO.VMB.VTB[9].BateryLow = TRUE OR 
+	LCP1_IO.VMB.VTB[10].BateryLow = TRUE OR 
+	LCP1_IO.VMB.VTB[11].BateryLow = TRUE OR 
+	LCP1_IO.VMB.VTB[12].BateryLow = TRUE OR 
+	LCP1_IO.VMB.VTB[13].BateryLow = TRUE OR 
+	LCP1_IO.VMB.VTB[14].BateryLow = TRUE OR 
+	LCP1_IO.VMB.VTB[15].BateryLow = TRUE OR 
+	LCP1_IO.VMB.VTB[16].BateryLow = TRUE OR 
+	LCP1_IO.VMB.VTB[17].BateryLow = TRUE 
+	THEN 
+		Permissives_DB.AnyLCP1MonBoardBatLo := TRUE;
+	ELSIF 
+		LCP1_IO.VMB.VTB[0].BateryLow = FALSE AND 
+		LCP1_IO.VMB.VTB[1].BateryLow = FALSE AND 
+		LCP1_IO.VMB.VTB[2].BateryLow = FALSE AND 	
+		LCP1_IO.VMB.VTB[3].BateryLow = FALSE AND 
+		LCP1_IO.VMB.VTB[4].BateryLow = FALSE AND 
+		LCP1_IO.VMB.VTB[5].BateryLow = FALSE AND 
+		LCP1_IO.VMB.VTB[6].BateryLow = FALSE AND 
+		LCP1_IO.VMB.VTB[7].BateryLow = FALSE AND 
+		LCP1_IO.VMB.VTB[8].BateryLow = FALSE AND 
+		LCP1_IO.VMB.VTB[9].BateryLow = FALSE AND 
+		LCP1_IO.VMB.VTB[10].BateryLow = FALSE AND 
+		LCP1_IO.VMB.VTB[11].BateryLow = FALSE AND 
+		LCP1_IO.VMB.VTB[12].BateryLow = FALSE AND 
+		LCP1_IO.VMB.VTB[13].BateryLow = FALSE AND 
+		LCP1_IO.VMB.VTB[14].BateryLow = FALSE AND 
+		LCP1_IO.VMB.VTB[15].BateryLow = FALSE AND 
+		LCP1_IO.VMB.VTB[16].BateryLow = FALSE AND 
+		LCP1_IO.VMB.VTB[17].BateryLow = FALSE 
+	THEN 
+		Permissives_DB.AnyLCP1MonBoardBatLo := FALSE;
+END_IF	
+//LCP2 Voltage Monitor Board battery lo
+IF LCP2_IO.VMB.VTB[0].BateryLow = TRUE OR 
+	LCP2_IO.VMB.VTB[1].BateryLow = TRUE OR 
+	LCP2_IO.VMB.VTB[2].BateryLow = TRUE OR 
+	LCP2_IO.VMB.VTB[3].BateryLow = TRUE OR 
+	LCP2_IO.VMB.VTB[4].BateryLow = TRUE OR 
+	LCP2_IO.VMB.VTB[5].BateryLow = TRUE OR 
+	LCP2_IO.VMB.VTB[6].BateryLow = TRUE OR 
+	LCP2_IO.VMB.VTB[7].BateryLow = TRUE OR 
+	LCP2_IO.VMB.VTB[8].BateryLow = TRUE OR 
+	LCP2_IO.VMB.VTB[9].BateryLow = TRUE OR 
+	LCP2_IO.VMB.VTB[10].BateryLow = TRUE OR 
+	LCP2_IO.VMB.VTB[11].BateryLow = TRUE OR 
+	LCP2_IO.VMB.VTB[12].BateryLow = TRUE OR 
+	LCP2_IO.VMB.VTB[13].BateryLow = TRUE OR 
+	LCP2_IO.VMB.VTB[14].BateryLow = TRUE OR 
+	LCP2_IO.VMB.VTB[15].BateryLow = TRUE OR 
+	LCP2_IO.VMB.VTB[16].BateryLow = TRUE OR 
+	LCP2_IO.VMB.VTB[17].BateryLow = TRUE 
+	THEN 
+		Permissives_DB.AnyLCP2MonBoardBatLo := TRUE;
+	ELSIF 
+		LCP2_IO.VMB.VTB[0].BateryLow = FALSE AND 
+		LCP2_IO.VMB.VTB[1].BateryLow = FALSE AND 
+		LCP2_IO.VMB.VTB[2].BateryLow = FALSE AND 	
+		LCP2_IO.VMB.VTB[3].BateryLow = FALSE AND 
+		LCP2_IO.VMB.VTB[4].BateryLow = FALSE AND 
+		LCP2_IO.VMB.VTB[5].BateryLow = FALSE AND 
+		LCP2_IO.VMB.VTB[6].BateryLow = FALSE AND 
+		LCP2_IO.VMB.VTB[7].BateryLow = FALSE AND 
+		LCP2_IO.VMB.VTB[8].BateryLow = FALSE AND 
+		LCP2_IO.VMB.VTB[9].BateryLow = FALSE AND 
+		LCP2_IO.VMB.VTB[10].BateryLow = FALSE AND 
+		LCP2_IO.VMB.VTB[11].BateryLow = FALSE AND 
+		LCP2_IO.VMB.VTB[12].BateryLow = FALSE AND 
+		LCP2_IO.VMB.VTB[13].BateryLow = FALSE AND 
+		LCP2_IO.VMB.VTB[14].BateryLow = FALSE AND 
+		LCP2_IO.VMB.VTB[15].BateryLow = FALSE AND 
+		LCP2_IO.VMB.VTB[16].BateryLow = FALSE AND 
+		LCP2_IO.VMB.VTB[17].BateryLow = FALSE 
+	THEN 
+		Permissives_DB.AnyLCP2MonBoardBatLo := FALSE;
+END_IF	
+//lcp1 volt montiro board loss HB
+IF LCP1_IO.VMB.VTB[0].LossVoltTransBoard = TRUE OR 
+	LCP1_IO.VMB.VTB[1].LossVoltTransBoard = TRUE OR 
+	LCP1_IO.VMB.VTB[2].LossVoltTransBoard = TRUE OR 
+	LCP1_IO.VMB.VTB[3].LossVoltTransBoard = TRUE OR 
+	LCP1_IO.VMB.VTB[4].LossVoltTransBoard = TRUE OR 
+	LCP1_IO.VMB.VTB[5].LossVoltTransBoard = TRUE OR 
+	LCP1_IO.VMB.VTB[6].LossVoltTransBoard = TRUE OR 
+	LCP1_IO.VMB.VTB[7].LossVoltTransBoard = TRUE OR 
+	LCP1_IO.VMB.VTB[8].LossVoltTransBoard = TRUE OR 
+	LCP1_IO.VMB.VTB[9].LossVoltTransBoard = TRUE OR 
+	LCP1_IO.VMB.VTB[10].LossVoltTransBoard = TRUE OR 
+	LCP1_IO.VMB.VTB[11].LossVoltTransBoard = TRUE OR 
+	LCP1_IO.VMB.VTB[12].LossVoltTransBoard = TRUE OR 
+	LCP1_IO.VMB.VTB[13].LossVoltTransBoard = TRUE OR 
+	LCP1_IO.VMB.VTB[14].LossVoltTransBoard = TRUE OR 
+	LCP1_IO.VMB.VTB[15].LossVoltTransBoard = TRUE OR 
+	LCP1_IO.VMB.VTB[16].LossVoltTransBoard = TRUE OR 
+	LCP1_IO.VMB.VTB[17].LossVoltTransBoard = TRUE 
+	THEN 
+		Permissives_DB.AnyLCP1MonBoardLoss := TRUE;
+	ELSIF 
+		LCP1_IO.VMB.VTB[0].LossVoltTransBoard = FALSE AND 
+		LCP1_IO.VMB.VTB[1].LossVoltTransBoard = FALSE AND 
+		LCP1_IO.VMB.VTB[2].LossVoltTransBoard = FALSE AND 	
+		LCP1_IO.VMB.VTB[3].LossVoltTransBoard = FALSE AND 
+		LCP1_IO.VMB.VTB[4].LossVoltTransBoard = FALSE AND 
+		LCP1_IO.VMB.VTB[5].LossVoltTransBoard = FALSE AND 
+		LCP1_IO.VMB.VTB[6].LossVoltTransBoard = FALSE AND 
+		LCP1_IO.VMB.VTB[7].LossVoltTransBoard = FALSE AND 
+		LCP1_IO.VMB.VTB[8].LossVoltTransBoard = FALSE AND 
+		LCP1_IO.VMB.VTB[9].LossVoltTransBoard = FALSE AND 
+		LCP1_IO.VMB.VTB[10].LossVoltTransBoard = FALSE AND 
+		LCP1_IO.VMB.VTB[11].LossVoltTransBoard = FALSE AND 
+		LCP1_IO.VMB.VTB[12].LossVoltTransBoard = FALSE AND 
+		LCP1_IO.VMB.VTB[13].LossVoltTransBoard = FALSE AND 
+		LCP1_IO.VMB.VTB[14].LossVoltTransBoard = FALSE AND 
+		LCP1_IO.VMB.VTB[15].LossVoltTransBoard = FALSE AND 
+		LCP1_IO.VMB.VTB[16].LossVoltTransBoard = FALSE AND 
+		LCP1_IO.VMB.VTB[17].LossVoltTransBoard = FALSE 
+	THEN 
+		Permissives_DB.AnyLCP1MonBoardLoss := FALSE;
+END_IF 
+//lcp2 volt montiro board loss HB
+IF LCP2_IO.VMB.VTB[0].LossVoltTransBoard = TRUE OR 
+	LCP2_IO.VMB.VTB[1].LossVoltTransBoard = TRUE OR 
+	LCP2_IO.VMB.VTB[2].LossVoltTransBoard = TRUE OR 
+	LCP2_IO.VMB.VTB[3].LossVoltTransBoard = TRUE OR 
+	LCP2_IO.VMB.VTB[4].LossVoltTransBoard = TRUE OR 
+	LCP2_IO.VMB.VTB[5].LossVoltTransBoard = TRUE OR 
+	LCP2_IO.VMB.VTB[6].LossVoltTransBoard = TRUE OR 
+	LCP2_IO.VMB.VTB[7].LossVoltTransBoard = TRUE OR 
+	LCP2_IO.VMB.VTB[8].LossVoltTransBoard = TRUE OR 
+	LCP2_IO.VMB.VTB[9].LossVoltTransBoard = TRUE OR 
+	LCP2_IO.VMB.VTB[10].LossVoltTransBoard = TRUE OR 
+	LCP2_IO.VMB.VTB[11].LossVoltTransBoard = TRUE OR 
+	LCP2_IO.VMB.VTB[12].LossVoltTransBoard = TRUE OR 
+	LCP2_IO.VMB.VTB[13].LossVoltTransBoard = TRUE OR 
+	LCP2_IO.VMB.VTB[14].LossVoltTransBoard = TRUE OR 
+	LCP2_IO.VMB.VTB[15].LossVoltTransBoard = TRUE OR 
+	LCP2_IO.VMB.VTB[16].LossVoltTransBoard = TRUE OR 
+	LCP2_IO.VMB.VTB[17].LossVoltTransBoard = TRUE 
+	THEN 
+		Permissives_DB.AnyLCP1MonBoardLoss := TRUE;
+	ELSIF 
+		LCP2_IO.VMB.VTB[0].LossVoltTransBoard = FALSE AND 
+		LCP2_IO.VMB.VTB[1].LossVoltTransBoard = FALSE AND 
+		LCP2_IO.VMB.VTB[2].LossVoltTransBoard = FALSE AND 	
+		LCP2_IO.VMB.VTB[3].LossVoltTransBoard = FALSE AND 
+		LCP2_IO.VMB.VTB[4].LossVoltTransBoard = FALSE AND 
+		LCP2_IO.VMB.VTB[5].LossVoltTransBoard = FALSE AND 
+		LCP2_IO.VMB.VTB[6].LossVoltTransBoard = FALSE AND 
+		LCP2_IO.VMB.VTB[7].LossVoltTransBoard = FALSE AND 
+		LCP2_IO.VMB.VTB[8].LossVoltTransBoard = FALSE AND 
+		LCP2_IO.VMB.VTB[9].LossVoltTransBoard = FALSE AND 
+		LCP2_IO.VMB.VTB[10].LossVoltTransBoard = FALSE AND 
+		LCP2_IO.VMB.VTB[11].LossVoltTransBoard = FALSE AND 
+		LCP2_IO.VMB.VTB[12].LossVoltTransBoard = FALSE AND 
+		LCP2_IO.VMB.VTB[13].LossVoltTransBoard = FALSE AND 
+		LCP2_IO.VMB.VTB[14].LossVoltTransBoard = FALSE AND 
+		LCP2_IO.VMB.VTB[15].LossVoltTransBoard = FALSE AND 
+		LCP2_IO.VMB.VTB[16].LossVoltTransBoard = FALSE AND 
+		LCP2_IO.VMB.VTB[17].LossVoltTransBoard = FALSE 
+	THEN 
+		Permissives_DB.AnyLCP2MonBoardLoss := FALSE;
+END_IF 
+
+IF Permissives_DB.AnyLCP1MonBoardBatLo = TRUE OR 
+	Permissives_DB.AnyLCP2MonBoardBatLo = TRUE 
+	THEN 
+		Permissives_DB.AnyVoltMonBoardBatLo := TRUE;
+	ELSIF 
+		Permissives_DB.AnyLCP1MonBoardBatLo = FALSE AND 
+		Permissives_DB.AnyLCP2MonBoardBatLo = FALSE 
+	THEN 
+		Permissives_DB.AnyVoltMonBoardBatLo := FALSE;
+END_IF
+
+IF Permissives_DB.AnyLCP1MonBoardLoss = TRUE OR 
+	Permissives_DB.AnyLCP2MonBoardLoss = TRUE 
+	THEN 
+		Permissives_DB.AnyVoltMonBoardLoss := TRUE;
+	ELSIF 
+		Permissives_DB.AnyLCP1MonBoardLoss = FALSE AND 
+		Permissives_DB.AnyLCP2MonBoardLoss = FALSE 
+	THEN 
+		Permissives_DB.AnyVoltMonBoardLoss := FALSE;
+END_IF
 
 IF Permissives_DB.ChargerVBelowThres = TRUE AND 
 	Permissives_DB.AllChargerHVisOFF = TRUE AND 
@@ -193,6 +410,7 @@ END_IF;
       <LineId Id="23" Count="0" />
       <LineId Id="220" Count="0" />
       <LineId Id="16" Count="0" />
+      <LineId Id="709" Count="2" />
       <LineId Id="25" Count="0" />
       <LineId Id="27" Count="1" />
       <LineId Id="26" Count="0" />
@@ -216,19 +434,98 @@ END_IF;
       <LineId Id="138" Count="0" />
       <LineId Id="140" Count="1" />
       <LineId Id="139" Count="0" />
+      <LineId Id="577" Count="0" />
       <LineId Id="144" Count="0" />
       <LineId Id="143" Count="0" />
-      <LineId Id="327" Count="6" />
+      <LineId Id="578" Count="0" />
+      <LineId Id="327" Count="0" />
+      <LineId Id="579" Count="0" />
+      <LineId Id="328" Count="0" />
+      <LineId Id="580" Count="0" />
+      <LineId Id="329" Count="0" />
+      <LineId Id="581" Count="0" />
+      <LineId Id="330" Count="0" />
+      <LineId Id="582" Count="0" />
+      <LineId Id="331" Count="0" />
+      <LineId Id="583" Count="0" />
+      <LineId Id="332" Count="0" />
+      <LineId Id="584" Count="0" />
+      <LineId Id="333" Count="0" />
+      <LineId Id="585" Count="0" />
       <LineId Id="335" Count="0" />
+      <LineId Id="586" Count="0" />
       <LineId Id="346" Count="0" />
-      <LineId Id="338" Count="7" />
+      <LineId Id="338" Count="0" />
+      <LineId Id="587" Count="0" />
+      <LineId Id="339" Count="0" />
+      <LineId Id="588" Count="0" />
+      <LineId Id="340" Count="0" />
+      <LineId Id="589" Count="0" />
+      <LineId Id="341" Count="0" />
+      <LineId Id="590" Count="0" />
+      <LineId Id="342" Count="0" />
+      <LineId Id="591" Count="0" />
+      <LineId Id="343" Count="0" />
+      <LineId Id="592" Count="0" />
+      <LineId Id="344" Count="0" />
+      <LineId Id="593" Count="0" />
+      <LineId Id="345" Count="0" />
+      <LineId Id="594" Count="0" />
       <LineId Id="337" Count="0" />
+      <LineId Id="595" Count="0" />
       <LineId Id="334" Count="0" />
       <LineId Id="336" Count="0" />
       <LineId Id="145" Count="0" />
       <LineId Id="147" Count="1" />
       <LineId Id="146" Count="0" />
+      <LineId Id="576" Count="0" />
+      <LineId Id="484" Count="0" />
+      <LineId Id="704" Count="0" />
+      <LineId Id="490" Count="0" />
+      <LineId Id="493" Count="0" />
+      <LineId Id="496" Count="1" />
+      <LineId Id="495" Count="0" />
+      <LineId Id="498" Count="0" />
+      <LineId Id="500" Count="11" />
+      <LineId Id="492" Count="0" />
+      <LineId Id="491" Count="0" />
+      <LineId Id="514" Count="0" />
+      <LineId Id="532" Count="0" />
+      <LineId Id="515" Count="1" />
+      <LineId Id="533" Count="1" />
+      <LineId Id="519" Count="11" />
+      <LineId Id="512" Count="1" />
+      <LineId Id="531" Count="0" />
+      <LineId Id="488" Count="0" />
+      <LineId Id="596" Count="0" />
+      <LineId Id="598" Count="20" />
+      <LineId Id="708" Count="0" />
+      <LineId Id="620" Count="18" />
+      <LineId Id="597" Count="0" />
+      <LineId Id="489" Count="0" />
+      <LineId Id="535" Count="20" />
+      <LineId Id="707" Count="0" />
+      <LineId Id="557" Count="18" />
       <LineId Id="135" Count="0" />
+      <LineId Id="640" Count="21" />
+      <LineId Id="706" Count="0" />
+      <LineId Id="663" Count="18" />
+      <LineId Id="639" Count="0" />
+      <LineId Id="683" Count="0" />
+      <LineId Id="682" Count="0" />
+      <LineId Id="684" Count="0" />
+      <LineId Id="687" Count="0" />
+      <LineId Id="686" Count="0" />
+      <LineId Id="689" Count="0" />
+      <LineId Id="705" Count="0" />
+      <LineId Id="691" Count="0" />
+      <LineId Id="690" Count="0" />
+      <LineId Id="692" Count="0" />
+      <LineId Id="685" Count="0" />
+      <LineId Id="694" Count="5" />
+      <LineId Id="703" Count="0" />
+      <LineId Id="700" Count="2" />
+      <LineId Id="693" Count="0" />
       <LineId Id="41" Count="0" />
       <LineId Id="15" Count="0" />
       <LineId Id="53" Count="2" />
@@ -254,7 +551,7 @@ END_IF;
       <LineId Id="86" Count="2" />
       <LineId Id="72" Count="0" />
       <LineId Id="75" Count="0" />
-      <LineId Id="77" Count="0" />
+      <LineId Id="483" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

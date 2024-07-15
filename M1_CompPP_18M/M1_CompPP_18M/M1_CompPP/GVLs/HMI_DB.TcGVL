@@ -27,11 +27,16 @@ VAR_GLOBAL
 	ClearFaultPB				: BOOL := 0;
 	AllDumpRelaysOpenBP			: BOOL := 0;
 	AllChargeRelayCloseBP		: BOOL := 0;
+	AllVoltMonBoardStatusOKBP	: BOOL := 0;
 	SystemSafeBP				: BOOL := 0;
 	
 	HMI_ManualModeSelected		: BOOL := 0;  // 1 = manual mode selected
 	CloseChargeRlySW			: BOOL := 0;
 	OpenDumpRlySW				: BOOL := 0;
+	TurnChrgHVonSW				: BOOL := 0;
+	TurnChrgInhibitOffSW		: BOOL := 0;
+	TurnOnShotTrigSW			: BOOL := 0;
+	TurnOnChargeAlarm			: BOOL := 0;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

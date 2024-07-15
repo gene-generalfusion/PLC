@@ -94,7 +94,7 @@ IF HMI_DB.HMI_ManualModeSelected = TRUE AND eState = E_State.SAFE THEN
 	eState := E_State.ManualMode;
 END_IF
 
-IF eState = E_State.CHARGING OR eState = E_State.CHARGECOMPLETE THEN
+IF eState = E_State.CHARGING OR eState = E_State.CHARGECOMPLETE OR eState = E_State.ABORT THEN
 	HMI_DB.HMI_ManualModeSelected := FALSE;
 END_IF
 

@@ -5,8 +5,10 @@
 STRUCT
 	DumpRly_close	: BOOL;
 	
-	VoltageFeedback : REAL;
-	VoltageFeedback_raw : DINT;
+	VoltageFeedback : ARRAY[1..2] OF REAL;
+	VoltageFeedback_norm : ARRAY[1..2] OF REAL;
+	VoltageFeedback_raw : ARRAY[1..2] OF DINT;
+	//VTB : ARRAY[1..2] OF ST_VoltTran_Base;  uncomment this for troubleshooting the bits in VoltageMonitor POU
 END_STRUCT
 END_TYPE
 ]]></Declaration>

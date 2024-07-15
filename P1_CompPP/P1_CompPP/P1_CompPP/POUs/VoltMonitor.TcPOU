@@ -12,7 +12,7 @@ VAR
 	b3 : BOOL;
 	pause : BOOL;
 	VMBoardWDT_TON : TON;
-	VMBoardWDT_PT	: TIME := T#3S;
+	VMBoardWDT_PT	: TIME := T#2S;
 	VMBoardWDT_ET	: TIME;
 	DataNull	: BOOL := 0;
 	DataNullRebunceTMR_TON : TON;
@@ -73,6 +73,8 @@ FOR k := 0 TO 1 BY 1 DO //0 - 1 two channels only
 	END_IF
 	
 END_FOR
+
+VoltMonitor_DB.BatteryLow := VoltMonitor_DB.CapRaw[0].13;
 
 IF VoltMonitor_DB.CapRaw[0] = 0 THEN 
 	VMBoardWDT_TON (IN := TRUE, PT := VMBoardWDT_PT, ET => VMBoardWDT_ET);
@@ -174,6 +176,8 @@ END_IF]]></ST>
       <LineId Id="121" Count="0" />
       <LineId Id="225" Count="0" />
       <LineId Id="177" Count="0" />
+      <LineId Id="374" Count="0" />
+      <LineId Id="373" Count="0" />
       <LineId Id="292" Count="0" />
       <LineId Id="291" Count="0" />
       <LineId Id="297" Count="0" />

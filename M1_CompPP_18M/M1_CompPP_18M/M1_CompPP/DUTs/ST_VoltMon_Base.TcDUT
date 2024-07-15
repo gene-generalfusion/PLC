@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="ST_VoltMon_Base" Id="{cc0922e4-d91c-4371-98a5-7719f369168e}">
+    <Declaration><![CDATA[TYPE ST_VoltMon_Base :
+STRUCT
+	VTB : ARRAY[0..24] OF ST_VoltTran_Base;
+	//Heartbeat : BOOL := 0;
+	(*BateryLow  : ARRAY[0..24] OF BOOL := 0;
+	//Channel	: USINT; //ST_AnalogCHSelection;
+	VoltageReading_raw : ARRAY[0..24] OF INT; //custom board
+	VoltageReading_norm : ARRAY[0..24] OF REAL;
+	//VoltageReading	: ARRAY[0..15] OF REAL;
+	//LoadMaxRatedV	: REAL := 13800; //-2k TO 35kV
+	//LoadMinRatedV	: REAL := -1450; //Jake's lab result
+//***************************************
+	CapRaw : ARRAY[0..24] OF UINT;
+	CapRawBIT : ARRAY[0..24] OF STRING;
+	//CapRaw_DummySnap : ARRAY[0..24] OF UINT;
+	CapRaw_Str : ARRAY[0..24] OF STRING;
+	
+	DataNull : ARRAY[0..24] OF BOOL := 0;
+	//cunter for missing packets
+	missedCTU : CTU;
+	//ONS	: R_TRIG;
+	missingCNT : WORD :=0;
+	LossVoltTransBoard : ARRAY[0..24] OF BOOL := 0;
+//**********************************	
+	Time1		: TON;
+	Time1_ET	: TIME;
+	packetsPerMin : REAL;
+	//missedCTU : CTU;
+	ONS	: R_TRIG;
+	//missingCNT : WORD;
+	missingCNT_REAL : REAL;*)
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

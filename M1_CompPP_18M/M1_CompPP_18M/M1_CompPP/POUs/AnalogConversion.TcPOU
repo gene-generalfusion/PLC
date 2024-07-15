@@ -7,6 +7,8 @@ VAR
 	j					: INT := 1;  // section 1 - 4 
 	k					: INT := 1;  // cap 1-10
 	m					: INT := 1; //form cap 1-12
+	VoltMonAC1			: ARRAY[1..18] OF VoltMonAC_FB;
+	VoltMonAC2			: ARRAY[1..18] OF VoltMonAC_FB;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[//MCP Charger 
@@ -128,19 +130,351 @@ FOR i := 1 TO 6 BY 1 DO
 END_FOR;
 
 //Cap voltage feedback
-
+(*
 //can also add a range of x samples for self calibrating **note: normalized range needs to be calibrated for each board
 VoltMonitor_DB.VoltageReading_norm[0] := Norm_x (raw_input := INT_TO_REAL (VoltMonitor_DB.VoltageReading_raw[0]),
 													x_max := 904, //10bit value - 1110001000 = 904deci
 													x_min := 100); //100deci is the zero of range -1.61 to 12.01
-LCP1_IO.Segment[1].Module[1].VoltageFeedback := (12010 - 0) * ADC_10V(normal_input := VoltMonitor_DB.VoltageReading_norm[0],
+LCP1_IO.Segment[1].Module[1].VoltageFeedback[1] := (12010 - 0) * ADC_10V(normal_input := VoltMonitor_DB.VoltageReading_norm[0],
 																		x_max := 12.01,
 																		x_min := 0); //use zero, it will cal for the -ve	
 
-IF VoltageMonitor.DataNull = TRUE THEN
-	LCP1_IO.Segment[1].Module[1].VoltageFeedback := NULL;	//change from int to string												
-END_IF;
+*)
 
+(* // changed to a FB for norm and ADC
+LCP1_IO.Segment[1].Module[1].VoltageFeedback_norm[1] := Norm_x (raw_input := INT_TO_REAL (LCP1_IO.Segment[1].Module[1].VoltageFeedback_raw[1]),
+													x_max := 904, //10bit value - 1110001000 = 904deci
+													x_min := 100); //100deci is the zero of range -1.61 to 12.01
+LCP1_IO.Segment[1].Module[1].VoltageFeedback[1] := (12010 - 0) * ADC_10V(normal_input := LCP1_IO.Segment[1].Module[1].VoltageFeedback_norm[1],
+																		x_max := 12.01,
+																		x_min := 0); //use zero, it will cal for the -ve
+*)
+// using FB instead.
+VoltMonAC1[1](raw_input := DINT_TO_REAL(LCP1_IO.Segment[1].Module[1].VoltageFeedback_raw[1]),
+				norm_x_max := 904, //individually calibrated, otherwise can do a for loop
+				norm_x_min := 100, 
+				RangUpp := 12.01, 
+				RangLow := 0, 
+				ADC_max := 12010, 
+				ADC_min := 0, 
+				voltage_reading => LCP1_IO.Segment[1].Module[1].VoltageFeedback[1]);
+
+VoltMonAC1[2](raw_input := DINT_TO_REAL(LCP1_IO.Segment[1].Module[1].VoltageFeedback_raw[2]),
+				norm_x_max := 904, 
+				norm_x_min := 100, 
+				RangUpp := 12.01, 
+				RangLow := 0, 
+				ADC_max := 12010, 
+				ADC_min := 0, 
+				voltage_reading => LCP1_IO.Segment[1].Module[1].VoltageFeedback[2]);		
+
+VoltMonAC1[3](raw_input := DINT_TO_REAL(LCP1_IO.Segment[1].Module[2].VoltageFeedback_raw[1]),
+				norm_x_max := 904, 
+				norm_x_min := 100, 
+				RangUpp := 12.01, 
+				RangLow := 0, 
+				ADC_max := 12010, 
+				ADC_min := 0, 
+				voltage_reading => LCP1_IO.Segment[1].Module[2].VoltageFeedback[1]);	
+				
+VoltMonAC1[4](raw_input := DINT_TO_REAL(LCP1_IO.Segment[1].Module[2].VoltageFeedback_raw[2]),
+				norm_x_max := 904, 
+				norm_x_min := 100, 
+				RangUpp := 12.01, 
+				RangLow := 0, 
+				ADC_max := 12010, 
+				ADC_min := 0, 
+				voltage_reading => LCP1_IO.Segment[1].Module[2].VoltageFeedback[2]);					
+
+VoltMonAC1[5](raw_input := DINT_TO_REAL(LCP1_IO.Segment[1].Module[3].VoltageFeedback_raw[1]),
+				norm_x_max := 904, 
+				norm_x_min := 100, 
+				RangUpp := 12.01, 
+				RangLow := 0, 
+				ADC_max := 12010, 
+				ADC_min := 0, 
+				voltage_reading => LCP1_IO.Segment[1].Module[3].VoltageFeedback[1]);	
+				
+VoltMonAC1[6](raw_input := DINT_TO_REAL(LCP1_IO.Segment[1].Module[3].VoltageFeedback_raw[2]),
+				norm_x_max := 904, 
+				norm_x_min := 100, 
+				RangUpp := 12.01, 
+				RangLow := 0, 
+				ADC_max := 12010, 
+				ADC_min := 0, 
+				voltage_reading => LCP1_IO.Segment[1].Module[3].VoltageFeedback[2]);				
+				
+VoltMonAC1[7](raw_input := DINT_TO_REAL(LCP1_IO.Segment[2].Module[4].VoltageFeedback_raw[1]),
+				norm_x_max := 904, 
+				norm_x_min := 100, 
+				RangUpp := 12.01, 
+				RangLow := 0, 
+				ADC_max := 12010, 
+				ADC_min := 0, 
+				voltage_reading => LCP1_IO.Segment[2].Module[4].VoltageFeedback[1]);	
+				
+VoltMonAC1[8](raw_input := DINT_TO_REAL(LCP1_IO.Segment[2].Module[4].VoltageFeedback_raw[2]),
+				norm_x_max := 904, 
+				norm_x_min := 100, 
+				RangUpp := 12.01, 
+				RangLow := 0, 
+				ADC_max := 12010, 
+				ADC_min := 0, 
+				voltage_reading => LCP1_IO.Segment[2].Module[4].VoltageFeedback[2]);
+	
+VoltMonAC1[9](raw_input := DINT_TO_REAL(LCP1_IO.Segment[2].Module[5].VoltageFeedback_raw[1]),
+				norm_x_max := 904, 
+				norm_x_min := 100, 
+				RangUpp := 12.01, 
+				RangLow := 0, 
+				ADC_max := 12010, 
+				ADC_min := 0, 
+				voltage_reading => LCP1_IO.Segment[2].Module[5].VoltageFeedback[1]);	
+				
+VoltMonAC1[10](raw_input := DINT_TO_REAL(LCP1_IO.Segment[2].Module[5].VoltageFeedback_raw[2]),
+				norm_x_max := 904, 
+				norm_x_min := 100, 
+				RangUpp := 12.01, 
+				RangLow := 0, 
+				ADC_max := 12010, 
+				ADC_min := 0, 
+				voltage_reading => LCP1_IO.Segment[2].Module[5].VoltageFeedback[2]);
+				
+VoltMonAC1[11](raw_input := DINT_TO_REAL(LCP1_IO.Segment[2].Module[6].VoltageFeedback_raw[1]),
+				norm_x_max := 904, 
+				norm_x_min := 100, 
+				RangUpp := 12.01, 
+				RangLow := 0, 
+				ADC_max := 12010, 
+				ADC_min := 0, 
+				voltage_reading => LCP1_IO.Segment[2].Module[6].VoltageFeedback[1]);	
+				
+VoltMonAC1[12](raw_input := DINT_TO_REAL(LCP1_IO.Segment[2].Module[6].VoltageFeedback_raw[2]),
+				norm_x_max := 904, 
+				norm_x_min := 100, 
+				RangUpp := 12.01, 
+				RangLow := 0, 
+				ADC_max := 12010, 
+				ADC_min := 0, 
+				voltage_reading => LCP1_IO.Segment[2].Module[6].VoltageFeedback[2]);			
+
+VoltMonAC1[13](raw_input := DINT_TO_REAL(LCP1_IO.Segment[3].Module[7].VoltageFeedback_raw[1]),
+				norm_x_max := 904, 
+				norm_x_min := 100, 
+				RangUpp := 12.01, 
+				RangLow := 0, 
+				ADC_max := 12010, 
+				ADC_min := 0, 
+				voltage_reading => LCP1_IO.Segment[3].Module[7].VoltageFeedback[1]);	
+				
+VoltMonAC1[14](raw_input := DINT_TO_REAL(LCP1_IO.Segment[3].Module[7].VoltageFeedback_raw[2]),
+				norm_x_max := 904, 
+				norm_x_min := 100, 
+				RangUpp := 12.01, 
+				RangLow := 0, 
+				ADC_max := 12010, 
+				ADC_min := 0, 
+				voltage_reading => LCP1_IO.Segment[3].Module[7].VoltageFeedback[2]);
+				
+VoltMonAC1[15](raw_input := DINT_TO_REAL(LCP1_IO.Segment[3].Module[8].VoltageFeedback_raw[1]),
+				norm_x_max := 904, 
+				norm_x_min := 100, 
+				RangUpp := 12.01, 
+				RangLow := 0, 
+				ADC_max := 12010, 
+				ADC_min := 0, 
+				voltage_reading => LCP1_IO.Segment[3].Module[8].VoltageFeedback[1]);	
+				
+VoltMonAC1[16](raw_input := DINT_TO_REAL(LCP1_IO.Segment[3].Module[8].VoltageFeedback_raw[2]),
+				norm_x_max := 904, 
+				norm_x_min := 100, 
+				RangUpp := 12.01, 
+				RangLow := 0, 
+				ADC_max := 12010, 
+				ADC_min := 0, 
+				voltage_reading => LCP1_IO.Segment[3].Module[8].VoltageFeedback[2]);
+				
+VoltMonAC1[17](raw_input := DINT_TO_REAL(LCP1_IO.Segment[3].Module[9].VoltageFeedback_raw[1]),
+				norm_x_max := 904, 
+				norm_x_min := 100, 
+				RangUpp := 12.01, 
+				RangLow := 0, 
+				ADC_max := 12010, 
+				ADC_min := 0, 
+				voltage_reading => LCP1_IO.Segment[3].Module[9].VoltageFeedback[1]);	
+				
+VoltMonAC1[18](raw_input := DINT_TO_REAL(LCP1_IO.Segment[3].Module[9].VoltageFeedback_raw[2]),
+				norm_x_max := 904, 
+				norm_x_min := 100, 
+				RangUpp := 12.01, 
+				RangLow := 0, 
+				ADC_max := 12010, 
+				ADC_min := 0, 
+				voltage_reading => LCP1_IO.Segment[3].Module[9].VoltageFeedback[2]);	
+
+//lcp2 cap voltage mon adc
+VoltMonAC2[1](raw_input := DINT_TO_REAL(LCP2_IO.Segment[4].Module[1].VoltageFeedback_raw[1]),
+				norm_x_max := 904, //individually calibrated, otherwise can do a for loop
+				norm_x_min := 100, 
+				RangUpp := 12.01, 
+				RangLow := 0, 
+				ADC_max := 12010, 
+				ADC_min := 0, 
+				voltage_reading => LCP2_IO.Segment[4].Module[1].VoltageFeedback[1]);
+
+VoltMonAC2[2](raw_input := DINT_TO_REAL(LCP2_IO.Segment[4].Module[1].VoltageFeedback_raw[2]),
+				norm_x_max := 904, 
+				norm_x_min := 100, 
+				RangUpp := 12.01, 
+				RangLow := 0, 
+				ADC_max := 12010, 
+				ADC_min := 0, 
+				voltage_reading => LCP2_IO.Segment[4].Module[1].VoltageFeedback[2]);		
+
+VoltMonAC2[3](raw_input := DINT_TO_REAL(LCP2_IO.Segment[4].Module[2].VoltageFeedback_raw[1]),
+				norm_x_max := 904, 
+				norm_x_min := 100, 
+				RangUpp := 12.01, 
+				RangLow := 0, 
+				ADC_max := 12010, 
+				ADC_min := 0, 
+				voltage_reading => LCP2_IO.Segment[4].Module[2].VoltageFeedback[1]);	
+				
+VoltMonAC2[4](raw_input := DINT_TO_REAL(LCP2_IO.Segment[4].Module[2].VoltageFeedback_raw[2]),
+				norm_x_max := 904, 
+				norm_x_min := 100, 
+				RangUpp := 12.01, 
+				RangLow := 0, 
+				ADC_max := 12010, 
+				ADC_min := 0, 
+				voltage_reading => LCP2_IO.Segment[4].Module[2].VoltageFeedback[2]);					
+
+VoltMonAC2[5](raw_input := DINT_TO_REAL(LCP2_IO.Segment[4].Module[3].VoltageFeedback_raw[1]),
+				norm_x_max := 904, 
+				norm_x_min := 100, 
+				RangUpp := 12.01, 
+				RangLow := 0, 
+				ADC_max := 12010, 
+				ADC_min := 0, 
+				voltage_reading => LCP2_IO.Segment[4].Module[3].VoltageFeedback[1]);	
+				
+VoltMonAC2[6](raw_input := DINT_TO_REAL(LCP2_IO.Segment[4].Module[3].VoltageFeedback_raw[2]),
+				norm_x_max := 904, 
+				norm_x_min := 100, 
+				RangUpp := 12.01, 
+				RangLow := 0, 
+				ADC_max := 12010, 
+				ADC_min := 0, 
+				voltage_reading => LCP2_IO.Segment[4].Module[3].VoltageFeedback[2]);				
+				
+VoltMonAC2[7](raw_input := DINT_TO_REAL(LCP2_IO.Segment[5].Module[4].VoltageFeedback_raw[1]),
+				norm_x_max := 904, 
+				norm_x_min := 100, 
+				RangUpp := 12.01, 
+				RangLow := 0, 
+				ADC_max := 12010, 
+				ADC_min := 0, 
+				voltage_reading => LCP2_IO.Segment[5].Module[4].VoltageFeedback[1]);	
+				
+VoltMonAC2[8](raw_input := DINT_TO_REAL(LCP2_IO.Segment[5].Module[4].VoltageFeedback_raw[2]),
+				norm_x_max := 904, 
+				norm_x_min := 100, 
+				RangUpp := 12.01, 
+				RangLow := 0, 
+				ADC_max := 12010, 
+				ADC_min := 0, 
+				voltage_reading => LCP2_IO.Segment[5].Module[4].VoltageFeedback[2]);
+	
+VoltMonAC2[9](raw_input := DINT_TO_REAL(LCP2_IO.Segment[5].Module[5].VoltageFeedback_raw[1]),
+				norm_x_max := 904, 
+				norm_x_min := 100, 
+				RangUpp := 12.01, 
+				RangLow := 0, 
+				ADC_max := 12010, 
+				ADC_min := 0, 
+				voltage_reading => LCP2_IO.Segment[5].Module[5].VoltageFeedback[1]);	
+				
+VoltMonAC2[10](raw_input := DINT_TO_REAL(LCP2_IO.Segment[5].Module[5].VoltageFeedback_raw[2]),
+				norm_x_max := 904, 
+				norm_x_min := 100, 
+				RangUpp := 12.01, 
+				RangLow := 0, 
+				ADC_max := 12010, 
+				ADC_min := 0, 
+				voltage_reading => LCP2_IO.Segment[5].Module[5].VoltageFeedback[2]);
+				
+VoltMonAC2[11](raw_input := DINT_TO_REAL(LCP2_IO.Segment[5].Module[6].VoltageFeedback_raw[1]),
+				norm_x_max := 904, 
+				norm_x_min := 100, 
+				RangUpp := 12.01, 
+				RangLow := 0, 
+				ADC_max := 12010, 
+				ADC_min := 0, 
+				voltage_reading => LCP2_IO.Segment[5].Module[6].VoltageFeedback[1]);	
+				
+VoltMonAC2[12](raw_input := DINT_TO_REAL(LCP2_IO.Segment[5].Module[6].VoltageFeedback_raw[2]),
+				norm_x_max := 904, 
+				norm_x_min := 100, 
+				RangUpp := 12.01, 
+				RangLow := 0, 
+				ADC_max := 12010, 
+				ADC_min := 0, 
+				voltage_reading => LCP2_IO.Segment[5].Module[6].VoltageFeedback[2]);			
+
+VoltMonAC2[13](raw_input := DINT_TO_REAL(LCP2_IO.Segment[6].Module[7].VoltageFeedback_raw[1]),
+				norm_x_max := 904, 
+				norm_x_min := 100, 
+				RangUpp := 12.01, 
+				RangLow := 0, 
+				ADC_max := 12010, 
+				ADC_min := 0, 
+				voltage_reading => LCP2_IO.Segment[6].Module[7].VoltageFeedback[1]);	
+				
+VoltMonAC2[14](raw_input := DINT_TO_REAL(LCP2_IO.Segment[6].Module[7].VoltageFeedback_raw[2]),
+				norm_x_max := 904, 
+				norm_x_min := 100, 
+				RangUpp := 12.01, 
+				RangLow := 0, 
+				ADC_max := 12010, 
+				ADC_min := 0, 
+				voltage_reading => LCP2_IO.Segment[6].Module[7].VoltageFeedback[2]);
+				
+VoltMonAC2[15](raw_input := DINT_TO_REAL(LCP2_IO.Segment[6].Module[8].VoltageFeedback_raw[1]),
+				norm_x_max := 904, 
+				norm_x_min := 100, 
+				RangUpp := 12.01, 
+				RangLow := 0, 
+				ADC_max := 12010, 
+				ADC_min := 0, 
+				voltage_reading => LCP2_IO.Segment[6].Module[8].VoltageFeedback[1]);	
+				
+VoltMonAC2[16](raw_input := DINT_TO_REAL(LCP2_IO.Segment[6].Module[8].VoltageFeedback_raw[2]),
+				norm_x_max := 904, 
+				norm_x_min := 100, 
+				RangUpp := 12.01, 
+				RangLow := 0, 
+				ADC_max := 12010, 
+				ADC_min := 0, 
+				voltage_reading => LCP2_IO.Segment[6].Module[8].VoltageFeedback[2]);
+				
+VoltMonAC2[17](raw_input := DINT_TO_REAL(LCP2_IO.Segment[6].Module[9].VoltageFeedback_raw[1]),
+				norm_x_max := 904, 
+				norm_x_min := 100, 
+				RangUpp := 12.01, 
+				RangLow := 0, 
+				ADC_max := 12010, 
+				ADC_min := 0, 
+				voltage_reading => LCP2_IO.Segment[6].Module[9].VoltageFeedback[1]);	
+				
+VoltMonAC2[18](raw_input := DINT_TO_REAL(LCP2_IO.Segment[6].Module[9].VoltageFeedback_raw[2]),
+				norm_x_max := 904, 
+				norm_x_min := 100, 
+				RangUpp := 12.01, 
+				RangLow := 0, 
+				ADC_max := 12010, 
+				ADC_min := 0, 
+				voltage_reading => LCP2_IO.Segment[6].Module[9].VoltageFeedback[2]);	
+					
 //reset counter
 //IF i > 8 THEN
 IF i > 6 THEN
@@ -174,9 +508,49 @@ END_IF]]></ST>
       <LineId Id="300" Count="0" />
       <LineId Id="802" Count="8" />
       <LineId Id="819" Count="0" />
-      <LineId Id="811" Count="1" />
       <LineId Id="624" Count="0" />
-      <LineId Id="151" Count="1" />
+      <LineId Id="833" Count="0" />
+      <LineId Id="832" Count="0" />
+      <LineId Id="827" Count="1" />
+      <LineId Id="826" Count="0" />
+      <LineId Id="829" Count="1" />
+      <LineId Id="151" Count="0" />
+      <LineId Id="836" Count="1" />
+      <LineId Id="840" Count="0" />
+      <LineId Id="844" Count="6" />
+      <LineId Id="859" Count="7" />
+      <LineId Id="842" Count="0" />
+      <LineId Id="875" Count="0" />
+      <LineId Id="868" Count="6" />
+      <LineId Id="841" Count="0" />
+      <LineId Id="876" Count="0" />
+      <LineId Id="881" Count="6" />
+      <LineId Id="877" Count="0" />
+      <LineId Id="888" Count="16" />
+      <LineId Id="878" Count="1" />
+      <LineId Id="906" Count="15" />
+      <LineId Id="880" Count="0" />
+      <LineId Id="940" Count="0" />
+      <LineId Id="924" Count="15" />
+      <LineId Id="923" Count="0" />
+      <LineId Id="957" Count="0" />
+      <LineId Id="941" Count="15" />
+      <LineId Id="922" Count="0" />
+      <LineId Id="958" Count="0" />
+      <LineId Id="960" Count="15" />
+      <LineId Id="959" Count="0" />
+      <LineId Id="994" Count="0" />
+      <LineId Id="978" Count="15" />
+      <LineId Id="976" Count="0" />
+      <LineId Id="1011" Count="0" />
+      <LineId Id="995" Count="15" />
+      <LineId Id="977" Count="0" />
+      <LineId Id="1016" Count="0" />
+      <LineId Id="1013" Count="0" />
+      <LineId Id="1017" Count="159" />
+      <LineId Id="1014" Count="0" />
+      <LineId Id="1012" Count="0" />
+      <LineId Id="152" Count="0" />
       <LineId Id="150" Count="0" />
       <LineId Id="647" Count="0" />
       <LineId Id="153" Count="1" />

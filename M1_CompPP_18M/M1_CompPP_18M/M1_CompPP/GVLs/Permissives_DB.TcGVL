@@ -17,6 +17,15 @@ VAR_GLOBAL
 
 	AllCapsDischarged		: BOOL := 0;
 	CapVoltageThres			: REAL := 40;
+	
+	AnyLCP1MonBoardLoss		: BOOL := 0;
+	AnyLCP1MonBoardBatLo	: BOOL := 0;
+	AnyLCP2MonBoardLoss		: BOOL := 0;
+	AnyLCP2MonBoardBatLo	: BOOL := 0;
+	
+	AnyVoltMonBoardLoss		: BOOL := 0;
+	AnyVoltMonBoardBatLo	: BOOL := 0;
+	AllVoltMonBoardStatusOK : BOOL := 0;
 	SystemIsSafe			: BOOL := 0;
 END_VAR]]></Declaration>
   </GVL>

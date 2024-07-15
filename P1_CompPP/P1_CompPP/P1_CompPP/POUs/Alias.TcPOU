@@ -7,7 +7,7 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[//R1 : MCP**  
+      <ST><![CDATA[ //R1 : MCP**  
 	
 //INPUT
 	//DI	

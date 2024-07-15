@@ -5,6 +5,7 @@
 VAR_GLOBAL
 	Heartbeat : BOOL;
 	BateryOn  : BOOL;
+	BatteryLow : BOOL := 0;
 	Channel	: USINT; //ST_AnalogCHSelection;
 	VoltageReading_raw : ARRAY[0..24] OF INT; //custom board
 	VoltageReading_norm : ARRAY[0..24] OF REAL;

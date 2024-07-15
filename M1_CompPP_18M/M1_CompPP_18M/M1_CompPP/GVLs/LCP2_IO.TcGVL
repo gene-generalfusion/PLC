@@ -10,6 +10,7 @@ VAR_GLOBAL
 	LossInterlockPressure			: BOOL;
 	PSU1OK							: BOOL;
 	
+	VMB : ST_VoltMon_Base;
 	Fire			: BOOL;
 	SegmentCharged	: BOOL;
 	TriggerScope	: BOOL;

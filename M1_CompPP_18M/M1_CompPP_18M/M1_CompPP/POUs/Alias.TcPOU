@@ -6,7 +6,8 @@ VAR
 	i : INT := 1;
 	n : INT := 6;
 	a : INT := 0; //0-15
-	
+	k : INT := 0;
+	m : INT := 0;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -90,6 +91,7 @@ END_VAR
 	
 //R2 : LCP1***********************************************	
 	//EL3068 - AI
+	(*
 	LCP1_IO.Segment[1].Module[1].voltageFeedback_raw := Input.R2_01_00;
 	LCP1_IO.Segment[1].Module[2].voltageFeedback_raw := Input.R2_01_01;
 	LCP1_IO.Segment[1].Module[3].voltageFeedback_raw := Input.R2_01_02;
@@ -101,6 +103,13 @@ END_VAR
 	
 	//EL3068 - AI
 	LCP1_IO.Segment[3].Module[9].voltageFeedback_raw := Input.R2_02_00;
+	*)
+	
+//voltage monitor boards - two transmitter per module.
+	FOR k := 0 TO 17 BY 1 DO 
+		//VoltMonitor_DB.VoltMonDB[1].CapRaw[k] := Input.B170357_CapRaw[k];
+		LCP1_IO.VMB.VTB[k].CapRaw := Input.B170357_CapRaw[k]; //0-17
+	END_FOR
 	
 	//DI 
 	LCP1_IO.Segment[1].ChargeRly_close			:= Input.R2_03_00; //rly1
@@ -134,6 +143,7 @@ END_VAR
 
 //R3 : LCP2***********************************************	
 	//EL3068 - AI
+	(*
 	LCP2_IO.Segment[4].Module[1].voltageFeedback_raw := Input.R3_01_00;
 	LCP2_IO.Segment[4].Module[2].voltageFeedback_raw := Input.R3_01_01;
 	LCP2_IO.Segment[4].Module[3].voltageFeedback_raw := Input.R3_01_02;
@@ -145,6 +155,11 @@ END_VAR
 	
 	//EL3068 - AI
 	LCP2_IO.Segment[6].Module[9].voltageFeedback_raw := Input.R3_02_00;
+	*)
+//voltage monitor boards - two transmitter per module.
+	FOR k := 0 TO 17 BY 1 DO 
+		 LCP2_IO.VMB.VTB[k].CapRaw := Input.B170357_2_CapRaw[k];
+	END_FOR
 	
 	//DI 
 	LCP2_IO.Segment[4].ChargeRly_close			:= Input.R3_03_00; //rly1
@@ -188,21 +203,26 @@ END_VAR
 	HMI_DB.CloseChargeRlySW			:= LV.TxWord1.8;
 	HMI_DB.OpenDumpRlySW 			:= LV.TxWord1.9;
 	HMI_DB.HMI_ManualModeSelected	:= LV.TxWord1.10;  // 1 = manual mode selected
+	HMI_DB.TurnChrgHVonSW			:= LV.TxWord1.11;
+	HMI_DB.TurnChrgInhibitOffSW		:= LV.TxWord1.12;
+	HMI_DB.TurnOnShotTrigSW			:= LV.TxWord1.13;
+	HMI_DB.TurnOnChargeAlarm		:= LV.TxWord1.14;
+	HMI_DB.AllVoltMonBoardStatusOKBP:= LV.TxWord1.15;
 	//not sure if you want to control these via LV
 	(*
-	MCP_IO.Charger[1].HV_ON			:= LV.TxWord1.11;
-	MCP_IO.Charger[1].inhibit		:= LV.TxWord1.12;
-	MCP_IO.Charger[2].HV_ON			:= LV.TxWord1.13;
-	MCP_IO.Charger[2].inhibit		:= LV.TxWord1.14;
+	MCP_IO.Charger[1].HV_ON			:= LV.TxWord2.0;
+	MCP_IO.Charger[1].inhibit		:= LV.TxWord2.1;
+	MCP_IO.Charger[2].HV_ON			:= LV.TxWord2.2;
+	MCP_IO.Charger[2].inhibit		:= LV.TxWord2.3;
 	
-	MCP_IO.Charger[3].HV_ON			:= LV.TxWord2.0;
-	MCP_IO.Charger[3].inhibit		:= LV.TxWord2.1;
-	MCP_IO.Charger[4].HV_ON			:= LV.TxWord2.2;
-	MCP_IO.Charger[4].inhibit		:= LV.TxWord2.3;
-	MCP_IO.Charger[5].HV_ON			:= LV.TxWord2.4;
-	MCP_IO.Charger[5].inhibit		:= LV.TxWord2.5;
-	MCP_IO.Charger[6].HV_ON			:= LV.TxWord2.6;
-	MCP_IO.Charger[6].inhibit		:= LV.TxWord2.7;
+	MCP_IO.Charger[3].HV_ON			:= LV.TxWord2.4;
+	MCP_IO.Charger[3].inhibit		:= LV.TxWord2.5;
+	MCP_IO.Charger[4].HV_ON			:= LV.TxWord2.6;
+	MCP_IO.Charger[4].inhibit		:= LV.TxWord2.7;
+	MCP_IO.Charger[5].HV_ON			:= LV.TxWord2.8;
+	MCP_IO.Charger[5].inhibit		:= LV.TxWord2.9;
+	MCP_IO.Charger[6].HV_ON			:= LV.TxWord2.10;
+	MCP_IO.Charger[6].inhibit		:= LV.TxWord2.11;
 	*)
 	
 	LV.RxWord1.0 := LV.Charger[1].EndOfCharge			:= MCP_IO.Charger[1].EndOfCharge;
@@ -250,7 +270,15 @@ END_VAR
 		LV.RxREAL[i] := LV.Charger[i].voltageFeedback	:= MCP_IO.Charger[i].voltageFeedback;
 		MCP_IO.Charger[i].voltageSP (*make this real*)	:= LV.TxREAL[i] := LV.Charger[i].voltageSP;
 	
-	END_FOR]]></ST>
+	END_FOR
+	
+IF k > 17 THEN 
+	k := 0;
+END_IF
+
+IF m > 17 THEN 
+	m := 0;
+END_IF]]></ST>
     </Implementation>
     <LineIds Name="Alias">
       <LineId Id="14" Count="1" />
@@ -292,6 +320,7 @@ END_VAR
       <LineId Id="418" Count="1" />
       <LineId Id="505" Count="0" />
       <LineId Id="541" Count="0" />
+      <LineId Id="781" Count="0" />
       <LineId Id="539" Count="1" />
       <LineId Id="538" Count="0" />
       <LineId Id="548" Count="1" />
@@ -300,6 +329,11 @@ END_VAR
       <LineId Id="555" Count="0" />
       <LineId Id="554" Count="0" />
       <LineId Id="552" Count="1" />
+      <LineId Id="794" Count="2" />
+      <LineId Id="834" Count="0" />
+      <LineId Id="848" Count="0" />
+      <LineId Id="835" Count="0" />
+      <LineId Id="833" Count="0" />
       <LineId Id="556" Count="0" />
       <LineId Id="535" Count="0" />
       <LineId Id="557" Count="1" />
@@ -315,12 +349,19 @@ END_VAR
       <LineId Id="584" Count="4" />
       <LineId Id="574" Count="0" />
       <LineId Id="569" Count="0" />
-      <LineId Id="592" Count="43" />
-      <LineId Id="639" Count="0" />
+      <LineId Id="592" Count="3" />
+      <LineId Id="779" Count="0" />
+      <LineId Id="596" Count="10" />
+      <LineId Id="836" Count="2" />
+      <LineId Id="831" Count="1" />
+      <LineId Id="607" Count="28" />
+      <LineId Id="791" Count="0" />
       <LineId Id="393" Count="0" />
       <LineId Id="642" Count="8" />
       <LineId Id="653" Count="0" />
       <LineId Id="675" Count="0" />
+      <LineId Id="767" Count="3" />
+      <LineId Id="857" Count="0" />
       <LineId Id="716" Count="0" />
       <LineId Id="689" Count="0" />
       <LineId Id="745" Count="0" />
@@ -361,6 +402,10 @@ END_VAR
       <LineId Id="674" Count="0" />
       <LineId Id="684" Count="1" />
       <LineId Id="669" Count="0" />
+      <LineId Id="839" Count="3" />
+      <LineId Id="847" Count="0" />
+      <LineId Id="845" Count="1" />
+      <LineId Id="844" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

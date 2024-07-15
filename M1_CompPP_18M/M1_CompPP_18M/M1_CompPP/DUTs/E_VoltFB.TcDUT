@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="E_VoltFB" Id="{5691fcb6-888b-4016-849f-d0e7be8fc841}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE E_VoltFB :
+(
+	seg1 := 1,
+	seg2 := 2,
+	seg3 := 3
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
