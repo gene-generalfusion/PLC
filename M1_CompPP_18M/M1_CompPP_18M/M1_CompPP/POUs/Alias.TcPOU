@@ -192,6 +192,8 @@ END_VAR
 	Output.R3_06_07 := LCP2_IO.SegmentCharged; //LED
 
 	//LV Alias
+	//commented out to test the sequence
+(*	
 	HMI_DB.ChargePB 				:= LV.TxWord1.0;
 	HMI_DB.DumpPB					:= LV.TxWord1.1;		
 	HMI_DB.AbortPB					:= LV.TxWord1.2;
@@ -223,6 +225,7 @@ END_VAR
 	MCP_IO.Charger[5].inhibit		:= LV.TxWord2.9;
 	MCP_IO.Charger[6].HV_ON			:= LV.TxWord2.10;
 	MCP_IO.Charger[6].inhibit		:= LV.TxWord2.11;
+	HMI_DB.HMI_DB.AllDumpRelaysCloseBP := LV.TxWord2.12;
 	*)
 	
 	LV.RxWord1.0 := LV.Charger[1].EndOfCharge			:= MCP_IO.Charger[1].EndOfCharge;
@@ -271,7 +274,7 @@ END_VAR
 		MCP_IO.Charger[i].voltageSP (*make this real*)	:= LV.TxREAL[i] := LV.Charger[i].voltageSP;
 	
 	END_FOR
-	
+*)	
 IF k > 17 THEN 
 	k := 0;
 END_IF
@@ -357,7 +360,10 @@ END_IF]]></ST>
       <LineId Id="607" Count="28" />
       <LineId Id="791" Count="0" />
       <LineId Id="393" Count="0" />
-      <LineId Id="642" Count="8" />
+      <LineId Id="866" Count="0" />
+      <LineId Id="642" Count="0" />
+      <LineId Id="867" Count="0" />
+      <LineId Id="643" Count="7" />
       <LineId Id="653" Count="0" />
       <LineId Id="675" Count="0" />
       <LineId Id="767" Count="3" />
@@ -372,7 +378,9 @@ END_IF]]></ST>
       <LineId Id="706" Count="0" />
       <LineId Id="708" Count="0" />
       <LineId Id="707" Count="0" />
-      <LineId Id="710" Count="5" />
+      <LineId Id="710" Count="4" />
+      <LineId Id="876" Count="0" />
+      <LineId Id="715" Count="0" />
       <LineId Id="677" Count="0" />
       <LineId Id="676" Count="0" />
       <LineId Id="678" Count="0" />

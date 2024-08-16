@@ -4,8 +4,10 @@
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL
 		
-	//AnyEstopPressed 			: BOOL;
-	//AllDCpsuOK					: BOOL;
+	AnyEstopPressed 			: BOOL; //might not need
+	MasterSTOPPressed			: BOOL;
+	AllDCpsuOK					: BOOL;
+	CageDoorNotClose			: BOOL; // might not need
 	//AnyChargerOverTemp			: BOOL;
 	//AnyChargerLoadFault			: BOOL;
 	//AnyChargerInterlockOpen		: BOOL;

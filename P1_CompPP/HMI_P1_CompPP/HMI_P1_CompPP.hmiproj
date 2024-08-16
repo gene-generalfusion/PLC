@@ -142,9 +142,6 @@
     <Content Include="Content\Control.content">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Content\Control_obs.content">
-      <SubType>Content</SubType>
-    </Content>
     <Content Include="Content\Diagnostic.content">
       <SubType>Content</SubType>
     </Content>

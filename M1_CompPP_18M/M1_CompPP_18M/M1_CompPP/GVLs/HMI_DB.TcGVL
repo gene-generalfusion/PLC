@@ -26,6 +26,7 @@ VAR_GLOBAL
 	FirePB						: BOOL := 0;
 	ClearFaultPB				: BOOL := 0;
 	AllDumpRelaysOpenBP			: BOOL := 0;
+	AllDumpRelaysCloseBP		: BOOL := 0;
 	AllChargeRelayCloseBP		: BOOL := 0;
 	AllVoltMonBoardStatusOKBP	: BOOL := 0;
 	SystemSafeBP				: BOOL := 0;
@@ -37,6 +38,8 @@ VAR_GLOBAL
 	TurnChrgInhibitOffSW		: BOOL := 0;
 	TurnOnShotTrigSW			: BOOL := 0;
 	TurnOnChargeAlarm			: BOOL := 0;
+	
+	LastTimeShotLog				: BOOL := 0;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

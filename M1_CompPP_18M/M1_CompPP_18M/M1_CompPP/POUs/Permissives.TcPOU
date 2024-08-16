@@ -116,43 +116,43 @@ IF MCP_IO.Charger[1].inhibited = TRUE AND
 END_IF;
 
 //add volt fb 1 and 2
-IF LCP1_IO.Segment[1].Module[1].VoltageFeedback[1] <= Permissives_DB.CapVoltageThres AND
-	LCP1_IO.Segment[1].Module[1].VoltageFeedback[2] <= Permissives_DB.CapVoltageThres AND
-	LCP1_IO.Segment[1].Module[2].VoltageFeedback[1] <= Permissives_DB.CapVoltageThres AND
-	LCP1_IO.Segment[1].Module[2].VoltageFeedback[2] <= Permissives_DB.CapVoltageThres AND
-	LCP1_IO.Segment[1].Module[3].VoltageFeedback[1] <= Permissives_DB.CapVoltageThres AND
-	LCP1_IO.Segment[1].Module[3].VoltageFeedback[2] <= Permissives_DB.CapVoltageThres AND
-	LCP1_IO.Segment[2].Module[4].VoltageFeedback[1] <= Permissives_DB.CapVoltageThres AND
-	LCP1_IO.Segment[2].Module[4].VoltageFeedback[2] <= Permissives_DB.CapVoltageThres AND
-	LCP1_IO.Segment[2].Module[5].VoltageFeedback[1] <= Permissives_DB.CapVoltageThres AND
-	LCP1_IO.Segment[2].Module[5].VoltageFeedback[2] <= Permissives_DB.CapVoltageThres AND
-	LCP1_IO.Segment[2].Module[6].VoltageFeedback[1] <= Permissives_DB.CapVoltageThres AND
-	LCP1_IO.Segment[2].Module[6].VoltageFeedback[2] <= Permissives_DB.CapVoltageThres AND
-	LCP1_IO.Segment[3].Module[7].VoltageFeedback[1] <= Permissives_DB.CapVoltageThres AND
-	LCP1_IO.Segment[3].Module[7].VoltageFeedback[2] <= Permissives_DB.CapVoltageThres AND
-	LCP1_IO.Segment[3].Module[8].VoltageFeedback[1] <= Permissives_DB.CapVoltageThres AND 
-	LCP1_IO.Segment[3].Module[8].VoltageFeedback[2] <= Permissives_DB.CapVoltageThres AND
-	LCP1_IO.Segment[3].Module[9].VoltageFeedback[1] <= Permissives_DB.CapVoltageThres AND
-	LCP1_IO.Segment[3].Module[9].VoltageFeedback[2] <= Permissives_DB.CapVoltageThres AND
+IF ABS(LCP1_IO.Segment[1].Module[1].VoltageFeedback[1]) <= Permissives_DB.CapVoltageThres AND
+	ABS(LCP1_IO.Segment[1].Module[1].VoltageFeedback[2]) <= Permissives_DB.CapVoltageThres AND
+	ABS(LCP1_IO.Segment[1].Module[2].VoltageFeedback[1]) <= Permissives_DB.CapVoltageThres AND
+	ABS(LCP1_IO.Segment[1].Module[2].VoltageFeedback[2]) <= Permissives_DB.CapVoltageThres AND
+	ABS(LCP1_IO.Segment[1].Module[3].VoltageFeedback[1]) <= Permissives_DB.CapVoltageThres AND
+	ABS(LCP1_IO.Segment[1].Module[3].VoltageFeedback[2]) <= Permissives_DB.CapVoltageThres AND
+	ABS(LCP1_IO.Segment[2].Module[4].VoltageFeedback[1]) <= Permissives_DB.CapVoltageThres AND
+	ABS(LCP1_IO.Segment[2].Module[4].VoltageFeedback[2]) <= Permissives_DB.CapVoltageThres AND
+	ABS(LCP1_IO.Segment[2].Module[5].VoltageFeedback[1]) <= Permissives_DB.CapVoltageThres AND
+	ABS(LCP1_IO.Segment[2].Module[5].VoltageFeedback[2]) <= Permissives_DB.CapVoltageThres AND
+	ABS(LCP1_IO.Segment[2].Module[6].VoltageFeedback[1]) <= Permissives_DB.CapVoltageThres AND
+	ABS(LCP1_IO.Segment[2].Module[6].VoltageFeedback[2]) <= Permissives_DB.CapVoltageThres AND
+	ABS(LCP1_IO.Segment[3].Module[7].VoltageFeedback[1]) <= Permissives_DB.CapVoltageThres AND
+	ABS(LCP1_IO.Segment[3].Module[7].VoltageFeedback[2]) <= Permissives_DB.CapVoltageThres AND
+	ABS(LCP1_IO.Segment[3].Module[8].VoltageFeedback[1]) <= Permissives_DB.CapVoltageThres AND 
+	ABS(LCP1_IO.Segment[3].Module[8].VoltageFeedback[2]) <= Permissives_DB.CapVoltageThres AND
+	ABS(LCP1_IO.Segment[3].Module[9].VoltageFeedback[1]) <= Permissives_DB.CapVoltageThres AND
+	ABS(LCP1_IO.Segment[3].Module[9].VoltageFeedback[2]) <= Permissives_DB.CapVoltageThres AND
 	
-	LCP2_IO.Segment[4].Module[1].VoltageFeedback[1] <= Permissives_DB.CapVoltageThres AND
-	LCP2_IO.Segment[4].Module[1].VoltageFeedback[2] <= Permissives_DB.CapVoltageThres AND
-	LCP2_IO.Segment[4].Module[2].VoltageFeedback[1] <= Permissives_DB.CapVoltageThres AND
-	LCP2_IO.Segment[4].Module[2].VoltageFeedback[2] <= Permissives_DB.CapVoltageThres AND
-	LCP2_IO.Segment[4].Module[3].VoltageFeedback[1] <= Permissives_DB.CapVoltageThres AND
-	LCP2_IO.Segment[4].Module[3].VoltageFeedback[2] <= Permissives_DB.CapVoltageThres AND
-	LCP2_IO.Segment[5].Module[4].VoltageFeedback[1] <= Permissives_DB.CapVoltageThres AND
-	LCP2_IO.Segment[5].Module[4].VoltageFeedback[2] <= Permissives_DB.CapVoltageThres AND
-	LCP2_IO.Segment[5].Module[5].VoltageFeedback[1] <= Permissives_DB.CapVoltageThres AND
-	LCP2_IO.Segment[5].Module[5].VoltageFeedback[2] <= Permissives_DB.CapVoltageThres AND
-	LCP2_IO.Segment[5].Module[6].VoltageFeedback[1] <= Permissives_DB.CapVoltageThres AND
-	LCP2_IO.Segment[5].Module[6].VoltageFeedback[2] <= Permissives_DB.CapVoltageThres AND
-	LCP2_IO.Segment[6].Module[7].VoltageFeedback[1] <= Permissives_DB.CapVoltageThres AND
-	LCP2_IO.Segment[6].Module[7].VoltageFeedback[2] <= Permissives_DB.CapVoltageThres AND
-	LCP2_IO.Segment[6].Module[8].VoltageFeedback[1] <= Permissives_DB.CapVoltageThres AND 
-	LCP2_IO.Segment[6].Module[8].VoltageFeedback[2] <= Permissives_DB.CapVoltageThres AND
-	LCP2_IO.Segment[6].Module[9].VoltageFeedback[1] <= Permissives_DB.CapVoltageThres AND
-	LCP2_IO.Segment[6].Module[9].VoltageFeedback[2] <= Permissives_DB.CapVoltageThres 
+	ABS(LCP2_IO.Segment[4].Module[1].VoltageFeedback[1]) <= Permissives_DB.CapVoltageThres AND
+	ABS(LCP2_IO.Segment[4].Module[1].VoltageFeedback[2]) <= Permissives_DB.CapVoltageThres AND
+	ABS(LCP2_IO.Segment[4].Module[2].VoltageFeedback[1]) <= Permissives_DB.CapVoltageThres AND
+	ABS(LCP2_IO.Segment[4].Module[2].VoltageFeedback[2]) <= Permissives_DB.CapVoltageThres AND
+	ABS(LCP2_IO.Segment[4].Module[3].VoltageFeedback[1]) <= Permissives_DB.CapVoltageThres AND
+	ABS(LCP2_IO.Segment[4].Module[3].VoltageFeedback[2]) <= Permissives_DB.CapVoltageThres AND
+	ABS(LCP2_IO.Segment[5].Module[4].VoltageFeedback[1]) <= Permissives_DB.CapVoltageThres AND
+	ABS(LCP2_IO.Segment[5].Module[4].VoltageFeedback[2]) <= Permissives_DB.CapVoltageThres AND
+	ABS(LCP2_IO.Segment[5].Module[5].VoltageFeedback[1]) <= Permissives_DB.CapVoltageThres AND
+	ABS(LCP2_IO.Segment[5].Module[5].VoltageFeedback[2]) <= Permissives_DB.CapVoltageThres AND
+	ABS(LCP2_IO.Segment[5].Module[6].VoltageFeedback[1]) <= Permissives_DB.CapVoltageThres AND
+	ABS(LCP2_IO.Segment[5].Module[6].VoltageFeedback[2]) <= Permissives_DB.CapVoltageThres AND
+	ABS(LCP2_IO.Segment[6].Module[7].VoltageFeedback[1]) <= Permissives_DB.CapVoltageThres AND
+	ABS(LCP2_IO.Segment[6].Module[7].VoltageFeedback[2]) <= Permissives_DB.CapVoltageThres AND
+	ABS(LCP2_IO.Segment[6].Module[8].VoltageFeedback[1]) <= Permissives_DB.CapVoltageThres AND 
+	ABS(LCP2_IO.Segment[6].Module[8].VoltageFeedback[2]) <= Permissives_DB.CapVoltageThres AND
+	ABS(LCP2_IO.Segment[6].Module[9].VoltageFeedback[1]) <= Permissives_DB.CapVoltageThres AND
+	ABS(LCP2_IO.Segment[6].Module[9].VoltageFeedback[2]) <= Permissives_DB.CapVoltageThres 
 (*  AND all other module voltage feedback <= 40, might need the -ve end & check for valid data*) 
 	THEN
 		Permissives_DB.AllCapsDischarged := TRUE;
@@ -310,7 +310,7 @@ IF LCP2_IO.VMB.VTB[0].LossVoltTransBoard = TRUE OR
 	LCP2_IO.VMB.VTB[16].LossVoltTransBoard = TRUE OR 
 	LCP2_IO.VMB.VTB[17].LossVoltTransBoard = TRUE 
 	THEN 
-		Permissives_DB.AnyLCP1MonBoardLoss := TRUE;
+		Permissives_DB.AnyLCP2MonBoardLoss := TRUE;
 	ELSIF 
 		LCP2_IO.VMB.VTB[0].LossVoltTransBoard = FALSE AND 
 		LCP2_IO.VMB.VTB[1].LossVoltTransBoard = FALSE AND 
@@ -334,41 +334,35 @@ IF LCP2_IO.VMB.VTB[0].LossVoltTransBoard = TRUE OR
 		Permissives_DB.AnyLCP2MonBoardLoss := FALSE;
 END_IF 
 
-IF Permissives_DB.AnyLCP1MonBoardBatLo = TRUE OR 
-	Permissives_DB.AnyLCP2MonBoardBatLo = TRUE 
+IF Permissives_DB.AnyLCP1MonBoardBatLo = TRUE OR Permissives_DB.AnyLCP2MonBoardBatLo = TRUE 
 	THEN 
 		Permissives_DB.AnyVoltMonBoardBatLo := TRUE;
 	ELSIF 
-		Permissives_DB.AnyLCP1MonBoardBatLo = FALSE AND 
-		Permissives_DB.AnyLCP2MonBoardBatLo = FALSE 
+		Permissives_DB.AnyLCP1MonBoardBatLo = FALSE AND Permissives_DB.AnyLCP2MonBoardBatLo = FALSE 
 	THEN 
 		Permissives_DB.AnyVoltMonBoardBatLo := FALSE;
 END_IF
 
-IF Permissives_DB.AnyLCP1MonBoardLoss = TRUE OR 
-	Permissives_DB.AnyLCP2MonBoardLoss = TRUE 
+IF Permissives_DB.AnyLCP1MonBoardLoss = TRUE OR Permissives_DB.AnyLCP2MonBoardLoss = TRUE 
 	THEN 
 		Permissives_DB.AnyVoltMonBoardLoss := TRUE;
 	ELSIF 
-		Permissives_DB.AnyLCP1MonBoardLoss = FALSE AND 
-		Permissives_DB.AnyLCP2MonBoardLoss = FALSE 
+		Permissives_DB.AnyLCP1MonBoardLoss = FALSE AND Permissives_DB.AnyLCP2MonBoardLoss = FALSE 
 	THEN 
 		Permissives_DB.AnyVoltMonBoardLoss := FALSE;
 END_IF
 
-IF Permissives_DB.ChargerVBelowThres = TRUE AND 
+IF (Permissives_DB.ChargerVBelowThres = TRUE AND 
 	Permissives_DB.AllChargerHVisOFF = TRUE AND 
-	Permissives_DB.AllChargerInhibitON	= TRUE AND 
+	//Permissives_DB.AllChargerInhibitON	= TRUE AND 
 	Permissives_DB.AllDumpRelayOpen = FALSE AND 
-	Permissives_DB.AllCapsDischarged = TRUE 
+	Permissives_DB.AllCapsDischarged = TRUE) OR HMI_DB.SystemSafeBP = TRUE 
 THEN
 	(*MCP_IO.Charger[2].voltageFeedback <= 10 AND *)
 	Permissives_DB.SystemIsSafe := TRUE;
 	ELSE
 		Permissives_DB.SystemIsSafe := FALSE;
 END_IF
-
-
 		
 IF Permissives_DB.AllCapsDischarged = TRUE THEN 
 	LCP1_IO.SegmentCharged := FALSE; //for status light only
@@ -385,9 +379,24 @@ THEN
 	Permissives_DB.AllChargerEOC := TRUE;
 	ELSE
 		Permissives_DB.AllChargerEOC := FALSE;
-
 END_IF;
 
+// might or might not beused for the seq
+IF MCP_IO.PSU1_DCOK = TRUE AND LCP1_IO.PSU1OK = TRUE AND LCP2_IO.PSU1OK = TRUE THEN
+	Trips_DB.AllDCpsuOK := TRUE;
+	ELSE
+		Trips_DB.AllDCpsuOK := FALSE;
+END_IF
+
+IF MCP_IO.MasterStopPB_NotPressed = FALSE THEN 
+	Trips_DB.MasterSTOPPressed := TRUE;
+	ELSE
+		Trips_DB.MasterSTOPPressed := FALSE;
+END_IF
+
+IF MCP_IO.CageEstopCircuitOK = FALSE OR MCP_IO.MasterStopPB_NotPressed = FALSE THEN 
+	Trips_DB.AnyEstopPressed := TRUE;
+END_IF
 ]]></ST>
     </Implementation>
     <LineIds Name="Permissives">
@@ -513,18 +522,17 @@ END_IF;
       <LineId Id="639" Count="0" />
       <LineId Id="683" Count="0" />
       <LineId Id="682" Count="0" />
-      <LineId Id="684" Count="0" />
       <LineId Id="687" Count="0" />
       <LineId Id="686" Count="0" />
       <LineId Id="689" Count="0" />
       <LineId Id="705" Count="0" />
-      <LineId Id="691" Count="0" />
       <LineId Id="690" Count="0" />
       <LineId Id="692" Count="0" />
       <LineId Id="685" Count="0" />
-      <LineId Id="694" Count="5" />
+      <LineId Id="694" Count="1" />
+      <LineId Id="697" Count="2" />
       <LineId Id="703" Count="0" />
-      <LineId Id="700" Count="2" />
+      <LineId Id="701" Count="1" />
       <LineId Id="693" Count="0" />
       <LineId Id="41" Count="0" />
       <LineId Id="15" Count="0" />
@@ -535,8 +543,6 @@ END_IF;
       <LineId Id="40" Count="0" />
       <LineId Id="56" Count="1" />
       <LineId Id="39" Count="0" />
-      <LineId Id="102" Count="0" />
-      <LineId Id="366" Count="0" />
       <LineId Id="407" Count="0" />
       <LineId Id="468" Count="0" />
       <LineId Id="103" Count="0" />
@@ -548,10 +554,22 @@ END_IF;
       <LineId Id="82" Count="3" />
       <LineId Id="79" Count="0" />
       <LineId Id="71" Count="0" />
-      <LineId Id="86" Count="2" />
+      <LineId Id="86" Count="1" />
       <LineId Id="72" Count="0" />
+      <LineId Id="727" Count="0" />
+      <LineId Id="717" Count="0" />
       <LineId Id="75" Count="0" />
+      <LineId Id="718" Count="0" />
+      <LineId Id="720" Count="1" />
+      <LineId Id="719" Count="0" />
+      <LineId Id="724" Count="0" />
+      <LineId Id="723" Count="0" />
+      <LineId Id="725" Count="0" />
+      <LineId Id="728" Count="1" />
+      <LineId Id="726" Count="0" />
+      <LineId Id="735" Count="0" />
       <LineId Id="483" Count="0" />
+      <LineId Id="732" Count="2" />
     </LineIds>
   </POU>
 </TcPlcObject>

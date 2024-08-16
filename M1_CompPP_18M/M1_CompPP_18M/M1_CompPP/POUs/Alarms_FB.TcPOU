@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="Alarms_FB" Id="{52c4c7da-671c-4ba9-a4b5-2dc31bdbccec}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Alarms_FB EXTENDS FB_TcAlarm
+VAR_INPUT
+	evtEntry : TcEventEntry;
+	bEvt : BOOL;
+	bConfirm : BOOL;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	bInit  : BOOL := TRUE;
+	bMem : BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF bInit THEN
+	SUPER^.CreateEx(evtEntry, TRUE, 0);
+	bInit := FALSE;
+END_IF
+
+IF bEvt AND NOT bMem AND SUPER^.eConfirmationState <> TcEventConfirmationState.WaitForConfirmation THEN
+	SUPER^.Raise(0);
+END_IF
+
+IF bMem AND NOT bEvt THEN
+	SUPER^.Clear(0, FALSE);
+END_IF
+
+IF bConfirm THEN
+	SUPER^.Confirm(0);
+END_IF
+bMem := bEvt;
+]]></ST>
+    </Implementation>
+    <LineIds Name="Alarms_FB">
+      <LineId Id="9" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="17" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="21" Count="1" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="25" Count="1" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="29" Count="2" />
+      <LineId Id="49" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

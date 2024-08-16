@@ -13,10 +13,12 @@ AnalogConversion();
 VoltageMonitor();
 Sequence();
 HMI();
+Alarms();
 Heartbeat();]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
       <LineId Id="63" Count="6" />
+      <LineId Id="73" Count="0" />
       <LineId Id="17" Count="0" />
     </LineIds>
   </POU>
