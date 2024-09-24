@@ -386,7 +386,7 @@ CASE eState OF
 		END_IF
 		
 		IF ScopeTrigPulseTMR_TON.Q = TRUE THEN 
-			LCP1_IO.Segment[1].Module[1].TriggerScope := FALSE;
+			LCP1_IO.Segment[1].Module[1].TriggerScope := FALSE;  //changed to true to keep the pulse on
 			//ScopeTrigPulseTMR_TON (IN := FALSE);
 		END_IF
 		
@@ -396,6 +396,7 @@ CASE eState OF
 			//ShotTrigDelayTMR_TON (IN := FALSE);
 		ELSIF ShotTrigPulseTMR_TON.Q = TRUE THEN  // changed to nested elsif
 			LCP1_IO.Segment[1].Module[1].Fire := FALSE;
+			//LCP1_IO.Segment[1].Module[1].TriggerScope := FALSE;  //need to comment out for scope trigger delay
 			//ShotTrigPulseTMR_TON (IN := FALSE);
 		END_IF
 		
@@ -716,6 +717,7 @@ END_IF;	]]></ST>
       <LineId Id="880" Count="0" />
       <LineId Id="872" Count="0" />
       <LineId Id="882" Count="1" />
+      <LineId Id="1393" Count="0" />
       <LineId Id="886" Count="0" />
       <LineId Id="884" Count="0" />
       <LineId Id="889" Count="3" />

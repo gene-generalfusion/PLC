@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<TcLicenseInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2011/11/TcLicenseInfo">
+	<TargetInfo>
+		<TcTargetDesc>
+			<TargetType>CX5100-WIN 10.0</TargetType>
+			<TargetVersion>
+				<Version>3</Version>
+				<Revision>1</Revision>
+				<Build>4024</Build>
+			</TargetVersion>
+			<TargetFeatures>
+				<Level>CP</Level>
+				<NetId>5.107.141.148.1.1</NetId>
+			</TargetFeatures>
+			<Hardware>
+				<Model>CX5130-0175</Model>
+				<SerialNo>000s2jd3</SerialNo>
+				<CPUVersion>4.9</CPUVersion>
+				<Date>14.4.22</Date>
+				<CPUArchitecture>0</CPUArchitecture>
+			</Hardware>
+			<OsImage>
+				<ImageDevice>CX51x0</ImageDevice>
+				<ImageVersion>1.3a</ImageVersion>
+				<ImageLevel>CX1800-0711-1011</ImageLevel>
+				<OsName>Windows 10 Enterprise LTSC 2019</OsName>
+				<OsVersion>10.0</OsVersion>
+			</OsImage>
+		</TcTargetDesc>
+	</TargetInfo>
+	<LicenseInfo>
+		<SystemId Level="40" SerialNo="000bqdjp">{9825AF0A-3598-CBB2-E06C-1A5459916100}</SystemId>
+		<IssueTime>2024-09-23T22:44:00</IssueTime>
+		<License>
+			<LicenseId>{66689887-CCBD-452C-AC9A-039D997C6E66}</LicenseId>
+			<Name>TC3 PLC</Name>
+			<OrderNo>TC1200</OrderNo>
+			<LicenseTAN>7C06P-DNJD5</LicenseTAN>
+		</License>
+		<License ManuallyAdded="true">
+			<LicenseId>{796D380F-D49E-4C0C-A05F-500052FAC883}</LicenseId>
+			<Name>TC3 HMI Server</Name>
+			<OrderNo>TF2000</OrderNo>
+			<LicenseTAN>DH0CJ-R34ZF</LicenseTAN>
+		</License>
+	</LicenseInfo>
+</TcLicenseInfo>
