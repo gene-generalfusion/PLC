@@ -32,6 +32,9 @@
     <Compile Include="DUTs\ST_ChargeTime.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\ST_CSV_Record.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\ST_Module.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -45,6 +48,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GVLs\ChargeTime_DB.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
+    <Compile Include="GVLs\csv_DB.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
     </Compile>
@@ -122,6 +129,21 @@
     <Compile Include="POUs\CounterUP.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\csv\P_ArgToConvExample.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\csv\P_StringToConvExample.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\csv\P_TextModeRead.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\csv\P_TextModeWrite_og.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\csv\P_TextModeWrite.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\Heartbeat.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -143,6 +165,9 @@
     <Compile Include="POUs\PermissivesS.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\RW_CSV.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\Sequence.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -156,6 +181,7 @@
   <ItemGroup>
     <Folder Include="DUTs" />
     <Folder Include="GVLs" />
+    <Folder Include="POUs\csv" />
     <Folder Include="VISUs" />
     <Folder Include="POUs" />
   </ItemGroup>

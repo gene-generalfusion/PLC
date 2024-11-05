@@ -23,12 +23,12 @@ Alarms_DB.MCP.AlarmWord.4 := MCP_IO.Charger[1].SummaryFaulted;
 //Alarms_DB.MCP.AlarmWord.7 := MCP_IO.Charger[4].SummaryFaulted;
 //Alarms_DB.MCP.AlarmWord.8 := MCP_IO.Charger[5].SummaryFaulted;
 //Alarms_DB.MCP.AlarmWord.9 := MCP_IO.Charger[6].SummaryFaulted;
-//Alarms_DB.MCP.AlarmWord.10 := MCP_IO.Charger[7].SummaryFaulted;
+Alarms_DB.MCP.AlarmWord.10 := HMI_DB.ForceToChargCompletePB;
 Alarms_DB.MCP.AlarmWord.11 := VoltMonitor_DB.LossVoltMonitorBoard;
 Alarms_DB.MCP.AlarmWord.12 := Trips_DB.ChargedTimerRunout;
 Alarms_DB.MCP.AlarmWord.13 := Trips_DB.ChargingTimerRunout;
 Alarms_DB.MCP.AlarmWord.14 := HMI_DB.LastTimeShotLog;
-//Alarms_DB.MCP.AlarmWord.15 := Trips_DB.AnyEstopPressed;
+Alarms_DB.MCP.AlarmWord.15 := HMI.ForceCharCompSatisfied;
 
 //Alarm Word 1 msg
 //IE: alarms[299](evtEntry:= Tc_Events.AlarmWord11.b4, bEvt:= gvl.test, bConfirm:= bConfirm);

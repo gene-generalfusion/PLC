@@ -26,7 +26,7 @@
     <HmiViewportMaximumScale />
     <HmiViewportUserScaleable>Default</HmiViewportUserScaleable>
     <Name>HMI_P1_CompPP</Name>
-    <HmiCommunicationRouterPort>10102</HmiCommunicationRouterPort>
+    <HmiCommunicationRouterPort>10103</HmiCommunicationRouterPort>
     <HmiCommunicationServerAuthPort>13001</HmiCommunicationServerAuthPort>
     <HmiInitial>1.12.758.8</HmiInitial>
     <HmiRecent>1.12.760.59</HmiRecent>

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <TcEventSources Version="2">
 	<Source>
-		<GUID>{32D0C5D3-4503-453D-AFF4-5E7538F15235}</GUID>
+		<GUID>{99B746B5-CAF8-4A23-959B-C431CADF648A}</GUID>
 		<Name LcId="1033">AlarmWord1</Name>
 		<Event>
 			<Id>1</Id>
@@ -45,7 +45,7 @@
 		</Event>
 		<Event>
 			<Id>11</Id>
-			<Message LcId="1033">Event_DisplayText</Message>
+			<Message LcId="1033">Force to Charge Complete PB Pressed</Message>
 		</Event>
 		<Event>
 			<Id>12</Id>
@@ -69,7 +69,7 @@
 		</Event>
 		<Event>
 			<Id>16</Id>
-			<Message LcId="1033">Event_DisplayText</Message>
+			<Message LcId="1033"><![CDATA[Force To Charge Complete Condition Satisfied (>= 80% of the Required Charged Voltage)]]></Message>
 		</Event>
 	</Source>
 </TcEventSources>

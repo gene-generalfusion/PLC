@@ -317,7 +317,7 @@ CASE eState OF
 		END_IF
 		
 		//condition for charge complete
-		IF Permissives_DB.AllChargerEOC = TRUE AND ChargeTimeFinished = TRUE (*all voltage reached*) THEN 
+		IF (Permissives_DB.AllChargerEOC = TRUE AND ChargeTimeFinished = TRUE (*all voltage reached*)) OR HMI_DB.ForceToChargCompletePB = TRUE THEN 
 			ChargeCompleted := TRUE;
 		//ELSE
 			//ChargeCompleted := FALSE;

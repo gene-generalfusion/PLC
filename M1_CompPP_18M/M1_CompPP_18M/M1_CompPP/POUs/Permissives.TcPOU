@@ -27,45 +27,22 @@ END_VAR
 		Permissives_DB.AllChargeRelayClosed := FALSE;
 END_IF;
 
-IF (LCP1_IO.Segment[1].Module[1].DumpRly_close = FALSE AND 
-	LCP1_IO.Segment[1].Module[2].DumpRly_close = FALSE AND
-	LCP1_IO.Segment[1].Module[3].DumpRly_close = FALSE AND
-	LCP1_IO.Segment[2].Module[4].DumpRly_close = FALSE AND
-	LCP1_IO.Segment[2].Module[5].DumpRly_close = FALSE AND
-	LCP1_IO.Segment[2].Module[6].DumpRly_close = FALSE AND
-	LCP1_IO.Segment[3].Module[7].DumpRly_close = FALSE AND
-	LCP1_IO.Segment[3].Module[8].DumpRly_close = FALSE AND
-	LCP1_IO.Segment[3].Module[9].DumpRly_close = FALSE AND
-	LCP2_IO.Segment[4].Module[1].DumpRly_close = FALSE AND 
-	LCP2_IO.Segment[4].Module[2].DumpRly_close = FALSE AND
-	LCP2_IO.Segment[4].Module[3].DumpRly_close = FALSE AND
-	LCP2_IO.Segment[5].Module[4].DumpRly_close = FALSE AND
-	LCP2_IO.Segment[5].Module[5].DumpRly_close = FALSE AND
-	LCP2_IO.Segment[5].Module[6].DumpRly_close = FALSE AND
-	LCP2_IO.Segment[6].Module[7].DumpRly_close = FALSE AND
-	LCP2_IO.Segment[6].Module[8].DumpRly_close = FALSE AND
-	LCP2_IO.Segment[6].Module[9].DumpRly_close = FALSE) OR HMI_DB.AllDumpRelaysOpenBP = TRUE
+IF (LCP1_IO.Segment[1].Module1To3DumpRly_close = FALSE AND 
+	LCP1_IO.Segment[2].Module4To6DumpRly_close = FALSE AND
+	LCP1_IO.Segment[3].Module7To9DumpRly_close = FALSE AND
+	
+	LCP2_IO.Segment[4].Module1To3DumpRly_close = FALSE AND 
+	LCP2_IO.Segment[5].Module4To6DumpRly_close = FALSE AND
+	LCP2_IO.Segment[6].Module7To9DumpRly_close = FALSE) OR HMI_DB.AllDumpRelaysOpenBP = TRUE
 	THEN
 		Permissives_DB.AllDumpRelayOpen := TRUE;
 		ELSIF
-			LCP1_IO.Segment[1].Module[1].DumpRly_close = TRUE AND 
-			LCP1_IO.Segment[1].Module[2].DumpRly_close = TRUE AND
-			LCP1_IO.Segment[1].Module[3].DumpRly_close = TRUE AND
-			LCP1_IO.Segment[2].Module[4].DumpRly_close = TRUE AND
-			LCP1_IO.Segment[2].Module[5].DumpRly_close = TRUE AND
-			LCP1_IO.Segment[2].Module[6].DumpRly_close = TRUE AND
-			LCP1_IO.Segment[3].Module[7].DumpRly_close = TRUE AND
-			LCP1_IO.Segment[3].Module[8].DumpRly_close = TRUE AND
-			LCP1_IO.Segment[3].Module[9].DumpRly_close = TRUE AND
-			LCP2_IO.Segment[4].Module[1].DumpRly_close = TRUE AND 
-			LCP2_IO.Segment[4].Module[2].DumpRly_close = TRUE AND
-			LCP2_IO.Segment[4].Module[3].DumpRly_close = TRUE AND
-			LCP2_IO.Segment[5].Module[4].DumpRly_close = TRUE AND
-			LCP2_IO.Segment[5].Module[5].DumpRly_close = TRUE AND
-			LCP2_IO.Segment[5].Module[6].DumpRly_close = TRUE AND
-			LCP2_IO.Segment[6].Module[7].DumpRly_close = TRUE AND
-			LCP2_IO.Segment[6].Module[8].DumpRly_close = TRUE AND
-			LCP2_IO.Segment[6].Module[9].DumpRly_close = TRUE 
+			LCP1_IO.Segment[1].Module1To3DumpRly_close = TRUE AND 
+			LCP1_IO.Segment[2].Module4To6DumpRly_close = TRUE AND
+			LCP1_IO.Segment[3].Module7To9DumpRly_close = TRUE AND
+			LCP2_IO.Segment[4].Module1To3DumpRly_close = TRUE AND
+			LCP2_IO.Segment[5].Module4To6DumpRly_close = TRUE AND
+			LCP2_IO.Segment[6].Module7To9DumpRly_close = TRUE 
 		THEN
 			Permissives_DB.AllDumpRelayOpen := FALSE;
 END_IF;
@@ -408,13 +385,13 @@ END_IF
       <LineId Id="260" Count="0" />
       <LineId Id="10" Count="0" />
       <LineId Id="17" Count="1" />
-      <LineId Id="199" Count="0" />
-      <LineId Id="202" Count="5" />
-      <LineId Id="209" Count="8" />
-      <LineId Id="208" Count="0" />
+      <LineId Id="203" Count="0" />
+      <LineId Id="206" Count="1" />
+      <LineId Id="210" Count="2" />
       <LineId Id="19" Count="1" />
       <LineId Id="270" Count="0" />
-      <LineId Id="272" Count="18" />
+      <LineId Id="272" Count="5" />
+      <LineId Id="290" Count="0" />
       <LineId Id="271" Count="0" />
       <LineId Id="23" Count="0" />
       <LineId Id="220" Count="0" />

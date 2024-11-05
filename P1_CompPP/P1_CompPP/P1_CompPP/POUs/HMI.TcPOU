@@ -5,14 +5,15 @@
 VAR
 	eChargerType : E_ChargerType;
 	
-	SysCLK					: GETSYSTEMTIME;
-	fileTime				: T_FILETIME;
+	//SysCLK					: GETSYSTEMTIME;
+	//fileTime				: T_FILETIME;
 	LastTimeShot			: STRING;
 	ChargeGraphTMR_TON		: TON;
 	ChargeGraphTMR_PT		: TIME := ChargeTime_DB.LongestChargeTime_PT + T#10S;
 	ChargeGraphTMR_ET		: TIME;
 	LongestChargeTIME		: REAL;
 	LastTimeShotLog			: BOOL;
+	ForceCharCompSatisfied	: BOOL := FALSE;
 	
 	i : INT := 1;
 
@@ -71,7 +72,49 @@ IF (Sequence.eState = E_State.CHARGECOMPLETE OR Sequence.eState = E_State.CHARGI
 		ChargeGraphTMR_TON (IN:= FALSE);
 END_IF
 
-LongestChargeTIME := TIME_TO_REAL (ChargeGraphTMR_ET)/1000;
+LongestChargeTIME := TIME_TO_REAL (ChargeTime_DB.LongestChargeTime_ET)/1000;
+
+//forced shoot threshold condition
+//***************note: we are only using charger 1****** 
+IF (MCP_IO.Charger[1].voltageFeedback >= 0.8*Setpoints.TDKLoad[1].RequiredChargedV*1000) OR 
+	(LCP1_IO.Segment[1].Module[1].VoltageFeedback >= 0.8*Setpoints.TDKLoad[1].RequiredChargedV*1000) 
+	THEN  //might need to do ABS for -2
+		ForceCharCompSatisfied := TRUE;
+ELSE
+	ForceCharCompSatisfied := FALSE;
+END_IF
+
+(********************HMI logic for csv logging status***************)
+IF P_TextModeWrite.bBusy = TRUE THEN 
+	HMI_DB.CSV_loggingBusy := TRUE;
+	ELSE
+		HMI_DB.CSV_loggingBusy := FALSE;
+END_IF
+
+IF P_TextModeWrite.bError = TRUE THEN 
+	HMI_DB.CSV_loggingError := TRUE;
+	ELSE
+		HMI_DB.CSV_loggingError := FALSE;
+END_IF
+
+//IF P_TextModeWrite.step = 10 AND P_TextModeWrite.bBusy = FALSE THEN 
+	//HMI_DB.CSV_loggingDone := TRUE;
+	//ELSIF P_TextModeWrite.step = 0 AND P_TextModeWrite.bBusy = TRUE THEN
+		//HMI_DB.CSV_loggingDone := FALSE;
+//END_IF
+
+//Status light for saving csv buffer
+IF P_TextModeWrite.SaveBuff = TRUE THEN 
+	HMI_DB.FillingBuffer := TRUE;
+	ELSE
+		HMI_DB.FillingBuffer := FALSE;
+END_IF
+
+IF P_TextModeWrite.SaveCSV = FALSE AND P_TextModeWrite.step = 10 THEN 
+	HMI_DB.CSV_loggingDone := TRUE;
+	ELSIF (P_TextModeWrite.SaveCSV = TRUE OR P_TextModeWrite.SaveBuff = TRUE)  THEN
+		HMI_DB.CSV_loggingDone := FALSE;
+END_IF
 
 
 
@@ -115,8 +158,33 @@ END_IF]]></ST>
       <LineId Id="93" Count="0" />
       <LineId Id="81" Count="0" />
       <LineId Id="80" Count="0" />
+      <LineId Id="152" Count="0" />
       <LineId Id="121" Count="0" />
+      <LineId Id="158" Count="0" />
+      <LineId Id="153" Count="0" />
+      <LineId Id="159" Count="0" />
+      <LineId Id="161" Count="0" />
       <LineId Id="120" Count="0" />
+      <LineId Id="155" Count="2" />
+      <LineId Id="184" Count="3" />
+      <LineId Id="189" Count="1" />
+      <LineId Id="188" Count="0" />
+      <LineId Id="194" Count="4" />
+      <LineId Id="193" Count="0" />
+      <LineId Id="199" Count="4" />
+      <LineId Id="192" Count="0" />
+      <LineId Id="234" Count="0" />
+      <LineId Id="226" Count="0" />
+      <LineId Id="225" Count="0" />
+      <LineId Id="227" Count="0" />
+      <LineId Id="229" Count="1" />
+      <LineId Id="228" Count="0" />
+      <LineId Id="233" Count="0" />
+      <LineId Id="232" Count="0" />
+      <LineId Id="235" Count="0" />
+      <LineId Id="237" Count="2" />
+      <LineId Id="236" Count="0" />
+      <LineId Id="183" Count="0" />
       <LineId Id="58" Count="0" />
       <LineId Id="52" Count="0" />
       <LineId Id="54" Count="1" />

@@ -9,6 +9,8 @@ VAR_GLOBAL
 	
 	RxWord1 : WORD;
 	RxWord2 : WORD;
+	RxWord3 : WORD;
+
 	
 	TxInt : ARRAY [1..5] OF INT;
 	TxDint : ARRAY [1..3] OF DINT;
@@ -16,7 +18,7 @@ VAR_GLOBAL
 
 	RxInt : ARRAY [1..2] OF INT;
 	RxDint : ARRAY [1..3] OF DINT;
-	RxREAL : ARRAY [1..6] OF REAL;
+	RxREAL : ARRAY [1..44] OF REAL;
 	
 	Charger : ARRAY[1..6] OF ST_Charger_Base;
 	

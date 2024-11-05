@@ -24,6 +24,7 @@ STRUCT
 	currentFeedback_raw 	: INT;
 	currentFeedback_norm	: REAL;
 	currentFeedback			: REAL;
+	peakCurrent				: REAL;
 	
 	//AQ
 	voltageSP_norm	: REAL;

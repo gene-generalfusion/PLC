@@ -3,7 +3,7 @@
   <DUT Name="ST_Module" Id="{dc37cb22-2b59-4e70-80e4-3268cd948482}">
     <Declaration><![CDATA[TYPE ST_Module :
 STRUCT
-	DumpRly_close	: BOOL;
+	//DumpRly_close	: BOOL;
 	
 	VoltageFeedback : ARRAY[1..2] OF REAL;
 	VoltageFeedback_norm : ARRAY[1..2] OF REAL;

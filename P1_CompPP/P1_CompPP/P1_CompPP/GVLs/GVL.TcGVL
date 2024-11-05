@@ -7,6 +7,13 @@ VAR_GLOBAL
 	test		: BOOL;
 	RemoteModeSelected : BOOL;
 
-END_VAR]]></Declaration>
+END_VAR
+
+VAR_GLOBAL CONSTANT
+	MAX_CSV_ROWS 			: UDINT := 500;
+	MAX_CSV_COLUMNS 		: UDINT := 2;
+	MAX_CSV_FIELD_LENGTH	: UDINT := 150;
+END_VAR
+]]></Declaration>
   </GVL>
 </TcPlcObject>

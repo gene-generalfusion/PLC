@@ -30,6 +30,7 @@ VAR_GLOBAL
 	AllDumpRelaysOpenBP			: BOOL := 0;
 	AllChargeRelayCloseBP		: BOOL := 0;
 	SystemSafeBP				: BOOL := 0;
+	ForceToChargCompletePB		: BOOL := 0;
 	
 	HMI_ManualModeSelected		: BOOL := 0;  // 1 = manual mode selected
 	CloseChargeRlySW			: BOOL := 0;
@@ -40,7 +41,10 @@ VAR_GLOBAL
 	TurnOnChargeAlarm			: BOOL := 0;
 	
 	LastTimeShotLog				: BOOL := 0;
-
+	CSV_loggingBusy				: BOOL := 0;
+	CSV_loggingError			: BOOL := 0;
+	CSV_loggingDone				: BOOL := 0;
+	FillingBuffer				: BOOL := 0;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

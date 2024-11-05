@@ -1,0 +1,11 @@
+﻿<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{90d0a05d-08eb-4179-9fc7-ed9b4202d15c}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>MyApplication</RootNamespace>
+    <AssemblyName>MyApplication</AssemblyName>
+    <Name>P1_PP_Measurement</Name>
+  </PropertyGroup>
+</Project>

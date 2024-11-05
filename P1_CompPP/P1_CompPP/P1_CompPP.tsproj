@@ -130,7 +130,7 @@
 			</ArrayInfo>
 		</DataType>
 		<DataType>
-			<Name GUID="{32D0C5D3-4503-453D-AFF4-5E7538F15235}" PersistentType="true">AlarmWord1</Name>
+			<Name GUID="{99B746B5-CAF8-4A23-959B-C431CADF648A}" PersistentType="true">AlarmWord1</Name>
 			<DisplayName TxtId=""><![CDATA[AlarmWord1]]></DisplayName>
 			<EventId>
 				<Name Id="1">b0</Name>
@@ -184,8 +184,8 @@
 			</EventId>
 			<EventId>
 				<Name Id="11">b10</Name>
-				<DisplayName TxtId=""><![CDATA[Event_DisplayText]]></DisplayName>
-				<Severity>Verbose</Severity>
+				<DisplayName TxtId=""><![CDATA[Force to Charge Complete PB Pressed]]></DisplayName>
+				<Severity>Info</Severity>
 			</EventId>
 			<EventId>
 				<Name Id="12">b11</Name>
@@ -210,7 +210,7 @@
 			</EventId>
 			<EventId>
 				<Name Id="16">b15</Name>
-				<DisplayName TxtId=""><![CDATA[Event_DisplayText]]></DisplayName>
+				<DisplayName TxtId=""><![CDATA[Force To Charge Complete Condition Satisfied (>= 80% of the Required Charged Voltage)]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<Hides>
@@ -219,6 +219,8 @@
 				<Hide GUID="{29CC016F-B1D9-42C1-BB41-697A7A80267D}"/>
 				<Hide GUID="{876C5242-8FC0-49D7-AB31-F55890CBD4FD}"/>
 				<Hide GUID="{A245ABFB-5D8F-4939-89A9-2D37AFA1839B}"/>
+				<Hide GUID="{32D0C5D3-4503-453D-AFF4-5E7538F15235}"/>
+				<Hide GUID="{6B0B0EAD-C1BD-4668-9CA3-DF37EA26303E}"/>
 			</Hides>
 		</DataType>
 	</DataTypes>
@@ -230,14 +232,13 @@
 		<ImageData Id="1004">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000c40e0000c40e00000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ff808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff</ImageData>
 		<ImageData Id="1005">424df60200000000000036000000280000000e00000010000000010018000000000000000000c30e0000c30e00000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffffffff00ff000000000000000000000000000000000000000000000000000000000000000000000000ff00ff17ff000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000ff000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000ff000000ffffff000000ffffff000000ffffff000000000000000000ffffff171717ffffffffffff000000ffff000000ffffff000000ffffff000000ffffff000000ffffffffffffffffffeeeeee000000ffffff000000ffff000000ffffff000000000000ffffffffffff000000000000000000ffffffffffff101010ffffff000000ffff000000ffffff000000000000ffffffffffff000000ffffffffffffffffff000000ebebeb1e1e1e00000000ff000000ffffff000000ffffff000000ffffff000000000000000000ffffff000000ffffff000000000000ffff000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000ff303030000000000000000000000000000000000000000000000000000000000000000000000000303030ffffff00ffff00ff000000ffffffffffffffffffffffffffffffffffffffffffffffff000000ff00ffff00ffffffff00ffff00ff000000ffffffffffffffffffffffffffffffffffffffffffffffff000000ff00ffff00ffffffff00ffff00ff000000ffffffffffffffffffffffffffffffffffffffffffffffff000000ff00ffff00ffffffff00ffff00ff000000ffffffffffffffffffffffffffffffffffffffffffffffff000000ff00ffff00ffffffff00ffff00ff303030000000000000000000000000000000000000000000000000303030ff00ffff00ff00ff</ImageData>
 	</ImageDatas>
-	<Project ProjectGUID="{ACF9125F-3860-4FE6-A24D-0667B9D4033A}" TargetNetId="5.107.141.148.1.1" Target64Bit="true" ShowHideConfigurations="#x106">
+	<Project ProjectGUID="{ACF9125F-3860-4FE6-A24D-0667B9D4033A}" TargetNetId="5.107.220.56.1.1" Target64Bit="true" ShowHideConfigurations="#x106">
 		<System>
+			<Settings MaxCpus="2"/>
 			<Licenses CacheOrCheckLicensesOnStartup="true">
 				<Target>
 					<ManualSelect>{796D380F-D49E-4C0C-A05F-500052FAC883}</ManualSelect>
-					<TargetSelect TargetId="2">{796D380F-D49E-4C0C-A05F-500052FAC883}</TargetSelect>
-					<TargetSelect TargetId="2">{66689887-CCBD-452C-AC9A-039D997C6E66}</TargetSelect>
-					<LicenseDevice DongleHardwareId="2" DongleDevice="#x03020007" DongleLevel="40" DongleSystemId="{9825AF0A-3598-CBB2-E06C-1A5459916100}" DongleSerialNumber="000bqdjp"/>
+					<LicenseDevice Disabled="true" DongleHardwareId="2" DongleDevice="#x03020007" DongleLevel="40" DongleSystemId="{9825AF0A-3598-CBB2-E06C-1A5459916100}" DongleSerialNumber="000bqdjp"/>
 				</Target>
 			</Licenses>
 			<Tasks>
@@ -426,6 +427,10 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
+							<Name>Input.B170357_BatLevel</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
 							<Name>Input.R1_08_00</Name>
 							<Comment><![CDATA[EL3068 - AI1]]></Comment>
 							<Type>INT</Type>
@@ -494,10 +499,6 @@
 							<Name>Input.B170357_CapRaw</Name>
 							<Comment><![CDATA[Ethercat Device Voltage]]></Comment>
 							<Type GUID="{5044CB06-7724-5056-95AD-1E09DECF3A45}">ARRAY [0..24] OF UINT</Type>
-						</Var>
-						<Var>
-							<Name>Input.B170357_BatLevel</Name>
-							<Type>BOOL</Type>
 						</Var>
 						<Var>
 							<Name>Input.B170357_Heartbeat</Name>
@@ -622,6 +623,11 @@ EL2008 - DQ1]]></Comment>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
+							<Name>ChargeTime_DB.PreFormChargeTime_PT</Name>
+							<Type>TIME</Type>
+							<InOut>7</InOut>
+						</Var>
+						<Var>
 							<Name>ChargeTime_DB.ChargerDelay_TON</Name>
 							<Type GUID="{B67C53DE-6A92-5C5B-4076-1B25F1887AC3}">ARRAY [1..6] OF Tc2_Standard.TON</Type>
 							<InOut>7</InOut>
@@ -648,23 +654,18 @@ FormChargeTime_ET  : ARRAY[1..2] OF TIME;]]></Comment>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
-							<Name>ChargeTime_DB.PreFormChargeTime_PT</Name>
+							<Name>ChargeTime_DB.PreFormChargeTime_ET</Name>
 							<Type>TIME</Type>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
-							<Name>ChargeTime_DB.PreFormChargeTime_ET</Name>
+							<Name>ChargeTime_DB.LongestChargeTime_PT</Name>
 							<Type>TIME</Type>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
 							<Name>ChargeTime_DB.LongestChargeTime_TON</Name>
 							<Type GUID="{1337BBBA-9A3F-D9E7-4ED6-FA23E60881AB}" Namespace="Tc2_Standard">TON</Type>
-							<InOut>7</InOut>
-						</Var>
-						<Var>
-							<Name>ChargeTime_DB.LongestChargeTime_PT</Name>
-							<Type>TIME</Type>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
@@ -683,13 +684,13 @@ FormChargeTime_ET  : ARRAY[1..2] OF TIME;]]></Comment>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
-							<Name>ChargeTime_DB.ChargingTimeElapse_TON</Name>
-							<Type GUID="{B67C53DE-6A92-5C5B-4076-1B25F1887AC3}">ARRAY [1..6] OF Tc2_Standard.TON</Type>
+							<Name>ChargeTime_DB.PreFormChargingTimeElapse</Name>
+							<Type>INT</Type>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
-							<Name>ChargeTime_DB.PreFormChargingTimeElapse</Name>
-							<Type>INT</Type>
+							<Name>ChargeTime_DB.ChargingTimeElapse_TON</Name>
+							<Type GUID="{B67C53DE-6A92-5C5B-4076-1B25F1887AC3}">ARRAY [1..6] OF Tc2_Standard.TON</Type>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
@@ -750,7 +751,7 @@ FormChargeTime_ET  : ARRAY[1..2] OF TIME;]]></Comment>
 			</Project>
 		</Plc>
 		<Io>
-			<Device Id="1" DevType="111" DevFlags="#x0003" AmsPort="28673" AmsNetId="5.107.141.148.2.1" RemoteName="Device 1 (EtherCAT)" InfoImageId="2">
+			<Device Id="1" Disabled="true" DevType="111" DevFlags="#x0003" AmsPort="28673" AmsNetId="5.107.220.56.2.1" RemoteName="Device 1 (EtherCAT)" InfoImageId="2">
 				<Name>Device 1 (EtherCAT)</Name>
 				<AddressInfo>
 					<Ccat>
@@ -1596,7 +1597,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 				</Box>
 				<EtherCAT/>
 			</Device>
-			<Device Id="5" DevType="111" DevFlags="#x0003" AmsPort="28677" AmsNetId="5.107.141.148.6.1" RemoteName="Device 5 (EtherCAT)" InfoImageId="5">
+			<Device Id="5" Disabled="true" DevType="111" DevFlags="#x0003" AmsPort="28677" AmsNetId="5.107.220.56.6.1" RemoteName="Device 5 (EtherCAT)" InfoImageId="5">
 				<Name>Device 5 (EtherCAT)</Name>
 				<AddressInfo>
 					<Pnp>
@@ -1711,7 +1712,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 				</Box>
 				<EtherCAT/>
 			</Device>
-			<Device Id="4" DevType="57" AmsPort="28676">
+			<Device Id="4" Disabled="true" DevType="57" AmsPort="28676">
 				<Name>Device 4 (USB)</Name>
 				<Image Id="6" AddrType="1" ImageType="3">
 					<Name>Image</Name>

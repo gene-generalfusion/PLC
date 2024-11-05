@@ -48,6 +48,10 @@ VAR
 	StartCharWarningTMR_ET	: TIME;
 	ChargeDelayStart		: BOOL;
 	
+	DumpRlyDelayTMR_TON		: TON;
+	DumpRlyDelay_PT			: TIME := T#250MS;
+	DumpRlyDelay_ET			: TIME;
+	
 	i						: INT := 1; //1-6
 	j						: INT := 1; //1-3
 	k						: INT := 1; //1-9
@@ -131,7 +135,7 @@ CASE eState OF
 		LCP1_IO.Fire := FALSE; //turn off all firing triggers
 		LCP2_IO.Fire := FALSE;
 		
-		(*	// might not have in interlock	
+		(*	// might not have interlock	
 		IF Permissives_DB.CageInterlockOK = TRUE AND HMI_DB.ArmTheCagePB = TRUE THEN 
 			MCP_IO.EnergizeACKontactor := TRUE;
 		END_IF;
@@ -213,8 +217,11 @@ CASE eState OF
 		LCP2_IO.Segment[6].CloseChargeRly := TRUE;
 		
 		LCP1_IO.Segment[1].OpenModule1To3DumpRly := TRUE;
+		//stagger the relays
 		LCP1_IO.Segment[2].OpenModule4To6DumpRly := TRUE;
+		//stagger the relays
 		LCP1_IO.Segment[3].OpenModule7To9DumpRly := TRUE;
+		//stagger the relays
 		LCP2_IO.Segment[4].OpenModule1To3DumpRly := TRUE;
 		LCP2_IO.Segment[5].OpenModule4To6DumpRly := TRUE;
 		LCP2_IO.Segment[6].OpenModule7To9DumpRly := TRUE;
@@ -347,7 +354,7 @@ CASE eState OF
 			LCP2_IO.Segment[4].CloseChargeRly := FALSE;
 			LCP2_IO.Segment[5].CloseChargeRly := FALSE;
 			LCP2_IO.Segment[6].CloseChargeRly := FALSE;	
-	
+			
 			LCP1_IO.Segment[1].OpenModule1To3DumpRly := TRUE;
 			LCP1_IO.Segment[2].OpenModule4To6DumpRly := TRUE;
 			LCP1_IO.Segment[3].OpenModule7To9DumpRly := TRUE;
@@ -659,8 +666,12 @@ END_IF;	]]></ST>
       <LineId Id="1019" Count="1" />
       <LineId Id="1018" Count="0" />
       <LineId Id="74" Count="0" />
-      <LineId Id="72" Count="1" />
+      <LineId Id="72" Count="0" />
+      <LineId Id="1747" Count="0" />
+      <LineId Id="73" Count="0" />
+      <LineId Id="1748" Count="0" />
       <LineId Id="70" Count="0" />
+      <LineId Id="1749" Count="0" />
       <LineId Id="1021" Count="1" />
       <LineId Id="310" Count="0" />
       <LineId Id="491" Count="0" />

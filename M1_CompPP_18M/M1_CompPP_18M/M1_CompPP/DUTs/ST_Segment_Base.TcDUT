@@ -12,6 +12,9 @@ STRUCT
 	OpenModule4To6DumpRly : BOOL;
 	OpenModule7To9DumpRly : BOOL;
 	
+	Module1To3DumpRly_close	: BOOL;
+	Module4To6DumpRly_close	: BOOL;
+	Module7To9DumpRly_close	: BOOL;
 	//ShortContactClose	: BOOL;
 
 END_STRUCT

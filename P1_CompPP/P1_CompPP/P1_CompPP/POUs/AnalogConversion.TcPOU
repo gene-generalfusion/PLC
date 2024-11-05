@@ -22,6 +22,8 @@ END_FOR
 																					
 //*************************************************************************************
 *)
+
+
 //AI
 FOR i := 1 TO 6 BY 1 DO
 	//voltage
@@ -32,6 +34,7 @@ FOR i := 1 TO 6 BY 1 DO
 	MCP_IO.Charger[i].currentFeedback_norm := Norm_x (raw_input := INT_TO_REAL (MCP_IO.Charger[i].currentFeedback_raw),
 														x_max := 32767,
 														x_min := 0);
+							
 	//50kV chargers feedback
 	//if 50kV config selected
 	IF MCP_IO.Charger[i].ChargerType = E_ChargerType.TDK50kV THEN 
@@ -40,8 +43,13 @@ FOR i := 1 TO 6 BY 1 DO
 																							normal_input := MCP_IO.Charger[i].voltageFeedback_norm,
 																							x_max := 10,
 																							x_min := 0);
-
-		MCP_IO.Charger[i].currentFeedback := (EngVal.Max_50kVChargerCurrent - EngVal.Min_50kVChargerCurrent) * ADC_10V(
+		//peak current scaling
+		IF Setpoints.TDKLoad[i].wLCA = TRUE THEN 
+			MCP_IO.Charger[i].peakCurrent := EngVal.Max_50kVChargerCurrent*2;
+			ELSE 
+				MCP_IO.Charger[i].peakCurrent := EngVal.Max_50kVChargerCurrent;
+		END_IF	
+		MCP_IO.Charger[i].currentFeedback := (MCP_IO.Charger[i].peakCurrent - EngVal.Min_50kVChargerCurrent) * ADC_10V(
 																							normal_input := MCP_IO.Charger[i].currentFeedback_norm,
 																							x_max := 10,
 																							x_min := 0);
@@ -51,7 +59,13 @@ FOR i := 1 TO 6 BY 1 DO
 																							normal_input := MCP_IO.Charger[i].voltageFeedback_norm,
 																							x_max := 10,
 																							x_min := 0);
-		MCP_IO.Charger[i].currentFeedback := (EngVal.Max_12kVChargerCurrent - EngVal.Min_12kVChargerCurrent) * ADC_10V(
+		//peak current scaling
+		IF Setpoints.TDKLoad[i].wLCA = TRUE THEN 
+			MCP_IO.Charger[i].peakCurrent := 2.17; //EngVal.Max_12kVChargerCurrent*2; //1.5A - this para is uncalibrated, from experiment, it is 2.17
+			ELSE 
+				MCP_IO.Charger[i].peakCurrent := 2.17; //EngVal.Max_12kVChargerCurrent;
+		END_IF
+		MCP_IO.Charger[i].currentFeedback := (MCP_IO.Charger[i].peakCurrent - EngVal.Min_12kVChargerCurrent) * ADC_10V(
 																							normal_input := MCP_IO.Charger[i].currentFeedback_norm,
 																							x_max := 10,
 																							x_min := 0);	
@@ -60,8 +74,14 @@ FOR i := 1 TO 6 BY 1 DO
 																							normal_input := MCP_IO.Charger[i].voltageFeedback_norm,
 																							x_max := 10,
 																							x_min := 0);														
+		//peak current scaling
+		IF Setpoints.TDKLoad[i].wLCA = TRUE THEN 
+			MCP_IO.Charger[i].peakCurrent := EngVal.Max_30kVChargerCurrent*2;// 1.2A
+			ELSE 
+				MCP_IO.Charger[i].peakCurrent := EngVal.Max_30kVChargerCurrent;
+		END_IF
 		// 30kV charger max current output is 0.6A													
-		MCP_IO.Charger[i].currentFeedback := (EngVal.Max_30kVChargerCurrent - EngVal.Min_30kVChargerCurrent) * ADC_10V(
+		MCP_IO.Charger[i].currentFeedback := (MCP_IO.Charger[i].peakCurrent - EngVal.Min_30kVChargerCurrent) * ADC_10V(
 																							normal_input := MCP_IO.Charger[i].currentFeedback_norm,
 																							x_max := 10,
 																							x_min := 0);							
@@ -211,6 +231,8 @@ END_IF]]></ST>
       <LineId Id="775" Count="0" />
       <LineId Id="654" Count="0" />
       <LineId Id="741" Count="0" />
+      <LineId Id="1032" Count="0" />
+      <LineId Id="1028" Count="0" />
       <LineId Id="954" Count="0" />
       <LineId Id="646" Count="0" />
       <LineId Id="616" Count="0" />
@@ -218,6 +240,7 @@ END_IF]]></ST>
       <LineId Id="609" Count="0" />
       <LineId Id="613" Count="2" />
       <LineId Id="612" Count="0" />
+      <LineId Id="1034" Count="0" />
       <LineId Id="478" Count="0" />
       <LineId Id="593" Count="1" />
       <LineId Id="617" Count="0" />
@@ -225,20 +248,27 @@ END_IF]]></ST>
       <LineId Id="263" Count="0" />
       <LineId Id="262" Count="0" />
       <LineId Id="255" Count="0" />
-      <LineId Id="269" Count="3" />
+      <LineId Id="1039" Count="2" />
+      <LineId Id="1043" Count="2" />
+      <LineId Id="270" Count="2" />
       <LineId Id="265" Count="0" />
       <LineId Id="618" Count="0" />
       <LineId Id="479" Count="0" />
       <LineId Id="602" Count="0" />
       <LineId Id="900" Count="0" />
       <LineId Id="604" Count="1" />
+      <LineId Id="1047" Count="4" />
+      <LineId Id="1046" Count="0" />
       <LineId Id="619" Count="2" />
       <LineId Id="606" Count="0" />
       <LineId Id="883" Count="0" />
       <LineId Id="888" Count="0" />
       <LineId Id="901" Count="0" />
       <LineId Id="889" Count="1" />
-      <LineId Id="895" Count="1" />
+      <LineId Id="1053" Count="4" />
+      <LineId Id="895" Count="0" />
+      <LineId Id="1052" Count="0" />
+      <LineId Id="896" Count="0" />
       <LineId Id="902" Count="0" />
       <LineId Id="897" Count="0" />
       <LineId Id="884" Count="0" />

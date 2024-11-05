@@ -2906,6 +2906,16 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.HMI.ForceCharCompSatisfied": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI::ForceCharCompSatisfied",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
         "PLC1.HMI.LastTimeShot": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -3016,6 +3026,36 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.HMI_DB.CSV_loggingBusy": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::CSV_loggingBusy",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.CSV_loggingDone": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::CSV_loggingDone",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.CSV_loggingError": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::CSV_loggingError",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
         "PLC1.HMI_DB.ChargePB": {
             "ACCESS": 3,
             "CUSTOMERDATA": "",
@@ -3096,6 +3136,16 @@
             "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
+        "PLC1.HMI_DB.FillingBuffer": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::FillingBuffer",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
         "PLC1.HMI_DB.FirePB": {
             "ACCESS": 3,
             "CUSTOMERDATA": "",
@@ -3108,6 +3158,16 @@
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
             "SUBSYMBOL_MAPPING": "",
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.ForceToChargCompletePB": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::ForceToChargCompletePB",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
             "USEMAPPING": true
         },
         "PLC1.HMI_DB.HMI_ManualModeSelected": {
@@ -7313,6 +7373,7 @@
                 "PLC1.ChargeTime_DB.LongestChargeTime_ET": 3,
                 "PLC1.HMI.ChargeGraphTMR_ET": 3,
                 "PLC1.HMI.ChargeGraphTMR_PT": 3,
+                "PLC1.HMI.ForceCharCompSatisfied": 3,
                 "PLC1.HMI.LastTimeShot": 3,
                 "PLC1.HMI.LastTimeShotTMR_ET": 3,
                 "PLC1.HMI.LastTimeShotTMR_REAL": 3,
@@ -7322,13 +7383,18 @@
                 "PLC1.HMI_DB.AllChargeRelayCloseBP": 3,
                 "PLC1.HMI_DB.AllDumpRelaysOpenBP": 3,
                 "PLC1.HMI_DB.ArmTheCagePB": 3,
+                "PLC1.HMI_DB.CSV_loggingBusy": 3,
+                "PLC1.HMI_DB.CSV_loggingDone": 3,
+                "PLC1.HMI_DB.CSV_loggingError": 3,
                 "PLC1.HMI_DB.ChargePB": 3,
                 "PLC1.HMI_DB.ChargerHVOFF_rlyDelayPT_INT": 3,
                 "PLC1.HMI_DB.ChargingRunOutTMR_elapse": 3,
                 "PLC1.HMI_DB.ClearFaultPB": 3,
                 "PLC1.HMI_DB.CloseChargeRlySW": 3,
                 "PLC1.HMI_DB.DumpPB": 3,
+                "PLC1.HMI_DB.FillingBuffer": 3,
                 "PLC1.HMI_DB.FirePB": 3,
+                "PLC1.HMI_DB.ForceToChargCompletePB": 3,
                 "PLC1.HMI_DB.HMI_ManualModeSelected": 3,
                 "PLC1.HMI_DB.HVONdelayPT_INT": 3,
                 "PLC1.HMI_DB.OpenDumpRlySW": 3,
