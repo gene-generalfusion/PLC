@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="MAIN" Id="{975ec784-f55e-4f2c-81eb-efc062cbd761}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[Alias();
+CAN_comm();
+Permissives();
+ChargeTime();
+AnalogConversion();
+//VoltageMonitor(); - it is done in CAN bus now 
+Sequence();
+HMI();
+Alarms();
+Heartbeat();]]></ST>
+    </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="63" Count="0" />
+      <LineId Id="77" Count="0" />
+      <LineId Id="64" Count="5" />
+      <LineId Id="73" Count="0" />
+      <LineId Id="17" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,320 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="CAN_comm" Id="{3e952c50-c200-4586-9bea-34a28232d4e5}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM CAN_comm
+VAR
+	i : INT := 1; // mag driver 1 - 6
+	n : INT := 6; //
+	j : INT := 1; // cap 1 - 2
+	m : INT := 2;
+
+	
+	hmi_sendRequest : BOOL;
+	hmi_step1 : BOOL;
+	hmi_step2 : BOOL;
+	hmi_step3 : BOOL;
+	hmi_step4 : BOOL;
+	hmi_step5 : BOOL;
+	//hmi_CanTxB_str	: ARRAY [0..7] OF STRING;
+	//hmi_CanTxB		: ARRAY [0..7] OF BYTE;
+	hmi_CanTx_ID_str	: STRING;
+	hmi_CanTx_ID		: UDINT;
+	//hmi_CanTx_length	: UINT;
+	hmi_CanTx_desiredID : STRING;
+	hmi_CanTx_desID		: BYTE;
+
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//0x0CF091 XX ELECTRICAL DATA
+//0x0CF092 XX THERMAL DATA
+
+//XX 
+// ie 0x11[overvoltage][imbalance][blancing]
+//data[0] = Electrical flag | data[1], data[2] = Voltage sum | data[3], data[4] = highest voltage | data[5], data[6] = average voltage | data[7] = life counter
+//data[0].0
+//data[0].1  Balancing
+//data[0].2  
+//data[0].3  Imbalance
+//data[0].4
+//data[0].5  Overvoltage
+//data[0].6 = 1
+//data[0].7 = 1
+
+
+
+	//Devices.Coil[1].UltraCap_CAN_ID := Replace (STR1 := Devices.Coil[1].UltraCap_CAN_ID, '',1,1);
+	//Devices.Coil[j].UltraCap_CAN_RxMsgNum[k].cobID := LEFT (Devices.Coil[j].UltraCap_CAN_RxMsgNum[k].cobID, 5);
+
+(*	Devices.Coil[j].UltraCap_CAN_RxMsgNum[0].byteData_hexstr[0] := BYTE_TO_HEXSTR (in := Devices.Coil[j].UltraCap_CAN_RxMsg[0].data[0], iPrecision := 2, bLoCase := FALSE);
+	Devices.Coil[j].UltraCap_CAN_RxMsgNum[0].byteData_hexstr[1] := BYTE_TO_HEXSTR (in := Devices.Coil[j].UltraCap_CAN_RxMsg[0].data[1], iPrecision := 2, bLoCase := FALSE);
+	Devices.Coil[j].UltraCap_CAN_RxMsgNum[0].byteData_hexstr[2] := BYTE_TO_HEXSTR (in := Devices.Coil[j].UltraCap_CAN_RxMsg[0].data[2], iPrecision := 2, bLoCase := FALSE);
+	Devices.Coil[j].UltraCap_CAN_RxMsgNum[0].byteData_hexstr[3] := BYTE_TO_HEXSTR (in := Devices.Coil[j].UltraCap_CAN_RxMsg[0].data[3], iPrecision := 2, bLoCase := FALSE);
+	Devices.Coil[j].UltraCap_CAN_RxMsgNum[0].byteData_hexstr[4] := BYTE_TO_HEXSTR (in := Devices.Coil[j].UltraCap_CAN_RxMsg[0].data[4], iPrecision := 2, bLoCase := FALSE);
+	Devices.Coil[j].UltraCap_CAN_RxMsgNum[0].byteData_hexstr[5] := BYTE_TO_HEXSTR (in := Devices.Coil[j].UltraCap_CAN_RxMsg[0].data[5], iPrecision := 2, bLoCase := FALSE);
+	Devices.Coil[j].UltraCap_CAN_RxMsgNum[0].byteData_hexstr[6] := BYTE_TO_HEXSTR (in := Devices.Coil[j].UltraCap_CAN_RxMsg[0].data[6], iPrecision := 2, bLoCase := FALSE);
+	Devices.Coil[j].UltraCap_CAN_RxMsgNum[0].byteData_hexstr[7] := BYTE_TO_HEXSTR (in := Devices.Coil[j].UltraCap_CAN_RxMsg[0].data[7], iPrecision := 2, bLoCase := FALSE);
+	*)
+FOR i := 1 TO 6 BY 1 DO 	
+	FOR j := 1 TO 2 BY 1 DO 
+	 	//verify the counter
+		MCP_IO.MagDriver[i].Cap[j].UC_Dummy_ID_hexstr :=  (DWORD_TO_HEXSTR (in := MCP_IO.MagDriver[i].Cap[j].UltraCap_Dummy.R1_10_UC_Rx_cobID, iPrecision := 2, bLoCase := FALSE));
+		MCP_IO.MagDriver[i].Cap[j].CapVoltage := LREAL_TO_INT (MCP_IO.MagDriver[i].Cap[j].Elec_VoltageSum);
+		MCP_IO.MagDriver[i].Cap[j].CapCellTemp := LREAL_TO_INT (MCP_IO.MagDriver[i].Cap[j].Therm_HighestCell); //sample the highest cell temperature
+	
+	END_FOR;
+END_FOR;
+//output set address for new UC - 7F 
+//taking input from HMI
+hmi_CanTx_ID := STRING_TO_UDINT (hmi_CanTx_ID_str);
+hmi_CanTx_desID := STRING_TO_BYTE (hmi_CanTx_desiredID);
+(*FOR i := 0 TO 7 BY 1 DO 
+	hmi_CanTxB[i] := STRING_TO_BYTE (hmi_CanTxB_str[i]);
+END_FOR;
+	
+IF hmi_sendRequest = TRUE THEN
+	Devices.Coil[1].CanTx_config_ID := hmi_CanTx_ID;
+	Devices.Coil[1].CanTx_config_length := hmi_CanTx_length;
+	Devices.Coil[1].CanTx_config_request[0] := hmi_CanTxB[0];
+	Devices.Coil[1].CanTx_config_request[1] := hmi_CanTxB[1];
+	Devices.Coil[1].CanTx_config_request[2] := hmi_CanTxB[2];
+	Devices.Coil[1].CanTx_config_request[3] := hmi_CanTxB[3];
+	Devices.Coil[1].CanTx_config_request[4] := hmi_CanTxB[4];
+ELSE 
+	Devices.Coil[1].CanTx_config_ID := 16#00000000;
+	Devices.Coil[1].CanTx_config_request[0] := 16#00;
+	Devices.Coil[1].CanTx_config_request[1] := 16#00;
+	Devices.Coil[1].CanTx_config_request[2] := 16#00;
+	Devices.Coil[1].CanTx_config_request[3] := 16#00;
+	Devices.Coil[1].CanTx_config_request[4] := 16#00;
+	Devices.Coil[1].CanTx_config_request[5] := 16#00;
+	Devices.Coil[1].CanTx_config_request[6] := 16#00;
+	Devices.Coil[1].CanTx_config_request[7] := 16#00;
+END_IF;
+*)
+
+
+IF hmi_step1 = TRUE THEN
+	MCP_IO.MagDriver[1].Cap[1].CanTx_config_ID 			:= hmi_CanTx_ID;
+	MCP_IO.MagDriver[1].Cap[1].CanTx_config_length 		:= 3;
+	MCP_IO.MagDriver[1].Cap[1].CanTx_config_request[0] 	:= 16#02;
+	MCP_IO.MagDriver[1].Cap[1].CanTx_config_request[1] 	:= 16#10;
+	MCP_IO.MagDriver[1].Cap[1].CanTx_config_request[2] 	:= 16#03;
+	// add cap 2 - 6 
+	
+(*	Output.R2_06_CANrequest.cobId := 16#0CDA7FCC;
+	Output.R2_06_CANrequest.length := 3;
+	Output.R2_06_CANrequest.data[0] := 16#02;
+	Output.R2_06_CANrequest.data[1] := 16#10;
+	Output.R2_06_CANrequest.data[2] := 16#03;
+	Output.R2_06_CANrequest.data[3] := 16#00;
+	Output.R2_06_CANrequest.data[4] := 16#00;
+	Output.R2_06_CANrequest.data[5] := 16#00;
+	Output.R2_06_CANrequest.data[6] := 16#00;
+	Output.R2_06_CANrequest.data[7] := 16#00;*)
+
+ELSIF hmi_step2 = TRUE THEN
+	MCP_IO.MagDriver[1].Cap[1].CanTx_config_ID := hmi_CanTx_ID;
+	MCP_IO.MagDriver[1].Cap[1].CanTx_config_length := 3;
+	MCP_IO.MagDriver[1].Cap[1].CanTx_config_request[0] := 16#02;
+	MCP_IO.MagDriver[1].Cap[1].CanTx_config_request[1] := 16#27;
+	MCP_IO.MagDriver[1].Cap[1].CanTx_config_request[2] := 16#03;
+	(*Output.R2_06_CANrequest.cobId := 16#0CDA7FCC;
+	Output.R2_06_CANrequest.length := 3;
+	Output.R2_06_CANrequest.data[0] := 16#02;
+	Output.R2_06_CANrequest.data[1] := 16#27;
+	Output.R2_06_CANrequest.data[2] := 16#01;
+	Output.R2_06_CANrequest.data[3] := 16#00;
+	Output.R2_06_CANrequest.data[4] := 16#00;
+	Output.R2_06_CANrequest.data[5] := 16#00;
+	Output.R2_06_CANrequest.data[6] := 16#00;
+	Output.R2_06_CANrequest.data[7] := 16#00;
+	*)
+ELSIF hmi_step3 = TRUE THEN
+	MCP_IO.MagDriver[1].Cap[1].CanTx_config_ID := hmi_CanTx_ID;
+	MCP_IO.MagDriver[1].Cap[1].CanTx_config_length := 5;
+	MCP_IO.MagDriver[1].Cap[1].CanTx_config_request[0] := 16#04;
+	MCP_IO.MagDriver[1].Cap[1].CanTx_config_request[1] := 16#27;
+	MCP_IO.MagDriver[1].Cap[1].CanTx_config_request[2] := 16#02;
+	MCP_IO.MagDriver[1].Cap[1].CanTx_config_request[3] := 16#78;
+	MCP_IO.MagDriver[1].Cap[1].CanTx_config_request[4] := 16#9A;
+	(*Output.R2_06_CANrequest.cobId := 16#0CDA7FCC;
+	Output.R2_06_CANrequest.length := 5;
+	Output.R2_06_CANrequest.data[0] := 16#04;
+	Output.R2_06_CANrequest.data[1] := 16#27;
+	Output.R2_06_CANrequest.data[2] := 16#02;
+	Output.R2_06_CANrequest.data[3] := 16#78;
+	Output.R2_06_CANrequest.data[4] := 16#9A;
+	Output.R2_06_CANrequest.data[5] := 16#00;
+	Output.R2_06_CANrequest.data[6] := 16#00;
+	Output.R2_06_CANrequest.data[7] := 16#00;	
+	*)
+ELSIF hmi_step4 = TRUE THEN 
+	MCP_IO.MagDriver[1].Cap[1].CanTx_config_ID := hmi_CanTx_ID;
+	MCP_IO.MagDriver[1].Cap[1].CanTx_config_length := 5;
+	MCP_IO.MagDriver[1].Cap[1].CanTx_config_request[0] := 16#04;
+	MCP_IO.MagDriver[1].Cap[1].CanTx_config_request[1] := 16#2E;
+	MCP_IO.MagDriver[1].Cap[1].CanTx_config_request[2] := 16#FD;
+	MCP_IO.MagDriver[1].Cap[1].CanTx_config_request[3] := 16#08;
+	MCP_IO.MagDriver[1].Cap[1].CanTx_config_request[4] := hmi_CanTx_desID; //desirable cobID / device ID
+	(*Output.R2_06_CANrequest.cobId := 16#0CDA7FCC;
+	Output.R2_06_CANrequest.length := 5;
+	Output.R2_06_CANrequest.data[0] := 16#04;
+	Output.R2_06_CANrequest.data[1] := 16#2E;
+	Output.R2_06_CANrequest.data[2] := 16#FD;
+	Output.R2_06_CANrequest.data[3] := 16#08;
+	Output.R2_06_CANrequest.data[4] := 16#02; //desirable cobID / device ID
+	Output.R2_06_CANrequest.data[5] := 16#00;
+	Output.R2_06_CANrequest.data[6] := 16#00;
+	Output.R2_06_CANrequest.data[7] := 16#00;
+	*)
+ELSIF hmi_step5 = TRUE THEN 
+	MCP_IO.MagDriver[1].Cap[1].CanTx_config_ID := hmi_CanTx_ID;
+	MCP_IO.MagDriver[1].Cap[1].CanTx_config_length := 4;
+	MCP_IO.MagDriver[1].Cap[1].CanTx_config_request[0] := 16#03; //restart software
+	MCP_IO.MagDriver[1].Cap[1].CanTx_config_request[1] := 16#11;
+	MCP_IO.MagDriver[1].Cap[1].CanTx_config_request[2] := 16#01;
+	MCP_IO.MagDriver[1].Cap[1].CanTx_config_request[3] := 16#08;
+	(*Output.R2_06_CANrequest.cobId:= 16#0CDA7FCC;
+	Output.R2_06_CANrequest.length := 4;
+	Output.R2_06_CANrequest.data[0] := 16#03;
+	Output.R2_06_CANrequest.data[1] := 16#11;
+	Output.R2_06_CANrequest.data[2] := 16#01;
+	Output.R2_06_CANrequest.data[3] := 16#00;
+	Output.R2_06_CANrequest.data[4] := 16#00;
+	Output.R2_06_CANrequest.data[5] := 16#00;
+	Output.R2_06_CANrequest.data[6] := 16#00;
+	Output.R2_06_CANrequest.data[7] := 16#00;
+	*)
+ELSE 
+	MCP_IO.MagDriver[1].Cap[1].CanTx_config_ID := 16#00000000;
+	MCP_IO.MagDriver[1].Cap[1].CanTx_config_request[0] := 16#00;
+	MCP_IO.MagDriver[1].Cap[1].CanTx_config_request[1] := 16#00;
+	MCP_IO.MagDriver[1].Cap[1].CanTx_config_request[2] := 16#00;
+	MCP_IO.MagDriver[1].Cap[1].CanTx_config_request[3] := 16#00;
+	MCP_IO.MagDriver[1].Cap[1].CanTx_config_request[4] := 16#00;
+	MCP_IO.MagDriver[1].Cap[1].CanTx_config_request[5] := 16#00;
+	MCP_IO.MagDriver[1].Cap[1].CanTx_config_request[6] := 16#00;
+	MCP_IO.MagDriver[1].Cap[1].CanTx_config_request[7] := 16#00;
+END_IF;
+
+
+IF i > n THEN
+	i := 1;
+END_IF;
+
+IF j > m THEN
+	j := 1;
+END_IF;
+
+
+
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="CAN_comm">
+      <LineId Id="43" Count="0" />
+      <LineId Id="48" Count="0" />
+      <LineId Id="44" Count="1" />
+      <LineId Id="61" Count="0" />
+      <LineId Id="51" Count="0" />
+      <LineId Id="49" Count="1" />
+      <LineId Id="52" Count="1" />
+      <LineId Id="55" Count="3" />
+      <LineId Id="1031" Count="0" />
+      <LineId Id="933" Count="0" />
+      <LineId Id="932" Count="0" />
+      <LineId Id="922" Count="9" />
+      <LineId Id="792" Count="0" />
+      <LineId Id="735" Count="0" />
+      <LineId Id="939" Count="1" />
+      <LineId Id="942" Count="0" />
+      <LineId Id="1032" Count="0" />
+      <LineId Id="946" Count="0" />
+      <LineId Id="951" Count="0" />
+      <LineId Id="947" Count="0" />
+      <LineId Id="943" Count="0" />
+      <LineId Id="935" Count="0" />
+      <LineId Id="322" Count="0" />
+      <LineId Id="954" Count="0" />
+      <LineId Id="953" Count="0" />
+      <LineId Id="1009" Count="0" />
+      <LineId Id="971" Count="0" />
+      <LineId Id="970" Count="0" />
+      <LineId Id="955" Count="0" />
+      <LineId Id="973" Count="0" />
+      <LineId Id="962" Count="0" />
+      <LineId Id="966" Count="3" />
+      <LineId Id="964" Count="0" />
+      <LineId Id="986" Count="1" />
+      <LineId Id="977" Count="8" />
+      <LineId Id="976" Count="0" />
+      <LineId Id="965" Count="0" />
+      <LineId Id="974" Count="0" />
+      <LineId Id="963" Count="0" />
+      <LineId Id="956" Count="0" />
+      <LineId Id="324" Count="0" />
+      <LineId Id="821" Count="0" />
+      <LineId Id="698" Count="0" />
+      <LineId Id="823" Count="0" />
+      <LineId Id="329" Count="0" />
+      <LineId Id="824" Count="0" />
+      <LineId Id="1054" Count="0" />
+      <LineId Id="825" Count="3" />
+      <LineId Id="330" Count="0" />
+      <LineId Id="829" Count="0" />
+      <LineId Id="635" Count="3" />
+      <LineId Id="640" Count="0" />
+      <LineId Id="693" Count="0" />
+      <LineId Id="646" Count="0" />
+      <LineId Id="831" Count="3" />
+      <LineId Id="830" Count="0" />
+      <LineId Id="705" Count="0" />
+      <LineId Id="700" Count="0" />
+      <LineId Id="648" Count="6" />
+      <LineId Id="647" Count="0" />
+      <LineId Id="694" Count="0" />
+      <LineId Id="655" Count="0" />
+      <LineId Id="836" Count="3" />
+      <LineId Id="835" Count="0" />
+      <LineId Id="840" Count="1" />
+      <LineId Id="706" Count="0" />
+      <LineId Id="701" Count="0" />
+      <LineId Id="657" Count="6" />
+      <LineId Id="656" Count="0" />
+      <LineId Id="695" Count="0" />
+      <LineId Id="664" Count="0" />
+      <LineId Id="843" Count="5" />
+      <LineId Id="842" Count="0" />
+      <LineId Id="707" Count="0" />
+      <LineId Id="702" Count="0" />
+      <LineId Id="666" Count="6" />
+      <LineId Id="665" Count="0" />
+      <LineId Id="696" Count="0" />
+      <LineId Id="673" Count="0" />
+      <LineId Id="856" Count="4" />
+      <LineId Id="855" Count="0" />
+      <LineId Id="849" Count="0" />
+      <LineId Id="703" Count="0" />
+      <LineId Id="675" Count="6" />
+      <LineId Id="674" Count="0" />
+      <LineId Id="697" Count="0" />
+      <LineId Id="682" Count="0" />
+      <LineId Id="704" Count="0" />
+      <LineId Id="685" Count="6" />
+      <LineId Id="683" Count="0" />
+      <LineId Id="326" Count="0" />
+      <LineId Id="767" Count="0" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="20" Count="1" />
+      <LineId Id="168" Count="2" />
+      <LineId Id="167" Count="0" />
+      <LineId Id="172" Count="0" />
+      <LineId Id="245" Count="0" />
+      <LineId Id="737" Count="0" />
+      <LineId Id="739" Count="0" />
+      <LineId Id="796" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

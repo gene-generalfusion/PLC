@@ -3,9 +3,9 @@
   <GVL Name="ChargeTime_DB" Id="{aef6f516-ebaa-4401-acff-5fe912a2763d}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL RETAIN
-	ChargerDelay_TON : ARRAY[1..6] OF TON;
-	ChargerDelay_PT  : ARRAY[1..6] OF TIME;
-	ChargerDelay_ET  : ARRAY[1..6] OF TIME;	
+	ChargerDelay_TON : ARRAY[1..7] OF TON;
+	ChargerDelay_PT  : ARRAY[1..7] OF TIME;
+	ChargerDelay_ET  : ARRAY[1..7] OF TIME;	
 	
 	//SustChargeTime_TON : ARRAY[1..3] OF TON;
 	//SustChargeTime_PT  : ARRAY[1..3] OF TIME;
@@ -23,9 +23,9 @@ VAR_GLOBAL RETAIN
 	LongestChargeTime_PT : TIME;
 	LongestChargeTime_ET : TIME;
 
-	ChargeTimeStartDelay	: ARRAY[1..6] OF INT;
-	ChargingTimeElapse		: ARRAY[1..6] OF INT;	
-	ChargingTimeElapse_TON	: ARRAY[1..6] OF TON;
+	ChargeTimeStartDelay	: ARRAY[1..7] OF INT;
+	ChargingTimeElapse		: ARRAY[1..7] OF INT;	
+	ChargingTimeElapse_TON	: ARRAY[1..7] OF TON;
 	
 	PreFormChargeTimeStartDelay : INT;
 	PreFormChargingTimeElapse : INT;

@@ -16,9 +16,9 @@ END_VAR
 Alarms_DB.MCP.AlarmWord.0 := Trips_DB.EStopPBpressed;
 Alarms_DB.MCP.AlarmWord.1 := Trips_DB.CageDoorNotClose;
 Alarms_DB.MCP.AlarmWord.2 := Trips_DB.ShortingSystemUnknown;
-//Alarms_DB.MCP.AlarmWord.3 := 
+Alarms_DB.MCP.AlarmWord.3 := Permissives_DB.PrefireDisconClosed;
 Alarms_DB.MCP.AlarmWord.4 := MCP_IO.Charger[1].SummaryFaulted;
-//Alarms_DB.MCP.AlarmWord.5 := MCP_IO.Charger[2].SummaryFaulted;
+Alarms_DB.MCP.AlarmWord.5 := Permissives_DB.PrefireDisconOpen;
 //Alarms_DB.MCP.AlarmWord.6 := MCP_IO.Charger[3].SummaryFaulted;
 //Alarms_DB.MCP.AlarmWord.7 := MCP_IO.Charger[4].SummaryFaulted;
 //Alarms_DB.MCP.AlarmWord.8 := MCP_IO.Charger[5].SummaryFaulted;

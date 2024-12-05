@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="ST_Setpoints_Base" Id="{0a95a6b7-b17b-4842-b185-de1cd9ac09f2}">
+    <Declaration><![CDATA[TYPE ST_Setpoints_Base :
+STRUCT
+	RequiredChargedV : REAL := 105;
+	TotalCapacitance : REAL := 10; //uF - LOCAL ONLY, NOT FROM MAIN PLC - LoadCapacitance
+	ChargeTime		 : REAL := 360; //6min charge time
+	//PSratedV		 : REAL := 50;
+	//wLCA			 : BOOL := TRUE;
+	//NumOfCharger	 : INT := 2;
+	//eChargerType		: E_ChargerType;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

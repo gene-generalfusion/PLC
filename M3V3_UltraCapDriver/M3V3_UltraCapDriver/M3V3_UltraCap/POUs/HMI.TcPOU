@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="HMI" Id="{dcabf1a6-3ca3-40de-943d-43b2e4fd41d0}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM HMI
+VAR
+	eChargerType : E_ChargerType;
+	
+	SysCLK					: GETSYSTEMTIME;
+	//fileTime				: T_FILETIME;
+	LastTimeShot			: STRING;
+	ChargeGraphTMR_TON		: TON;
+	ChargeGraphTMR_PT		: TIME := ChargeTime_DB.LongestChargeTime_PT + T#10S;
+	ChargeGraphTMR_ET		: TIME;
+	LongestChargeTIME		: REAL;
+	LastTimeShotLog			: BOOL;
+	
+	i : INT := 1;
+	n : INT := 7;
+
+	LastTimeShotTMR_TON		: TON;
+	LastTimeShotTMR_PT		: TIME := T#120H;
+	LastTimeShotTMR_ET		: TIME;
+	LastTimeShotTMR_REAL	: DWORD;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// if clear all faults, reset abort status
+IF HMI_DB.ClearFaultPB = TRUE THEN
+	Trips_DB.ChargedTimerRunout := FALSE;
+	Trips_DB.ChargingTimerRunout := FALSE;
+	Trips_DB.DumpTimerRunout := FALSE;
+	Trips_DB.ChargerSummaryFault := FALSE;
+	Trips_DB.ShortingSystemUnknown := FALSE;
+	Trips_DB.AnyEstopPressed := FALSE;
+END_IF
+
+IF Trips_DB.ChargedTimerRunout = TRUE OR 
+	Trips_DB.ChargingTimerRunout = TRUE //OR 
+	//Trips_DB.DumpTimerRunout = TRUE 
+	THEN
+		Trips_DB.TimerRunOutON := TRUE; 
+		ELSE
+			Trips_DB.TimerRunOutON := FALSE;
+		END_IF
+
+
+LastTimeShotTMR_TON (IN := TRUE, PT := LastTimeShotTMR_PT, ET => LastTimeShotTMR_ET);
+
+IF (Sequence.eState = E_State.CHARGECOMPLETE) AND HMI_DB.FirePB = TRUE THEN 
+	//SysCLK (timeLoDW => fileTime.dwLowDateTime, timeHiDW => fileTime.dwHighDateTime);
+	//LastTimeShot := SYSTEMTIME_TO_STRING( FILETIME_TO_SYSTEMTIME( fileTime ) );	
+	LastTimeShotTMR_TON (IN := FALSE, PT := LastTimeShotTMR_PT, ET => LastTimeShotTMR_ET);
+	HMI_DB.LastTimeShotLog := TRUE;	
+	ELSE
+		HMI_DB.LastTimeShotLog := FALSE;
+END_IF
+
+LastTimeShotTMR_REAL := TIME_TO_DWORD (LastTimeShotTMR_ET)/1000;
+
+IF (Sequence.eState = E_State.CHARGECOMPLETE OR Sequence.eState = E_State.CHARGING) THEN
+	ChargeGraphTMR_TON (IN:= TRUE, PT:= ChargeGraphTMR_PT, ET => ChargeGraphTMR_ET);
+	ELSE
+		ChargeGraphTMR_TON (IN:= FALSE);
+END_IF
+
+LongestChargeTIME := TIME_TO_REAL (ChargeGraphTMR_ET)/1000;
+
+IF i > n THEN 
+	i := 1;
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="HMI">
+      <LineId Id="5" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="37" Count="3" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="113" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="21" Count="2" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="24" Count="4" />
+      <LineId Id="62" Count="0" />
+      <LineId Id="92" Count="20" />
+      <LineId Id="63" Count="2" />
+      <LineId Id="54" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

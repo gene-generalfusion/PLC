@@ -38,6 +38,9 @@
     <Compile Include="DUTs\ST_Module.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\ST_PrefireDiscon_Base.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\ST_Segment_Base.TcDUT">
       <SubType>Code</SubType>
     </Compile>

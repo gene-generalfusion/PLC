@@ -130,7 +130,7 @@
 			</ArrayInfo>
 		</DataType>
 		<DataType>
-			<Name GUID="{99B746B5-CAF8-4A23-959B-C431CADF648A}" PersistentType="true">AlarmWord1</Name>
+			<Name GUID="{6D113C85-208C-47C9-B4F6-FD52AD474CEE}" PersistentType="true">AlarmWord1</Name>
 			<DisplayName TxtId=""><![CDATA[AlarmWord1]]></DisplayName>
 			<EventId>
 				<Name Id="1">b0</Name>
@@ -149,7 +149,7 @@
 			</EventId>
 			<EventId>
 				<Name Id="4">b3</Name>
-				<DisplayName TxtId=""><![CDATA[Event_DisplayText]]></DisplayName>
+				<DisplayName TxtId=""><![CDATA[Prefire Disconnect Closed]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
@@ -159,7 +159,7 @@
 			</EventId>
 			<EventId>
 				<Name Id="6">b5</Name>
-				<DisplayName TxtId=""><![CDATA[Event_DisplayText]]></DisplayName>
+				<DisplayName TxtId=""><![CDATA[Prefire Disconnect Open]]></DisplayName>
 				<Severity>Verbose</Severity>
 			</EventId>
 			<EventId>
@@ -221,6 +221,7 @@
 				<Hide GUID="{A245ABFB-5D8F-4939-89A9-2D37AFA1839B}"/>
 				<Hide GUID="{32D0C5D3-4503-453D-AFF4-5E7538F15235}"/>
 				<Hide GUID="{6B0B0EAD-C1BD-4668-9CA3-DF37EA26303E}"/>
+				<Hide GUID="{99B746B5-CAF8-4A23-959B-C431CADF648A}"/>
 			</Hides>
 		</DataType>
 	</DataTypes>
@@ -232,7 +233,7 @@
 		<ImageData Id="1004">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000c40e0000c40e00000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ff808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff</ImageData>
 		<ImageData Id="1005">424df60200000000000036000000280000000e00000010000000010018000000000000000000c30e0000c30e00000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffffffff00ff000000000000000000000000000000000000000000000000000000000000000000000000ff00ff17ff000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000ff000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000ff000000ffffff000000ffffff000000ffffff000000000000000000ffffff171717ffffffffffff000000ffff000000ffffff000000ffffff000000ffffff000000ffffffffffffffffffeeeeee000000ffffff000000ffff000000ffffff000000000000ffffffffffff000000000000000000ffffffffffff101010ffffff000000ffff000000ffffff000000000000ffffffffffff000000ffffffffffffffffff000000ebebeb1e1e1e00000000ff000000ffffff000000ffffff000000ffffff000000000000000000ffffff000000ffffff000000000000ffff000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000ff303030000000000000000000000000000000000000000000000000000000000000000000000000303030ffffff00ffff00ff000000ffffffffffffffffffffffffffffffffffffffffffffffff000000ff00ffff00ffffffff00ffff00ff000000ffffffffffffffffffffffffffffffffffffffffffffffff000000ff00ffff00ffffffff00ffff00ff000000ffffffffffffffffffffffffffffffffffffffffffffffff000000ff00ffff00ffffffff00ffff00ff000000ffffffffffffffffffffffffffffffffffffffffffffffff000000ff00ffff00ffffffff00ffff00ff303030000000000000000000000000000000000000000000000000303030ff00ffff00ff00ff</ImageData>
 	</ImageDatas>
-	<Project ProjectGUID="{ACF9125F-3860-4FE6-A24D-0667B9D4033A}" TargetNetId="5.107.220.56.1.1" Target64Bit="true" ShowHideConfigurations="#x106">
+	<Project ProjectGUID="{ACF9125F-3860-4FE6-A24D-0667B9D4033A}" TargetNetId="5.107.141.148.1.1" Target64Bit="true" ShowHideConfigurations="#x106">
 		<System>
 			<Settings MaxCpus="2"/>
 			<Licenses CacheOrCheckLicensesOnStartup="true">
@@ -429,10 +430,6 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>Input.B170357_BatLevel</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
 							<Name>Input.R1_08_00</Name>
 							<Comment><![CDATA[EL3068 - AI1]]></Comment>
 							<Type>INT</Type>
@@ -501,6 +498,10 @@
 							<Name>Input.B170357_CapRaw</Name>
 							<Comment><![CDATA[Ethercat Device Voltage]]></Comment>
 							<Type GUID="{5044CB06-7724-5056-95AD-1E09DECF3A45}">ARRAY [0..24] OF UINT</Type>
+						</Var>
+						<Var>
+							<Name>Input.B170357_BatLevel</Name>
+							<Type>BOOL</Type>
 						</Var>
 						<Var>
 							<Name>Input.B170357_Heartbeat</Name>
@@ -625,11 +626,6 @@ EL2008 - DQ1]]></Comment>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
-							<Name>ChargeTime_DB.PreFormChargeTime_PT</Name>
-							<Type>TIME</Type>
-							<InOut>7</InOut>
-						</Var>
-						<Var>
 							<Name>ChargeTime_DB.ChargerDelay_TON</Name>
 							<Type GUID="{B67C53DE-6A92-5C5B-4076-1B25F1887AC3}">ARRAY [1..6] OF Tc2_Standard.TON</Type>
 							<InOut>7</InOut>
@@ -656,18 +652,23 @@ FormChargeTime_ET  : ARRAY[1..2] OF TIME;]]></Comment>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
-							<Name>ChargeTime_DB.PreFormChargeTime_ET</Name>
+							<Name>ChargeTime_DB.PreFormChargeTime_PT</Name>
 							<Type>TIME</Type>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
-							<Name>ChargeTime_DB.LongestChargeTime_PT</Name>
+							<Name>ChargeTime_DB.PreFormChargeTime_ET</Name>
 							<Type>TIME</Type>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
 							<Name>ChargeTime_DB.LongestChargeTime_TON</Name>
 							<Type GUID="{1337BBBA-9A3F-D9E7-4ED6-FA23E60881AB}" Namespace="Tc2_Standard">TON</Type>
+							<InOut>7</InOut>
+						</Var>
+						<Var>
+							<Name>ChargeTime_DB.LongestChargeTime_PT</Name>
+							<Type>TIME</Type>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
@@ -686,13 +687,13 @@ FormChargeTime_ET  : ARRAY[1..2] OF TIME;]]></Comment>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
-							<Name>ChargeTime_DB.PreFormChargingTimeElapse</Name>
-							<Type>INT</Type>
+							<Name>ChargeTime_DB.ChargingTimeElapse_TON</Name>
+							<Type GUID="{B67C53DE-6A92-5C5B-4076-1B25F1887AC3}">ARRAY [1..6] OF Tc2_Standard.TON</Type>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
-							<Name>ChargeTime_DB.ChargingTimeElapse_TON</Name>
-							<Type GUID="{B67C53DE-6A92-5C5B-4076-1B25F1887AC3}">ARRAY [1..6] OF Tc2_Standard.TON</Type>
+							<Name>ChargeTime_DB.PreFormChargingTimeElapse</Name>
+							<Type>INT</Type>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
@@ -753,7 +754,7 @@ FormChargeTime_ET  : ARRAY[1..2] OF TIME;]]></Comment>
 			</Project>
 		</Plc>
 		<Io>
-			<Device Id="1" DevType="111" DevFlags="#x0003" AmsPort="28673" AmsNetId="5.107.220.56.2.1" RemoteName="Device 1 (EtherCAT)" InfoImageId="2">
+			<Device Id="1" DevType="111" DevFlags="#x0003" AmsPort="28673" AmsNetId="5.107.141.148.2.1" RemoteName="Device 1 (EtherCAT)" InfoImageId="2">
 				<Name>Device 1 (EtherCAT)</Name>
 				<AddressInfo>
 					<Ccat>
@@ -1599,7 +1600,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 				</Box>
 				<EtherCAT/>
 			</Device>
-			<Device Id="5" DevType="111" DevFlags="#x0003" AmsPort="28677" AmsNetId="5.107.220.56.6.1" RemoteName="Device 5 (EtherCAT)" InfoImageId="5">
+			<Device Id="5" DevType="111" DevFlags="#x0003" AmsPort="28677" AmsNetId="5.107.141.148.6.1" RemoteName="Device 5 (EtherCAT)" InfoImageId="5">
 				<Name>Device 5 (EtherCAT)</Name>
 				<AddressInfo>
 					<Pnp>

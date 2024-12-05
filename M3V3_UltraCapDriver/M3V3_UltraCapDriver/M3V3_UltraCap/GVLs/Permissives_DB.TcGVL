@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <GVL Name="Permissives_DB" Id="{c05a4b99-99cd-4605-96e2-a97127a00965}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	//SafetyOK				: BOOL;
+	AllChargeRelayClosed 	: BOOL := FALSE;
+	AllDumpRelayOpen		: BOOL := FALSE;
+	//AllDumpRelayClose		: BOOL := 0;
+	ReadyToCharge			: BOOL := FALSE;
+	AllChargerEOC			: BOOL := FALSE;
+	
+	ChargerVBelowThres		: BOOL := FALSE;
+	ChargerVThres			: REAL := 10;
+	AllChargerDCOK			: BOOL := FALSE;
+	AllChargerACOK			: BOOL := FALSE;
+	AllChargerInhibitON		: BOOL := 0;
+
+	AllCapsDischarged		: BOOL := FALSE;
+	CapVoltageThres			: REAL := 40;
+	
+	AllChargerTempOK		: BOOL := FALSE;
+	TempThres				: REAL := 50;
+	AllDumpResTempOK		: BOOL := FALSE;
+
+	SystemIsSafe			: BOOL := FALSE;
+	AllSCRreadyToFire		: BOOL := FALSE;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

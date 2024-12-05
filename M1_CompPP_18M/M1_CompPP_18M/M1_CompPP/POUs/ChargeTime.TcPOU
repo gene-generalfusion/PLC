@@ -4,11 +4,11 @@
     <Declaration><![CDATA[PROGRAM ChargeTime
 VAR
 
-	lca_charge_cal	 : ARRAY [1..6] OF LCA_CAL;
+	lca_charge_cal	 : ARRAY [1..7] OF LCA_CAL;
 	i				 : INT := 1; // 1-8 instances
 	j				 : INT := 1; //1 - 8 ch
 	m				 : INT := 1;
-	
+	n				 : INT := 7;
 	a				 : INT := 1; 
 	
 	Q				 : REAL := 1; // Charge
@@ -20,7 +20,7 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[//mapping hmi input to setpoints
-FOR j := 1 TO 6 BY 1 DO	
+FOR j := 1 TO n BY 1 DO	
 	Setpoints.TDKLoad[j].TotalCapacitance	:= HMI_DB.TDKLoad[j].TotalCapacitance;
 	Setpoints.TDKLoad[j].PSratedV 			:= HMI_DB.TDKLoad[j].PSratedV;
 	Setpoints.TDKLoad[j].RequiredChargedV	:= HMI_DB.TDKLoad[j].RequiredChargedV;  
@@ -47,13 +47,13 @@ Setpoints.GLSLoad.NumOfCharger		:= HMI_DB.GLSLoad.NumOfCharger;
 
 //veto
 //this should not happen
-FOR m := 1 TO 6 BY 1 DO
+FOR m := 1 TO n BY 1 DO
 	IF Setpoints.TDKLoad[m].RequiredChargedV <= -2 THEN
 		Setpoints.TDKLoad[m].RequiredChargedV := -2;
 	END_IF	
 END_FOR
 
-FOR i := 1 TO 6 BY 1 DO
+FOR i := 1 TO n BY 1 DO
 	IF MCP_IO.Charger[i].ChargerType = E_ChargerType.TDK50kV THEN 
 		//set limites of charger voltage input from HMI input
 		IF 1000*(Setpoints.TDKLoad[i].RequiredChargedV) >= EngVal.UpperLimit50kVCaps THEN
@@ -111,7 +111,7 @@ END_IF
 *)
 
 //chg time
-FOR i := 1 TO 6 BY 1 DO
+FOR i := 1 TO n BY 1 DO
 	lca_charge_cal[i](	PSratedV := Setpoints.TDKLoad[i].PSratedV, 
 						RequiredChargeV := Setpoints.TDKLoad[i].RequiredChargedV, 
 						LoadCapacitance := Setpoints.TDKLoad[i].TotalCapacitance, 
@@ -141,15 +141,15 @@ longestChargeTime := MAX( MCP_IO.Charger[1].ChargeTime.timeToChargeLoad,
 							MCP_IO.Charger[3].ChargeTime.timeToChargeLoad,
 							MCP_IO.Charger[4].ChargeTime.timeToChargeLoad,
 							MCP_IO.Charger[5].ChargeTime.timeToChargeLoad,
-							MCP_IO.Charger[6].ChargeTime.timeToChargeLoad
-							(*MCP_IO.Charger[7].ChargeTime.timeToChargeLoad,
-							MCP_IO.Charger[8].ChargeTime.timeToChargeLoad, *)
+							MCP_IO.Charger[6].ChargeTime.timeToChargeLoad,
+							MCP_IO.Charger[7].ChargeTime.timeToChargeLoad  //charger 7 for shaft ramp
+							(*MCP_IO.Charger[8].ChargeTime.timeToChargeLoad, *)
 							(*MCP_IO.GLS3_Load.timeToChargeLoad*));
 
 ChargeTime_DB.LongestChargeTime_PT := REAL_TO_TIME (1000*longestChargeTime);
 
 //FOR a := 1 TO 8 BY 1 DO
-FOR a := 1 TO 6 BY 1 DO
+FOR a := 1 TO n BY 1 DO
 	IF (longestChargeTime - MCP_IO.Charger[a].ChargeTime.timeToChargeLoad) >= 0 THEN
 		ChargeTime_DB.ChargerDelay_PT[a] := REAL_TO_TIME (1000*(longestChargeTime - MCP_IO.Charger[a].ChargeTime.timeToChargeLoad));
 		ELSE 
@@ -179,20 +179,20 @@ END_IF;
 
 
 //IF i > 8 THEN 
-IF i > 6 THEN 
+IF i > n THEN 
 	i := 0;
 END_IF
 
-IF j > 6 THEN
+IF j > n THEN
 	j := 0;
 END_IF
 
-IF m > 6 THEN
+IF m > n THEN
 	m := 0;
 END_IF
 
 //IF a > 8 THEN
-IF a > 6 THEN
+IF a > n THEN
 	a := 1;
 END_IF;]]></ST>
     </Implementation>

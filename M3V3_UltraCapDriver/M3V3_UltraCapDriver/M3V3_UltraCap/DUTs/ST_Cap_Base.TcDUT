@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="ST_Cap_Base" Id="{263d8728-3e99-4312-bd43-fdbd6dcd84c2}">
+    <Declaration><![CDATA[TYPE ST_Cap_Base :
+STRUCT
+	
+	CapWarning			: BOOL;  //comes from UltraCaps CANBUS message
+	CapAlarm								: BOOL;
+	CapVoltage								: INT;   //Comes from UlgraCaps CANBUS message
+	CapCellTemp								: INT;
+	
+	//UltraCap_CAN_ID : STRING;
+	Elec_Balancing		: USINT;
+	Elec_Imbalance		: USINT;
+	Elec_VoltageSum		: LREAL;
+	Elec_HighestVolt	: LREAL;
+	Elec_AveVolt		: LREAL;
+	Elec_OverVoltage	: USINT;
+	
+	Therm_LowTemp		: USINT;
+	Therm_HighTemp		: USINT;
+	Therm_HighestCell	: LREAL;
+	Therm_LowestCell	: LREAL;
+	
+	//UltraCap			: ST_UC_Status;  //assuming 10 uc in one coil
+	UltraCap_Dummy		: ST_UC_Status_Dummy; //buffer temp for uc 7f
+	UC_Dummy_ID_hexstr	: STRING;
+	
+	CanTx_config_ID 	: UDINT;
+	CanTx_config_length : UINT;
+	CanTx_config_request: ARRAY[0..7] OF BYTE;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

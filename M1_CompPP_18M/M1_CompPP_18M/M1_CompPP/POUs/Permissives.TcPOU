@@ -93,7 +93,7 @@ IF MCP_IO.Charger[1].inhibited = TRUE AND
 END_IF;
 
 //add volt fb 1 and 2
-IF ABS(LCP1_IO.Segment[1].Module[1].VoltageFeedback[1]) <= Permissives_DB.CapVoltageThres AND
+IF (ABS(LCP1_IO.Segment[1].Module[1].VoltageFeedback[1]) <= Permissives_DB.CapVoltageThres AND
 	ABS(LCP1_IO.Segment[1].Module[1].VoltageFeedback[2]) <= Permissives_DB.CapVoltageThres AND
 	ABS(LCP1_IO.Segment[1].Module[2].VoltageFeedback[1]) <= Permissives_DB.CapVoltageThres AND
 	ABS(LCP1_IO.Segment[1].Module[2].VoltageFeedback[2]) <= Permissives_DB.CapVoltageThres AND
@@ -129,7 +129,7 @@ IF ABS(LCP1_IO.Segment[1].Module[1].VoltageFeedback[1]) <= Permissives_DB.CapVol
 	ABS(LCP2_IO.Segment[6].Module[8].VoltageFeedback[1]) <= Permissives_DB.CapVoltageThres AND 
 	ABS(LCP2_IO.Segment[6].Module[8].VoltageFeedback[2]) <= Permissives_DB.CapVoltageThres AND
 	ABS(LCP2_IO.Segment[6].Module[9].VoltageFeedback[1]) <= Permissives_DB.CapVoltageThres AND
-	ABS(LCP2_IO.Segment[6].Module[9].VoltageFeedback[2]) <= Permissives_DB.CapVoltageThres 
+	ABS(LCP2_IO.Segment[6].Module[9].VoltageFeedback[2]) <= Permissives_DB.CapVoltageThres) OR HMI_DB.AllCapsDischargedBP = TRUE 
 (*  AND all other module voltage feedback <= 40, might need the -ve end & check for valid data*) 
 	THEN
 		Permissives_DB.AllCapsDischarged := TRUE;

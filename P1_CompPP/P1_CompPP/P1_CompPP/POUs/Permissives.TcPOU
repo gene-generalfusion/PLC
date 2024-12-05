@@ -112,7 +112,26 @@ THEN
 
 END_IF;
 
-]]></ST>
+//prefire disconn
+IF MCP_IO.PrefireDiscon.PrefireDisconClosed = TRUE AND MCP_IO.PrefireDiscon.PrefireDisconOpen = FALSE THEN 
+	Permissives_DB.PrefireDisconClosed := TRUE;
+	ELSE
+		Permissives_DB.PrefireDisconClosed := FALSE;
+END_IF
+
+IF MCP_IO.PrefireDiscon.PrefireDisconClosed = FALSE AND MCP_IO.PrefireDiscon.PrefireDisconOpen = TRUE THEN 
+	Permissives_DB.PrefireDisconOpen := TRUE;
+	ELSE
+		Permissives_DB.PrefireDisconOpen := FALSE;
+END_IF
+
+IF (MCP_IO.PrefireDiscon.PrefireDisconClosed = TRUE AND MCP_IO.PrefireDiscon.PrefireDisconOpen = TRUE) OR 
+	(MCP_IO.PrefireDiscon.PrefireDisconClosed = FALSE AND MCP_IO.PrefireDiscon.PrefireDisconOpen = FALSE) 
+	THEN 
+		Trips_DB.PrefireDisconUnknown := TRUE;
+		ELSE
+			Trips_DB.PrefireDisconUnknown := FALSE;
+END_IF]]></ST>
     </Implementation>
     <LineIds Name="Permissives">
       <LineId Id="191" Count="0" />
@@ -180,6 +199,18 @@ END_IF;
       <LineId Id="72" Count="0" />
       <LineId Id="75" Count="0" />
       <LineId Id="77" Count="0" />
+      <LineId Id="251" Count="1" />
+      <LineId Id="254" Count="1" />
+      <LineId Id="253" Count="0" />
+      <LineId Id="258" Count="4" />
+      <LineId Id="257" Count="0" />
+      <LineId Id="264" Count="0" />
+      <LineId Id="263" Count="0" />
+      <LineId Id="265" Count="0" />
+      <LineId Id="268" Count="0" />
+      <LineId Id="267" Count="0" />
+      <LineId Id="269" Count="1" />
+      <LineId Id="266" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

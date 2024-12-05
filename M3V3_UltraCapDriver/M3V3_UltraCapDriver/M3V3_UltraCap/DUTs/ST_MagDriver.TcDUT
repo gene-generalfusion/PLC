@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="ST_MagDriver" Id="{eef27b67-be73-407b-b129-615a4437bed7}">
+    <Declaration><![CDATA[TYPE ST_MagDriver :
+STRUCT
+	SCR_ready_to_fire 		: BOOL := FALSE;
+	ChargeRelayClose		: BOOL := FALSE;
+	DumpRelayOpen			: BOOL := FALSE;
+	
+	CloseChargeRly			: BOOL := FALSE;
+	OpenDumpRly				: BOOL := FALSE;
+	
+	DumpResistorTemp_raw	: INT;
+	DumpResistorTemp_norm	: REAL;
+	DumpResistorTemp		: REAL;
+	
+	ShotCurrentFeedback_raw	: INT;
+	ShotCurrentFeedback_norm: REAL;
+	ShotCurrentFeedback		: REAL;
+	
+	//Charger 				: ST_Charger_Base; //MCP IO alreayd hs it
+
+	Cap						: ARRAY[1..2] OF ST_Cap_Base;
+
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

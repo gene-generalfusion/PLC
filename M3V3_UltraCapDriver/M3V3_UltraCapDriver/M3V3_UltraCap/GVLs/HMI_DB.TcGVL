@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <GVL Name="HMI_DB" Id="{fadcefff-0de5-4c32-89a9-d04e4615e636}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL PERSISTENT
+	HPT5		: ARRAY [1..6] OF ST_Setpoints_Base; //or RETAIN
+	
+	ChargerHVOFF_rlyDelayPT		: TIME := T#25MS;
+	ChargerHVOFF_rlyDelayPT_INT	: INT := 25;
+	
+	HVONdelayPT					: TIME := T#250MS;
+	HVONdelayPT_INT				: INT := 250;
+	
+	RunOutTMR_PT				: TIME := T#10S;
+	RunOutTMR_PT_INT			: DINT := 10;
+	RunOutTMR_elapse			: DINT;
+	
+	ChargingRunOutTMR_elapse	: INT;
+	DumpResTempThres			: UINT := 125;
+		
+END_VAR
+
+VAR_GLOBAL
+	ArmTheCagePB				: BOOL := 0;
+	UnArmTheCagePB				: BOOL := 0;
+	ChargePB					: BOOL := 0;
+	DumpPB						: BOOL := 0;
+	AbortPB						: BOOL := 0;
+	FirePB						: BOOL := 0;
+	ClearFaultPB				: BOOL := 0;
+	AllDumpRelaysOpenBP			: BOOL := 0;
+	AllChargeRelayCloseBP		: BOOL := 0;
+	SystemSafeBP				: BOOL := 0;
+	ForceToChargCompletePB		: BOOL := 0;
+	
+	HMI_ManualModeSelected		: BOOL := 0;  // 1 = manual mode selected
+	CloseChargeRlySW			: BOOL := 0;
+	OpenDumpRlySW				: BOOL := 0;
+	TurnChrgHVonSW				: BOOL := 0;
+	TurnChrgInhibitOffSW		: BOOL := 0;
+	TurnOnShotTrigSW			: BOOL := 0;
+	TurnOnChargeAlarm			: BOOL := 0;
+	
+	LastTimeShotLog				: BOOL := 0;
+	CSV_loggingBusy				: BOOL := 0;
+	CSV_loggingError			: BOOL := 0;
+	CSV_loggingDone				: BOOL := 0;
+	FillingBuffer				: BOOL := 0;
+	AllCapsDischargedBP			: BOOL := FALSE;
+	
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

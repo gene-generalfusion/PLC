@@ -9,6 +9,8 @@ VAR_GLOBAL
 	AllChargeRelayClosed	: BOOL := 0;
 	AllDumpRelayOpen		: BOOL := 0;
 	ReadyToCharge			: BOOL := 0;
+	PrefireDisconClosed		: BOOL := FALSE;
+	PreFireDisconOpen		: BOOL := FALSE;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

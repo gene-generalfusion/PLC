@@ -249,6 +249,22 @@ VAR_GLOBAL
 	B170357_2_CapRaw AT %I* : ARRAY[0..24] OF UINT;
 	B170357_2_BatLevel AT %I* : BOOL;
 	B170357_2_Heartbeat AT %I* : BOOL;
+	
+	//Ract 4 - Shaft ramp
+	//EL1008 - DI 1
+	R4_01_00 AT %I*: BOOL; 
+	R4_01_01 AT	%I*: BOOL;
+	R4_01_02 AT %I*: BOOL; 
+	R4_01_03 AT %I*: BOOL; 
+	R4_01_04 AT %I*: BOOL; 
+	R4_01_05 AT %I*: BOOL; 
+	R4_01_06 AT %I*: BOOL; 
+	R4_01_07 AT %I*: BOOL; 
+	
+	B170357_3_CapRaw AT %I* : ARRAY[0..24] OF UINT;  // might be 8 fruit stands so 0..7
+	B170357_3_BatLevel AT %I* : BOOL;
+	B170357_3_Heartbeat AT %I* : BOOL;
+	
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

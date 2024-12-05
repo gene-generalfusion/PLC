@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="ChargeTime" Id="{28824270-3930-44b7-bfe2-d4b07042cd6b}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM ChargeTime
+VAR
+
+	//lca_charge_cal	 : ARRAY [1..6] OF LCA_CAL;
+	i				 : INT := 1; // 1-6 instances
+	j				 : INT := 1; //1 - 6 ch
+	m				 : INT := 1;
+	n				 : INT := 6;
+	a				 : INT := 1; 
+	
+	Q				 : REAL := 1; // Charge
+	Current			 : REAL := 0.1; //100mA
+	
+	longestChargeTime: REAL;
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//mapping hmi input to setpoints
+FOR j := 1 TO n BY 1 DO	
+	Setpoints.HPT5[j].TotalCapacitance	:= HMI_DB.HPT5[j].TotalCapacitance;
+	//Setpoints.TDKLoad[j].PSratedV 			:= HMI_DB.TDKLoad[j].PSratedV;
+	Setpoints.HPT5[j].RequiredChargedV	:= HMI_DB.HPT5[j].RequiredChargedV;  
+	//Setpoints.TDKLoad[j].wLCA				:= HMI_DB.TDKLoad[j].wLCA;
+	//Setpoints.TDKLoad[j].NumOfCharger		:= HMI_DB.TDKLoad[j].NumOfCharger;	
+	
+	//charge time delay and elapse for HMI
+	ChargeTime_DB.ChargeTimeStartDelay[j] := TIME_TO_INT((ChargeTime_DB.ChargerDelay_PT[j] - ChargeTime_DB.ChargerDelay_ET[j])/1000);
+	ChargeTime_DB.ChargingTimeElapse[j] := TIME_TO_INT((ChargeTime_DB.ChargingTimeElapse_TON[j].PT - ChargeTime_DB.ChargingTimeElapse_TON[j].ET)/1000);
+END_FOR
+
+//ChargeTime_DB.PreFormChargeTimeStartDelay := TIME_TO_INT((ChargeTime_DB.PreFormChargeTime_PT - ChargeTime_DB.PreFormChargeTime_ET)/1000);
+//ChargeTime_DB.PreFormChargingTimeElapse := TIME_TO_INT((ChargeTime_DB.PreFormChargingTimeElapse_TON.PT - ChargeTime_DB.PreFormChargingTimeElapse_TON.ET)/1000);
+
+(*
+//GLS 3
+Setpoints.GLSLoad.TotalCapacitance	:= HMI_DB.GLSLoad.TotalCapacitance;
+Setpoints.GLSLoad.PSratedV 			:= HMI_DB.GLSLoad.PSratedV;
+//Setpoints.PreFormBank.RequiredChargedV	:= Recipe.PreFormBank.RequiredChargedV; //only thing that comes from the main plc recipe
+//Setpoints.GLSLoad.wLCA				:= HMI_DB.GLSLoad.wLCA;
+Setpoints.GLSLoad.NumOfCharger		:= HMI_DB.GLSLoad.NumOfCharger;	
+*)
+
+
+//veto
+//this should not happen
+FOR m := 1 TO n BY 1 DO
+	IF Setpoints.HPT5[m].RequiredChargedV <= -1 THEN
+		Setpoints.HPT5[m].RequiredChargedV := 0;
+	END_IF	
+END_FOR
+
+FOR i := 1 TO n BY 1 DO
+	//set limites of charger voltage input from HMI input
+	IF (Setpoints.HPT5[i].RequiredChargedV) >= AnalogConversion.MaxVolt THEN
+		Setpoints.HPT5[i].RequiredChargedV := AnalogConversion.MaxVolt; //limit at 105v
+		HMI_DB.HPT5[i].RequiredChargedV := AnalogConversion.MaxVolt;
+	ELSIF Setpoints.HPT5[i].RequiredChargedV <= 0 THEN
+		Setpoints.HPT5[i].RequiredChargedV := 0;
+		HMI_DB.HPT5[i].RequiredChargedV := 0;
+	END_IF	
+END_FOR;
+
+//chg time
+FOR i := 1 TO n BY 1 DO
+	//manually enter charge time*********************
+	MCP_IO.Charger[i].ChargeTime.timeToChargeLoad := HMI_DB.HPT5[i].ChargeTime;
+	
+	IF Setpoints.HPT5[i].RequiredChargedV = 0 THEN
+		MCP_IO.Charger[i].ChargeTime.timeToChargeLoad := 0;
+		MCP_IO.Charger[i].ChargeTime.Power := 0;
+	END_IF
+END_FOR
+
+(*
+//gls - gls3 is preform cap charger
+Q := 1000* Setpoints.GLSLoad.RequiredChargedV * (Setpoints.GLSLoad.TotalCapacitance / 1000000);
+MCP_IO.GLS3_Load.timeToChargeLoad := Q / Current;
+MCP_IO.GLS3_Load.Power := 1000*Setpoints.GLSLoad.RequiredChargedV * Current;
+*)
+//find the longest charge time.  //need more work
+longestChargeTime := MAX( MCP_IO.Charger[1].ChargeTime.timeToChargeLoad,
+							MCP_IO.Charger[2].ChargeTime.timeToChargeLoad,
+							MCP_IO.Charger[3].ChargeTime.timeToChargeLoad,
+							MCP_IO.Charger[4].ChargeTime.timeToChargeLoad,
+							MCP_IO.Charger[5].ChargeTime.timeToChargeLoad,
+							MCP_IO.Charger[6].ChargeTime.timeToChargeLoad);
+
+ChargeTime_DB.LongestChargeTime_PT := REAL_TO_TIME (1000*longestChargeTime);
+
+//FOR a := 1 TO 8 BY 1 DO
+FOR a := 1 TO n BY 1 DO
+	IF (longestChargeTime - MCP_IO.Charger[a].ChargeTime.timeToChargeLoad) >= 0 THEN
+		ChargeTime_DB.ChargerDelay_PT[a] := REAL_TO_TIME (1000*(longestChargeTime - MCP_IO.Charger[a].ChargeTime.timeToChargeLoad));
+		ELSE 
+			ChargeTime_DB.ChargerDelay_PT[a] := REAL_TO_TIME (1000*(MCP_IO.Charger[a].ChargeTime.timeToChargeLoad - longestChargeTime));
+	END_IF;		
+		
+	//IF (longestChargeTime - MCP_IO.Charger[a+3].ChargeTime.timeToChargeLoad) >= 0 THEN
+	//	ChargeTime_DB.SustChargeTime_PT[a] := REAL_TO_TIME (1000*(longestChargeTime - MCP_IO.Charger[a+3].ChargeTime.timeToChargeLoad));	
+	//END_IF;	
+	
+END_FOR;
+
+
+(*IF (longestChargeTime - MCP_IO.Charger[7].ChargeTime.timeToChargeLoad) >= 0 THEN
+	ChargeTime_DB.FormChargeTime_PT[1] := REAL_TO_TIME (1000*(longestChargeTime - MCP_IO.Charger[7].ChargeTime.timeToChargeLoad));	
+END_IF;	
+IF (longestChargeTime - MCP_IO.Charger[8].ChargeTime.timeToChargeLoad) >= 0 THEN
+	ChargeTime_DB.FormChargeTime_PT[2] := REAL_TO_TIME (1000*(longestChargeTime - MCP_IO.Charger[8].ChargeTime.timeToChargeLoad));	
+END_IF;	
+
+IF (longestChargeTime - MCP_IO.GLS3_Load.timeToChargeLoad) >= 0 THEN
+		ChargeTime_DB.PreFormChargeTime_PT := REAL_TO_TIME (1000*(longestChargeTime - MCP_IO.GLS3_Load.timeToChargeLoad));
+		ELSE
+			ChargeTime_DB.PreFormChargeTime_PT := REAL_TO_TIME (1000*(MCP_IO.GLS3_Load.timeToChargeLoad -longestChargeTime));
+END_IF;
+*)
+
+
+
+IF i > n THEN 
+	i := 1;
+END_IF
+
+IF j > n THEN
+	j := 1;
+END_IF
+
+IF m > n THEN
+	m := 1;
+END_IF
+
+
+IF a > n THEN
+	a := 1;
+END_IF;]]></ST>
+    </Implementation>
+    <LineIds Name="ChargeTime">
+      <LineId Id="868" Count="22" />
+      <LineId Id="189" Count="0" />
+      <LineId Id="744" Count="0" />
+      <LineId Id="185" Count="0" />
+      <LineId Id="279" Count="0" />
+      <LineId Id="441" Count="5" />
+      <LineId Id="930" Count="0" />
+      <LineId Id="1001" Count="0" />
+      <LineId Id="1003" Count="7" />
+      <LineId Id="1000" Count="0" />
+      <LineId Id="164" Count="0" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="793" Count="0" />
+      <LineId Id="59" Count="1" />
+      <LineId Id="51" Count="0" />
+      <LineId Id="961" Count="2" />
+      <LineId Id="960" Count="0" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="891" Count="5" />
+      <LineId Id="558" Count="1" />
+      <LineId Id="452" Count="0" />
+      <LineId Id="470" Count="4" />
+      <LineId Id="453" Count="0" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="625" Count="1" />
+      <LineId Id="795" Count="0" />
+      <LineId Id="630" Count="1" />
+      <LineId Id="699" Count="1" />
+      <LineId Id="628" Count="0" />
+      <LineId Id="634" Count="0" />
+      <LineId Id="636" Count="0" />
+      <LineId Id="635" Count="0" />
+      <LineId Id="633" Count="0" />
+      <LineId Id="637" Count="0" />
+      <LineId Id="629" Count="0" />
+      <LineId Id="580" Count="0" />
+      <LineId Id="597" Count="0" />
+      <LineId Id="609" Count="2" />
+      <LineId Id="642" Count="1" />
+      <LineId Id="641" Count="0" />
+      <LineId Id="594" Count="0" />
+      <LineId Id="587" Count="0" />
+      <LineId Id="549" Count="0" />
+      <LineId Id="702" Count="1" />
+      <LineId Id="454" Count="0" />
+      <LineId Id="669" Count="0" />
+      <LineId Id="668" Count="0" />
+      <LineId Id="595" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="794" Count="0" />
+      <LineId Id="30" Count="1" />
+      <LineId Id="101" Count="0" />
+      <LineId Id="100" Count="0" />
+      <LineId Id="102" Count="1" />
+      <LineId Id="428" Count="0" />
+      <LineId Id="426" Count="1" />
+      <LineId Id="171" Count="0" />
+      <LineId Id="498" Count="0" />
+      <LineId Id="497" Count="0" />
+      <LineId Id="796" Count="0" />
+      <LineId Id="499" Count="0" />
+      <LineId Id="522" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

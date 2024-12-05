@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="ST_VoltTran_Base" Id="{e0426e8e-7144-4658-a486-87e9c19cbfd6}">
+    <Declaration><![CDATA[TYPE ST_VoltTran_Base :
+STRUCT
+	BateryLow 			: BOOL := 0;
+	VoltageReading_raw	: INT; //custom board
+	CapRaw				: UINT;
+	DataNull			: BOOL := 0;
+	LossVoltTransBoard	: BOOL := 0;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

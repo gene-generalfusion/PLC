@@ -1,0 +1,293 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="Permissives" Id="{639d0291-603e-4994-93d7-3ec14345fa0c}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Permissives
+VAR
+	
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//charge relay 
+IF (MCP_IO.MagDriver[1].ChargeRelayClose = TRUE AND 
+	MCP_IO.MagDriver[2].ChargeRelayClose = TRUE AND
+	MCP_IO.MagDriver[3].ChargeRelayClose = TRUE AND 
+	MCP_IO.MagDriver[4].ChargeRelayClose = TRUE AND 
+	MCP_IO.MagDriver[5].ChargeRelayClose = TRUE AND 
+	MCP_IO.MagDriver[6].ChargeRelayClose = TRUE) OR HMI_DB.AllChargeRelayCloseBP = TRUE
+	THEN 
+		Permissives_DB.AllChargeRelayClosed := TRUE;
+	ELSIF 
+		MCP_IO.MagDriver[1].ChargeRelayClose = FALSE AND 
+		MCP_IO.MagDriver[2].ChargeRelayClose = FALSE AND
+		MCP_IO.MagDriver[3].ChargeRelayClose = FALSE AND 
+		MCP_IO.MagDriver[4].ChargeRelayClose = FALSE AND 
+		MCP_IO.MagDriver[5].ChargeRelayClose = FALSE AND 
+		MCP_IO.MagDriver[6].ChargeRelayClose = FALSE
+	THEN
+		Permissives_DB.AllChargeRelayClosed := FALSE;
+END_IF;
+
+//dump relay
+IF (MCP_IO.MagDriver[1].DumpRelayOpen = TRUE AND 
+	MCP_IO.MagDriver[2].DumpRelayOpen = TRUE AND
+	MCP_IO.MagDriver[3].DumpRelayOpen = TRUE AND
+	
+	MCP_IO.MagDriver[4].DumpRelayOpen = TRUE AND 
+	MCP_IO.MagDriver[5].DumpRelayOpen = TRUE AND
+	MCP_IO.MagDriver[6].DumpRelayOpen = TRUE) OR HMI_DB.AllDumpRelaysOpenBP = TRUE
+	THEN
+		Permissives_DB.AllDumpRelayOpen := TRUE;
+		ELSIF
+			MCP_IO.MagDriver[1].DumpRelayOpen = FALSE AND 
+			MCP_IO.MagDriver[2].DumpRelayOpen = FALSE AND
+			MCP_IO.MagDriver[3].DumpRelayOpen = FALSE AND
+			MCP_IO.MagDriver[4].DumpRelayOpen = FALSE AND
+			MCP_IO.MagDriver[5].DumpRelayOpen = FALSE AND
+			MCP_IO.MagDriver[6].DumpRelayOpen = FALSE 
+		THEN
+			Permissives_DB.AllDumpRelayOpen := FALSE;
+END_IF;
+
+IF Permissives_DB.AllChargeRelayClosed = TRUE AND 
+	Permissives_DB.AllDumpRelayOpen = TRUE   //voltmonitor board has missing packets, so this might be sensitive and might need to bypass
+	THEN
+		Permissives_DB.ReadyToCharge := TRUE;
+	ELSE 
+		Permissives_DB.ReadyToCharge := FALSE;
+END_IF
+
+//charger dc ok
+IF MCP_IO.Charger[1].DCOK = TRUE AND 
+	MCP_IO.Charger[2].DCOK = TRUE AND 
+	MCP_IO.Charger[3].DCOK = TRUE AND
+	MCP_IO.Charger[4].DCOK = TRUE AND
+	MCP_IO.Charger[5].DCOK = TRUE AND
+	MCP_IO.Charger[6].DCOK = TRUE 
+	THEN
+		Permissives_DB.AllChargerDCOK := TRUE;
+	ELSE 
+		Permissives_DB.AllChargerDCOK := FALSE;
+END_IF
+//charger ac ok
+IF MCP_IO.Charger[1].ACOK = TRUE AND 
+	MCP_IO.Charger[2].ACOK = TRUE AND 
+	MCP_IO.Charger[3].ACOK = TRUE AND
+	MCP_IO.Charger[4].ACOK = TRUE AND
+	MCP_IO.Charger[5].ACOK = TRUE AND
+	MCP_IO.Charger[6].ACOK = TRUE 
+	THEN
+		Permissives_DB.AllChargerACOK := TRUE;
+	ELSE 
+		Permissives_DB.AllChargerACOK := FALSE;
+END_IF
+
+// temperature 
+IF MCP_IO.Charger[1].OverTemp = FALSE AND 
+	MCP_IO.Charger[2].OverTemp = FALSE AND 
+	MCP_IO.Charger[3].OverTemp = FALSE AND
+	MCP_IO.Charger[4].OverTemp = FALSE AND
+	MCP_IO.Charger[5].OverTemp = FALSE AND
+	MCP_IO.Charger[6].OverTemp = FALSE 
+	THEN
+		Permissives_DB.AllChargerTempOK := TRUE;
+	ELSE 
+		Permissives_DB.AllChargerTempOK := FALSE;
+END_IF
+
+//dump resistor temp 
+Permissives_DB.TempThres := HMI_DB.DumpResTempThres;
+
+IF MCP_IO.MagDriver[1].DumpResistorTemp < Permissives_DB.TempThres AND
+	MCP_IO.MagDriver[2].DumpResistorTemp < Permissives_DB.TempThres AND
+	MCP_IO.MagDriver[3].DumpResistorTemp < Permissives_DB.TempThres AND
+	MCP_IO.MagDriver[4].DumpResistorTemp < Permissives_DB.TempThres AND
+	MCP_IO.MagDriver[5].DumpResistorTemp < Permissives_DB.TempThres AND
+	MCP_IO.MagDriver[6].DumpResistorTemp < Permissives_DB.TempThres
+	THEN 
+		Permissives_DB.AllDumpResTempOK := TRUE;
+		ELSE
+			Permissives_DB.AllDumpResTempOK := FALSE;
+END_IF
+
+
+
+//cap voltage
+IF (MCP_IO.MagDriver[1].Cap[1].CapVoltage <= Permissives_DB.CapVoltageThres AND
+	MCP_IO.MagDriver[1].Cap[2].CapVoltage <= Permissives_DB.CapVoltageThres AND
+	MCP_IO.MagDriver[2].Cap[1].CapVoltage <= Permissives_DB.CapVoltageThres AND
+	MCP_IO.MagDriver[2].Cap[2].CapVoltage <= Permissives_DB.CapVoltageThres AND
+	MCP_IO.MagDriver[3].Cap[1].CapVoltage <= Permissives_DB.CapVoltageThres AND
+	MCP_IO.MagDriver[3].Cap[2].CapVoltage <= Permissives_DB.CapVoltageThres AND
+	MCP_IO.MagDriver[4].Cap[1].CapVoltage <= Permissives_DB.CapVoltageThres AND
+	MCP_IO.MagDriver[4].Cap[2].CapVoltage <= Permissives_DB.CapVoltageThres AND
+	MCP_IO.MagDriver[5].Cap[1].CapVoltage <= Permissives_DB.CapVoltageThres AND
+	MCP_IO.MagDriver[5].Cap[2].CapVoltage <= Permissives_DB.CapVoltageThres AND
+	MCP_IO.MagDriver[6].Cap[1].CapVoltage <= Permissives_DB.CapVoltageThres AND
+	MCP_IO.MagDriver[6].Cap[2].CapVoltage <= Permissives_DB.CapVoltageThres) OR HMI_DB.AllCapsDischargedBP = TRUE 
+(*  AND all other module voltage feedback <= 40, might need the -ve end & check for valid data*) 
+	THEN
+		Permissives_DB.AllCapsDischarged := TRUE;
+	ELSE 
+		Permissives_DB.AllCapsDischarged := FALSE;
+END_IF
+
+IF MCP_IO.MagDriver[1].SCR_ready_to_fire AND 
+	MCP_IO.MagDriver[2].SCR_ready_to_fire AND 
+	MCP_IO.MagDriver[3].SCR_ready_to_fire AND 
+	MCP_IO.MagDriver[4].SCR_ready_to_fire AND 
+	MCP_IO.MagDriver[5].SCR_ready_to_fire AND 
+	MCP_IO.MagDriver[6].SCR_ready_to_fire 
+	THEN 
+		Permissives_DB.AllSCRreadyToFire := TRUE;
+		ELSE
+			Permissives_DB.AllSCRreadyToFire := FALSE;
+END_IF;
+
+IF (//Permissives_DB.AllChargerInhibitON	= TRUE AND 
+	Permissives_DB.AllDumpRelayOpen = FALSE AND 
+	Permissives_DB.AllCapsDischarged = TRUE) OR HMI_DB.SystemSafeBP = TRUE 
+THEN
+	(*MCP_IO.Charger[2].voltageFeedback <= 10 AND *)
+	Permissives_DB.SystemIsSafe := TRUE;
+	ELSE
+		Permissives_DB.SystemIsSafe := FALSE;
+END_IF
+		
+IF Permissives_DB.AllCapsDischarged = TRUE THEN 
+	MCP_IO.TurnONSystemChargedLED := FALSE; //for status light only
+	
+END_IF
+
+//MCP_IO.Charger[i].ACOK , DCOK, TEMPOK...
+
+// might or might not beused for the seq
+IF MCP_IO.PSU1_DCOK = TRUE AND MCP_IO.Charger[1].ACOK = TRUE  THEN
+	Trips_DB.AllDCpsuOK := TRUE;
+	ELSE
+		Trips_DB.AllDCpsuOK := FALSE;
+END_IF
+
+IF MCP_IO.MasterStopPB_NotPressed = FALSE THEN 
+	Trips_DB.MasterSTOPPressed := TRUE;
+	ELSE
+		Trips_DB.MasterSTOPPressed := FALSE;
+END_IF
+
+//add logic for e stop
+IF MCP_IO.CageEstopCircuitOK = FALSE OR Trips_DB.AnyEstopPressed = FALSE THEN 
+	Trips_DB.AnyEstopPressed := TRUE;
+END_IF
+]]></ST>
+    </Implementation>
+    <LineIds Name="Permissives">
+      <LineId Id="745" Count="0" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="194" Count="4" />
+      <LineId Id="268" Count="1" />
+      <LineId Id="259" Count="0" />
+      <LineId Id="261" Count="6" />
+      <LineId Id="260" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="746" Count="0" />
+      <LineId Id="17" Count="1" />
+      <LineId Id="203" Count="0" />
+      <LineId Id="206" Count="1" />
+      <LineId Id="210" Count="2" />
+      <LineId Id="19" Count="1" />
+      <LineId Id="270" Count="0" />
+      <LineId Id="272" Count="5" />
+      <LineId Id="290" Count="0" />
+      <LineId Id="271" Count="0" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="220" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="709" Count="0" />
+      <LineId Id="711" Count="0" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="27" Count="1" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="121" Count="0" />
+      <LineId Id="129" Count="0" />
+      <LineId Id="128" Count="0" />
+      <LineId Id="315" Count="1" />
+      <LineId Id="318" Count="2" />
+      <LineId Id="317" Count="0" />
+      <LineId Id="130" Count="0" />
+      <LineId Id="132" Count="1" />
+      <LineId Id="131" Count="0" />
+      <LineId Id="747" Count="10" />
+      <LineId Id="139" Count="0" />
+      <LineId Id="758" Count="0" />
+      <LineId Id="577" Count="0" />
+      <LineId Id="761" Count="9" />
+      <LineId Id="759" Count="0" />
+      <LineId Id="773" Count="0" />
+      <LineId Id="771" Count="0" />
+      <LineId Id="791" Count="0" />
+      <LineId Id="793" Count="0" />
+      <LineId Id="778" Count="0" />
+      <LineId Id="780" Count="0" />
+      <LineId Id="782" Count="7" />
+      <LineId Id="781" Count="0" />
+      <LineId Id="779" Count="0" />
+      <LineId Id="777" Count="0" />
+      <LineId Id="774" Count="0" />
+      <LineId Id="144" Count="0" />
+      <LineId Id="143" Count="0" />
+      <LineId Id="578" Count="0" />
+      <LineId Id="327" Count="0" />
+      <LineId Id="579" Count="0" />
+      <LineId Id="328" Count="0" />
+      <LineId Id="580" Count="0" />
+      <LineId Id="329" Count="0" />
+      <LineId Id="581" Count="0" />
+      <LineId Id="742" Count="0" />
+      <LineId Id="582" Count="0" />
+      <LineId Id="743" Count="0" />
+      <LineId Id="583" Count="0" />
+      <LineId Id="334" Count="0" />
+      <LineId Id="336" Count="0" />
+      <LineId Id="145" Count="0" />
+      <LineId Id="147" Count="1" />
+      <LineId Id="146" Count="0" />
+      <LineId Id="576" Count="0" />
+      <LineId Id="484" Count="0" />
+      <LineId Id="693" Count="0" />
+      <LineId Id="799" Count="4" />
+      <LineId Id="805" Count="2" />
+      <LineId Id="804" Count="0" />
+      <LineId Id="41" Count="0" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="55" Count="0" />
+      <LineId Id="100" Count="0" />
+      <LineId Id="51" Count="0" />
+      <LineId Id="38" Count="0" />
+      <LineId Id="40" Count="0" />
+      <LineId Id="56" Count="1" />
+      <LineId Id="39" Count="0" />
+      <LineId Id="407" Count="0" />
+      <LineId Id="468" Count="0" />
+      <LineId Id="103" Count="0" />
+      <LineId Id="476" Count="0" />
+      <LineId Id="104" Count="0" />
+      <LineId Id="70" Count="0" />
+      <LineId Id="72" Count="0" />
+      <LineId Id="727" Count="0" />
+      <LineId Id="717" Count="0" />
+      <LineId Id="75" Count="0" />
+      <LineId Id="718" Count="0" />
+      <LineId Id="720" Count="1" />
+      <LineId Id="719" Count="0" />
+      <LineId Id="724" Count="0" />
+      <LineId Id="723" Count="0" />
+      <LineId Id="725" Count="0" />
+      <LineId Id="728" Count="1" />
+      <LineId Id="726" Count="0" />
+      <LineId Id="744" Count="0" />
+      <LineId Id="735" Count="0" />
+      <LineId Id="483" Count="0" />
+      <LineId Id="732" Count="2" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <GVL Name="LCP3_IO" Id="{1740c835-4b09-49d2-9d11-138c7e138ab6}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	//Shaft Ramp Supply
+	PSU1_OK				: BOOL := FALSE;
+	VMB 				: ST_VoltMon_Base;
+	SegmentCharged		: BOOL := FALSE;
+	CloseSRChargeRly	: BOOL := FALSE;
+	SRChargeRly_close 	: BOOL := FALSE;
+	OpenSRDumpRly		: ARRAY[1..8] OF BOOL;
+	SRDumpRelay_close 	: BOOL := FALSE;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

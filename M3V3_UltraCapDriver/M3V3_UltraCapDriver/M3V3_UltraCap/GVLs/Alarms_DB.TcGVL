@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <GVL Name="Alarms_DB" Id="{da78a859-3b87-44ba-a904-b3ed09d5c557}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	MCP	: ST_Alarm_Base;
+	Segment1 : ST_Alarm_Base;
+	
+	AlarmWord1  : ST_Alarm_Base;
+	AlarmWord2  : ST_Alarm_Base;
+	AlarmWord3  : ST_Alarm_Base;
+
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

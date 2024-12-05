@@ -3070,6 +3070,23 @@
             "SUBSYMBOL_MAPPING": "",
             "USEMAPPING": true
         },
+        "PLC1.HMI_DB.ChargePrefireDisconCap": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::ChargePrefireDisconCap",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "comment": "1 = charge, 0 = dump?"
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
         "PLC1.HMI_DB.ChargerHVOFF_rlyDelayPT_INT": {
             "ACCESS": 3,
             "CUSTOMERDATA": "",
@@ -3117,6 +3134,16 @@
             "DOMAIN": "ADS",
             "DYNAMIC": true,
             "MAPPING": "PLC1::HMI_DB::CloseChargeRlySW",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.HMI_DB.ClosePrefireDisconSW": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::HMI_DB::ClosePrefireDisconSW",
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
@@ -5317,6 +5344,75 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.MCP_IO.PrefireDiscon.ChargePrefireDisconCap": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::PrefireDiscon::ChargePrefireDisconCap",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "comment": "1 = charge, 0 = dump?",
+                        "propertyOrder": 3
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.PrefireDiscon.ClosePrefireDiscon": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::PrefireDiscon::ClosePrefireDiscon",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 4
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.PrefireDiscon.PrefireDisconClosed": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::PrefireDiscon::PrefireDisconClosed",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.PrefireDiscon.PrefireDisconOpen": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::PrefireDiscon::PrefireDisconOpen",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
         "PLC1.Permissives.AllChargerHVisOFF": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -5410,6 +5506,26 @@
             "DOMAIN": "ADS",
             "DYNAMIC": true,
             "MAPPING": "PLC1::Permissives_DB::CageInterlockOK",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.Permissives_DB.PreFireDisconOpen": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::Permissives_DB::PreFireDisconOpen",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.Permissives_DB.PrefireDisconClosed": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::Permissives_DB::PrefireDisconClosed",
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
@@ -7387,10 +7503,12 @@
                 "PLC1.HMI_DB.CSV_loggingDone": 3,
                 "PLC1.HMI_DB.CSV_loggingError": 3,
                 "PLC1.HMI_DB.ChargePB": 3,
+                "PLC1.HMI_DB.ChargePrefireDisconCap": 3,
                 "PLC1.HMI_DB.ChargerHVOFF_rlyDelayPT_INT": 3,
                 "PLC1.HMI_DB.ChargingRunOutTMR_elapse": 3,
                 "PLC1.HMI_DB.ClearFaultPB": 3,
                 "PLC1.HMI_DB.CloseChargeRlySW": 3,
+                "PLC1.HMI_DB.ClosePrefireDisconSW": 3,
                 "PLC1.HMI_DB.DumpPB": 3,
                 "PLC1.HMI_DB.FillingBuffer": 3,
                 "PLC1.HMI_DB.FirePB": 3,
@@ -7537,6 +7655,10 @@
                 "PLC1.MCP_IO.Charger.5.voltageFeedback": 3,
                 "PLC1.MCP_IO.Charger.5.voltageSP": 3,
                 "PLC1.MCP_IO.EnergizeACKontactor": 3,
+                "PLC1.MCP_IO.PrefireDiscon.ChargePrefireDisconCap": 3,
+                "PLC1.MCP_IO.PrefireDiscon.ClosePrefireDiscon": 3,
+                "PLC1.MCP_IO.PrefireDiscon.PrefireDisconClosed": 3,
+                "PLC1.MCP_IO.PrefireDiscon.PrefireDisconOpen": 3,
                 "PLC1.Permissives.AllChargerHVisOFF": 3,
                 "PLC1.Permissives.AllChargerInhibitON": 3,
                 "PLC1.Permissives.AllDumpRelayOpen": 3,
@@ -7545,6 +7667,8 @@
                 "PLC1.Permissives_DB.AllChargerEOC": 3,
                 "PLC1.Permissives_DB.AllDumpRelayOpen": 3,
                 "PLC1.Permissives_DB.CageInterlockOK": 3,
+                "PLC1.Permissives_DB.PreFireDisconOpen": 3,
+                "PLC1.Permissives_DB.PrefireDisconClosed": 3,
                 "PLC1.Sequence.ChargeTimeFinished": 3,
                 "PLC1.Sequence.eState": 3,
                 "PLC1.Setpoints.TDKLoad.0.NumOfCharger": 3,

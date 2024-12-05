@@ -33,7 +33,7 @@ VAR_GLOBAL
 END_VAR
 
 VAR_GLOBAL PERSISTENT
-	Charger 					: ARRAY [1..6] OF ST_Charger_Base;
+	Charger 					: ARRAY [1..7] OF ST_Charger_Base;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

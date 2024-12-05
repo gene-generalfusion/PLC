@@ -156,24 +156,6 @@
 			</ArrayInfo>
 		</DataType>
 		<DataType>
-			<Name GUID="{18071995-0000-0000-0000-000300000008}" IecBaseType="true" AutoDeleteType="true">ARRAY [0..7] OF BYTE</Name>
-			<BitSize>64</BitSize>
-			<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
-			<ArrayInfo>
-				<LBound>0</LBound>
-				<Elements>8</Elements>
-			</ArrayInfo>
-		</DataType>
-		<DataType>
-			<Name GUID="{18071995-0000-0000-0000-000300000004}" IecBaseType="true" AutoDeleteType="true">ARRAY [0..3] OF BYTE</Name>
-			<BitSize>32</BitSize>
-			<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
-			<ArrayInfo>
-				<LBound>0</LBound>
-				<Elements>4</Elements>
-			</ArrayInfo>
-		</DataType>
-		<DataType>
 			<Name GUID="{18071995-0000-0000-0000-002000000007}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..6] OF BIT</Name>
 			<BitSize>7</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
@@ -183,39 +165,12 @@
 			</ArrayInfo>
 		</DataType>
 		<DataType>
-			<Name GUID="{18071995-0000-0000-0000-00200000000C}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..11] OF BIT</Name>
-			<BitSize>12</BitSize>
-			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
-			<ArrayInfo>
-				<LBound>0</LBound>
-				<Elements>12</Elements>
-			</ArrayInfo>
-		</DataType>
-		<DataType>
-			<Name GUID="{18071995-0000-0000-0000-002000000008}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..0] OF BYTE</Name>
-			<BitSize>8</BitSize>
+			<Name GUID="{18071995-0000-0000-0000-000300000008}" IecBaseType="true" AutoDeleteType="true">ARRAY [0..7] OF BYTE</Name>
+			<BitSize>64</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
 			<ArrayInfo>
 				<LBound>0</LBound>
-				<Elements>1</Elements>
-			</ArrayInfo>
-		</DataType>
-		<DataType>
-			<Name GUID="{18071995-0000-0000-0000-002000000010}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..1] OF BYTE</Name>
-			<BitSize>16</BitSize>
-			<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
-			<ArrayInfo>
-				<LBound>0</LBound>
-				<Elements>2</Elements>
-			</ArrayInfo>
-		</DataType>
-		<DataType>
-			<Name GUID="{18071995-0000-0000-0000-00200000001A}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..25] OF BIT</Name>
-			<BitSize>26</BitSize>
-			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
-			<ArrayInfo>
-				<LBound>0</LBound>
-				<Elements>26</Elements>
+				<Elements>8</Elements>
 			</ArrayInfo>
 		</DataType>
 		<DataType>
@@ -11403,11 +11358,11 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 					<Box Id="11" BoxType="9094" BoxFlags="#x00000020">
 						<Name>Term 12 (EL6751)</Name>
 						<ImageId>1003</ImageId>
-						<EtherCAT SlaveType="5" AdsServerAddress="ac19e26803010000" FixedAdsServerNetId="true" PdiType="#x0408" ExecIo="true" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="39" FoeType="1" VendorId="#x00000002" ProductCode="#x1a5f3052" RevisionNo="#x00160000" InfoDataAddr="true" InfoDataNetId="true" OwnAddrExtern="true" TimeoutStateChange1="5000" TimeoutStateChange3="10000" TimeoutStateChange4="1000" TimeoutMailbox2="2000" GenerateOwnNetId="true" InitializeOwnNetId="true" PortPhys="51" MaxSlotCount="126" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL6751 CANopen Master" Desc="EL6751" PortABoxInfo="#x0100000a">
+						<EtherCAT SlaveType="5" AdsServerAddress="ac19e268070c0000" PdiType="#x0408" ExecIo="true" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="39" FoeType="1" VendorId="#x00000002" ProductCode="#x1a5f3052" RevisionNo="#x00160000" InfoDataAddr="true" InfoDataNetId="true" TimeoutStateChange1="5000" TimeoutStateChange3="10000" TimeoutStateChange4="1000" TimeoutMailbox2="2000" GenerateOwnNetId="true" InitializeOwnNetId="true" PortPhys="51" MaxSlotCount="126" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL6751 CANopen Master" Desc="EL6751" PortABoxInfo="#x0100000a">
 							<SyncMan>001000042600010001000000500000040004001026010000</SyncMan>
 							<SyncMan>001400042200010002000000500000040004001422010000</SyncMan>
-							<SyncMan>001808002400010003000000000000000000001826010000</SyncMan>
-							<SyncMan>00246e002200010004000000000000000000002422010000</SyncMan>
+							<SyncMan>001800002400000003000000000000000000001826010000</SyncMan>
+							<SyncMan>002402002200010004000000000000000000002422010000</SyncMan>
 							<Fmmu>0000000000000000001800020100000001000000000000000000000000000000</Fmmu>
 							<Fmmu>0000000000000000002400010100000002000000000000000000000000000000</Fmmu>
 							<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
@@ -11415,129 +11370,15 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 							<SuName>Term 12 (EL6751)</SuName>
 							<DcMode>53796e6368726f6e0000000000000000534d2d53796e6368726f6e000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</DcMode>
 							<DcMode>444353594e430000000000000000000044432d53796e6368726f6e000000000000000000000000000000000000000000000000000000000090d00300000000070100000000000000000000000000000000000000000000000000000000000000</DcMode>
-							<Pdo Name="Vector__XXX_IN" Index="#x1a00" Flags="#x0011" SyncMan="3">
-								<Entry Name="CAN TxPDO 1" Index="#x6000" Sub="#x01" Flags="#x00000100">
-									<Type GUID="{18071995-0000-0000-0000-000300000008}">ARRAY [0..7] OF BYTE</Type>
+							<Pdo Name="Device" Index="#x1a80" Flags="#x0011" SyncMan="3">
+								<Entry Name="Error" Index="#xf100" Sub="#x01" Flags="#x00000100">
+									<Type>USINT</Type>
 								</Entry>
-								<Entry Name="CAN TxPDO 2" Index="#x6000" Sub="#x02" Flags="#x00000100">
-									<Type GUID="{18071995-0000-0000-0000-000300000004}">ARRAY [0..3] OF BYTE</Type>
-								</Entry>
-								<Entry Name="CAN TxPDO 3" Index="#x6000" Sub="#x03" Flags="#x00000100">
-									<Type GUID="{18071995-0000-0000-0000-000300000008}">ARRAY [0..7] OF BYTE</Type>
-								</Entry>
-								<Entry Name="CAN TxPDO 4" Index="#x6000" Sub="#x04" Flags="#x00000100">
-									<Type GUID="{18071995-0000-0000-0000-000300000004}">ARRAY [0..3] OF BYTE</Type>
-								</Entry>
-								<Entry Name="CAN TxPDO 5" Index="#x6000" Sub="#x05" Flags="#x00000100">
-									<Type GUID="{18071995-0000-0000-0000-000300000008}">ARRAY [0..7] OF BYTE</Type>
-								</Entry>
-								<Entry Name="CAN TxPDO 6" Index="#x6000" Sub="#x06" Flags="#x00000100">
-									<Type GUID="{18071995-0000-0000-0000-000300000004}">ARRAY [0..3] OF BYTE</Type>
-								</Entry>
-								<Entry Name="CAN TxPDO 7" Index="#x6000" Sub="#x07" Flags="#x00000100">
-									<Type GUID="{18071995-0000-0000-0000-000300000008}">ARRAY [0..7] OF BYTE</Type>
-								</Entry>
-								<Entry Name="CAN TxPDO 8" Index="#x6000" Sub="#x08" Flags="#x00000100">
-									<Type GUID="{18071995-0000-0000-0000-000300000004}">ARRAY [0..3] OF BYTE</Type>
-								</Entry>
-								<Entry Name="CAN TxPDO 9" Index="#x6000" Sub="#x09" Flags="#x00000100">
-									<Type GUID="{18071995-0000-0000-0000-000300000008}">ARRAY [0..7] OF BYTE</Type>
-								</Entry>
-								<Entry Name="CAN TxPDO 10" Index="#x6000" Sub="#x0a" Flags="#x00000100">
-									<Type GUID="{18071995-0000-0000-0000-000300000004}">ARRAY [0..3] OF BYTE</Type>
-								</Entry>
-								<Entry Name="CAN TxPDO 11" Index="#x6000" Sub="#x0b" Flags="#x00000100">
-									<Type GUID="{18071995-0000-0000-0000-000300000008}">ARRAY [0..7] OF BYTE</Type>
-								</Entry>
-								<Entry Name="CAN TxPDO 12" Index="#x6000" Sub="#x0c" Flags="#x00000100">
-									<Type GUID="{18071995-0000-0000-0000-000300000004}">ARRAY [0..3] OF BYTE</Type>
-								</Entry>
-								<Entry Name="CAN TxPDO 13" Index="#x6000" Sub="#x0d" Flags="#x00000100">
-									<Type GUID="{18071995-0000-0000-0000-000300000008}">ARRAY [0..7] OF BYTE</Type>
-								</Entry>
-								<Entry Name="CAN TxPDO 14" Index="#x6000" Sub="#x0e" Flags="#x00000100">
-									<Type GUID="{18071995-0000-0000-0000-000300000004}">ARRAY [0..3] OF BYTE</Type>
-								</Entry>
-								<Entry Name="CAN TxPDO 15" Index="#x6000" Sub="#x0f" Flags="#x00000100">
-									<Type GUID="{18071995-0000-0000-0000-000300000008}">ARRAY [0..7] OF BYTE</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="Vector__XXX_OUT" Index="#x1600" InOut="1" Flags="#x0011" SyncMan="2">
-								<Entry Name="CAN RxPDO 1" Index="#x7000" Sub="#x01" Flags="#x00000100">
-									<Type GUID="{18071995-0000-0000-0000-000300000008}">ARRAY [0..7] OF BYTE</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="Diag Flag CANopen Slaves" Index="#x1a82" Flags="#x0011" SyncMan="3">
-								<Entry Name="CANopen Slave 001" Index="#xf103" Sub="#x01" Flags="#x00000100">
+								<Entry Name="DiagFlag" Index="#xf100" Sub="#x02" Flags="#x00000100">
 									<Type>BIT</Type>
 								</Entry>
-								<Entry Flags="#x00000100">
+								<Entry>
 									<Type GUID="{18071995-0000-0000-0000-002000000007}">ARRAY [0..6] OF BIT</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="Node State CANopen Slaves" Index="#x1a83" Flags="#x0011" SyncMan="3">
-								<Entry Name="CANopen Slave 001" Index="#xf102" Sub="#x01" Flags="#x00000100">
-									<DefaultDataMask>1f1f</DefaultDataMask>
-									<Type>USINT</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="CAN Diagnosis" Index="#x1a84" Flags="#x0011" SyncMan="3">
-								<Entry Flags="#x00000100">
-									<Type GUID="{18071995-0000-0000-0000-00200000000C}">ARRAY [0..11] OF BIT</Type>
-								</Entry>
-								<Entry Name="Device Diag" Index="#xf101" Sub="#x0d" Flags="#x00000100">
-									<Type>BIT</Type>
-								</Entry>
-								<Entry Name="Sync Error " Index="#xf101" Sub="#x0e" Flags="#x00000100">
-									<Type>BIT</Type>
-								</Entry>
-								<Entry Name="Device Toggle" Index="#xf101" Sub="#x0f" Flags="#x00000100">
-									<Type>BIT</Type>
-								</Entry>
-								<Entry Name="Device State" Index="#xf101" Sub="#x10" Flags="#x00000100">
-									<Type>BIT</Type>
-								</Entry>
-								<Entry Name="Cycle Counter" Index="#xf101" Sub="#x11" Flags="#x00000100">
-									<Type>UINT</Type>
-								</Entry>
-								<Entry Name="Slave Status Counter" Index="#xf101" Sub="#x12" Flags="#x00000100">
-									<Type>USINT</Type>
-								</Entry>
-								<Entry Flags="#x00000100">
-									<Type GUID="{18071995-0000-0000-0000-002000000008}">ARRAY [0..0] OF BYTE</Type>
-								</Entry>
-								<Entry Name="Actual Cycle Time" Index="#xf101" Sub="#x14" Flags="#x00000100">
-									<Type>UINT</Type>
-								</Entry>
-								<Entry Flags="#x00000100">
-									<Type GUID="{18071995-0000-0000-0000-002000000010}">ARRAY [0..1] OF BYTE</Type>
-								</Entry>
-								<Entry Name="Rx error counter" Index="#xf108" Sub="#x21" Flags="#x00000100">
-									<Type>USINT</Type>
-								</Entry>
-								<Entry Name="Tx error counter" Index="#xf108" Sub="#x22" Flags="#x00000100">
-									<Type>USINT</Type>
-								</Entry>
-								<Entry Name="Bus off" Index="#xf108" Sub="#x01" Flags="#x00000100">
-									<Type>BIT</Type>
-								</Entry>
-								<Entry Name="Warning limit reached" Index="#xf108" Sub="#x02" Flags="#x00000100">
-									<Type>BIT</Type>
-								</Entry>
-								<Entry Name="Rx overflow" Index="#xf108" Sub="#x03" Flags="#x00000100">
-									<Type>BIT</Type>
-								</Entry>
-								<Entry Flags="#x00000100">
-									<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
-								</Entry>
-								<Entry Name="Tx overflow" Index="#xf108" Sub="#x05" Flags="#x00000100">
-									<Type>BIT</Type>
-								</Entry>
-								<Entry Name="Ack error" Index="#xf108" Sub="#x06" Flags="#x00000100">
-									<Type>BIT</Type>
-								</Entry>
-								<Entry Flags="#x00000100">
-									<Type GUID="{18071995-0000-0000-0000-00200000001A}">ARRAY [0..25] OF BIT</Type>
 								</Entry>
 							</Pdo>
 							<CoeProfile ProfileNo="5001"/>
@@ -11555,7 +11396,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 				</Box>
 				<EtherCAT MaxSwitchPorts="2" MaxSwitchFrames="120" MaxSwitchMACs="100"/>
 			</Device>
-			<Device Id="2" DevType="87" AmsPort="28674" AmsNetId="172.25.226.104.3.1" RemoteName="Device 2 (EL6751)">
+			<Device Id="2" Disabled="true" DevType="87" AmsPort="28674" AmsNetId="172.25.226.104.3.1" RemoteName="Device 2 (EL6751)">
 				<Name>Device 2 (EL6751)</Name>
 				<AddressInfo>
 					<Ecat>
@@ -11754,11 +11595,11 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 							</Value>
 							<Value>
 								<Name>CanMsgSize[0]</Name>
-								<Value>110</Value>
+								<Value>16</Value>
 							</Value>
 							<Value>
 								<Name>CanMsgSize[1]</Name>
-								<Value>8</Value>
+								<Value>0</Value>
 							</Value>
 							<Value>
 								<Name>CanMsgScalingRulesInfo.Version</Name>
@@ -15611,6 +15452,7 @@ CAN-Message-Information:
 	</Project>
 	<Mappings>
 		<MappingInfo Identifier="{00000000-2001-0850-0020-500810000101}" Id="#x02030010"/>
+		<MappingInfo Identifier="{00000000-2001-0850-0020-500830000403}" Id="#x02030020"/>
 		<MappingInfo Identifier="{00000000-2001-0850-0020-500860000403}" Id="#x02030030"/>
 		<OwnerA Name="TIPC^MagnetSystem_PI4^MagnetSystem_PI4 Instance">
 			<OwnerB Name="TIID^Device 2 (EL6751)^Prepared DBC Signals^Vector__XXX^ElectricalData01">

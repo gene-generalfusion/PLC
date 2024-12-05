@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <TcEventSources Version="2">
 	<Source>
-		<GUID>{99B746B5-CAF8-4A23-959B-C431CADF648A}</GUID>
+		<GUID>{6D113C85-208C-47C9-B4F6-FD52AD474CEE}</GUID>
 		<Name LcId="1033">AlarmWord1</Name>
 		<Event>
 			<Id>1</Id>
@@ -17,7 +17,7 @@
 		</Event>
 		<Event>
 			<Id>4</Id>
-			<Message LcId="1033">Event_DisplayText</Message>
+			<Message LcId="1033">Prefire Disconnect Closed</Message>
 		</Event>
 		<Event>
 			<Id>5</Id>
@@ -25,7 +25,7 @@
 		</Event>
 		<Event>
 			<Id>6</Id>
-			<Message LcId="1033">Event_DisplayText</Message>
+			<Message LcId="1033">Prefire Disconnect Open</Message>
 		</Event>
 		<Event>
 			<Id>7</Id>

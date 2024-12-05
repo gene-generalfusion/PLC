@@ -7,19 +7,20 @@ VAR
 	j					: INT := 1;  // section 1 - 4 
 	k					: INT := 1;  // cap 1-10
 	m					: INT := 1; //form cap 1-12
+	n					: INT := 7;
 	VoltMonAC1			: ARRAY[1..18] OF VoltMonAC_FB;
 	VoltMonAC2			: ARRAY[1..18] OF VoltMonAC_FB;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[//MCP Charger 
 //Analog Input
-FOR i := 1 TO 6 BY 1 DO 
+FOR i := 1 TO n BY 1 DO 
 	//MCP_IO.Charger[i].voltageSP := (HMI_DB.TDKLoad[i].RequiredChargedV *1000);
 	MCP_IO.Charger[i].voltageSP := (1000*Setpoints.TDKLoad[i].RequiredChargedV);
 END_FOR
 
 //AI
-FOR i := 1 TO 6 BY 1 DO
+FOR i := 1 TO n BY 1 DO
 	//voltage
 	MCP_IO.Charger[i].voltageFeedback_norm := Norm_x (raw_input := INT_TO_REAL (MCP_IO.Charger[i].voltageFeedback_raw),
 														x_max := 32767,
@@ -68,7 +69,7 @@ END_FOR;
 //voltageSP = Required Charge Voltage******************
 //limit for charing the cap
 //FOR i := 1 TO 8 BY 1 DO
-FOR i := 1 TO 6 BY 1 DO	
+FOR i := 1 TO n BY 1 DO	
 	
 	//if 50kV config selected
 	IF MCP_IO.Charger[i].ChargerType = E_ChargerType.TDK50kV THEN 
@@ -477,8 +478,8 @@ VoltMonAC2[18](raw_input := DINT_TO_REAL(LCP2_IO.Segment[6].Module[9].VoltageFee
 					
 //reset counter
 //IF i > 8 THEN
-IF i > 6 THEN
-	i:=1;
+IF i > n THEN
+	i := 1;
 END_IF;
 
 IF j > 3 THEN 

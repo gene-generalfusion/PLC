@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="Alarms" Id="{aafde405-1e72-4db9-9a05-4be052802fc8}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Alarms
+VAR
+	bWarning : BOOL;
+	bConfirm : BOOL;
+	alarms : ARRAY[0..32] OF Alarms_FB;
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// Alarm Word 1 - MCP Alarms
+//MCP Alarms
+
+Alarms_DB.MCP.AlarmWord.0 := Trips_DB.AnyEstopPressed;
+Alarms_DB.MCP.AlarmWord.1 := Trips_DB.CageDoorNotClose;
+Alarms_DB.MCP.AlarmWord.2 := Trips_DB.ShortingSystemUnknown;
+//Alarms_DB.MCP.AlarmWord.3 := 
+//Alarms_DB.MCP.AlarmWord.4 := MCP_IO.Charger[1].SummaryFaulted;
+//Alarms_DB.MCP.AlarmWord.5 := MCP_IO.Charger[2].SummaryFaulted;
+//Alarms_DB.MCP.AlarmWord.6 := MCP_IO.Charger[3].SummaryFaulted;
+//Alarms_DB.MCP.AlarmWord.7 := MCP_IO.Charger[4].SummaryFaulted;
+//Alarms_DB.MCP.AlarmWord.8 := MCP_IO.Charger[5].SummaryFaulted;
+//Alarms_DB.MCP.AlarmWord.9 := MCP_IO.Charger[6].SummaryFaulted;
+Alarms_DB.MCP.AlarmWord.10 := HMI_DB.ForceToChargCompletePB;
+//Alarms_DB.MCP.AlarmWord.11 := VoltMonitor_DB.LossVoltMonitorBoard;
+Alarms_DB.MCP.AlarmWord.12 := Trips_DB.ChargedTimerRunout;
+Alarms_DB.MCP.AlarmWord.13 := Trips_DB.ChargingTimerRunout;
+Alarms_DB.MCP.AlarmWord.14 := HMI_DB.LastTimeShotLog;
+//Alarms_DB.MCP.AlarmWord.15 := HMI.ForceCharCompSatisfied;
+
+//Alarm Word 1 msg
+//IE: alarms[299](evtEntry:= Tc_Events.AlarmWord11.b4, bEvt:= gvl.test, bConfirm:= bConfirm);
+alarms[0](evtEntry:= Tc_Events.AlarmWord1.b0, bEvt:= Alarms_DB.MCP.AlarmWord.0, bConfirm:= bConfirm);
+alarms[1](evtEntry:= Tc_Events.AlarmWord1.b1, bEvt:= Alarms_DB.MCP.AlarmWord.1, bConfirm:= bConfirm);
+alarms[2](evtEntry:= Tc_Events.AlarmWord1.b2, bEvt:= Alarms_DB.MCP.AlarmWord.2, bConfirm:= bConfirm);
+alarms[3](evtEntry:= Tc_Events.AlarmWord1.b3, bEvt:= Alarms_DB.MCP.AlarmWord.3, bConfirm:= bConfirm);
+alarms[4](evtEntry:= Tc_Events.AlarmWord1.b4, bEvt:= Alarms_DB.MCP.AlarmWord.4, bConfirm:= bConfirm);
+alarms[5](evtEntry:= Tc_Events.AlarmWord1.b5, bEvt:= Alarms_DB.MCP.AlarmWord.5, bConfirm:= bConfirm);
+alarms[6](evtEntry:= Tc_Events.AlarmWord1.b6, bEvt:= Alarms_DB.MCP.AlarmWord.6, bConfirm:= bConfirm);
+alarms[7](evtEntry:= Tc_Events.AlarmWord1.b7, bEvt:= Alarms_DB.MCP.AlarmWord.7, bConfirm:= bConfirm);
+alarms[8](evtEntry:= Tc_Events.AlarmWord1.b8, bEvt:= Alarms_DB.MCP.AlarmWord.8, bConfirm:= bConfirm);
+alarms[9](evtEntry:= Tc_Events.AlarmWord1.b9, bEvt:= Alarms_DB.MCP.AlarmWord.9, bConfirm:= bConfirm);
+alarms[0](evtEntry:= Tc_Events.AlarmWord1.b10, bEvt:= Alarms_DB.MCP.AlarmWord.10, bConfirm:= bConfirm);
+alarms[11](evtEntry:= Tc_Events.AlarmWord1.b11, bEvt:= Alarms_DB.MCP.AlarmWord.11, bConfirm:= bConfirm);
+alarms[12](evtEntry:= Tc_Events.AlarmWord1.b12, bEvt:= Alarms_DB.MCP.AlarmWord.12, bConfirm:= bConfirm);
+alarms[13](evtEntry:= Tc_Events.AlarmWord1.b13, bEvt:= Alarms_DB.MCP.AlarmWord.13, bConfirm:= bConfirm);
+alarms[14](evtEntry:= Tc_Events.AlarmWord1.b14, bEvt:= Alarms_DB.MCP.AlarmWord.14, bConfirm:= bConfirm);
+alarms[15](evtEntry:= Tc_Events.AlarmWord1.b15, bEvt:= Alarms_DB.MCP.AlarmWord.15, bConfirm:= bConfirm);
+
+// Alarm Word 2 - Section 1 Alarms
+(*Alarms_DB.Section1.AlarmWord.0 := Trips_DB.Section[1].SystemTripped;
+Alarms_DB.Section1.AlarmWord.1 := Trips_DB.Section[1].LossPneumaticPressure;
+Alarms_DB.Section1.AlarmWord.2 := Trips_DB.Section[1].Peak.ChargeRelay1_Failed;
+Alarms_DB.Section1.AlarmWord.3 := Trips_DB.Section[1].Peak.ChargeRelay2_Failed;
+Alarms_DB.Section1.AlarmWord.4 := Trips_DB.Section[1].Peak.DumpRelay1_Failed;
+Alarms_DB.Section1.AlarmWord.5 := Trips_DB.Section[1].Peak.DumpRelay2_Failed;
+Alarms_DB.Section1.AlarmWord.6 := Trips_DB.Section[1].Sust.ChargeRelay1_Failed;
+Alarms_DB.Section1.AlarmWord.7 := Trips_DB.Section[1].Sust.ChargeRelay2_Failed;
+Alarms_DB.Section1.AlarmWord.8 := Trips_DB.Section[1].Sust.DumpRelay1_Failed;
+Alarms_DB.Section1.AlarmWord.9 := Trips_DB.Section[1].Sust.DumpRelay2_Failed;
+Alarms_DB.Section1.AlarmWord.10 := Trips_DB.Section[1].LossDCPower;
+
+
+// Alarm Word 2 - Msg
+alarms[16](evtEntry:= Tc_Events.AlarmWord2.b0, bEvt:= Alarms_DB.Section1.AlarmWord.0, bConfirm:= bConfirm);
+alarms[17](evtEntry:= Tc_Events.AlarmWord2.b1, bEvt:= Alarms_DB.Section1.AlarmWord.1, bConfirm:= bConfirm);
+alarms[18](evtEntry:= Tc_Events.AlarmWord2.b2, bEvt:= Alarms_DB.Section1.AlarmWord.2, bConfirm:= bConfirm);
+alarms[19](evtEntry:= Tc_Events.AlarmWord2.b3, bEvt:= Alarms_DB.Section1.AlarmWord.3, bConfirm:= bConfirm);
+alarms[20](evtEntry:= Tc_Events.AlarmWord2.b4, bEvt:= Alarms_DB.Section1.AlarmWord.4, bConfirm:= bConfirm);
+alarms[21](evtEntry:= Tc_Events.AlarmWord2.b5, bEvt:= Alarms_DB.Section1.AlarmWord.5, bConfirm:= bConfirm);
+alarms[22](evtEntry:= Tc_Events.AlarmWord2.b6, bEvt:= Alarms_DB.Section1.AlarmWord.6, bConfirm:= bConfirm);
+alarms[23](evtEntry:= Tc_Events.AlarmWord2.b7, bEvt:= Alarms_DB.Section1.AlarmWord.7, bConfirm:= bConfirm);
+alarms[24](evtEntry:= Tc_Events.AlarmWord2.b8, bEvt:= Alarms_DB.Section1.AlarmWord.8, bConfirm:= bConfirm);
+alarms[25](evtEntry:= Tc_Events.AlarmWord2.b9, bEvt:= Alarms_DB.Section1.AlarmWord.9, bConfirm:= bConfirm);
+alarms[26](evtEntry:= Tc_Events.AlarmWord2.b10, bEvt:= Alarms_DB.Section1.AlarmWord.10, bConfirm:= bConfirm);
+//alarms[27] - spare
+//alarms[28] - spare
+//alarms[29] - spare
+//alarms[30] - spare
+//alarms[31] - spare
+*)
+
+//Clear Alarm Word
+IF bConfirm THEN
+	Alarms_DB.MCP.AlarmWord := 0;
+	Alarms_DB.Segment1.AlarmWord := 0;
+	
+	(*Alarms_DB.Coil3.AlarmWord := 0;
+	Alarms_DB.Coil4.AlarmWord := 0;
+	Alarms_DB.Coil5.AlarmWord := 0;
+	Alarms_DB.Coil6.AlarmWord := 0;
+	Alarms_DB.Coil7.AlarmWord := 0;
+	Alarms_DB.Coil8.AlarmWord := 0;
+	Alarms_DB.Coil9.AlarmWord := 0;
+	Alarms_DB.Coil10.AlarmWord := 0;
+	Alarms_DB.AlarmWord_11.AlarmWord := 0;
+	Alarms_DB.AlarmWord_22.AlarmWord := 0;
+	Alarms_DB.AlarmWord_23.AlarmWord := 0;
+	Alarms_DB.AlarmWord_24.AlarmWord := 0;
+	Alarms_DB.AlarmWord_25.AlarmWord := 0;
+	Alarms_DB.AlarmWord_26.AlarmWord := 0;
+	Alarms_DB.AlarmWord_27.AlarmWord := 0;
+	*)
+END_IF;]]></ST>
+    </Implementation>
+    <LineIds Name="Alarms">
+      <LineId Id="549" Count="14" />
+      <LineId Id="1057" Count="0" />
+      <LineId Id="564" Count="0" />
+      <LineId Id="1078" Count="1" />
+      <LineId Id="565" Count="14" />
+      <LineId Id="1058" Count="0" />
+      <LineId Id="580" Count="0" />
+      <LineId Id="1080" Count="0" />
+      <LineId Id="583" Count="32" />
+      <LineId Id="993" Count="5" />
+      <LineId Id="1061" Count="0" />
+      <LineId Id="1002" Count="15" />
+      <LineId Id="38" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

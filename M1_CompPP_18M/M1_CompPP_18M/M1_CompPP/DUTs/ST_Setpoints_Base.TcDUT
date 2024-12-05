@@ -7,7 +7,7 @@ STRUCT
 	TotalCapacitance : REAL := 10; //uF - LOCAL ONLY, NOT FROM MAIN PLC - LoadCapacitance
 	PSratedV		 : REAL := 50;
 	wLCA			 : BOOL := TRUE;
-	NumOfCharger	 : INT := 1;
+	NumOfCharger	 : INT := 2;
 	eChargerType		: E_ChargerType;
 END_STRUCT
 END_TYPE

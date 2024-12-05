@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="ST_UC_Trip_Base" Id="{11f5a43d-c105-40f5-aa35-4c310a7d8d3b}">
+    <Declaration><![CDATA[TYPE ST_UC_Trip_Base :
+STRUCT
+	UC_Cell_OverV_StatusError	: BOOL; //0x11
+	UC_Cell_OverV_warning		: BOOL; //0x01 
+	UC_Cell_OverV_alarm			: BOOL; //0x10
+	
+	UC_tempHigh_StatusError		: BOOL; //0x11
+	UC_tempHigh_warning			: BOOL; //0x01
+	UC_tempHigh_alarm			: BOOL; //0x10
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

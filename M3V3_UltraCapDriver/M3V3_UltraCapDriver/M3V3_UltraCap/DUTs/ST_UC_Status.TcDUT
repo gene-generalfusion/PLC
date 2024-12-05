@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="ST_UC_Status" Id="{a35947e6-7856-403b-8b9a-3c853a220541}">
+    <Declaration><![CDATA[TYPE ST_UC_Status :
+STRUCT
+	Elec_Balancing		: USINT;
+	Elec_Imbalance		: USINT;
+	Elec_VoltageSum		: LREAL;
+	Elec_HighestVolt	: LREAL;
+	Elec_AveVolt		: LREAL;
+	Elec_OverVoltage	: USINT;
+	
+	Therm_LowTemp		: USINT;
+	Therm_HighTemp		: USINT;
+	Therm_HighestCell	: LREAL;
+	Therm_LowestCell	: LREAL;
+	
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

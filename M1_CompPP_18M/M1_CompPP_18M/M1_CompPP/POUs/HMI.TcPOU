@@ -15,6 +15,7 @@ VAR
 	LastTimeShotLog			: BOOL;
 	
 	i : INT := 1;
+	n : INT := 7;
 
 	LastTimeShotTMR_TON		: TON;
 	LastTimeShotTMR_PT		: TIME := T#120H;
@@ -42,7 +43,7 @@ IF Trips_DB.ChargedTimerRunout = TRUE OR
 			Trips_DB.TimerRunOutON := FALSE;
 		END_IF
 		
-FOR i := 1 TO 6 BY 1 DO 
+FOR i := 1 TO n BY 1 DO 
 	MCP_IO.Charger[i].ChargerType := Setpoints.TDKLoad[i].eChargerType := HMI_DB.TDKLoad[i].eChargerType;
 		
 	IF MCP_IO.Charger[i].ChargerType = E_ChargerType.TDK12kV THEN 
@@ -75,7 +76,7 @@ END_IF
 
 LongestChargeTIME := TIME_TO_REAL (ChargeGraphTMR_ET)/1000;
 
-IF i > 6 THEN 
+IF i > n THEN 
 	i := 1;
 END_IF]]></ST>
     </Implementation>

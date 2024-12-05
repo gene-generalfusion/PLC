@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="VoltTranBd" Id="{46a088e9-b64c-4338-ab7f-db7d597eb3ad}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK VoltTranBd
+VAR_INPUT
+	CapRaw : UINT;
+END_VAR
+VAR_OUTPUT
+	BatteryLow  		: BOOL;
+	VoltageReading		: INT; //custom board
+	VoltageReading_raw	: INT;
+	DataNull			: BOOL;
+	LossVoltMonitorBoard : BOOL := 0;
+END_VAR
+VAR
+	VMBoardWDT_TON :  TON;
+	VMBoardWDT_ET	: TIME;
+	DataNullRebunceTMR_TON :  TON;
+	DataNullRebounce	: BOOL;
+	VMBoardWDT_PT		: TIME := T#2S;
+	DataNullRebounce_PT	: TIME := T#800MS;
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+	IF CapRaw <> 0 THEN
+		VoltageReading_raw.0 := CapRaw.2;
+		VoltageReading_raw.1 := CapRaw.3;
+		VoltageReading_raw.2 := CapRaw.4;
+		VoltageReading_raw.3 := CapRaw.5;
+	
+		VoltageReading_raw.4 := CapRaw.6;
+		VoltageReading_raw.5 := CapRaw.7;
+		VoltageReading_raw.6 := CapRaw.8;
+		VoltageReading_raw.7 := CapRaw.9;
+	
+		VoltageReading_raw.8 := CapRaw.10;
+		VoltageReading_raw.9 := CapRaw.11;
+	
+		VoltageReading_raw.10 := 0;//CapRaw.14;
+		VoltageReading_raw.11 := 0;//CapRaw.15;
+		VoltageReading_raw.12 := 0;//CapRaw.12;
+		VoltageReading_raw.13 := 0;//CapRaw.13;
+		VoltageReading_raw.14 := 0; //CapRaw.14;
+	
+		VoltageReading_raw.15 := 0;//VoltMonitor_DB.CapRaw.4;
+		
+		VMBoardWDT_TON (IN := FALSE);
+		ELSE
+			VMBoardWDT_TON (IN := TRUE, PT := VMBoardWDT_PT, ET => VMBoardWDT_ET);
+			//VoltMonitor_DB.CapRaw_DummySnap[k] := 0;
+	END_IF
+	
+	
+	IF VMBoardWDT_TON.Q THEN 
+		DataNull := TRUE; 
+		LossVoltMonitorBoard := TRUE;
+	END_IF
+	
+	IF DataNull = TRUE THEN
+		VoltageReading_raw := ULINT_TO_INT(NULL);
+	END_IF
+	
+	IF LossVoltMonitorBoard = TRUE THEN
+		DataNullRebunceTMR_TON( IN := TRUE, PT := DataNullRebounce_PT);
+	END_IF
+
+	IF DataNullRebunceTMR_TON.Q = TRUE THEN
+		DataNull := FALSE;
+		DataNullRebunceTMR_TON( IN := FALSE);
+	END_IF
+	
+
+	IF DataNull = TRUE THEN
+		VoltageReading_raw := ULINT_TO_INT(NULL);
+	END_IF;
+]]></ST>
+    </Implementation>
+    <LineIds Name="VoltTranBd">
+      <LineId Id="52" Count="0" />
+      <LineId Id="25" Count="25" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="120" Count="1" />
+      <LineId Id="59" Count="17" />
+      <LineId Id="81" Count="3" />
+      <LineId Id="119" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

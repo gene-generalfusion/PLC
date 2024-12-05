@@ -85,30 +85,57 @@
 			</Properties>
 		</DataType>
 		<DataType>
-			<Name GUID="{B67C53DE-6A92-5C5B-4076-1B25F1887AC3}" IecBaseType="true" AutoDeleteType="true">ARRAY [1..6] OF Tc2_Standard.TON</Name>
-			<BitSize>1536</BitSize>
+			<Name IecBaseType="true">ARRAY [1..7] OF Tc2_Standard.TON</Name>
+			<BitSize>1792</BitSize>
 			<BaseType GUID="{1337BBBA-9A3F-D9E7-4ED6-FA23E60881AB}" Namespace="Tc2_Standard">TON</BaseType>
 			<ArrayInfo>
 				<LBound>1</LBound>
-				<Elements>6</Elements>
+				<Elements>7</Elements>
 			</ArrayInfo>
 		</DataType>
 		<DataType>
-			<Name GUID="{D5AB6594-30FC-6F26-C7BB-014E706F74D9}" IecBaseType="true" AutoDeleteType="true">ARRAY [1..6] OF TIME</Name>
-			<BitSize>192</BitSize>
+			<Name GUID="{2459F8BA-E846-161F-1492-56643EF570F1}" IecBaseType="true" AutoDeleteType="true">ARRAY [1..7] OF TIME</Name>
+			<BitSize>224</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000048}">TIME</BaseType>
 			<ArrayInfo>
 				<LBound>1</LBound>
-				<Elements>6</Elements>
+				<Elements>7</Elements>
 			</ArrayInfo>
 		</DataType>
 		<DataType>
-			<Name GUID="{DC21412B-5C97-6FC0-600D-070C26DE7CEC}" IecBaseType="true" AutoDeleteType="true">ARRAY [1..6] OF INT</Name>
-			<BitSize>96</BitSize>
+			<Name GUID="{F3547901-9536-103B-6094-3F08E24D4123}" IecBaseType="true" AutoDeleteType="true">ARRAY [1..7] OF INT</Name>
+			<BitSize>112</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000006}">INT</BaseType>
 			<ArrayInfo>
 				<LBound>1</LBound>
-				<Elements>6</Elements>
+				<Elements>7</Elements>
+			</ArrayInfo>
+		</DataType>
+		<DataType>
+			<Name GUID="{18071995-0000-0000-0000-00200000000C}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..11] OF BIT</Name>
+			<BitSize>12</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>12</Elements>
+			</ArrayInfo>
+		</DataType>
+		<DataType>
+			<Name GUID="{18071995-0000-0000-0000-002000000001}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..0] OF BIT</Name>
+			<BitSize>1</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>1</Elements>
+			</ArrayInfo>
+		</DataType>
+		<DataType>
+			<Name GUID="{18071995-0000-0000-0000-00200000000A}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..9] OF BIT</Name>
+			<BitSize>10</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>10</Elements>
 			</ArrayInfo>
 		</DataType>
 		<DataType>
@@ -203,7 +230,13 @@
 			</Hides>
 		</DataType>
 	</DataTypes>
-	<Project ProjectGUID="{B4F48ED3-326A-4271-8F7F-3101D470DA85}" Target64Bit="true" ShowHideConfigurations="#x106">
+	<ImageDatas>
+		<ImageData Id="1000">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000c40e0000c40e00000000000000000000ff00ffff00ffff00ff808080808080808080808080808080808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ff0000c00000c0ffffffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ff0000c00000c0ffffffc0c0c000ffffc0c0c000ffff808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ff0000c00000c0ffffffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ff0000c00000c0ffffffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ff0000c00000c0ffffffc0c0c0ff0000c0c0c0ff0000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ff0000c00000c0ffffffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ff0000c00000c0ffffffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ff0000c00000c0ffffffc0c0c00000ffc0c0c00000ff808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ff0000c00000c0ffffffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ff0000c00000c0ffffffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ff0000c00000c0ffffffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ff0000c00000c0ffffffc0c0c0008000c0c0c0008000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ff0000c00000c0ffffffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff</ImageData>
+		<ImageData Id="1001">424de6000000000000007600000028000000100000000e000000010004000000000070000000120b0000120b0000100000001000000000000000000080000080000000808000800000008000800080800000c0c0c000808080000000ff0000ff000000ffff00ff000000ff00ff00ffff0000ffffff00dddddd88888888dddddddd77777778dddddddd77888778dddddddd77888778dddddddd77888778dddddddd77777778dddddddd77888778dd9b9b9b77888778ddb9b9b977888778dd9b9b9b77777778ddb9b9b9777a7778dd9b9b9b777a7778ddb9b9b9777a7778dd9b9b9b77777778dd</ImageData>
+		<ImageData Id="1002">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000120b0000120b00000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ff808080808080808080808080808080808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080808080808080c0c0c0c0c0c080808000bfffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c080808080808080808000bfff00bfff00bfff00bfff00bfff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080808080808080c0c0c0c0c0c080808000bfffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0bbc2bbc0c0c0c0c0c0c0c0c0808080ff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0bac2ba0bfc0bc0c0c0c0c0c0c0c0c0808080ff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ff</ImageData>
+		<ImageData Id="1003">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000c40e0000c40e00000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ff808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff</ImageData>
+	</ImageDatas>
+	<Project ProjectGUID="{B4F48ED3-326A-4271-8F7F-3101D470DA85}" TargetNetId="5.107.220.56.1.1" Target64Bit="true" ShowHideConfigurations="#x106">
 		<System>
 			<Licenses>
 				<Target>
@@ -943,6 +976,53 @@ EL3068 - AI1]]></Comment>
 							<Name>Input.B170357_2_Heartbeat</Name>
 							<Type>BOOL</Type>
 						</Var>
+						<Var>
+							<Name>Input.R4_01_00</Name>
+							<Comment><![CDATA[Ract 4 - Shaft ramp
+EL1008 - DI 1]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R4_01_01</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R4_01_02</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R4_01_03</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R4_01_04</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R4_01_05</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R4_01_06</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.R4_01_07</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.B170357_3_CapRaw</Name>
+							<Comment><![CDATA[ might be 8 fruit stands so 0..7]]></Comment>
+							<Type GUID="{5044CB06-7724-5056-95AD-1E09DECF3A45}">ARRAY [0..24] OF UINT</Type>
+						</Var>
+						<Var>
+							<Name>Input.B170357_3_BatLevel</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Input.B170357_3_Heartbeat</Name>
+							<Type>BOOL</Type>
+						</Var>
 					</Vars>
 					<Vars VarGrpType="2" AreaNo="1">
 						<Name>PlcTask Outputs</Name>
@@ -1014,12 +1094,6 @@ EL2008 - DQ1]]></Comment>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>Output.R2_06_00</Name>
-							<Comment><![CDATA[**LCP1
-EL2008 - DQ1]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
 							<Name>Output.R1_09_00</Name>
 							<Comment><![CDATA[Charger 1 - Voltage Setpoint]]></Comment>
 							<Type>INT</Type>
@@ -1058,6 +1132,12 @@ EL2008 - DQ1]]></Comment>
 							<Name>Output.R1_09_07</Name>
 							<Comment><![CDATA[spare]]></Comment>
 							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Output.R2_06_00</Name>
+							<Comment><![CDATA[**LCP1
+EL2008 - DQ1]]></Comment>
+							<Type>BOOL</Type>
 						</Var>
 						<Var>
 							<Name>Output.R2_06_01</Name>
@@ -1187,27 +1267,79 @@ EL2008 - DQ1]]></Comment>
 							<Name>Output.R3_07_07</Name>
 							<Type>BOOL</Type>
 						</Var>
+						<Var>
+							<Name>Output.R4_02_00</Name>
+							<Comment><![CDATA[**LCP3
+EL2008 - DQ 1]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R4_02_01</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R4_02_02</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R4_02_03</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R4_02_04</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R4_02_05</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R4_02_06</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R4_02_07</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R4_03_00</Name>
+							<Comment><![CDATA[EL2008 - DQ2]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R4_03_01</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R4_03_02</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R4_03_03</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R4_03_04</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R4_03_05</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R4_03_06</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Output.R4_03_07</Name>
+							<Type>BOOL</Type>
+						</Var>
 					</Vars>
 					<Vars VarGrpType="8" AreaNo="4">
 						<Name>PlcTask Retains</Name>
 						<Var>
-							<Name>ChargeTime_DB.PreFormChargeTime_PT</Name>
-							<Type>TIME</Type>
-							<InOut>7</InOut>
-						</Var>
-						<Var>
-							<Name>ChargeTime_DB.ChargerDelay_TON</Name>
-							<Type GUID="{B67C53DE-6A92-5C5B-4076-1B25F1887AC3}">ARRAY [1..6] OF Tc2_Standard.TON</Type>
-							<InOut>7</InOut>
-						</Var>
-						<Var>
-							<Name>ChargeTime_DB.ChargerDelay_PT</Name>
-							<Type GUID="{D5AB6594-30FC-6F26-C7BB-014E706F74D9}">ARRAY [1..6] OF TIME</Type>
-							<InOut>7</InOut>
-						</Var>
-						<Var>
-							<Name>ChargeTime_DB.ChargerDelay_ET</Name>
-							<Type GUID="{D5AB6594-30FC-6F26-C7BB-014E706F74D9}">ARRAY [1..6] OF TIME</Type>
+							<Name>ChargeTime_DB.PreFormChargeTimeStartDelay</Name>
+							<Type>INT</Type>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
@@ -1222,12 +1354,12 @@ FormChargeTime_ET  : ARRAY[1..2] OF TIME;]]></Comment>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
-							<Name>ChargeTime_DB.PreFormChargeTime_ET</Name>
+							<Name>ChargeTime_DB.PreFormChargeTime_PT</Name>
 							<Type>TIME</Type>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
-							<Name>ChargeTime_DB.LongestChargeTime_PT</Name>
+							<Name>ChargeTime_DB.PreFormChargeTime_ET</Name>
 							<Type>TIME</Type>
 							<InOut>7</InOut>
 						</Var>
@@ -1237,23 +1369,13 @@ FormChargeTime_ET  : ARRAY[1..2] OF TIME;]]></Comment>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
-							<Name>ChargeTime_DB.LongestChargeTime_ET</Name>
+							<Name>ChargeTime_DB.LongestChargeTime_PT</Name>
 							<Type>TIME</Type>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
-							<Name>ChargeTime_DB.ChargeTimeStartDelay</Name>
-							<Type GUID="{DC21412B-5C97-6FC0-600D-070C26DE7CEC}">ARRAY [1..6] OF INT</Type>
-							<InOut>7</InOut>
-						</Var>
-						<Var>
-							<Name>ChargeTime_DB.ChargingTimeElapse</Name>
-							<Type GUID="{DC21412B-5C97-6FC0-600D-070C26DE7CEC}">ARRAY [1..6] OF INT</Type>
-							<InOut>7</InOut>
-						</Var>
-						<Var>
-							<Name>ChargeTime_DB.PreFormChargeTimeStartDelay</Name>
-							<Type>INT</Type>
+							<Name>ChargeTime_DB.LongestChargeTime_ET</Name>
+							<Type>TIME</Type>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
@@ -1262,13 +1384,38 @@ FormChargeTime_ET  : ARRAY[1..2] OF TIME;]]></Comment>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
-							<Name>ChargeTime_DB.ChargingTimeElapse_TON</Name>
-							<Type GUID="{B67C53DE-6A92-5C5B-4076-1B25F1887AC3}">ARRAY [1..6] OF Tc2_Standard.TON</Type>
+							<Name>ChargeTime_DB.PreFormChargingTimeElapse_TON</Name>
+							<Type GUID="{1337BBBA-9A3F-D9E7-4ED6-FA23E60881AB}" Namespace="Tc2_Standard">TON</Type>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
-							<Name>ChargeTime_DB.PreFormChargingTimeElapse_TON</Name>
-							<Type GUID="{1337BBBA-9A3F-D9E7-4ED6-FA23E60881AB}" Namespace="Tc2_Standard">TON</Type>
+							<Name>ChargeTime_DB.ChargerDelay_TON</Name>
+							<Type GUID="{18AE1781-AD60-42AB-EAA4-71536A16FEFB}">ARRAY [1..7] OF Tc2_Standard.TON</Type>
+							<InOut>7</InOut>
+						</Var>
+						<Var>
+							<Name>ChargeTime_DB.ChargerDelay_PT</Name>
+							<Type GUID="{2459F8BA-E846-161F-1492-56643EF570F1}">ARRAY [1..7] OF TIME</Type>
+							<InOut>7</InOut>
+						</Var>
+						<Var>
+							<Name>ChargeTime_DB.ChargerDelay_ET</Name>
+							<Type GUID="{2459F8BA-E846-161F-1492-56643EF570F1}">ARRAY [1..7] OF TIME</Type>
+							<InOut>7</InOut>
+						</Var>
+						<Var>
+							<Name>ChargeTime_DB.ChargeTimeStartDelay</Name>
+							<Type GUID="{F3547901-9536-103B-6094-3F08E24D4123}">ARRAY [1..7] OF INT</Type>
+							<InOut>7</InOut>
+						</Var>
+						<Var>
+							<Name>ChargeTime_DB.ChargingTimeElapse</Name>
+							<Type GUID="{F3547901-9536-103B-6094-3F08E24D4123}">ARRAY [1..7] OF INT</Type>
+							<InOut>7</InOut>
+						</Var>
+						<Var>
+							<Name>ChargeTime_DB.ChargingTimeElapse_TON</Name>
+							<Type GUID="{18AE1781-AD60-42AB-EAA4-71536A16FEFB}">ARRAY [1..7] OF Tc2_Standard.TON</Type>
 							<InOut>7</InOut>
 						</Var>
 					</Vars>
@@ -1289,5 +1436,219 @@ FormChargeTime_ET  : ARRAY[1..2] OF TIME;]]></Comment>
 				</Instance>
 			</Project>
 		</Plc>
+		<Io>
+			<Device Id="1" Disabled="true" DevType="111" DevFlags="#x0003" AmsPort="28673" AmsNetId="5.107.220.56.2.1" RemoteName="Device 1 (EtherCAT)" InfoImageId="2">
+				<Name>Device 1 (EtherCAT)</Name>
+				<AddressInfo>
+					<Ccat>
+						<Address>-801112064</Address>
+						<Offset>131072</Offset>
+						<Size>8192</Size>
+						<BaseAddr>0</BaseAddr>
+						<BusNo>3</BusNo>
+						<SlotNo>0</SlotNo>
+						<VendorId>5612</VendorId>
+						<DeviceId>20480</DeviceId>
+						<Dma>
+							<Address>0</Address>
+							<Offset>4096</Offset>
+							<Size>256</Size>
+							<BaseAddr>2</BaseAddr>
+							<RxChn>0</RxChn>
+							<TxChn>1</TxChn>
+						</Dma>
+						<Identification>
+							<Value>498694182</Value>
+							<Version>1</Version>
+							<Size>256</Size>
+						</Identification>
+					</Ccat>
+				</AddressInfo>
+				<Image Id="1" AddrType="9" ImageType="3">
+					<Name>Image</Name>
+				</Image>
+				<Box Id="1" BoxType="9099">
+					<Name>Term 1 (EK1200)</Name>
+					<ImageId>1000</ImageId>
+					<EtherCAT PdiType="#x0100" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x04b02c52" RevisionNo="#x00001388" InfoDataState="false" PortPhys="49" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EK1200-5000 EtherCAT Power supply (2A E-Bus)" Desc="EK1200" PortABoxInfo="#x00ffffff"/>
+					<Box Id="2" BoxType="9099">
+						<Name>Term 2 (EL1008)</Name>
+						<ImageId>7</ImageId>
+						<EtherCAT SlaveType="1" PdiType="#x0104" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x03f03052" RevisionNo="#x00120000" RepeatSupport="true" PortPhys="51" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL1008 8Ch. Dig. Input 24V, 3ms" Desc="EL1008" PortABoxInfo="#x01000001">
+							<SyncMan>001001000000010004000000000000000100001000010000</SyncMan>
+							<Fmmu>0000000000000000001000010100000002000000000000000000000000000000</Fmmu>
+							<Pdo Name="Channel 1" Index="#x1a00" Flags="#x0011" SyncMan="0">
+								<Entry Name="Input" Index="#x6000" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 2" Index="#x1a01" Flags="#x0011" SyncMan="0">
+								<Entry Name="Input" Index="#x6010" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 3" Index="#x1a02" Flags="#x0011" SyncMan="0">
+								<Entry Name="Input" Index="#x6020" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 4" Index="#x1a03" Flags="#x0011" SyncMan="0">
+								<Entry Name="Input" Index="#x6030" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 5" Index="#x1a04" Flags="#x0011" SyncMan="0">
+								<Entry Name="Input" Index="#x6040" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 6" Index="#x1a05" Flags="#x0011" SyncMan="0">
+								<Entry Name="Input" Index="#x6050" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 7" Index="#x1a06" Flags="#x0011" SyncMan="0">
+								<Entry Name="Input" Index="#x6060" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Channel 8" Index="#x1a07" Flags="#x0011" SyncMan="0">
+								<Entry Name="Input" Index="#x6070" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+						</EtherCAT>
+					</Box>
+					<Box Id="3" BoxType="9099" BoxFlags="#x00000020">
+						<Name>Term 3 (EL6695)</Name>
+						<ImageId>1001</ImageId>
+						<EtherCAT SlaveType="3" AdsServerAddress="056bdc380204ea03" PdiType="#x0008" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="63" EoeType="1" FoeType="1" VendorId="#x00000002" ProductCode="#x1a273052" RevisionNo="#x00060000" InfoDataAddr="true" InfoDataNetId="true" TimeoutMailbox2="2000" GenerateOwnNetId="true" CheckRevisionNoType="3" PortPhys="51" DcTimeLoopControlOnly="true" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL6695 EtherCAT Bridge terminal (Primary)" Desc="EL6695" PortABoxInfo="#x01000002">
+							<SyncMan>0010000426000100010000008000da050004001026010000</SyncMan>
+							<SyncMan>0016000422000100020000008000da050004001622010000</SyncMan>
+							<SyncMan>001c00006400000003000000000000000000001c64010000</SyncMan>
+							<SyncMan>008e02002000010004000000000000000200008e20010000</SyncMan>
+							<Fmmu>0000000000000000000000020000000001000000000000000000000000000000</Fmmu>
+							<Fmmu>0000000000000000008e00010100000002000000000000000000000000000000</Fmmu>
+							<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
+							<SwitchPortData>00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</SwitchPortData>
+							<BootStrapData>0010140200141402</BootStrapData>
+							<DcMode>4672656552756e0000000000000000004672656552756e00000000000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000</DcMode>
+							<DcMode>4443000000000000000000000000000044432d53796e6368726f6e000000000000000000000000000000000000000000000000000000000000000000000020030100000000000000000000000000000000000000000000000000000000000000</DcMode>
+							<Pdo Name="SYNC Inputs" Index="#x1a01" Flags="#x0010" SyncMan="3">
+								<Entry>
+									<Type GUID="{18071995-0000-0000-0000-00200000000C}">ARRAY [0..11] OF BIT</Type>
+								</Entry>
+								<Entry Name="TxPDO-Toggle" Index="#x1801" Sub="#x09">
+									<Type>BIT</Type>
+								</Entry>
+								<Entry Name="TxPDO-State" Index="#x1801" Sub="#x07">
+									<Type>BIT</Type>
+								</Entry>
+								<Entry>
+									<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+								</Entry>
+								<Entry Name="External device not connected" Index="#x10f4" Sub="#x10">
+									<Type>BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="SYNC Inputs" Index="#x1a02" Flags="#x0010">
+								<Entry Name="Sync Mode" Index="#x10f4" Sub="#x01">
+									<Type>BIT2</Type>
+								</Entry>
+								<Entry>
+									<Type GUID="{18071995-0000-0000-0000-00200000000A}">ARRAY [0..9] OF BIT</Type>
+								</Entry>
+								<Entry Name="TxPDO-Toggle" Index="#x1802" Sub="#x09">
+									<Type>BIT</Type>
+								</Entry>
+								<Entry Name="TxPDO-State" Index="#x1802" Sub="#x07">
+									<Type>BIT</Type>
+								</Entry>
+								<Entry Name="Time stamp update toggle" Index="#x10f4" Sub="#x0f">
+									<Type>BIT</Type>
+								</Entry>
+								<Entry Name="External device not connected" Index="#x10f4" Sub="#x10">
+									<Type>BIT</Type>
+								</Entry>
+								<Entry Name="Internal time stamp" Index="#x10f4" Sub="#x11">
+									<Type>ULINT</Type>
+								</Entry>
+								<Entry Name="External time stamp" Index="#x10f4" Sub="#x12">
+									<Type>ULINT</Type>
+								</Entry>
+								<Entry Name="Reserved" Index="#x10f4" Sub="#x13">
+									<Type>UDINT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="SYNC Inputs" Index="#x1a03" Flags="#x0010">
+								<Entry Name="Sync Mode" Index="#x10f4" Sub="#x01">
+									<Type>BIT2</Type>
+								</Entry>
+								<Entry>
+									<Type GUID="{18071995-0000-0000-0000-00200000000A}">ARRAY [0..9] OF BIT</Type>
+								</Entry>
+								<Entry Name="TxPDO-Toggle" Index="#x1803" Sub="#x09">
+									<Type>BIT</Type>
+								</Entry>
+								<Entry Name="TxPDO-State" Index="#x1803" Sub="#x07">
+									<Type>BIT</Type>
+								</Entry>
+								<Entry Name="Time stamp update toggle" Index="#x10f4" Sub="#x0f">
+									<Type>BIT</Type>
+								</Entry>
+								<Entry Name="External device not connected" Index="#x10f4" Sub="#x10">
+									<Type>BIT</Type>
+								</Entry>
+								<Entry Name="Internal time stamp" Index="#x10f4" Sub="#x11">
+									<Type>UDINT</Type>
+								</Entry>
+								<Entry Name="External time stamp" Index="#x10f4" Sub="#x12">
+									<Type>UDINT</Type>
+								</Entry>
+								<Entry Name="Reserved" Index="#x10f4" Sub="#x13">
+									<Type>UDINT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Active TxPDOs-Map" Index="#x1a04" Flags="#x0000">
+								<Entry Name="u16Count" Index="#xf640" Sub="#x01">
+									<Type>UINT</Type>
+								</Entry>
+								<Entry Name="PDO 1-8" Index="#xf630" Sub="#x01">
+									<Type>UINT</Type>
+								</Entry>
+								<Entry Name="PDO 9-16" Index="#xf630" Sub="#x02">
+									<Type>UINT</Type>
+								</Entry>
+								<Entry Name="PDO 17-24" Index="#xf630" Sub="#x03">
+									<Type>UINT</Type>
+								</Entry>
+								<Entry Name="PDO 25-32" Index="#xf630" Sub="#x04">
+									<Type>UINT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="FOE Info" Index="#x1a05" Flags="#x0020">
+								<Entry Name="Bytes to Read" Index="#xf650" Sub="#x01">
+									<Type>UINT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="IO Inputs" Index="#x1a08" Flags="#x0020" SyncMan="3"/>
+							<Pdo Name="IO Outputs" Index="#x1608" InOut="1" Flags="#x0020" SyncMan="2"/>
+							<CoeProfile ProfileNo="5001"/>
+						</EtherCAT>
+					</Box>
+					<Box Id="4" BoxType="9099">
+						<Name>Term 4 (EK1561)</Name>
+						<ImageId>1002</ImageId>
+						<EtherCAT SlaveType="1" PdiType="#x0d00" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x06192c52" RevisionNo="#x00120000" CheckRevisionNoType="3" PortPhys="4867" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EK1561 1 port EtherCAT junction (POF)" Desc="EK1561" PortABoxInfo="#x01000003"/>
+					</Box>
+					<Box Id="5" BoxType="9099">
+						<Name>Term 5 (EL9011)</Name>
+						<ImageId>1003</ImageId>
+						<EtherCAT CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x23333050" InfoDataState="false" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL9011 End Terminal" Desc="EL9011" PortABoxInfo="#x02000004"/>
+					</Box>
+				</Box>
+				<EtherCAT EnableVirtualSwitch="true" MaxSwitchPorts="2" MaxSwitchFrames="120"/>
+			</Device>
+		</Io>
 	</Project>
 </TcSmProject>

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="ST_Segment_Base" Id="{29eeb09b-9f83-4f6a-b0b1-48c3aad8483a}">
+    <Declaration><![CDATA[TYPE ST_Segment_Base :
+STRUCT
+	Module : ARRAY [1..9] OF ST_Module;	
+	
+	CloseChargeRly	: BOOL;
+	ChargeRly_close : BOOL;
+
+	OpenModule1To3DumpRly : BOOL; //Open Module1To3DumpRly
+	OpenModule4To6DumpRly : BOOL;
+	OpenModule7To9DumpRly : BOOL;
+	
+	Module1To3DumpRly_close	: BOOL;
+	Module4To6DumpRly_close	: BOOL;
+	Module7To9DumpRly_close	: BOOL;
+	//ShortContactClose	: BOOL;
+
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

@@ -4,7 +4,7 @@
     <Declaration><![CDATA[PROGRAM Alias
 VAR
 	i : INT := 1;
-	n : INT := 8;
+	n : INT := 7;
 	a : INT := 0; //0-15
 	k : INT := 0;
 	m : INT := 0;
@@ -193,9 +193,30 @@ END_VAR
 	Output.R3_06_06 := LCP2_IO.Fire; //opto1
 	Output.R3_06_07 := LCP2_IO.SegmentCharged; //LED
 
+//R4 : LCP 3 
+	//DI
+	LCP3_IO.PSU1_OK					:= Input.R4_01_00;
+	LCP3_IO.SRChargeRly_close		:= Input.R4_01_01;
+	LCP3_IO.SRDumpRelay_close		:= Input.R4_01_02;
+	
+	//DQ
+	Output.R4_02_00				:= LCP3_IO.CloseSRChargeRly;
+	Output.R4_02_01				:= LCP3_IO.OpenSRDumpRly[1];
+	Output.R4_02_02				:= LCP3_IO.OpenSRDumpRly[2];
+	Output.R4_02_03				:= LCP3_IO.OpenSRDumpRly[3];
+	Output.R4_02_04				:= LCP3_IO.OpenSRDumpRly[4];
+	Output.R4_02_05				:= LCP3_IO.OpenSRDumpRly[5];
+	Output.R4_02_06				:= LCP3_IO.OpenSRDumpRly[6];
+	Output.R4_02_07				:= LCP3_IO.OpenSRDumpRly[7];
+	
+	Output.R4_03_00				:= LCP3_IO.OpenSRDumpRly[8];
+	
+	// need to have how many voltage monitor board or voltage transmitter board per fruit stand ????
+	//LCP3_IO.VMB.VTB[1].
+
 	//LV Alias
 	//commented out to test the sequence
-	
+	(*
 	HMI_DB.ChargePB 				:= LV.TxWord1.0;
 	HMI_DB.DumpPB					:= LV.TxWord1.1;		
 	HMI_DB.AbortPB					:= LV.TxWord1.2;
@@ -340,7 +361,7 @@ END_VAR
 		 LV.RxREAL[42] := LCP2_IO.Segment[6].Module[8].VoltageFeedback[2];
 		 LV.RxREAL[43] := LCP2_IO.Segment[6].Module[9].VoltageFeedback[1];
 		 LV.RxREAL[44] := LCP2_IO.Segment[6].Module[9].VoltageFeedback[2];
-		 
+		 *)
 	
 IF k > 17 THEN 
 	k := 0;
@@ -434,7 +455,20 @@ END_IF]]></ST>
       <LineId Id="836" Count="2" />
       <LineId Id="831" Count="1" />
       <LineId Id="607" Count="28" />
+      <LineId Id="1048" Count="0" />
       <LineId Id="791" Count="0" />
+      <LineId Id="1057" Count="0" />
+      <LineId Id="1054" Count="0" />
+      <LineId Id="1050" Count="0" />
+      <LineId Id="1053" Count="0" />
+      <LineId Id="1055" Count="0" />
+      <LineId Id="1058" Count="6" />
+      <LineId Id="1066" Count="1" />
+      <LineId Id="1069" Count="0" />
+      <LineId Id="1068" Count="0" />
+      <LineId Id="1056" Count="0" />
+      <LineId Id="1051" Count="1" />
+      <LineId Id="1049" Count="0" />
       <LineId Id="393" Count="0" />
       <LineId Id="866" Count="0" />
       <LineId Id="642" Count="0" />
