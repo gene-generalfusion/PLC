@@ -48,6 +48,9 @@
     <Compile Include="DUTs\ST_Module.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\ST_PB_Base.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\ST_Segment_Base.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -78,15 +81,15 @@
     <Compile Include="GVLs\ChargeTime_DB.TcGVL">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GVLs\plc_plc_comm_DB.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
     <Compile Include="GVLs\HMI_DB.TcGVL">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GVLs\Input.TcGVL">
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="GVLs\LCP1_IO.TcGVL">
-      <SubType>Code</SubType>
-      <LinkAlways>true</LinkAlways>
     </Compile>
     <Compile Include="GVLs\LV.TcGVL">
       <SubType>Code</SubType>
@@ -139,6 +142,21 @@
     <Compile Include="POUs\ChargeTime.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\csv\P_ArgToConvExample.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\csv\P_StringToConvExample.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\csv\P_TextModeRead.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\csv\P_TextModeWrite.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\csv\P_TextModeWrite_og.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\Heartbeat.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -155,6 +173,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\Permissives.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\plc_plc_comm.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\Stagger_FB.TcPOU">
@@ -176,6 +197,7 @@
   <ItemGroup>
     <Folder Include="DUTs" />
     <Folder Include="GVLs" />
+    <Folder Include="POUs\csv" />
     <Folder Include="VISUs" />
     <Folder Include="POUs" />
   </ItemGroup>

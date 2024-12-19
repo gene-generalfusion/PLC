@@ -5,6 +5,7 @@
 VAR_GLOBAL
 	TDKLoad : ARRAY [1..6] OF ST_Setpoints_Base;
 	
+	
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

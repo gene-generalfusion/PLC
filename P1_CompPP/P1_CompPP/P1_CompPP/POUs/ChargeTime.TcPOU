@@ -8,7 +8,7 @@ VAR
 	i				 : INT := 1; // 1-8 instances
 	j				 : INT := 1; //1 - 8 ch
 	m				 : INT := 1;
-	
+	n				 : INT := 6; // no SR here yet
 	a				 : INT := 1; 
 	
 	Q				 : REAL := 1; // Charge
@@ -20,7 +20,7 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[//mapping hmi input to setpoints
-FOR j := 1 TO 6 BY 1 DO	
+FOR j := 1 TO n BY 1 DO	
 	Setpoints.TDKLoad[j].TotalCapacitance	:= HMI_DB.TDKLoad[j].TotalCapacitance;
 	Setpoints.TDKLoad[j].PSratedV 			:= HMI_DB.TDKLoad[j].PSratedV;
 	Setpoints.TDKLoad[j].RequiredChargedV	:= HMI_DB.TDKLoad[j].RequiredChargedV;  
@@ -47,7 +47,7 @@ Setpoints.GLSLoad.NumOfCharger		:= HMI_DB.GLSLoad.NumOfCharger;
 
 //veto
 //this should not happen
-FOR m := 1 TO 6 BY 1 DO
+FOR m := 1 TO n BY 1 DO
 	IF Setpoints.TDKLoad[m].RequiredChargedV <= -2 THEN
 		Setpoints.TDKLoad[m].RequiredChargedV := -2;
 	END_IF	
@@ -65,7 +65,7 @@ END_IF
 //charger 1 is 30kV*********************************************
 *)
 //from 2 to 6
-FOR i := 1 TO 6 BY 1 DO
+FOR i := 1 TO n BY 1 DO
 	IF MCP_IO.Charger[i].ChargerType = E_ChargerType.TDK50kV THEN 
 		//set limites of charger voltage input from HMI input
 		IF 1000*(Setpoints.TDKLoad[i].RequiredChargedV) >= EngVal.UpperLimit50kVCaps THEN
@@ -122,7 +122,7 @@ END_IF
 *)
 
 //chg time
-FOR i := 1 TO 6 BY 1 DO
+FOR i := 1 TO n BY 1 DO
 	lca_charge_cal[i](	PSratedV := Setpoints.TDKLoad[i].PSratedV, 
 						RequiredChargeV := Setpoints.TDKLoad[i].RequiredChargedV, 
 						LoadCapacitance := Setpoints.TDKLoad[i].TotalCapacitance, 
@@ -140,6 +140,7 @@ FOR i := 1 TO 6 BY 1 DO
 END_FOR
 
 
+
 (*
 //gls - gls3 is preform cap charger
 Q := 1000* Setpoints.GLSLoad.RequiredChargedV * (Setpoints.GLSLoad.TotalCapacitance / 1000000);
@@ -152,7 +153,9 @@ longestChargeTime := MAX( MCP_IO.Charger[1].ChargeTime.timeToChargeLoad,
 							MCP_IO.Charger[3].ChargeTime.timeToChargeLoad,
 							MCP_IO.Charger[4].ChargeTime.timeToChargeLoad,
 							MCP_IO.Charger[5].ChargeTime.timeToChargeLoad,
-							MCP_IO.Charger[6].ChargeTime.timeToChargeLoad
+							MCP_IO.Charger[6].ChargeTime.timeToChargeLoad,
+							//MCP_IO.Charger[7].ChargeTime.timeToChargeLoad, //no SR yet
+							GVL.pfcChargeTime
 							(*MCP_IO.Charger[7].ChargeTime.timeToChargeLoad,
 							MCP_IO.Charger[8].ChargeTime.timeToChargeLoad, *)
 							(*MCP_IO.GLS3_Load.timeToChargeLoad*));
@@ -160,19 +163,25 @@ longestChargeTime := MAX( MCP_IO.Charger[1].ChargeTime.timeToChargeLoad,
 ChargeTime_DB.LongestChargeTime_PT := REAL_TO_TIME (1000*longestChargeTime);
 
 //FOR a := 1 TO 8 BY 1 DO
-FOR a := 1 TO 6 BY 1 DO
+FOR a := 1 TO n BY 1 DO
 	IF (longestChargeTime - MCP_IO.Charger[a].ChargeTime.timeToChargeLoad) >= 0 THEN
 		ChargeTime_DB.ChargerDelay_PT[a] := REAL_TO_TIME (1000*(longestChargeTime - MCP_IO.Charger[a].ChargeTime.timeToChargeLoad));
 		ELSE 
 			ChargeTime_DB.ChargerDelay_PT[a] := REAL_TO_TIME (1000*(MCP_IO.Charger[a].ChargeTime.timeToChargeLoad - longestChargeTime));
 	END_IF;		
-		
+
 	//IF (longestChargeTime - MCP_IO.Charger[a+3].ChargeTime.timeToChargeLoad) >= 0 THEN
 	//	ChargeTime_DB.SustChargeTime_PT[a] := REAL_TO_TIME (1000*(longestChargeTime - MCP_IO.Charger[a+3].ChargeTime.timeToChargeLoad));	
 	//END_IF;	
 	
 END_FOR;
 
+		
+IF (longestChargeTime - GVL.pfcChargeTime)>= 0 THEN 
+	ChargeTime_DB.pfcChargerDelay_PT := REAL_TO_TIME (1000*(longestChargeTime - GVL.pfcChargeTime));
+	ELSE
+		ChargeTime_DB.pfcChargerDelay_PT := REAL_TO_TIME (1000*(GVL.pfcChargeTime - longestChargeTime));	
+END_IF
 
 (*IF (longestChargeTime - MCP_IO.Charger[7].ChargeTime.timeToChargeLoad) >= 0 THEN
 	ChargeTime_DB.FormChargeTime_PT[1] := REAL_TO_TIME (1000*(longestChargeTime - MCP_IO.Charger[7].ChargeTime.timeToChargeLoad));	
@@ -190,20 +199,20 @@ END_IF;
 
 
 //IF i > 8 THEN 
-IF i > 6 THEN 
+IF i > n THEN 
 	i := 1;
 END_IF
 
-IF j > 6 THEN
+IF j > n THEN
 	j := 1;
 END_IF
 
-IF m > 6 THEN
+IF m > n THEN
 	m := 1;
 END_IF
 
 //IF a > 8 THEN
-IF a > 6 THEN
+IF a > n THEN
 	a := 1;
 END_IF;]]></ST>
     </Implementation>
@@ -258,12 +267,16 @@ END_IF;]]></ST>
       <LineId Id="981" Count="0" />
       <LineId Id="980" Count="0" />
       <LineId Id="24" Count="0" />
+      <LineId Id="1044" Count="0" />
       <LineId Id="89" Count="0" />
       <LineId Id="960" Count="0" />
       <LineId Id="892" Count="4" />
       <LineId Id="558" Count="1" />
       <LineId Id="452" Count="0" />
-      <LineId Id="470" Count="6" />
+      <LineId Id="470" Count="4" />
+      <LineId Id="1043" Count="0" />
+      <LineId Id="1042" Count="0" />
+      <LineId Id="475" Count="1" />
       <LineId Id="469" Count="0" />
       <LineId Id="453" Count="0" />
       <LineId Id="29" Count="0" />
@@ -272,12 +285,13 @@ END_IF;]]></ST>
       <LineId Id="630" Count="1" />
       <LineId Id="699" Count="1" />
       <LineId Id="628" Count="0" />
-      <LineId Id="634" Count="0" />
+      <LineId Id="1047" Count="0" />
       <LineId Id="636" Count="0" />
       <LineId Id="635" Count="0" />
       <LineId Id="633" Count="0" />
       <LineId Id="637" Count="0" />
       <LineId Id="629" Count="0" />
+      <LineId Id="1051" Count="5" />
       <LineId Id="580" Count="0" />
       <LineId Id="597" Count="0" />
       <LineId Id="609" Count="2" />

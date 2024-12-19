@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="AnalogConversion" Id="{8ae23b5e-db41-4801-a4ef-8d4e513d812d}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM AnalogConversion
+VAR
+	i					: INT := 1; //charger 1-6
+	m					: INT := 12; //numb of thermo
+	
+	ChargerV_UpRange	: REAL := 5;
+	ChargerV_LoRange	: REAL := 0;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//MCP 
+
+//AI
+FOR i := 1 TO m BY 1 DO
+	//exclude value when switch is off
+	IF HMI_DB.ThermalCouple[i].IncludeSW = TRUE THEN 	
+		MCP_IO.ThermalCouple[i].TemperatureFB:= INT_TO_REAL(MCP_IO.ThermalCouple[i].Temperature_raw)/10;
+		//voltage
+		//MCP_IO.ThermalCouple[i].Temperature_norm := Norm_x (raw_input := INT_TO_REAL (MCP_IO.ThermalCouple[i].Temperature_raw),
+		//												x_max := 32767,
+		//												x_min := 0);
+
+		//MCP_IO.ThermalCouple[i].TemperatureFB := (HMI_DB.ThermalCoupleUpperRange - HMI_DB.ThermalCoupleLowerRange) * ADC_10V(
+		//																					normal_input := MCP_IO.ThermalCouple[i].Temperature_norm,
+		//																					x_max := 75,
+		//																					x_min := -75);
+	ELSIF HMI_DB.ThermalCouple[i].IncludeSW = FALSE THEN
+		MCP_IO.ThermalCouple[i].TemperatureFB := 0;		
+	END_IF;
+END_FOR;
+
+
+
+//Analog Output
+
+
+// limit for the input 
+IF HMI_DB.TemperatureSP > 100 THEN 
+	//set limits of temperature input
+	HMI_DB.TemperatureSP := 100; //limit at 100C
+	ELSIF HMI_DB.TemperatureSP < 0 THEN 
+		HMI_DB.TemperatureSP := 0;
+END_IF; 
+
+//hmi temperature setpoint input 
+MCP_IO.TemperatureSP := HMI_DB.TemperatureSP;
+		
+//prepare output signal for 5V chargers.
+//converting temperature sp 
+MCP_IO.TemperatureSP_norm := Norm_x (raw_input := MCP_IO.TemperatureSP,
+										x_max := HMI_DB.ThermalCoupleUpperRange, //1372 C
+										x_min := HMI_DB.ThermalCoupleLowerRange); //-270 C
+
+MCP_IO.TemperatureSP_raw := ADC_5V (normal_input := MCP_IO.TemperatureSP_norm,
+												x_max := ChargerV_UpRange,
+												x_min := ChargerV_LoRange);
+												
+												
+//convert temp sp to range of 5V	- temperature sp raw -> PID to 5V
+
+//	
+MCP_IO.ChargerSP_norm := Norm_x (raw_input := MCP_IO.ChargerSP, 
+									x_max := 32767,
+									x_min := 0);	
+
+//need to scale the temperature to the voltage first beforethe output												
+MCP_IO.ChargerSP_raw := AQ_5V (norm_input := MCP_IO.ChargerSP_norm, 
+												x_max := ChargerV_UpRange,
+												x_min := ChargerV_LoRange);
+												
+
+
+												
+	//limite for output sigal (<= 5V)  this should not happen
+	IF MCP_IO.ChargerSP_raw >= 32767 THEN 
+		MCP_IO.ChargerSP_raw := 32767; 										
+	END_IF;
+	
+
+
+
+//reset counter
+//IF i > 8 THEN
+IF i > m THEN
+	i := 1;
+END_IF;
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="AnalogConversion">
+      <LineId Id="80" Count="0" />
+      <LineId Id="1075" Count="0" />
+      <LineId Id="954" Count="0" />
+      <LineId Id="646" Count="0" />
+      <LineId Id="616" Count="0" />
+      <LineId Id="1105" Count="0" />
+      <LineId Id="1117" Count="0" />
+      <LineId Id="1104" Count="0" />
+      <LineId Id="610" Count="1" />
+      <LineId Id="609" Count="0" />
+      <LineId Id="1067" Count="0" />
+      <LineId Id="617" Count="0" />
+      <LineId Id="263" Count="0" />
+      <LineId Id="262" Count="0" />
+      <LineId Id="255" Count="0" />
+      <LineId Id="1074" Count="0" />
+      <LineId Id="1107" Count="0" />
+      <LineId Id="1109" Count="0" />
+      <LineId Id="256" Count="0" />
+      <LineId Id="1103" Count="0" />
+      <LineId Id="1102" Count="0" />
+      <LineId Id="233" Count="1" />
+      <LineId Id="839" Count="0" />
+      <LineId Id="1079" Count="0" />
+      <LineId Id="507" Count="0" />
+      <LineId Id="293" Count="0" />
+      <LineId Id="903" Count="0" />
+      <LineId Id="907" Count="0" />
+      <LineId Id="1081" Count="1" />
+      <LineId Id="566" Count="0" />
+      <LineId Id="1088" Count="0" />
+      <LineId Id="1087" Count="0" />
+      <LineId Id="1084" Count="0" />
+      <LineId Id="922" Count="0" />
+      <LineId Id="924" Count="0" />
+      <LineId Id="1092" Count="0" />
+      <LineId Id="1086" Count="0" />
+      <LineId Id="1090" Count="1" />
+      <LineId Id="1095" Count="0" />
+      <LineId Id="1089" Count="0" />
+      <LineId Id="1096" Count="3" />
+      <LineId Id="1093" Count="0" />
+      <LineId Id="1101" Count="0" />
+      <LineId Id="1094" Count="0" />
+      <LineId Id="925" Count="2" />
+      <LineId Id="1085" Count="0" />
+      <LineId Id="928" Count="2" />
+      <LineId Id="923" Count="0" />
+      <LineId Id="931" Count="0" />
+      <LineId Id="955" Count="0" />
+      <LineId Id="668" Count="0" />
+      <LineId Id="334" Count="0" />
+      <LineId Id="327" Count="0" />
+      <LineId Id="329" Count="0" />
+      <LineId Id="332" Count="0" />
+      <LineId Id="328" Count="0" />
+      <LineId Id="355" Count="0" />
+      <LineId Id="300" Count="0" />
+      <LineId Id="1010" Count="0" />
+      <LineId Id="1009" Count="0" />
+      <LineId Id="152" Count="0" />
+      <LineId Id="150" Count="0" />
+      <LineId Id="647" Count="0" />
+      <LineId Id="153" Count="1" />
+      <LineId Id="400" Count="0" />
+      <LineId Id="477" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

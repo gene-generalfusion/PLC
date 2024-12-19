@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="Sequence" Id="{b02178e8-8fb0-42cf-905a-18f03fa2724e}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Sequence  //make sure the change the name to Sequence when we use it for the HMI bitmappings.
+VAR
+	AverageTemp		: REAL := 0;
+	Sum				: REAL := 0;;
+	i				: INT := 1;
+	n				: INT := 12;
+	NumOfTherm		: UINT := 12;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+//find sum
+FOR i := 1 TO n BY 1 DO 
+	
+	Sum := Sum + MCP_IO.ThermalCouple[i].TemperatureFB;
+
+END_FOR
+	
+NumOfTherm.0 := HMI_DB.ThermalCouple[1].IncludeSW;
+NumOfTherm.1 := HMI_DB.ThermalCouple[2].IncludeSW;
+NumOfTherm.2 := HMI_DB.ThermalCouple[3].IncludeSW;
+NumOfTherm.3 := HMI_DB.ThermalCouple[4].IncludeSW;
+NumOfTherm.4 := HMI_DB.ThermalCouple[5].IncludeSW;
+NumOfTherm.5 := HMI_DB.ThermalCouple[6].IncludeSW;
+NumOfTherm.6 := HMI_DB.ThermalCouple[7].IncludeSW;
+NumOfTherm.7 := HMI_DB.ThermalCouple[8].IncludeSW;
+NumOfTherm.8 := HMI_DB.ThermalCouple[9].IncludeSW;
+NumOfTherm.9 := HMI_DB.ThermalCouple[10].IncludeSW;
+NumOfTherm.10 := HMI_DB.ThermalCouple[11].IncludeSW;
+NumOfTherm.11 := HMI_DB.ThermalCouple[12].IncludeSW;
+
+
+//USED AS FEEDBACK
+AverageTemp := Sum/NumOfTherm;
+
+
+
+//PRG_FB_CTRL_PID();
+
+
+IF i > n THEN
+	i := 1;
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="Sequence">
+      <LineId Id="1781" Count="0" />
+      <LineId Id="1780" Count="0" />
+      <LineId Id="1755" Count="0" />
+      <LineId Id="1776" Count="0" />
+      <LineId Id="1756" Count="0" />
+      <LineId Id="1775" Count="0" />
+      <LineId Id="1757" Count="0" />
+      <LineId Id="1745" Count="0" />
+      <LineId Id="1748" Count="0" />
+      <LineId Id="1762" Count="11" />
+      <LineId Id="1761" Count="0" />
+      <LineId Id="1760" Count="0" />
+      <LineId Id="1746" Count="0" />
+      <LineId Id="1786" Count="0" />
+      <LineId Id="1785" Count="0" />
+      <LineId Id="1783" Count="0" />
+      <LineId Id="1262" Count="0" />
+      <LineId Id="1751" Count="1" />
+      <LineId Id="1741" Count="0" />
+      <LineId Id="1753" Count="1" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

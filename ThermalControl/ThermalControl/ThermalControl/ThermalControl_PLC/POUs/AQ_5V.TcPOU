@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="AQ_5V" Id="{7196eeea-21cb-421c-a821-2cdbae8393aa}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION AQ_5V : INT
+VAR_INPUT
+	Norm_input : REAL;
+	x_max : REAL := 10;
+	x_min : REAL := 0;
+END_VAR
+VAR
+	voltage_reading : REAL;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[voltage_reading := 5 * Norm_input;
+AQ_5V := REAL_TO_INT (32767 * (voltage_reading - x_min) / (x_max - x_min));]]></ST>
+    </Implementation>
+    <LineIds Name="AQ_5V">
+      <LineId Id="15" Count="0" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="Controller_v1" Id="{d9a01af9-36c1-422c-b78d-f56a51633946}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Controller_v1
+
+VAR
+	
+	bOn						: BOOL	:= TRUE;
+	bSelSetpoint 			: BOOL	:= FALSE;
+	bInit					: BOOL 	:= TRUE;
+	bTune					: BOOL 	:= TRUE;
+	bManual					: BOOL;
+
+	bNoise 					: BOOL;
+	bError 					: BOOL;
+	iErrorId 				: E_ErrorCodes;
+
+	fW						: LREAL;						(* setpoint *)
+	fW1						: LREAL := 	70;					(* first setpoint *)
+	fW2						: LREAL :=	35.0;				(* second setpoint - standby setpoint*)
+	fY						: LREAL;						(* control value *)
+	fX						: LREAL;						(* actual value from simulated process *)
+	bYPWM					: BOOL;
+
+	bSelParameterSet		: BOOL := FALSE;
+	bEnableSoftStart 		: BOOL := TRUE;
+	bEnableRamping 			: BOOL := FALSE;
+
+	(* parameters *)
+	sControllerParameter	:	ST_ControllerParameter := ( 	
+	
+	iMode 					:= CTRLMODE_HEATING, 							(* 1=heating, 2=cooling, 3=heating&cooling *)
+	iReactionOnFailure 		:= TC_OnFailureStopController,					(* 0=controller off, 1=manual op, 2=yMin, 3=yMax *)
+	
+	dwAlarmSupp 			:= 16#FF_FF_FF_FF, 								(* alarm suppression *)
+	tCtrlCycleTime 			:= T#500MS, 									(* controller cycle time *)
+	tTaskCycleTime 			:= T#10MS,										(* plc task cycle time *)
+	fYTune 					:= 100.0,										(* switch to closed loop control when X > 0.8*W *)
+	
+	tPWMCycleTime 			:= T#40MS,										(* PWM: period *)
+	
+	(* setpoint parameters 													 *)	
+	fWMin 					:= 0, 											(* lower limit *)
+	fWMax 					:= 300,  										(* upper limit *)
+	
+	(* start up 															*)
+	fWStartUp 				:= 0.0, //40.0,									(* soft start plateau setpoint *)
+	tStartUp 				:= T#0MS,// T#20S,								(* soft start waiting time*)
+ 	bStartUpRamping 		:= FALSE,//TRUE, 								(* enable ramping while start up phase *)
+	fWStartUpVeloPos 		:= 1.0, 										(* max gradient for increasing setpoint in start up phase*)
+	fWStartUpVeloNeg 		:= 1.0,											(* max gradient for decreasing setpoint in start up phase*)
+	
+	fWVeloPos 				:= 1.0,											(* max gradient for increasing setpoint *) 
+	fWVeloNeg 				:= 1.0,											(* max gradient for decreasing setpoint *)	
+	
+	(* actual value parameters     											 *)	
+	bFilter 				:= FALSE, 	
+	tFilter 				:= T#0S,
+	
+	(* control value parameters     										 *)
+	fYMin 					:= 0.0, 										(* lower limit *)
+	fYMax 					:= 100.0, 										(* upper limit *)
+	fYManual 				:= 0.0,											(* manual operation*)
+	
+	(* controller settings			     									 *)
+	bEnablePreController 	:= FALSE,										(* enable precontroller *)		
+	bEnableZones 			:= FALSE, 										(* enable zone around setpoint with open loop control *)	
+	bEnableCVFilter 		:= FALSE,	 									(* enable filter for CV (type see iFilterType) *)
+	iFilterType 			:= E_FilterType_FIRSTORDER,						(* filtertype of CV filter *)
+	iControllerType 		:= E_ControllerType_PID,						(* used controller normally PID *)
+	
+	(* min max temperatures	     											 *)
+	TempLow 				:= -5.0, 
+	TempLowLow 				:= -10.0,  
+	TempHigh			 	:= 5.0, 
+	TempHighHigh 			:= 10.0, 
+	TempAbsoluteHigh 		:= 300.0, 
+	TempAbsoluteLow 		:= 0.0
+	
+	);
+								
+	sParaControlExternal	: st_ParaController;
+	
+	fbTempController		: FB_TempController;
+	fbProcess				: FB_Process;
+	fbCtrlParameter			: FB_CtrlParameter;	
+	
+	(* Debug *)
+	fMaxOvershoot			: LREAL;
+	tStartUpTime			: TIME;
+	eCtrlState				: E_CTRL_STATE;	
+	
+END_VAR
+
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(* Select setpoint *)
+IF bSelSetpoint THEN
+	fW := fW2;
+ELSE
+	fW := fW1;
+END_IF
+
+(* Simulate process *)
+fbProcess(	fY := fbTempController.fYAnalog, 
+			bNoise := bNoise, 
+			tTa := sControllerParameter.tTaskCycleTime);
+			
+(* Actual temperature *)				
+fX := fbProcess.fX;  // Add measured temperature here
+
+(* Start controller *)
+fbTempController(
+					bOn						:= bOn,
+					bInit					:= bInit,
+					bTune					:= bTune,
+					bManual					:= bManual,
+					bSelSetpoint			:= bSelSetpoint,
+					bSelCtrlParameterSet 	:= bSelParameterSet,
+					bEnableSoftStart 		:= bEnableSoftStart,
+					bEnableRamping 			:= bEnableRamping,
+					fW1						:= fW1,
+					fW2						:= fW2,
+					fX						:= fX,
+					bOpenThermocouple		:= FALSE,
+					bReverseThermocouple	:= FALSE,
+					bBackVoltage			:= FALSE,
+					bLeakage				:= FALSE,
+					bShortCircuit			:= FALSE,
+					bOpenCircuit			:= FALSE,
+					sControllerParameter	:= sControllerParameter,
+					sParaControllerExternal	:= fbCtrlParameter.sParaController
+					);
+					
+(* Analog output *)			
+fY := fbTempController.fYAnalog;
+(* Digital (PWM) output *)
+bYPWM := fbTempController.bYPWM;
+
+bError := fbTempController.bError;
+iErrorId := fbTempController.iErrorId;
+bInit := FALSE;	
+
+(* Debug *)
+fMaxOvershoot := fbTempController.fMaxOverShoot;
+tStartUpTime := fbTempController.tStartUpTime;
+
+(* Scope *)
+fW_Scope := fW;
+fX_Scope := fX;
+fY_Scope := fY;
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="Controller_v1">
+      <LineId Id="3" Count="55" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

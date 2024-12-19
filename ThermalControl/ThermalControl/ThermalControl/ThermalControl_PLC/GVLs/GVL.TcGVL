@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <GVL Name="GVL" Id="{3fd2f252-460f-4c80-b48e-5b449a3d6fcd}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	SetpointValueToScope			: LREAL;
+	ActualValueToScope				: LREAL;
+	OutToScope						: LREAL;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

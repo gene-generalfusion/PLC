@@ -7,6 +7,7 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[Alias();
+plc_plc_comm(); //comment this out if not talking to pfc
 Permissives();
 Trips();
 ChargeTime();
@@ -16,10 +17,12 @@ Sequence();
 HMI();
 Heartbeat();
 Alarms();
-RW_CSV();]]></ST>
+RW_CSV(); // to use this, you would need to create a folder directory in the PLC C drive]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
-      <LineId Id="67" Count="8" />
+      <LineId Id="67" Count="0" />
+      <LineId Id="84" Count="0" />
+      <LineId Id="68" Count="7" />
       <LineId Id="54" Count="0" />
       <LineId Id="80" Count="0" />
     </LineIds>

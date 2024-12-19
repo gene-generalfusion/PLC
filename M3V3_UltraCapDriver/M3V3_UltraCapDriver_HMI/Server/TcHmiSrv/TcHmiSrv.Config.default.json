@@ -3706,6 +3706,23 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.MCP_IO.MagDriver.0.Cap.0.CapCellTemp": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::MagDriver[0]::Cap[0]::CapCellTemp",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 4
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
         "PLC1.MCP_IO.MagDriver.0.Cap.0.CapVoltage": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -3714,7 +3731,7 @@
             "SCHEMA": {
                 "allOf": [
                     {
-                        "$ref": "tchmi:general#/definitions/INT"
+                        "$ref": "tchmi:general#/definitions/REAL"
                     },
                     {
                         "comment": "Comes from UlgraCaps CANBUS message",
@@ -3758,6 +3775,23 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.MCP_IO.MagDriver.0.Cap.1.CapCellTemp": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::MagDriver[0]::Cap[1]::CapCellTemp",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 4
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
         "PLC1.MCP_IO.MagDriver.0.Cap.1.CapVoltage": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -3766,11 +3800,28 @@
             "SCHEMA": {
                 "allOf": [
                     {
-                        "$ref": "tchmi:general#/definitions/INT"
+                        "$ref": "tchmi:general#/definitions/REAL"
                     },
                     {
                         "comment": "Comes from UlgraCaps CANBUS message",
                         "propertyOrder": 3
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.MagDriver.0.DumpResistorTemp": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::MagDriver[0]::DumpResistorTemp",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 8
                     }
                 ]
             },
@@ -3793,6 +3844,40 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.MCP_IO.MagDriver.0.ShotCurrentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::MagDriver[0]::ShotCurrentFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 11
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.MagDriver.1.Cap.0.CapCellTemp": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::MagDriver[1]::Cap[0]::CapCellTemp",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 4
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
         "PLC1.MCP_IO.MagDriver.1.Cap.0.CapVoltage": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -3801,11 +3886,28 @@
             "SCHEMA": {
                 "allOf": [
                     {
-                        "$ref": "tchmi:general#/definitions/INT"
+                        "$ref": "tchmi:general#/definitions/REAL"
                     },
                     {
                         "comment": "Comes from UlgraCaps CANBUS message",
                         "propertyOrder": 3
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.MagDriver.1.Cap.1.CapCellTemp": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::MagDriver[1]::Cap[1]::CapCellTemp",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 4
                     }
                 ]
             },
@@ -3819,11 +3921,28 @@
             "SCHEMA": {
                 "allOf": [
                     {
-                        "$ref": "tchmi:general#/definitions/INT"
+                        "$ref": "tchmi:general#/definitions/REAL"
                     },
                     {
                         "comment": "Comes from UlgraCaps CANBUS message",
                         "propertyOrder": 3
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.MagDriver.1.DumpResistorTemp": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::MagDriver[1]::DumpResistorTemp",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 8
                     }
                 ]
             },
@@ -3846,6 +3965,40 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.MCP_IO.MagDriver.1.ShotCurrentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::MagDriver[1]::ShotCurrentFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 11
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.MagDriver.2.Cap.0.CapCellTemp": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::MagDriver[2]::Cap[0]::CapCellTemp",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 4
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
         "PLC1.MCP_IO.MagDriver.2.Cap.0.CapVoltage": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -3854,11 +4007,28 @@
             "SCHEMA": {
                 "allOf": [
                     {
-                        "$ref": "tchmi:general#/definitions/INT"
+                        "$ref": "tchmi:general#/definitions/REAL"
                     },
                     {
                         "comment": "Comes from UlgraCaps CANBUS message",
                         "propertyOrder": 3
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.MagDriver.2.Cap.1.CapCellTemp": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::MagDriver[2]::Cap[1]::CapCellTemp",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 4
                     }
                 ]
             },
@@ -3872,11 +4042,28 @@
             "SCHEMA": {
                 "allOf": [
                     {
-                        "$ref": "tchmi:general#/definitions/INT"
+                        "$ref": "tchmi:general#/definitions/REAL"
                     },
                     {
                         "comment": "Comes from UlgraCaps CANBUS message",
                         "propertyOrder": 3
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.MagDriver.2.DumpResistorTemp": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::MagDriver[2]::DumpResistorTemp",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 8
                     }
                 ]
             },
@@ -3899,6 +4086,40 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.MCP_IO.MagDriver.2.ShotCurrentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::MagDriver[2]::ShotCurrentFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 11
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.MagDriver.3.Cap.0.CapCellTemp": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::MagDriver[3]::Cap[0]::CapCellTemp",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 4
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
         "PLC1.MCP_IO.MagDriver.3.Cap.0.CapVoltage": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -3907,11 +4128,28 @@
             "SCHEMA": {
                 "allOf": [
                     {
-                        "$ref": "tchmi:general#/definitions/INT"
+                        "$ref": "tchmi:general#/definitions/REAL"
                     },
                     {
                         "comment": "Comes from UlgraCaps CANBUS message",
                         "propertyOrder": 3
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.MagDriver.3.Cap.1.CapCellTemp": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::MagDriver[3]::Cap[1]::CapCellTemp",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 4
                     }
                 ]
             },
@@ -3925,11 +4163,28 @@
             "SCHEMA": {
                 "allOf": [
                     {
-                        "$ref": "tchmi:general#/definitions/INT"
+                        "$ref": "tchmi:general#/definitions/REAL"
                     },
                     {
                         "comment": "Comes from UlgraCaps CANBUS message",
                         "propertyOrder": 3
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.MagDriver.3.DumpResistorTemp": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::MagDriver[3]::DumpResistorTemp",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 8
                     }
                 ]
             },
@@ -3952,6 +4207,40 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.MCP_IO.MagDriver.3.ShotCurrentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::MagDriver[3]::ShotCurrentFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 11
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.MagDriver.4.Cap.0.CapCellTemp": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::MagDriver[4]::Cap[0]::CapCellTemp",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 4
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
         "PLC1.MCP_IO.MagDriver.4.Cap.0.CapVoltage": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -3960,11 +4249,28 @@
             "SCHEMA": {
                 "allOf": [
                     {
-                        "$ref": "tchmi:general#/definitions/INT"
+                        "$ref": "tchmi:general#/definitions/REAL"
                     },
                     {
                         "comment": "Comes from UlgraCaps CANBUS message",
                         "propertyOrder": 3
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.MagDriver.4.Cap.1.CapCellTemp": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::MagDriver[4]::Cap[1]::CapCellTemp",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 4
                     }
                 ]
             },
@@ -3978,11 +4284,28 @@
             "SCHEMA": {
                 "allOf": [
                     {
-                        "$ref": "tchmi:general#/definitions/INT"
+                        "$ref": "tchmi:general#/definitions/REAL"
                     },
                     {
                         "comment": "Comes from UlgraCaps CANBUS message",
                         "propertyOrder": 3
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.MagDriver.4.DumpResistorTemp": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::MagDriver[4]::DumpResistorTemp",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 8
                     }
                 ]
             },
@@ -4005,6 +4328,40 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.MCP_IO.MagDriver.4.ShotCurrentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::MagDriver[4]::ShotCurrentFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 11
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.MagDriver.5.Cap.0.CapCellTemp": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::MagDriver[5]::Cap[0]::CapCellTemp",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 4
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
         "PLC1.MCP_IO.MagDriver.5.Cap.0.CapVoltage": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -4013,11 +4370,28 @@
             "SCHEMA": {
                 "allOf": [
                     {
-                        "$ref": "tchmi:general#/definitions/INT"
+                        "$ref": "tchmi:general#/definitions/REAL"
                     },
                     {
                         "comment": "Comes from UlgraCaps CANBUS message",
                         "propertyOrder": 3
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.MagDriver.5.Cap.1.CapCellTemp": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::MagDriver[5]::Cap[1]::CapCellTemp",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 4
                     }
                 ]
             },
@@ -4031,11 +4405,28 @@
             "SCHEMA": {
                 "allOf": [
                     {
-                        "$ref": "tchmi:general#/definitions/INT"
+                        "$ref": "tchmi:general#/definitions/REAL"
                     },
                     {
                         "comment": "Comes from UlgraCaps CANBUS message",
                         "propertyOrder": 3
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.MagDriver.5.DumpResistorTemp": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::MagDriver[5]::DumpResistorTemp",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 8
                     }
                 ]
             },
@@ -4053,6 +4444,23 @@
                     },
                     {
                         "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.MagDriver.5.ShotCurrentFeedback": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::MagDriver[5]::ShotCurrentFeedback",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/REAL"
+                    },
+                    {
+                        "propertyOrder": 11
                     }
                 ]
             },
@@ -4347,6 +4755,33 @@
             "MAPPING": "PLC1::Trips_DB::TimerRunOutON",
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.plc_plc_comm.ReadVar": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::plc_plc_comm::ReadVar",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/INT"
+                    },
+                    {
+                        "comment": "1 = p1 comp pp charge complete, 2 = p1 comp pp dumping"
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC2.plc_plc_comm.ReadVar": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC2::plc_plc_comm::ReadVar",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/INT"
             },
             "USEMAPPING": true
         },
@@ -5778,26 +6213,50 @@
                 "PLC1.MCP_IO.Charger.4.inhibit": 3,
                 "PLC1.MCP_IO.Charger.5.ChargeTime.timeToChargeLoad": 3,
                 "PLC1.MCP_IO.Charger.5.inhibit": 3,
+                "PLC1.MCP_IO.MagDriver.0.Cap.0.CapCellTemp": 3,
                 "PLC1.MCP_IO.MagDriver.0.Cap.0.CapVoltage": 3,
                 "PLC1.MCP_IO.MagDriver.0.Cap.0.UC_Dummy_ID_hexstr": 3,
                 "PLC1.MCP_IO.MagDriver.0.Cap.0.UltraCap_Dummy.R1_10_UC_Rx_cobID": 3,
+                "PLC1.MCP_IO.MagDriver.0.Cap.1.CapCellTemp": 3,
                 "PLC1.MCP_IO.MagDriver.0.Cap.1.CapVoltage": 3,
+                "PLC1.MCP_IO.MagDriver.0.DumpResistorTemp": 3,
                 "PLC1.MCP_IO.MagDriver.0.SCR_ready_to_fire": 3,
+                "PLC1.MCP_IO.MagDriver.0.ShotCurrentFeedback": 3,
+                "PLC1.MCP_IO.MagDriver.1.Cap.0.CapCellTemp": 3,
                 "PLC1.MCP_IO.MagDriver.1.Cap.0.CapVoltage": 3,
+                "PLC1.MCP_IO.MagDriver.1.Cap.1.CapCellTemp": 3,
                 "PLC1.MCP_IO.MagDriver.1.Cap.1.CapVoltage": 3,
+                "PLC1.MCP_IO.MagDriver.1.DumpResistorTemp": 3,
                 "PLC1.MCP_IO.MagDriver.1.SCR_ready_to_fire": 3,
+                "PLC1.MCP_IO.MagDriver.1.ShotCurrentFeedback": 3,
+                "PLC1.MCP_IO.MagDriver.2.Cap.0.CapCellTemp": 3,
                 "PLC1.MCP_IO.MagDriver.2.Cap.0.CapVoltage": 3,
+                "PLC1.MCP_IO.MagDriver.2.Cap.1.CapCellTemp": 3,
                 "PLC1.MCP_IO.MagDriver.2.Cap.1.CapVoltage": 3,
+                "PLC1.MCP_IO.MagDriver.2.DumpResistorTemp": 3,
                 "PLC1.MCP_IO.MagDriver.2.SCR_ready_to_fire": 3,
+                "PLC1.MCP_IO.MagDriver.2.ShotCurrentFeedback": 3,
+                "PLC1.MCP_IO.MagDriver.3.Cap.0.CapCellTemp": 3,
                 "PLC1.MCP_IO.MagDriver.3.Cap.0.CapVoltage": 3,
+                "PLC1.MCP_IO.MagDriver.3.Cap.1.CapCellTemp": 3,
                 "PLC1.MCP_IO.MagDriver.3.Cap.1.CapVoltage": 3,
+                "PLC1.MCP_IO.MagDriver.3.DumpResistorTemp": 3,
                 "PLC1.MCP_IO.MagDriver.3.SCR_ready_to_fire": 3,
+                "PLC1.MCP_IO.MagDriver.3.ShotCurrentFeedback": 3,
+                "PLC1.MCP_IO.MagDriver.4.Cap.0.CapCellTemp": 3,
                 "PLC1.MCP_IO.MagDriver.4.Cap.0.CapVoltage": 3,
+                "PLC1.MCP_IO.MagDriver.4.Cap.1.CapCellTemp": 3,
                 "PLC1.MCP_IO.MagDriver.4.Cap.1.CapVoltage": 3,
+                "PLC1.MCP_IO.MagDriver.4.DumpResistorTemp": 3,
                 "PLC1.MCP_IO.MagDriver.4.SCR_ready_to_fire": 3,
+                "PLC1.MCP_IO.MagDriver.4.ShotCurrentFeedback": 3,
+                "PLC1.MCP_IO.MagDriver.5.Cap.0.CapCellTemp": 3,
                 "PLC1.MCP_IO.MagDriver.5.Cap.0.CapVoltage": 3,
+                "PLC1.MCP_IO.MagDriver.5.Cap.1.CapCellTemp": 3,
                 "PLC1.MCP_IO.MagDriver.5.Cap.1.CapVoltage": 3,
+                "PLC1.MCP_IO.MagDriver.5.DumpResistorTemp": 3,
                 "PLC1.MCP_IO.MagDriver.5.SCR_ready_to_fire": 3,
+                "PLC1.MCP_IO.MagDriver.5.ShotCurrentFeedback": 3,
                 "PLC1.Permissives_DB.AllCapsDischarged": 3,
                 "PLC1.Permissives_DB.AllChargeRelayClosed": 3,
                 "PLC1.Permissives_DB.AllChargerACOK": 3,
@@ -5823,6 +6282,8 @@
                 "PLC1.Trips_DB.NoFaultDetected": 3,
                 "PLC1.Trips_DB.ShortingSystemUnknown": 3,
                 "PLC1.Trips_DB.TimerRunOutON": 3,
+                "PLC1.plc_plc_comm.ReadVar": 3,
+                "PLC2.plc_plc_comm.ReadVar": 3,
                 "SetLocale": 3,
                 "SubscribeEvents": 3,
                 "TcHmiEventLogger.Diagnostics": 1,

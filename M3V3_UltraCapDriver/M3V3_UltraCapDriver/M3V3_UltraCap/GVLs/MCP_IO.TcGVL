@@ -8,6 +8,8 @@ VAR_GLOBAL
 	//RemoteModeSelected			: BOOL;
 	PSU1_DCOK					: BOOL;
 	MagDriver					: ARRAY[1..6] OF ST_MagDriver;
+	TriggerSCRs					: BOOL := FALSE;
+	TriggerScope				: BOOL := FALSE;
 	TurnONSystemChargedLED		: BOOL := FALSE;
 	
 	//Cap							: ARRAY[1..12] OF ST_Cap_Base;	

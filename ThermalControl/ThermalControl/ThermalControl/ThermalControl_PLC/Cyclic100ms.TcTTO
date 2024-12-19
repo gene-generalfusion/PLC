@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <Task Name="Cyclic100ms" Id="{725cc386-72b4-4bd9-8af5-04ae860feeb9}">
+    <!--CycleTime in micro seconds.-->
+    <CycleTime>100000</CycleTime>
+    <Priority>22</Priority>
+    <PouCall>
+      <Name>Sequence</Name>
+    </PouCall>
+    <TaskFBGuid>{3663e9d3-91a4-4399-9771-9c97c42159a0}</TaskFBGuid>
+    <Fb_init>{a739a431-4a46-494c-be7c-ff9e45ae6085}</Fb_init>
+    <Fb_exit>{410f3b99-cdcd-4209-96b5-d8a6db7f2b0b}</Fb_exit>
+    <CycleUpdate>{d56f9d7e-e3de-4fd2-a6bc-9d5dbaee52d8}</CycleUpdate>
+    <PostCycleUpdate>{76f394c1-c859-4977-bc83-df6dcfa40a80}</PostCycleUpdate>
+  </Task>
+</TcPlcObject>

@@ -59,8 +59,8 @@ FOR i := 1 TO 6 BY 1 DO
 	FOR j := 1 TO 2 BY 1 DO 
 	 	//verify the counter
 		MCP_IO.MagDriver[i].Cap[j].UC_Dummy_ID_hexstr :=  (DWORD_TO_HEXSTR (in := MCP_IO.MagDriver[i].Cap[j].UltraCap_Dummy.R1_10_UC_Rx_cobID, iPrecision := 2, bLoCase := FALSE));
-		MCP_IO.MagDriver[i].Cap[j].CapVoltage := LREAL_TO_INT (MCP_IO.MagDriver[i].Cap[j].Elec_VoltageSum);
-		MCP_IO.MagDriver[i].Cap[j].CapCellTemp := LREAL_TO_INT (MCP_IO.MagDriver[i].Cap[j].Therm_HighestCell); //sample the highest cell temperature
+		MCP_IO.MagDriver[i].Cap[j].CapVoltage := LREAL_TO_REAL (MCP_IO.MagDriver[i].Cap[j].Elec_VoltageSum);
+		MCP_IO.MagDriver[i].Cap[j].CapCellTemp := LREAL_TO_REAL (MCP_IO.MagDriver[i].Cap[j].Therm_HighestCell); //sample the highest cell temperature
 	
 	END_FOR;
 END_FOR;

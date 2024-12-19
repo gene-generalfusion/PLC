@@ -15,6 +15,7 @@
     <Implicit_KindOfTask>{b2309c80-99f2-4746-8205-25056f0e1e2e}</Implicit_KindOfTask>
     <Implicit_Jitter_Distribution>{60019739-35da-4e6d-a95a-26fd3fee00e3}</Implicit_Jitter_Distribution>
     <LibraryReferences>{7b9efd66-dac4-4df1-bc01-4baa6ec01674}</LibraryReferences>
+    <Released>false</Released>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="DUTs\E_ChargerType.TcDUT">
@@ -36,6 +37,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\ST_Module.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\ST_PB_Base.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\ST_PrefireDiscon_Base.TcDUT">
@@ -168,7 +172,13 @@
     <Compile Include="POUs\PermissivesS.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\plc_plc_comm.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\RW_CSV.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Sequence_2M.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\Sequence.TcPOU">

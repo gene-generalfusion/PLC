@@ -8,6 +8,7 @@ END_VAR
     <Implementation>
       <ST><![CDATA[Alias();
 CAN_comm();
+plc_plc_comm();
 Permissives();
 ChargeTime();
 AnalogConversion();
@@ -15,14 +16,17 @@ AnalogConversion();
 Sequence();
 HMI();
 Alarms();
-Heartbeat();]]></ST>
+Heartbeat();
+]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
       <LineId Id="63" Count="0" />
       <LineId Id="77" Count="0" />
+      <LineId Id="82" Count="0" />
       <LineId Id="64" Count="5" />
       <LineId Id="73" Count="0" />
       <LineId Id="17" Count="0" />
+      <LineId Id="81" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

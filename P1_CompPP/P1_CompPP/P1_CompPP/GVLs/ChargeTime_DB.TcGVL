@@ -15,21 +15,21 @@ VAR_GLOBAL RETAIN
 	//FormChargeTime_PT  : ARRAY[1..2] OF TIME;
 	//FormChargeTime_ET  : ARRAY[1..2] OF TIME;
 	
-	PreFormChargeTime_TON : TON;
-	PreFormChargeTime_PT : TIME;
-	PreFormChargeTime_ET : TIME;
-	
 	LongestChargeTime_TON : TON;
 	LongestChargeTime_PT : TIME;
 	LongestChargeTime_ET : TIME;
 
-	ChargeTimeStartDelay	: ARRAY[1..6] OF INT;
+	ChargeTimeStartDelay	: ARRAY[1..6] OF INT; // no SR yet, it will be 7 if SR is added
 	ChargingTimeElapse		: ARRAY[1..6] OF INT;	
 	ChargingTimeElapse_TON	: ARRAY[1..6] OF TON;
 	
-	PreFormChargeTimeStartDelay : INT;
-	PreFormChargingTimeElapse : INT;
-	PreFormChargingTimeElapse_TON : TON;
+	pfcChargerDelay_TON : TON;
+	pfcChargerDelay_PT : TIME;
+	pfcChargerDelay_ET : TIME;
+	
+	pfcChargeTimeStartDelay : INT;
+	pfcChargingTimeElapse : INT;
+	pfcChargingTimeElapse_TON : TON;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

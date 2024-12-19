@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="PRG_FB_CTRL_PID" Id="{ab4b9d68-903a-4dd7-8d89-3218bcdb26f1}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM PRG_FB_CTRL_PID
+VAR
+	SetpointValue				: LREAL		:= 5.0; //setpoint value
+	ActualValue					: LREAL;			//feedback signal
+	ManSyncValue				: LREAL;			//manual overwrites
+	Sync						: BOOL;
+
+	Out							: LREAL;			//output signal
+	Hold						: BOOL;
+	
+// eMode : IDLE = 0, passive = 1, active = 2, reset = 3, manual = 4, tune = 5, selftest = 6, sync movement = 7
+// E_CTRL_STATE : IDLE=0, passive=1, active=2, reset=3, manual=4, turning=5, tuned=6, selftest=7, error=8, sync movement =9 
+	eMode							: E_CTRL_MODE; //active mode is auto mode, manual mode is manual mode
+	eCtrlState						: E_CTRL_STATE;
+	CTRL_PID_PARAMS					: ST_CTRL_PID_PARAMS;
+
+	eErrorId						: E_CTRL_ERRORCODES;
+	Error							: BOOL;
+	ARWactive						: BOOL;
+
+	(* controller *)
+	CTRL_PID						: FB_CTRL_PID;
+
+	Init							: BOOL	:= TRUE;
+	TON							: TON;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF Init THEN
+	(* init parameter struct *)
+	CTRL_PID_PARAMS.tCtrlCycleTime		:= T#500MS;		//contro cycle time
+	CTRL_PID_PARAMS.tTaskCycleTime		:= T#100MS;		//task cycle time
+	CTRL_PID_PARAMS.fKp					:= 2.0;			(* proportional gain Kp				*)
+	CTRL_PID_PARAMS.tTn					:= T#1S;		(*  Tn								*)
+	CTRL_PID_PARAMS.tTv					:= T#200MS;		(*  Tv								*)
+	CTRL_PID_PARAMS.tTd					:= T#100MS;		(*  Td								*)
+	CTRL_PID_PARAMS.fOutMaxLimit			:= 100;			(* maximum output limit				*)
+	CTRL_PID_PARAMS.fOutMinLimit			:= 0;			(* minimum output limit				*)
+
+	(* set the mode to ACTIVE --> normal operation *)
+	eMode := eCTRL_MODE_ACTIVE;
+
+	(* reset the init flag *)
+	Init := FALSE;
+END_IF
+
+(*
+TYPE E_CTRL_MODE :
+(
+    eCTRL_MODE_IDLE     := 0, 
+    eCTRL_MODE_PASSIVE     := 1, 
+    eCTRL_MODE_ACTIVE     := 2, 
+    eCTRL_MODE_RESET     := 3, 
+    eCTRL_MODE_MANUAL     := 4, 
+    eCTRL_MODE_TUNE     := 5, 
+    eCTRL_MODE_SELFTEST    := 6, 
+    eCTRL_MODE_SYNC_MOVEMENT := 7 
+)
+END_TYPE
+
+TYPE E_CTRL_STATE :
+(
+    eCTRL_STATE_IDLE        := 0, 
+    eCTRL_STATE_PASSIVE := 1, 
+    eCTRL_STATE_ACTIVE := 2, 
+    eCTRL_STATE_RESET     := 3, 
+    eCTRL_STATE_MANUAL := 4, 
+    eCTRL_STATE_TUNING := 5, 
+    eCTRL_STATE_TUNED     := 6, 
+    eCTRL_STATE_SELFTEST := 7, 
+    eCTRL_STATE_ERROR     := 8, 
+    eCTRL_STATE_SYNC_MOVEMENT := 9 
+);
+END_TYPE
+*)
+
+SetpointValue := HMI_DB.TemperatureSP; //setpoint
+ActualValue := Sequence.AverageTemp; //feedback
+
+MCP_IO.ChargerSP := Out; //output
+
+(* copy var to scope var *)
+GVL.SetpointValueToScope 	:= SetpointValue;
+GVL.ActualValueToScope 		:= ActualValue;
+
+
+(* call controller *)
+CTRL_PID(		fSetpointValue		:= SetpointValue, //setpoint value
+				fActualValue		:= ActualValue, //temperature average fd value (analog input scaled value)
+				fManSyncValue		:= ManSyncValue, // if stop heater, manual mode takes over and set the sp to 0- basically manual output (0-100)
+				bSync				:= Sync,
+				eMode				:= eMode,
+				bHold				:= Hold,
+				stParams			:= CTRL_PID_PARAMS,
+				fOut				=> Out, //control signal - analog output value
+				bARWactive			=> ARWactive,
+				eErrorId			=> eErrorId,
+				bError				=> Error
+				);
+
+
+(* copy var to scope var *)
+GVL.OutToScope := Out;]]></ST>
+    </Implementation>
+    <LineIds Name="PRG_FB_CTRL_PID">
+      <LineId Id="3" Count="16" />
+      <LineId Id="109" Count="0" />
+      <LineId Id="108" Count="0" />
+      <LineId Id="111" Count="10" />
+      <LineId Id="110" Count="0" />
+      <LineId Id="146" Count="0" />
+      <LineId Id="133" Count="12" />
+      <LineId Id="122" Count="0" />
+      <LineId Id="132" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="105" Count="2" />
+      <LineId Id="78" Count="0" />
+      <LineId Id="30" Count="21" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

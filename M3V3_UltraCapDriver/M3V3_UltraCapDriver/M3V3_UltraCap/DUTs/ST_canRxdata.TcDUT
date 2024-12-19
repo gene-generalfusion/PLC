@@ -4,7 +4,7 @@
     <Declaration><![CDATA[TYPE ST_canRxdata :
 STRUCT
 	cobID			: STRING;
-	deviceID		: ARRAY [1..10] OF STRING; // will make it 1..10 later
+	deviceID		: ARRAY [1..12] OF STRING; // will make it 1..10 later
 	byteData		: ARRAY [0..7] OF USINT;
 	byteData_hexstr	: ARRAY [0..7] OF STRING;
 END_STRUCT

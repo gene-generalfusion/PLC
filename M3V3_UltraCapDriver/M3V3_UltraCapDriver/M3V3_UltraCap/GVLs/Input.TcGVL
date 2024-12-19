@@ -78,7 +78,7 @@ VAR_GLOBAL
 	B170357_BatLevel AT %I* : BOOL;
 	B170357_Heartbeat AT %I* : BOOL;*)
 
-	R1_10_CapNumber AT %I* : ARRAY [1..12] OF  ST_UCDevices; //only used with DBC file.
+	R1_10_CapNumber AT %I* : ARRAY [1..12] OF  ST_UC_Status; //only used with DBC file.
 	R1_10_UC_7F_status AT %I* : ST_UC_Status_Dummy;
 
 	

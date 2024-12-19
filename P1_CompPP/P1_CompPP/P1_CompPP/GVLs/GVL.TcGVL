@@ -6,7 +6,12 @@ VAR_GLOBAL
 	alarm_test	: BOOL;
 	test		: BOOL;
 	RemoteModeSelected : BOOL;
-
+	
+	// %MB ; 4020, %MX; 4021
+	WriteStatetoPLC		AT %MB0	: E_State; // write to the pfc plc / 1 = p1 comp pp charge complete, 2 = p1 comp pp dumping
+	ReadStateFromPLC	AT %MB2 : E_State;
+	pfcChargeTime		AT %MB4	: REAL;
+	Button				AT %MB8 : ST_PB_Base; 
 END_VAR
 
 VAR_GLOBAL CONSTANT

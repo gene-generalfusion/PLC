@@ -1,0 +1,318 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="P_TextModeWrite" Id="{fb25ce16-634e-49ae-8973-412dcfc474bb}" SpecialFunc="None">
+    <Declaration><![CDATA[(* Writing of CSV file in text mode. None of the field value is containing any non-printing control characters like line feed, carriage return, quotation marks, semicolon... *)
+PROGRAM P_TextModeWrite
+VAR_INPUT
+	bWrite			: BOOL := FALSE;(* Rising edge starts program execution *)
+END_VAR
+VAR
+	//bWrite			: BOOL := FALSE;(* Rising edge starts program execution *)
+	timer_TON		: TON;
+	timer_PT		: TIME;
+	timer_ET		: TIME;
+	timestamp		: REAL;
+	SysCLK			: GETSYSTEMTIME;
+	fileTime		: T_FILETIME;
+	location		: T_MaxString := 'C:\CSVdata\';
+	fileType		: T_MaxString := '.csv';
+	filename		: STRING;
+	filename_full	: T_MaxString;
+	filename_short	: T_MaxString;
+	sNetId			: T_AmsNetId := '';	(* TwinCAT system network address *)
+	sFileName		: T_MaxString := 'C:\CSVdata\ChargerVClog.csv';(* CSV destination file path and name *)
+	sCSVLine		: T_MaxString := '';(* Single CSV text line (row, record), we are using string as record buffer (your are able to see created fields) *)
+	sCSVField		: T_MaxString := '';(* Single CSV field value (column, record field) *)
+	bBusy			: BOOL;
+	bError			: BOOL;
+	nErrId			: UDINT;
+	nRow	 		: UDINT 	:= 0;(* Row number (record) *)
+	nColumn			: UDINT 	:= 0;(* Column number (record field) *)
+	hFile			: UINT		:= 0;(* File handle of the source file *)
+	step			: DWORD 	:= 0;
+	fbFileOpen		: FB_FileOpen;(* Opens file *)
+	fbFileClose		: FB_FileClose;(* Closes file *)
+	fbFilePuts		: FB_FilePuts;(* Writes one record (line) *)
+	fbWriter		: FB_CSVMemBufferWriter;(* Helper function block used to create CSV data bytes (single record line) *)
+	
+	//eState 					: E_State;
+	csvW_RebounceTMR_TON	: TON;
+	csvW_RebounceTMR_PT		: TIME := T#500MS;
+	StartLogging_ONS		: BOOL;
+	i 						: UDINT := 0;
+	SamplingTMR_TON 		: TON;
+	SamplingTMR_PT			: TIME := T#1S;
+	SamplingTMR_ET			: TIME;
+	SaveCSV					: BOOL := FALSE;
+	SaveBuff			: BOOL := FALSE;
+	
+	database		: ARRAY[0..plc_plc_comm_DB.MAX_CSV_ROWS, 0..plc_plc_comm_DB.MAX_CSV_COLUMNS ] OF STRING(plc_plc_comm_DB.MAX_CSV_FIELD_LENGTH) :=[ (* Source PLC database *)
+	'0_0', '0_1', '0_2', '0_3', '0_4', '0_5',
+	'1_0', '1_1', '1_2', '1_3', '1_4', '1_5',
+	'2_0', '2_1', '2_2', '2_3', '2_4', '2_5',
+	'3_0', '3_1', '3_2', '3_3', '3_4', '3_5',
+	'4_0', '4_1', '4_2', '4_3', '4_4', '4_5',
+	'5_0', '5_1', '5_2', '5_3', '5_4', '5_5'];
+	
+
+
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//add cap voltage or shot current here.
+
+SysCLK (timeLoDW => fileTime.dwLowDateTime, timeHiDW => fileTime.dwHighDateTime);
+
+filename_full := DT_TO_STRING (FILETIME_TO_DT (fileTIME));
+
+//filename_short := DELETE (DELETE (RIGHT (filename_full, 19), 1, 14), 1, 16);// LEFT (STR := filename, 35);
+//sFileName := CONCAT (STR1 := 'C:\CSVdata\', STR2 := filename);
+//filename := CONCAT (STR1 := filename_short, STR2 := fileType); //incrementing file name
+//sFileName := CONCAT (STR1 := location, STR2 := filename);
+CASE step OF
+	0:	(* Wait for rising edge at bWrite variable *)
+		IF bWrite THEN
+			bWrite 	:= FALSE;
+			bBusy 	:= TRUE;
+			bError	:= FALSE;
+			nErrId	:= 0;
+			hFile	:= 0;
+			nRow	:= 0;
+			nColumn	:= 0;
+			step 	:= 1;
+		END_IF
+
+	1:	(* Open source file *)
+		fbFileOpen(  bExecute := FALSE  );
+		
+		filename_short := DELETE (DELETE (RIGHT (filename_full, 19), 1, 14), 1, 16);// LEFT (STR := filename, 35);
+		filename := CONCAT (STR1 := filename_short, STR2 := fileType); //incrementing file name
+		sFileName := CONCAT (STR1 := location, STR2 := filename);
+		
+		fbFileOpen( sNetId := sNetId, sPathName := sFileName, nMode := FOPEN_MODEWRITE OR FOPEN_MODETEXT,(* Open file in TEXT mode! *)
+					ePath := PATH_GENERIC, bExecute := TRUE );
+		step := 2;
+
+	2:(* Wait until open not busy *)
+		fbFileOpen( bExecute := FALSE, bError => bError, nErrID => nErrID, hFile => hFile );
+		IF NOT fbFileOpen.bBusy THEN
+			IF NOT fbFileOpen.bError THEN
+				step := 3;
+			ELSE(* Error: file not found? *)
+				step := 100;
+			END_IF
+		END_IF
+
+	3:(* Convert one PLC record to CSV format *)
+		sCSVLine := '';
+		fbWriter.eCmd := eEnumCmd_First;(* Write first field value *)
+		IF nRow <= plc_plc_comm_DB.MAX_CSV_ROWS THEN
+		
+			FOR nColumn := 0 TO plc_plc_comm_DB.MAX_CSV_COLUMNS BY 1 DO
+
+				sCSVField := STRING_TO_CSVFIELD( database[ nRow, nColumn ], FALSE );(* TODO: Get field value from your application *)
+
+				(* Add new field to the record buffer *)
+				fbWriter( 	pBuffer := ADR( sCSVLine ), cbBuffer := SIZEOF( sCSVLine ) - 1, putValue := sCSVField, pValue := 0, cbValue := 0,
+							bCRLF := ( nColumn = plc_plc_comm_DB.MAX_CSV_COLUMNS ) );(* bCRLF == TRUE => Write CRLF after the last field value *)
+				IF fbWriter.bOk THEN
+					fbWriter.eCmd := eEnumCmd_Next;(* Write next field value *)
+				ELSE(* Error *)
+					step := 100;
+					RETURN;
+				END_IF
+
+			END_FOR(* FOR nColumn := 0... *)
+
+			(* FB_FilePuts adds allready CR (carriage return) to the written line.
+			We have to replace the $R$L characters with $L character to avoid double CR. *)
+			IF RIGHT( sCSVLine, 2 ) = '$R$L' THEN
+				sCSVLine := REPLACE( sCSVLine, '$L', 2, LEN( sCSVLine ) - 1 );
+			END_IF
+
+			nRow := nRow + 1;(* Increment number of created records (rows) *)
+
+			step := 4;(* Write record to the file *)
+
+		ELSE(* All rows written => Close file *)
+			step := 10;
+		END_IF
+
+	4:	(* Write single text line *)
+		fbFilePuts( bExecute := FALSE );
+		fbFilePuts( sNetId := sNetId, hFile := hFile, sLine := sCSVLine, bExecute := TRUE );
+		step := 5;
+
+	5:(* Wait until write not busy *)
+		fbFilePuts( bExecute := FALSE, bError => bError, nErrID => nErrID );
+		IF NOT fbFilePuts.bBusy THEN
+			IF NOT fbFilePuts.bError THEN
+				step := 3;(* Write next record *)
+			ELSE(* Error *)
+				step := 100;
+			END_IF
+		END_IF
+
+	10:	(* Close source file *)
+		fbFileClose( bExecute := FALSE );
+		fbFileClose( sNetId := sNetId, hFile := hFile, bExecute := TRUE );
+		step := 11;
+
+	11:(* Wait until close not busy *)
+		fbFileClose( bExecute := FALSE, bError => bError, nErrID => nErrID );
+		IF ( NOT fbFileClose.bBusy ) THEN
+			hFile := 0;
+			step := 100;
+		END_IF
+
+	100: (* Error or ready step => cleanup *)
+		IF ( hFile <> 0 ) THEN
+			step := 10; (* Close the source file *)
+		ELSE
+			bBusy := FALSE;
+			step := 0;	(* Ready *)
+		END_IF
+
+END_CASE
+
+
+
+//logging logic
+//start storing buffer when charge pb is pressed. 
+//when charge done, convert data into csv.
+IF (*Sequence.eState = E_State.CHARGING*) HMI_DB.ChargePB = TRUE THEN 
+	//StartLogging_ONS := TRUE;
+	SaveBuff := TRUE; 
+	//ELSIF Sequence.eState = E_State.SAFE THEN
+		//bWrite := FALSE;
+		//step := 10;
+		//fbFileClose( bExecute := FALSE );
+		//fbFileClose( sNetId := sNetId, hFile := hFile, bExecute := TRUE );
+END_IF
+
+
+//logging data - either need a timer to store the database buffer or user a timer to call the function.
+IF SaveBuff = TRUE THEN 
+	timer_TON (IN:= TRUE, PT := (ChargeTime_DB.LongestChargeTime_PT + HMI_DB.RunOutTMR_PT + T#10S), ET => timer_ET);
+	IF SamplingTMR_TON.Q = FALSE THEN
+		SamplingTMR_TON (IN := TRUE, PT := SamplingTMR_PT, ET => SamplingTMR_ET);
+		//csvW_RebounceTMR_TON(IN := TRUE, PT := csvW_RebounceTMR_PT );
+		ELSE 
+			SamplingTMR_TON (IN := FALSE, PT := SamplingTMR_PT);
+	END_IF 
+ELSE
+		SamplingTMR_TON (IN := FALSE, PT := SamplingTMR_PT);
+		timer_TON (IN:= FALSE);
+END_IF
+
+timestamp := TIME_TO_REAL (timer_ET)/1000; 
+	
+IF (i <= plc_plc_comm_DB.MAX_CSV_ROWS) AND SamplingTMR_TON.Q = TRUE THEN 
+	database[i, 0] := REAL_TO_STRING(timestamp);
+	database[i, 1] := REAL_TO_STRING(MCP_IO.Charger[1].voltageFeedback);
+	database[i, 2] := REAL_TO_STRING(MCP_IO.Charger[1].currentFeedback);
+		
+	//uncomment for testing purposes
+		//Input.R1_08_00 := Input.R1_08_00 + 10 ;
+		//Input.R1_08_01 := Input.R1_08_00 + 100 ;
+		i := i + 1;
+		SamplingTMR_TON.IN := FALSE;
+
+ELSIF (i > plc_plc_comm_DB.MAX_CSV_ROWS) OR ((Sequence.eState = E_State.ABORT OR HMI_DB.FirePB = TRUE OR HMI_DB.DumpPB = TRUE OR HMI_DB.AbortPB = TRUE) AND i <> 0) THEN 
+	SaveCSV := TRUE;
+	SaveBuff := FALSE; 
+	SamplingTMR_TON.IN := FALSE;
+	i := 0;
+	ELSE
+		SamplingTMR_TON.IN := FALSE;
+END_IF
+
+IF SaveCSV = TRUE THEN 
+	bWrite := TRUE;
+	csvW_RebounceTMR_TON(IN := TRUE, PT:= csvW_RebounceTMR_PT);
+END_IF
+
+IF csvW_RebounceTMR_TON.Q = TRUE THEN 
+	SaveCSV := FALSE;
+	bWrite := FALSE;
+	csvW_RebounceTMR_TON(IN := FALSE, PT:= csvW_RebounceTMR_PT);
+END_IF
+
+	//bWrite := FALSE;
+	//step := 10;
+	//fbFileClose( bExecute := FALSE );
+	//fbFileClose( sNetId := sNetId, hFile := hFile, bExecute := TRUE );]]></ST>
+    </Implementation>
+    <LineIds Name="P_TextModeWrite">
+      <LineId Id="432" Count="0" />
+      <LineId Id="169" Count="1" />
+      <LineId Id="436" Count="0" />
+      <LineId Id="171" Count="0" />
+      <LineId Id="449" Count="0" />
+      <LineId Id="448" Count="0" />
+      <LineId Id="442" Count="0" />
+      <LineId Id="437" Count="0" />
+      <LineId Id="452" Count="0" />
+      <LineId Id="3" Count="14" />
+      <LineId Id="438" Count="0" />
+      <LineId Id="454" Count="0" />
+      <LineId Id="456" Count="0" />
+      <LineId Id="453" Count="0" />
+      <LineId Id="457" Count="0" />
+      <LineId Id="18" Count="16" />
+      <LineId Id="300" Count="0" />
+      <LineId Id="304" Count="0" />
+      <LineId Id="37" Count="0" />
+      <LineId Id="227" Count="0" />
+      <LineId Id="39" Count="20" />
+      <LineId Id="310" Count="0" />
+      <LineId Id="60" Count="43" />
+      <LineId Id="136" Count="1" />
+      <LineId Id="172" Count="1" />
+      <LineId Id="139" Count="1" />
+      <LineId Id="350" Count="0" />
+      <LineId Id="141" Count="2" />
+      <LineId Id="167" Count="1" />
+      <LineId Id="144" Count="0" />
+      <LineId Id="154" Count="0" />
+      <LineId Id="348" Count="0" />
+      <LineId Id="104" Count="0" />
+      <LineId Id="178" Count="0" />
+      <LineId Id="513" Count="0" />
+      <LineId Id="374" Count="0" />
+      <LineId Id="234" Count="0" />
+      <LineId Id="233" Count="0" />
+      <LineId Id="375" Count="0" />
+      <LineId Id="379" Count="0" />
+      <LineId Id="377" Count="0" />
+      <LineId Id="180" Count="0" />
+      <LineId Id="238" Count="0" />
+      <LineId Id="515" Count="0" />
+      <LineId Id="240" Count="0" />
+      <LineId Id="512" Count="0" />
+      <LineId Id="362" Count="6" />
+      <LineId Id="385" Count="0" />
+      <LineId Id="369" Count="3" />
+      <LineId Id="381" Count="0" />
+      <LineId Id="2" Count="0" />
+      <LineId Id="232" Count="0" />
+      <LineId Id="236" Count="0" />
+      <LineId Id="351" Count="0" />
+      <LineId Id="183" Count="0" />
+      <LineId Id="383" Count="1" />
+      <LineId Id="184" Count="0" />
+      <LineId Id="246" Count="0" />
+      <LineId Id="245" Count="0" />
+      <LineId Id="247" Count="0" />
+      <LineId Id="250" Count="0" />
+      <LineId Id="248" Count="0" />
+      <LineId Id="251" Count="0" />
+      <LineId Id="249" Count="0" />
+      <LineId Id="256" Count="0" />
+      <LineId Id="253" Count="0" />
+      <LineId Id="255" Count="0" />
+      <LineId Id="254" Count="0" />
+      <LineId Id="355" Count="3" />
+      <LineId Id="252" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

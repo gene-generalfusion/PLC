@@ -116,7 +116,7 @@ IF P_TextModeWrite.SaveCSV = FALSE AND P_TextModeWrite.step = 10 THEN
 		HMI_DB.CSV_loggingDone := FALSE;
 END_IF
 
-
+HMI_DB.FireDelayTMR_PT := REAL_TO_TIME (HMI_DB.FireDelayTMR_REAL *1000);  // delay firing between pfc firing and shot disconnect
 
 IF i > 6 THEN 
 	i := 1;

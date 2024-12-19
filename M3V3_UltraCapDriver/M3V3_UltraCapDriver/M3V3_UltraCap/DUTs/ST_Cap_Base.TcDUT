@@ -5,9 +5,9 @@
 STRUCT
 	
 	CapWarning			: BOOL;  //comes from UltraCaps CANBUS message
-	CapAlarm								: BOOL;
-	CapVoltage								: INT;   //Comes from UlgraCaps CANBUS message
-	CapCellTemp								: INT;
+	CapAlarm			: BOOL;
+	CapVoltage			: REAL;   //Comes from UlgraCaps CANBUS message
+	CapCellTemp			: REAL;
 	
 	//UltraCap_CAN_ID : STRING;
 	Elec_Balancing		: USINT;

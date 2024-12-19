@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="ST_ThermalCouple" Id="{b52bd890-45ab-4d00-a783-1981e0c37986}">
+    <Declaration><![CDATA[TYPE ST_ThermalCouple :
+STRUCT
+	Temperature_raw 	: INT := 0 ;
+	Temperature_norm	: REAL := 0;
+	TemperatureFB		: REAL := 0;
+	IncludeSW			: BOOL := TRUE;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

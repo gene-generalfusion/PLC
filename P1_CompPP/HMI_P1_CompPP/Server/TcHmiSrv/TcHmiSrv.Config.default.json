@@ -2886,6 +2886,33 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.GVL.ReadStateFromPLC": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL::ReadStateFromPLC",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/PLC1.E_State"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.GVL.WrtieVar": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL::WrtieVar",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/INT"
+                    },
+                    {
+                        "comment": "write to the pfc plc"
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
         "PLC1.HMI.ChargeGraphTMR_ET": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -7487,6 +7514,8 @@
                 "PLC1.ChargeTime_DB.ChargingTimeElapse.4": 3,
                 "PLC1.ChargeTime_DB.ChargingTimeElapse.5": 3,
                 "PLC1.ChargeTime_DB.LongestChargeTime_ET": 3,
+                "PLC1.GVL.ReadStateFromPLC": 3,
+                "PLC1.GVL.WrtieVar": 3,
                 "PLC1.HMI.ChargeGraphTMR_ET": 3,
                 "PLC1.HMI.ChargeGraphTMR_PT": 3,
                 "PLC1.HMI.ForceCharCompSatisfied": 3,

@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="plc_plc_comm" Id="{d9e1560e-d6b9-444f-be78-f9d96fb57cdb}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM plc_plc_comm
+VAR
+//	WritetoPLC	: ADSwrite_FB;
+	ReadStatusfromPLC		: ADSREAD;
+	ReadChargTimefromPLC	: ADSREAD;
+//	ReadVariableTMR_TON : TON;
+	WritetoPLC				: ADSWRITE;
+	WriteFireButtontoPLC	: ADSWRITE;
+	WriteVariableTMR_TON 	: TON;
+	ReadVariableTMR_TON 	: TON;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// also add this to the plc 18Moudle program
+//ReadVariableTMR_TON(IN := NOT ReadVariableTMR_TON.Q, PT := T#10MS);
+ReadVariableTMR_TON(IN := NOT ReadVariableTMR_TON.Q, PT := T#10MS);
+WriteVariableTMR_TON(IN := NOT WriteVariableTMR_TON.Q, PT := T#10MS);
+
+//WritetoPLC (NETID   := '192.168.173.70', //'5.107.220.56.1.1',- pfc plc
+WritetoPLC (NETID   := '5.107.220.56.1.1', //- pfc plc
+    		PORT    := 851,
+    		IDXGRP  := 16#4020,
+    		IDXOFFS := 16#0000,
+    		LEN     := SIZEOF(GVL.WriteStatetoPLC), //*MB0
+    		SRCADDR := ADR(GVL.WriteStatetoPLC),
+    		WRITE   := WriteVariableTMR_TON.Q,
+    		TMOUT   := T#1S,
+			);
+			
+WriteFireButtontoPLC (NETID   := '5.107.220.56.1.1', //- pfc plc
+    		PORT    := 851,
+    		IDXGRP  := 16#4020,
+    		IDXOFFS := 16#0008,
+    		LEN     := SIZEOF(GVL.Button.FirePBPressed), //*MB0
+    		SRCADDR := ADR(GVL.Button.FirePBPressed),
+    		WRITE   := WriteVariableTMR_TON.Q,
+    		TMOUT   := T#1S,
+			);	
+		
+ReadStatusfromPLC (NETID 	:= '5.107.220.56.1.1', //p1 pp plc addr 
+			PORT 	:= 851,
+			IDXGRP 	:= 16#4020,
+			IDXOFFS	:= 16#2, 
+			LEN		:= SIZEOF(GVL.ReadStateFromPLC), //*MB2
+			DESTADDR:= ADR(GVL.ReadStateFromPLC),
+			READ	:= ReadVariableTMR_TON.Q, //high - starts reading
+			TMOUT	:= T#2S,
+			);
+			
+ReadChargTimefromPLC (NETID 	:= '5.107.220.56.1.1', //p1 pp plc addr 
+			PORT 	:= 851,
+			IDXGRP 	:= 16#4020,
+			IDXOFFS	:= 16#4, 
+			LEN		:= SIZEOF(GVL.pfcChargeTime), //*MB2
+			DESTADDR:= ADR(GVL.pfcChargeTime),
+			READ	:= ReadVariableTMR_TON.Q, //high - starts reading
+			TMOUT	:= T#2S,
+			);
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="plc_plc_comm">
+      <LineId Id="7" Count="1" />
+      <LineId Id="44" Count="0" />
+      <LineId Id="51" Count="11" />
+      <LineId Id="103" Count="0" />
+      <LineId Id="95" Count="7" />
+      <LineId Id="85" Count="0" />
+      <LineId Id="104" Count="0" />
+      <LineId Id="86" Count="7" />
+      <LineId Id="74" Count="0" />
+      <LineId Id="94" Count="0" />
+      <LineId Id="75" Count="7" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="17" Count="0" />
+      <LineId Id="64" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

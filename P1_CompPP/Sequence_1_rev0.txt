@@ -1,0 +1,535 @@
+
+//Critical Delay Time
+HMI_DB.ChargerHVOFF_rlyDelayPT := INT_TO_TIME(HMI_DB.ChargerHVOFF_rlyDelayPT_INT);
+AbortPSnRlyDelay_PT := HMI_DB.ChargerHVOFF_rlyDelayPT;
+
+//hv output delay
+HMI_DB.HVONdelayPT := INT_TO_TIME (HMI_DB.HVONdelayPT_INT);
+ChargeRlyDelayON_PT := HMI_DB.HVONdelayPT;
+
+//runout timer
+HMI_DB.RunOutTMR_PT := DINT_TO_TIME (HMI_DB.RunOutTMR_PT_INT*1000);
+HMI_DB.RunOutTMR_elapse := (TIME_TO_DINT (HMI_DB.RunOutTMR_PT - ChargedRunOutTMR_TON.ET))/1000;
+HMI_DB.ChargingRunOutTMR_elapse := TIME_TO_INT(ChargingRunOutTMR_TON.PT/1000 - ChargingRunOutTMR_TON.ET/1000);
+
+//charge realy timer 
+ChargeRlyDelayON_Timer(PT := ChargeRlyDelayON_PT);
+
+//reset timer
+IF eState <> E_State.CHARGING THEN 
+	ChargingRunOutTMR_TON (IN := FALSE);
+	//LCP1_IO.Segment[1].Module[1].ModuleCharged := FALSE; //for status light only
+
+	FOR i := 1 TO 6 BY 1 DO
+		ChargeTime_DB.ChargerDelay_TON[i] (IN := FALSE, PT := ChargeTime_DB.ChargerDelay_PT[i], ET => ChargeTime_DB.ChargerDelay_ET[i]);
+		ChargeTime_DB.ChargingTimeElapse_TON[i].IN := FALSE;
+		ChargeRlyDelayON_Timer (IN := FALSE);
+	END_FOR;
+	
+END_IF
+
+IF eState <> E_State.CHARGECOMPLETE THEN 
+	//LCP1_IO.Segment[1].Module[1].ModuleCharged := FALSE; //for status light only
+	ChargedRunOutTMR_TON (IN := FALSE); // only needed in charge complete
+END_IF
+
+IF HMI_DB.HMI_ManualModeSelected = TRUE AND eState = E_State.SAFE THEN
+	eState := E_State.ManualMode;
+END_IF
+
+IF eState = E_State.CHARGING OR eState = E_State.CHARGECOMPLETE OR eState = E_State.ABORT THEN
+	HMI_DB.HMI_ManualModeSelected := FALSE;
+END_IF
+
+//if not in manual mode turn off the switches
+IF eState <> E_State.ManualMode THEN
+	HMI_DB.CloseChargeRlySW := FALSE;
+	HMI_DB.OpenDumpRlySW := FALSE;
+	HMI_DB.TurnChrgHVonSW := FALSE;
+	HMI_DB.TurnChrgInhibitOffSW := FALSE;
+	HMI_DB.TurnOnShotTrigSW := FALSE;
+	HMI_DB.TurnOnChargeAlarm := FALSE;
+	HMI_DB.ClosePrefireDisconSW := FALSE;
+	HMI_DB.ChargePrefireDisconCap := FALSE;
+END_IF
+
+IF HMI_DB.DumpPB = TRUE THEN
+	eState := E_State.DUMPING;
+	ELSIF HMI_DB.AbortPB = TRUE OR Trips_DB.TimerRunOutON = TRUE OR Permissives_DB.CageInterlockOK = FALSE THEN 
+		eState := E_State.ABORT;
+	//	ELSE
+	//		eState := E_State.SAFE;
+		END_IF;
+
+CASE eState OF 
+	
+	//Safe OR IDLE
+	E_State.SAFE:
+		ChargeCompleted := FALSE;
+		FirePBpressed := FALSE;
+		
+		FireToSafeDelayTMR_TON (IN := FALSE);
+		
+		ChargingRunOutTMR_TON (IN := FALSE);
+		ChargedRunOutTMR_TON (IN := FALSE);
+		DumpingRunOutTMR_TON (IN := FALSE);
+		
+		ShotTrigDelayTMR_TON (IN := FALSE, PT := ShotTrigDelayTMR_PT, ET => ShotTrigDelayTMR_ET);
+		ScopeTrigPulseTMR_TON (IN := FALSE, PT := ScopeTrigPulseTMR_PT, ET => ScopeTrigPulseTMR_ET);
+		ShotTrigPulseTMR_TON (IN := FALSE, PT := ShotTrigPulseTMR_PT, ET => ShotTrigPulseTMR_ET);
+		
+		ChargeTime_DB.LongestChargeTime_TON (IN := FALSE); //reset timer
+		ChargeRlyDelayON_Timer ( IN := FALSE, PT := ChargeRlyDelayON_PT);
+		ChargeTimeFinished := FALSE; //reset chargetime done bit
+		LCP1_IO.Segment[1].Module[1].Fire := FALSE; //turn off all firing triggers
+		
+		//prefire disconn
+		MCP_IO.PrefireDiscon.ChargePrefireDisconCap := FALSE;
+		MCP_IO.PrefireDiscon.ClosePrefireDiscon	:= FALSE; //leave disconn open
+		
+		GVL.WriteStatetoPLC := E_state.SAFE; //status to pfc PP
+		
+		IF Permissives_DB.CageInterlockOK = TRUE AND HMI_DB.ArmTheCagePB = TRUE THEN 
+			MCP_IO.EnergizeACKontactor := TRUE;
+		END_IF;
+		//HMI_DB.CloseChargeRlySW := FALSE;
+		//HMI_DB.OpenDumpRlySW := FALSE;
+		
+		//TURN OFF ALL CHARGERS
+		FOR i := 1 TO 6 BY 1 DO 
+			MCP_IO.Charger[i].inhibit := TRUE; // inhibit = high, no output | inhibit = low, allows output
+			MCP_IO.Charger[i].HV_ON := FALSE; 
+			//MCP_IO.Charger[i].voltageSP := 0.001;
+			StartCharger[i] := FALSE; // reset bit
+			ChargeTimeFinished := FALSE;
+			StartChargingBroadcast := FALSE;
+			//reset charger delay timer
+			ChargeTime_DB.ChargerDelay_TON[i] (IN := FALSE, PT := ChargeTime_DB.ChargerDelay_PT[i], ET => ChargeTime_DB.ChargerDelay_ET[i]);
+			ChargeTime_DB.ChargingTimeElapse_TON[i] (IN := FALSE); 
+		END_FOR;
+		//pfc
+		StartCharger[8] := FALSE;
+		ChargeTime_DB.pfcChargerDelay_TON (IN := FALSE, PT := ChargeTime_DB.pfcChargerDelay_PT, ET => ChargeTime_DB.pfcChargerDelay_ET);
+
+		LCP1_IO.Segment[1].Module[1].CloseChargeRly := FALSE;
+		LCP1_IO.Segment[1].Module[2].CloseChargeRly := FALSE;
+		LCP1_IO.Segment[1].Module[3].CloseChargeRly := FALSE;
+		
+		(*
+		LCP1_IO.Segment[2].Module[1].CloseChargeRly := FALSE;
+		LCP1_IO.Segment[2].Module[2].CloseChargeRly := FALSE;
+		LCP1_IO.Segment[2].Module[3].CloseChargeRly := FALSE;
+		
+		LCP1_IO.Segment[3].Module[1].CloseChargeRly := FALSE;
+		LCP1_IO.Segment[3].Module[2].CloseChargeRly := FALSE;
+		LCP1_IO.Segment[3].Module[3].CloseChargeRly := FALSE;
+		
+		LCP2_IO.Segment[4].Module[1].CloseChargeRly := FALSE;
+		LCP2_IO.Segment[4].Module[2].CloseChargeRly := FALSE;
+		LCP2_IO.Segment[4].Module[3].CloseChargeRly := FALSE;
+		
+		LCP2_IO.Segment[5].Module[1].CloseChargeRly := FALSE;
+		LCP2_IO.Segment[5].Module[2].CloseChargeRly := FALSE;
+		LCP2_IO.Segment[5].Module[3].CloseChargeRly := FALSE;
+		
+		LCP2_IO.Segment[6].Module[1].CloseChargeRly := FALSE;
+		LCP2_IO.Segment[6].Module[2].CloseChargeRly := FALSE;
+		LCP2_IO.Segment[6].Module[3].CloseChargeRly := FALSE;
+		*)
+		
+		LCP1_IO.Segment[1].Module[1].OpenDumpRly := FALSE;
+		LCP1_IO.Segment[1].Module[2].OpenDumpRly := FALSE;
+		LCP1_IO.Segment[1].Module[3].OpenDumpRly := FALSE;
+		
+		//LCP2 SEGMENT 4-6
+		IF HMI_DB.ChargePB = TRUE AND MCP_IO.EnergizeACKontactor = TRUE  AND Permissives_DB.PreFireDisconOpen = TRUE THEN
+			ChargeDelayStart := TRUE;
+		ELSIF HMI_DB.DumpPB = TRUE THEN
+				eState := E_State.DUMPING; 
+		END_IF;
+		
+		IF ChargeDelayStart = TRUE THEN
+			// turn on warning light  - do it for all i and j
+			LCP1_IO.Segment[1].Module[1].ModuleCharged := TRUE;
+			StartCharWarningTMR_TON (IN := TRUE, PT := StartCharWarningTMR_PT, ET=> StartCharWarningTMR_ET);
+		END_IF;
+		
+		IF StartCharWarningTMR_TON.Q = TRUE THEN 
+			ChargeDelayStart := FALSE;
+			eState := E_State.CHARGING;
+		END_IF
+
+	E_State.CHARGING:
+	
+		//start charging the disconnect cap
+		MCP_IO.PrefireDiscon.ChargePrefireDisconCap := TRUE;
+	
+		ChargeDelayStart := FALSE;
+		StartCharWarningTMR_TON (IN := FALSE, PT := StartCharWarningTMR_PT, ET=> StartCharWarningTMR_ET);
+		// turn on warning light  - do it for all i and j
+		LCP1_IO.Segment[1].Module[1].ModuleCharged := TRUE;
+		
+		FirePBpressed := FALSE;
+		LCP1_IO.Segment[1].Module[1].Fire := FALSE; //make sure it is off
+		//start charging runout timer
+		LCP1_IO.Segment[1].Module[1].CloseChargeRly := TRUE;
+		LCP1_IO.Segment[1].Module[2].CloseChargeRly := TRUE;
+		LCP1_IO.Segment[1].Module[3].CloseChargeRly := TRUE;
+		
+		LCP1_IO.Segment[1].Module[1].OpenDumpRly := TRUE;
+		LCP1_IO.Segment[1].Module[2].OpenDumpRly := TRUE;
+		LCP1_IO.Segment[1].Module[3].OpenDumpRly := TRUE;
+		
+		GVL.WriteStatetoPLC := E_state.CHARGING; //status to pfc PP
+		
+		IF Permissives_DB.ReadyToCharge = TRUE THEN 
+			FOR i := 1 TO 6 BY 1 DO 
+				//MCP_IO.Charger[i].voltageSP := (HMI_DB.TDKLoad[i].RequiredChargedV *1000);
+				MCP_IO.Charger[i].voltageSP := (1000*HMI_DB.TDKLoad[i].RequiredChargedV);
+			END_FOR
+		END_IF;
+		//start charging runout timer
+		ChargingRunOutTMR_TON (IN := TRUE, PT := (ChargeTime_DB.LongestChargeTime_PT + HMI_DB.RunOutTMR_PT), ET => ChargingRunOutTMR_ET);
+		
+		IF Trips_DB.ChargingTimerRunout = TRUE THEN 
+			StartChargingBroadcast := FALSE; // reset the broadcast bit whne all chargers
+			ChargeTimeFinished := FALSE; //reset chargetime done bit
+			ChargingRunOutTMR_TON (IN := FALSE);
+			FOR i := 1 TO 6 BY 1 DO 
+				ChargeTime_DB.ChargingTimeElapse_TON[i] (IN := FALSE);							
+			END_FOR
+			
+			eState := E_State.ABORT; 
+		END_IF
+		
+		IF Permissives_DB.AllChargeRelayClosed = TRUE THEN
+			//start broadcasting on charger timer
+			StartChargingBroadcast := TRUE;
+		END_IF;
+		//start timer 
+		IF StartChargingBroadcast = TRUE THEN 
+			//start total charge time TIMER
+			ChargeTime_DB.LongestChargeTime_TON (IN := TRUE, PT := ChargeTime_DB.LongestChargeTime_PT, ET => ChargeTime_DB.LongestChargeTime_ET);
+			
+			//mapping HMI Charger Voltage SP to MCP IO 
+			(*FOR i := 1 TO 6 BY 1 DO
+				MCP_IO.Charger[i].voltageSP :=(HMI_DB.TDKLoad[i].RequiredChargedV * 1000);
+				//MCP_IO.Charger[1].voltageSP := REAL_TO_DINT (Setpoints.TDKLoad[1].RequiredChargedV);
+			END_FOR;*)
+			
+			// delay stagger starts here
+			ChargeTime_DB.ChargerDelay_TON[1] (IN := TRUE, PT := ChargeTime_DB.ChargerDelay_PT[1], ET => ChargeTime_DB.ChargerDelay_ET[1]);
+			ChargeTime_DB.ChargerDelay_TON[2] (IN := TRUE, PT := ChargeTime_DB.ChargerDelay_PT[2], ET => ChargeTime_DB.ChargerDelay_ET[2]);
+			ChargeTime_DB.ChargerDelay_TON[3] (IN := TRUE, PT := ChargeTime_DB.ChargerDelay_PT[3], ET => ChargeTime_DB.ChargerDelay_ET[3]);
+		
+			ChargeTime_DB.ChargerDelay_TON[4] (IN := TRUE, PT := ChargeTime_DB.ChargerDelay_PT[4], ET => ChargeTime_DB.ChargerDelay_ET[4]);
+			ChargeTime_DB.ChargerDelay_TON[5] (IN := TRUE, PT := ChargeTime_DB.ChargerDelay_PT[5], ET => ChargeTime_DB.ChargerDelay_ET[5]);
+			ChargeTime_DB.ChargerDelay_TON[6] (IN := TRUE, PT := ChargeTime_DB.ChargerDelay_PT[6], ET => ChargeTime_DB.ChargerDelay_ET[6]);
+			//pfc
+			ChargeTime_DB.pfcChargerDelay_TON (IN := TRUE, PT := ChargeTime_DB.pfcChargerDelay_PT, ET => ChargeTime_DB.pfcChargerDelay_ET);
+			ELSE
+				//Turn inhibit High on all chargers and turn off all timer if no broadcasting
+				FOR i := 1 TO 6 BY 1 DO 
+					MCP_IO.Charger[i].inhibit := TRUE; 
+					MCP_IO.Charger[i].HV_ON := FALSE;
+					// turn off timer
+					ChargeTime_DB.ChargerDelay_TON[i] (IN := FALSE, PT := ChargeTime_DB.ChargerDelay_PT[i], ET => ChargeTime_DB.ChargerDelay_ET[i]);
+				END_FOR;
+				//pfc
+				ChargeTime_DB.pfcChargerDelay_TON (IN := FALSE, PT := ChargeTime_DB.pfcChargerDelay_PT, ET => ChargeTime_DB.pfcChargerDelay_ET);
+		END_IF;
+			
+		FOR i := 1 TO 6 BY 1 DO	
+			//turn on HV output to load	
+			IF ChargeTime_DB.ChargerDelay_TON[i].Q = TRUE THEN
+				StartCharger[i] := TRUE;
+			END_IF	
+			
+			IF StartCharger[i] = TRUE (*AND Permissives.ReadyToCharge = TRUE*) THEN
+				MCP_IO.Charger[i].HV_ON := TRUE;
+				MCP_IO.Charger[i].inhibit := FALSE;
+				ChargeTime_DB.ChargerDelay_TON[i] (IN := FALSE, PT := ChargeTime_DB.ChargerDelay_PT[i], ET => ChargeTime_DB.ChargerDelay_ET[i]);
+				ChargeTime_DB.ChargingTimeElapse_TON[i]  (IN := TRUE, PT := REAL_TO_TIME (1000*MCP_IO.Charger[i].ChargeTime.timeToChargeLoad)); 
+			END_IF;
+			
+			IF ChargeTime_DB.ChargingTimeElapse_TON[i].Q THEN
+				StartCharger[i] := FALSE;
+				ChargeTime_DB.ChargingTimeElapse_TON[i] (IN := FALSE); 
+				//ChargeTime_DB.ChargerDelay_TON[i] (IN := FALSE, PT := ChargeTime_DB.ChargerDelay_PT[i], ET => ChargeTime_DB.ChargerDelay_ET[i]);
+			END_IF;
+		END_FOR;
+		//pfc
+		IF ChargeTime_DB.pfcChargerDelay_TON.Q THEN 
+			StartCharger[8] := TRUE;
+		END_IF;	
+		
+		IF StartCharger[8] = TRUE THEN 
+			GVL.WriteStatetoPLC := E_State.CHARGING;  ///*************** pfc plc will decide the charging time elapse ton.
+			ChargeTime_DB.pfcChargerDelay_TON (IN := FALSE, PT := ChargeTime_DB.pfcChargerDelay_PT, ET => ChargeTime_DB.pfcChargerDelay_ET);
+			//ChargeTime_DB.ChargingTimeElapse_TON[i]  (IN := TRUE, PT := REAL_TO_TIME (1000*MCP_IO.Charger[i].ChargeTime.timeToChargeLoad)); 
+		END_IF
+		IF GVL.ReadStateFromPLC = E_State.CHARGECOMPLETE THEN 
+			StartCharger[8] := FALSE;
+		END_IF
+		
+		IF ChargingRunOutTMR_TON.Q = TRUE THEN
+			Trips_DB.ChargingTimerRunout := TRUE;
+			ChargingRunOutTMR_TON (IN := FALSE);
+		END_IF;
+		
+		IF ChargeTime_DB.LongestChargeTime_TON.Q = TRUE THEN 
+			ChargeTimeFinished := TRUE;
+			StartChargingBroadcast := FALSE;
+		
+			ChargeTime_DB.LongestChargeTime_TON (IN := FALSE); //reset timer
+		END_IF
+		
+		IF ChargeTimeFinished = TRUE THEN 
+			
+			FOR i := 1 TO 6 BY 1 DO 
+				StartCharger[i] := FALSE;
+				ChargeTime_DB.ChargingTimeElapse_TON[i] (IN := FALSE);							
+			END_FOR
+			
+			//pfc
+			StartCharger[8] := FALSE; //************************
+			
+		END_IF
+		
+		//condition for charge complete
+		IF (Permissives_DB.AllChargerEOC = TRUE AND ChargeTimeFinished = TRUE (*all voltage reached*)) OR HMI_DB.ForceToChargCompletePB = TRUE THEN 
+			ChargeCompleted := TRUE;
+		//ELSE
+			//ChargeCompleted := FALSE;
+		END_IF
+		
+//if cap voltage feedback >= charger setpoints && EOC && all timer runout then chargecomplete
+		IF ChargeCompleted = TRUE THEN
+ 
+			//MCP_IO.PrefireDiscon.ChargePrefireDisconCap := FALSE; //keep this on, otherwise it will dump
+
+			FOR i := 1 TO 6 BY 1 DO 
+				MCP_IO.Charger[i].HV_ON := FALSE; 
+				MCP_IO.Charger[i].inhibit := TRUE;
+								
+				StartCharger[i] := FALSE;
+				ChargeTime_DB.ChargingTimeElapse_TON[i] (IN := FALSE);	
+			END_FOR;
+			ChargeRlyDelayON_Timer ( IN := TRUE, PT := ChargeRlyDelayON_PT);
+		END_IF;
+	
+		IF ChargeRlyDelayON_Timer.Q = TRUE THEN
+			ChargeRlyDelayDONE := TRUE;
+		END_IF;
+		
+		IF ChargeRlyDelayDONE = TRUE THEN
+			FOR m := 1 TO 6 BY 1 DO
+				//Open all relays
+				LCP1_IO.Segment[m].Module[1].CloseChargeRly := FALSE;
+				LCP1_IO.Segment[m].Module[2].CloseChargeRly := FALSE;
+				LCP1_IO.Segment[m].Module[3].CloseChargeRly := FALSE;
+		
+				LCP1_IO.Segment[m].Module[1].OpenDumpRly := TRUE;
+				LCP1_IO.Segment[m].Module[2].OpenDumpRly := TRUE;
+				LCP1_IO.Segment[m].Module[3].OpenDumpRly := TRUE;
+
+			END_FOR;
+			ChargeRlyDelayON_Timer ( IN := FALSE, PT := ChargeRlyDelayON_PT);
+						
+			StartChargingBroadcast := FALSE; // reset the broadcast bit whne all chargers 
+			
+			eState := E_State.CHARGECOMPLETE;
+		END_IF
+	
+	E_State.CHARGECOMPLETE:
+		//close prefire protection disconn
+		//MCP_IO.PrefireDiscon.ChargePrefireDisconCap := FALSE;
+		//MCP_IO.PrefireDiscon.ClosePrefireDiscon := TRUE;  <- move the when pfc firing and wait 2 sec
+		
+		//turn on led light
+		LCP1_IO.Segment[1].Module[1].ModuleCharged := TRUE;
+		ChargeRlyDelayDONE := FALSE;
+		ChargeCompleted := FALSE;
+		StartChargingBroadcast := FALSE; // reset the broadcast bit whne all chargers 
+		ChargedRunOutTMR_TON (IN := TRUE, PT := HMI_DB.RunOutTMR_PT);
+		ChargeRlyDelayON_Timer ( IN := FALSE, PT := ChargeRlyDelayON_PT);
+		
+		//GVL.WriteStatetoPLC := E_state.CHARGECOMPLETE; //status to pfc PP
+		
+		IF HMI_DB.FirePB = TRUE (*AND Permissives_DB.PrefireDisconClosed = TRUE*) THEN 
+			//LCP1_IO.Segment[1].Module[1].Fire := TRUE;
+			LCP1_IO.Segment[1].Module[1].TriggerScope := TRUE;
+			ChargedRunOutTMR_TON (IN := FALSE);
+			//and all other shot triggers.
+			FirePBpressed := TRUE;
+			GVL.FirePBpressed := TRUE; // send firing signal to pfc
+			//ELSE
+				//LCP1_IO.Segment[1].Module[1].Fire := FALSE;
+		END_IF
+		
+		IF FirePBpressed = TRUE THEN 
+			//FireToSafeDelayTMR_TON (IN := TRUE, PT := FireToSafeDelayTMR_PT, ET => FireToSafeDelayTMR_ET);
+			ShotTrigDelayTMR_TON (IN := TRUE, PT := ShotTrigDelayTMR_PT, ET => ShotTrigDelayTMR_ET);
+			ScopeTrigPulseTMR_TON (IN := TRUE, PT := ScopeTrigPulseTMR_PT, ET => ScopeTrigPulseTMR_ET);
+			ShotTrigPulseTMR_TON (IN := TRUE, PT := ShotTrigPulseTMR_PT, ET => ShotTrigPulseTMR_ET);
+			//LCP1_IO.Segment[1].Module[1].Fire := TRUE;
+		END_IF
+		
+		IF ScopeTrigPulseTMR_TON.Q = TRUE THEN 
+			LCP1_IO.Segment[1].Module[1].TriggerScope := FALSE;  //changed to true to keep the pulse on
+			//ScopeTrigPulseTMR_TON (IN := FALSE);
+		END_IF
+		
+		IF ShotTrigDelayTMR_TON.Q = TRUE THEN
+			LCP1_IO.Segment[1].Module[1].Fire := TRUE;
+			ShotFired := TRUE;
+			//ShotTrigDelayTMR_TON (IN := FALSE);
+		ELSIF ShotTrigPulseTMR_TON.Q = TRUE THEN  // changed to nested elsif
+			LCP1_IO.Segment[1].Module[1].Fire := FALSE;
+			//LCP1_IO.Segment[1].Module[1].TriggerScope := FALSE;  //need to comment out for scope trigger delay
+			//ShotTrigPulseTMR_TON (IN := FALSE);
+		END_IF
+		
+		IF ShotFired = TRUE THEN
+			FireToSafeDelayTMR_TON (IN := TRUE, PT := FireToSafeDelayTMR_PT, ET => FireToSafeDelayTMR_ET);
+		END_IF
+		
+		IF FireToSafeDelayTMR_TON.Q = TRUE THEN
+			FirePBpressed := FALSE;
+			ShotFired := FALSE;
+			FireToSafeDelayTMR_TON (IN := FALSE);
+			ScopeTrigPulseTMR_TON (IN := FALSE);
+			ShotTrigDelayTMR_TON (IN := FALSE);
+			ShotTrigPulseTMR_TON (IN := FALSE);
+			//LCP1_IO.Segment[1].Module[1].TriggerScope := FALSE;
+			eState := E_State.SAFE;
+		END_IF;
+		
+		IF ChargedRunOutTMR_TON.Q = TRUE THEN
+			Trips_DB.ChargedTimerRunout := TRUE;
+			ChargeTimeFinished := FALSE; //reset chargetime done bit
+			ChargedRunOutTMR_TON (IN := FALSE);
+			ScopeTrigPulseTMR_TON (IN := FALSE);
+			ShotTrigDelayTMR_TON (IN := FALSE);
+			ShotTrigPulseTMR_TON (IN := FALSE);
+			eState := E_State.ABORT;
+		END_IF
+
+	E_State.DUMPING:
+	
+		MCP_IO.PrefireDiscon.ChargePrefireDisconCap := FALSE;
+		MCP_IO.PrefireDiscon.ClosePrefireDiscon := FALSE;
+		
+		ChargeDelayStart := FALSE;
+		FirePBpressed := FALSE;
+		ShotTrigDelayTMR_TON (IN := FALSE);
+		StartCharWarningTMR_TON (IN := FALSE, PT := StartCharWarningTMR_PT, ET=> StartCharWarningTMR_ET);
+		
+		ShotTrigDelayTMR_TON (IN := FALSE, PT := ShotTrigDelayTMR_PT, ET => ShotTrigDelayTMR_ET);
+		ScopeTrigPulseTMR_TON (IN := FALSE, PT := ScopeTrigPulseTMR_PT, ET => ScopeTrigPulseTMR_ET);
+		ShotTrigPulseTMR_TON (IN := FALSE, PT := ShotTrigPulseTMR_PT, ET => ShotTrigPulseTMR_ET);
+		
+		GVL.WriteStatetoPLC := E_state.DUMPING; //status to pfc PP
+		
+		// dump all 
+		FOR i := 1 TO 6 BY 1 DO 
+			MCP_IO.Charger[i].voltageSP := 0.001;
+			MCP_IO.Charger[i].inhibit := TRUE;
+			MCP_IO.Charger[i].HV_ON := FALSE;
+				
+			LCP1_IO.Segment[i].Module[1].CloseChargeRly := FALSE;
+			LCP1_IO.Segment[i].Module[2].CloseChargeRly := FALSE;
+			LCP1_IO.Segment[i].Module[3].CloseChargeRly := FALSE;
+		
+			LCP1_IO.Segment[i].Module[1].OpenDumpRly := FALSE;
+			LCP1_IO.Segment[i].Module[2].OpenDumpRly := FALSE;
+			LCP1_IO.Segment[i].Module[3].OpenDumpRly := FALSE;
+		END_FOR;
+		
+		DumpingRunOutTMR_TON (IN := TRUE, PT := DumpingRunOutTMR_PT);
+		
+		//HMI_DB.CloseChargeRlySW := FALSE;
+		//HMI_DB.OpenDumpRlySW := FALSE;
+		
+		IF DumpingRunOutTMR_TON.Q = TRUE AND Permissives.AllCapsDischarged = TRUE THEN
+			eState := E_State.SAFE;
+		END_IF
+
+	E_State.ABORT:
+				
+		MCP_IO.PrefireDiscon.ChargePrefireDisconCap := FALSE;
+		MCP_IO.PrefireDiscon.ClosePrefireDiscon := FALSE;
+		
+		ChargeDelayStart := FALSE;
+		FirePBpressed := FALSE;
+		StartCharWarningTMR_TON (IN := FALSE, PT := StartCharWarningTMR_PT, ET=> StartCharWarningTMR_ET);
+		
+		GVL.WriteStatetoPLC := E_state.ABORT; //status to pfc PP
+		
+		//dump all
+		FOR i := 1 TO 6 BY 1 DO
+			MCP_IO.Charger[i].voltageSP := 0.001;
+			MCP_IO.Charger[i].inhibit := TRUE;
+			MCP_IO.Charger[i].HV_ON := FALSE;
+			
+		END_FOR
+				
+		LCP1_IO.Segment[1].Module[1].CloseChargeRly := FALSE;
+		LCP1_IO.Segment[1].Module[2].CloseChargeRly := FALSE;
+		LCP1_IO.Segment[1].Module[3].CloseChargeRly := FALSE;
+		
+		LCP1_IO.Segment[1].Module[1].OpenDumpRly := FALSE;
+		LCP1_IO.Segment[1].Module[2].OpenDumpRly := FALSE;
+		LCP1_IO.Segment[1].Module[3].OpenDumpRly := FALSE;
+		
+		IF Permissives.SystemIsSafe = TRUE AND Trips_DB.TimerRunOutON = FALSE THEN
+			eState := E_State.SAFE;
+		END_IF
+		
+		HMI_DB.CloseChargeRlySW := FALSE;
+		HMI_DB.OpenDumpRlySW := FALSE;
+		HMI_DB.TurnChrgHVonSW := FALSE;
+		HMI_DB.TurnChrgInhibitOffSW := FALSE;
+		HMI_DB.TurnOnShotTrigSW := FALSE;
+		HMI_DB.TurnOnChargeAlarm := FALSE;
+		
+		HMI_DB.ClosePrefireDisconSW := FALSE;
+		HMI_DB.ChargePrefireDisconCap := FALSE;
+		
+	E_State.ManualMode:
+		GVL.WriteStatetoPLC := E_state.ManualMode; //status to pfc PP
+		
+		DumpingRunOutTMR_TON (IN := FALSE);
+		LCP1_IO.Segment[1].Module[1].CloseChargeRly := HMI_DB.CloseChargeRlySW;
+		LCP1_IO.Segment[1].Module[1].OpenDumpRly := HMI_DB.OpenDumpRlySW;
+		
+		MCP_IO.Charger[1].HV_ON := HMI_DB.TurnChrgHVonSW;
+		
+		MCP_IO.PrefireDiscon.ClosePrefireDiscon 	:= HMI_DB.ClosePrefireDisconSW;
+		MCP_IO.PrefireDiscon.ChargePrefireDisconCap := HMI_DB.ChargePrefireDisconCap;
+		
+		IF HMI_DB.TurnChrgInhibitOffSW = TRUE THEN 
+				MCP_IO.Charger[1].inhibit := FALSE;
+			ELSE
+				MCP_IO.Charger[1].inhibit := TRUE;
+		END_IF
+		
+		LCP1_IO.Segment[1].Module[1].Fire := HMI_DB.TurnOnShotTrigSW;
+		LCP1_IO.Segment[1].Module[1].ModuleCharged := HMI_DB.TurnOnChargeAlarm;
+			
+		IF HMI_DB.HMI_ManualModeSelected = FALSE THEN
+			eState := E_State.SAFE;
+		END_IF
+	
+		//IF HMI_DB.P		MCP_IO.PrefireDiscon.ChargePrefireDisconCap := FALSE;
+		//M
+		
+END_CASE;
+
+IF i > 6 THEN 
+	i := 1;
+END_IF;	
+
+IF m > 6 THEN 
+	m := 1;
+END_IF;	

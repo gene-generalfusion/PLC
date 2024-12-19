@@ -3256,4 +3256,15 @@
 ]
 </script>
 </div>
+<div id="TcHmiTextbox_140" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="688" data-tchmi-left-unit="px" data-tchmi-text="%s%PLC2.plc_plc_comm.ReadVar|BindingMode=OneWay%/s%" data-tchmi-top="513" data-tchmi-top-unit="px" data-tchmi-width="150" data-tchmi-width-unit="px">
+<script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
+{
+  "top": 3,
+  "right": 3,
+  "bottom": 3,
+  "left": 3
+}
+</script>
+
+</div>
 </div>
