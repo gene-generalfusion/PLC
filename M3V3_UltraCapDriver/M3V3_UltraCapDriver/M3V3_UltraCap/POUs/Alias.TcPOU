@@ -8,8 +8,10 @@ VAR
 	j : INT := 1; //1-2
 	m : INT := 2; //# of ultra cap per driver rack
 	k : INT := 1; //ultra cap number 
+
 	
 	p : INT := 12; //# of ultra caps = 12
+	
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -65,22 +67,22 @@ END_VAR
 	Output.R1_06_04 := MCP_IO.MagDriver[5].OpenDumpRly;
 	Output.R1_06_05 := MCP_IO.MagDriver[6].OpenDumpRly;
 	
-	MCP_IO.MagDriver[1].DumpRelayOpen		:= Input.R1_07_00; //
-	MCP_IO.MagDriver[2].DumpRelayOpen		:= Input.R1_07_01; //
-	MCP_IO.MagDriver[3].DumpRelayOpen		:= Input.R1_07_02; //
-	MCP_IO.MagDriver[4].DumpRelayOpen		:= Input.R1_07_03; //
-	MCP_IO.MagDriver[5].DumpRelayOpen		:= Input.R1_07_04; //
-	MCP_IO.MagDriver[6].DumpRelayOpen		:= Input.R1_07_05; //
+	MCP_IO.MagDriver[1].DumpRelayOpen		:= NOT Input.R1_07_00; //
+	MCP_IO.MagDriver[2].DumpRelayOpen		:= NOT Input.R1_07_01; //
+	MCP_IO.MagDriver[3].DumpRelayOpen		:= NOT Input.R1_07_02; //
+	MCP_IO.MagDriver[4].DumpRelayOpen		:= NOT Input.R1_07_03; //
+	MCP_IO.MagDriver[5].DumpRelayOpen		:= NOT Input.R1_07_04; //
+	MCP_IO.MagDriver[6].DumpRelayOpen		:= NOT Input.R1_07_05; //
 	(*shaft ramp add below*)
 	
 	//DQ
-	Output.R1_08_00	:= MCP_IO.Charger[1].inhibit;
-	Output.R1_08_01	:= MCP_IO.Charger[2].inhibit;
-	Output.R1_08_02	:= MCP_IO.Charger[3].inhibit;
-	Output.R1_08_03	:= MCP_IO.Charger[4].inhibit;
-	Output.R1_08_04	:= MCP_IO.Charger[5].inhibit;
-	Output.R1_08_05	:= MCP_IO.Charger[6].inhibit;
-	//Output.R1_08_06 spare
+	Output.R1_08_00	:= NOT MCP_IO.Charger[1].inhibit;
+	Output.R1_08_01	:= NOT MCP_IO.Charger[2].inhibit;
+	Output.R1_08_02	:= NOT MCP_IO.Charger[3].inhibit;
+	Output.R1_08_03	:= NOT MCP_IO.Charger[4].inhibit;
+	Output.R1_08_04	:= NOT MCP_IO.Charger[5].inhibit;
+	Output.R1_08_05	:= NOT MCP_IO.Charger[6].inhibit;
+	Output.R1_08_06 := MCP_IO.TriggerSCRs;
 	Output.R1_08_07	:= MCP_IO.TurnONSystemChargedLED;
 		
 	//EL4008 AQ
@@ -92,20 +94,40 @@ END_VAR
 	Output.R1_09_05	:= MCP_IO.Charger[6].voltageSP_raw;
 	
 	//CANBUS 
-	//Output.R1_10_CANrequest := CAN_comm.
-	Output.R1_10_CANrequest.cobId := MCP_IO.MagDriver[1].Cap[1].CanTx_config_ID;
-	Output.R1_10_CANrequest.data[0] := MCP_IO.MagDriver[1].Cap[1].CanTx_config_request[0];
-	Output.R1_10_CANrequest.data[1] := MCP_IO.MagDriver[1].Cap[1].CanTx_config_request[1];
-	Output.R1_10_CANrequest.data[2] := MCP_IO.MagDriver[1].Cap[1].CanTx_config_request[2];
-	Output.R1_10_CANrequest.data[3] := MCP_IO.MagDriver[1].Cap[1].CanTx_config_request[3];
-	Output.R1_10_CANrequest.data[4] := MCP_IO.MagDriver[1].Cap[1].CanTx_config_request[4];
-	Output.R1_10_CANrequest.data[5] := MCP_IO.MagDriver[1].Cap[1].CanTx_config_request[5];
-	Output.R1_10_CANrequest.data[6] := MCP_IO.MagDriver[1].Cap[1].CanTx_config_request[6];
-	Output.R1_10_CANrequest.data[7] := MCP_IO.MagDriver[1].Cap[1].CanTx_config_request[7];
+	//Output.R1_10_CANrequest := CAN_comm. ---delete, this is 7F
+	Output.R1_10_7F_CANrequest.cobId := CAN_comm.CanTx_7F_config_ID;
+	Output.R1_10_7F_CANrequest.data[0] := CAN_comm.CanTx_7F_config_request[0];
+	Output.R1_10_7F_CANrequest.data[1] := CAN_comm.CanTx_7F_config_request[1];
+	Output.R1_10_7F_CANrequest.data[2] := CAN_comm.CanTx_7F_config_request[2];
+	Output.R1_10_7F_CANrequest.data[3] := CAN_comm.CanTx_7F_config_request[3];
+	Output.R1_10_7F_CANrequest.data[4] := CAN_comm.CanTx_7F_config_request[4];
+	Output.R1_10_7F_CANrequest.data[5] := CAN_comm.CanTx_7F_config_request[5];
+	Output.R1_10_7F_CANrequest.data[6] := CAN_comm.CanTx_7F_config_request[6];
+	Output.R1_10_7F_CANrequest.data[7] := CAN_comm.CanTx_7F_config_request[7];
+	
+		//will eventually need to make a loop for this - code below
+	Output.R1_10_ARR_CANrequest[1].cobId := MCP_IO.MagDriver[1].Cap[1].CanTx_config_ID;
+	Output.R1_10_ARR_CANrequest[1].data[0] := MCP_IO.MagDriver[1].Cap[1].CanTx_config_request[0];
+	Output.R1_10_ARR_CANrequest[1].data[1] := MCP_IO.MagDriver[1].Cap[1].CanTx_config_request[1];
+	Output.R1_10_ARR_CANrequest[1].data[2] := MCP_IO.MagDriver[1].Cap[1].CanTx_config_request[2];
+	Output.R1_10_ARR_CANrequest[1].data[3] := MCP_IO.MagDriver[1].Cap[1].CanTx_config_request[3];
+	Output.R1_10_ARR_CANrequest[1].data[4] := MCP_IO.MagDriver[1].Cap[1].CanTx_config_request[4];
+	Output.R1_10_ARR_CANrequest[1].data[5] := MCP_IO.MagDriver[1].Cap[1].CanTx_config_request[5];
+	Output.R1_10_ARR_CANrequest[1].data[6] := MCP_IO.MagDriver[1].Cap[1].CanTx_config_request[6];
+	Output.R1_10_ARR_CANrequest[1].data[7] := MCP_IO.MagDriver[1].Cap[1].CanTx_config_request[7];
+
+	Output.R1_10_ARR_CANrequest[2].cobId := MCP_IO.MagDriver[1].Cap[2].CanTx_config_ID;
+	Output.R1_10_ARR_CANrequest[2].data[0] := MCP_IO.MagDriver[1].Cap[2].CanTx_config_request[0];
+	Output.R1_10_ARR_CANrequest[2].data[1] := MCP_IO.MagDriver[1].Cap[2].CanTx_config_request[1];
+	Output.R1_10_ARR_CANrequest[2].data[2] := MCP_IO.MagDriver[1].Cap[2].CanTx_config_request[2];
+	Output.R1_10_ARR_CANrequest[2].data[3] := MCP_IO.MagDriver[1].Cap[2].CanTx_config_request[3];
+	Output.R1_10_ARR_CANrequest[2].data[4] := MCP_IO.MagDriver[1].Cap[2].CanTx_config_request[4];
+	Output.R1_10_ARR_CANrequest[2].data[5] := MCP_IO.MagDriver[1].Cap[2].CanTx_config_request[5];
+	Output.R1_10_ARR_CANrequest[2].data[6] := MCP_IO.MagDriver[1].Cap[2].CanTx_config_request[6];
+	Output.R1_10_ARR_CANrequest[2].data[7] := MCP_IO.MagDriver[1].Cap[2].CanTx_config_request[7];
 	
 	// input
 	
-
 	//MCP_IO.MagDriver[1].Cap[1].Elec_AveVolt 		:= Input.R1_10_CapNumber[1].Status.Elec_AveVolt; //per cell <- example
 	//this is replaced by the loop below
 (*	MCP_IO.MagDriver[1].Cap[1].Elec_AveVolt 		:= Input.R1_10_CapNumber[1].Status.Elec_AveVolt; //per cell
@@ -134,18 +156,28 @@ END_VAR
 			MCP_IO.MagDriver[i].Cap[j].Elec_VoltageSum		:= Input.R1_10_CapNumber[k].Elec_VoltageSum; //total voltage in one UC
 			MCP_IO.MagDriver[i].Cap[j].Therm_HighestCell	:= Input.R1_10_CapNumber[k].Therm_HighestCell; //C
 			MCP_IO.MagDriver[i].Cap[j].Therm_HighTemp		:= Input.R1_10_CapNumber[k].Therm_HighTemp;  //0x0[No Warnings], 0x1[Warning Active], 0x2[Alarm Active], 0x3[NOT Available]
-
+			//uncomment to replace the code above - but only if we want to be able to edit ID on each and every single CAN ID
+			(*Output.R1_10_ARR_CANrequest[i].data[0] := MCP_IO.MagDriver[i].Cap[k].CanTx_config_request[0];
+			Output.R1_10_ARR_CANrequest[i].data[1] := MCP_IO.MagDriver[i].Cap[k].CanTx_config_request[1];
+			Output.R1_10_ARR_CANrequest[i].data[2] := MCP_IO.MagDriver[i].Cap[k].CanTx_config_request[2];
+			Output.R1_10_ARR_CANrequest[i].data[3] := MCP_IO.MagDriver[i].Cap[k].CanTx_config_request[3];
+			Output.R1_10_ARR_CANrequest[i].data[4] := MCP_IO.MagDriver[i].Cap[k].CanTx_config_request[4];
+			Output.R1_10_ARR_CANrequest[i].data[5] := MCP_IO.MagDriver[i].Cap[k].CanTx_config_request[5];
+			Output.R1_10_ARR_CANrequest[i].data[6] := MCP_IO.MagDriver[i].Cap[k].CanTx_config_request[6];
+			Output.R1_10_ARR_CANrequest[i].data[7] := MCP_IO.MagDriver[i].Cap[k].CanTx_config_request[7];*)
+			MCP_IO.MagDriver[i].Cap[j].UltraCap_Dummy.R1_10_UC_Rx_cobID := Input.R1_10_UC_status[k].R1_10_UC_Rx_cobID;
+			MCP_IO.MagDriver[i].Cap[j].UltraCap_Dummy.R1_10_UC_Rx_data := Input.R1_10_UC_status[k].R1_10_UC_Rx_data;
 		END_FOR		
 	END_FOR
 	
-	MCP_IO.MagDriver[1].Cap[1].UltraCap_Dummy.R1_10_UC_Rx_cobID := Input.R1_10_UC_7F_status.R1_10_UC_Rx_cobID;
-	MCP_IO.MagDriver[1].Cap[1].UltraCap_Dummy.R1_10_UC_Rx_data := Input.R1_10_UC_7F_status.R1_10_UC_Rx_data;	
+	//MCP_IO.MagDriver[1].Cap[1].UltraCap_Dummy.R1_10_UC_Rx_cobID := Input.R1_10_UC_7F_status.R1_10_UC_Rx_cobID;
+	//MCP_IO.MagDriver[1].Cap[1].UltraCap_Dummy.R1_10_UC_Rx_data := Input.R1_10_UC_7F_status.R1_10_UC_Rx_data;	
 	// need to have how many voltage monitor board or voltage transmitter board per fruit stand ????
 	//LCP3_IO.VMB.VTB[1].
 
 	//LV Alias
 	//commented out to test the sequence
-	(*
+(*	
 	HMI_DB.ChargePB 				:= LV.TxWord1.0;
 	HMI_DB.DumpPB					:= LV.TxWord1.1;		
 	HMI_DB.AbortPB					:= LV.TxWord1.2;
@@ -157,73 +189,53 @@ END_VAR
 	HMI_DB.CloseChargeRlySW			:= LV.TxWord1.8;
 	HMI_DB.OpenDumpRlySW 			:= LV.TxWord1.9;
 	HMI_DB.HMI_ManualModeSelected	:= LV.TxWord1.10;  // 1 = manual mode selected
-	HMI_DB.TurnChrgHVonSW			:= LV.TxWord1.11;
-	HMI_DB.TurnChrgInhibitOffSW		:= LV.TxWord1.12;
-	HMI_DB.TurnOnShotTrigSW			:= LV.TxWord1.13;
-	HMI_DB.TurnOnChargeAlarm		:= LV.TxWord1.14;
-	HMI_DB.AllVoltMonBoardStatusOKBP:= LV.TxWord1.15;
-	//not sure if you want to control these via LV
-	(*
-	MCP_IO.Charger[1].HV_ON			:= LV.TxWord2.0;
-	MCP_IO.Charger[1].inhibit		:= LV.TxWord2.1;
-	MCP_IO.Charger[2].HV_ON			:= LV.TxWord2.2;
-	MCP_IO.Charger[2].inhibit		:= LV.TxWord2.3;
+	HMI_DB.TurnChrgInhibitOffSW		:= LV.TxWord1.11;
+	HMI_DB.TurnOnShotTrigSW			:= LV.TxWord1.12;
+	HMI_DB.TurnOnChargeAlarm		:= LV.TxWord1.13;
+	//:= LV.TxWord1.14;
+	//:= LV.TxWord1.15;
 	
-	MCP_IO.Charger[3].HV_ON			:= LV.TxWord2.4;
-	MCP_IO.Charger[3].inhibit		:= LV.TxWord2.5;
-	MCP_IO.Charger[4].HV_ON			:= LV.TxWord2.6;
-	MCP_IO.Charger[4].inhibit		:= LV.TxWord2.7;
-	MCP_IO.Charger[5].HV_ON			:= LV.TxWord2.8;
-	MCP_IO.Charger[5].inhibit		:= LV.TxWord2.9;
-	MCP_IO.Charger[6].HV_ON			:= LV.TxWord2.10;
-	MCP_IO.Charger[6].inhibit		:= LV.TxWord2.11;
-	HMI_DB.HMI_DB.AllDumpRelaysCloseBP := LV.TxWord2.12;
-	*)
+	MCP_IO.Charger[1].inhibit		:= LV.TxWord2.0;
+	MCP_IO.Charger[2].inhibit		:= LV.TxWord2.1;
+	MCP_IO.Charger[3].inhibit		:= LV.TxWord2.2;
+	MCP_IO.Charger[4].inhibit		:= LV.TxWord2.3;
 	
-	LV.RxWord1.0 := LV.Charger[1].EndOfCharge			:= MCP_IO.Charger[1].EndOfCharge;
-	LV.RxWord1.1 := LV.Charger[1].HV_isON				:= MCP_IO.Charger[1].HV_isON;
-	LV.RxWord1.2 := LV.Charger[1].inhibited				:= MCP_IO.Charger[1].inhibited;
-	LV.RxWord1.3 := LV.Charger[1].SummaryFaulted		:= MCP_IO.Charger[1].SummaryFaulted;
-	LV.RxWord1.4 := LV.Charger[2].EndOfCharge			:= MCP_IO.Charger[2].EndOfCharge;
-	LV.RxWord1.5 := LV.Charger[2].HV_isON				:= MCP_IO.Charger[2].HV_isON;
-	LV.RxWord1.6 := LV.Charger[2].inhibited				:= MCP_IO.Charger[2].inhibited;
-	LV.RxWord1.7 := LV.Charger[2].SummaryFaulted		:= MCP_IO.Charger[2].SummaryFaulted;
-	LV.RxWord1.8 := LV.Charger[3].EndOfCharge			:= MCP_IO.Charger[3].EndOfCharge;
-	LV.RxWord1.9 := LV.Charger[3].HV_isON				:= MCP_IO.Charger[3].HV_isON;
-	LV.RxWord1.10 := LV.Charger[3].inhibited			:= MCP_IO.Charger[3].inhibited;
-	LV.RxWord1.11 := LV.Charger[3].SummaryFaulted		:= MCP_IO.Charger[3].SummaryFaulted;
-	LV.RxWord1.12 := LV.Charger[4].EndOfCharge			:= MCP_IO.Charger[4].EndOfCharge;
-	LV.RxWord1.13 := LV.Charger[4].HV_isON				:= MCP_IO.Charger[4].HV_isON;
-	LV.RxWord1.14 := LV.Charger[4].inhibited			:= MCP_IO.Charger[4].inhibited;
-	LV.RxWord1.15 := LV.Charger[4].SummaryFaulted		:= MCP_IO.Charger[4].SummaryFaulted;
+	MCP_IO.Charger[5].inhibit		:= LV.TxWord2.4;
+	MCP_IO.Charger[6].inhibit		:= LV.TxWord2.5;
 	
-	LV.RxWord2.0 := LV.Charger[5].EndOfCharge			:= MCP_IO.Charger[5].EndOfCharge;
-	LV.RxWord2.1 := LV.Charger[5].HV_isON				:= MCP_IO.Charger[5].HV_isON;
-	LV.RxWord2.2 := LV.Charger[5].inhibited				:= MCP_IO.Charger[5].inhibited;
-	LV.RxWord2.3 := LV.Charger[5].SummaryFaulted		:= MCP_IO.Charger[5].SummaryFaulted;
-	LV.RxWord2.4 := LV.Charger[6].EndOfCharge			:= MCP_IO.Charger[6].EndOfCharge;
-	LV.RxWord2.5 := LV.Charger[6].HV_isON				:= MCP_IO.Charger[6].HV_isON;
-	LV.RxWord2.6 := LV.Charger[6].inhibited				:= MCP_IO.Charger[6].inhibited;
-	LV.RxWord2.7 := LV.Charger[6].SummaryFaulted		:= MCP_IO.Charger[6].SummaryFaulted;
-	(*shaft ramp add below*)
+	LV.RxWord1.0 := MCP_IO.MagDriver[1].SCR_ready_to_fire;
+	LV.RxWord1.1 := MCP_IO.MagDriver[2].SCR_ready_to_fire;
+	LV.RxWord1.2 := MCP_IO.MagDriver[3].SCR_ready_to_fire;
+	LV.RxWord1.3 := MCP_IO.MagDriver[4].SCR_ready_to_fire;
+	LV.RxWord1.4 := MCP_IO.MagDriver[5].SCR_ready_to_fire;
+	LV.RxWord1.5 := MCP_IO.MagDriver[6].SCR_ready_to_fire;
+	LV.RxWord1.6 := Permissives_DB.AllSCRreadyToFire;
+	//LV.RxWord1.7 
+	//LV.RxWord1.8 
+	//LV.RxWord1.9 
+	//LV.RxWord1.10
+	//LV.RxWord1.11 
+	//LV.RxWord1.12 
+	//LV.RxWord1.13 
+	//LV.RxWord1.14 
+	//LV.RxWord1.15 
 	
-	LV.RxWord3.0 := LCP1_IO.Segment[1].ChargeRly_close;
-	LV.RxWord3.1 := LCP1_IO.Segment[2].ChargeRly_close;
-	LV.RxWord3.2 := LCP1_IO.Segment[3].ChargeRly_close;
-	LV.RxWord3.3 := LCP2_IO.Segment[4].ChargeRly_close;
-	LV.RxWord3.4 := LCP2_IO.Segment[5].ChargeRly_close;
-	LV.RxWord3.5 := LCP2_IO.Segment[6].ChargeRly_close;
-	
-	LV.RxWord3.6 := LCP1_IO.Segment[1].Module1To3DumpRly_close;
-	LV.RxWord3.7 := LCP1_IO.Segment[2].Module4To6DumpRly_close;
-	LV.RxWord3.8 := LCP1_IO.Segment[3].Module7To9DumpRly_close;
-	LV.RxWord3.9 := LCP2_IO.Segment[4].Module1To3DumpRly_close;
-	LV.RxWord3.10 := LCP2_IO.Segment[5].Module4To6DumpRly_close;
-	LV.RxWord3.11 := LCP2_IO.Segment[6].Module7To9DumpRly_close; 
-	//LV.RxWord3.12  
-	//LV.RxWord3.13  
-	//LV.RxWord3.14  
-	//LV.RxWord3.15  
+	LV.RxWord2.0 := MCP_IO.MagDriver[1].ChargeRelayClose;
+	LV.RxWord2.1 := MCP_IO.MagDriver[2].ChargeRelayClose;
+	LV.RxWord2.2 := MCP_IO.MagDriver[3].ChargeRelayClose;
+	LV.RxWord2.3 := MCP_IO.MagDriver[4].ChargeRelayClose;
+	LV.RxWord2.4 := MCP_IO.MagDriver[5].ChargeRelayClose;
+	LV.RxWord2.5 := MCP_IO.MagDriver[6].ChargeRelayClose;
+	LV.RxWord2.6 := Permissives_DB.AllChargeRelayClosed;
+	LV.RxWord2.7 := MCP_IO.MagDriver[1].DumpRelayOpen;
+	LV.RxWord2.8 := MCP_IO.MagDriver[2].DumpRelayOpen;
+	LV.RxWord2.9 := MCP_IO.MagDriver[3].DumpRelayOpen;
+	LV.RxWord2.10 := MCP_IO.MagDriver[4].DumpRelayOpen;
+	LV.RxWord2.11 := MCP_IO.MagDriver[5].DumpRelayOpen;
+	LV.RxWord2.12 := MCP_IO.MagDriver[6].DumpRelayOpen;
+	LV.RxWord2.13 := Permissives_DB.AllDumpRelayOpen;
+	LV.RxWord3.14 := Permissives_DB.AllDumpResTempOK;
+	//LV.RxWord3.15   
 	
 	HMI_DB.ChargerHVOFF_rlyDelayPT_INT	:= LV.TxInt[1];
 	HMI_DB.HVONdelayPT_INT 				:= LV.TxInt[2];
@@ -232,65 +244,39 @@ END_VAR
 	HMI_DB.RunOutTMR_PT_INT				:= LV.TxDint[1];
 	LV.RxDint[1]						:= HMI_DB.RunOutTMR_elapse;	
 	
-	
 	FOR i := 1 TO n BY 1 DO
-		HMI_DB.TDKLoad[i].eChargerType 					:= LV.TDKLoad[i].eChargerType;
-		HMI_DB.TDKLoad[i].PSratedV						:= LV.TDKLoad[i].PSratedV;
-		HMI_DB.TDKLoad[i].RequiredChargedV 				:= LV.TDKLoad[i].RequiredChargedV;
-		HMI_DB.TDKLoad[i].wLCA							:= LV.TDKLoad[i].wLCA;;
-		HMI_DB.TDKLoad[i].NumOfCharger					:= LV.TDKLoad[i].NumOfCharger;	
-		HMI_DB.TDKLoad[i].TotalCapacitance				:= LV.TDKLoad[i].TotalCapacitance;
-
-		LV.Charger[i].ChargeTime 						:= MCP_IO.Charger[i].ChargeTime;
-		LV.RxREAL[i] := LV.Charger[i].voltageFeedback	:= MCP_IO.Charger[i].voltageFeedback; //LV.RxREAL[8] for shaft ramp
-		MCP_IO.Charger[i].voltageSP (*make this real*)	:= LV.TxREAL[i] := LV.Charger[i].voltageSP;
-	
-	END_FOR
-	
-	 //lcp 1 cap volt to lv
-		 LV.RxREAL[9] := LCP1_IO.Segment[1].Module[1].VoltageFeedback[1];
-		 LV.RxREAL[10] := LCP1_IO.Segment[1].Module[1].VoltageFeedback[2];
-		 LV.RxREAL[11] := LCP1_IO.Segment[1].Module[2].VoltageFeedback[1];
-		 LV.RxREAL[12] := LCP1_IO.Segment[1].Module[2].VoltageFeedback[2];
-		 LV.RxREAL[13] := LCP1_IO.Segment[1].Module[3].VoltageFeedback[1];
-		 LV.RxREAL[14] := LCP1_IO.Segment[1].Module[3].VoltageFeedback[2];
-		 
-		 LV.RxREAL[15] := LCP1_IO.Segment[2].Module[4].VoltageFeedback[1];
-		 LV.RxREAL[16] := LCP1_IO.Segment[2].Module[4].VoltageFeedback[2];
-		 LV.RxREAL[17] := LCP1_IO.Segment[2].Module[5].VoltageFeedback[1];
-		 LV.RxREAL[18] := LCP1_IO.Segment[2].Module[5].VoltageFeedback[2];
-		 LV.RxREAL[19] := LCP1_IO.Segment[2].Module[6].VoltageFeedback[1];
-		 LV.RxREAL[20] := LCP1_IO.Segment[2].Module[6].VoltageFeedback[2];
-		 
-		 LV.RxREAL[21] := LCP1_IO.Segment[3].Module[7].VoltageFeedback[1];
-		 LV.RxREAL[22] := LCP1_IO.Segment[3].Module[7].VoltageFeedback[2];
-		 LV.RxREAL[23] := LCP1_IO.Segment[3].Module[8].VoltageFeedback[1];
-		 LV.RxREAL[24] := LCP1_IO.Segment[3].Module[8].VoltageFeedback[2];
-		 LV.RxREAL[25] := LCP1_IO.Segment[3].Module[9].VoltageFeedback[1];
-		 LV.RxREAL[26] := LCP1_IO.Segment[3].Module[9].VoltageFeedback[2];
-		 
-	//lcp2 cap volt to lv	 
-		 LV.RxREAL[27] := LCP2_IO.Segment[4].Module[1].VoltageFeedback[1];
-		 LV.RxREAL[28] := LCP2_IO.Segment[4].Module[1].VoltageFeedback[2];
-		 LV.RxREAL[29] := LCP2_IO.Segment[4].Module[2].VoltageFeedback[1];
-		 LV.RxREAL[30] := LCP2_IO.Segment[4].Module[2].VoltageFeedback[2];
-		 LV.RxREAL[31] := LCP2_IO.Segment[4].Module[3].VoltageFeedback[1];
-		 LV.RxREAL[32] := LCP2_IO.Segment[4].Module[3].VoltageFeedback[2];
 		
-		 LV.RxREAL[33] := LCP2_IO.Segment[5].Module[4].VoltageFeedback[1];
-		 LV.RxREAL[34] := LCP2_IO.Segment[5].Module[4].VoltageFeedback[2];
-		 LV.RxREAL[35] := LCP2_IO.Segment[5].Module[5].VoltageFeedback[1];
-		 LV.RxREAL[36] := LCP2_IO.Segment[5].Module[5].VoltageFeedback[2];
-		 LV.RxREAL[37] := LCP2_IO.Segment[5].Module[6].VoltageFeedback[1];
-		 LV.RxREAL[38] := LCP2_IO.Segment[5].Module[6].VoltageFeedback[2];
-		 
-		 LV.RxREAL[39] := LCP2_IO.Segment[6].Module[7].VoltageFeedback[1];
-		 LV.RxREAL[40] := LCP2_IO.Segment[6].Module[7].VoltageFeedback[2];
-		 LV.RxREAL[41] := LCP2_IO.Segment[6].Module[8].VoltageFeedback[1];
-		 LV.RxREAL[42] := LCP2_IO.Segment[6].Module[8].VoltageFeedback[2];
-		 LV.RxREAL[43] := LCP2_IO.Segment[6].Module[9].VoltageFeedback[1];
-		 LV.RxREAL[44] := LCP2_IO.Segment[6].Module[9].VoltageFeedback[2];
-		 *)
+		HMI_DB.HPT5[i].RequiredChargedV				:= LV.HPT5Load[i].RequiredChargedV; // manually enter voltage setpoint
+		//HMI_DB.HPT5[i].TotalCapacitance	:= LV.HPT5Load[i].TotalCapacitance;	
+		HMI_DB.HPT5[i].ChargeTime					:= LV.HPT5Load[i].ChargeTime;	//manually enter charge time
+		LV.Charger[i].ChargeTime.timeToChargeLoad 	:= MCP_IO.Charger[i].ChargeTime.timeToChargeLoad; //send charge time back to LV
+		
+	END_FOR
+	 
+	LV.RxREAL[1] := MCP_IO.MagDriver[1].Cap[1].CapVoltage; 
+	LV.RxREAL[2] := MCP_IO.MagDriver[1].Cap[2].CapVoltage;  
+	LV.RxREAL[3] := MCP_IO.MagDriver[2].Cap[1].CapVoltage;  
+	LV.RxREAL[4] := MCP_IO.MagDriver[2].Cap[2].CapVoltage;  
+	LV.RxREAL[5] := MCP_IO.MagDriver[3].Cap[1].CapVoltage;  
+	LV.RxREAL[6] := MCP_IO.MagDriver[3].Cap[2].CapVoltage;  
+	LV.RxREAL[7] := MCP_IO.MagDriver[4].Cap[1].CapVoltage;  
+	LV.RxREAL[8] := MCP_IO.MagDriver[4].Cap[2].CapVoltage;  
+	LV.RxREAL[9] := MCP_IO.MagDriver[5].Cap[1].CapVoltage;  
+	LV.RxREAL[10] := MCP_IO.MagDriver[5].Cap[2].CapVoltage;  
+	LV.RxREAL[11] := MCP_IO.MagDriver[6].Cap[1].CapVoltage;  
+	LV.RxREAL[12] := MCP_IO.MagDriver[6].Cap[2].CapVoltage;   
+	
+	LV.RxREAL[13] := MCP_IO.MagDriver[1].DumpResistorTemp; 
+	LV.RxREAL[14] := MCP_IO.MagDriver[2].DumpResistorTemp; 
+	LV.RxREAL[15] := MCP_IO.MagDriver[3].DumpResistorTemp; 
+	LV.RxREAL[16] := MCP_IO.MagDriver[4].DumpResistorTemp; 
+	LV.RxREAL[17] := MCP_IO.MagDriver[5].DumpResistorTemp; 
+	LV.RxREAL[18] := MCP_IO.MagDriver[6].DumpResistorTemp; 
+	
+	LV.ReadState 						:= Sequence.eState;	 
+	plc_plc_comm_DB.ReadStateFromPLC 	:= LV.WriteState;
+	LV.database 						:= P_TextModeWrite.database;
+	*)
 	
 
 IF j > m THEN 
@@ -349,7 +335,16 @@ END_IF]]></ST>
       <LineId Id="1134" Count="7" />
       <LineId Id="1056" Count="0" />
       <LineId Id="1158" Count="0" />
-      <LineId Id="1144" Count="3" />
+      <LineId Id="1455" Count="0" />
+      <LineId Id="1426" Count="0" />
+      <LineId Id="1428" Count="6" />
+      <LineId Id="1427" Count="0" />
+      <LineId Id="1445" Count="0" />
+      <LineId Id="1447" Count="7" />
+      <LineId Id="1446" Count="0" />
+      <LineId Id="1444" Count="0" />
+      <LineId Id="1144" Count="1" />
+      <LineId Id="1147" Count="0" />
       <LineId Id="1162" Count="0" />
       <LineId Id="1195" Count="0" />
       <LineId Id="1148" Count="6" />
@@ -363,7 +358,9 @@ END_IF]]></ST>
       <LineId Id="1173" Count="0" />
       <LineId Id="1178" Count="6" />
       <LineId Id="1186" Count="0" />
+      <LineId Id="1436" Count="7" />
       <LineId Id="1306" Count="0" />
+      <LineId Id="1456" Count="1" />
       <LineId Id="1174" Count="0" />
       <LineId Id="1171" Count="0" />
       <LineId Id="1305" Count="0" />
@@ -380,7 +377,6 @@ END_IF]]></ST>
       <LineId Id="675" Count="0" />
       <LineId Id="767" Count="3" />
       <LineId Id="857" Count="0" />
-      <LineId Id="716" Count="0" />
       <LineId Id="689" Count="0" />
       <LineId Id="745" Count="0" />
       <LineId Id="690" Count="0" />
@@ -389,10 +385,6 @@ END_IF]]></ST>
       <LineId Id="709" Count="0" />
       <LineId Id="706" Count="0" />
       <LineId Id="708" Count="0" />
-      <LineId Id="707" Count="0" />
-      <LineId Id="710" Count="4" />
-      <LineId Id="876" Count="0" />
-      <LineId Id="715" Count="0" />
       <LineId Id="677" Count="0" />
       <LineId Id="676" Count="0" />
       <LineId Id="678" Count="0" />
@@ -409,16 +401,10 @@ END_IF]]></ST>
       <LineId Id="725" Count="0" />
       <LineId Id="734" Count="2" />
       <LineId Id="732" Count="0" />
-      <LineId Id="982" Count="0" />
+      <LineId Id="1460" Count="4" />
       <LineId Id="737" Count="0" />
-      <LineId Id="985" Count="2" />
-      <LineId Id="984" Count="0" />
-      <LineId Id="988" Count="1" />
-      <LineId Id="1038" Count="0" />
-      <LineId Id="990" Count="0" />
-      <LineId Id="993" Count="2" />
-      <LineId Id="1024" Count="1" />
-      <LineId Id="1027" Count="3" />
+      <LineId Id="985" Count="0" />
+      <LineId Id="1027" Count="0" />
       <LineId Id="991" Count="0" />
       <LineId Id="640" Count="0" />
       <LineId Id="657" Count="0" />
@@ -426,27 +412,22 @@ END_IF]]></ST>
       <LineId Id="687" Count="0" />
       <LineId Id="659" Count="1" />
       <LineId Id="662" Count="0" />
-      <LineId Id="666" Count="2" />
-      <LineId Id="699" Count="3" />
+      <LineId Id="667" Count="1" />
+      <LineId Id="699" Count="0" />
+      <LineId Id="702" Count="0" />
       <LineId Id="886" Count="0" />
-      <LineId Id="703" Count="0" />
       <LineId Id="672" Count="0" />
-      <LineId Id="674" Count="0" />
-      <LineId Id="684" Count="1" />
+      <LineId Id="1465" Count="0" />
       <LineId Id="669" Count="0" />
+      <LineId Id="1466" Count="0" />
       <LineId Id="896" Count="0" />
-      <LineId Id="898" Count="1" />
+      <LineId Id="1468" Count="11" />
+      <LineId Id="899" Count="0" />
       <LineId Id="905" Count="1" />
       <LineId Id="909" Count="0" />
       <LineId Id="911" Count="1" />
       <LineId Id="933" Count="0" />
-      <LineId Id="913" Count="6" />
-      <LineId Id="921" Count="5" />
-      <LineId Id="961" Count="0" />
-      <LineId Id="932" Count="0" />
-      <LineId Id="927" Count="4" />
-      <LineId Id="920" Count="0" />
-      <LineId Id="941" Count="13" />
+      <LineId Id="1480" Count="2" />
       <LineId Id="962" Count="0" />
       <LineId Id="839" Count="0" />
       <LineId Id="902" Count="0" />

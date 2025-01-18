@@ -81,6 +81,14 @@
     <Compile Include="GVLs\ChargeTime_DB.TcGVL">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GVLs\csv_DB.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
+    <Compile Include="GVLs\GVL.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
     <Compile Include="GVLs\plc_plc_comm_DB.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
@@ -176,6 +184,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\plc_plc_comm.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\RW_CSV.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\Stagger_FB.TcPOU">

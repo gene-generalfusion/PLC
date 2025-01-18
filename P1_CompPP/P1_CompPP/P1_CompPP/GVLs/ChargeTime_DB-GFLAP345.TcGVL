@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <GVL Name="ChargeTime_DB" Id="{aef6f516-ebaa-4401-acff-5fe912a2763d}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL RETAIN
+	ChargerDelay_TON : ARRAY[1..6] OF TON;
+	ChargerDelay_PT  : ARRAY[1..6] OF TIME;
+	ChargerDelay_ET  : ARRAY[1..6] OF TIME;	
+	
+	LongestChargeTime_TON : TON;
+	LongestChargeTime_PT : TIME;
+	LongestChargeTime_ET : TIME;
+
+	ChargeTimeStartDelay	: ARRAY[1..6] OF INT; // no SR yet, it will be 7 if SR is added
+	ChargingTimeElapse		: ARRAY[1..6] OF INT;	
+	ChargingTimeElapse_TON	: ARRAY[1..6] OF TON;
+	
+	pfcChargerDelay_TON : TON;
+	pfcChargerDelay_PT : TIME;
+	pfcChargerDelay_ET : TIME;
+	
+	pfcChargeTimeStartDelay : INT;
+	pfcChargingTimeElapse : INT;
+	pfcChargingTimeElapse_TON : TON;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

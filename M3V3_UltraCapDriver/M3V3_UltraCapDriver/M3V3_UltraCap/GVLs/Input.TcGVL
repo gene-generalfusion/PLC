@@ -80,6 +80,7 @@ VAR_GLOBAL
 
 	R1_10_CapNumber AT %I* : ARRAY [1..12] OF  ST_UC_Status; //only used with DBC file.
 	R1_10_UC_7F_status AT %I* : ST_UC_Status_Dummy;
+	R1_10_UC_status AT %I* : ARRAY [1..12] OF ST_UC_Status_Dummy;
 
 	
 END_VAR]]></Declaration>

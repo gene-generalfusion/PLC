@@ -44,7 +44,7 @@ VAR
 
 	ChargeTimeFinished		: BOOL;
 	StartCharWarningTMR_TON : TON;
-	StartCharWarningTMR_PT	: TIME := T#5S;
+	StartCharWarningTMR_PT	: TIME := T#2S;
 	StartCharWarningTMR_ET	: TIME;
 	ChargeDelayStart		: BOOL := FALSE;
 	
@@ -63,7 +63,6 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[//Critical Delay Time
-
 
 //hv output delay
 HMI_DB.HVONdelayPT := INT_TO_TIME (HMI_DB.HVONdelayPT_INT);
@@ -118,9 +117,8 @@ IF HMI_DB.DumpPB = TRUE THEN  //although will bring the state out of abort, it w
 		eState := E_State.ABORT;
 	//	ELSE
 	//		eState := E_State.SAFE;
-		END_IF;
-		
-
+END_IF;
+	
 CASE eState OF 
 	//Safe OR IDLE
 	E_State.SAFE:
@@ -328,7 +326,8 @@ CASE eState OF
 		END_IF
 		
 		//condition for charge complete
-		IF Permissives_DB.AllChargerEOC = TRUE AND ChargeTimeFinished = TRUE (*all voltage reached*) THEN 
+		//should be all scr ready & voltage reached sp
+		IF Permissives_DB.AllSCRreadyToFire = TRUE AND ChargeTimeFinished = TRUE (*all voltage reached*) THEN 
 			ChargeCompleted := TRUE;
 		//ELSE
 			//ChargeCompleted := FALSE;
@@ -486,7 +485,7 @@ CASE eState OF
 		//HMI_DB.CloseChargeRlySW := FALSE;
 		//HMI_DB.OpenDumpRlySW := FALSE;
 		
-		IF DumpingRunOutTMR_TON.Q = TRUE AND Permissives_DB.AllCapsDischarged = TRUE THEN
+		IF DumpingRunOutTMR_TON.Q = TRUE AND DumpingRunOutTMR_TON.Q = TRUE(*Permissives_DB.AllCapsDischarged = TRUE*) THEN
 			eState := E_State.SAFE;
 		END_IF
 
@@ -524,7 +523,6 @@ CASE eState OF
 		
 		MCP_IO.TriggerSCRs := FALSE;
 		
-		
 		StartCharWarningTMR_TON (IN := FALSE);
 		ChargeDelayStart := FALSE;
 		FirePBpressed := FALSE;
@@ -547,7 +545,6 @@ CASE eState OF
 		
 		MCP_IO.MagDriver[1].OpenDumpRly := MCP_IO.MagDriver[2].OpenDumpRly := MCP_IO.MagDriver[3].OpenDumpRly := HMI_DB.OpenDumpRlySW;
 		MCP_IO.MagDriver[4].OpenDumpRly := MCP_IO.MagDriver[5].OpenDumpRly := MCP_IO.MagDriver[6].OpenDumpRly := HMI_DB.OpenDumpRlySW;
-		
 	
 		IF HMI_DB.TurnChrgInhibitOffSW = TRUE THEN 
 			FOR i := 1 TO n BY 1 DO 
@@ -586,7 +583,7 @@ END_IF;	]]></ST>
     </Implementation>
     <LineIds Name="Sequence">
       <LineId Id="1997" Count="0" />
-      <LineId Id="1999" Count="12" />
+      <LineId Id="2000" Count="11" />
       <LineId Id="174" Count="1" />
       <LineId Id="1981" Count="9" />
       <LineId Id="1992" Count="4" />
@@ -607,7 +604,7 @@ END_IF;	]]></ST>
       <LineId Id="103" Count="2" />
       <LineId Id="113" Count="4" />
       <LineId Id="1825" Count="0" />
-      <LineId Id="11" Count="1" />
+      <LineId Id="12" Count="0" />
       <LineId Id="14" Count="0" />
       <LineId Id="5" Count="0" />
       <LineId Id="645" Count="0" />
@@ -723,7 +720,9 @@ END_IF;	]]></ST>
       <LineId Id="554" Count="4" />
       <LineId Id="413" Count="0" />
       <LineId Id="478" Count="0" />
-      <LineId Id="414" Count="4" />
+      <LineId Id="414" Count="0" />
+      <LineId Id="2224" Count="0" />
+      <LineId Id="415" Count="3" />
       <LineId Id="83" Count="0" />
       <LineId Id="434" Count="0" />
       <LineId Id="420" Count="4" />
@@ -854,9 +853,7 @@ END_IF;	]]></ST>
       <LineId Id="1360" Count="2" />
       <LineId Id="789" Count="0" />
       <LineId Id="1445" Count="0" />
-      <LineId Id="1635" Count="0" />
-      <LineId Id="1637" Count="0" />
-      <LineId Id="1636" Count="0" />
+      <LineId Id="1635" Count="1" />
       <LineId Id="1449" Count="0" />
       <LineId Id="1578" Count="1" />
       <LineId Id="2161" Count="1" />
@@ -874,7 +871,6 @@ END_IF;	]]></ST>
       <LineId Id="776" Count="0" />
       <LineId Id="2093" Count="0" />
       <LineId Id="29" Count="0" />
-      <LineId Id="1363" Count="0" />
       <LineId Id="1375" Count="0" />
       <LineId Id="1379" Count="0" />
       <LineId Id="1376" Count="0" />

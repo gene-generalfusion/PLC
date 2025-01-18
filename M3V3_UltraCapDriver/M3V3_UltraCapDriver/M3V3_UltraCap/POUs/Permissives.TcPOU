@@ -9,42 +9,42 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[//charge relay 
-IF (MCP_IO.MagDriver[1].ChargeRelayClose = TRUE AND 
+IF (MCP_IO.MagDriver[1].ChargeRelayClose = TRUE (*AND 
 	MCP_IO.MagDriver[2].ChargeRelayClose = TRUE AND
 	MCP_IO.MagDriver[3].ChargeRelayClose = TRUE AND 
 	MCP_IO.MagDriver[4].ChargeRelayClose = TRUE AND 
-	MCP_IO.MagDriver[5].ChargeRelayClose = TRUE AND 
-	MCP_IO.MagDriver[6].ChargeRelayClose = TRUE) OR HMI_DB.AllChargeRelayCloseBP = TRUE
+	MCP_IO.MagDriver[5].ChargeRelayClose = TRUE AND  //uncomment this once we have all 6 racks
+	MCP_IO.MagDriver[6].ChargeRelayClose = TRUE*)) OR HMI_DB.AllChargeRelayCloseBP = TRUE
 	THEN 
 		Permissives_DB.AllChargeRelayClosed := TRUE;
 	ELSIF 
-		MCP_IO.MagDriver[1].ChargeRelayClose = FALSE AND 
+		MCP_IO.MagDriver[1].ChargeRelayClose = FALSE (*AND 
 		MCP_IO.MagDriver[2].ChargeRelayClose = FALSE AND
 		MCP_IO.MagDriver[3].ChargeRelayClose = FALSE AND 
 		MCP_IO.MagDriver[4].ChargeRelayClose = FALSE AND 
 		MCP_IO.MagDriver[5].ChargeRelayClose = FALSE AND 
-		MCP_IO.MagDriver[6].ChargeRelayClose = FALSE
+		MCP_IO.MagDriver[6].ChargeRelayClose = FALSE*) //uncomment this once we have all 6 racks
 	THEN
 		Permissives_DB.AllChargeRelayClosed := FALSE;
 END_IF;
 
 //dump relay
-IF (MCP_IO.MagDriver[1].DumpRelayOpen = TRUE AND 
+IF (MCP_IO.MagDriver[1].DumpRelayOpen = TRUE (*AND 
 	MCP_IO.MagDriver[2].DumpRelayOpen = TRUE AND
 	MCP_IO.MagDriver[3].DumpRelayOpen = TRUE AND
 	
 	MCP_IO.MagDriver[4].DumpRelayOpen = TRUE AND 
-	MCP_IO.MagDriver[5].DumpRelayOpen = TRUE AND
-	MCP_IO.MagDriver[6].DumpRelayOpen = TRUE) OR HMI_DB.AllDumpRelaysOpenBP = TRUE
+	MCP_IO.MagDriver[5].DumpRelayOpen = TRUE AND //uncomment this once we have all 6 racks
+	MCP_IO.MagDriver[6].DumpRelayOpen = TRUE*)) OR HMI_DB.AllDumpRelaysOpenBP = TRUE
 	THEN
 		Permissives_DB.AllDumpRelayOpen := TRUE;
 		ELSIF
-			MCP_IO.MagDriver[1].DumpRelayOpen = FALSE AND 
+			MCP_IO.MagDriver[1].DumpRelayOpen = FALSE (*AND 
 			MCP_IO.MagDriver[2].DumpRelayOpen = FALSE AND
 			MCP_IO.MagDriver[3].DumpRelayOpen = FALSE AND
 			MCP_IO.MagDriver[4].DumpRelayOpen = FALSE AND
 			MCP_IO.MagDriver[5].DumpRelayOpen = FALSE AND
-			MCP_IO.MagDriver[6].DumpRelayOpen = FALSE 
+			MCP_IO.MagDriver[6].DumpRelayOpen = FALSE *) //uncomment this once we have all 6 racks
 		THEN
 			Permissives_DB.AllDumpRelayOpen := FALSE;
 END_IF;
@@ -133,12 +133,12 @@ IF (MCP_IO.MagDriver[1].Cap[1].CapVoltage <= Permissives_DB.CapVoltageThres AND
 		Permissives_DB.AllCapsDischarged := FALSE;
 END_IF
 
-IF MCP_IO.MagDriver[1].SCR_ready_to_fire AND 
+IF MCP_IO.MagDriver[1].SCR_ready_to_fire (*AND 
 	MCP_IO.MagDriver[2].SCR_ready_to_fire AND 
 	MCP_IO.MagDriver[3].SCR_ready_to_fire AND 
 	MCP_IO.MagDriver[4].SCR_ready_to_fire AND 
 	MCP_IO.MagDriver[5].SCR_ready_to_fire AND 
-	MCP_IO.MagDriver[6].SCR_ready_to_fire 
+	MCP_IO.MagDriver[6].SCR_ready_to_fire *)  //uncomment this once we have all 6 racks
 	THEN 
 		Permissives_DB.AllSCRreadyToFire := TRUE;
 		ELSE

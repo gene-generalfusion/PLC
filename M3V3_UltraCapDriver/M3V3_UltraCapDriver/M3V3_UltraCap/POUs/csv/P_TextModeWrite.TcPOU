@@ -20,7 +20,7 @@ VAR
 	filename_full	: T_MaxString;
 	filename_short	: T_MaxString;
 	sNetId			: T_AmsNetId := '';	(* TwinCAT system network address *)
-	sFileName		: T_MaxString := 'C:\CSVdata\ChargerVClog.csv';(* CSV destination file path and name *)
+	sFileName		: T_MaxString := 'C:\CSVdata\ShotClog.csv';(* CSV destination file path and name *)
 	sCSVLine		: T_MaxString := '';(* Single CSV text line (row, record), we are using string as record buffer (your are able to see created fields) *)
 	sCSVField		: T_MaxString := '';(* Single CSV field value (column, record field) *)
 	bBusy			: BOOL;
@@ -46,13 +46,13 @@ VAR
 	SaveCSV					: BOOL := FALSE;
 	SaveBuff			: BOOL := FALSE;
 	
-	database		: ARRAY[0..plc_plc_comm_DB.MAX_CSV_ROWS, 0..plc_plc_comm_DB.MAX_CSV_COLUMNS ] OF STRING(plc_plc_comm_DB.MAX_CSV_FIELD_LENGTH) :=[ (* Source PLC database *)
-	'0_0', '0_1', '0_2', '0_3', '0_4', '0_5',
-	'1_0', '1_1', '1_2', '1_3', '1_4', '1_5',
-	'2_0', '2_1', '2_2', '2_3', '2_4', '2_5',
-	'3_0', '3_1', '3_2', '3_3', '3_4', '3_5',
-	'4_0', '4_1', '4_2', '4_3', '4_4', '4_5',
-	'5_0', '5_1', '5_2', '5_3', '5_4', '5_5'];
+	database		: ARRAY[0..GVL.MAX_CSV_ROWS, 0..GVL.MAX_CSV_COLUMNS ] OF STRING(GVL.MAX_CSV_FIELD_LENGTH) :=[ (* Source PLC database *)
+	'0_0', '0_1', '0_2', '0_3', '0_4', '0_5', '0_6',
+	'1_0', '1_1', '1_2', '1_3', '1_4', '1_5', '1_6',
+	'2_0', '2_1', '2_2', '2_3', '2_4', '2_5', '2_6',
+	'3_0', '3_1', '3_2', '3_3', '3_4', '3_5', '3_6',
+	'4_0', '4_1', '4_2', '4_3', '4_4', '4_5', '4_6',
+	'5_0', '5_1', '5_2', '5_3', '5_4', '5_5', '5_6'];
 	
 
 
@@ -105,15 +105,15 @@ CASE step OF
 	3:(* Convert one PLC record to CSV format *)
 		sCSVLine := '';
 		fbWriter.eCmd := eEnumCmd_First;(* Write first field value *)
-		IF nRow <= plc_plc_comm_DB.MAX_CSV_ROWS THEN
+		IF nRow <= GVL.MAX_CSV_ROWS THEN
 		
-			FOR nColumn := 0 TO plc_plc_comm_DB.MAX_CSV_COLUMNS BY 1 DO
+			FOR nColumn := 0 TO GVL.MAX_CSV_COLUMNS BY 1 DO
 
 				sCSVField := STRING_TO_CSVFIELD( database[ nRow, nColumn ], FALSE );(* TODO: Get field value from your application *)
 
 				(* Add new field to the record buffer *)
 				fbWriter( 	pBuffer := ADR( sCSVLine ), cbBuffer := SIZEOF( sCSVLine ) - 1, putValue := sCSVField, pValue := 0, cbValue := 0,
-							bCRLF := ( nColumn = plc_plc_comm_DB.MAX_CSV_COLUMNS ) );(* bCRLF == TRUE => Write CRLF after the last field value *)
+							bCRLF := ( nColumn = GVL.MAX_CSV_COLUMNS ) );(* bCRLF == TRUE => Write CRLF after the last field value *)
 				IF fbWriter.bOk THEN
 					fbWriter.eCmd := eEnumCmd_Next;(* Write next field value *)
 				ELSE(* Error *)
@@ -206,18 +206,21 @@ END_IF
 
 timestamp := TIME_TO_REAL (timer_ET)/1000; 
 	
-IF (i <= plc_plc_comm_DB.MAX_CSV_ROWS) AND SamplingTMR_TON.Q = TRUE THEN 
+IF (i <= GVL.MAX_CSV_ROWS) AND SamplingTMR_TON.Q = TRUE THEN 
 	database[i, 0] := REAL_TO_STRING(timestamp);
-	database[i, 1] := REAL_TO_STRING(MCP_IO.Charger[1].voltageFeedback);
-	database[i, 2] := REAL_TO_STRING(MCP_IO.Charger[1].currentFeedback);
-		
+	database[i, 1] := REAL_TO_STRING(MCP_IO.MagDriver[1].ShotCurrentFeedback);
+	database[i, 2] := REAL_TO_STRING(MCP_IO.MagDriver[2].ShotCurrentFeedback);
+	database[i, 3] := REAL_TO_STRING(MCP_IO.MagDriver[3].ShotCurrentFeedback);	
+	database[i, 4] := REAL_TO_STRING(MCP_IO.MagDriver[4].ShotCurrentFeedback);	
+	database[i, 5] := REAL_TO_STRING(MCP_IO.MagDriver[5].ShotCurrentFeedback);	
+	database[i, 6] := REAL_TO_STRING(MCP_IO.MagDriver[6].ShotCurrentFeedback);	
 	//uncomment for testing purposes
 		//Input.R1_08_00 := Input.R1_08_00 + 10 ;
 		//Input.R1_08_01 := Input.R1_08_00 + 100 ;
 		i := i + 1;
 		SamplingTMR_TON.IN := FALSE;
 
-ELSIF (i > plc_plc_comm_DB.MAX_CSV_ROWS) OR ((Sequence.eState = E_State.ABORT OR HMI_DB.FirePB = TRUE OR HMI_DB.DumpPB = TRUE OR HMI_DB.AbortPB = TRUE) AND i <> 0) THEN 
+ELSIF (i > GVL.MAX_CSV_ROWS) OR ((Sequence.eState = E_State.ABORT OR HMI_DB.FirePB = TRUE OR HMI_DB.DumpPB = TRUE OR HMI_DB.AbortPB = TRUE) AND i <> 0) THEN 
 	SaveCSV := TRUE;
 	SaveBuff := FALSE; 
 	SamplingTMR_TON.IN := FALSE;
@@ -290,6 +293,7 @@ END_IF
       <LineId Id="240" Count="0" />
       <LineId Id="512" Count="0" />
       <LineId Id="362" Count="6" />
+      <LineId Id="571" Count="2" />
       <LineId Id="385" Count="0" />
       <LineId Id="369" Count="3" />
       <LineId Id="381" Count="0" />

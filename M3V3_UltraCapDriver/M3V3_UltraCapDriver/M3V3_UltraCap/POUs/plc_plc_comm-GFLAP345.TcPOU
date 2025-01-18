@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="plc_plc_comm" Id="{0a33387f-a2b3-48b8-b173-b53f52183ec0}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM plc_plc_comm
+VAR
+	ReadfromPLC			: ADSREAD;
+	ReadFirePBfromPLC	: ADSREAD;
+	
+	WriteStatustoPLC	: ADSWRITE; //P1 PLC need this
+	WriteChargTimetoPLC	: ADSWRITE; //P1 PLC need this
+	ReadVariableTMR_TON : TON;
+	WriteVariableTMR_TON : TON;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+ReadVariableTMR_TON (IN := NOT ReadVariableTMR_TON.Q, PT := T#5MS);
+WriteVariableTMR_TON (IN := NOT WriteVariableTMR_TON.Q, PT := T#5MS);
+//ReadfromPLC (NETID 	:= '192.168.173.60', //p1 pp plc addr - or 5.140.171.248.1.1
+ReadfromPLC (NETID 	:= '5.140.171.248.1.1', //p1 pp plc addr - need to be set
+			PORT 	:= 851,
+			IDXGRP 	:= 16#4020,
+			IDXOFFS	:= 16#0,
+			LEN		:= SIZEOF(plc_plc_comm_DB.ReadStateFromPLC),
+			DESTADDR:= ADR(plc_plc_comm_DB.ReadStateFromPLC), //*MB0
+			READ	:= ReadVariableTMR_TON.Q, //high - starts reading
+			TMOUT	:= T#2S,
+			);
+			
+ReadFirePBfromPLC (NETID 	:= '5.140.171.248.1.1', //p1 pp plc addr - need to be set
+			PORT 	:= 851,
+			IDXGRP 	:= 16#4020,
+			IDXOFFS	:= 16#008,
+			LEN		:= SIZEOF(plc_plc_comm_DB.Button),
+			DESTADDR:= ADR(plc_plc_comm_DB.Button), //*MB8
+			READ	:= ReadVariableTMR_TON.Q, //high - starts reading
+			TMOUT	:= T#2S,
+			);
+			
+WriteStatustoPLC (NETID   := '5.140.171.248.1.1', //- pfc plc
+    		PORT    := 851,
+    		IDXGRP  := 16#4020,
+    		IDXOFFS := 16#0002,
+    		LEN     := SIZEOF(plc_plc_comm_DB.WriteStatetoPLC),
+    		SRCADDR := ADR(plc_plc_comm_DB.WriteStatetoPLC), //*MB2
+    		WRITE   := WriteVariableTMR_TON.Q,
+    		TMOUT   := T#1S,
+			);
+									
+WriteChargTimetoPLC (NETID   := '5.140.171.248.1.1', //- pfc plc
+    		PORT    := 851,
+    		IDXGRP  := 16#4020,
+    		IDXOFFS := 16#0004,
+    		LEN     := SIZEOF(plc_plc_comm_DB.ChargeTime),
+    		SRCADDR := ADR(plc_plc_comm_DB.ChargeTime), //*MB4
+    		WRITE   := WriteVariableTMR_TON.Q,
+    		TMOUT   := T#1S,
+			);
+//read data from the P1_compPP plc and when charge complete (share time count down or use Charge complete status) fire the PFC, 
+// wait 2 secs later, close P1_compPP disconnect, does not need feed back signal from this system 
+// once disconnect closed, 100ms later, fire woodruff module,
+// if no discon closed fb, dump everything <- get dump status from P1_compPP PLC
+// this is not needed for M1_CompPP_18M, labview will deal with it			
+				]]></ST>
+    </Implementation>
+    <LineIds Name="plc_plc_comm">
+      <LineId Id="22" Count="0" />
+      <LineId Id="40" Count="10" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="81" Count="0" />
+      <LineId Id="73" Count="7" />
+      <LineId Id="72" Count="0" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="52" Count="7" />
+      <LineId Id="51" Count="0" />
+      <LineId Id="60" Count="0" />
+      <LineId Id="63" Count="7" />
+      <LineId Id="61" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="24" Count="1" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="12" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

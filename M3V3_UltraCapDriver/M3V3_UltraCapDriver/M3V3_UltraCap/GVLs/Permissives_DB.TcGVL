@@ -8,7 +8,7 @@ VAR_GLOBAL
 	AllDumpRelayOpen		: BOOL := FALSE;
 	//AllDumpRelayClose		: BOOL := 0;
 	ReadyToCharge			: BOOL := FALSE;
-	AllChargerEOC			: BOOL := FALSE;
+	//AllChargerEOC			: BOOL := FALSE;
 	
 	ChargerVBelowThres		: BOOL := FALSE;
 	ChargerVThres			: REAL := 10;

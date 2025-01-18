@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="RW_CSV" Id="{a7fbc186-0718-46d1-a584-5df1ba40654b}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM RW_CSV
+VAR
+(*	In USA/UK the CSV field separator is a comma.
+	In Germany and some other European countries the CSV field separator is a semicolon. *)
+	bChangeSeparatorToComma	: BOOL := FALSE;
+
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF bChangeSeparatorToComma THEN
+	DEFAULT_CSV_FIELD_SEP := 16#2C;(* Comma ASCII code *)
+ELSE
+	DEFAULT_CSV_FIELD_SEP := 16#3B;(* Semicolon ASCII code *)
+END_IF
+
+//P_TextModeRead();(* This sample program opens and reads CSV file in text mode *)
+
+P_TextModeWrite();(* This sample program opens and writes CSV file in text mode *)
+
+//P_BinaryModeRead();(* This sample program opens and reads CSV file in binary mode *)
+
+//P_BinaryModeWrite();(* This sample program opens and writes CSV file in binary mode *)
+
+//P_ArgToConvExample();(* This sample program shows the usage of the ARG_TO_CSVFIELD and CSVFILED_TO_ARG conversion functions *)
+
+//P_StringToConvExample();(* This sample program shows the usage of the STRING_TO_CSVFIELD and CSVFIELD_TO_STRING conversion functions *)
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="RW_CSV">
+      <LineId Id="10" Count="15" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="55" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

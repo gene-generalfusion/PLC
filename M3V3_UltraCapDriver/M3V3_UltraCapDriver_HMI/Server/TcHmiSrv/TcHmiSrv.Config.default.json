@@ -3810,6 +3810,40 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.MCP_IO.MagDriver.0.ChargeRelayClose": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::MagDriver[0]::ChargeRelayClose",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MCP_IO.MagDriver.0.DumpRelayOpen": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MCP_IO::MagDriver[0]::DumpRelayOpen",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 3
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
         "PLC1.MCP_IO.MagDriver.0.DumpResistorTemp": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -6219,6 +6253,8 @@
                 "PLC1.MCP_IO.MagDriver.0.Cap.0.UltraCap_Dummy.R1_10_UC_Rx_cobID": 3,
                 "PLC1.MCP_IO.MagDriver.0.Cap.1.CapCellTemp": 3,
                 "PLC1.MCP_IO.MagDriver.0.Cap.1.CapVoltage": 3,
+                "PLC1.MCP_IO.MagDriver.0.ChargeRelayClose": 3,
+                "PLC1.MCP_IO.MagDriver.0.DumpRelayOpen": 3,
                 "PLC1.MCP_IO.MagDriver.0.DumpResistorTemp": 3,
                 "PLC1.MCP_IO.MagDriver.0.SCR_ready_to_fire": 3,
                 "PLC1.MCP_IO.MagDriver.0.ShotCurrentFeedback": 3,

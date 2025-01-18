@@ -97,6 +97,15 @@
 			</SubItem>
 		</DataType>
 		<DataType>
+			<Name IecBaseType="true">ARRAY [1..12] OF ST_UC_Status_Dummy</Name>
+			<BitSize>6912</BitSize>
+			<BaseType GUID="{A1326592-1108-A00A-3A79-9F3739E60693}">ST_UC_Status_Dummy</BaseType>
+			<ArrayInfo>
+				<LBound>1</LBound>
+				<Elements>12</Elements>
+			</ArrayInfo>
+		</DataType>
+		<DataType>
 			<Name GUID="{AC4BB20D-5D03-4CE5-96C6-86DFFE816AA7}" Namespace="IO" TcBaseType="true">CANMESSAGE</Name>
 			<BitSize>64</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000002}">USINT</BaseType>
@@ -126,6 +135,15 @@
 				<BitSize>64</BitSize>
 				<BitOffs>48</BitOffs>
 			</SubItem>
+		</DataType>
+		<DataType>
+			<Name GUID="{7C22C5A9-4949-9184-C0D2-D1FF0FE38684}" IecBaseType="true" AutoDeleteType="true">ARRAY [1..12] OF IO.EXTCANQUEUE</Name>
+			<BitSize>1344</BitSize>
+			<BaseType GUID="{097EA4EA-7ACD-4562-9D25-EE45E0B0C673}" Namespace="IO">EXTCANQUEUE</BaseType>
+			<ArrayInfo>
+				<LBound>1</LBound>
+				<Elements>12</Elements>
+			</ArrayInfo>
 		</DataType>
 		<DataType>
 			<Name GUID="{1337BBBA-9A3F-D9E7-4ED6-FA23E60881AB}" Namespace="Tc2_Standard" AutoDeleteType="true">TON</Name>
@@ -423,6 +441,11 @@
 	</ImageDatas>
 	<Project ProjectGUID="{02007313-2BC8-4099-B142-1E06AE7ED537}" TargetNetId="5.107.220.56.1.1" Target64Bit="true" ShowHideConfigurations="#x106">
 		<System>
+			<Licenses>
+				<Target>
+					<ManualSelect>{796D380F-D49E-4C0C-A05F-500052FAC883}</ManualSelect>
+				</Target>
+			</Licenses>
 			<Tasks>
 				<Task Id="3" Priority="20" CycleTime="100000" AmsPort="350" AdtTasks="true">
 					<Name>PlcTask</Name>
@@ -436,6 +459,11 @@
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
 						<Name>PlcTask Inputs</Name>
+						<Var>
+							<Name>Input.R1_03_00</Name>
+							<Comment><![CDATA[Master stop PB not pressed - black pb on mcp]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
 						<Var>
 							<Name>Input.R1_01_00</Name>
 							<Comment><![CDATA[***MCP************************************************************************
@@ -568,11 +596,6 @@ EL3068 - AI1]]></Comment>
 							<Type>WORD</Type>
 						</Var>
 						<Var>
-							<Name>Input.R1_03_00</Name>
-							<Comment><![CDATA[Master stop PB not pressed - black pb on mcp]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
 							<Name>Input.R1_03_01</Name>
 							<Comment><![CDATA[case Estop circuit okay (Rly1 (120vac)]]></Comment>
 							<Type>BOOL</Type>
@@ -679,6 +702,10 @@ EL3068 - AI1]]></Comment>
 						<Var>
 							<Name>Input.R1_10_UC_7F_status</Name>
 							<Type GUID="{A1326592-1108-A00A-3A79-9F3739E60693}">ST_UC_Status_Dummy</Type>
+						</Var>
+						<Var>
+							<Name>Input.R1_10_UC_status</Name>
+							<Type GUID="{D1C06C19-0CED-D5B6-677D-BCEE288A6185}">ARRAY [1..12] OF ST_UC_Status_Dummy</Type>
 						</Var>
 					</Vars>
 					<Vars VarGrpType="2" AreaNo="1">
@@ -824,12 +851,22 @@ EL2008 - DQ1]]></Comment>
 							<Type>INT</Type>
 						</Var>
 						<Var>
-							<Name>Output.R1_10_CANrequest</Name>
+							<Name>Output.R1_10_7F_CANrequest</Name>
+							<Comment><![CDATA[this one is for 7F]]></Comment>
 							<Type GUID="{097EA4EA-7ACD-4562-9D25-EE45E0B0C673}" Namespace="IO">EXTCANQUEUE</Type>
+						</Var>
+						<Var>
+							<Name>Output.R1_10_ARR_CANrequest</Name>
+							<Type GUID="{7C22C5A9-4949-9184-C0D2-D1FF0FE38684}">ARRAY [1..12] OF IO.EXTCANQUEUE</Type>
 						</Var>
 					</Vars>
 					<Vars VarGrpType="8" AreaNo="4">
 						<Name>PlcTask Retains</Name>
+						<Var>
+							<Name>ChargeTime_DB.PreFormChargeTime_PT</Name>
+							<Type>TIME</Type>
+							<InOut>7</InOut>
+						</Var>
 						<Var>
 							<Name>ChargeTime_DB.ChargerDelay_TON</Name>
 							<Type GUID="{B67C53DE-6A92-5C5B-4076-1B25F1887AC3}">ARRAY [1..6] OF Tc2_Standard.TON</Type>
@@ -857,23 +894,18 @@ FormChargeTime_ET  : ARRAY[1..2] OF TIME;]]></Comment>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
-							<Name>ChargeTime_DB.PreFormChargeTime_PT</Name>
+							<Name>ChargeTime_DB.PreFormChargeTime_ET</Name>
 							<Type>TIME</Type>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
-							<Name>ChargeTime_DB.PreFormChargeTime_ET</Name>
+							<Name>ChargeTime_DB.LongestChargeTime_PT</Name>
 							<Type>TIME</Type>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
 							<Name>ChargeTime_DB.LongestChargeTime_TON</Name>
 							<Type GUID="{1337BBBA-9A3F-D9E7-4ED6-FA23E60881AB}" Namespace="Tc2_Standard">TON</Type>
-							<InOut>7</InOut>
-						</Var>
-						<Var>
-							<Name>ChargeTime_DB.LongestChargeTime_PT</Name>
-							<Type>TIME</Type>
 							<InOut>7</InOut>
 						</Var>
 						<Var>
@@ -1045,6 +1077,29 @@ FormChargeTime_ET  : ARRAY[1..2] OF TIME;]]></Comment>
 							</OwnerB>
 							<OwnerB Name="TIID^Device 1 (EL6751)^Vector__XXX">
 								<Link VarA="Input.R1_10_CapNumber[12]^Status^Therm_LowTemp" TypeA="USINT" InOutA="0" ParentTypeA="ST_UC_Status" GuidA="{18071995-0000-0000-0000-000000000002}" VarB="ThermalData7F^Inputs^THERMAL_LOWEST_CELL" RestoreInfo="ANotFound"/>
+							</OwnerB>
+						</OwnerA>
+					</UnrestoredVarLinks>
+					<UnrestoredVarLinks ImportTime="2025-01-13T13:42:24">
+						<OwnerA Name="OutputSrc" Prefix="TIPC^M3V3_UltraCap^M3V3_UltraCap Instance" Type="2">
+							<OwnerB Name="TIID^Device 1 (EL6751)^Vector__XXX">
+								<Link VarA="Output.R1_10_01_CANrequest^data" TypeA="IO.CANMESSAGE" InOutA="1" ParentTypeA="EXTCANQUEUE" GuidA="{AC4BB20D-5D03-4CE5-96C6-86DFFE816AA7}" VarB="Request01^Outputs^data" RestoreInfo="ANotFound"/>
+								<Link VarA="Output.R1_10_01_CANrequest^length" TypeA="UINT" InOutA="1" ParentTypeA="EXTCANQUEUE" GuidA="{18071995-0000-0000-0000-000000000005}" VarB="Request01^Outputs^length" RestoreInfo="ANotFound"/>
+							</OwnerB>
+						</OwnerA>
+					</UnrestoredVarLinks>
+					<UnrestoredVarLinks ImportTime="2025-01-13T18:23:31">
+						<OwnerA Name="InputDst" Prefix="TIPC^M3V3_UltraCap^M3V3_UltraCap Instance" Type="1">
+							<OwnerB Name="TIID^Device 1 (EL6751)^Vector__XXX">
+								<Link VarA="Input.R1_10_UC_01_status^R1_10_UC_Rx_cobID" TypeA="UDINT" InOutA="0" ParentTypeA="ST_UC_Status_Dummy" GuidA="{18071995-0000-0000-0000-000000000008}" VarB="TxPDO 15^Inputs^cobID" RestoreInfo="ANotFound"/>
+							</OwnerB>
+						</OwnerA>
+					</UnrestoredVarLinks>
+					<UnrestoredVarLinks ImportTime="2025-01-14T16:34:09">
+						<OwnerA Name="OutputSrc" Prefix="TIPC^M3V3_UltraCap^M3V3_UltraCap Instance" Type="2">
+							<OwnerB Name="TIID^Device 1 (EL6751)^Vector__XXX">
+								<Link VarA="Output.R1_10_CANrequest^data" TypeA="IO.CANMESSAGE" InOutA="1" ParentTypeA="EXTCANQUEUE" GuidA="{AC4BB20D-5D03-4CE5-96C6-86DFFE816AA7}" VarB="Request7F^Outputs^data" RestoreInfo="ANotFound"/>
+								<Link VarA="Output.R1_10_CANrequest^length" TypeA="UINT" InOutA="1" ParentTypeA="EXTCANQUEUE" GuidA="{18071995-0000-0000-0000-000000000005}" VarB="Request7F^Outputs^length" RestoreInfo="ANotFound"/>
 							</OwnerB>
 						</OwnerA>
 					</UnrestoredVarLinks>
@@ -2060,18 +2115,18 @@ FormChargeTime_ET  : ARRAY[1..2] OF TIME;]]></Comment>
 						</EtherCAT>
 					</Box>
 					<Box Id="12" BoxType="9094" BoxFlags="#x00000020">
-						<Name>Term 21 (EL6751)</Name>
+						<Name>Term 11 (EL6751)</Name>
 						<ImageId>1004</ImageId>
 						<EtherCAT SlaveType="5" AdsServerAddress="056bdc3802010000" FixedAdsServerNetId="true" PdiType="#x0408" ExecIo="true" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="39" FoeType="1" VendorId="#x00000002" ProductCode="#x1a5f3052" RevisionNo="#x00160000" InfoDataAddr="true" InfoDataNetId="true" OwnAddrExtern="true" TimeoutStateChange1="5000" TimeoutStateChange3="10000" TimeoutStateChange4="1000" TimeoutMailbox2="2000" GenerateOwnNetId="true" InitializeOwnNetId="true" PortPhys="51" MaxSlotCount="126" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL6751 CANopen Master" Desc="EL6751" PortABoxInfo="#x0100000a">
 							<SyncMan>001000042600010001000000500000040004001026010000</SyncMan>
 							<SyncMan>001400042200010002000000500000040004001422010000</SyncMan>
-							<SyncMan>001800002600000003000000000000000000001826010000</SyncMan>
-							<SyncMan>0024b5002200010004000000000000000000002422010000</SyncMan>
-							<Fmmu>0000000000000000000000020000000001000000000000000000000000000000</Fmmu>
+							<SyncMan>001810002600010003000000000000000000001826010000</SyncMan>
+							<SyncMan>0024cc002200010004000000000000000000002422010000</SyncMan>
+							<Fmmu>0000000000000000001800020100000001000000000000000000000000000000</Fmmu>
 							<Fmmu>0000000000000000002400010100000002000000000000000000000000000000</Fmmu>
 							<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 							<BootStrapData>0010140200181402</BootStrapData>
-							<SuName>Term 21 (EL6751)</SuName>
+							<SuName>Term 11 (EL6751)</SuName>
 							<DcMode>53796e6368726f6e0000000000000000534d2d53796e6368726f6e000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</DcMode>
 							<DcMode>444353594e430000000000000000000044432d53796e6368726f6e000000000000000000000000000000000000000000000000000000000090d00300000000070100000000000000000000000000000000000000000000000000000000000000</DcMode>
 							<Pdo Name="Vector__XXX_IN" Index="#x1a00" Flags="#x0011" SyncMan="3">
@@ -2156,6 +2211,23 @@ FormChargeTime_ET  : ARRAY[1..2] OF TIME;]]></Comment>
 								<Entry Name="CAN TxPDO 27" Index="#x6000" Sub="#x1b" Flags="#x00000100">
 									<Type GUID="{18071995-0000-0000-0000-000300000007}">ARRAY [0..6] OF BYTE</Type>
 								</Entry>
+								<Entry Name="CAN TxPDO 28" Index="#x6000" Sub="#x1c" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-000300000008}">ARRAY [0..7] OF BYTE</Type>
+								</Entry>
+								<Entry Name="CAN TxPDO 29" Index="#x6000" Sub="#x1d" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-000300000008}">ARRAY [0..7] OF BYTE</Type>
+								</Entry>
+								<Entry Name="CAN TxPDO 30" Index="#x6000" Sub="#x1e" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-000300000007}">ARRAY [0..6] OF BYTE</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Vector__XXX_OUT" Index="#x1600" InOut="1" Flags="#x0011" SyncMan="2">
+								<Entry Name="CAN RxPDO 1" Index="#x7000" Sub="#x01" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-000300000008}">ARRAY [0..7] OF BYTE</Type>
+								</Entry>
+								<Entry Name="CAN RxPDO 2" Index="#x7000" Sub="#x02" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-000300000008}">ARRAY [0..7] OF BYTE</Type>
+								</Entry>
 							</Pdo>
 							<Pdo Name="Diag Flag CANopen Slaves" Index="#x1a82" Flags="#x0011" SyncMan="3">
 								<Entry Name="CANopen Slave 001" Index="#xf103" Sub="#x01" Flags="#x00000100">
@@ -2238,7 +2310,7 @@ FormChargeTime_ET  : ARRAY[1..2] OF TIME;]]></Comment>
 						</EtherCAT>
 					</Box>
 					<Box Id="13" BoxType="9099">
-						<Name>Term 22 (EL9011)</Name>
+						<Name>Term 12 (EL9011)</Name>
 						<ImageId>1005</ImageId>
 						<EtherCAT CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x23333050" InfoDataState="false" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL9011 End Terminal" Desc="EL9011" PortABoxInfo="#x0100000c"/>
 					</Box>
@@ -2250,7 +2322,7 @@ FormChargeTime_ET  : ARRAY[1..2] OF TIME;]]></Comment>
 				<AddressInfo>
 					<Ecat>
 						<EtherCATDeviceId>12</EtherCATDeviceId>
-						<EtherCATDeviceName>TIID^Device 3 (EtherCAT)^Term 1 (EK1101)^Term 21 (EL6751)</EtherCATDeviceName>
+						<EtherCATDeviceName>TIID^Device 3 (EtherCAT)^Term 1 (EK1101)^Term 11 (EL6751)</EtherCATDeviceName>
 					</Ecat>
 				</AddressInfo>
 				<Image Id="1" AddrType="4" ImageType="3">
@@ -2272,6 +2344,11 @@ FormChargeTime_ET  : ARRAY[1..2] OF TIME;]]></Comment>
 						<Contexts>
 							<Context>
 								<Id>1</Id>
+								<ManualConfig>
+									<OTCID>#x02010030</OTCID>
+								</ManualConfig>
+								<Priority>20</Priority>
+								<CycleTime>10000000</CycleTime>
 							</Context>
 						</Contexts>
 						<Interfaces>
@@ -2439,11 +2516,11 @@ FormChargeTime_ET  : ARRAY[1..2] OF TIME;]]></Comment>
 							</Value>
 							<Value>
 								<Name>CanMsgSize[0]</Name>
-								<Value>181</Value>
+								<Value>204</Value>
 							</Value>
 							<Value>
 								<Name>CanMsgSize[1]</Name>
-								<Value>0</Value>
+								<Value>16</Value>
 							</Value>
 							<Value>
 								<Name>CanMsgScalingRulesInfo.Version</Name>
@@ -6233,20 +6310,20 @@ Slave-Mode:
  130 = Node is Stopped
 ]]></Comment>
 							<Type>USINT</Type>
-							<BitOffs>1312</BitOffs>
+							<BitOffs>1496</BitOffs>
 						</Var>
 						<Var BoxStateVariable="true">
 							<Name>DiagFlag</Name>
 							<Comment><![CDATA[0 = Diagnosis Data unchanged
 1 = Diagnosis Data changed, use ADS-Read to get the data]]></Comment>
 							<Type>BIT</Type>
-							<BitOffs>1305</BitOffs>
+							<BitOffs>1489</BitOffs>
 						</Var>
 					</Vars>
 					<Vars VarGrpType="2">
 						<Name>Outputs</Name>
 					</Vars>
-					<CanOpen NodeId="1" BaudSupport="511" FixedSdos="54" GenerateFixedSdos="true" DvFlag_GeneralCanNode="true" DvFlag_Active="true" CobIDEmcy="129" CobIDGuard="1793" GuardTime="100" LifeTime="3" SdoTimeout="0">
+					<CanOpen NodeId="1" BaudSupport="511" FixedSdos="64" GenerateFixedSdos="true" DvFlag_GeneralCanNode="true" DvFlag_Active="true" CobIDEmcy="129" CobIDGuard="1793" GuardTime="100" LifeTime="3" SdoTimeout="0">
 						<Sdo Index="6144" SubIndex="1" Length="4" Value="217092353"/>
 						<Sdo Index="6144" SubIndex="2" Length="1" Value="255"/>
 						<Sdo Index="6145" SubIndex="1" Length="4" Value="217092609"/>
@@ -6301,6 +6378,16 @@ Slave-Mode:
 						<Sdo Index="6169" SubIndex="2" Length="1" Value="255"/>
 						<Sdo Index="6170" SubIndex="1" Length="4" Value="215665791"/>
 						<Sdo Index="6170" SubIndex="2" Length="1" Value="255"/>
+						<Sdo Index="6171" SubIndex="1" Length="4" Value="215665791"/>
+						<Sdo Index="6171" SubIndex="2" Length="1" Value="255"/>
+						<Sdo Index="6172" SubIndex="1" Length="4" Value="215665665"/>
+						<Sdo Index="6172" SubIndex="2" Length="1" Value="255"/>
+						<Sdo Index="6173" SubIndex="1" Length="4" Value="215665665"/>
+						<Sdo Index="6173" SubIndex="2" Length="1" Value="255"/>
+						<Sdo Index="5120" SubIndex="1" Length="4" Value="215646156"/>
+						<Sdo Index="5120" SubIndex="2" Length="1" Value="255"/>
+						<Sdo Index="5121" SubIndex="1" Length="4" Value="215613900"/>
+						<Sdo Index="5121" SubIndex="2" Length="1" Value="255"/>
 						<TxPdo TX="true" CobId="217092353" TransType="255" Flags="19">
 							<Name>ElectricalData01</Name>
 							<ImageId>82</ImageId>
@@ -9519,15 +9606,115 @@ CAN-Message-Information:
 								</Var>
 							</Vars>
 						</TxPdo>
+						<TxPdo TX="true" CobId="215665791" TransType="255" Flags="19" PdoStartAddress="163">
+							<Name>TxPDO 15</Name>
+							<Comment><![CDATA[7F id response message]]></Comment>
+							<ImageId>82</ImageId>
+							<Vars VarGrpType="1" InsertType="2">
+								<Name>Inputs</Name>
+								<Var>
+									<Name>data</Name>
+									<Type GUID="{18071995-0000-0000-0000-000300000008}">ARRAY [0..7] OF BYTE</Type>
+									<BitOffs>1304</BitOffs>
+								</Var>
+								<Var>
+									<Name>cobID</Name>
+									<Type>UDINT</Type>
+									<BitOffs>1304</BitOffs>
+								</Var>
+							</Vars>
+						</TxPdo>
+						<TxPdo TX="true" CobId="215665665" TransType="255" Flags="19" PdoStartAddress="171">
+							<Name>TxPDO 16</Name>
+							<Comment><![CDATA[01 ID response messages]]></Comment>
+							<ImageId>82</ImageId>
+							<Vars VarGrpType="1" InsertType="2">
+								<Name>Inputs</Name>
+								<Var>
+									<Name>data</Name>
+									<Type GUID="{18071995-0000-0000-0000-000300000008}">ARRAY [0..7] OF BYTE</Type>
+									<BitOffs>1368</BitOffs>
+								</Var>
+								<Var>
+									<Name>cobID</Name>
+									<Type>UDINT</Type>
+									<BitOffs>1368</BitOffs>
+								</Var>
+							</Vars>
+						</TxPdo>
+						<TxPdo TX="true" CobId="215665665" TransType="255" Flags="19" PdoStartAddress="179">
+							<Name>Response01</Name>
+							<ImageId>82</ImageId>
+							<Vars VarGrpType="1" InsertType="2">
+								<Name>Inputs</Name>
+								<Var>
+									<Name>BYTE0</Name>
+									<Comment><![CDATA[Factor = 1
+Offset = 0
+Minimum = 0
+Maximum = 3
+Unit = ""
+
+CAN-Message-Information:
+   Bit-Size = 2
+   Bit-Offset of LSB (Intel-Format) = 0
+
+]]></Comment>
+									<Type>BIT2</Type>
+									<BitOffs>1432</BitOffs>
+								</Var>
+								<Var>
+									<Name>_fill_signal_</Name>
+									<Comment><![CDATA[
+- dummy signal to fill up the entire message size -]]></Comment>
+									<Type GUID="{18071995-0000-0000-0000-002000000036}">ARRAY [0..53] OF BIT</Type>
+									<BitOffs>1434</BitOffs>
+								</Var>
+							</Vars>
+						</TxPdo>
+						<RxPdo CobId="215646156" TransType="255" Flags="19">
+							<Name>Request7F</Name>
+							<Comment><![CDATA[Dummy]]></Comment>
+							<ImageId>42</ImageId>
+							<Vars VarGrpType="2" InsertType="2">
+								<Name>Outputs</Name>
+								<Var>
+									<Name>data</Name>
+									<Type GUID="{18071995-0000-0000-0000-000300000008}">ARRAY [0..7] OF BYTE</Type>
+								</Var>
+								<Var>
+									<Name>length</Name>
+									<Type>UINT</Type>
+								</Var>
+							</Vars>
+						</RxPdo>
+						<RxPdo CobId="215613900" TransType="255" Flags="19" PdoStartAddress="8">
+							<Name>Request01</Name>
+							<Comment><![CDATA[Dummy]]></Comment>
+							<ImageId>42</ImageId>
+							<Vars VarGrpType="2" InsertType="2">
+								<Name>Outputs</Name>
+								<Var>
+									<Name>data</Name>
+									<Type GUID="{18071995-0000-0000-0000-000300000008}">ARRAY [0..7] OF BYTE</Type>
+									<BitOffs>64</BitOffs>
+								</Var>
+								<Var>
+									<Name>length</Name>
+									<Type>UINT</Type>
+									<BitOffs>64</BitOffs>
+								</Var>
+							</Vars>
+						</RxPdo>
 					</CanOpen>
 				</Box>
 				<CanOpen CurrentDBCPath="\\GFYVR-FS01\research\Plasma Injector 4\Control System\Gene\MagnetSys\CAN_db_2.9_MOD.dbc">
 					<Fcxxxx>
 						<DevSettings BusyIntEnabled="true" EnableMasterDiag="true" ExtendedMapping="true" DisableSlots="true" NetId="056bdc380201" EquiCycleTime="100000" FifoSize="5" CycleDivider="1"/>
-						<DevParameter CycleTime="100000" WatchDog="100" EnableExtMasterDiag="true" InputShift="60" ExtendedMapping="true"/>
+						<DevParameter CycleTime="100000" EnableExtMasterDiag="true" InputShift="60" ExtendedMapping="true"/>
 						<EquiParameter RelationShiftCycle="0"/>
 					</Fcxxxx>
-					<BusParameter NodeId="127" Baudrate="2" CobIdSync="128" TxPdoWindowSize="30" CycleDivider="1" MaxLoPrioQueue="100"/>
+					<BusParameter NodeId="127" Baudrate="2" CobIdSync="128" TxPdoWindowSize="30" CycleDivider="1" MaxLoPrioQueue="100" Bt1="28" TimerTick="3" BusActiveDivider="119" TxBusyTime="1000" TimeIntegral="2000" WdTimeoutInCycleTime="50000"/>
 					<DBCSelection CANID="#x2cf09101"/>
 					<DBCSelection CANID="#x2cf09201"/>
 					<DBCSelection CANID="#x2cf09102"/>
@@ -9560,8 +9747,8 @@ CAN-Message-Information:
 		</Io>
 	</Project>
 	<Mappings>
-		<MappingInfo Identifier="{00000000-2001-0850-0020-500810000101}" Id="#x02030020"/>
-		<MappingInfo Identifier="{00000000-2001-0850-0020-500810000403}" Id="#x02030030"/>
+		<MappingInfo Identifier="{00000000-2001-0850-0020-500810000101}" Id="#x02030030"/>
+		<MappingInfo Identifier="{00000000-2001-0850-0020-500810000403}" Id="#x02030020"/>
 		<MappingInfo Identifier="{00000000-2001-0850-0020-500820000403}" Id="#x02030010"/>
 		<OwnerA Name="TIPC^M3V3_UltraCap^M3V3_UltraCap Instance">
 			<OwnerB Name="TIID^Device 1 (EL6751)^Prepared DBC Signals^Vector__XXX^ElectricalData01">
@@ -9580,86 +9767,6 @@ CAN-Message-Information:
 				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[2]^Elec_OverVoltage" VarB="Message_Inputs^ELECTRICAL_STATUS_OVERVOLTAGE"/>
 				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[2]^Elec_VoltageSum" VarB="Message_Inputs^ELECTRICAL_VOLTAGE_SUM"/>
 			</OwnerB>
-			<OwnerB Name="TIID^Device 1 (EL6751)^Prepared DBC Signals^Vector__XXX^ElectricalData03">
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[3]^Elec_AveVolt" VarB="Message_Inputs^ELECTRICAL_AVERAGE_VOLTAGE"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[3]^Elec_Balancing" VarB="Message_Inputs^ELECTRICAL_STATUS_BALANCING"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[3]^Elec_HighestVolt" VarB="Message_Inputs^ELECTRICAL_HIGHEST_VOLTAGE"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[3]^Elec_Imbalance" VarB="Message_Inputs^ELECTRICAL_STATUS_IMBALANCE"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[3]^Elec_OverVoltage" VarB="Message_Inputs^ELECTRICAL_STATUS_OVERVOLTAGE"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[3]^Elec_VoltageSum" VarB="Message_Inputs^ELECTRICAL_VOLTAGE_SUM"/>
-			</OwnerB>
-			<OwnerB Name="TIID^Device 1 (EL6751)^Prepared DBC Signals^Vector__XXX^ElectricalData04">
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[4]^Elec_AveVolt" VarB="Message_Inputs^ELECTRICAL_AVERAGE_VOLTAGE"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[4]^Elec_Balancing" VarB="Message_Inputs^ELECTRICAL_STATUS_BALANCING"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[4]^Elec_HighestVolt" VarB="Message_Inputs^ELECTRICAL_HIGHEST_VOLTAGE"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[4]^Elec_Imbalance" VarB="Message_Inputs^ELECTRICAL_STATUS_IMBALANCE"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[4]^Elec_OverVoltage" VarB="Message_Inputs^ELECTRICAL_STATUS_OVERVOLTAGE"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[4]^Elec_VoltageSum" VarB="Message_Inputs^ELECTRICAL_VOLTAGE_SUM"/>
-			</OwnerB>
-			<OwnerB Name="TIID^Device 1 (EL6751)^Prepared DBC Signals^Vector__XXX^ElectricalData05">
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[5]^Elec_AveVolt" VarB="Message_Inputs^ELECTRICAL_AVERAGE_VOLTAGE"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[5]^Elec_Balancing" VarB="Message_Inputs^ELECTRICAL_STATUS_BALANCING"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[5]^Elec_HighestVolt" VarB="Message_Inputs^ELECTRICAL_HIGHEST_VOLTAGE"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[5]^Elec_Imbalance" VarB="Message_Inputs^ELECTRICAL_STATUS_IMBALANCE"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[5]^Elec_OverVoltage" VarB="Message_Inputs^ELECTRICAL_STATUS_OVERVOLTAGE"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[5]^Elec_VoltageSum" VarB="Message_Inputs^ELECTRICAL_VOLTAGE_SUM"/>
-			</OwnerB>
-			<OwnerB Name="TIID^Device 1 (EL6751)^Prepared DBC Signals^Vector__XXX^ElectricalData06">
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[6]^Elec_AveVolt" VarB="Message_Inputs^ELECTRICAL_AVERAGE_VOLTAGE"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[6]^Elec_Balancing" VarB="Message_Inputs^ELECTRICAL_STATUS_BALANCING"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[6]^Elec_HighestVolt" VarB="Message_Inputs^ELECTRICAL_HIGHEST_VOLTAGE"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[6]^Elec_Imbalance" VarB="Message_Inputs^ELECTRICAL_STATUS_IMBALANCE"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[6]^Elec_OverVoltage" VarB="Message_Inputs^ELECTRICAL_STATUS_OVERVOLTAGE"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[6]^Elec_VoltageSum" VarB="Message_Inputs^ELECTRICAL_VOLTAGE_SUM"/>
-			</OwnerB>
-			<OwnerB Name="TIID^Device 1 (EL6751)^Prepared DBC Signals^Vector__XXX^ElectricalData07">
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[7]^Elec_AveVolt" VarB="Message_Inputs^ELECTRICAL_AVERAGE_VOLTAGE"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[7]^Elec_Balancing" VarB="Message_Inputs^ELECTRICAL_STATUS_BALANCING"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[7]^Elec_HighestVolt" VarB="Message_Inputs^ELECTRICAL_HIGHEST_VOLTAGE"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[7]^Elec_Imbalance" VarB="Message_Inputs^ELECTRICAL_STATUS_IMBALANCE"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[7]^Elec_OverVoltage" VarB="Message_Inputs^ELECTRICAL_STATUS_OVERVOLTAGE"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[7]^Elec_VoltageSum" VarB="Message_Inputs^ELECTRICAL_VOLTAGE_SUM"/>
-			</OwnerB>
-			<OwnerB Name="TIID^Device 1 (EL6751)^Prepared DBC Signals^Vector__XXX^ElectricalData08">
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[8]^Elec_AveVolt" VarB="Message_Inputs^ELECTRICAL_AVERAGE_VOLTAGE"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[8]^Elec_Balancing" VarB="Message_Inputs^ELECTRICAL_STATUS_BALANCING"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[8]^Elec_HighestVolt" VarB="Message_Inputs^ELECTRICAL_HIGHEST_VOLTAGE"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[8]^Elec_Imbalance" VarB="Message_Inputs^ELECTRICAL_STATUS_IMBALANCE"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[8]^Elec_OverVoltage" VarB="Message_Inputs^ELECTRICAL_STATUS_OVERVOLTAGE"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[8]^Elec_VoltageSum" VarB="Message_Inputs^ELECTRICAL_VOLTAGE_SUM"/>
-			</OwnerB>
-			<OwnerB Name="TIID^Device 1 (EL6751)^Prepared DBC Signals^Vector__XXX^ElectricalData09">
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[9]^Elec_AveVolt" VarB="Message_Inputs^ELECTRICAL_AVERAGE_VOLTAGE"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[9]^Elec_Balancing" VarB="Message_Inputs^ELECTRICAL_STATUS_BALANCING"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[9]^Elec_HighestVolt" VarB="Message_Inputs^ELECTRICAL_HIGHEST_VOLTAGE"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[9]^Elec_Imbalance" VarB="Message_Inputs^ELECTRICAL_STATUS_IMBALANCE"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[9]^Elec_OverVoltage" VarB="Message_Inputs^ELECTRICAL_STATUS_OVERVOLTAGE"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[9]^Elec_VoltageSum" VarB="Message_Inputs^ELECTRICAL_VOLTAGE_SUM"/>
-			</OwnerB>
-			<OwnerB Name="TIID^Device 1 (EL6751)^Prepared DBC Signals^Vector__XXX^ElectricalData0A">
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[10]^Elec_AveVolt" VarB="Message_Inputs^ELECTRICAL_AVERAGE_VOLTAGE"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[10]^Elec_Balancing" VarB="Message_Inputs^ELECTRICAL_STATUS_BALANCING"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[10]^Elec_HighestVolt" VarB="Message_Inputs^ELECTRICAL_HIGHEST_VOLTAGE"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[10]^Elec_Imbalance" VarB="Message_Inputs^ELECTRICAL_STATUS_IMBALANCE"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[10]^Elec_OverVoltage" VarB="Message_Inputs^ELECTRICAL_STATUS_OVERVOLTAGE"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[10]^Elec_VoltageSum" VarB="Message_Inputs^ELECTRICAL_VOLTAGE_SUM"/>
-			</OwnerB>
-			<OwnerB Name="TIID^Device 1 (EL6751)^Prepared DBC Signals^Vector__XXX^ElectricalData0B">
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[11]^Elec_AveVolt" VarB="Message_Inputs^ELECTRICAL_AVERAGE_VOLTAGE"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[11]^Elec_Balancing" VarB="Message_Inputs^ELECTRICAL_STATUS_BALANCING"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[11]^Elec_HighestVolt" VarB="Message_Inputs^ELECTRICAL_HIGHEST_VOLTAGE"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[11]^Elec_Imbalance" VarB="Message_Inputs^ELECTRICAL_STATUS_IMBALANCE"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[11]^Elec_OverVoltage" VarB="Message_Inputs^ELECTRICAL_STATUS_OVERVOLTAGE"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[11]^Elec_VoltageSum" VarB="Message_Inputs^ELECTRICAL_VOLTAGE_SUM"/>
-			</OwnerB>
-			<OwnerB Name="TIID^Device 1 (EL6751)^Prepared DBC Signals^Vector__XXX^ElectricalData0C">
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[12]^Elec_AveVolt" VarB="Message_Inputs^ELECTRICAL_AVERAGE_VOLTAGE"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[12]^Elec_Balancing" VarB="Message_Inputs^ELECTRICAL_STATUS_BALANCING"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[12]^Elec_HighestVolt" VarB="Message_Inputs^ELECTRICAL_HIGHEST_VOLTAGE"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[12]^Elec_Imbalance" VarB="Message_Inputs^ELECTRICAL_STATUS_IMBALANCE"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[12]^Elec_OverVoltage" VarB="Message_Inputs^ELECTRICAL_STATUS_OVERVOLTAGE"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[12]^Elec_VoltageSum" VarB="Message_Inputs^ELECTRICAL_VOLTAGE_SUM"/>
-			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (EL6751)^Prepared DBC Signals^Vector__XXX^ElectricalData7F">
 				<Link VarA="PlcTask Inputs^Input.R1_10_UC_7F_status^Elec_AveVolt" VarB="Message_Inputs^ELECTRICAL_AVERAGE_VOLTAGE"/>
 				<Link VarA="PlcTask Inputs^Input.R1_10_UC_7F_status^Elec_Balancing" VarB="Message_Inputs^ELECTRICAL_STATUS_BALANCING"/>
@@ -9676,49 +9783,19 @@ CAN-Message-Information:
 				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[2]^Therm_HighestCell" VarB="Message_Inputs^THERMAL_HIGHEST_CELL"/>
 				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[2]^Therm_LowestCell" VarB="Message_Inputs^THERMAL_LOWEST_CELL"/>
 			</OwnerB>
-			<OwnerB Name="TIID^Device 1 (EL6751)^Prepared DBC Signals^Vector__XXX^ThermalData03">
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[3]^Therm_HighestCell" VarB="Message_Inputs^THERMAL_HIGHEST_CELL"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[3]^Therm_LowestCell" VarB="Message_Inputs^THERMAL_LOWEST_CELL"/>
-			</OwnerB>
-			<OwnerB Name="TIID^Device 1 (EL6751)^Prepared DBC Signals^Vector__XXX^ThermalData04">
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[4]^Therm_HighestCell" VarB="Message_Inputs^THERMAL_HIGHEST_CELL"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[4]^Therm_LowestCell" VarB="Message_Inputs^THERMAL_LOWEST_CELL"/>
-			</OwnerB>
-			<OwnerB Name="TIID^Device 1 (EL6751)^Prepared DBC Signals^Vector__XXX^ThermalData05">
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[5]^Therm_HighestCell" VarB="Message_Inputs^THERMAL_HIGHEST_CELL"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[5]^Therm_LowestCell" VarB="Message_Inputs^THERMAL_LOWEST_CELL"/>
-			</OwnerB>
-			<OwnerB Name="TIID^Device 1 (EL6751)^Prepared DBC Signals^Vector__XXX^ThermalData06">
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[6]^Therm_HighestCell" VarB="Message_Inputs^THERMAL_HIGHEST_CELL"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[6]^Therm_LowestCell" VarB="Message_Inputs^THERMAL_LOWEST_CELL"/>
-			</OwnerB>
-			<OwnerB Name="TIID^Device 1 (EL6751)^Prepared DBC Signals^Vector__XXX^ThermalData07">
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[7]^Therm_HighestCell" VarB="Message_Inputs^THERMAL_HIGHEST_CELL"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[7]^Therm_LowestCell" VarB="Message_Inputs^THERMAL_LOWEST_CELL"/>
-			</OwnerB>
-			<OwnerB Name="TIID^Device 1 (EL6751)^Prepared DBC Signals^Vector__XXX^ThermalData08">
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[8]^Therm_HighestCell" VarB="Message_Inputs^THERMAL_HIGHEST_CELL"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[8]^Therm_LowestCell" VarB="Message_Inputs^THERMAL_LOWEST_CELL"/>
-			</OwnerB>
-			<OwnerB Name="TIID^Device 1 (EL6751)^Prepared DBC Signals^Vector__XXX^ThermalData09">
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[9]^Therm_HighestCell" VarB="Message_Inputs^THERMAL_HIGHEST_CELL"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[9]^Therm_LowestCell" VarB="Message_Inputs^THERMAL_LOWEST_CELL"/>
-			</OwnerB>
-			<OwnerB Name="TIID^Device 1 (EL6751)^Prepared DBC Signals^Vector__XXX^ThermalData0A">
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[10]^Therm_HighestCell" VarB="Message_Inputs^THERMAL_HIGHEST_CELL"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[10]^Therm_LowestCell" VarB="Message_Inputs^THERMAL_LOWEST_CELL"/>
-			</OwnerB>
-			<OwnerB Name="TIID^Device 1 (EL6751)^Prepared DBC Signals^Vector__XXX^ThermalData0B">
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[11]^Therm_HighestCell" VarB="Message_Inputs^THERMAL_HIGHEST_CELL"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[11]^Therm_LowestCell" VarB="Message_Inputs^THERMAL_LOWEST_CELL"/>
-			</OwnerB>
-			<OwnerB Name="TIID^Device 1 (EL6751)^Prepared DBC Signals^Vector__XXX^ThermalData0C">
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[12]^Therm_HighestCell" VarB="Message_Inputs^THERMAL_HIGHEST_CELL"/>
-				<Link VarA="PlcTask Inputs^Input.R1_10_CapNumber[12]^Therm_LowestCell" VarB="Message_Inputs^THERMAL_LOWEST_CELL"/>
-			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (EL6751)^Prepared DBC Signals^Vector__XXX^ThermalData7F">
 				<Link VarA="PlcTask Inputs^Input.R1_10_UC_7F_status^Therm_HighestCell" VarB="Message_Inputs^THERMAL_HIGHEST_CELL"/>
 				<Link VarA="PlcTask Inputs^Input.R1_10_UC_7F_status^Therm_LowestCell" VarB="Message_Inputs^THERMAL_LOWEST_CELL"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EL6751)^Vector__XXX">
+				<Link VarA="PlcTask Inputs^Input.R1_10_UC_7F_status^R1_10_UC_Rx_cobID" VarB="TxPDO 15^Inputs^cobID"/>
+				<Link VarA="PlcTask Inputs^Input.R1_10_UC_7F_status^R1_10_UC_Rx_data" VarB="TxPDO 15^Inputs^data"/>
+				<Link VarA="PlcTask Inputs^Input.R1_10_UC_status[1]^R1_10_UC_Rx_cobID" VarB="TxPDO 16^Inputs^cobID"/>
+				<Link VarA="PlcTask Inputs^Input.R1_10_UC_status[1]^R1_10_UC_Rx_data" VarB="TxPDO 16^Inputs^data"/>
+				<Link VarA="PlcTask Outputs^Output.R1_10_7F_CANrequest^data" VarB="Request7F^Outputs^data"/>
+				<Link VarA="PlcTask Outputs^Output.R1_10_7F_CANrequest^length" VarB="Request7F^Outputs^length"/>
+				<Link VarA="PlcTask Outputs^Output.R1_10_ARR_CANrequest[1]^data" VarB="Request01^Outputs^data"/>
+				<Link VarA="PlcTask Outputs^Output.R1_10_ARR_CANrequest[1]^length" VarB="Request01^Outputs^length"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1101)^Term 10 (EL4008)">
 				<Link VarA="PlcTask Outputs^Output.R1_09_00" VarB="AO Outputs Channel 1^Analog output"/>

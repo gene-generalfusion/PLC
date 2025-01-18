@@ -3,27 +3,36 @@
   <GVL Name="LV" Id="{a1b8c407-04a5-4145-a7ff-e33fdc4ffda1}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL
-	TxWord1	: WORD;
+	TxWord1	: WORD; // received PB from LV
 	TxWord2 : WORD;
 	TxWord3 : WORD;
 	
-	RxWord1 : WORD;
+	RxWord1 : WORD; 
 	RxWord2 : WORD;
 	RxWord3 : WORD;
 
 	
 	TxInt : ARRAY [1..5] OF INT;
 	TxDint : ARRAY [1..3] OF DINT;
-	TxREAL : ARRAY [1..7] OF REAL;
+	TxREAL : ARRAY [1..12] OF REAL;
 
 	RxInt : ARRAY [1..2] OF INT;
 	RxDint : ARRAY [1..3] OF DINT;
-	RxREAL : ARRAY [1..44] OF REAL;
+	RxREAL : ARRAY [1..18] OF REAL;
 	
 	Charger : ARRAY[1..7] OF ST_Charger_Base;
 	
-	TDKLoad	: ARRAY [1..7] OF ST_Setpoints_Base; 
+	HPT5Load	: ARRAY [1..7] OF ST_Setpoints_Base; 
+	ReadState		: E_State;
+	WriteState		: E_State;
 	
+	database		: ARRAY[0..GVL.MAX_CSV_ROWS, 0..GVL.MAX_CSV_COLUMNS ] OF STRING(GVL.MAX_CSV_FIELD_LENGTH) :=[ (* Source PLC database *)
+	'0_0', '0_1', '0_2', '0_3', '0_4', '0_5', '0_6',
+	'1_0', '1_1', '1_2', '1_3', '1_4', '1_5', '1_6',
+	'2_0', '2_1', '2_2', '2_3', '2_4', '2_5', '2_6',
+	'3_0', '3_1', '3_2', '3_3', '3_4', '3_5', '3_6',
+	'4_0', '4_1', '4_2', '4_3', '4_4', '4_5', '4_6',
+	'5_0', '5_1', '5_2', '5_3', '5_4', '5_5', '5_6'];
 	(*ChargerHVOFF_rlyDelayPT		: TIME := T#25MS;
 	ChargerHVOFF_rlyDelayPT_INT	: INT := 25;
 	

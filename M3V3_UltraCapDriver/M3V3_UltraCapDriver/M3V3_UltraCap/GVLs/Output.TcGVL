@@ -44,7 +44,8 @@ VAR_GLOBAL
 	R1_09_06 AT %Q*: INT;	//spare
 	R1_09_07 AT %Q*: INT;	//spare
 	
-	R1_10_CANrequest AT %Q*: EXTCANQUEUE;	
+	R1_10_7F_CANrequest AT %Q*: EXTCANQUEUE; //this one is for 7F
+	R1_10_ARR_CANrequest AT %Q*: ARRAY [1..12] OF EXTCANQUEUE ;	
 	
 END_VAR]]></Declaration>
   </GVL>

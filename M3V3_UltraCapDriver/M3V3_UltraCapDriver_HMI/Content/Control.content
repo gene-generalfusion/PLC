@@ -2277,7 +2277,7 @@
                 "compare1": {
                   "objectType": "Symbol",
                   "valueType": "tchmi:general#/definitions/String",
-                  "symbolExpression": "%s%PLC1.LCP1_IO.Segment.0.Module.0.ChargeRly_close%/s%"
+                  "symbolExpression": "%s%PLC1.MCP_IO.MagDriver.0.ChargeRelayClose%/s%"
                 },
                 "compare2": {
                   "objectType": "StaticValue",
@@ -2367,8 +2367,8 @@
               {
                 "compare1": {
                   "objectType": "Symbol",
-                  "valueType": "tchmi:general#/definitions/BOOL",
-                  "symbolExpression": "%s%PLC1.LCP1_IO.Segment.0.Module.0.DumpRly_open%/s%"
+                  "valueType": "tchmi:general#/definitions/String",
+                  "symbolExpression": "%s%PLC1.MCP_IO.MagDriver.0.DumpRelayOpen%/s%"
                 },
                 "compare2": {
                   "objectType": "StaticValue",

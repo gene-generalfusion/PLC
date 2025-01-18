@@ -15,8 +15,9 @@ AnalogConversion();
 //VoltageMonitor(); - it is done in CAN bus now 
 Sequence();
 HMI();
-Alarms();
+//Alarms();
 Heartbeat();
+RW_CSV();
 ]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
@@ -26,6 +27,7 @@ Heartbeat();
       <LineId Id="64" Count="5" />
       <LineId Id="73" Count="0" />
       <LineId Id="17" Count="0" />
+      <LineId Id="86" Count="0" />
       <LineId Id="81" Count="0" />
     </LineIds>
   </POU>

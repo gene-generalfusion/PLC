@@ -1,0 +1,115 @@
+{
+    "enableBackup": false,
+    "historizedSymbolList": {
+        "PLC1.MCP_IO.MagDriver.0.Cap.0.CapVoltage": {
+            "interval": "PT1S",
+            "maxEntries": 1000,
+            "recordingEnabled": true,
+            "rowLimit": 100000
+        },
+        "PLC1.MCP_IO.MagDriver.0.Cap.1.CapVoltage": {
+            "interval": "PT1S",
+            "maxEntries": 1000,
+            "recordingEnabled": true,
+            "rowLimit": 100000
+        },
+        "PLC1.MCP_IO.MagDriver.0.ShotCurrentFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 100000
+        },
+        "PLC1.MCP_IO.MagDriver.1.Cap.0.CapVoltage": {
+            "interval": "PT1S",
+            "maxEntries": 1000,
+            "recordingEnabled": true,
+            "rowLimit": 100000
+        },
+        "PLC1.MCP_IO.MagDriver.1.Cap.1.CapVoltage": {
+            "interval": "PT1S",
+            "maxEntries": 1000,
+            "recordingEnabled": true,
+            "rowLimit": 100000
+        },
+        "PLC1.MCP_IO.MagDriver.1.ShotCurrentFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 100000
+        },
+        "PLC1.MCP_IO.MagDriver.2.Cap.0.CapVoltage": {
+            "interval": "PT1S",
+            "maxEntries": 1000,
+            "recordingEnabled": true,
+            "rowLimit": 100000
+        },
+        "PLC1.MCP_IO.MagDriver.2.Cap.1.CapVoltage": {
+            "interval": "PT1S",
+            "maxEntries": 1000,
+            "recordingEnabled": true,
+            "rowLimit": 100000
+        },
+        "PLC1.MCP_IO.MagDriver.2.ShotCurrentFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 100000
+        },
+        "PLC1.MCP_IO.MagDriver.3.Cap.0.CapVoltage": {
+            "interval": "PT1S",
+            "maxEntries": 1000,
+            "recordingEnabled": true,
+            "rowLimit": 100000
+        },
+        "PLC1.MCP_IO.MagDriver.3.Cap.1.CapVoltage": {
+            "interval": "PT1S",
+            "maxEntries": 1000,
+            "recordingEnabled": true,
+            "rowLimit": 100000
+        },
+        "PLC1.MCP_IO.MagDriver.3.ShotCurrentFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 100000
+        },
+        "PLC1.MCP_IO.MagDriver.4.Cap.0.CapVoltage": {
+            "interval": "PT1S",
+            "maxEntries": 1000,
+            "recordingEnabled": true,
+            "rowLimit": 100000
+        },
+        "PLC1.MCP_IO.MagDriver.4.Cap.1.CapVoltage": {
+            "interval": "PT1S",
+            "maxEntries": 1000,
+            "recordingEnabled": true,
+            "rowLimit": 100000
+        },
+        "PLC1.MCP_IO.MagDriver.4.ShotCurrentFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 100000
+        },
+        "PLC1.MCP_IO.MagDriver.5.Cap.0.CapVoltage": {
+            "interval": "PT1S",
+            "maxEntries": 1000,
+            "recordingEnabled": true,
+            "rowLimit": 100000
+        },
+        "PLC1.MCP_IO.MagDriver.5.Cap.1.CapVoltage": {
+            "interval": "PT1S",
+            "maxEntries": 1000,
+            "recordingEnabled": true,
+            "rowLimit": 100000
+        },
+        "PLC1.MCP_IO.MagDriver.5.ShotCurrentFeedback": {
+            "interval": "PT1S",
+            "maxEntries": 100,
+            "recordingEnabled": true,
+            "rowLimit": 100000
+        }
+    },
+    "inMemory": false,
+    "maxBackups": 1
+}

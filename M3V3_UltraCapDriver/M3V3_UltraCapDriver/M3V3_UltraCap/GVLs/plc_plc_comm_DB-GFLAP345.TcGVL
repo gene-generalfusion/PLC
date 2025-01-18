@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <GVL Name="plc_plc_comm_DB" Id="{66d8a775-60fa-4922-934c-15df5157bd56}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	ReadStateFromPLC	AT %MB0 : E_State; // 1 = p1 comp pp charge complete, 2 = p1 comp pp dumping
+	WriteStatetoPLC		AT %MB2	: E_State;
+	
+	ChargeTime 		AT %MB4 : REAL; //send charge time m1 pp
+	
+	Button 			AT %MB8	: ST_PB_Base;	// %MB ; 4020, %MX; 4021
+	
+	EchoChargeTimeStartDelay  AT %MB12 : INT;
+	EchoChargeTimeElapse	AT %MB14	: INT;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

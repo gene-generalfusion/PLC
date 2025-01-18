@@ -17,6 +17,9 @@ VAR_GLOBAL PERSISTENT
 	
 	ChargingRunOutTMR_elapse	: INT;
 	DumpResTempThres			: UINT := 125;
+	
+	CAN_Comm_MagDriverNum		: INT := 1;
+	CAN_Comm_UC_Num				: INT := 1;
 		
 END_VAR
 

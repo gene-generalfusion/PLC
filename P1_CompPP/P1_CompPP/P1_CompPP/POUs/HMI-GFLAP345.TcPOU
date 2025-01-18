@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="HMI" Id="{dcabf1a6-3ca3-40de-943d-43b2e4fd41d0}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM HMI
+VAR
+	eChargerType : E_ChargerType;
+	
+	//SysCLK					: GETSYSTEMTIME;
+	//fileTime				: T_FILETIME;
+	LastTimeShot			: STRING;
+	ChargeGraphTMR_TON		: TON;
+	ChargeGraphTMR_PT		: TIME := ChargeTime_DB.LongestChargeTime_PT + T#10S;
+	ChargeGraphTMR_ET		: TIME;
+	LongestChargeTIME		: REAL;
+	LastTimeShotLog			: BOOL;
+	ForceCharCompSatisfied	: BOOL := FALSE;
+	
+	i : INT := 1;
+
+	LastTimeShotTMR_TON		: TON;
+	LastTimeShotTMR_PT		: TIME := T#120H;
+	LastTimeShotTMR_ET		: TIME;
+	LastTimeShotTMR_REAL	: DWORD;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// if clear all faults, reset abort status
+IF HMI_DB.ClearFaultPB = TRUE THEN
+	Trips_DB.ChargedTimerRunout := FALSE;
+	Trips_DB.ChargingTimerRunout := FALSE;
+	Trips_DB.DumpTimerRunout := FALSE;
+	Trips_DB.ChargerSummaryFault := FALSE;
+	Trips_DB.ShortingSystemUnknown := FALSE;
+	VoltMonitor_DB.LossVoltMonitorBoard := FALSE;
+END_IF
+
+IF Trips_DB.ChargedTimerRunout = TRUE OR 
+	Trips_DB.ChargingTimerRunout = TRUE //OR 
+	//Trips_DB.DumpTimerRunout = TRUE 
+	THEN
+		Trips_DB.TimerRunOutON := TRUE; 
+		ELSE
+			Trips_DB.TimerRunOutON := FALSE;
+		END_IF
+FOR i := 1 TO 6 BY 1 DO 
+	MCP_IO.Charger[i].ChargerType := Setpoints.TDKLoad[i].eChargerType := HMI_DB.TDKLoad[i].eChargerType;
+	IF MCP_IO.Charger[i].ChargerType = E_ChargerType.TDK12kV THEN 
+		HMI_DB.TDKLoad[i].PSratedV := 12;
+		ELSIF MCP_IO.Charger[i].ChargerType = E_ChargerType.TDK30kV THEN
+			HMI_DB.TDKLoad[i].PSratedV := 30;
+		ELSIF MCP_IO.Charger[i].ChargerType = E_ChargerType.TDK50kV THEN
+			HMI_DB.TDKLoad[i].PSratedV := 50;
+	END_IF
+END_FOR;
+
+LastTimeShotTMR_TON (IN := TRUE, PT := LastTimeShotTMR_PT, ET => LastTimeShotTMR_ET);
+
+IF (Sequence.eState = E_State.CHARGECOMPLETE) AND HMI_DB.FirePB = TRUE THEN 
+	//SysCLK (timeLoDW => fileTime.dwLowDateTime, timeHiDW => fileTime.dwHighDateTime);
+	//LastTimeShot := SYSTEMTIME_TO_STRING( FILETIME_TO_SYSTEMTIME( fileTime ) );	
+	LastTimeShotTMR_TON (IN := FALSE, PT := LastTimeShotTMR_PT, ET => LastTimeShotTMR_ET);
+	HMI_DB.LastTimeShotLog := TRUE;	
+	ELSE
+		HMI_DB.LastTimeShotLog := FALSE;
+END_IF
+
+LastTimeShotTMR_REAL := TIME_TO_DWORD (LastTimeShotTMR_ET)/1000;
+
+IF (Sequence.eState = E_State.CHARGECOMPLETE OR Sequence.eState = E_State.CHARGING) THEN
+	ChargeGraphTMR_TON (IN:= TRUE, PT:= ChargeGraphTMR_PT, ET => ChargeGraphTMR_ET);
+	ELSE
+		ChargeGraphTMR_TON (IN:= FALSE);
+END_IF
+
+LongestChargeTIME := TIME_TO_REAL (ChargeTime_DB.LongestChargeTime_ET)/1000;
+
+//forced shoot threshold condition
+//***************note: we are only using charger 1****** 
+IF (MCP_IO.Charger[1].voltageFeedback >= 0.8*Setpoints.TDKLoad[1].RequiredChargedV*1000) OR 
+	(LCP1_IO.Segment[1].Module[1].VoltageFeedback >= 0.8*Setpoints.TDKLoad[1].RequiredChargedV*1000) 
+	THEN  //might need to do ABS for -2
+		ForceCharCompSatisfied := TRUE;
+ELSE
+	ForceCharCompSatisfied := FALSE;
+END_IF
+
+(********************HMI logic for csv logging status***************)
+IF P_TextModeWrite.bBusy = TRUE THEN 
+	HMI_DB.CSV_loggingBusy := TRUE;
+	ELSE
+		HMI_DB.CSV_loggingBusy := FALSE;
+END_IF
+
+IF P_TextModeWrite.bError = TRUE THEN 
+	HMI_DB.CSV_loggingError := TRUE;
+	ELSE
+		HMI_DB.CSV_loggingError := FALSE;
+END_IF
+
+//IF P_TextModeWrite.step = 10 AND P_TextModeWrite.bBusy = FALSE THEN 
+	//HMI_DB.CSV_loggingDone := TRUE;
+	//ELSIF P_TextModeWrite.step = 0 AND P_TextModeWrite.bBusy = TRUE THEN
+		//HMI_DB.CSV_loggingDone := FALSE;
+//END_IF
+
+//Status light for saving csv buffer
+IF P_TextModeWrite.SaveBuff = TRUE THEN 
+	HMI_DB.FillingBuffer := TRUE;
+	ELSE
+		HMI_DB.FillingBuffer := FALSE;
+END_IF
+
+IF P_TextModeWrite.SaveCSV = FALSE AND P_TextModeWrite.step = 10 THEN 
+	HMI_DB.CSV_loggingDone := TRUE;
+	ELSIF (P_TextModeWrite.SaveCSV = TRUE OR P_TextModeWrite.SaveBuff = TRUE)  THEN
+		HMI_DB.CSV_loggingDone := FALSE;
+END_IF
+
+
+IF i > 6 THEN 
+	i := 1;
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="HMI">
+      <LineId Id="5" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="15" Count="1" />
+      <LineId Id="37" Count="1" />
+      <LineId Id="100" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="21" Count="2" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="24" Count="4" />
+      <LineId Id="32" Count="1" />
+      <LineId Id="43" Count="0" />
+      <LineId Id="45" Count="0" />
+      <LineId Id="47" Count="3" />
+      <LineId Id="46" Count="0" />
+      <LineId Id="53" Count="0" />
+      <LineId Id="125" Count="0" />
+      <LineId Id="69" Count="0" />
+      <LineId Id="126" Count="0" />
+      <LineId Id="70" Count="0" />
+      <LineId Id="73" Count="0" />
+      <LineId Id="99" Count="0" />
+      <LineId Id="130" Count="0" />
+      <LineId Id="128" Count="0" />
+      <LineId Id="85" Count="1" />
+      <LineId Id="74" Count="0" />
+      <LineId Id="122" Count="0" />
+      <LineId Id="131" Count="0" />
+      <LineId Id="91" Count="0" />
+      <LineId Id="90" Count="0" />
+      <LineId Id="92" Count="0" />
+      <LineId Id="94" Count="1" />
+      <LineId Id="93" Count="0" />
+      <LineId Id="81" Count="0" />
+      <LineId Id="80" Count="0" />
+      <LineId Id="152" Count="0" />
+      <LineId Id="121" Count="0" />
+      <LineId Id="158" Count="0" />
+      <LineId Id="153" Count="0" />
+      <LineId Id="159" Count="0" />
+      <LineId Id="161" Count="0" />
+      <LineId Id="120" Count="0" />
+      <LineId Id="155" Count="2" />
+      <LineId Id="184" Count="3" />
+      <LineId Id="189" Count="1" />
+      <LineId Id="188" Count="0" />
+      <LineId Id="194" Count="4" />
+      <LineId Id="193" Count="0" />
+      <LineId Id="199" Count="4" />
+      <LineId Id="192" Count="0" />
+      <LineId Id="234" Count="0" />
+      <LineId Id="226" Count="0" />
+      <LineId Id="225" Count="0" />
+      <LineId Id="227" Count="0" />
+      <LineId Id="229" Count="1" />
+      <LineId Id="228" Count="0" />
+      <LineId Id="233" Count="0" />
+      <LineId Id="232" Count="0" />
+      <LineId Id="235" Count="0" />
+      <LineId Id="237" Count="2" />
+      <LineId Id="261" Count="0" />
+      <LineId Id="58" Count="0" />
+      <LineId Id="52" Count="0" />
+      <LineId Id="54" Count="1" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

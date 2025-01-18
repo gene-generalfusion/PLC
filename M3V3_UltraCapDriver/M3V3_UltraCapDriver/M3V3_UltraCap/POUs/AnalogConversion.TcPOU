@@ -8,8 +8,8 @@ VAR
 	k					: INT := 1;  // cap 1-10
 	m					: INT := 1; //form cap 1-12
 	n					: INT := 6;
-	MaxTemp				: INT := 100;
-	MinTemp				: INT := 0;
+	MaxTemp				: INT := 380;
+	MinTemp				: INT := -70;
 	
 	MaxCurrent			: INT := 1000;
 	MinCurrent			: INT := 0;
@@ -31,11 +31,11 @@ FOR i := 1 TO n BY 1 DO
 	//Temp
 	MCP_IO.MagDriver[i].DumpResistorTemp_norm := Norm_x (raw_input := INT_TO_REAL (MCP_IO.MagDriver[i].DumpResistorTemp_raw),
 														x_max := 32767,
-														x_min := 0);
+														x_min := 6553); // temp sensor is 4-20mA
 											
 	MCP_IO.MagDriver[i].DumpResistorTemp := (MaxTemp - MinTemp) * ADC_10V( normal_input := MCP_IO.MagDriver[i].DumpResistorTemp_norm,
 																			x_max := 10,
-																			x_min := 0);
+																			x_min := 2); // temp sensor is 2-10v
 	//current																									
 	MCP_IO.MagDriver[i].ShotCurrentFeedback_norm := Norm_x (raw_input := INT_TO_REAL (MCP_IO.MagDriver[i].ShotCurrentFeedback_raw),
 														x_max := 32767,
@@ -66,12 +66,12 @@ FOR i := 1 TO n BY 1 DO
 												x_min := 0);	
 												
 	MCP_IO.Charger[i].voltageSP_raw := AQ (norm_input := MCP_IO.Charger[i].voltageSP_norm, 
-												x_max := 10,
+												x_max := 20,
 												x_min := 0);
 																								
 	//limite for output sigal (<= 10V)  this should not happen
-	IF MCP_IO.Charger[i].voltageSP_raw >= 32767 THEN 
-		MCP_IO.Charger[i].voltageSP_raw := 32767; 										
+	IF MCP_IO.Charger[i].voltageSP_raw >= (32767/2) THEN //32767/2
+		MCP_IO.Charger[i].voltageSP_raw := (32767/2); 										
 	END_IF;
 	
 END_FOR;
